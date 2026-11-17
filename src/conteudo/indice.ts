@@ -116,7 +116,7 @@ export const capsulas: ResumoCapsula[] = [
   m('medio', 'polinomios', 'Polinômios', 'As contas por trás das curvas.', { grupo: 'Álgebra' }),
   m('medio', 'numeros-complexos', 'Números complexos', 'A raiz de −1 existe. E serve para algo.', { grupo: 'Álgebra' }),
 
-  c('o-computador', 'binario', 'Binário', 'Escrever números acendendo lâmpadas.', { conexoes: ['potencias'] }),
+  c('o-computador', 'binario', 'Binário', 'Escrever números acendendo lâmpadas.', { estado: 'pronta', duracaoMin: 40, conexoes: ['potencias'] }),
   c('o-computador', 'hardware', 'Hardware', 'A cozinha que existe dentro do computador.'),
   c('o-computador', 'sistema-operacional', 'Sistema operacional', 'O gerente que ninguém vê trabalhar.'),
   c('o-computador', 'terminal', 'Terminal', 'Comandos sem medo da tela preta.'),

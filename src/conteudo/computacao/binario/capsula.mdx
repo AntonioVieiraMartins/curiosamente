@@ -1,0 +1,401 @@
+import LampadasBinarias from '../../../components/simulacoes/LampadasBinarias'
+import ContadorBinario from '../../../components/simulacoes/ContadorBinario'
+import ConversorBinario from '../../../components/simulacoes/ConversorBinario'
+import TextoEmBinario from '../../../components/simulacoes/TextoEmBinario'
+import CorEmBits from '../../../components/simulacoes/CorEmBits'
+import BitsEPossibilidades from '../../../components/simulacoes/BitsEPossibilidades'
+
+{/* Fatos conferidos na Wikipedia em inglês (Binary number, Bit, ASCII), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Dentro do seu celular existem bilhões de minúsculos interruptores. Cada um só tem **dois estados**: ligado ou desligado. Não existe "meio ligado". E, mesmo assim, é com eles que o aparelho guarda suas fotos, suas músicas, suas mensagens e este texto.
+
+Como dá para escrever **tudo** usando só dois símbolos, o **0** (desligado) e o **1** (ligado)? A resposta se chama **sistema binário**, e é o idioma de todo computador.
+
+<Palpite
+  chave="inicial"
+  pergunta="Imagine só 2 lâmpadas, cada uma acesa ou apagada. Quantas combinações diferentes dá para formar?"
+  opcoes={['2 combinações', '4 combinações', '8 combinações']}
+/>
+
+Nesta cápsula você vai acender lâmpadas para escrever números, aprender a "contar" só com 0 e 1, ver seu nome virar uma sequência de bits e descobrir por que um byte tem 256 valores e uma cor de tela tem mais de 16 milhões.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Escrever tudo com dois símbolos é uma ideia muito mais velha que o computador.
+
+<LinhaDoTempo marcos={[
+  { ano: 'c. séc. II a.C.', texto: 'Na Índia, Pingala usa sílabas curtas e longas para descrever o ritmo de poemas, um sistema que lembra o binário.' },
+  { ano: 'Séc. XI', texto: 'Na China, o estudioso Shao Yong reorganiza os hexagramas do I Ching num formato parecido com o binário moderno.' },
+  { ano: '1679 e 1703', texto: 'Leibniz escreve sobre a "progressão binária" e publica a Explicação da Aritmética Binária.' },
+  { ano: '1854', texto: 'George Boole publica uma álgebra da lógica: verdadeiro e falso viram contas.' },
+  { ano: '1937', texto: 'Claude Shannon mostra que chaves liga-desliga podem fazer lógica e aritmética binária: nasce o projeto dos circuitos digitais.' },
+  { ano: '1947 e 1948', texto: 'John Tukey inventa a palavra "bit" num memorando; Shannon a usa pela primeira vez num artigo impresso.' },
+  { ano: '1963', texto: 'Sai o ASCII, a tabela que dá um número a cada letra, com 128 caracteres.' },
+]} />
+
+## Poemas, hexagramas e um filósofo
+
+Há mais de dois mil anos, o indiano Pingala queria descrever o ritmo dos versos. Cada sílaba era curta ou longa, e ele organizou as combinações possíveis. Era binário, mas ninguém chamava assim.
+
+Na China, o *I Ching*, um livro antigo de adivinhação, usa seis linhas que podem ser inteiras ou partidas. No século XI, Shao Yong as arrumou numa ordem que lembra a dos números binários, embora ele não tivesse pensado em matemática.
+
+## Leibniz e o "sim ou não" do universo
+
+O alemão Gottfried Leibniz escreveu mais de cem manuscritos sobre o binário e é considerado o inventor do sistema binário moderno. Em 1703 ele publicou sua obra mais conhecida sobre o tema. Leibniz e o missionário Joachim Bouvet concluíram que os hexagramas do I Ching mostravam que os chineses tinham feito uma descoberta importante e independente: a de escrever com dois símbolos.
+
+## De Boole aos circuitos
+
+Em 1854, George Boole mostrou que a lógica ("verdadeiro" e "falso") podia virar uma álgebra. Em 1937, ainda estudante de mestrado, Claude Shannon percebeu que **interruptores** (ligado/desligado) podiam executar essa álgebra e também a aritmética binária. Esse trabalho é considerado a base do projeto de circuitos digitais.
+
+Desde então, quase todos os computadores usam o binário. Um dos motivos práticos é simples: é muito mais fácil um circuito distinguir entre "tem tensão" e "não tem" do que entre dez níveis diferentes, ainda mais com ruído e imperfeições.
+
+## O nome "bit"
+
+Em 9 de janeiro de 1947, John Tukey, nos Laboratórios Bell, encurtou "binary digit" (dígito binário) para **bit** num memorando. Shannon usou a palavra pela primeira vez em um artigo publicado em 1948, dando o crédito a Tukey.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Os números por posição
+
+Quando você escreve 345, cada algarismo vale uma coisa diferente **dependendo da posição**: o 5 vale 5 unidades, o 4 vale 4 dezenas (40) e o 3 vale 3 centenas (300). Cada posição para a esquerda vale **10 vezes** a anterior: 1, 10, 100, 1.000... Por isso o sistema se chama **decimal**: base 10.
+
+O binário usa a mesma ideia, só que a cada posição o valor **dobra**: 1, 2, 4, 8, 16, 32, 64, 128... Em vez de dez algarismos (0 a 9), usa só dois (0 e 1).
+
+## 2. Lâmpadas: acesa soma, apagada não soma
+
+Imagine uma fileira de lâmpadas. Cada uma tem um valor, e **dobra** em relação à vizinha da direita. Se a lâmpada está **acesa (1)**, o valor dela entra na soma. Se está **apagada (0)**, não entra nada.
+
+<LampadasBinarias />
+
+Acenda só a lâmpada do 8 e a do 2: o número é 8 + 2 = **10**. Em binário, 00001010. Experimente formar o seu dia de aniversário e a sua idade.
+
+<ExemploResolvido titulo="Qual número é 1101 em binário?">
+  <Passo>Escreva os valores das posições, da direita para a esquerda: 1, 2, 4, 8.</Passo>
+  <Passo>Os algarismos de 1101, da esquerda para a direita, são 1, 1, 0 e 1. Ligue-os aos valores: 8 (aceso), 4 (aceso), 2 (apagado) e 1 (aceso).</Passo>
+  <Passo>Some só os acesos: 8 + 4 + 1 = **13**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto vale 101 em binário, em decimal?" resposta="5" dica="Posições: 4, 2, 1. Quais estão acesas?" resolucao="101 = 4 + 0 + 1 = 5." />
+
+<Exercicio enunciado="Quanto vale 1010 em binário, em decimal?" resposta="10" dica="Posições: 8, 4, 2, 1." resolucao="1010 = 8 + 0 + 2 + 0 = 10." />
+
+<Exercicio enunciado="Quanto vale 11111111 (oito 1) em decimal?" resposta="255" dica="Some 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1. Ou pense: falta só 1 para 256." resolucao="Todas as oito lâmpadas acesas: 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 = 255." />
+
+## 3. Contando só com 0 e 1
+
+Como é contar em binário? Igualzinho a contar no decimal, só que as casas "viram" mais cedo. No decimal, depois do 9 vem o 10: a casa chegou ao limite e "vai um" para a esquerda. No binário, o limite é o 1.
+
+0, 1, e depois? O 1 + 1 não cabe numa casa só (só existem 0 e 1). Então vira 0 e **vai um**: **10**. Depois 11, e depois **100**, 101, 110, 111, **1000**...
+
+<ContadorBinario />
+
+Aperte "+ 1" várias vezes e veja as casas vermelhas mudando. Repare que a casa mais à direita **pisca** a cada contagem (0, 1, 0, 1...), a seguinte muda a cada 2 passos, a próxima a cada 4... Cada casa é o dobro mais lenta que a anterior.
+
+<Exercicio enunciado="Em binário, qual vem depois de 111? Escreva em binário." resposta="1000" dica="Some 1 a 111 usando o 'vai um'." resolucao="111 + 1: o último 1 + 1 vira 0 e vai um; isso se repete três vezes. Dá 1000 (que é o 8)." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Com 8 lâmpadas (8 bits), qual é o maior número que dá para mostrar?"
+  opcoes={['8', '128', '255']}
+  correta={2}
+  explicacao="Acendendo as 8 lâmpadas: 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 = 255. Com os zeros, cabem 256 combinações diferentes (de 0 a 255), porque o 0 também conta."
+>
+
+Use as lâmpadas para provar: acenda todas e veja o total. Depois apague uma de cada vez.
+
+<LampadasBinarias />
+
+Cada lâmpada a mais **dobra** o número de combinações. Com 1 lâmpada são 2 combinações; com 2, são 4; com 3, são 8; com 8, são 256. Use o controle para ver o crescimento.
+
+<BitsEPossibilidades />
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['2 combinações', '4 combinações', '8 combinações']}
+  correta={1}
+  seAcertou="E o palpite do começo? Você acertou: com 2 lâmpadas são 4 combinações (00, 01, 10 e 11)."
+  seErrou="E o palpite do começo? São 4 combinações: as duas apagadas (00), só a segunda acesa (01), só a primeira (10) e as duas acesas (11)."
+/>
+
+</Previsao>
+
+<Exercicio enunciado="Quantas combinações diferentes existem com 3 bits?" resposta="8" dica="Cada bit dobra: 2 × 2 × 2." resolucao="2³ = 8 combinações: de 000 até 111." />
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## De decimal para binário
+
+Sabemos ler 1101 e chegar ao 13. E o caminho de volta? Dado o 13, como escrevê-lo em binário?
+
+O jeito mais fácil é perguntar "**sobra resto ao dividir por 2?**" repetidas vezes. Divida por 2 e anote o resto (0 ou 1). Depois divida o resultado por 2 de novo, e assim até chegar em 0. Os restos, lidos **de baixo para cima**, formam o número binário.
+
+<ConversorBinario />
+
+<ExemploResolvido titulo="Escreva 13 em binário.">
+  <Passo>13 ÷ 2 = 6, resto **1**.</Passo>
+  <Passo>6 ÷ 2 = 3, resto **0**.</Passo>
+  <Passo>3 ÷ 2 = 1, resto **1**.</Passo>
+  <Passo>1 ÷ 2 = 0, resto **1**. Chegamos em 0, paramos.</Passo>
+  <Passo>Lendo os restos de baixo para cima: **1101**. Confira: 8 + 4 + 1 = 13.</Passo>
+</ExemploResolvido>
+
+<Aprofundar titulo="Por que dividir por 2 funciona">
+
+Cada posição do binário vale o dobro da anterior. O resto da divisão por 2 diz se a **última** lâmpada (a do valor 1) está acesa: se o número é ímpar, ela está. Depois de anotar o resto, dividimos por 2, o que "empurra" todas as lâmpadas uma casa para a direita. Agora a última lâmpada é a que valia 2. Repetindo, descobrimos uma lâmpada de cada vez, da direita para a esquerda. Por isso lemos os restos de baixo para cima: o primeiro resto é a casa da direita, ou seja, vem por último na escrita.
+
+<Formula>
+  <Linha>número = b₀ × 1 + b₁ × 2 + b₂ × 4 + b₃ × 8 + ...</Linha>
+</Formula>
+
+Cada **b** é 0 ou 1. Essa é a decomposição do número em potências de 2, a mesma ideia da cápsula de Potências.
+
+</Aprofundar>
+
+<Exercicio enunciado="Escreva 13 em binário." resposta="1101" dica="Divida por 2 e anote os restos, lendo de baixo para cima." resolucao="13 = 8 + 4 + 1, então as lâmpadas do 8, do 4 e do 1 acendem: 1101." />
+
+<Exercicio enunciado="Escreva 20 em binário." resposta="10100" dica="20 = 16 + 4." resolucao="20 = 16 + 4: lâmpadas do 16 e do 4 acesas, as outras apagadas: 10100." />
+
+## Somar em binário
+
+Somar é igual ao decimal, só que as casas viram mais cedo. As regras são só quatro:
+
+- 0 + 0 = 0
+- 0 + 1 = 1
+- 1 + 0 = 1
+- 1 + 1 = **10** (escreve 0 e **vai um**)
+
+<ExemploResolvido titulo="Some 101 + 11 em binário.">
+  <Passo>Alinhe à direita: 101 e 011. Começando pela direita: 1 + 1 = 10, escreve **0** e vai 1.</Passo>
+  <Passo>Casa do meio: 0 + 1 + o que veio (1) = 10, escreve **0** e vai 1.</Passo>
+  <Passo>Casa da esquerda: 1 + 0 + o que veio (1) = 10, escreve **0** e vai 1. Sobra um 1 sozinho na frente.</Passo>
+  <Passo>Resultado: **1000**. Confira: 5 + 3 = 8, e 1000 é 8.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 11 + 1 em binário? Escreva em binário." resposta="100" dica="11 é 3 e 1 + 3 = 4." resolucao="11 + 1: 1 + 1 = 10 (escreve 0, vai 1); 1 + 1 = 10 (escreve 0, vai 1). Sobra o 1: 100, que é o 4." />
+
+<Exercicio enunciado="Quanto é 101 + 11 em binário? Escreva em binário." resposta="1000" dica="5 + 3 = 8." resolucao="5 + 3 = 8, e 8 em binário é 1000." />
+
+## Bits, bytes e a tabuada do computador
+
+Um **bit** é um dígito binário: um 0 ou um 1. É a menor informação possível, uma resposta de "sim ou não". Oito bits formam um **byte**, que pode guardar 2⁸ = **256** valores diferentes (de 0 a 255).
+
+Para medir arquivos usamos múltiplos do byte. Em memória e em arquivos, muita gente usa o "quilo" de 1.024 bytes (que é 2¹⁰, uma potência de 2). Para evitar confusão com o quilo de 1.000, existe o prefixo **kibi**: 1 kibibyte (KiB) = 1.024 bytes = 8.192 bits. Já nos discos, o fabricante costuma usar quilo = 1.000.
+
+<Exercicio enunciado="Quantos valores diferentes cabem em 10 bits?" resposta="1024" dica="2 elevado a 10." resolucao="2¹⁰ = 1.024." />
+
+<Exercicio enunciado="Quantos bits há em 1 KiB (1.024 bytes)? Pode digitar 8192." resposta="8192" dica="Cada byte tem 8 bits: 1.024 × 8." resolucao="1.024 × 8 = 8.192 bits." />
+
+<Aprofundar titulo="Quando o número não cabe: estouro">
+
+Com 8 bits, o maior número é 255. O que acontece se você somar 1? O resultado verdadeiro, 256, precisaria de 9 bits. Se só existem 8 lâmpadas, o 1 que "vai um" para a nona casa se perde, e o valor volta a **00000000**. É como o odômetro de um carro que passa de 999.999 e volta para 000.000.
+
+Esse fenômeno se chama **estouro** (overflow). É a razão de alguns jogos antigos terem contadores que "viravam" do máximo para o zero. Programadores escolhem a quantidade de bits de cada número para que o estouro não aconteça nas contas importantes.
+
+</Aprofundar>
+
+<Aprofundar titulo="E os números negativos?">
+
+Como guardar um −1 se só existem 0 e 1, sem o sinal de menos? O truque mais usado se chama **complemento de dois**, e a ideia é a do odômetro: o que vem **antes do zero**?
+
+Num contador de 8 bits, andando para trás a partir de 00000000, o contador volta para 11111111. Então combinamos: **11111111 representa −1**, 11111110 representa −2, e assim por diante. Metade das combinações (as que começam com 0) fica para os positivos, de 0 a 127; a outra metade (as que começam com 1) vira os negativos, de −128 a −1. O primeiro bit funciona como um "sinal".
+
+Vantagem: a soma funciona igualzinha, sem regras novas. Somando 1 + (−1) = 00000001 + 11111111 = 100000000. O nono bit se perde (estouro), sobrando 00000000, que é o zero. Deu certo!
+
+</Aprofundar>
+
+## Texto: cada letra é um número
+
+O computador só entende números. Então, para guardar texto, combinaram uma **tabela**: cada letra, número e símbolo ganha um código. A mais famosa é o **ASCII**, publicado em 1963, com 128 caracteres (95 que aparecem na tela e 33 de controle), cada um cabendo em 7 bits.
+
+Por exemplo: 'A' é 65, 'a' é 97 e o espaço é 32. E cada número é guardado em bits: 65 é 01000001. Digite seu nome e veja.
+
+<TextoEmBinario />
+
+Reparou que a letra maiúscula e a minúscula têm códigos diferentes? Para o computador, 'A' e 'a' são caracteres diferentes. Letras com acento e outros alfabetos não cabem nos 128 do ASCII. Para isso nasceu o **Unicode** (1991), que incluiu o ASCII como seus primeiros 128 símbolos, com os mesmos códigos, e depois tem espaço para milhares de outros. O formato UTF-8, usado na maior parte da internet, é compatível com o ASCII.
+
+<ExemploResolvido titulo="Qual é o código ASCII de 'D'?">
+  <Passo>Sabemos que 'A' vale 65.</Passo>
+  <Passo>As letras seguem em ordem: B = 66, C = 67, D = **68**.</Passo>
+  <Passo>Em binário: 68 = 64 + 4 = 01000100.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é o código ASCII da letra 'C' maiúscula?" resposta="67" dica="A = 65, B = 66..." resolucao="A = 65, B = 66, C = 67." />
+
+<Exercicio enunciado="Se 'a' minúscula vale 97, qual é o código de 'c' minúscula?" resposta="99" dica="a = 97, b = 98..." resolucao="a = 97, b = 98, c = 99." />
+
+## Cores: três bytes por pixel
+
+A tela do seu celular é feita de pontinhos chamados **pixels**. Cada pixel mistura três luzes: **vermelho, verde e azul**. A intensidade de cada luz é um byte (de 0 a 255). Três bytes são 24 bits.
+
+<CorEmBits />
+
+Mexa nos controles. O vermelho todo aceso e as outras luzes apagadas é (255, 0, 0). Tudo apagado é preto. Tudo no máximo é branco. Com 256 níveis para cada uma das três cores, o total é 256 × 256 × 256 = **16.777.216 cores**.
+
+<Exercicio enunciado="Quantos níveis de intensidade pode ter cada uma das três luzes de um pixel (de 0 a 255)?" resposta="256" dica="É o número de valores de um byte." resolucao="Um byte tem 256 valores, de 0 a 255." />
+
+<Aprofundar titulo="Hexadecimal: o binário em versão compacta">
+
+Escrever 24 zeros e uns é cansativo. Os programadores usam o **hexadecimal** (base 16), em que cada algarismo vale de 0 a 15. Como só temos dez algarismos, usamos letras: A = 10, B = 11, C = 12, D = 13, E = 14 e F = 15.
+
+A graça é que **4 bits** (16 valores) cabem exatamente em **1 dígito hexadecimal**. Então um byte vira 2 dígitos: 11111111 é FF (15 × 16 + 15 = 255). É por isso que as cores na internet têm cara de #FF0000 (vermelho puro): 2 dígitos para o vermelho, 2 para o verde, 2 para o azul.
+
+<ExemploResolvido titulo="Quanto vale o hexadecimal 2A?">
+  <Passo>A posição da esquerda vale 16 e a da direita vale 1.</Passo>
+  <Passo>2 × 16 = 32. O A vale 10.</Passo>
+  <Passo>32 + 10 = **42**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto vale FF em decimal?" resposta="255" dica="F é 15: 15 × 16 + 15." resolucao="15 × 16 = 240. Mais 15: 255." />
+
+</Aprofundar>
+
+## Fotos, músicas e vídeos
+
+Uma foto é uma grade de pixels, e cada pixel é uma cor de 24 bits. Uma música é uma sequência de medidas do som (as "amostras"), tiradas milhares de vezes por segundo, e cada medida é um número. Um vídeo é uma sequência de fotos. Tudo, no fundo, é lista de números, e todo número é uma fileira de bits.
+
+## Informação: perguntas de sim ou não
+
+Um bit é uma resposta de sim ou não. Quantas perguntas de sim ou não você precisa fazer para descobrir um número secreto entre 1 e 128? A cada pergunta bem feita ("é maior que 64?"), você elimina **metade** dos números. De 128 para 64, 32, 16, 8, 4, 2 e 1. São **7 perguntas**. E 2⁷ = 128: o número de bits é o número de perguntas.
+
+<Exercicio enunciado="Quantas perguntas de sim ou não bastam, no mínimo, para descobrir um número entre 1 e 128?" resposta="7" dica="Cada pergunta corta as possibilidades pela metade. 128 → 64 → ..." resolucao="128, 64, 32, 16, 8, 4, 2, 1: sete cortes ao meio. 2⁷ = 128." />
+
+<Exercicio enunciado="E entre 1 e 1.000? Quantas perguntas bastam, no mínimo?" resposta="10" dica="2¹⁰ = 1.024, que é maior que 1.000." resolucao="Com 9 perguntas só dá para separar 2⁹ = 512 números. Com 10, 2¹⁰ = 1.024 já cobre os 1.000. Resposta: 10." />
+
+<Aprofundar titulo="Por que 0,1 + 0,2 pode dar 0,30000000000000004">
+
+Frações também viram bits. As casas depois da vírgula valem metade, um quarto, um oitavo... (½, ¼, ⅛...). Alguns números, como 0,5 e 0,25, cabem exatamente. Mas outros, como **0,1**, não cabem exatos: em binário ele vira uma sequência infinita que se repete (0,000110011...), igual a 1/3 no decimal (0,333...).
+
+O computador precisa **cortar** essa sequência em algum ponto. Fica um erro minúsculo. Por isso, em várias linguagens de programação, 0,1 + 0,2 resulta em 0,30000000000000004. Para dinheiro, programadores evitam esse problema trabalhando com centavos (números inteiros).
+
+</Aprofundar>
+
+## Erros comuns
+
+- **Confundir o binário com decimal.** 101 em binário é 5, e não "cento e um".
+- **Esquecer que o zero também é uma combinação.** Com 8 bits são 256 valores (0 a 255), e não 255.
+- **Ler os restos de cima para baixo** na conversão. É de **baixo para cima**.
+- **Achar que cada bit a mais só soma uma combinação.** Cada bit a mais **dobra**.
+
+## Experimente em casa
+
+Faça um cartão com 5 "bits" de papel: 16, 8, 4, 2, 1. Deixe cada um com o lado em branco para cima. Peça a um amigo para pensar num número de 1 a 31 e perguntar em quais cartões ele aparece. Somando os valores dos cartões "acesos", você descobre o número. É um truque de mágica baseado em binário.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Quantos símbolos o sistema binário usa?',
+    opcoes: ['2', '8', '10'],
+    correta: 0,
+    explicacao: 'Só o 0 e o 1.',
+  },
+  {
+    enunciado: 'Quanto vale 1010 em binário?',
+    opcoes: ['8', '10', '12'],
+    correta: 1,
+    explicacao: '8 + 0 + 2 + 0 = 10.',
+  },
+  {
+    enunciado: 'Como se escreve o número 6 em binário?',
+    opcoes: ['101', '110', '011'],
+    correta: 1,
+    explicacao: '6 = 4 + 2, então as lâmpadas do 4 e do 2 acendem: 110.',
+  },
+  {
+    enunciado: 'Quanto é 1 + 1 em binário?',
+    opcoes: ['2', '11', '10'],
+    correta: 2,
+    explicacao: 'Em binário não existe o algarismo 2: escreve-se 0 e vai um, ou seja, 10 (que vale 2 no decimal).',
+  },
+  {
+    enunciado: 'Quantas combinações diferentes existem com 4 bits?',
+    opcoes: ['8', '16', '32'],
+    correta: 1,
+    explicacao: '2⁴ = 16 combinações, de 0000 até 1111.',
+  },
+  {
+    enunciado: 'Quantos bits tem um byte?',
+    opcoes: ['4', '8', '16'],
+    correta: 1,
+    explicacao: 'Um byte é um grupo de 8 bits e pode guardar 256 valores.',
+  },
+  {
+    enunciado: 'Qual é o maior número que cabe em 8 bits (sem sinal)?',
+    opcoes: ['128', '255', '256'],
+    correta: 1,
+    explicacao: 'São 256 combinações, mas o zero ocupa uma. Então o maior é 255.',
+  },
+  {
+    enunciado: 'No ASCII, a letra A vale 65. Quanto vale a letra E?',
+    opcoes: ['66', '69', '70'],
+    correta: 1,
+    explicacao: 'A = 65, B = 66, C = 67, D = 68, E = 69.',
+  },
+  {
+    enunciado: 'Por que a cor de um pixel pode ter mais de 16 milhões de variações?',
+    opcoes: ['São 3 bytes: 256 × 256 × 256', 'Porque o monitor é grande', 'Porque são 16 bits'],
+    correta: 0,
+    explicacao: 'Cada uma das três luzes (vermelho, verde e azul) tem 256 níveis. 256 × 256 × 256 = 16.777.216.',
+  },
+  {
+    enunciado: 'Quantas perguntas de sim ou não bastam para achar um número entre 1 e 64?',
+    opcoes: ['5', '6', '32'],
+    correta: 1,
+    explicacao: '64 → 32 → 16 → 8 → 4 → 2 → 1: seis cortes ao meio. 2⁶ = 64.',
+  },
+  {
+    enunciado: 'O que acontece num contador de 8 bits quando passa de 255?',
+    opcoes: ['Vira 256', 'Volta ao zero (estouro)', 'Trava para sempre'],
+    correta: 1,
+    explicacao: 'O nono bit não existe, então o valor volta a 00000000. É o estouro, como um odômetro que zera.',
+  },
+  {
+    enunciado: 'Quanto vale o hexadecimal FF?',
+    opcoes: ['155', '255', '256'],
+    correta: 1,
+    explicacao: 'F vale 15: 15 × 16 + 15 = 255. É o maior valor de um byte.',
+  },
+  {
+    enunciado: 'Quem inventou a palavra "bit", contração de "binary digit"?',
+    opcoes: ['John Tukey', 'Albert Einstein', 'Isaac Newton'],
+    correta: 0,
+    explicacao: 'Tukey usou "bit" num memorando dos Laboratórios Bell em 1947. Shannon a publicou em 1948.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Binário só usa 0 e 1.** Cada posição vale o dobro da anterior: 1, 2, 4, 8, 16...
+- **Lâmpada acesa soma o valor dela.** 1101 = 8 + 4 + 1 = 13.
+- **Para converter:** divida por 2 e leia os restos de baixo para cima.
+- **Bit** é um dígito binário; **byte** são 8 bits (256 valores). Cada bit a mais **dobra** as combinações.
+- **Tudo vira número:** letras (ASCII e Unicode), cores (3 bytes por pixel), sons e imagens.
+- **Hexadecimal** é o binário compacto: 4 bits por dígito.
+- **O número de bits é o número de perguntas de sim ou não** para achar uma coisa.
+
+**Um pouco de história.** Pingala já descrevia ritmos com sílabas curtas e longas por volta do século II a.C. Leibniz escreveu sobre a aritmética binária em 1679 e 1703. Boole inventou uma álgebra da lógica em 1854, e Shannon, em 1937, mostrou que interruptores podiam fazê-la funcionar. John Tukey criou a palavra "bit" em 1947, e o ASCII chegou em 1963.
+
+</Resumo>
+
+O binário é a base de tudo que existe dentro de um computador. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>
