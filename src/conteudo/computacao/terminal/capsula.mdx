@@ -1,0 +1,405 @@
+import TerminalDeBrinquedo from '../../../components/simulacoes/TerminalDeBrinquedo'
+import ArvoreDePastas from '../../../components/simulacoes/ArvoreDePastas'
+import CaminhoRelativo from '../../../components/simulacoes/CaminhoRelativo'
+import WindowsOuLinux from '../../../components/simulacoes/WindowsOuLinux'
+import AnatomiaDoComando from '../../../components/simulacoes/AnatomiaDoComando'
+
+{/* Fatos conferidos na Wikipedia em inglês (Command-line interface, Path, PowerShell), listadas no meta.ts. O terminal da cápsula é de brinquedo: nunca mexe no computador real. */}
+
+<Etapa id="gancho">
+
+Em filmes de hacker aparece sempre uma tela preta cheia de letras verdes. Na vida real, essa tela se chama **terminal**, e ela é bem menos assustadora (e bem mais útil) do que parece. Você digita uma frase curta, aperta Enter, e o computador **faz** aquilo.
+
+Tem um detalhe curioso: tudo que você faz clicando em pastas e janelas também dá para fazer escrevendo. E muitas vezes **escrever é mais rápido**. Para entender como, primeiro precisamos descobrir como o computador **enxerga** as pastas: como um **endereço**.
+
+<Palpite
+  chave="inicial"
+  pergunta="Para o computador, 'C:\Users\ana\Fotos\praia.jpg' é o quê?"
+  opcoes={['O nome do arquivo, só isso', 'O endereço completo de um arquivo, passando por pastas dentro de pastas', 'Um site da internet']}
+/>
+
+Nesta cápsula você vai explorar pastas como uma árvore, descobrir a diferença entre endereço absoluto e relativo, comparar Windows e Linux, desmontar um comando em partes e usar um **terminal de brinquedo** com comandos de verdade, sem risco nenhum.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Antes das janelas e do mouse, **conversar com o computador era escrever**. A história do terminal é a história de como essa conversa foi mudando.
+
+<LinhaDoTempo marcos={[
+  { ano: '1951', texto: 'O computador Whirlwind I, do MIT, usa uma entrada parecida com máquina de escrever para controle direto, saindo do modo "entrega os cartões e espera".' },
+  { ano: '1961', texto: 'O CTSS, do MIT, traz o primeiro interpretador de linha de comando de verdade.' },
+  { ano: '1963', texto: 'O Teletype Model 33 deixa o operador digitar um comando e receber a resposta impressa no papel.' },
+  { ano: '1964', texto: 'Louis Pouzin apresenta a ideia de "shell" para o sistema Multics.' },
+  { ano: '1971', texto: 'Ken Thompson escreve o primeiro shell do Unix (o shell V6), no Bell Labs.' },
+  { ano: '1977', texto: 'Chega o shell Bourne, que virou referência.' },
+  { ano: '1995', texto: 'Com o Windows 95, a maioria dos usuários de PC da IBM passa a usar a interface gráfica em vez da linha de comando.' },
+  { ano: '2006', texto: 'O Windows PowerShell 1.0 é lançado (14 de novembro).' },
+]} />
+
+## Teleimpressoras: o terminal de papel
+
+Os primeiros "terminais" eram máquinas de escrever ligadas ao computador. Você digitava um comando e a resposta saía **impressa em papel**. O Teletype Model 33, de 1963, é um exemplo famoso. É daí que vem o nome **TTY**, usado até hoje em sistemas Unix para falar de terminais.
+
+## O shell: o intérprete de comandos
+
+Em 1964, Louis Pouzin teve a ideia de uma camada que **recebe o que você digita e pede ao sistema** que faça. Ele a chamou de *shell* ("casca", porque envolve o sistema). Em 1971, Ken Thompson escreveu o primeiro shell do Unix. Em 1977 veio o shell Bourne. Os shells modernos descendem dessas ideias.
+
+## As janelas chegam, mas o terminal fica
+
+Nos anos 1980 e 1990, o Macintosh e depois o Windows popularizaram a interface gráfica. A maioria das pessoas largou a linha de comando. Mas **programadores e administradores nunca largaram**, porque para tarefas repetitivas e para controlar servidores ela é imbatível. Em 2006 a Microsoft lançou o PowerShell, um terminal moderno para Windows, criado por Jeffrey Snover e equipe. É o que está no seu computador.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Tudo é um endereço
+
+Imagine um prédio enorme. Para achar a sala certa você diz: **prédio, andar, corredor, sala**. O computador guarda arquivos do mesmo jeito: dentro de **pastas**, que ficam dentro de **outras pastas**, que ficam dentro de um **disco**.
+
+Veja como as pastas formam uma **árvore**. Toque nos itens e repare no endereço que aparece embaixo:
+
+<ArvoreDePastas />
+
+Esse endereço completo se chama **caminho** (em inglês, *path*). Ele é um texto que identifica, sem dúvida, um item na hierarquia do disco: nomes de pastas separados por um símbolo.
+
+<ExemploResolvido titulo="Lendo um caminho">
+  <Passo>O caminho é `C:\Users\voce\Fotos\praia.jpg`. Leia da esquerda para a direita, passo a passo.</Passo>
+  <Passo>`C:` é o **disco** (a raiz do Windows para aquele disco).</Passo>
+  <Passo>Depois entramos em `Users`, dentro dela em `voce`, dentro dela em `Fotos`.</Passo>
+  <Passo>Por fim, `praia.jpg` é o **arquivo** (o `.jpg` é a extensão: indica que é uma foto).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="No caminho C:\Users\voce\Fotos\praia.jpg, quantas pastas existem entre C: e o arquivo (Users, voce, Fotos...)?" resposta="3" dica="Conte os nomes antes de praia.jpg, sem contar o C:." resolucao="São 3 pastas: Users, voce e Fotos." />
+
+<Exercicio enunciado="Qual é o nome do arquivo em C:\Users\voce\Documentos\notas.txt? (escreva com a extensão)" resposta="notas.txt" dica="O arquivo é o último item." resolucao="O último item é o arquivo: notas.txt." />
+
+## 2. Windows e Linux escrevem diferente
+
+Os sistemas têm jeitos diferentes de escrever o mesmo endereço:
+
+<WindowsOuLinux />
+
+No Windows, cada disco tem uma raiz com uma letra (`C:`, `D:`) e as pastas se separam com **barra invertida** (`\`). No Linux e no macOS existe **uma raiz só**, a barra normal `/`, e tudo fica dentro dela. Por isso `C:\Users\ana` e `/home/ana` guardam a mesma ideia: "a pasta pessoal da Ana".
+
+<Exercicio enunciado="Como se chama o ponto de partida de todo o sistema de pastas (no Linux, representado por uma barra)? Uma palavra." resposta="raiz" dica="Árvores têm uma..." resolucao="A raiz (root). No Linux é a barra /." />
+
+## 3. Terminal: a mesma coisa, só que escrevendo
+
+O **terminal** é uma janela onde você **digita comandos** em vez de clicar. O programa que entende o que você escreve é o **shell**. O texto que fica esperando (como `C:\Users\voce>`) é o **prompt**: o computador dizendo "pode falar".
+
+Em vez de abrir uma pasta com o mouse, você escreve: `cd Fotos` (de *change directory*, trocar de pasta). Em vez de olhar a janela, escreve `ls` (listar). **O resultado é o mesmo.**
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="No terminal de brinquedo, você está em C:\Users\voce. Qual comando mostra o que existe dentro da pasta onde você está?"
+  opcoes={['pwd', 'ls', 'cd']}
+  correta={1}
+  explicacao="O comando ls (de list) lista o conteúdo da pasta atual. O pwd mostra EM QUE pasta você está, e o cd muda de pasta."
+>
+
+Digite comandos ou toque nos botões de exemplo. Tente: `ls`, depois `cd Documentos`, depois `ls` e `cat notas.txt`.
+
+<TerminalDeBrinquedo />
+
+Este terminal é **de mentira**: ele só mexe num disco inventado, dentro da página. Nada acontece no seu computador de verdade. Por isso você pode errar à vontade.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['O nome do arquivo, só isso', 'O endereço completo de um arquivo, passando por pastas dentro de pastas', 'Um site da internet']}
+  correta={1}
+  seAcertou="E o palpite do começo? Isso: é o endereço completo, passando por pastas dentro de pastas."
+  seErrou="E o palpite do começo? É o endereço completo: o disco C:, as pastas Users, ana e Fotos, e por fim o arquivo praia.jpg."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Anatomia de um comando
+
+Quase todo comando segue um mesmo molde:
+
+- **Comando**: o que fazer (`ls`, `cd`, `mkdir`).
+- **Opção** (também chamada de *flag*): como fazer. Costuma começar com `-` ou `--` nos sistemas Unix.
+- **Argumento**: sobre o quê (um nome de pasta ou arquivo).
+
+Escolha um exemplo e toque em cada parte:
+
+<AnatomiaDoComando />
+
+<ExemploResolvido titulo="Desmontando um comando">
+  <Passo>O comando é `mkdir Projetos`.</Passo>
+  <Passo>`mkdir` quer dizer *make directory*: criar uma pasta. É o **comando**.</Passo>
+  <Passo>`Projetos` é o nome da pasta nova. É o **argumento**.</Passo>
+  <Passo>Não há opções aqui. Resultado: uma pasta chamada Projetos aparece onde você está.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="No comando 'cat notas.txt', qual é o argumento? (escreva só ele)" resposta="notas.txt" dica="É sobre o quê o comando age." resolucao="O argumento é notas.txt, o arquivo que será mostrado." />
+
+<Exercicio enunciado="Qual comando cria uma pasta? (uma palavra)" resposta="mkdir" dica="make directory." resolucao="mkdir (make directory)." />
+
+<Aprofundar titulo="Comandos internos e externos">
+
+Alguns comandos fazem parte do próprio shell (internos, como `cd`): o shell resolve sozinho. Outros são **programas separados** no disco (externos), e o shell só os chama. Por isso, quando você digita um nome que não existe, o terminal diz "comando não encontrado": ele procurou um programa com aquele nome nas pastas conhecidas e não achou.
+
+</Aprofundar>
+
+## Onde estou? O diretório atual
+
+Um terminal sempre está **dentro de alguma pasta**, chamada de **diretório atual** ou diretório de trabalho. É como estar numa sala de um prédio: tudo que você pede ("abrir a porta da esquerda") vale a partir dali.
+
+- `pwd` mostra o diretório atual (*print working directory*).
+- `ls` lista o que tem nele.
+- `cd` muda para outra pasta.
+
+Há três atalhos que funcionam em todos os sistemas:
+
+- `.` é a pasta **atual**.
+- `..` é a pasta **de cima** (a pasta-pai).
+- `~` é a sua **pasta pessoal**, em sistemas Unix e no PowerShell.
+
+<ExemploResolvido titulo="Navegando pelas pastas">
+  <Passo>Você está em `C:\Users\voce`. Digita `ls` e vê: Documentos, Fotos, Downloads.</Passo>
+  <Passo>Digita `cd Fotos`. Agora o diretório atual é `C:\Users\voce\Fotos`.</Passo>
+  <Passo>Digita `ls` e vê `praia.jpg`.</Passo>
+  <Passo>Digita `cd ..` para subir um nível: volta para `C:\Users\voce`.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Você está em C:\Users\voce\Fotos e digita cd .. . Em qual pasta fica? (escreva só o nome da pasta, sem o resto do caminho)" resposta="voce" dica="Dois pontos sobem um nível." resolucao="Sobe um nível: C:\Users\voce." />
+
+<Exercicio enunciado="Quantas vezes é preciso digitar cd .. para ir de C:\Users\voce\Documentos até C:\Users?" resposta="2" dica="Documentos → voce → Users." resolucao="Duas vezes: a primeira vai para voce e a segunda, para Users." />
+
+## Caminho absoluto e relativo
+
+Existem duas formas de dizer **onde** algo está:
+
+- **Absoluto**: começa na raiz e funciona de **qualquer lugar**. Exemplo: `C:\Users\voce\Fotos`. É como dar o endereço completo com país e cidade.
+- **Relativo**: parte da pasta onde você está. Exemplo: `Fotos` (se você estiver em `C:\Users\voce`). É como dizer "a segunda porta à direita": só vale a partir de onde você está.
+
+Escolha duas pastas e veja o caminho relativo que leva de uma até a outra:
+
+<CaminhoRelativo />
+
+Para ir a uma pasta "irmã" (que está ao lado), você primeiro **sobe** (`..`) e depois **desce**. Exemplo: de `Documentos` para `Fotos`, o caminho é `..\Fotos`.
+
+<ExemploResolvido titulo="Do Documentos ao Fotos">
+  <Passo>Você está em `C:\Users\voce\Documentos`. O destino é `C:\Users\voce\Fotos`.</Passo>
+  <Passo>As duas pastas estão **dentro de** `voce`. Então sobe um nível: `..`.</Passo>
+  <Passo>Depois desce para Fotos: `Fotos`.</Passo>
+  <Passo>Comando completo: `cd ..\Fotos`. (No Linux, `cd ../Fotos`.)</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="De C:\Users\voce\Fotos, quantas pastas 'para cima' (..) você precisa subir para chegar em C:\Users?" resposta="2" dica="Fotos → voce → Users." resolucao="São 2 subidas: o primeiro .. leva a voce e o segundo leva a Users." />
+
+<Aprofundar titulo="Por que dois jeitos (absoluto e relativo)?">
+
+O caminho **absoluto** nunca erra de onde você parte, mas fica longo e quebra se a pasta mudar de lugar. O **relativo** é curto e permite mover um projeto inteiro de pasta sem quebrar os endereços internos, porque eles só dependem de onde os arquivos estão **uns em relação aos outros**. Por isso programadores usam relativos dentro dos projetos e absolutos para apontar locais fixos do sistema.
+
+</Aprofundar>
+
+## Criando e lendo
+
+Dois comandos que dão poder:
+
+- `mkdir NOME`: cria uma pasta.
+- `cat ARQUIVO` (no PowerShell também funciona `type`): mostra o conteúdo de um arquivo de texto.
+
+Experimente no terminal de brinquedo: `mkdir Projetos`, depois `ls` para ver a pasta nova.
+
+Repare que nenhuma janela abriu, nenhum botão foi clicado. E, se você precisar criar **50 pastas**, dá para escrever os comandos uma vez e repetir. É essa **automação** que faz o terminal ser tão amado por quem programa.
+
+<Exercicio enunciado="Quantos comandos mkdir são necessários para criar 12 pastas, uma por mês do ano?" resposta="12" dica="Um comando por pasta." resolucao="12 comandos mkdir (mais tarde você aprende a repeti-los automaticamente)." />
+
+<Aprofundar titulo="Um comando, vários nomes">
+
+No PowerShell, os comandos oficiais se chamam **cmdlets** e seguem o padrão *Verbo-Substantivo*, como `Get-ChildItem` (listar) e `Set-Location` (mudar de pasta). Como é cansativo digitar tudo isso, existem **apelidos** (aliases): `ls` e `dir` valem `Get-ChildItem`, e `cd` vale `Set-Location`. Por isso os mesmos comandos que você aprendeu valem em quase todo terminal. Observação: o `ls` não existe no PowerShell para Linux.
+
+</Aprofundar>
+
+## Terminal, console e shell: o que é cada um?
+
+Esses nomes se misturam, mas são três coisas diferentes:
+
+- **Terminal**: a **janela** onde você digita (hoje é um programa; antigamente era uma máquina de escrever).
+- **Shell**: o **intérprete** que entende o que você digitou e pede ao sistema para executar (PowerShell, Bash...).
+- **Comando**: cada **pedido** que você escreve.
+
+Pense num restaurante: o terminal é a **mesa** onde você faz o pedido, o shell é o **garçom** que leva o pedido à cozinha, e o sistema operacional é a **cozinha** que executa.
+
+<Exercicio enunciado="Na analogia do restaurante, quem faz o papel do garçom: terminal, shell ou comando?" resposta="shell" dica="Quem leva o pedido à cozinha." resolucao="O shell: ele entende o pedido e o encaminha ao sistema." />
+
+## Vantagens e desvantagens
+
+**Vantagens do terminal:** usa poucos recursos do computador, é rápido para quem sabe os comandos, e dá para **guardar uma sequência de comandos num arquivo** (um *script*) e repetir sempre que quiser. Também é a forma mais comum de controlar **servidores**, que muitas vezes nem têm tela.
+
+**Desvantagens:** não é fácil descobrir o que cada comando faz só olhando. Por isso existe a opção de **ajuda**, como `--help` no Linux, e por isso você usa o tempo para memorizar os comandos mais comuns.
+
+<ExemploResolvido titulo="Quando o terminal vale a pena?">
+  <Passo>Tarefa: renomear 300 fotos para "viagem-001", "viagem-002"...</Passo>
+  <Passo>Com o mouse: 300 cliques repetitivos, e um erro estraga tudo.</Passo>
+  <Passo>No terminal: um comando repetido por um pequeno script faz as 300 de uma vez, sem se cansar.</Passo>
+  <Passo>Conclusão: para o que é **repetitivo**, o terminal ganha. Para o que é **visual** (olhar fotos), o mouse ganha.</Passo>
+</ExemploResolvido>
+
+<Aprofundar titulo="Cuidado: o que NÃO digitar">
+
+O terminal obedece sem perguntar muito. Comandos de apagar (como `rm` no Linux ou `Remove-Item` no PowerShell) **apagam de verdade**, sem lixeira. Por isso a regra de ouro é: **nunca copie e cole um comando que você não entende**, e confira três vezes antes de apagar algo. É por isso que o terminal desta cápsula é de brinquedo: aqui nada é de verdade.
+
+</Aprofundar>
+
+## Extensões: o sufixo que conta o tipo
+
+No fim do nome de um arquivo costuma haver um **ponto e algumas letras**: `.txt`, `.jpg`, `.pdf`, `.mp3`. É a **extensão**. Ela é uma dica para o sistema saber **com qual programa abrir** o arquivo: `.txt` abre no bloco de notas, `.jpg` no visualizador de fotos.
+
+Mas atenção: a extensão é só uma **etiqueta no nome**. Por dentro, todo arquivo é feito de bits, como você viu na cápsula de Binário. Trocar `praia.jpg` para `praia.txt` não transforma a foto em texto: o sistema só vai tentar abrir com o programa errado, e o que aparece é uma bagunça de símbolos.
+
+É por isso que o `cat praia.jpg` no terminal de brinquedo responde "(uma foto: bits, não texto)". Comandos que mostram texto só fazem sentido em arquivos de texto.
+
+<ExemploResolvido titulo="Qual programa abre cada arquivo?">
+  <Passo>`relatorio.txt`: extensão `.txt`, texto puro. Abre no bloco de notas.</Passo>
+  <Passo>`praia.jpg`: extensão `.jpg`, uma foto. Abre no visualizador de imagens.</Passo>
+  <Passo>`musica.mp3`: extensão `.mp3`, som. Abre no tocador de música.</Passo>
+  <Passo>Em todos os casos, **por dentro são só bits**. O que muda é como o programa os interpreta.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é a extensão do arquivo relatorio.txt? (escreva só as letras, sem o ponto)" resposta="txt" dica="O que vem depois do último ponto." resolucao="A extensão é .txt, ou seja, txt." />
+
+<Exercicio enunciado="Quantos arquivos de texto (.txt) há em Documentos no disco de brinquedo (relatorio.txt e notas.txt)?" resposta="2" dica="Conte os arquivos." resolucao="São 2 arquivos .txt." />
+
+## Nomes de arquivos e pastas: boas práticas
+
+Quando você cria arquivos, alguns cuidados poupam dor de cabeça no terminal:
+
+- **Evite espaços**: `meu relatorio.txt` precisa de aspas no terminal, enquanto `meu-relatorio.txt` não. Prefira hífen (`-`) ou sublinhado (`_`).
+- **Evite acentos e símbolos estranhos** em pastas de projetos: alguns programas se atrapalham.
+- **Seja descritivo**: `relatorio-janeiro.txt` diz mais do que `novo1.txt`.
+- **Em Linux, maiúsculas importam**: `Fotos` e `fotos` são pastas diferentes. No Windows, geralmente são a mesma.
+
+<Exercicio enunciado="Qual nome é melhor para usar no terminal: o primeiro, 'meu relatorio.txt', ou o segundo, 'meu-relatorio.txt'? (responda primeiro ou segundo)" resposta="segundo" dica="O que evita espaços." resolucao="O segundo, 'meu-relatorio.txt', porque não tem espaço e não precisa de aspas." />
+
+<Aprofundar titulo="Arquivos ocultos e permissões">
+
+Em sistemas Unix, arquivos cujo nome **começa com ponto** (como `.env`) ficam **ocultos** por padrão: `ls` não mostra, a menos que você use uma opção especial (`ls -a`). É onde programas guardam configurações. Além disso, cada arquivo tem **permissões**: quem pode ler, escrever ou executar. Isso faz parte do papel de gerente do sistema operacional, visto na cápsula anterior.
+
+</Aprofundar>
+
+## Seu primeiro terminal de verdade
+
+Quando estiver pronto, abra o terminal do seu computador:
+
+- **Windows**: procure "PowerShell" no menu Iniciar.
+- **macOS**: abra o app "Terminal".
+- **Linux**: costuma ser `Ctrl + Alt + T`.
+
+Experimente só comandos que **leem** (sem apagar nada): `pwd` (no PowerShell, também `Get-Location`), `ls` e `cd` para entrar numa pasta e voltar com `cd ..`.
+
+<Exercicio enunciado="Quantos tipos de comandos de leitura citamos para treinar (pwd, ls e cd)?" resposta="3" dica="Conte a lista." resolucao="São 3: pwd, ls e cd." />
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'O que é um terminal?',
+    opcoes: ['Uma janela onde você digita comandos', 'Um tipo de disco', 'Um vírus'],
+    correta: 0,
+    explicacao: 'O terminal é a janela de texto onde você digita comandos para o computador executar.',
+  },
+  {
+    enunciado: 'O que é o shell?',
+    opcoes: ['O intérprete que entende os comandos e os passa ao sistema', 'A tela do computador', 'A pasta pessoal'],
+    correta: 0,
+    explicacao: 'O shell lê o que você escreve e pede ao sistema para executar. A ideia nasceu com Louis Pouzin (1964).',
+  },
+  {
+    enunciado: 'O que significa o caminho C:\\Users\\ana\\Fotos\\praia.jpg?',
+    opcoes: ['O endereço completo do arquivo, passando por pastas', 'Um site', 'O nome do disco'],
+    correta: 0,
+    explicacao: 'É o caminho completo: disco C:, pastas Users, ana e Fotos, e o arquivo praia.jpg.',
+  },
+  {
+    enunciado: 'Qual comando mostra o conteúdo da pasta atual?',
+    opcoes: ['ls', 'cd', 'mkdir'],
+    correta: 0,
+    explicacao: 'ls lista o conteúdo. cd muda de pasta e mkdir cria uma pasta.',
+  },
+  {
+    enunciado: 'O que faz "cd .."?',
+    opcoes: ['Sobe para a pasta de cima', 'Cria uma pasta', 'Apaga a pasta'],
+    correta: 0,
+    explicacao: 'Os dois pontos (..) representam a pasta-pai. cd .. sobe um nível.',
+  },
+  {
+    enunciado: 'Qual símbolo separa pastas no Windows?',
+    opcoes: ['\\ (barra invertida)', '/ (barra normal)', ': (dois pontos)'],
+    correta: 0,
+    explicacao: 'O Windows usa a barra invertida. Linux e macOS usam a barra normal (/).',
+  },
+  {
+    enunciado: 'No Linux, de onde parte todo o sistema de pastas?',
+    opcoes: ['Da raiz única, a barra /', 'De cada letra de disco', 'Da pasta Downloads'],
+    correta: 0,
+    explicacao: 'O Linux tem uma raiz só (/). O Windows tem uma raiz por disco (C:, D:...).',
+  },
+  {
+    enunciado: 'No comando "ls -l Fotos", o que é "-l"?',
+    opcoes: ['Uma opção (flag)', 'O comando', 'O argumento'],
+    correta: 0,
+    explicacao: 'O comando é ls, a opção é -l (lista detalhada) e o argumento é Fotos.',
+  },
+  {
+    enunciado: 'Qual caminho é RELATIVO?',
+    opcoes: ['..\\Fotos', 'C:\\Users\\voce\\Fotos', '/home/ana/Fotos'],
+    correta: 0,
+    explicacao: 'Caminhos relativos partem da pasta atual. Os outros dois começam na raiz (absolutos).',
+  },
+  {
+    enunciado: 'Para ir de C:\\Users\\voce\\Documentos até C:\\Users\\voce\\Fotos, qual comando serve?',
+    opcoes: ['cd ..\\Fotos', 'cd Fotos', 'cd ..\\..\\..'],
+    correta: 0,
+    explicacao: 'Sobe um nível (..) até voce e desce para Fotos. "cd Fotos" falharia, pois não existe Fotos dentro de Documentos.',
+  },
+  {
+    enunciado: 'Qual é uma vantagem do terminal?',
+    opcoes: ['Dá para automatizar tarefas repetitivas com scripts', 'Nunca dá erro', 'Mostra imagens melhor'],
+    correta: 0,
+    explicacao: 'Repetir tarefas é onde o terminal brilha: um script repete os mesmos comandos sem se cansar.',
+  },
+  {
+    enunciado: 'Por que cuidado com comandos que apagam?',
+    opcoes: ['Normalmente não vão para a lixeira e o computador não pergunta de novo', 'Eles são lentos', 'Eles só funcionam no Linux'],
+    correta: 0,
+    explicacao: 'O terminal obedece. Comandos como rm e Remove-Item apagam de verdade, por isso: só rode o que você entende.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Terminal** é a janela de texto; **shell** é o intérprete; **comando** é cada pedido.
+- **Comando, opção e argumento:** o que fazer, como fazer e sobre o quê.
+- **Caminho** é o endereço de um arquivo: pastas dentro de pastas.
+- **Absoluto** parte da raiz e vale de qualquer lugar; **relativo** parte de onde você está.
+- **`.` é a pasta atual, `..` é a pasta de cima, `~` é a pasta pessoal** (Unix e PowerShell).
+- **Windows usa `\` e letras de disco; Linux e macOS usam `/` e uma raiz só.**
+- **Comandos básicos:** `pwd`, `ls`, `cd`, `mkdir`, `cat`. Cuidado com os que apagam.
+
+**Um pouco de história.** O Whirlwind I (1951) e o CTSS (1961) abriram o caminho; em 1963 o Teletype Model 33 imprimia as respostas no papel. Louis Pouzin criou a ideia de shell em 1964, e Ken Thompson fez o primeiro shell do Unix em 1971. O Windows 95 (1995) empurrou a maioria para as janelas, e em 2006 chegou o PowerShell.
+
+</Resumo>
+
+Agora você sabe se mover pelo computador por texto. Na próxima parte, a conversa passa a ser **entre computadores**: como a internet funciona.
+
+<Conexoes />
+
+</Etapa>
