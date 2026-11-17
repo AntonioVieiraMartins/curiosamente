@@ -1,8 +1,10 @@
 import MisturaDeSuco from '../../../../components/simulacoes/MisturaDeSuco'
 import ReceitaEscalavel from '../../../../components/simulacoes/ReceitaEscalavel'
 import Pizza from '../../../../components/simulacoes/Pizza'
+import EscalaMapa from '../../../../components/simulacoes/EscalaMapa'
+import DiretaOuInversa from '../../../../components/simulacoes/DiretaOuInversa'
 
-{/* Fatos históricos conferidos na Wikipedia em inglês (Thales, Cross-multiplication, Golden ratio), listadas no meta.ts. */}
+{/* Fatos históricos conferidos na Wikipedia em inglês (Thales, Eratosthenes, Cross-multiplication, Golden ratio), listadas no meta.ts. */}
 
 <Etapa id="gancho">
 
@@ -16,7 +18,7 @@ Na pizzaria, a pizza <Termo cor="coral">pequena</Termo> tem 20 cm de largura e c
   opcoes={['A pequena', 'A grande', 'Dá na mesma']}
 />
 
-Para responder, precisamos comparar do jeito certo. É disso que trata esta cápsula: **razões**.
+Para responder, precisamos comparar do jeito certo. É disso que trata esta cápsula: **razões**. Com elas, um grego mediu uma pirâmide sem subir nela, e outro mediu o planeta inteiro sem sair do Egito.
 
 </Etapa>
 
@@ -25,13 +27,34 @@ Para responder, precisamos comparar do jeito certo. É disso que trata esta cáp
 Comparar coisas por divisão é uma das ideias mais antigas e úteis da matemática.
 
 <LinhaDoTempo marcos={[
-  { ano: 'c. 600 a.C.', texto: 'Conta a tradição que o grego Tales mediu a altura de uma pirâmide do Egito pela sombra: esperou o momento em que a sombra dele tinha o mesmo tamanho que a altura dele. Nessa hora, a sombra da pirâmide (contada a partir do centro da base) também media a altura dela.' },
+  { ano: 'c. 600 a.C.', texto: 'Conta a tradição que o grego Tales mediu a altura de uma pirâmide do Egito pela sombra.' },
   { ano: 'c. 300 a.C.', texto: 'Euclides, no livro V dos Elementos, organiza uma teoria completa das proporções, atribuída ao matemático Eudoxo.' },
+  { ano: 'c. 230 a.C.', texto: 'Eratóstenes calcula o tamanho da Terra com uma proporção entre um ângulo e uma distância.' },
   { ano: 'Antes do séc. II', texto: 'Matemáticos chineses já usavam a regra de três, muito antes de ela aparecer na Europa.' },
   { ano: 'Séc. XVI e XVII', texto: 'A regra de três vira item obrigatório nos livros de aritmética europeus, usados por comerciantes. Às vezes era chamada de "regra de ouro".' },
 ]} />
 
-A história de Tales foi contada por autores que viveram séculos depois dele, então não dá para ter certeza de que aconteceu assim. Mas a ideia funciona, e você mesmo pode testar com um poste e a sua sombra.
+## Tales e a sombra da pirâmide
+
+Conta-se que, numa visita ao Egito, Tales quis saber a altura da Grande Pirâmide. Subir e medir era impossível. Então ele fincou um bastão no chão e esperou.
+
+No momento em que a sombra do bastão ficou **do mesmo tamanho que o bastão**, ele mandou medir a sombra da pirâmide (contada a partir do centro da base). Naquela hora, a sombra da pirâmide também tinha o tamanho da altura dela. A ideia por trás: o sol faz a **mesma razão** entre sombra e altura para todas as coisas, no mesmo instante.
+
+A história foi contada por autores que viveram séculos depois de Tales, então não dá para ter certeza de que aconteceu assim. Mas o método funciona, e você mesmo pode testar com um poste.
+
+## Eratóstenes mede a Terra
+
+Uns 400 anos depois, Eratóstenes, que cuidava da famosa Biblioteca de Alexandria, ouviu dizer que, na cidade de Siena, ao meio-dia do dia mais longo do ano, o sol iluminava o fundo de um poço: não havia sombra. No mesmo dia e hora, em Alexandria, um bastão fazia sombra.
+
+O ângulo dessa sombra era de cerca de **7,2 graus**, que é **1/50** de uma volta completa. Então, pensou ele, a distância entre as duas cidades deve ser 1/50 da volta da Terra. As cidades ficavam a cerca de 5.000 estádios uma da outra (o estádio era uma medida da época). A volta inteira: 50 × 5.000 = **250.000 estádios**.
+
+Não sabemos com certeza quanto media um estádio, e Eratóstenes errou em alguns detalhes que, por sorte, se compensaram. Dependendo do estádio usado, o resultado fica muito perto da medida moderna, de uns 40 mil km. Tudo isso com uma **proporção**.
+
+## A "regra de ouro" dos comerciantes
+
+Na China, a regra de três já era conhecida antes do século II. Na Europa, ela chegou bem mais tarde e virou uma ferramenta dos comerciantes: se 3 metros de tecido custam tanto, quanto custam 7? Se tal moeda vale tanto aqui, quanto vale lá?
+
+Os livros de aritmética dos séculos XVI e XVII traziam páginas e páginas de regra de três. Alguns a chamavam de "regra de ouro", de tão útil.
 
 ## Um mito famoso: a "proporção áurea em tudo"
 
@@ -43,13 +66,52 @@ As medidas do Partenon não confirmam isso. Os estudiosos não acham que as pir�
 
 <Etapa id="intuicao">
 
+## 1. Razão: comparar dividindo
+
 Uma **razão** compara duas quantidades dividindo uma pela outra. "1 copo de suco concentrado para 3 de água" é a razão **1 para 3**, que se escreve 1 : 3 ou 1/3.
 
-O que importa numa razão não é o tamanho das quantidades, mas a **relação** entre elas. 1 copo de suco para 3 de água tem o mesmo gosto que 2 para 6 ou 10 para 30. A jarra é maior, mas o sabor é igual.
+O que importa numa razão não é o tamanho das quantidades, mas a **relação** entre elas. 1 copo de suco para 3 de água tem o mesmo gosto que 2 para 6 ou 10 para 30. A jarra é maior, mas o sabor é igual. Por isso uma razão pode ser **simplificada**, como uma fração.
+
+E a **ordem importa**: 1 de suco para 3 de água (1 : 3) é bem diferente de 3 de suco para 1 de água (3 : 1).
+
+<Exercicio enunciado="Numa sala há 12 meninas e 18 meninos. Qual é a razão entre meninas e meninos, simplificada? (Pode escrever 2:3 ou 2/3.)" resposta="2/3" dica="Escreva 12 : 18 e divida os dois pelo mesmo número." resolucao="12 : 18. Dividindo os dois por 6: 2 : 3. Para cada 2 meninas há 3 meninos." />
+
+<Exercicio enunciado="Na mesma sala, qual é a razão entre meninas e o total de alunos, simplificada?" resposta="2/5" dica="O total é 12 + 18." resolucao="Total = 30. Meninas : total = 12 : 30 = 2 : 5. Ou seja, 2 de cada 5 alunos são meninas (40%)." />
+
+## 2. Proporção: duas razões iguais
 
 Quando duas razões são iguais, temos uma <Termo cor="azul">proporção</Termo>: 1/3 = 2/6. É o que faz uma receita para 3 pessoas virar uma receita para 30 sem estragar o bolo: **tudo** é multiplicado pelo mesmo número.
 
 O erro clássico é **somar** em vez de multiplicar: pôr 1 copo a mais de suco e 1 a mais de água. Isso muda a razão, e o sabor.
+
+<ExemploResolvido titulo="3/4 = x/20. Quanto vale x?">
+  <Passo>Do 4 para o 20, o de baixo foi **multiplicado por 5**.</Passo>
+  <Passo>Para a razão não mudar, o de cima também é multiplicado por 5: 3 × 5 = **15**.</Passo>
+  <Passo>Confira: 15/20 simplificado (dividindo por 5) volta a ser 3/4.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="2/5 = x/35. Quanto vale x?" resposta="14" dica="Por quanto o 5 foi multiplicado para virar 35?" resolucao="5 × 7 = 35. Então x = 2 × 7 = 14." />
+
+## 3. Taxas: razões com unidade
+
+Quando as quantidades são de tipos diferentes, a razão ganha uma unidade e costuma ser chamada de **taxa**:
+
+- **Velocidade:** quilômetros por hora (km/h). 240 km em 3 h dá 80 km/h.
+- **Preço unitário:** reais por quilo, reais por litro.
+- **Densidade demográfica:** pessoas por quilômetro quadrado.
+- **Consumo:** quilômetros por litro de combustível.
+
+Taxas são ótimas para **comparar ofertas**: dividindo o preço pela quantidade, você descobre quanto custa cada unidade.
+
+<ExemploResolvido titulo="Qual sai mais barato: 2 litros de suco por R$ 9 ou 3 litros por R$ 12?">
+  <Passo>Garrafa de 2 L: 9 ÷ 2 = **R$ 4,50 por litro**.</Passo>
+  <Passo>Garrafa de 3 L: 12 ÷ 3 = **R$ 4,00 por litro**.</Passo>
+  <Passo>A de 3 litros sai mais barata por litro, embora custe mais no total.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um carro percorreu 240 km em 3 horas. Qual foi a velocidade média?" resposta="80" unidade="km/h" dica="Velocidade = distância ÷ tempo." resolucao="240 ÷ 3 = 80 km/h." />
+
+<Exercicio enunciado="Um pacote de 5 kg de arroz custa R$ 27,50. Quanto sai o quilo?" resposta="5,5" unidade="reais" dica="Divida o preço pelo peso." resolucao="27,50 ÷ 5 = 5,50. O quilo sai a R$ 5,50." />
 
 </Etapa>
 
@@ -80,6 +142,22 @@ Repare que a jarra B pode ter **mais suco** e mesmo assim ficar **mais fraca**. 
 
 </Previsao>
 
+## Regra de três: a proporção do dia a dia
+
+Muitos problemas têm a mesma cara: você sabe uma relação completa e quer completar outra. "5 cadernos custam R$ 35. Quanto custam 8?" Isso é uma **regra de três**.
+
+O jeito lúdico: descubra **quanto vale 1** e depois multiplique. Se 5 cadernos custam 35, **1 caderno** custa 35 ÷ 5 = 7. Então 8 custam 8 × 7 = 56.
+
+<ExemploResolvido titulo="Com 3 kg de farinha, uma padaria faz 60 pães. Quantos pães faz com 5 kg?">
+  <Passo>Quanto rende 1 kg? 60 ÷ 3 = **20 pães**.</Passo>
+  <Passo>Com 5 kg: 5 × 20 = **100 pães**.</Passo>
+  <Passo>Pelo jeito da proporção: 3/60 = 5/x, então 3 × x = 60 × 5 = 300, e x = **100**. Mesmo resultado.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="5 cadernos custam R$ 35. Quanto custam 8 cadernos iguais?" resposta="56" unidade="reais" dica="Quanto custa 1 caderno?" resolucao="1 caderno: 35 ÷ 5 = 7. Oito cadernos: 8 × 7 = 56 reais." />
+
+<Exercicio enunciado="Uma torneira enche 12 litros em 4 minutos. Quantos litros enche em 15 minutos?" resposta="45" unidade="litros" dica="Quantos litros por minuto?" resolucao="12 ÷ 4 = 3 litros por minuto. Em 15 minutos: 15 × 3 = 45 litros." />
+
 </Etapa>
 
 <Etapa id="pratica">
@@ -92,12 +170,56 @@ Esta receita de bolo serve 6 pessoas. Arraste para fazer para mais ou menos gent
 
 Repare no fator: para 12 pessoas tudo dobra (×2), para 3 tudo cai pela metade (×0,5). E o ovo mostra um limite do mundo real: 4,5 ovos não existem. Na cozinha, a gente arredonda.
 
+## Mapas e escalas
+
+Num mapa, tudo foi encolhido **na mesma razão**. Essa razão é a **escala**. A escala 1 : 50.000 quer dizer que 1 cm no mapa vale 50.000 cm no chão, ou seja, 500 metros. Meça com a régua:
+
+<EscalaMapa />
+
+<Exercicio enunciado="Num mapa com escala 1 : 200.000, duas cidades estão a 4,5 cm uma da outra. Qual a distância real, em km?" resposta="9" unidade="km" dica="1 cm vale 200.000 cm, que são 2 km." resolucao="Cada cm vale 2 km. Então 4,5 cm valem 4,5 × 2 = 9 km." />
+
+## Direta ou inversa?
+
+Nem toda proporção é do mesmo tipo:
+
+- **Direta:** quando uma dobra, a outra **dobra**. Mais quilos de tomate, mais caro.
+- **Inversa:** quando uma dobra, a outra **cai pela metade**. Mais pintores, menos dias para pintar a casa.
+
+Compare os dois gráficos. A direta é uma **reta** saindo do zero; a inversa é uma **curva** que desce cada vez mais devagar:
+
+<DiretaOuInversa />
+
+Na inversa, o que fica constante é o **produto**: 2 pintores × 12 dias = 24 "dias de pintor" de trabalho. Com 4 pintores, 24 ÷ 4 = 6 dias.
+
+<ExemploResolvido titulo="6 pintores pintam uma casa em 10 dias. Em quantos dias 4 pintores pintam a mesma casa?">
+  <Passo>Primeiro, pergunte: mais pintores, menos dias? Sim. Então é **inversa**.</Passo>
+  <Passo>O trabalho total é 6 × 10 = **60 dias de pintor**.</Passo>
+  <Passo>Com 4 pintores: 60 ÷ 4 = **15 dias**. Faz sentido: com menos gente, demora mais.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma viagem leva 2 horas a 90 km/h. Quanto tempo leva a 60 km/h?" resposta="3" unidade="horas" dica="Mais devagar, mais tempo: é inversa. Qual é a distância?" resolucao="A distância é 2 × 90 = 180 km. A 60 km/h: 180 ÷ 60 = 3 horas." />
+
+<Exercicio enunciado="8 torneiras iguais enchem uma piscina em 6 horas. Em quantas horas 12 torneiras enchem a mesma piscina?" resposta="4" unidade="horas" dica="Calcule o trabalho total em 'horas de torneira'." resolucao="8 × 6 = 48 horas de torneira. Com 12 torneiras: 48 ÷ 12 = 4 horas." />
+
+## Dividir em partes proporcionais
+
+Dois amigos abriram um negócio. Ana colocou R$ 3.000 e Bruno, R$ 2.000. No fim do ano, o lucro foi de R$ 1.000. Dividir meio a meio seria justo? Ana colocou mais dinheiro, então é justo que ela receba mais.
+
+O jeito lúdico: pense em **cotas** iguais. Ana tem 3 cotas de mil, Bruno tem 2. São 5 cotas no total, e o lucro é dividido por cota.
+
+<ExemploResolvido titulo="Dividir R$ 1.000 de lucro entre Ana (R$ 3.000) e Bruno (R$ 2.000)">
+  <Passo>A razão é 3.000 : 2.000 = **3 : 2**. São 3 + 2 = **5 partes**.</Passo>
+  <Passo>Cada parte vale 1.000 ÷ 5 = **R$ 200**.</Passo>
+  <Passo>Ana fica com 3 × 200 = **R$ 600**; Bruno, com 2 × 200 = **R$ 400**. Confira: 600 + 400 = 1.000.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma avó quer dividir 45 balas entre dois netos, de 4 e 5 anos, proporcionalmente às idades. Quantas balas o mais novo recebe?" resposta="20" unidade="balas" dica="São 4 + 5 = 9 partes. Quanto vale cada parte?" resolucao="45 ÷ 9 = 5 balas por parte. O mais novo tem 4 partes: 4 × 5 = 20 balas (e o mais velho, 25)." />
+
 ## Onde mais aparece
 
-- **Mapas:** escala 1 : 50.000 quer dizer que 1 cm no mapa vale 50.000 cm (500 metros) no chão.
 - **Preço por quilo:** o pacote de 5 kg sai mais barato que o de 1 kg? Divida o preço pelo peso e compare.
-- **Velocidade:** 80 km/h é uma razão entre distância e tempo.
 - **Tela da TV:** 16 : 9 é a razão entre largura e altura. Toda TV "widescreen" tem esse formato, de qualquer tamanho.
+- **Remédio infantil:** a dose costuma ser calculada pelo peso da criança, em miligramas por quilo. (Sempre siga a orientação médica!)
 
 ## Experimente em casa
 
@@ -109,71 +231,104 @@ Num dia de sol, meça a sua altura e o comprimento da sua sombra. Depois meça a
 
 ## 1. Razão
 
-A razão entre **a** e **b** é a divisão a ÷ b, escrita a/b ou a : b. A **ordem importa**: 1 de suco para 3 de água (1 : 3) é bem diferente de 3 de suco para 1 de água (3 : 1).
+A razão entre **a** e **b** (com b diferente de zero) é a divisão a ÷ b, escrita a/b ou a : b. O primeiro número é o **antecedente**; o segundo, o **consequente**.
 
-Quando as grandezas são diferentes, a razão ganha unidade: km/h, R$/kg, pessoas por metro quadrado. Essas razões costumam ser chamadas de **taxas**.
+## 2. A propriedade fundamental
 
-## 2. Proporção e o produto cruzado
-
-Duas razões formam uma proporção quando são iguais:
+Duas razões formam uma proporção quando são iguais. E aí vale:
 
 <Formula>
   <Linha><Fracao cima="a" baixo="b" /> = <Fracao cima="c" baixo="d" />   quando   a × d = b × c</Linha>
 </Formula>
 
+Por quê? Multiplique os dois lados de a/b = c/d por b × d. À esquerda, o b cancela e sobra a × d. À direita, o d cancela e sobra c × b.
+
 O simulador compara as jarras assim. Jarra A: 2 de suco em 5 copos. Jarra B: 3 de suco em 8. Como 2 × 8 = 16 é maior que 3 × 5 = 15, a jarra A é mais forte.
 
-## 3. Regra de três
+## 3. Diretamente proporcionais
 
-Se 6 pessoas pedem 3 ovos, quantos ovos para 10 pessoas? Monte a proporção e use o produto cruzado:
-
-<Formula>
-  <Linha><Fracao cima="6" baixo="3" /> = <Fracao cima="10" baixo="x" /></Linha>
-  <Linha>6 × x = 3 × 10   →   x = 5</Linha>
-</Formula>
-
-## 4. Diretamente proporcionais
-
-Duas grandezas são **diretamente proporcionais** quando uma é sempre a outra vezes um mesmo número **k**:
+Duas grandezas são **diretamente proporcionais** quando uma é sempre a outra vezes um mesmo número **k** (a constante de proporcionalidade):
 
 <Formula>
   <Linha>y = k × x</Linha>
 </Formula>
 
-Se o tomate custa R$ 8 o quilo, o preço é 8 × (quilos). Dobrou o peso, dobra o preço. No gráfico, isso vira uma **reta que passa pelo zero**.
+No gráfico, isso vira uma **reta que passa pelo zero**. Zero quilos custam zero reais.
 
-## 5. Inversamente proporcionais
+## 4. Inversamente proporcionais
 
-Às vezes, quando uma grandeza dobra, a outra cai pela metade. Aí o **produto** é que fica constante:
+Quando uma dobra e a outra cai pela metade, o **produto** é que fica constante:
 
 <Formula>
   <Linha>x × y = k</Linha>
 </Formula>
 
-Se 2 pedreiros fazem um muro em 6 dias, o trabalho total é 2 × 6 = 12 "dias de pedreiro". Com 3 pedreiros: 12 ÷ 3 = 4 dias. (Isso supõe que todos trabalham no mesmo ritmo e não atrapalham uns aos outros.)
+No gráfico, é uma curva chamada **hipérbole**. Ela nunca toca os eixos: nem infinitos pintores pintam a casa em zero dias. (E na vida real há um limite antes: 100 pintores numa casa pequena só atrapalham.)
 
-## 6. Nem tudo é proporcional
+## 5. Regra de três composta
+
+Às vezes há **mais de duas grandezas**. "4 pintores pintam 2 paredes em 6 horas. Em quanto tempo 8 pintores pintam 6 paredes?"
+
+O jeito lúdico: mude **uma coisa de cada vez**, perguntando "aumenta ou diminui o tempo?".
+
+<ExemploResolvido titulo="4 pintores, 2 paredes, 6 horas. E 8 pintores com 6 paredes?">
+  <Passo>Primeiro as paredes: de 2 para 6 é o **triplo** de trabalho. Mais trabalho, mais tempo: 6 × 3 = **18 horas** (ainda com 4 pintores).</Passo>
+  <Passo>Agora os pintores: de 4 para 8 é o **dobro** de gente. Mais gente, menos tempo: 18 ÷ 2 = **9 horas**.</Passo>
+  <Passo>Resposta: **9 horas**. Em uma conta só: 6 × (6/2) × (4/8) = 9.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="3 máquinas fazem 300 peças em 5 horas. Quantas peças 6 máquinas fazem em 2 horas?" resposta="240" unidade="peças" dica="Quantas peças 1 máquina faz em 1 hora?" resolucao="1 máquina em 1 hora: 300 ÷ 3 ÷ 5 = 20 peças. 6 máquinas em 2 horas: 6 × 2 × 20 = 240 peças." />
+
+## 6. Divisão em partes proporcionais
+
+Para dividir um total **T** em partes proporcionais a **a** e **b**:
+
+<Formula>
+  <Linha>parte de a = T × <Fracao cima="a" baixo="a + b" />   e   parte de b = T × <Fracao cima="b" baixo="a + b" /></Linha>
+</Formula>
+
+No exemplo de Ana e Bruno: 1.000 × 3/5 = 600 e 1.000 × 2/5 = 400.
+
+## 7. Nem tudo é proporcional
 
 Uma criança de 5 anos com 1,10 m **não** terá 2,20 m aos 10. Uma corrida de táxi de 10 km não custa o dobro de uma de 5 km, porque tem a **bandeirada**, um valor fixo que se paga só por entrar. Antes de usar regra de três, pergunte: se uma dobra, a outra dobra mesmo?
 
-## 7. A pizza: escala, área e volume
+## 8. A pizza: escala, área e volume
 
 Quando você aumenta **todas** as medidas de uma figura pelo fator **k**, o comprimento cresce k vezes, mas a **área** cresce **k²** vezes:
 
-<div className="flex justify-center gap-6">
+<div className="flex items-end justify-center gap-6">
   <Pizza cima={1} baixo={1} tamanho={60} legenda={false} />
   <Pizza cima={1} baixo={1} tamanho={120} legenda={false} cor="var(--color-azul)" />
 </div>
 
 A pizza grande tem o dobro da largura (k = 2), então tem **2² = 4** vezes mais pizza. Custa 3 vezes mais. Cada "pizza pequena" de comida sai por R$ 90 ÷ 4 = R$ 22,50, contra R$ 30 na pequena. A grande é **25% mais barata** por pedaço.
 
-E o **volume** cresce **k³**: uma caixa com o dobro de largura, altura e profundidade cabe 2³ = 8 vezes mais coisa.
+E o **volume** cresce **k³**: uma caixa com o dobro de largura, altura e profundidade cabe 2³ = 8 vezes mais coisa. É por isso que um elefante não pode ter pernas finas como as de uma formiga: o peso cresce com o volume (k³), mas a força das pernas cresce com a área do osso (k²).
+
+## 9. Tales com rigor: triângulos semelhantes
+
+O bastão e a pirâmide formam, com suas sombras, dois triângulos de **mesmo formato** (os raios de sol chegam paralelos). Triângulos assim se chamam **semelhantes**, e neles os lados são proporcionais:
+
+<Formula>
+  <Linha><Fracao cima="altura da pirâmide" baixo="sombra da pirâmide" /> = <Fracao cima="altura do bastão" baixo="sombra do bastão" /></Linha>
+</Formula>
+
+Tales escolheu o momento em que a razão do bastão era 1. Mas qualquer momento serve: basta medir as três coisas e calcular a quarta.
+
+<Exercicio enunciado="Um bastão de 2 m faz uma sombra de 3 m. No mesmo instante, um prédio faz uma sombra de 30 m. Qual a altura do prédio?" resposta="20" unidade="metros" dica="altura/sombra é a mesma razão para os dois: 2/3 = x/30." resolucao="2/3 = x/30. Como 3 × 10 = 30, x = 2 × 10 = 20 metros." />
 
 </Etapa>
 
 <Etapa id="desafio">
 
 <Quiz perguntas={[
+  {
+    enunciado: 'Numa receita, a razão entre farinha e açúcar é 3 : 1. Se você usar 6 xícaras de farinha, quanto açúcar precisa?',
+    opcoes: ['1 xícara', '2 xícaras', '4 xícaras'],
+    correta: 1,
+    explicacao: 'A farinha dobrou (de 3 para 6), então o açúcar também dobra: de 1 para 2 xícaras.',
+  },
   {
     enunciado: 'Qual suco é mais forte: 1 copo de suco para 4 de água, ou 2 de suco para 7 de água?',
     opcoes: ['1 para 4', '2 para 7', 'Mesmo sabor'],
@@ -185,6 +340,12 @@ E o **volume** cresce **k³**: uma caixa com o dobro de largura, altura e profun
     opcoes: ['R$ 14', 'R$ 20', 'R$ 15'],
     correta: 1,
     explicacao: 'O quilo sai a 12 ÷ 3 = R$ 4. Então 5 kg custam 5 × 4 = R$ 20. A resposta R$ 14 é o erro de somar 2 em vez de multiplicar.',
+  },
+  {
+    enunciado: 'Qual oferta é melhor: 6 ovos por R$ 4,80 ou 12 ovos por R$ 9,00?',
+    opcoes: ['6 por R$ 4,80', '12 por R$ 9,00', 'Dá na mesma'],
+    correta: 1,
+    explicacao: 'Por ovo: 4,80 ÷ 6 = R$ 0,80; 9,00 ÷ 12 = R$ 0,75. A dúzia sai mais barata por ovo.',
   },
   {
     enunciado: '4 torneiras iguais enchem uma caixa d\'água em 6 horas. Em quanto tempo 8 torneiras iguais enchem a mesma caixa?',
@@ -199,10 +360,40 @@ E o **volume** cresce **k³**: uma caixa com o dobro de largura, altura e profun
     explicacao: '3 cm × 100.000 = 300.000 cm. Como 1 metro tem 100 cm, são 3.000 metros, ou seja, 3 km.',
   },
   {
+    enunciado: 'Qual destas situações NÃO é proporcional?',
+    opcoes: ['Preço e quilos de feijão a granel', 'Idade e altura de uma pessoa', 'Distância e tempo a velocidade constante'],
+    correta: 1,
+    explicacao: 'Ninguém dobra de altura quando dobra de idade. As outras duas são diretamente proporcionais.',
+  },
+  {
+    enunciado: 'Dois sócios investiram R$ 4.000 e R$ 6.000. O lucro foi de R$ 2.000. Quanto recebe quem investiu R$ 6.000?',
+    opcoes: ['R$ 1.000', 'R$ 1.200', 'R$ 800'],
+    correta: 1,
+    explicacao: 'A razão é 4 : 6 = 2 : 3, total de 5 partes. Cada parte vale 2.000 ÷ 5 = 400. Quem investiu 6.000 tem 3 partes: 1.200.',
+  },
+  {
+    enunciado: 'Um carro a 80 km/h faz uma viagem em 3 horas. A 120 km/h, quanto tempo levaria?',
+    opcoes: ['4,5 horas', '2 horas', '2,5 horas'],
+    correta: 1,
+    explicacao: 'A distância é 80 × 3 = 240 km. A 120 km/h: 240 ÷ 120 = 2 horas. Mais rápido, menos tempo (inversa).',
+  },
+  {
+    enunciado: 'Um poste de 3 m faz sombra de 2 m. Ao mesmo tempo, uma árvore faz sombra de 8 m. Qual a altura da árvore?',
+    opcoes: ['12 m', '9 m', '5,3 m'],
+    correta: 0,
+    explicacao: 'Altura/sombra é a mesma razão: 3/2 = x/8. Como 2 × 4 = 8, x = 3 × 4 = 12 m.',
+  },
+  {
     enunciado: 'Uma foto é ampliada para o triplo da largura e o triplo da altura. Quantas vezes mais papel ela usa?',
     opcoes: ['3 vezes', '6 vezes', '9 vezes'],
     correta: 2,
     explicacao: 'A área cresce com o quadrado do fator: 3² = 9. É o mesmo motivo pelo qual a pizza grande rende tanto.',
+  },
+  {
+    enunciado: '2 cozinheiros fazem 40 salgados em 1 hora. Quantos salgados 3 cozinheiros fazem em 2 horas?',
+    opcoes: ['60', '80', '120'],
+    correta: 2,
+    explicacao: '1 cozinheiro faz 20 salgados por hora. 3 cozinheiros em 2 horas: 3 × 2 × 20 = 120.',
   },
 ]} />
 
@@ -214,8 +405,10 @@ E o **volume** cresce **k³**: uma caixa com o dobro de largura, altura e profun
 
 - **Razão é uma comparação por divisão.** O que importa é a relação, não o tamanho.
 - **Proporção é uma igualdade de razões**, conferida pelo produto cruzado: a × d = b × c.
-- **Para aumentar uma receita, multiplique tudo**; somar o mesmo a tudo muda o sabor.
-- **Diretas: y = k × x. Inversas: x × y = k.** E muita coisa não é nenhuma das duas.
+- **Taxas** são razões com unidade (km/h, R$/kg): ótimas para comparar ofertas.
+- **Regra de três:** descubra quanto vale 1 e multiplique.
+- **Diretas: y = k × x (reta). Inversas: x × y = k (curva).** E muita coisa não é nenhuma das duas.
+- **Dividir proporcionalmente:** some as partes, ache o valor de cada uma e distribua.
 - **Aumentar as medidas k vezes multiplica a área por k²** e o volume por k³.
 
 </Resumo>

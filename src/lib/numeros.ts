@@ -17,7 +17,8 @@ export function lerNumero(texto: string): number | null {
     return sinal ? -valor : valor
   }
 
-  const fracao = limpo.match(/^(-?\d+(?:,\d+)?)\s?\/\s?(-?\d+(?:,\d+)?)$/)
+  // "3/8" ou a razão "2:3" (que é a mesma coisa que 2/3)
+  const fracao = limpo.match(/^(-?\d+(?:,\d+)?)\s?[/:]\s?(-?\d+(?:,\d+)?)$/)
   if (fracao) {
     const baixo = Number(fracao[2].replace(',', '.'))
     return baixo === 0 ? null : Number(fracao[1].replace(',', '.')) / baixo
