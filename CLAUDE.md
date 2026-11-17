@@ -284,6 +284,11 @@ npm run build      # gera a versão de produção
 npm run lint       # verifica erros de código
 ```
 
+**Site no ar:** https://curiosamente-seven.vercel.app (Vercel, ligado ao repositório privado
+`AntonioVieiraMartins/curiosamente` no GitHub). Cada `git push` na `main` publica sozinho.
+As variáveis do Supabase também estão cadastradas na Vercel (Settings → Environment Variables).
+Se o endereço mudar, atualize Site URL e Redirect URLs no Supabase (Authentication → URL Configuration).
+
 Variáveis de ambiente em `.env.local`:
 
 ```
