@@ -1,6 +1,9 @@
 import PlanoDePontos from '../../../../components/simulacoes/PlanoDePontos'
 import CacaAoTesouro from '../../../../components/simulacoes/CacaAoTesouro'
 import ReflexoEMovimento from '../../../../components/simulacoes/ReflexoEMovimento'
+import LigueOsPontos from '../../../../components/simulacoes/LigueOsPontos'
+import DistanciaNoPlano from '../../../../components/simulacoes/DistanciaNoPlano'
+import GraficoDeTabela from '../../../../components/simulacoes/GraficoDeTabela'
 
 {/* Fatos históricos conferidos na Wikipedia em inglês (Cartesian coordinate system), listada no meta.ts. */}
 
@@ -120,6 +123,22 @@ Agora jogue de verdade, como na batalha naval. Há 4 tesouros escondidos. Cada c
 
 <Exercicio enunciado="Num tabuleiro, o tesouro está 5 casas para a direita e 2 para cima da origem. Qual é o valor de x do endereço dele?" resposta="5" dica="O x vem primeiro e conta as casas na horizontal." resolucao="O endereço é (5, 2). O x é 5." />
 
+## Ligue os pontos
+
+Lembra dos desenhos de ligar pontos? Aqui cada ponto tem um endereço. Toque no ponto pedido, na ordem, e o desenho aparece. A casa usa só números positivos; no barco aparecem os **negativos**.
+
+<LigueOsPontos />
+
+<ExemploResolvido titulo="Três cantos de um quadrado são (1, 1), (1, 4) e (4, 4). Onde está o quarto?">
+  <Passo>O quadrado tem lados iguais. De (1, 1) até (1, 4) são 3 casas na vertical.</Passo>
+  <Passo>De (1, 4) até (4, 4) são 3 casas na horizontal.</Passo>
+  <Passo>O canto que falta fica embaixo do (4, 4) e ao lado do (1, 1): é o **(4, 1)**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Três cantos de um quadrado são (1, 1), (1, 4) e (4, 4). Qual é o valor de y do quarto canto?" resposta="1" dica="O quarto canto fica na mesma altura que (1, 1)." resolucao="O quarto canto é (4, 1). Seu y é 1." />
+
+<Exercicio enunciado="Qual é o perímetro desse quadrado (de lado 3)?" resposta="12" dica="Lado × 4." resolucao="3 × 4 = 12." />
+
 </Etapa>
 
 <Etapa id="pratica">
@@ -152,6 +171,27 @@ Se têm o **mesmo x**, é a diferença dos y. Entre (−2, 1) e (−2, −4), o 
 Marque os pontos (1, 1), (5, 1), (5, 4) e (1, 4) e ligue-os. Você desenhou um retângulo. O lado horizontal mede 5 − 1 = 4 e o vertical mede 4 − 1 = 3. A área é 4 × 3 = **12 quadradinhos**.
 
 <Exercicio enunciado="Um retângulo tem vértices em (1, 1), (5, 1), (5, 4) e (1, 4). Qual é a área em quadradinhos?" resposta="12" dica="Base × altura." resolucao="Base 5 − 1 = 4 e altura 4 − 1 = 3: 4 × 3 = 12." />
+
+## Do dia a dia à tabela e ao gráfico
+
+Um táxi cobra **R$ 5 de bandeirada** (só por entrar) e **R$ 3 por quilômetro**. Quanto custa a corrida? Monte uma tabela com x = quilômetros e y = preço:
+
+- 0 km: R$ 5. Ponto (0, 5).
+- 1 km: R$ 5 + 3 = R$ 8. Ponto (1, 8).
+- 2 km: R$ 11. Ponto (2, 11).
+- 3 km: R$ 14. Ponto (3, 14).
+
+Marque esses pontos e eles ficam **em fila reta**. Cada quilômetro a mais empurra o ponto 1 para a direita e 3 para cima. Esse é o gráfico do preço da corrida.
+
+<ExemploResolvido titulo="Quanto custa uma corrida de 7 km?">
+  <Passo>A bandeirada vale R$ 5, independente da distância.</Passo>
+  <Passo>Os 7 km custam 7 × 3 = R$ 21.</Passo>
+  <Passo>Total: 5 + 21 = **R$ 26**. É o ponto (7, 26) do gráfico.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto custa uma corrida de 4 km (bandeirada R$ 5 e R$ 3 por km)?" resposta="17" unidade="reais" dica="5 + 3 × 4." resolucao="3 × 4 = 12. Mais 5 da bandeirada: R$ 17." />
+
+<Exercicio enunciado="Com R$ 35, quantos quilômetros dá para andar nesse táxi?" resposta="10" unidade="km" dica="Tire a bandeirada e divida o resto por 3." resolucao="35 − 5 = 30. 30 ÷ 3 = 10 km." />
 
 ## Experimente em casa
 
@@ -203,9 +243,31 @@ E se os pontos não estiverem alinhados? Entre (0, 0) e (3, 4), o caminho "reto"
 
 <Exercicio enunciado="Num triângulo retângulo com catetos 6 e 8, a hipotenusa mede 10. Esse triângulo é o dobro do (3, 4, 5). Qual é a distância entre (0, 0) e (6, 8)?" resposta="10" dica="É o dobro de 5." resolucao="6² + 8² = 36 + 64 = 100, e a raiz de 100 é 10." />
 
+<DistanciaNoPlano />
+
+Mexa nos quatro números. O caminho "de quarteirão" (tracejado) sempre é maior ou igual à linha reta. Só são iguais quando os pontos estão na mesma horizontal ou na mesma vertical.
+
+<Exercicio enunciado="Qual é a distância em linha reta entre (1, 2) e (4, 6)?" resposta="5" dica="Os catetos medem 3 (de 1 a 4) e 4 (de 2 a 6)." resolucao="3² + 4² = 25, e a raiz de 25 é 5." />
+
+<Exercicio enunciado="Qual é a coordenada y do ponto médio entre (−2, −4) e (6, 8)?" resposta="2" dica="Média dos y: (−4 + 8) ÷ 2." resolucao="(−4 + 8) ÷ 2 = 4 ÷ 2 = 2." />
+
+## Áreas no plano
+
+Com as coordenadas dá para calcular áreas sem desenhar. O triângulo de vértices (0, 0), (6, 0) e (0, 4) tem base 6 (de 0 a 6 no eixo x) e altura 4 (de 0 a 4 no eixo y). A área é base × altura ÷ 2 = 6 × 4 ÷ 2 = 12.
+
+<Exercicio enunciado="Qual é a área do triângulo de vértices (0, 0), (6, 0) e (0, 4)?" resposta="12" dica="Base × altura ÷ 2." resolucao="6 × 4 = 24, e 24 ÷ 2 = 12." />
+
+<Exercicio enunciado="Para onde vai o ponto (−2, 4) quando é espelhado na origem? Digite só o valor de x." resposta="2" dica="Espelhar na origem troca o sinal dos dois números." resolucao="(−2, 4) vira (2, −4). O x é 2." />
+
 ## 6. Gráficos: uma tabela vira um desenho
 
 Uma tabela com x e y vira um conjunto de pontos. Para y = x + 2: (0, 2), (1, 3), (2, 4), (3, 5)... Quando você liga os pontos, aparece uma **reta**. Esse é o jeito de **ver** uma equação, e é a porta de entrada para as funções, no Ensino Médio.
+
+Mexa nas regras e observe: o primeiro número inclina a reta e o segundo a empurra para cima ou para baixo.
+
+<GraficoDeTabela />
+
+Esse é o primeiro encontro com a **função afim**: uma regra do tipo y = a·x + b, cujo gráfico é sempre uma reta. O táxi é exatamente isso, com a = 3 e b = 5.
 
 ## 7. Erros comuns
 

@@ -2,6 +2,7 @@ import Semaforos from '../../../../components/simulacoes/Semaforos'
 import LadrilhoMDC from '../../../../components/simulacoes/LadrilhoMDC'
 import DivisoresDeUmNumero from '../../../../components/simulacoes/DivisoresDeUmNumero'
 import TesteDeDivisibilidade from '../../../../components/simulacoes/TesteDeDivisibilidade'
+import EngrenagensMMC from '../../../../components/simulacoes/EngrenagensMMC'
 
 {/* Fatos históricos conferidos na Wikipedia em inglês (Euclidean algorithm), listada no meta.ts. */}
 
@@ -182,6 +183,16 @@ Uma tábua de 120 cm e outra de 180 cm vão ser cortadas em pedaços **do mesmo 
 <Exercicio enunciado="Quantos pedaços de 60 cm saem, no total, das tábuas de 120 cm e 180 cm?" resposta="5" dica="Divida cada tábua por 60 e some." resolucao="120 ÷ 60 = 2 e 180 ÷ 60 = 3. Total: 5 pedaços." />
 
 Outro exemplo: uma escola tem 24 meninas e 36 meninos e quer formar o **maior número de equipes iguais**, sem sobrar ninguém. O MDC de 24 e 36 é 12, então são 12 equipes, cada uma com 2 meninas e 3 meninos.
+
+### Engrenagens
+
+Duas rodas dentadas encaixadas só voltam à posição inicial, com os dois dentes marcados juntos, depois que um número de dentes que é **múltiplo dos dois** passa. O primeiro desses números é o MMC.
+
+<EngrenagensMMC />
+
+<Exercicio enunciado="Uma roda tem 12 dentes e outra tem 18. Quantas voltas a roda de 12 dentes dá até as duas voltarem à posição inicial?" resposta="3" dica="MMC(12, 18) = 36. Quantas vezes o 12 cabe em 36?" resolucao="MMC(12, 18) = 36 dentes. A roda de 12 dá 36 ÷ 12 = 3 voltas (e a de 18 dá 2)." />
+
+<Exercicio enunciado="Na mesma situação, quantas voltas dá a roda de 18 dentes?" resposta="2" dica="36 ÷ 18." resolucao="36 ÷ 18 = 2 voltas." />
 
 ### Somar frações
 

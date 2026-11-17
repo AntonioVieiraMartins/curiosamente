@@ -2,6 +2,9 @@ import Transferidor from '../../../../components/simulacoes/Transferidor'
 import RelogioDeAngulos from '../../../../components/simulacoes/RelogioDeAngulos'
 import RetasQueSeCruzam from '../../../../components/simulacoes/RetasQueSeCruzam'
 import SomaDoTriangulo from '../../../../components/simulacoes/SomaDoTriangulo'
+import AdivinheOAngulo from '../../../../components/simulacoes/AdivinheOAngulo'
+import ParalelasETransversal from '../../../../components/simulacoes/ParalelasETransversal'
+import BussolaGiro from '../../../../components/simulacoes/BussolaGiro'
 
 {/* Fatos históricos conferidos na Wikipedia em inglês (Degree (angle), Sexagesimal), listadas no meta.ts. */}
 
@@ -91,6 +94,22 @@ Uma dica: **estime antes de medir**. Se o ângulo parece menor que um canto de f
 
 <Exercicio enunciado="Você mede um ângulo que é claramente menor que o canto de uma folha e lê 130° numa escala e 50° na outra. Qual é a medida certa?" resposta="50" dica="Menor que um ângulo reto é agudo: menor que 90°." resolucao="Ângulo agudo tem menos de 90°. Portanto, 50°. O 130° é a leitura da escala errada (130° + 50° = 180°)." />
 
+## 4. Estimando de olho
+
+Ninguém anda com transferidor no bolso, então vale treinar o olho. Use o **canto de uma folha (90°)** como régua mental: o ângulo é menor ou maior que ele? Está perto de metade (45°)? Perto de um canto e meio (135°)?
+
+Teste seu olho: o arco amarelo mostra um ângulo, e você chuta a medida.
+
+<AdivinheOAngulo />
+
+<ExemploResolvido titulo="Como chutar bem um ângulo?">
+  <Passo>Compare com o ângulo reto (90°): é menor (agudo) ou maior (obtuso)?</Passo>
+  <Passo>Se for agudo, veja se é perto da metade de 90° (45°) ou perto de 90°.</Passo>
+  <Passo>Se for obtuso, compare com 135° (um reto e meio) e com 180° (uma reta).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um ângulo parece estar bem no meio entre 0° e um ângulo reto. Quanto você chutaria?" resposta="45" dica="Metade de 90°." resolucao="Metade de 90° é 45°." />
+
 </Etapa>
 
 <Etapa id="simulacao">
@@ -163,6 +182,16 @@ Três ideias importantes saem dessa figura:
 
 <Exercicio enunciado="Você está virado para o Norte e gira meia volta. Quantos graus girou?" resposta="180" dica="Meia volta é metade de 360°." resolucao="Meia volta: 360° ÷ 2 = 180°. Você ficou virado para o Sul." />
 
+## Giros e direções
+
+Quando você vira o corpo, está medindo um ângulo. Na bússola, a direção é um ângulo contado a partir do **Norte**, no sentido dos ponteiros do relógio: Leste é 90°, Sul é 180°, Oeste é 270°. Gire no simulador e veja o nome da direção.
+
+<BussolaGiro />
+
+<Exercicio enunciado="Você olha para o Leste (90° a partir do Norte) e gira 180°. Para que direção está olhando, em graus a partir do Norte?" resposta="270" dica="90 + 180." resolucao="90° + 180° = 270°, que é o Oeste." />
+
+<Exercicio enunciado="Quantos graus o ponteiro dos minutos gira em 20 minutos?" resposta="120" dica="Ele gira 6° por minuto." resolucao="20 × 6° = 120°." />
+
 ## Experimente em casa
 
 Abra uma porta devagar e pare em 45° (metade de um canto reto). Depois em 90°. Com uma folha de papel dobrada ao meio duas vezes, você tem um ângulo reto de verdade para comparar com cantos de móveis.
@@ -183,13 +212,29 @@ Um **ângulo** é a região entre duas semirretas que saem do mesmo ponto, o **v
 
 Duas retas se cruzando formam quatro ângulos: a, b, c e d, nessa ordem em volta do ponto. Como a e b são vizinhos, a + b = 180°. Como b e c também são vizinhos, b + c = 180°. Então a + b = b + c. Cortando o b dos dois lados: **a = c**. Mesma prova para os outros dois.
 
+## Retas paralelas cortadas por uma transversal
+
+Quando duas retas **paralelas** (que nunca se encontram) são cortadas por uma terceira reta, a **transversal**, os ângulos formados em cima se repetem iguaizinhos embaixo. Mexa e confira: os da mesma cor sempre têm o mesmo valor.
+
+<ParalelasETransversal />
+
+Daí saem três nomes que aparecem em provas:
+
+- **Correspondentes:** ficam na mesma posição, um em cada reta. São **iguais**.
+- **Alternos:** ficam em lados opostos da transversal. São **iguais**.
+- **Colaterais:** ficam do mesmo lado da transversal, entre as paralelas. **Somam 180°**.
+
+<Exercicio enunciado="Um ângulo correspondente mede 65°. Quanto mede o outro correspondente?" resposta="65" dica="Correspondentes são iguais." resolucao="Correspondentes são iguais, então o outro também mede 65°." />
+
+<Exercicio enunciado="Dois ângulos colaterais entre paralelas: um mede 110°. Quanto mede o outro?" resposta="70" dica="Colaterais somam 180°." resolucao="180° − 110° = 70°." />
+
 ## 3. A soma dos ângulos de um triângulo
 
 Em **qualquer** triângulo, os três ângulos somam **180°**. Mexa nos dois primeiros e veja o terceiro mudar:
 
 <SomaDoTriangulo />
 
-Uma forma lúdica de ver isso: recorte um triângulo de papel, arranque os três cantos e junte as pontas. Elas formam um ângulo **raso**, uma reta de 180°. Isso é uma demonstração por experiência. A prova rigorosa usa uma reta paralela à base, e você vai vê-la mais adiante.
+Uma forma lúdica de ver isso: recorte um triângulo de papel, arranque os três cantos e junte as pontas. Elas formam um ângulo **raso**, uma reta de 180°. Isso é uma demonstração por experiência. A prova rigorosa usa uma reta paralela à base, e está logo abaixo.
 
 <ExemploResolvido titulo="Dois ângulos de um triângulo medem 50° e 60°. Quanto mede o terceiro?">
   <Passo>A soma dos três é 180°.</Passo>
@@ -199,11 +244,49 @@ Uma forma lúdica de ver isso: recorte um triângulo de papel, arranque os três
 
 <Exercicio enunciado="Dois ângulos de um triângulo medem 50° e 60°. Quanto mede o terceiro?" resposta="70" dica="180 menos a soma dos dois." resolucao="180° − 50° − 60° = 70°." />
 
+### A prova rigorosa da soma dos ângulos do triângulo
+
+Agora dá para provar de verdade. Em um triângulo ABC, passe por C uma reta **paralela** ao lado AB. Os ângulos que ficam de cada lado de C, junto ao ângulo do próprio C, formam uma reta (180°). Os dois ângulos de fora são **alternos** com os ângulos A e B do triângulo, então são iguais a eles. Resultado: A + B + C = 180°. Vale para qualquer triângulo.
+
 ## 4. Quadriláteros somam 360°
 
 Um quadrilátero (como um retângulo ou um losango) pode ser cortado por uma diagonal em **dois triângulos**. Cada triângulo soma 180°, então o quadrilátero soma 2 × 180° = **360°**.
 
 <Exercicio enunciado="Três ângulos de um quadrilátero medem 90°, 80° e 100°. Quanto mede o quarto?" resposta="90" dica="A soma dos quatro é 360°." resolucao="90° + 80° + 100° = 270°. 360° − 270° = 90°." />
+
+## Bissetriz
+
+A **bissetriz** de um ângulo é a semirreta que o corta ao meio, em dois ângulos iguais. Se um ângulo mede 70°, a bissetriz forma dois de 35°. É o jeito de achar o "meio" de uma abertura, e por isso ela aparece em construções.
+
+<Exercicio enunciado="Uma bissetriz divide um ângulo de 70° em duas partes. Quanto mede cada parte?" resposta="35" dica="Divida por 2." resolucao="70° ÷ 2 = 35°." />
+
+## Ângulos em polígonos
+
+Se um triângulo soma 180° e um quadrilátero 360°, o padrão continua: cada lado a mais acrescenta mais um triângulo, ou seja, mais **180°**. A soma dos ângulos internos de um polígono de n lados é **(n − 2) × 180°**.
+
+Triângulo (3 lados): 180°. Quadrilátero: 360°. Pentágono: 540°. Hexágono: 720°. Num polígono **regular** (todos os ângulos iguais), divida a soma pelo número de lados: cada ângulo do hexágono regular mede 720° ÷ 6 = **120°**.
+
+<Exercicio enunciado="Quanto soma os ângulos internos de um pentágono?" resposta="540" dica="(5 − 2) × 180." resolucao="3 × 180 = 540°." />
+
+<Exercicio enunciado="Quanto mede cada ângulo interno de um hexágono regular?" resposta="120" dica="Soma = (6 − 2) × 180 = 720. Divida por 6." resolucao="720 ÷ 6 = 120°." />
+
+## Graus, minutos e segundos
+
+Para medidas bem finas, o grau se divide em **60 minutos** (′), e cada minuto em **60 segundos** (″). Então 0,5° = 30′, e 1,5° = 1° 30′. O GPS e os astrônomos usam isso o tempo todo.
+
+<Exercicio enunciado="Quantos minutos de arco tem 2° 15′ no total?" resposta="135" dica="2 × 60 + 15." resolucao="2 × 60 = 120, mais 15: 135 minutos de arco." />
+
+## Álgebra com ângulos
+
+Letras ajudam a resolver ângulos desconhecidos.
+
+<ExemploResolvido titulo="Um ângulo mede o dobro do seu complemento. Quanto mede?">
+  <Passo>Chame o ângulo de x. O complemento é 90° − x.</Passo>
+  <Passo>Pelo enunciado: x = 2 × (90 − x), ou seja, x = 180 − 2x.</Passo>
+  <Passo>Junte os x: 3x = 180, então x = **60°**. Confira: o complemento de 60° é 30°, e 60 é o dobro de 30.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um ângulo mede o dobro do seu complemento. Quanto mede? (em graus)" resposta="60" dica="x = 2 × (90 − x)." resolucao="x = 180 − 2x, então 3x = 180 e x = 60°." />
 
 ## 5. A fórmula do relógio
 

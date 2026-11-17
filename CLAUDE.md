@@ -58,6 +58,7 @@ até o dono pedir. A estrutura do app precisa permitir adicionar áreas novas se
    - História contada como narrativa (personagens, problema, solução), não só tópicos na linha do tempo.
    - Para cada subtópico: explicação lúdica → exemplo resolvido (`<ExemploResolvido>`) → exercícios (`<Exercicio>`).
    - Várias simulações ao longo da cápsula, não só uma. Desafio final com 10 ou mais perguntas, do fácil ao difícil.
+   - **Régua mínima** (medida em Porcentagem e Frações, a pedido do dono): cerca de 3.500 palavras no `capsula.mdx`, pelo menos 5 simulações, 12 ou mais exercícios `<Exercicio>`, 4 ou mais `<ExemploResolvido>` e desafio com 12 perguntas. Confira com `wc -w` e `grep -c` antes de dar a cápsula como pronta.
 
 ## Estrutura de uma cápsula
 
