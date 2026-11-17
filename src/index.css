@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+/* Estilo "Estúdio": fundo quase branco, texto cinza-escuro (nunca preto puro)
+   e a cor guardada para as simulações e as linhas do mapa. */
+@theme {
+  --color-fundo: #f7f7f4;
+  --color-superficie: #ffffff;
+  --color-texto: #2b2b2b;
+  --color-suave: #6b6b67;
+  --color-borda: #e7e7e2;
+
+  --color-verde: #17804a;        /* botão principal (contraste bom com texto branco) */
+  --color-verde-escuro: #126b3d;
+  --color-azul: #3b7de0;
+  --color-azul-claro: #eef4fd;
+  --color-azul-texto: #1f5fbf;
+  --color-amarelo: #f3c64d;
+  --color-amarelo-escuro: #94700f; /* textos e linhas de gráfico (o amarelo claro some no fundo branco) */
+  --color-coral: #d4513a;
+
+  /* Uma cor por linha do mapa */
+  --color-fundamental: #d4513a;
+  --color-medio: #3b7de0;
+  --color-computacao: #24915a;
+
+  --shadow-cartao: 0 10px 30px rgb(0 0 0 / 0.06), 0 1px 3px rgb(0 0 0 / 0.04);
+  --shadow-cartao-alto: 0 16px 40px rgb(0 0 0 / 0.09), 0 2px 6px rgb(0 0 0 / 0.05);
+
+  --font-serif: "Source Serif 4", Georgia, serif;
+  --font-sans: "Figtree", system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    background: var(--color-fundo);
+    color: var(--color-texto);
+  }
+  body {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.6;
+    background: var(--color-fundo);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--color-amarelo);
+    color: var(--color-texto);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-azul);
+    outline-offset: 3px;
+  }
+  /* Frase sendo lida pela narração (navegadores modernos) */
+  ::highlight(narracao) {
+    background-color: rgb(243 198 77 / 0.55);
+    color: var(--color-texto);
+  }
+  /* Plano B para navegadores sem o recurso acima: destaca o parágrafo inteiro */
+  .narrando {
+    background-color: rgb(243 198 77 / 0.35);
+    border-radius: 6px;
+    box-shadow: 0 0 0 4px rgb(243 198 77 / 0.35);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+}

@@ -1,0 +1,306 @@
+import PortasTeaser from '../../../../components/simulacoes/PortasTeaser'
+import CemPortas from '../../../../components/simulacoes/CemPortas'
+import DuasPortasJuntas from '../../../../components/simulacoes/DuasPortasJuntas'
+import MontyHall from '../../../../components/simulacoes/MontyHall'
+import ExameMedico from '../../../../components/simulacoes/ExameMedico'
+import ArvoreMontyHall from '../../../../components/simulacoes/ArvoreMontyHall'
+import ApresentadorComPreferencia from '../../../../components/simulacoes/ApresentadorComPreferencia'
+
+{/* Fatos históricos conferidos nas fontes do meta.ts (NYT 1991 e Wikipédia). */}
+
+<Etapa id="gancho">
+
+Você está num programa de TV. Há três portas: atrás de uma, um <Termo cor="verde">carro</Termo>. Atrás das outras duas, <Termo cor="coral">cabras</Termo>.
+
+Você escolhe uma porta. O apresentador, que **sabe** onde está o carro, abre outra porta e mostra uma cabra. Então ele pergunta: quer <Termo cor="azul">trocar</Termo> de porta?
+
+<Palpite
+  chave="inicial"
+  pergunta="O que você faria?"
+  opcoes={['Ficaria com a minha', 'Tanto faz, dá 50%', 'Trocaria de porta']}
+/>
+
+Para quase todo mundo, parece que tanto faz: duas portas, 50% para cada uma. Ao longo da cápsula, você vai descobrir se isso é verdade.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Um quebra-cabeça de programa de auditório que fez muita gente boa errar, inclusive gente com doutorado em matemática. Mas a ideia por trás dele é bem mais antiga que a TV.
+
+<LinhaDoTempo marcos={[
+  { ano: '1889', texto: 'O matemático francês Joseph Bertrand publica o "paradoxo da caixa": três caixas, uma com duas moedas de ouro, uma com duas de prata e uma mista. A resposta intuitiva é 1/2; a certa é 2/3. É o mesmo tipo de armadilha.' },
+  { ano: '1959', texto: 'Martin Gardner, na revista Scientific American, apresenta o "problema dos três prisioneiros", com a mesma estrutura do Monty Hall.' },
+  { ano: '1963', texto: 'Estreia nos EUA o programa "Let\'s Make a Deal", apresentado por Monty Hall, cheio de portas e prêmios escondidos.' },
+  { ano: '1975', texto: 'O estatístico Steve Selvin publica o problema numa carta à revista The American Statistician, já com o nome de Monty Hall.' },
+  { ano: '1990', texto: 'A colunista Marilyn vos Savant responde na revista Parade: troque de porta. Milhares de leitores escrevem dizendo que ela errou.' },
+  { ano: 'Depois', texto: 'Até Paul Erdős, um dos matemáticos mais produtivos da história, só se convenceu depois de ver uma simulação no computador.' },
+]} />
+
+## Por que quase todo mundo fica?
+
+Além de errar a conta, as pessoas tendem a **ficar** com a primeira porta. Num estudo com 228 participantes, só **13%** trocaram.
+
+Psicólogos explicam isso pelo <Termo cor="amarelo">efeito dotação</Termo>: a gente tende a supervalorizar o que já é "nosso", e a porta escolhida parece nossa. Além disso, perder depois de trocar dá a sensação de "eu tinha acertado e estraguei tudo".
+
+Curiosidade: em experimentos, **pombos** que jogam o problema muitas vezes aprendem rápido a sempre trocar. As pessoas, não.
+
+{/* Os dois fatos acima estão na Wikipédia em inglês (Monty Hall problem), seção sobre psicologia, que cita os estudos originais. */}
+
+Moral da história: aqui, a intuição engana até especialistas. Por isso vamos testar em vez de confiar no "achismo".
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+O primeiro truque é exagerar. Em vez de 3 portas, imagine **100**. Você escolhe uma, às cegas.
+
+O apresentador, que sabe onde está o carro, abre 98 portas, todas com cabra. Sobram a sua e mais uma. Ainda parece 50% para cada lado?
+
+<CemPortas />
+
+A sua porta foi escolhida às cegas: 1 chance em 100. A outra porta "sobreviveu" a um apresentador que **evitou** o carro de propósito.
+
+O segundo truque é **agrupar**. Siga os passos:
+
+<DuasPortasJuntas />
+
+Com 3 portas, então: a sua tem ⅓, e os outros ⅔ se juntam na porta que sobrou. Trocar é como levar duas portas pelo preço de uma.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Se você sempre trocar de porta, em quantas rodadas vai ganhar o carro?"
+  opcoes={['Cerca de 1 em cada 3', 'Cerca de 1 em cada 2', 'Cerca de 2 em cada 3']}
+  correta={2}
+  explicacao="Quem sempre troca ganha em cerca de 2 de cada 3 rodadas. Você só perde trocando quando acertou o carro de primeira, e isso acontece 1 vez em 3."
+>
+
+Primeiro, jogue algumas rodadas com as próprias mãos:
+
+<PortasTeaser dentroDaCapsula />
+
+Uma rodada por vez demora, e poucas rodadas enganam. Deixe o computador jogar milhares e compare **três** estratégias:
+
+<MontyHall />
+
+Repare: com poucas rodadas as linhas tremem bastante. Quanto mais você joga, mais elas grudam em <Termo cor="coral">1/3</Termo>, <Termo cor="amarelo">1/2</Termo> e <Termo cor="azul">2/3</Termo>.
+
+E olhe a linha do **cara ou coroa**: ela fica em 50%. Ou seja, o "50%" que quase todo mundo imagina é a chance de quem decide **sem pensar**. Quem pensa, troca e ganha ⅔.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Ficaria com a minha', 'Tanto faz, dá 50%', 'Trocaria de porta']}
+  correta={2}
+  seAcertou="Sua intuição acertou, e agora você tem os números para provar."
+  seErrou="Agora você viu com os próprios olhos: trocar ganha cerca de 2 em cada 3 vezes. Mudar de ideia diante de evidência é exatamente o que a matemática pede."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+A lição vai além do jogo: **uma pista dada por quem sabe a resposta não é neutra**. O apresentador escolheu o que mostrar, e essa escolha carrega informação.
+
+O nome disso é <Termo cor="azul">probabilidade condicional</Termo>: a chance de algo **sabendo** de uma pista. E ela engana em situações bem mais sérias que um programa de TV.
+
+## Exames médicos
+
+Imagine um exame que acerta 99% das vezes. Deu positivo. Qual a chance de você estar doente? A resposta depende de algo que quase ninguém pergunta: **quão rara é a doença**.
+
+<ExameMedico />
+
+Com a doença em 1% das pessoas, metade dos positivos são alarmes falsos. É a mesma estrutura do Monty Hall: a pista (o resultado) precisa ser pesada junto com o que se sabia antes. Por isso é comum repetir o exame ou pedir outro para confirmar.
+
+## Onde mais aparece
+
+- **Filtros de spam:** o e-mail tem a palavra "grátis". Qual a chance de ser spam, sabendo disso? Muitos filtros fazem exatamente essa conta, palavra por palavra.
+- **Previsão do tempo:** "70% de chance de chuva" é a chance de chover **sabendo** as condições de hoje (nuvens, umidade, vento).
+- **Jogos de cartas:** quando alguém que vê as cartas escolhe o que mostrar, a escolha dela também é informação.
+
+## Experimente em casa
+
+Pegue 3 cartas de baralho: um ás (o carro) e dois números (as cabras). Uma pessoa embaralha, olha as cartas e faz o papel do apresentador. Joguem 20 rodadas **sempre trocando** e contem as vitórias. O esperado é algo perto de 13. Depois repitam sempre ficando: perto de 7.
+
+</Etapa>
+
+<Etapa id="aprofundar">
+
+Aqui a gente sai da intuição e **prova** o resultado. São oito passos curtos, do jeito que um matemático faria.
+
+## 1. Dando nome às coisas
+
+Você escolheu a porta 1. Chame de **C₁**, **C₂** e **C₃** os eventos "o carro está na porta 1", "na 2" e "na 3". Antes de qualquer pista, cada um tem chance ⅓.
+
+Chame de **A₃** o evento "o apresentador abriu a porta 3". As regras dele viram três números, as *probabilidades condicionais*. A barra "|" se lê "sabendo que":
+
+- **P(A₃ | C₁) = ½**: o carro está na sua porta, então ele pode abrir a 2 ou a 3, e sorteia.
+- **P(A₃ | C₂) = 1**: o carro está na 2, então ele é obrigado a abrir a 3.
+- **P(A₃ | C₃) = 0**: ele nunca abre a porta do carro.
+
+## 2. A árvore de possibilidades
+
+Cada caminho da árvore é uma história possível do jogo. A chance de um caminho é o **produto** das chances ao longo dele.
+
+<ArvoreMontyHall />
+
+## 3. A conta completa
+
+Primeiro, a chance total de ele abrir a porta 3, somando os caminhos. Isso se chama *lei da probabilidade total*:
+
+<Formula>
+  <Linha>P(A₃) = ½ × ⅓ + 1 × ⅓ + 0 × ⅓</Linha>
+  <Linha>= ⅙ + ⅓ = ½</Linha>
+</Formula>
+
+Agora o **Teorema de Bayes**, que "inverte" a pergunta. Em vez de "se o carro está na 2, ele abre a 3?", queremos saber "se ele abriu a 3, o carro está na 2?".
+
+<Formula>
+  <Linha>P(C₂ | A₃) = <Fracao cima="P(A₃ | C₂) × P(C₂)" baixo="P(A₃)" /></Linha>
+  <Linha>= <Fracao cima="1 × ⅓" baixo="½" /> = <strong>⅔</strong></Linha>
+  <Linha>&nbsp;</Linha>
+  <Linha>P(C₁ | A₃) = <Fracao cima="P(A₃ | C₁) × P(C₁)" baixo="P(A₃)" /></Linha>
+  <Linha>= <Fracao cima="½ × ⅓" baixo="½" /> = <strong>⅓</strong></Linha>
+</Formula>
+
+Confira: ⅓ + ⅔ = 1. E P(C₃ | A₃) = 0, porque a porta 3 já está aberta, com uma cabra.
+
+## 4. Onde o "50%" engana
+
+O raciocínio "sobraram duas portas, então 50% cada" supõe que as duas portas são **simétricas**. Não são.
+
+A sua foi escolhida antes de qualquer pista. A outra foi filtrada por alguém que **evitou o carro de propósito**. Em probabilidade, não importa só quantas opções sobram: importa **como** se chegou até elas.
+
+## 5. Mesma cena, outra regra: o apresentador distraído
+
+Agora imagine que ele **não sabe** onde está o carro. Abre a 2 ou a 3 ao acaso e, por sorte, aparece uma cabra na 3. Chame isso de **B**.
+
+- **P(B | C₁) = ½**: abriu a 3 (chance ½) e lá tinha cabra.
+- **P(B | C₂) = ½**: abriu a 3 (chance ½) e lá tinha cabra.
+- **P(B | C₃) = 0**: se abrisse a 3, teria mostrado o carro.
+
+<Formula>
+  <Linha>P(C₂ | B) = <Fracao cima="½ × ⅓" baixo="½ × ⅓ + ½ × ⅓" /> = ½</Linha>
+</Formula>
+
+A imagem na tela é **idêntica**: porta 3 aberta, cabra. Mas a resposta mudou de ⅔ para ½, porque mudou a regra que gerou a pista.
+
+## 6. E se ele tiver uma porta preferida?
+
+Volte ao apresentador que sabe tudo. Quando o carro está na sua porta, em vez de sortear, ele abre a 3 com uma chance **q** qualquer. A conta de Bayes fica:
+
+<Formula>
+  <Linha>P(C₂ | A₃) = <Fracao cima="1 × ⅓" baixo="q × ⅓ + 1 × ⅓" /></Linha>
+  <Linha>= <Fracao cima="1" baixo="1 + q" /></Linha>
+</Formula>
+
+Mexa no controle e veja o que acontece:
+
+<ApresentadorComPreferencia />
+
+Como q fica entre 0 e 1, o resultado fica sempre entre ½ e 1. Ou seja: **trocar nunca é pior que ficar**, qualquer que seja a mania do apresentador. Essa análise foi publicada por Morgan e colegas em 1991.
+
+## 7. Generalizando: n portas
+
+Com **n** portas, o apresentador (que sabe tudo) abre **k** portas com cabra. Você troca para uma das que sobraram fechadas, ao acaso:
+
+<Formula>
+  <Linha>P(ganhar trocando)</Linha>
+  <Linha>= <Fracao cima="n − 1" baixo="n" /> × <Fracao cima="1" baixo="n − k − 1" /></Linha>
+</Formula>
+
+O primeiro pedaço é a chance de você ter errado de primeira. O segundo é a chance de acertar o carro entre as portas que restam. Testando:
+
+- **3 portas, ele abre 1:** ⅔ × 1 = ⅔.
+- **100 portas, ele abre 98:** 99/100 × 1 = 99/100.
+- **100 portas, ele abre só 1:** 99/100 × 1/98 ≈ 1,01%, um pouquinho melhor que ficar (1%).
+
+## 8. Por que o simulador "gruda" em ⅔
+
+Cada rodada é como uma moeda viciada que dá "trocar ganha" com chance p = ⅔. A **Lei dos Grandes Números** garante que a porcentagem de vitórias se aproxima de p conforme o número de rodadas N cresce.
+
+O tamanho típico do "tremido" (o *desvio padrão* da porcentagem) é:
+
+<Formula>
+  <Linha>√( p × (1 − p) ÷ N )</Linha>
+</Formula>
+
+- **N = 100:** cerca de 4,7 pontos percentuais para cima ou para baixo.
+- **N = 10.000:** cerca de 0,47 ponto.
+
+Para o tremido ficar **10 vezes menor**, são precisas **100 vezes mais rodadas**. É por isso que poucas rodadas enganam tanto.
+
+## Bônus: o código do simulador
+
+O simulador desta cápsula usa uma ideia esperta: nem precisa sortear a porta do apresentador.
+
+```
+se escolha == carro:  ficar ganha
+senão:                trocar ganha
+```
+
+Se a primeira escolha errou (2 vezes em 3), a única porta que sobra fechada **é** o carro. É a conta do passo 7 com n = 3 e k = 1.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Por que o apresentador abrir uma cabra não muda a chance da SUA porta?',
+    opcoes: [
+      'Porque ele sempre consegue abrir uma cabra, seja qual for a sua porta',
+      'Porque ele escolhe a porta ao acaso',
+      'Porque há mais cabras do que carros',
+    ],
+    correta: 0,
+    explicacao: 'Ele sabe onde está o carro e sempre mostra uma cabra. Então ver a cabra não diz nada novo sobre a sua porta.',
+  },
+  {
+    enunciado: 'E se o apresentador NÃO soubesse onde está o carro, abrisse uma porta ao acaso e, por sorte, aparecesse uma cabra?',
+    opcoes: ['Trocar continua dando 2/3', 'Nesse caso fica 1/2 para cada lado'],
+    correta: 1,
+    explicacao: 'Sem saber, ele poderia ter revelado o carro. Como não revelou, as duas portas fechadas ficam com a mesma chance: 1/2.',
+  },
+  {
+    enunciado: 'Quem decide no cara ou coroa se fica ou troca ganha o carro em cerca de:',
+    opcoes: ['1/3 das vezes', '1/2 das vezes', '2/3 das vezes'],
+    correta: 1,
+    explicacao: 'Metade das vezes a moeda manda ficar (que ganha 1/3) e metade manda trocar (que ganha 2/3). A média de 1/3 e 2/3 é 1/2.',
+  },
+  {
+    enunciado: 'Uma doença atinge 1% das pessoas. Um exame acerta 99% dos doentes e dá falso positivo em 1% dos saudáveis. Deu positivo: qual a chance de estar doente?',
+    opcoes: ['Cerca de 99%', 'Cerca de 50%', 'Cerca de 1%'],
+    correta: 1,
+    explicacao: 'Em 10.000 pessoas, 99 doentes dão positivo e 99 saudáveis também (1% de 9.900). Dos 198 positivos, só metade está doente.',
+  },
+  {
+    enunciado: 'Depois de só 10 rodadas, quem sempre trocou ganhou 5 vezes (50%). Isso prova que trocar não ajuda?',
+    opcoes: ['Sim, 50% é 50%', 'Não, 10 rodadas são poucas para tirar conclusão'],
+    correta: 1,
+    explicacao: 'Com poucas rodadas o resultado varia muito por sorte. Foi o que você viu no gráfico: só com muitas rodadas as linhas se firmam em 1/3 e 2/3.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Trocar ganha ⅔** porque a sua primeira escolha só acerta ⅓, e o apresentador nunca entrega o carro.
+- **A pista vale porque ele sabe e escolhe.** Com outra regra (apresentador distraído), a mesma cena dá ½.
+- **Probabilidade condicional:** a chance muda quando chega informação nova, e depende de *como* ela foi obtida.
+- **Poucas rodadas enganam.** Para confiar num resultado de acaso, repita muitas vezes.
+
+</Resumo>
+
+O Monty Hall é a porta de entrada para a <Termo cor="azul">probabilidade condicional</Termo>. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>
