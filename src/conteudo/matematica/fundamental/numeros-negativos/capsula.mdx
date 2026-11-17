@@ -1,0 +1,230 @@
+import FichasDeSaldo from '../../../../components/simulacoes/FichasDeSaldo'
+import RetaNumerica from '../../../../components/simulacoes/RetaNumerica'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Negative number), listada no meta.ts. */}
+
+<Etapa id="gancho">
+
+Você tem R$ 0 na conta e paga uma conta de R$ 50. O saldo vira <Termo cor="coral">−50</Termo>. Você tem **menos que nada**.
+
+Estranho? Por mais de mil anos, muitos matemáticos acharam que sim. E tem uma regra que até hoje parece mágica: **menos vezes menos dá mais**.
+
+<Palpite
+  chave="inicial"
+  pergunta="Quanto é (−2) × (−3)?"
+  opcoes={['−6', '6', 'Não dá para multiplicar dois negativos']}
+/>
+
+Ao longo da cápsula você vai ver **por que** a resposta é essa, e não só decorar.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Os números negativos foram aceitos aos poucos, e com muita desconfiança.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Dinastia Han (China)', texto: 'O livro "Os Nove Capítulos sobre a Arte Matemática" já resolve contas com negativos. Os calculistas usavam varetas: vermelhas para positivos, pretas para negativos. O contrário do "ficar no vermelho" de hoje!' },
+  { ano: 'Séc. III', texto: 'O grego Diofanto encontra uma equação equivalente a 4x + 20 = 4 e a chama de "absurda", porque a resposta seria negativa.' },
+  { ano: 'c. 630', texto: 'Na Índia, Brahmagupta escreve regras para somar, subtrair e multiplicar "fortunas" (positivos) e "dívidas" (negativos).' },
+  { ano: '1202', texto: 'Fibonacci, no Liber Abaci, aceita uma resposta negativa num problema, interpretando-a como um débito.' },
+  { ano: '1544', texto: 'O alemão Michael Stifel ainda chama os negativos de "números absurdos".' },
+  { ano: '1545', texto: 'O italiano Cardano, no livro Ars Magna, faz o primeiro tratamento europeu satisfatório dos negativos.' },
+]} />
+
+O problema não era a conta. Era a pergunta: "como um número pode ser **menor que nada**?" A resposta veio quando as pessoas pararam de pensar em "quantidade de coisas" e passaram a pensar em **posição** e **direção**.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+O truque é ver o zero como um **ponto de referência**, e não como "nada".
+
+Num termômetro, 0 °C não é "falta de temperatura": é o ponto em que a água congela. No elevador, o térreo é o 0, e o subsolo 2 é o andar **−2**. Na conta do banco, o zero é "não devo nem tenho".
+
+Coloque tudo numa reta. À direita do zero, os <Termo cor="verde">positivos</Termo>. À esquerda, os <Termo cor="coral">negativos</Termo>, como num espelho:
+
+<RetaNumerica valor={-3} />
+
+A bolinha está em −3: três passos à esquerda do zero. Quanto mais à esquerda, **menor** o número. Por isso −10 é menor que −2, mesmo o 10 sendo "maior" que o 2. Pense no termômetro: −10 °C é bem mais frio.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Seu saldo é −5 (você deve R$ 5). O banco descobre um erro e TIRA uma dívida de R$ 1. Qual é o novo saldo?"
+  opcoes={['−6', '−4', '+4']}
+  correta={1}
+  explicacao="Tirar uma dívida deixa você mais rico: −5 − (−1) = −4. Subtrair um negativo é o mesmo que somar um positivo."
+>
+
+Aqui cada <Termo cor="verde">ficha verde</Termo> vale +1 (um crédito) e cada <Termo cor="coral">ficha vermelha</Termo> vale −1 (uma dívida). Você começa devendo 5.
+
+<FichasDeSaldo />
+
+Teste as quatro ações e olhe a conta que aparece embaixo. Repare em duas coisas:
+
+- **Ganhar uma dívida** e **tirar um crédito** fazem o saldo cair do mesmo jeito.
+- **Tirar uma dívida** faz o saldo **subir**, como ganhar um crédito. É por isso que "menos com menos" vira "mais" na subtração: − (−1) = +1.
+
+E quando não há dívida para tirar? O simulador coloca um par verde + vermelho (que vale zero, então não muda nada) e tira a vermelha. Sobra a verde.
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Onde os negativos aparecem
+
+- **Clima:** um freezer comum fica perto de −18 °C. A menor temperatura já medida por um termômetro foi −89,2 °C, na estação russa Vostok, na Antártida, em 1983.
+- **Futebol:** o **saldo de gols** é gols feitos menos gols sofridos. Um time que fez 40 e sofreu 52 tem saldo −12.
+- **Fuso horário:** o horário de Brasília é **UTC−3**: três horas a menos que o horário de referência mundial. Tóquio é UTC+9.
+- **Elevador:** o subsolo 2 é o andar −2. Do −2 ao 5º andar são 7 andares: 5 − (−2) = 7.
+- **Banco:** no cheque especial, o saldo negativo é uma dívida, e ela cobra juros.
+
+## Distância entre dois números
+
+Do −2 até o 5 no elevador, você sobe 7 andares. A conta é sempre **o de cima menos o de baixo**: 5 − (−2) = 5 + 2 = 7. Funciona para temperaturas também: de −3 °C para 8 °C, a temperatura subiu 11 graus.
+
+## Experimente em casa
+
+Olhe a tabela do campeonato brasileiro. Escolha dois times com saldo de gols negativo e descubra: qual saldo é **maior**? (Dica: o que está mais perto do zero.)
+
+</Etapa>
+
+<Etapa id="aprofundar">
+
+Agora as regras, cada uma com o seu porquê.
+
+## 1. Oposto e módulo
+
+Todo número tem um **oposto** do outro lado do zero: o oposto de 3 é −3, e o de −3 é 3. Somados, eles dão zero: 3 + (−3) = 0. É o par verde + vermelho das fichas.
+
+O **módulo** é a distância até o zero, sem ligar para o lado: |−3| = 3 e |3| = 3.
+
+## 2. Somar
+
+- **Mesmo sinal:** junte os módulos e mantenha o sinal. (−4) + (−3) = −7: duas dívidas viram uma dívida maior.
+- **Sinais diferentes:** os pares se anulam. Subtraia os módulos e fique com o sinal de quem "sobrou". (−4) + 7 = 3.
+
+## 3. Subtrair é somar o oposto
+
+<Formula>
+  <Linha>a − b = a + (−b)</Linha>
+  <Linha>5 − (−3) = 5 + 3 = 8</Linha>
+</Formula>
+
+Tirar 3 dívidas é o mesmo que ganhar 3 créditos. Foi exatamente isso que você viu nas fichas.
+
+## 4. Positivo vezes negativo
+
+3 × (−2) é "três dívidas de 2": uma dívida de 6. Então 3 × (−2) = −6.
+
+## 5. Negativo vezes negativo
+
+Observe o padrão. A cada linha, o primeiro número diminui 1, e o resultado **sobe 2**:
+
+<Formula>
+  <Linha>3 × (−2) = −6</Linha>
+  <Linha>2 × (−2) = −4</Linha>
+  <Linha>1 × (−2) = −2</Linha>
+  <Linha>0 × (−2) = 0</Linha>
+  <Linha>(−1) × (−2) = 2</Linha>
+  <Linha>(−2) × (−2) = 4</Linha>
+  <Linha>(−3) × (−2) = 6</Linha>
+</Formula>
+
+Se o padrão continua (e a matemática exige que continue), negativo vezes negativo **tem** que dar positivo.
+
+Uma prova mais rigorosa usa a propriedade distributiva. Sabemos que 3 + (−3) = 0, então:
+
+<Formula>
+  <Linha>(−2) × [3 + (−3)] = (−2) × 0 = 0</Linha>
+  <Linha>(−2) × 3 + (−2) × (−3) = 0</Linha>
+  <Linha>−6 + (−2) × (−3) = 0</Linha>
+</Formula>
+
+O único número que somado a −6 dá zero é 6. Logo, (−2) × (−3) = 6. Não é uma convenção arbitrária: qualquer outra resposta quebraria as regras que já usamos com os positivos.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['−6', '6', 'Não dá para multiplicar dois negativos']}
+  correta={1}
+  seAcertou="Você acertou, e agora sabe provar por que é 6."
+  seErrou="A resposta é 6. E agora você tem dois argumentos: o padrão das multiplicações e a prova pela distributiva."
+/>
+
+## 6. Divisão segue as mesmas regras
+
+Como dividir é desfazer a multiplicação: (−6) ÷ (−2) = 3, porque 3 × (−2) = −6. E (−6) ÷ 2 = −3.
+
+Resumo dos sinais (vale para multiplicar e dividir): sinais **iguais** dão positivo; sinais **diferentes** dão negativo.
+
+## 7. Cuidado com potências
+
+<Formula>
+  <Linha>(−2)² = (−2) × (−2) = 4</Linha>
+  <Linha>−2² = −(2 × 2) = −4</Linha>
+  <Linha>(−2)³ = (−2) × (−2) × (−2) = −8</Linha>
+</Formula>
+
+Os parênteses fazem diferença. E potência de negativo com expoente **par** dá positivo; com expoente **ímpar**, dá negativo.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Qual é mais frio: −8 °C ou −3 °C?',
+    opcoes: ['−8 °C', '−3 °C', 'São iguais'],
+    correta: 0,
+    explicacao: 'Na reta, −8 fica mais à esquerda que −3, então é menor. Em temperatura, menor é mais frio.',
+  },
+  {
+    enunciado: 'Quanto é −4 + 7?',
+    opcoes: ['−11', '3', '−3'],
+    correta: 1,
+    explicacao: 'Quatro dívidas e sete créditos: quatro pares se anulam e sobram três créditos. Resultado: 3.',
+  },
+  {
+    enunciado: 'Quanto é 2 − (−5)?',
+    opcoes: ['−3', '7', '−7'],
+    correta: 1,
+    explicacao: 'Subtrair um negativo é somar o oposto: 2 − (−5) = 2 + 5 = 7. Tirar cinco dívidas deixa você cinco mais rico.',
+  },
+  {
+    enunciado: 'Quanto é (−3) × (−4)?',
+    opcoes: ['−12', '12', '−7'],
+    correta: 1,
+    explicacao: 'Sinais iguais dão positivo: 3 × 4 = 12. É o mesmo raciocínio do padrão e da prova pela distributiva.',
+  },
+  {
+    enunciado: 'São 8h em Brasília (UTC−3). Que horas são em Tóquio (UTC+9)?',
+    opcoes: ['17h', '20h', '11h'],
+    correta: 1,
+    explicacao: 'A diferença entre os fusos é 9 − (−3) = 12 horas. Tóquio está 12 horas à frente: 8h + 12h = 20h.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **O zero é um ponto de referência**, não "nada". Negativos são posições do outro lado.
+- **Na reta, mais à esquerda é menor:** −10 é menor que −2.
+- **Subtrair é somar o oposto:** tirar uma dívida é ganhar um crédito.
+- **Menos vezes menos dá mais** porque qualquer outra resposta quebraria a distributiva.
+- **Sinais iguais dão positivo, diferentes dão negativo**, na multiplicação e na divisão.
+
+</Resumo>
+
+Os negativos abrem caminho para equações, gráficos e funções. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

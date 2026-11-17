@@ -107,16 +107,19 @@ function criarTrecho(bloco: Element, inicio: number, fim: number): Range | null 
 const fracoesComuns: Record<string, string> = {
   '1/2': 'meio', '1/3': 'um terço', '2/3': 'dois terços', '1/6': 'um sexto',
   '1/100': 'um centésimo', '99/100': 'noventa e nove centésimos',
+  '1/4': 'um quarto', '3/4': 'três quartos', '1/8': 'um oitavo', '3/8': 'três oitavos',
 }
 const simbolos: Record<string, string> = {
   '½': ' meio ', '⅓': ' um terço ', '⅔': ' dois terços ', '⅙': ' um sexto ',
   '×': ' vezes ', '÷': ' dividido por ', '→': ' ', '←': ' ', '≈': ' aproximadamente ', '√': ' raiz de ',
   '₁': '1', '₂': '2', '₃': '3', '|': ' sabendo que ', '=': ' igual a ',
+  '−': ' menos ', '²': ' ao quadrado ', '³': ' ao cubo ', '≠': ' diferente de ',
 }
 
 export function prepararParaFala(texto: string) {
   let saida = texto
     .replace(/"\|"/g, 'vertical') // 'A barra "|" se lê...' vira 'A barra vertical se lê...'
+    .replace(/\|([^|\s]+)\|/g, ' módulo de $1 ') // "|−3|" vira "módulo de menos 3"
     .replace(/\bP\(/g, 'P de ') // "P(A | B)" vira "P de A sabendo que B"
     .replace(/[()]/g, ' ')
     .replace(/\b(\d+)\/(\d+)\b/g, (fracao, a, b) => fracoesComuns[fracao] ?? `${a} sobre ${b}`)

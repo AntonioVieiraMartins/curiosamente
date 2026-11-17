@@ -45,7 +45,7 @@ const c = (trilha: string, id: string, titulo: string, gancho: string, extra: Pa
 })
 
 export const capsulas: ResumoCapsula[] = [
-  m('fundamental', 'numeros-negativos', 'Números negativos', 'Como algo pode valer menos que nada?'),
+  m('fundamental', 'numeros-negativos', 'Números negativos', 'Como algo pode valer menos que nada?', { estado: 'pronta', duracaoMin: 12 }),
   m('fundamental', 'fracoes', 'Frações', 'Qual pedaço é maior: 1/3 ou 1/4 da pizza?', { estado: 'pronta', duracaoMin: 12 }),
   m('fundamental', 'porcentagem', 'Porcentagem', '50% de desconto e mais 20% dá 70%? Não dá.', { estado: 'pronta', duracaoMin: 12, conexoes: ['exponencial'] }),
   m('fundamental', 'razao-e-proporcao', 'Razão e proporção', 'A receita é para 3. A festa é para 30.'),
