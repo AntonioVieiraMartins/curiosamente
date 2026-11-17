@@ -105,6 +105,17 @@ export async function entrarComGoogle() {
   return error ? traduzirErro(error.message) : null
 }
 
+// Muda nome e avatar (o banco só deixa o navegador mexer nesses campos e na área favorita)
+export async function salvarPerfil(nome: string, avatar: string) {
+  if (!supabase || !estado.usuario) return 'É preciso estar logado.'
+  const limpo = nome.trim().slice(0, 60)
+  if (!limpo) return 'Escreva um nome.'
+  const { error } = await supabase.from('perfis').update({ nome: limpo, avatar }).eq('id', estado.usuario.id)
+  if (error) return traduzirErro(error.message)
+  await recarregarPerfil()
+  return null
+}
+
 export async function sair() {
   await supabase?.auth.signOut()
 }

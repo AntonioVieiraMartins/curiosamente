@@ -1,6 +1,7 @@
 import { Link, NavLink, Outlet, ScrollRestoration } from 'react-router-dom'
 import Marca from '../components/ui/Marca'
 import ChipConta from '../components/ui/ChipConta'
+import AvisoConquista from '../components/ui/AvisoConquista'
 
 const links = [
   { para: '/', rotulo: 'Início' },
@@ -78,6 +79,7 @@ export default function Layout() {
           </NavLink>
         ))}
       </nav>
+      <AvisoConquista />
       <ScrollRestoration />
     </div>
   )

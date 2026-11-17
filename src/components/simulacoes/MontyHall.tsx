@@ -49,7 +49,11 @@ export default function MontyHall() {
       setPontos((p) => enxugar([...p, paraPonto(atual.current)]))
       // ~60 passos por segundo; setTimeout continua mesmo se a aba não estiver sendo desenhada
       if (restante > 0) quadro.current = window.setTimeout(avancar, 16)
-      else setRodando(false)
+      else {
+        setRodando(false)
+        // Avisa o app quantas rodadas já foram (vale a medalha "Dez mil"); a simulação não precisa saber disso
+        window.dispatchEvent(new CustomEvent('curiosamente:rodadas', { detail: atual.current.rodadas }))
+      }
     }
     avancar()
   }

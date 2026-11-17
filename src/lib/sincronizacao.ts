@@ -10,6 +10,10 @@ import { atualizar, lerTodos, limparProgressoLocal, quandoSalvarProgresso, type 
 import { supabase } from './supabase'
 import { eventosLocais, limparXpLocal, registrarEventoLocal } from './xpLocal'
 import type { TipoXp } from './xp'
+import {
+  anunciarConquista, conquistasObtidas, guardarConquista, guardarMarco, limparConquistasLocal, marcosAlcancados,
+} from './conquistasLocal'
+import { conquistasMerecidas, RODADAS_DEZ_MIL } from './regrasConquistas'
 
 type LinhaProgresso = {
   capsula_id: string
@@ -92,6 +96,47 @@ async function sincronizarAoEntrar() {
     })
     if (erroXp) console.warn('Não consegui enviar um XP antigo:', erroXp.message)
   }
+  await recarregarPerfil()
+
+  // 3. Medalhas: as do visitante vão para a conta (o banco confere), e as da conta vêm para cá
+  for (const id of Object.keys(conquistasObtidas())) {
+    await supabase.rpc('conceder_conquista', { p_conquista: id })
+  }
+  const { data: daConta, error: erroConquistas } = await supabase.from('conquistas_usuario').select('conquista_id, obtida_em')
+  if (erroConquistas) console.warn('Não consegui ler as conquistas:', erroConquistas.message)
+  else for (const c of daConta) guardarConquista(c.conquista_id, c.obtida_em)
+  await verificarConquistas()
+}
+
+// Confere se alguma medalha nova foi ganha. Quem tem conta só ganha se o banco concordar.
+let verificando: Promise<void> | null = null
+export function verificarConquistas() {
+  // Uma conferência por vez; se pedirem outra no meio, ela roda logo depois
+  verificando = (verificando ?? Promise.resolve()).then(async () => {
+    const jaTem = conquistasObtidas()
+    const novas = conquistasMerecidas({
+      eventos: eventosLocais(),
+      progresso: lerTodos(),
+      maiorSequenciaDaConta: contaAtual().perfil?.maior_sequencia ?? 0,
+      marcos: marcosAlcancados(),
+    }).filter((id) => !jaTem[id])
+
+    for (const id of novas) {
+      if (supabase && contaAtual().usuario) {
+        const { data: ganhou, error } = await supabase.rpc('conceder_conquista', { p_conquista: id })
+        if (error) console.warn('Não consegui registrar a conquista:', error.message)
+        if (!ganhou) continue
+      }
+      guardarConquista(id)
+      anunciarConquista(id)
+    }
+  })
+  return verificando
+}
+
+// Marcos que não dão XP, mas podem render medalha (ex.: rodar 10 mil vezes uma simulação)
+export function alcancarMarco(marco: string) {
+  if (guardarMarco(marco)) void verificarConquistas()
 }
 
 // Ponto único para ganhar XP no app (visitante ou com conta)
@@ -104,6 +149,7 @@ export async function ganharXp(tipo: TipoXp, referencia: string, capsulaId?: str
     if (error) console.warn('Não consegui registrar o XP na conta:', error.message)
     else await recarregarPerfil()
   }
+  void verificarConquistas()
   return ganhoLocal
 }
 
@@ -113,8 +159,16 @@ export async function sairDaConta() {
   await sair()
   limparProgressoLocal()
   limparXpLocal()
+  limparConquistasLocal()
 }
 
 // Liga tudo uma vez, quando o app abre
-quandoSalvarProgresso((id, p) => void enviarProgresso(id, p))
+quandoSalvarProgresso((id, p) => {
+  void enviarProgresso(id, p)
+  if (p.concluida) void verificarConquistas() // pode ter completado a "Baldeação"
+})
 quandoEntrar(sincronizarAoEntrar)
+// Simulações avisam quantas rodadas já jogaram (ver MontyHall.tsx)
+window.addEventListener('curiosamente:rodadas', (e) => {
+  if ((e as CustomEvent<number>).detail >= RODADAS_DEZ_MIL) alcancarMarco('dez-mil')
+})

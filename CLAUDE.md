@@ -216,6 +216,15 @@ export default {
 - `progresso_capsulas` também guarda `etapas_concluidas` e `palpites` (além dos campos da tabela acima).
 - Repetir uma cápsula já concluída rende só XP de revisão, para não "farmar".
 
+### Conquistas (medalhas)
+- Lista em `src/conteudo/conquistas.ts`; regras em `src/lib/regrasConquistas.ts`. Não dão XP.
+- Quem tem conta só ganha a medalha se a função `conceder_conquista` do banco concordar
+  (ela confere em `eventos_xp` e `perfis`). Medalha nova = item na lista + regra + `when` na função SQL.
+- Marcos que não passam pelo XP (ex.: 10 mil rodadas) chegam por um evento do navegador
+  (`curiosamente:rodadas`), para a simulação continuar independente do resto do app.
+- Datas e sequência de dias sempre no horário de Brasília (`src/lib/datas.ts`), igual ao banco.
+- Avatares: desenhos SVG em `src/components/ui/Avatar.tsx` (sem emojis).
+
 ### Tela de perfil
 - Nível, barra de XP, sequência de dias.
 - Mapa com as cápsulas concluídas destacadas.
@@ -303,7 +312,7 @@ VITE_SUPABASE_ANON_KEY=...
 - [x] 3. Primeira cápsula completa: **Monty Hall** (com simulação de milhares de rodadas)
 - [x] 4. Narração com a voz do navegador (voz padrão: Francisca, natural, disponível no Edge)
 - [x] 5. Supabase: login, perfis, progresso, XP e histórico (login com Google ainda não ativado)
-- [ ] 6. Perfil, conquistas e sequência de dias
+- [x] 6. Perfil, conquistas e sequência de dias
 - [ ] 7. Matemática do fundamental (primeiras 5 cápsulas)
 - [ ] 8. Computação, módulo 1 e 2 (primeiras 5 cápsulas)
 - [ ] 9. Matemática do médio
