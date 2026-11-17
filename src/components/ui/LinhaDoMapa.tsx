@@ -7,6 +7,9 @@ import { useTodoProgresso } from '../../hooks/useProgresso'
 
 type Props = { linha: Linha; capsulas: ResumoCapsula[] }
 
+// Título que divide a linha em partes: módulo na computação, ano ou tema na matemática
+const tituloDoGrupo = (cap: ResumoCapsula) => (cap.area === 'computacao' ? modulosComputacao[cap.trilha] : cap.grupo)
+
 // Uma linha de metrô: o trilho colorido na vertical e cada cápsula como estação
 export default function LinhaDoMapa({ linha, capsulas }: Props) {
   const progresso = useTodoProgresso()
@@ -23,13 +26,14 @@ export default function LinhaDoMapa({ linha, capsulas }: Props) {
       <ol className="relative mt-5">
         <span aria-hidden="true" className="absolute bottom-4 left-[9px] top-4 w-1.5 rounded-full" style={{ background: linha.cor }} />
         {capsulas.map((cap, i) => {
-          const comecaModulo = cap.area === 'computacao' && (i === 0 || capsulas[i - 1].trilha !== cap.trilha)
+          const grupo = tituloDoGrupo(cap)
+          const comecaModulo = grupo !== undefined && (i === 0 || tituloDoGrupo(capsulas[i - 1]) !== grupo)
           const baldeacoes = (cap.conexoes ?? []).map((id) => buscarCapsula(id)?.titulo).filter(Boolean)
           return (
             <li key={cap.id} className="relative">
               {comecaModulo && (
                 <p className={`ml-10 text-xs font-semibold uppercase tracking-wider text-suave ${i === 0 ? '' : 'mt-5'}`}>
-                  {modulosComputacao[cap.trilha]}
+                  {grupo}
                 </p>
               )}
               <Link to={`/capsula/${cap.id}`} className="group flex items-start gap-4 rounded-xl py-2.5">

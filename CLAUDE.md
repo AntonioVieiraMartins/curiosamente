@@ -24,7 +24,8 @@ interativas e aplicação prática. Fácil de entender, sem ser raso.
 
 Só duas áreas por enquanto:
 
-1. **Matemática**: ensino fundamental (anos finais) e ensino médio, usando a BNCC como referência de conteúdo.
+1. **Matemática**: básica (1º ao 5º ano, pedido do dono), ensino fundamental (anos finais) e ensino médio, usando a BNCC como referência de conteúdo.
+   O mapa completo de cada linha (com grupo por ano ou tema) fica em `src/conteudo/indice.ts`.
 2. **Computação básica**: com foco em entender como sistemas web funcionam e são hospedados
    (internet, servidores, domínios, banco de dados, deploy).
 
@@ -333,6 +334,11 @@ Faça **uma etapa por vez** e mostre o resultado antes de seguir.
 ## Ideias de cápsulas (lista viva)
 
 Formato: **assunto** — gancho ou simulação.
+
+### Matemática — Básica (1º ao 5º ano)
+
+Sistema decimal, adição e subtração, multiplicação, divisão, expressões numéricas, decimais,
+medidas, tempo e horas, dinheiro e troco, formas geométricas, tabelas e gráficos (lista completa em `indice.ts`).
 
 ### Matemática — Ensino Fundamental (anos finais)
 

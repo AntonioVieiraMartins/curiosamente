@@ -23,9 +23,12 @@ export default function Mapa() {
         <li className="flex items-center gap-2"><Estacao cor="var(--color-suave)" proxima /> Em construção</li>
       </ul>
 
-      <div className="mt-10 grid items-start gap-5 md:grid-cols-3">
+      {/* Colunas "de jornal": cada linha desce inteira, sem buraco embaixo da linha mais curta */}
+      <div className="mt-10 gap-5 md:columns-2">
         {linhas.map((linha) => (
-          <LinhaDoMapa key={linha.id} linha={linha} capsulas={capsulas.filter((c) => linhaDaCapsula(c) === linha.id)} />
+          <div key={linha.id} className="mb-5 break-inside-avoid">
+            <LinhaDoMapa linha={linha} capsulas={capsulas.filter((c) => linhaDaCapsula(c) === linha.id)} />
+          </div>
         ))}
       </div>
     </section>
