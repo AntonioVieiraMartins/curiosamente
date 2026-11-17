@@ -40,7 +40,7 @@ export default function Inicio() {
       <section className="mx-auto mt-24 max-w-5xl px-4 sm:mt-32">
         <Rotulo>Como é uma cápsula</Rotulo>
         <h2 className="mt-3 max-w-2xl font-serif text-3xl font-medium leading-tight sm:text-[2.6rem]">
-          Nada de aula de 40 minutos. <em>Oito paradas curtas</em>, e você decide até onde ir.
+          Nada de aula de 40 minutos. <em>Sete paradas</em>, e você decide até onde ir.
         </h2>
         <ol className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
           {etapas.map((e, i) => (

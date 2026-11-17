@@ -48,7 +48,7 @@ até o dono pedir. A estrutura do app precisa permitir adicionar áreas novas se
 
 1. **Prever antes de ver**: toda simulação pede um palpite antes de rodar.
 2. **Intuição antes da fórmula**: a fórmula aparece só na camada "Aprofundar".
-3. **Profundidade em 3 camadas**: Intuição → Mão na massa → Rigor. A terceira (Aprofundar) faz parte da cápsula e aparece aberta, como as outras etapas (decisão do dono).
+3. **Profundidade em 3 camadas**: Intuição → Mão na massa → Rigor. A terceira (Aprofundar) vive em **caixas escondidas** dentro da etapa Conteúdo, perto do tópico que elas aprofundam; só abrem com um clique (decisão do dono).
 4. **Errar é parte do jogo**: resposta errada mostra o porquê, sem punir com perda de XP.
 5. **Verdade acima de tudo**: datas, nomes e fatos históricos precisam de fonte. Mitos populares (ex.: proporção áurea em tudo) são apresentados como mitos.
 6. **Textos curtos**: blocos de no máximo ~4 frases entre interações.
@@ -69,10 +69,9 @@ Toda cápsula segue estas etapas, nesta ordem:
 2. `historia` — quem, quando, por quê (linha do tempo curta)
 3. `intuicao` — explicação com analogia, sem fórmula
 4. `simulacao` — interação com "prever antes de ver"
-5. `pratica` — onde aparece no mundo real
-6. `aprofundar` — prova, fórmula, variações e generalização (etapa normal, não opcional)
-7. `desafio` — 3 a 5 perguntas com explicação
-8. `conexoes` — links para outras cápsulas e áreas
+5. `pratica` — aparece na tela como **"Conteúdo"**: o assunto completo, com exemplos, exercícios, aplicações e as caixas `<Aprofundar>` (o id continua `pratica` por causa do XP já salvo)
+6. `desafio` — 12 perguntas com explicação
+7. `conexoes` — resumo ("Para levar", com uma mini-história do assunto) e links para outras cápsulas e áreas
 
 Cada etapa concluída salva o progresso do usuário.
 
@@ -93,11 +92,12 @@ Componentes disponíveis sem precisar de `import` (ficam em `src/components/caps
 | `<Fracao cima="1" baixo="1 + q" />` | Fração "de pé", dentro de uma `<Linha>` |
 | `<Palpite chave="inicial" pergunta opcoes />` | Guarda o que a pessoa acha no começo (vai no Gancho) |
 | `<LembrarPalpite chave="inicial" opcoes correta seAcertou seErrou />` | Mais adiante, lembra o palpite e compara |
-| `<Resumo>…lista…</Resumo>` | Caixa "Para levar" com as ideias principais (vai em Conexões) |
+| `<Resumo>…lista…</Resumo>` | Caixa "Para levar" com as ideias principais (vai em Conexões). Termina com um parágrafo **"Um pouco de história."** do assunto |
+| `<Aprofundar titulo="…">…</Aprofundar>` | Caixa escondida (prova, fórmula, variações) dentro do Conteúdo, colocada logo depois do tópico que aprofunda. Abrir a primeira rende o XP de Aprofundar |
 | `<ExemploResolvido titulo="…"><Passo>…</Passo>…</ExemploResolvido>` | Conta resolvida, um passo revelado por vez |
 | `<Exercicio enunciado="…" resposta="3/8" dica="…" resolucao="…" />` | Exercício com resposta digitada (aceita 3/8, 0,375 ou 1 1/2) |
 
-A camada **Aprofundar** é o "Rigor": defina os termos, mostre a conta passo a passo,
+A camada **Aprofundar** (as caixas `<Aprofundar>`) é o "Rigor": defina os termos, mostre a conta passo a passo,
 explique onde a intuição falha, mostre variações do problema e generalize. Confira toda conta
 com uma simulação ou cálculo antes de publicar.
 
@@ -213,7 +213,7 @@ export default {
 | Acertar a previsão de uma simulação | 15 |
 | Errar a previsão e terminar a simulação | 5 |
 | Concluir a cápsula | valor do `meta.ts` (ex.: 100) |
-| Concluir a etapa "Aprofundar" | 30 |
+| Abrir uma caixa "Aprofundar" pela primeira vez na cápsula | 30 |
 | Revisão do dia | 5 por cartão |
 | Manter a sequência de dias | 20 |
 

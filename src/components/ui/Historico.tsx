@@ -14,7 +14,7 @@ function descrever(e: Item) {
   const etapa = etapas.find((x) => x.id === e.referencia.split(':')[1])?.nome
   switch (e.tipo) {
     case 'etapa': return `Concluiu a etapa ${etapa ?? ''} de "${capsula}"`
-    case 'aprofundar': return `Foi até o fim do Aprofundar de "${capsula}"`
+    case 'aprofundar': return `Abriu um Aprofundar em "${capsula}"`
     case 'capsula': return `Concluiu a cápsula "${capsula}"`
     case 'previsao_certa': return `Acertou a previsão em "${capsula}"`
     case 'previsao_errada': return `Arriscou um palpite e foi até o fim em "${capsula}"`

@@ -45,11 +45,11 @@ O truque: o 2 é primo, então todos os múltiplos de 2 (4, 6, 8...) não são. 
 
 Por volta de 300 a.C., Euclides fez uma pergunta ousada: e se os primos acabassem? Imagine que você tem uma lista de **todos** os primos. Multiplique todos e some 1. Esse número novo não é divisível por nenhum da lista (sempre sobra 1). Então ou ele é primo, ou tem um fator primo que **não estava na lista**. Nos dois casos a lista estava incompleta.
 
-Conclusão: **nenhuma lista finita contém todos os primos**. Eles nunca acabam. Você vai refazer essa prova, com números de verdade, na etapa Aprofundar.
+Conclusão: **nenhuma lista finita contém todos os primos**. Eles nunca acabam. Você vai refazer essa prova, com números de verdade, na etapa Conteúdo, dentro da caixa **Aprofundar** que fica perto de "Primos protegem segredos".
 
 ## O número 1 não entrou no clube
 
-Os primeiros matemáticos gregos nem tratavam o 1 como "número" de verdade: era a unidade, o tijolo que forma os números. No início do século XX os matemáticos concordaram em deixá-lo de fora dos primos. Você vai ver o motivo prático no Aprofundar.
+Os primeiros matemáticos gregos nem tratavam o 1 como "número" de verdade: era a unidade, o tijolo que forma os números. No início do século XX os matemáticos concordaram em deixá-lo de fora dos primos. Você vai ver o motivo prático numa caixa Aprofundar da etapa Conteúdo.
 
 </Etapa>
 
@@ -144,8 +144,8 @@ Repare em duas coisas. Depois de riscar os múltiplos de 2, 3, 5 e 7, **todos** 
   chave="inicial"
   opcoes={['Sim, existe um maior de todos', 'Não, a lista nunca acaba', 'Ninguém sabe']}
   correta={1}
-  seAcertou="E o palpite do começo? Você acertou: os primos nunca acabam. A prova de Euclides está no Aprofundar."
-  seErrou="E o palpite do começo? A resposta é que os primos nunca acabam. Euclides provou isso há mais de 2.000 anos. A prova está no Aprofundar."
+  seAcertou="E o palpite do começo? Você acertou: os primos nunca acabam. A prova de Euclides está numa caixa Aprofundar da etapa Conteúdo."
+  seErrou="E o palpite do começo? A resposta é que os primos nunca acabam. Euclides provou isso há mais de 2.000 anos. A prova está numa caixa Aprofundar da etapa Conteúdo."
 />
 
 </Previsao>
@@ -176,6 +176,41 @@ E dá para fazer desertos tão grandes quanto você quiser. Para uma fila de 5 c
 
 <Etapa id="pratica">
 
+<Aprofundar titulo="O teorema fundamental da aritmética">
+
+Todo número inteiro maior que 1 pode ser escrito como produto de primos, e esse jeito é **único**, a menos da ordem dos fatores.
+
+É por isso que o 1 **não** é primo. Se fosse, a unicidade quebraria: 6 = 2 × 3 = 1 × 2 × 3 = 1 × 1 × 2 × 3... infinitas maneiras. Deixar o 1 de fora mantém a regra limpa.
+
+</Aprofundar>
+
+<Aprofundar titulo="A prova de Euclides, com números de verdade">
+
+Vamos testar com uma lista: os primos 2, 3, 5, 7, 11 e 13.
+
+<ExemploResolvido titulo="Existe um primo fora da lista 2, 3, 5, 7, 11, 13?">
+  <Passo>Multiplique todos: 2 × 3 × 5 × 7 × 11 × 13 = 30.030. Some 1: **30.031**.</Passo>
+  <Passo>30.031 não é divisível por nenhum primo da lista: dividindo por qualquer um deles sobra resto 1.</Passo>
+  <Passo>Mesmo assim ele **não é primo**: 30.031 = 59 × 509. Mas os fatores 59 e 509 não estavam na lista.</Passo>
+  <Passo>Então a lista estava incompleta. O mesmo raciocínio funciona com qualquer lista. Logo, **os primos nunca acabam**.</Passo>
+</ExemploResolvido>
+
+Repare num detalhe: o número "produto + 1" nem sempre é primo. O que a prova garante é que ele traz **pelo menos um primo novo**.
+
+</Aprofundar>
+
+<Aprofundar titulo="Por que basta testar até a raiz">
+
+Se n = a × b e a for o menor dos dois, então a × a ≤ a × b = n, ou seja, **a ≤ √n**. Portanto, se n tem algum divisor além de 1, ele tem um divisor até √n. Se testamos todos até √n e nenhum serve, n é primo. É o mesmo motivo que deixa a peneira parar no 7 (porque 11² = 121 passa de 100).
+
+</Aprofundar>
+
+<Aprofundar titulo="Os primos ficam mais raros">
+
+Entre 1 e 100 há **25 primos**. Entre 1 e 1.000, **168**. Quanto maior o número, menor a "densidade" de primos, mas eles nunca acabam. É como uma floresta que vai ficando mais esparsa sem nunca terminar.
+
+</Aprofundar>
+
 ## Primos protegem segredos
 
 Multiplicar dois primos é fácil: 61 × 53 = 3.233. Fez em segundos. Mas se eu der só o **3.233** e perguntar "quais dois primos multiplicados dão isso?", você precisa testar e testar.
@@ -200,6 +235,28 @@ Simplificar uma fração é **cortar os primos que se repetem** em cima e embaix
 
 <Exercicio enunciado="Simplifique a fração 36/60. (Escreva como 3/5.)" resposta="3/5" dica="Corte os primos iguais de cima e de baixo." resolucao="36 = 2² × 3² e 60 = 2² × 3 × 5. Cortando 2² e 3, sobra 3/5." />
 
+<Aprofundar titulo="Um padrão: 6k ± 1">
+
+Todo primo maior que 3 é vizinho de um múltiplo de 6: ou é da forma 6k − 1 (5, 11, 17, 23, 29) ou da forma 6k + 1 (7, 13, 19, 31, 37). Por quê? Os outros números são pares (6k, 6k + 2, 6k + 4) ou múltiplos de 3 (6k + 3). Mas **atenção**: nem todo 6k ± 1 é primo. 25 = 6 × 4 + 1 e 25 = 5 × 5.
+
+<Exercicio enunciado="Qual é a soma dos fatores primos distintos de 30? (30 = 2 × 3 × 5)" resposta="10" dica="Some 2 + 3 + 5." resolucao="2 + 3 + 5 = 10." />
+
+<Exercicio enunciado="Quantos divisores tem o número primo 13?" resposta="2" dica="Um primo só tem dois divisores." resolucao="O 1 e o 13: dois divisores." />
+
+</Aprofundar>
+
+<Aprofundar titulo="Primos de Mersenne">
+
+Alguns primos têm uma forma especial: 2ᵖ − 1, em que p também é primo. São os **primos de Mersenne**. Com p = 2, 3, 5 e 7 funciona sempre: 2² − 1 = 3, 2³ − 1 = 7, 2⁵ − 1 = 31 e 2⁷ − 1 = 127, todos primos.
+
+Mas **cuidado**: com p = 11 dá 2¹¹ − 1 = 2.047, que **não é primo** (2.047 = 23 × 89). Então p primo não garante nada. Hoje os recordes de "maior primo conhecido" costumam ser números desse tipo, encontrados com computadores.
+
+<Exercicio enunciado="Quanto vale 2⁷ − 1?" resposta="127" dica="2⁷ = 128." resolucao="2⁷ = 128, então 2⁷ − 1 = 127, que é primo." />
+
+<Exercicio enunciado="Escreva 30 como a soma de dois primos. Qual é o maior primo possível nessa soma?" resposta="23" dica="Teste 30 = 29 + 1? 23 + 7?" resolucao="29 + 1 não vale (1 não é primo). 30 = 23 + 7: os dois são primos. O maior primo possível é o 23." />
+
+</Aprofundar>
+
 ## Primos gêmeos
 
 Alguns primos andam em dupla, com diferença de 2: (3, 5), (5, 7), (11, 13), (17, 19), (29, 31), (41, 43). São os **primos gêmeos**. Será que há infinitos pares assim? Acredita-se que sim, mas **ninguém provou**. É um problema aberto.
@@ -210,6 +267,19 @@ Pegue um par maior que 2: 4 = 2 + 2, 6 = 3 + 3, 8 = 3 + 5, 10 = 5 + 5, 12 = 5 + 
 
 <Exercicio enunciado="Escreva 20 como soma de dois primos. Digite o menor dos dois." resposta="3" dica="Teste 3 + 17, 7 + 13..." resolucao="20 = 3 + 17 = 7 + 13. O menor primo possível é o 3. (O 2 não funciona: 20 − 2 = 18 não é primo.)" />
 
+## Erros comuns
+
+- **"Todo ímpar é primo."** Falso: 9, 15, 21, 25, 27... são ímpares e compostos.
+- **"O 1 é primo."** Falso: tem um só divisor.
+- **Esquecer o 2.** É primo, e é o único par.
+- **Testar só até a metade.** Só é preciso até a raiz.
+
+<Aprofundar titulo="Problemas em aberto">
+
+Os primos têm perguntas simples que ninguém sabe responder: há infinitos primos gêmeos? Todo par é soma de dois primos? Matemáticos testaram bilhões de casos e nunca acharam exceções, mas ainda não existe prova. São fronteiras da matemática, e a pergunta é simples o bastante para você entender.
+
+</Aprofundar>
+
 ## Onde mais aparecem
 
 - **MMC e MDC:** os primos são os blocos que facilitam as duas contas.
@@ -219,65 +289,6 @@ Pegue um par maior que 2: 4 = 2 + 2, 6 = 3 + 3, 8 = 3 + 5, 10 = 5 + 5, 12 = 5 + 
 
 </Etapa>
 
-<Etapa id="aprofundar">
-
-## 1. O teorema fundamental da aritmética
-
-Todo número inteiro maior que 1 pode ser escrito como produto de primos, e esse jeito é **único**, a menos da ordem dos fatores.
-
-É por isso que o 1 **não** é primo. Se fosse, a unicidade quebraria: 6 = 2 × 3 = 1 × 2 × 3 = 1 × 1 × 2 × 3... infinitas maneiras. Deixar o 1 de fora mantém a regra limpa.
-
-## 2. A prova de Euclides, com números de verdade
-
-Vamos testar com uma lista: os primos 2, 3, 5, 7, 11 e 13.
-
-<ExemploResolvido titulo="Existe um primo fora da lista 2, 3, 5, 7, 11, 13?">
-  <Passo>Multiplique todos: 2 × 3 × 5 × 7 × 11 × 13 = 30.030. Some 1: **30.031**.</Passo>
-  <Passo>30.031 não é divisível por nenhum primo da lista: dividindo por qualquer um deles sobra resto 1.</Passo>
-  <Passo>Mesmo assim ele **não é primo**: 30.031 = 59 × 509. Mas os fatores 59 e 509 não estavam na lista.</Passo>
-  <Passo>Então a lista estava incompleta. O mesmo raciocínio funciona com qualquer lista. Logo, **os primos nunca acabam**.</Passo>
-</ExemploResolvido>
-
-Repare num detalhe: o número "produto + 1" nem sempre é primo. O que a prova garante é que ele traz **pelo menos um primo novo**.
-
-## 3. Por que basta testar até a raiz
-
-Se n = a × b e a for o menor dos dois, então a × a ≤ a × b = n, ou seja, **a ≤ √n**. Portanto, se n tem algum divisor além de 1, ele tem um divisor até √n. Se testamos todos até √n e nenhum serve, n é primo. É o mesmo motivo que deixa a peneira parar no 7 (porque 11² = 121 passa de 100).
-
-## 4. Os primos ficam mais raros
-
-Entre 1 e 100 há **25 primos**. Entre 1 e 1.000, **168**. Quanto maior o número, menor a "densidade" de primos, mas eles nunca acabam. É como uma floresta que vai ficando mais esparsa sem nunca terminar.
-
-## 5. Um padrão: 6k ± 1
-
-Todo primo maior que 3 é vizinho de um múltiplo de 6: ou é da forma 6k − 1 (5, 11, 17, 23, 29) ou da forma 6k + 1 (7, 13, 19, 31, 37). Por quê? Os outros números são pares (6k, 6k + 2, 6k + 4) ou múltiplos de 3 (6k + 3). Mas **atenção**: nem todo 6k ± 1 é primo. 25 = 6 × 4 + 1 e 25 = 5 × 5.
-
-<Exercicio enunciado="Qual é a soma dos fatores primos distintos de 30? (30 = 2 × 3 × 5)" resposta="10" dica="Some 2 + 3 + 5." resolucao="2 + 3 + 5 = 10." />
-
-<Exercicio enunciado="Quantos divisores tem o número primo 13?" resposta="2" dica="Um primo só tem dois divisores." resolucao="O 1 e o 13: dois divisores." />
-
-## Primos de Mersenne
-
-Alguns primos têm uma forma especial: 2ᵖ − 1, em que p também é primo. São os **primos de Mersenne**. Com p = 2, 3, 5 e 7 funciona sempre: 2² − 1 = 3, 2³ − 1 = 7, 2⁵ − 1 = 31 e 2⁷ − 1 = 127, todos primos.
-
-Mas **cuidado**: com p = 11 dá 2¹¹ − 1 = 2.047, que **não é primo** (2.047 = 23 × 89). Então p primo não garante nada. Hoje os recordes de "maior primo conhecido" costumam ser números desse tipo, encontrados com computadores.
-
-<Exercicio enunciado="Quanto vale 2⁷ − 1?" resposta="127" dica="2⁷ = 128." resolucao="2⁷ = 128, então 2⁷ − 1 = 127, que é primo." />
-
-<Exercicio enunciado="Escreva 30 como a soma de dois primos. Qual é o maior primo possível nessa soma?" resposta="23" dica="Teste 30 = 29 + 1? 23 + 7?" resolucao="29 + 1 não vale (1 não é primo). 30 = 23 + 7: os dois são primos. O maior primo possível é o 23." />
-
-## 6. Erros comuns
-
-- **"Todo ímpar é primo."** Falso: 9, 15, 21, 25, 27... são ímpares e compostos.
-- **"O 1 é primo."** Falso: tem um só divisor.
-- **Esquecer o 2.** É primo, e é o único par.
-- **Testar só até a metade.** Só é preciso até a raiz.
-
-## 7. Problemas em aberto
-
-Os primos têm perguntas simples que ninguém sabe responder: há infinitos primos gêmeos? Todo par é soma de dois primos? Matemáticos testaram bilhões de casos e nunca acharam exceções, mas ainda não existe prova. São fronteiras da matemática, e a pergunta é simples o bastante para você entender.
-
-</Etapa>
 
 <Etapa id="desafio">
 
@@ -375,6 +386,8 @@ Os primos têm perguntas simples que ninguém sabe responder: há infinitos prim
 - **Todo número é um produto de primos**, de um único jeito: são os átomos dos números.
 - **Os primos nunca acabam** (Euclides): "produto de todos + 1" traz sempre um primo novo.
 - **Segurança:** multiplicar primos é fácil, desfazer é difícil. É a base do RSA.
+
+**Um pouco de história.** Eratóstenes inventou a peneira para separar os primos no século III a.C., e Nicômaco a registrou no início do século II. Por volta de 300 a.C., Euclides provou que os primos nunca acabam. Desde 1951, os maiores primos conhecidos são achados por computadores, e nos anos 1970 o RSA passou a usar primos para proteger mensagens.
 
 </Resumo>
 

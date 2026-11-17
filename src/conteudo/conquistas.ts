@@ -4,7 +4,7 @@
 export const conquistas = [
   { id: 'primeiro-palpite', nome: 'Primeiro palpite', descricao: 'Apostou antes de ver uma simulação' },
   { id: 'errou-bonito', nome: 'Errou bonito', descricao: 'Errou a previsão e foi até o fim' },
-  { id: 'mergulho', nome: 'Mergulho', descricao: 'Concluiu uma etapa Aprofundar' },
+  { id: 'mergulho', nome: 'Mergulho', descricao: 'Abriu uma caixa Aprofundar' },
   { id: 'baldeacao', nome: 'Baldeação', descricao: 'Concluiu cápsulas de duas linhas' },
   { id: 'sete-dias', nome: 'Sete dias', descricao: 'Estudou sete dias seguidos' },
   { id: 'dez-mil', nome: 'Dez mil', descricao: 'Rodou 10 mil vezes uma simulação' },

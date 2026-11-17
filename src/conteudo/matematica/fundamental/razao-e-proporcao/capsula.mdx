@@ -136,8 +136,8 @@ Repare que a jarra B pode ter **mais suco** e mesmo assim ficar **mais fraca**. 
   chave="inicial"
   opcoes={['A pequena', 'A grande', 'Dá na mesma']}
   correta={1}
-  seAcertou="E a pizza? Você acertou que a grande compensa. A explicação completa está no Aprofundar, e é surpreendente."
-  seErrou="E a pizza? A grande compensa mais, mesmo custando o triplo. A pista: o que você come é a área, não a largura. A conta está no Aprofundar."
+  seAcertou="E a pizza? Você acertou que a grande compensa. A explicação completa está numa caixa Aprofundar da etapa Conteúdo, e é surpreendente."
+  seErrou="E a pizza? A grande compensa mais, mesmo custando o triplo. A pista: o que você come é a área, não a largura. A conta está numa caixa Aprofundar da etapa Conteúdo."
 />
 
 </Previsao>
@@ -162,6 +162,26 @@ O jeito lúdico: descubra **quanto vale 1** e depois multiplique. Se 5 cadernos 
 
 <Etapa id="pratica">
 
+<Aprofundar titulo="Razão">
+
+A razão entre **a** e **b** (com b diferente de zero) é a divisão a ÷ b, escrita a/b ou a : b. O primeiro número é o **antecedente**; o segundo, o **consequente**.
+
+</Aprofundar>
+
+<Aprofundar titulo="A propriedade fundamental">
+
+Duas razões formam uma proporção quando são iguais. E aí vale:
+
+<Formula>
+  <Linha><Fracao cima="a" baixo="b" /> = <Fracao cima="c" baixo="d" />   quando   a × d = b × c</Linha>
+</Formula>
+
+Por quê? Multiplique os dois lados de a/b = c/d por b × d. À esquerda, o b cancela e sobra a × d. À direita, o d cancela e sobra c × b.
+
+O simulador compara as jarras assim. Jarra A: 2 de suco em 5 copos. Jarra B: 3 de suco em 8. Como 2 × 8 = 16 é maior que 3 × 5 = 15, a jarra A é mais forte.
+
+</Aprofundar>
+
 ## Receita para a festa
 
 Esta receita de bolo serve 6 pessoas. Arraste para fazer para mais ou menos gente:
@@ -177,6 +197,21 @@ Num mapa, tudo foi encolhido **na mesma razão**. Essa razão é a **escala**. A
 <EscalaMapa />
 
 <Exercicio enunciado="Num mapa com escala 1 : 200.000, duas cidades estão a 4,5 cm uma da outra. Qual a distância real, em km?" resposta="9" unidade="km" dica="1 cm vale 200.000 cm, que são 2 km." resolucao="Cada cm vale 2 km. Então 4,5 cm valem 4,5 × 2 = 9 km." />
+
+<Aprofundar titulo="A pizza: escala, área e volume">
+
+Quando você aumenta **todas** as medidas de uma figura pelo fator **k**, o comprimento cresce k vezes, mas a **área** cresce **k²** vezes:
+
+<div className="flex items-end justify-center gap-6">
+  <Pizza cima={1} baixo={1} tamanho={60} legenda={false} />
+  <Pizza cima={1} baixo={1} tamanho={120} legenda={false} cor="var(--color-azul)" />
+</div>
+
+A pizza grande tem o dobro da largura (k = 2), então tem **2² = 4** vezes mais pizza. Custa 3 vezes mais. Cada "pizza pequena" de comida sai por R$ 90 ÷ 4 = R$ 22,50, contra R$ 30 na pequena. A grande é **25% mais barata** por pedaço.
+
+E o **volume** cresce **k³**: uma caixa com o dobro de largura, altura e profundidade cabe 2³ = 8 vezes mais coisa. É por isso que um elefante não pode ter pernas finas como as de uma formiga: o peso cresce com o volume (k³), mas a força das pernas cresce com a área do osso (k²).
+
+</Aprofundar>
 
 ## Direta ou inversa?
 
@@ -201,6 +236,52 @@ Na inversa, o que fica constante é o **produto**: 2 pintores × 12 dias = 24 "d
 
 <Exercicio enunciado="8 torneiras iguais enchem uma piscina em 6 horas. Em quantas horas 12 torneiras enchem a mesma piscina?" resposta="4" unidade="horas" dica="Calcule o trabalho total em 'horas de torneira'." resolucao="8 × 6 = 48 horas de torneira. Com 12 torneiras: 48 ÷ 12 = 4 horas." />
 
+<Aprofundar titulo="Diretamente proporcionais">
+
+Duas grandezas são **diretamente proporcionais** quando uma é sempre a outra vezes um mesmo número **k** (a constante de proporcionalidade):
+
+<Formula>
+  <Linha>y = k × x</Linha>
+</Formula>
+
+No gráfico, isso vira uma **reta que passa pelo zero**. Zero quilos custam zero reais.
+
+</Aprofundar>
+
+<Aprofundar titulo="Inversamente proporcionais">
+
+Quando uma dobra e a outra cai pela metade, o **produto** é que fica constante:
+
+<Formula>
+  <Linha>x × y = k</Linha>
+</Formula>
+
+No gráfico, é uma curva chamada **hipérbole**. Ela nunca toca os eixos: nem infinitos pintores pintam a casa em zero dias. (E na vida real há um limite antes: 100 pintores numa casa pequena só atrapalham.)
+
+</Aprofundar>
+
+<Aprofundar titulo="Regra de três composta">
+
+Às vezes há **mais de duas grandezas**. "4 pintores pintam 2 paredes em 6 horas. Em quanto tempo 8 pintores pintam 6 paredes?"
+
+O jeito lúdico: mude **uma coisa de cada vez**, perguntando "aumenta ou diminui o tempo?".
+
+<ExemploResolvido titulo="4 pintores, 2 paredes, 6 horas. E 8 pintores com 6 paredes?">
+  <Passo>Primeiro as paredes: de 2 para 6 é o **triplo** de trabalho. Mais trabalho, mais tempo: 6 × 3 = **18 horas** (ainda com 4 pintores).</Passo>
+  <Passo>Agora os pintores: de 4 para 8 é o **dobro** de gente. Mais gente, menos tempo: 18 ÷ 2 = **9 horas**.</Passo>
+  <Passo>Resposta: **9 horas**. Em uma conta só: 6 × (6/2) × (4/8) = 9.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="3 máquinas fazem 300 peças em 5 horas. Quantas peças 6 máquinas fazem em 2 horas?" resposta="240" unidade="peças" dica="Quantas peças 1 máquina faz em 1 hora?" resolucao="1 máquina em 1 hora: 300 ÷ 3 ÷ 5 = 20 peças. 6 máquinas em 2 horas: 6 × 2 × 20 = 240 peças." />
+
+</Aprofundar>
+
+<Aprofundar titulo="Nem tudo é proporcional">
+
+Uma criança de 5 anos com 1,10 m **não** terá 2,20 m aos 10. Uma corrida de táxi de 10 km não custa o dobro de uma de 5 km, porque tem a **bandeirada**, um valor fixo que se paga só por entrar. Antes de usar regra de três, pergunte: se uma dobra, a outra dobra mesmo?
+
+</Aprofundar>
+
 ## Dividir em partes proporcionais
 
 Dois amigos abriram um negócio. Ana colocou R$ 3.000 e Bruno, R$ 2.000. No fim do ano, o lucro foi de R$ 1.000. Dividir meio a meio seria justo? Ana colocou mais dinheiro, então é justo que ela receba mais.
@@ -215,6 +296,32 @@ O jeito lúdico: pense em **cotas** iguais. Ana tem 3 cotas de mil, Bruno tem 2.
 
 <Exercicio enunciado="Uma avó quer dividir 45 balas entre dois netos, de 4 e 5 anos, proporcionalmente às idades. Quantas balas o mais novo recebe?" resposta="20" unidade="balas" dica="São 4 + 5 = 9 partes. Quanto vale cada parte?" resolucao="45 ÷ 9 = 5 balas por parte. O mais novo tem 4 partes: 4 × 5 = 20 balas (e o mais velho, 25)." />
 
+<Aprofundar titulo="Divisão em partes proporcionais">
+
+Para dividir um total **T** em partes proporcionais a **a** e **b**:
+
+<Formula>
+  <Linha>parte de a = T × <Fracao cima="a" baixo="a + b" />   e   parte de b = T × <Fracao cima="b" baixo="a + b" /></Linha>
+</Formula>
+
+No exemplo de Ana e Bruno: 1.000 × 3/5 = 600 e 1.000 × 2/5 = 400.
+
+</Aprofundar>
+
+<Aprofundar titulo="Tales com rigor: triângulos semelhantes">
+
+O bastão e a pirâmide formam, com suas sombras, dois triângulos de **mesmo formato** (os raios de sol chegam paralelos). Triângulos assim se chamam **semelhantes**, e neles os lados são proporcionais:
+
+<Formula>
+  <Linha><Fracao cima="altura da pirâmide" baixo="sombra da pirâmide" /> = <Fracao cima="altura do bastão" baixo="sombra do bastão" /></Linha>
+</Formula>
+
+Tales escolheu o momento em que a razão do bastão era 1. Mas qualquer momento serve: basta medir as três coisas e calcular a quarta.
+
+<Exercicio enunciado="Um bastão de 2 m faz uma sombra de 3 m. No mesmo instante, um prédio faz uma sombra de 30 m. Qual a altura do prédio?" resposta="20" unidade="metros" dica="altura/sombra é a mesma razão para os dois: 2/3 = x/30." resolucao="2/3 = x/30. Como 3 × 10 = 30, x = 2 × 10 = 20 metros." />
+
+</Aprofundar>
+
 ## Onde mais aparece
 
 - **Preço por quilo:** o pacote de 5 kg sai mais barato que o de 1 kg? Divida o preço pelo peso e compare.
@@ -227,98 +334,6 @@ Num dia de sol, meça a sua altura e o comprimento da sua sombra. Depois meça a
 
 </Etapa>
 
-<Etapa id="aprofundar">
-
-## 1. Razão
-
-A razão entre **a** e **b** (com b diferente de zero) é a divisão a ÷ b, escrita a/b ou a : b. O primeiro número é o **antecedente**; o segundo, o **consequente**.
-
-## 2. A propriedade fundamental
-
-Duas razões formam uma proporção quando são iguais. E aí vale:
-
-<Formula>
-  <Linha><Fracao cima="a" baixo="b" /> = <Fracao cima="c" baixo="d" />   quando   a × d = b × c</Linha>
-</Formula>
-
-Por quê? Multiplique os dois lados de a/b = c/d por b × d. À esquerda, o b cancela e sobra a × d. À direita, o d cancela e sobra c × b.
-
-O simulador compara as jarras assim. Jarra A: 2 de suco em 5 copos. Jarra B: 3 de suco em 8. Como 2 × 8 = 16 é maior que 3 × 5 = 15, a jarra A é mais forte.
-
-## 3. Diretamente proporcionais
-
-Duas grandezas são **diretamente proporcionais** quando uma é sempre a outra vezes um mesmo número **k** (a constante de proporcionalidade):
-
-<Formula>
-  <Linha>y = k × x</Linha>
-</Formula>
-
-No gráfico, isso vira uma **reta que passa pelo zero**. Zero quilos custam zero reais.
-
-## 4. Inversamente proporcionais
-
-Quando uma dobra e a outra cai pela metade, o **produto** é que fica constante:
-
-<Formula>
-  <Linha>x × y = k</Linha>
-</Formula>
-
-No gráfico, é uma curva chamada **hipérbole**. Ela nunca toca os eixos: nem infinitos pintores pintam a casa em zero dias. (E na vida real há um limite antes: 100 pintores numa casa pequena só atrapalham.)
-
-## 5. Regra de três composta
-
-Às vezes há **mais de duas grandezas**. "4 pintores pintam 2 paredes em 6 horas. Em quanto tempo 8 pintores pintam 6 paredes?"
-
-O jeito lúdico: mude **uma coisa de cada vez**, perguntando "aumenta ou diminui o tempo?".
-
-<ExemploResolvido titulo="4 pintores, 2 paredes, 6 horas. E 8 pintores com 6 paredes?">
-  <Passo>Primeiro as paredes: de 2 para 6 é o **triplo** de trabalho. Mais trabalho, mais tempo: 6 × 3 = **18 horas** (ainda com 4 pintores).</Passo>
-  <Passo>Agora os pintores: de 4 para 8 é o **dobro** de gente. Mais gente, menos tempo: 18 ÷ 2 = **9 horas**.</Passo>
-  <Passo>Resposta: **9 horas**. Em uma conta só: 6 × (6/2) × (4/8) = 9.</Passo>
-</ExemploResolvido>
-
-<Exercicio enunciado="3 máquinas fazem 300 peças em 5 horas. Quantas peças 6 máquinas fazem em 2 horas?" resposta="240" unidade="peças" dica="Quantas peças 1 máquina faz em 1 hora?" resolucao="1 máquina em 1 hora: 300 ÷ 3 ÷ 5 = 20 peças. 6 máquinas em 2 horas: 6 × 2 × 20 = 240 peças." />
-
-## 6. Divisão em partes proporcionais
-
-Para dividir um total **T** em partes proporcionais a **a** e **b**:
-
-<Formula>
-  <Linha>parte de a = T × <Fracao cima="a" baixo="a + b" />   e   parte de b = T × <Fracao cima="b" baixo="a + b" /></Linha>
-</Formula>
-
-No exemplo de Ana e Bruno: 1.000 × 3/5 = 600 e 1.000 × 2/5 = 400.
-
-## 7. Nem tudo é proporcional
-
-Uma criança de 5 anos com 1,10 m **não** terá 2,20 m aos 10. Uma corrida de táxi de 10 km não custa o dobro de uma de 5 km, porque tem a **bandeirada**, um valor fixo que se paga só por entrar. Antes de usar regra de três, pergunte: se uma dobra, a outra dobra mesmo?
-
-## 8. A pizza: escala, área e volume
-
-Quando você aumenta **todas** as medidas de uma figura pelo fator **k**, o comprimento cresce k vezes, mas a **área** cresce **k²** vezes:
-
-<div className="flex items-end justify-center gap-6">
-  <Pizza cima={1} baixo={1} tamanho={60} legenda={false} />
-  <Pizza cima={1} baixo={1} tamanho={120} legenda={false} cor="var(--color-azul)" />
-</div>
-
-A pizza grande tem o dobro da largura (k = 2), então tem **2² = 4** vezes mais pizza. Custa 3 vezes mais. Cada "pizza pequena" de comida sai por R$ 90 ÷ 4 = R$ 22,50, contra R$ 30 na pequena. A grande é **25% mais barata** por pedaço.
-
-E o **volume** cresce **k³**: uma caixa com o dobro de largura, altura e profundidade cabe 2³ = 8 vezes mais coisa. É por isso que um elefante não pode ter pernas finas como as de uma formiga: o peso cresce com o volume (k³), mas a força das pernas cresce com a área do osso (k²).
-
-## 9. Tales com rigor: triângulos semelhantes
-
-O bastão e a pirâmide formam, com suas sombras, dois triângulos de **mesmo formato** (os raios de sol chegam paralelos). Triângulos assim se chamam **semelhantes**, e neles os lados são proporcionais:
-
-<Formula>
-  <Linha><Fracao cima="altura da pirâmide" baixo="sombra da pirâmide" /> = <Fracao cima="altura do bastão" baixo="sombra do bastão" /></Linha>
-</Formula>
-
-Tales escolheu o momento em que a razão do bastão era 1. Mas qualquer momento serve: basta medir as três coisas e calcular a quarta.
-
-<Exercicio enunciado="Um bastão de 2 m faz uma sombra de 3 m. No mesmo instante, um prédio faz uma sombra de 30 m. Qual a altura do prédio?" resposta="20" unidade="metros" dica="altura/sombra é a mesma razão para os dois: 2/3 = x/30." resolucao="2/3 = x/30. Como 3 × 10 = 30, x = 2 × 10 = 20 metros." />
-
-</Etapa>
 
 <Etapa id="desafio">
 
@@ -410,6 +425,8 @@ Tales escolheu o momento em que a razão do bastão era 1. Mas qualquer momento 
 - **Diretas: y = k × x (reta). Inversas: x × y = k (curva).** E muita coisa não é nenhuma das duas.
 - **Dividir proporcionalmente:** some as partes, ache o valor de cada uma e distribua.
 - **Aumentar as medidas k vezes multiplica a área por k²** e o volume por k³.
+
+**Um pouco de história.** Conta-se que Tales mediu a altura de uma pirâmide pela sombra, por volta de 600 a.C. Euclides organizou a teoria das proporções por volta de 300 a.C., e Eratóstenes calculou o tamanho da Terra com uma proporção entre um ângulo e uma distância. A regra de três já era usada na China antes do século II e virou "regra de ouro" dos comerciantes europeus. A "proporção áurea em tudo", ao contrário, é em grande parte mito.
 
 </Resumo>
 

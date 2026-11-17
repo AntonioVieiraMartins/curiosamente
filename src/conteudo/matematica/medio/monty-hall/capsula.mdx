@@ -108,31 +108,7 @@ A lição vai além do jogo: **uma pista dada por quem sabe a resposta não é n
 
 O nome disso é <Termo cor="azul">probabilidade condicional</Termo>: a chance de algo **sabendo** de uma pista. E ela engana em situações bem mais sérias que um programa de TV.
 
-## Exames médicos
-
-Imagine um exame que acerta 99% das vezes. Deu positivo. Qual a chance de você estar doente? A resposta depende de algo que quase ninguém pergunta: **quão rara é a doença**.
-
-<ExameMedico />
-
-Com a doença em 1% das pessoas, metade dos positivos são alarmes falsos. É a mesma estrutura do Monty Hall: a pista (o resultado) precisa ser pesada junto com o que se sabia antes. Por isso é comum repetir o exame ou pedir outro para confirmar.
-
-## Onde mais aparece
-
-- **Filtros de spam:** o e-mail tem a palavra "grátis". Qual a chance de ser spam, sabendo disso? Muitos filtros fazem exatamente essa conta, palavra por palavra.
-- **Previsão do tempo:** "70% de chance de chuva" é a chance de chover **sabendo** as condições de hoje (nuvens, umidade, vento).
-- **Jogos de cartas:** quando alguém que vê as cartas escolhe o que mostrar, a escolha dela também é informação.
-
-## Experimente em casa
-
-Pegue 3 cartas de baralho: um ás (o carro) e dois números (as cabras). Uma pessoa embaralha, olha as cartas e faz o papel do apresentador. Joguem 20 rodadas **sempre trocando** e contem as vitórias. O esperado é algo perto de 13. Depois repitam sempre ficando: perto de 7.
-
-</Etapa>
-
-<Etapa id="aprofundar">
-
-Aqui a gente sai da intuição e **prova** o resultado. São oito passos curtos, do jeito que um matemático faria.
-
-## 1. Dando nome às coisas
+<Aprofundar titulo="Dando nome às coisas">
 
 Você escolheu a porta 1. Chame de **C₁**, **C₂** e **C₃** os eventos "o carro está na porta 1", "na 2" e "na 3". Antes de qualquer pista, cada um tem chance ⅓.
 
@@ -142,13 +118,17 @@ Chame de **A₃** o evento "o apresentador abriu a porta 3". As regras dele vira
 - **P(A₃ | C₂) = 1**: o carro está na 2, então ele é obrigado a abrir a 3.
 - **P(A₃ | C₃) = 0**: ele nunca abre a porta do carro.
 
-## 2. A árvore de possibilidades
+</Aprofundar>
+
+<Aprofundar titulo="A árvore de possibilidades">
 
 Cada caminho da árvore é uma história possível do jogo. A chance de um caminho é o **produto** das chances ao longo dele.
 
 <ArvoreMontyHall />
 
-## 3. A conta completa
+</Aprofundar>
+
+<Aprofundar titulo="A conta completa">
 
 Primeiro, a chance total de ele abrir a porta 3, somando os caminhos. Isso se chama *lei da probabilidade total*:
 
@@ -169,13 +149,31 @@ Agora o **Teorema de Bayes**, que "inverte" a pergunta. Em vez de "se o carro es
 
 Confira: ⅓ + ⅔ = 1. E P(C₃ | A₃) = 0, porque a porta 3 já está aberta, com uma cabra.
 
-## 4. Onde o "50%" engana
+</Aprofundar>
+
+<Aprofundar titulo="Onde o “50%” engana">
 
 O raciocínio "sobraram duas portas, então 50% cada" supõe que as duas portas são **simétricas**. Não são.
 
 A sua foi escolhida antes de qualquer pista. A outra foi filtrada por alguém que **evitou o carro de propósito**. Em probabilidade, não importa só quantas opções sobram: importa **como** se chegou até elas.
 
-## 5. Mesma cena, outra regra: o apresentador distraído
+</Aprofundar>
+
+## Exames médicos
+
+Imagine um exame que acerta 99% das vezes. Deu positivo. Qual a chance de você estar doente? A resposta depende de algo que quase ninguém pergunta: **quão rara é a doença**.
+
+<ExameMedico />
+
+Com a doença em 1% das pessoas, metade dos positivos são alarmes falsos. É a mesma estrutura do Monty Hall: a pista (o resultado) precisa ser pesada junto com o que se sabia antes. Por isso é comum repetir o exame ou pedir outro para confirmar.
+
+## Onde mais aparece
+
+- **Filtros de spam:** o e-mail tem a palavra "grátis". Qual a chance de ser spam, sabendo disso? Muitos filtros fazem exatamente essa conta, palavra por palavra.
+- **Previsão do tempo:** "70% de chance de chuva" é a chance de chover **sabendo** as condições de hoje (nuvens, umidade, vento).
+- **Jogos de cartas:** quando alguém que vê as cartas escolhe o que mostrar, a escolha dela também é informação.
+
+<Aprofundar titulo="Mesma cena, outra regra: o apresentador distraído">
 
 Agora imagine que ele **não sabe** onde está o carro. Abre a 2 ou a 3 ao acaso e, por sorte, aparece uma cabra na 3. Chame isso de **B**.
 
@@ -189,7 +187,9 @@ Agora imagine que ele **não sabe** onde está o carro. Abre a 2 ou a 3 ao acaso
 
 A imagem na tela é **idêntica**: porta 3 aberta, cabra. Mas a resposta mudou de ⅔ para ½, porque mudou a regra que gerou a pista.
 
-## 6. E se ele tiver uma porta preferida?
+</Aprofundar>
+
+<Aprofundar titulo="E se ele tiver uma porta preferida?">
 
 Volte ao apresentador que sabe tudo. Quando o carro está na sua porta, em vez de sortear, ele abre a 3 com uma chance **q** qualquer. A conta de Bayes fica:
 
@@ -204,7 +204,9 @@ Mexa no controle e veja o que acontece:
 
 Como q fica entre 0 e 1, o resultado fica sempre entre ½ e 1. Ou seja: **trocar nunca é pior que ficar**, qualquer que seja a mania do apresentador. Essa análise foi publicada por Morgan e colegas em 1991.
 
-## 7. Generalizando: n portas
+</Aprofundar>
+
+<Aprofundar titulo="Generalizando: n portas">
 
 Com **n** portas, o apresentador (que sabe tudo) abre **k** portas com cabra. Você troca para uma das que sobraram fechadas, ao acaso:
 
@@ -219,7 +221,9 @@ O primeiro pedaço é a chance de você ter errado de primeira. O segundo é a c
 - **100 portas, ele abre 98:** 99/100 × 1 = 99/100.
 - **100 portas, ele abre só 1:** 99/100 × 1/98 ≈ 1,01%, um pouquinho melhor que ficar (1%).
 
-## 8. Por que o simulador "gruda" em ⅔
+</Aprofundar>
+
+<Aprofundar titulo="Por que o simulador “gruda” em ⅔">
 
 Cada rodada é como uma moeda viciada que dá "trocar ganha" com chance p = ⅔. A **Lei dos Grandes Números** garante que a porcentagem de vitórias se aproxima de p conforme o número de rodadas N cresce.
 
@@ -234,7 +238,9 @@ O tamanho típico do "tremido" (o *desvio padrão* da porcentagem) é:
 
 Para o tremido ficar **10 vezes menor**, são precisas **100 vezes mais rodadas**. É por isso que poucas rodadas enganam tanto.
 
-## Bônus: o código do simulador
+</Aprofundar>
+
+<Aprofundar titulo="Bônus: o código do simulador">
 
 O simulador desta cápsula usa uma ideia esperta: nem precisa sortear a porta do apresentador.
 
@@ -245,7 +251,14 @@ senão:                trocar ganha
 
 Se a primeira escolha errou (2 vezes em 3), a única porta que sobra fechada **é** o carro. É a conta do passo 7 com n = 3 e k = 1.
 
+</Aprofundar>
+
+## Experimente em casa
+
+Pegue 3 cartas de baralho: um ás (o carro) e dois números (as cabras). Uma pessoa embaralha, olha as cartas e faz o papel do apresentador. Joguem 20 rodadas **sempre trocando** e contem as vitórias. O esperado é algo perto de 13. Depois repitam sempre ficando: perto de 7.
+
 </Etapa>
+
 
 <Etapa id="desafio">
 
@@ -296,6 +309,8 @@ Se a primeira escolha errou (2 vezes em 3), a única porta que sobra fechada **�
 - **A pista vale porque ele sabe e escolhe.** Com outra regra (apresentador distraído), a mesma cena dá ½.
 - **Probabilidade condicional:** a chance muda quando chega informação nova, e depende de *como* ela foi obtida.
 - **Poucas rodadas enganam.** Para confiar num resultado de acaso, repita muitas vezes.
+
+**Um pouco de história.** O problema tem raízes antigas: em 1889, Joseph Bertrand publicou o "paradoxo da caixa", outra armadilha em que a resposta intuitiva (½) perde para a certa (⅔). Em 1963 estreou o programa de Monty Hall, e em 1975 Steve Selvin publicou o problema com o nome dele. Em 1990, Marilyn vos Savant respondeu "troque de porta" e milhares de leitores escreveram dizendo que ela errou. Até Paul Erdős só se convenceu depois de ver uma simulação.
 
 </Resumo>
 

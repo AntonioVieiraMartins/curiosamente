@@ -17,11 +17,12 @@ import { ganharXp } from '../../lib/sincronizacao'
 export default function CapsulaInterativa({ conteudo }: { conteudo: ConteudoCapsula }) {
   const { meta, Texto } = conteudo
   const linha = buscarLinha(meta)
-  const { progresso, irPara, concluirEtapa, registrarPontuacao, registrarPalpite } = useProgresso(meta.id)
+  const { progresso, irPara, concluirEtapa, registrarPontuacao, registrarPalpite, registrarAprofundar } = useProgresso(meta.id)
   const topo = useRef<HTMLDivElement>(null)
   const conteudoRef = useRef<HTMLDivElement>(null)
 
-  const atual = progresso.etapaAtual
+  // Progresso salvo antes de a etapa Aprofundar virar caixas dentro do Conteúdo pode apontar além da última
+  const atual = Math.min(progresso.etapaAtual, etapas.length - 1)
   const indicesFeitos = progresso.concluidas.map((id) => etapas.findIndex((e) => e.id === id))
   const liberadasAte = Math.max(atual, ...indicesFeitos.map((i) => i + 1))
 
@@ -29,8 +30,7 @@ export default function CapsulaInterativa({ conteudo }: { conteudo: ConteudoCaps
   function concluirEstaEtapa() {
     const etapa = etapas[atual].id
     concluirEtapa(atual)
-    if (etapa === 'aprofundar') void ganharXp('aprofundar', `${meta.id}:aprofundar`, meta.id)
-    else void ganharXp('etapa', `${meta.id}:${etapa}`, meta.id)
+    void ganharXp('etapa', `${meta.id}:${etapa}`, meta.id)
     if (atual === etapas.length - 1) void ganharXp('capsula', meta.id, meta.id, meta.xp)
   }
 
@@ -73,6 +73,7 @@ export default function CapsulaInterativa({ conteudo }: { conteudo: ConteudoCaps
                 registrarPontuacao,
                 palpites: progresso.palpites ?? {},
                 registrarPalpite,
+                registrarAprofundar,
               }}
             >
               <Suspense fallback={<p className="text-suave">Carregando a cápsula…</p>}>

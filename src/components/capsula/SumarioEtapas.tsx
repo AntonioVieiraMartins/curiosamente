@@ -8,7 +8,7 @@ type Props = {
   aoEscolher: (indice: number) => void
 }
 
-// Mostra em que etapa a pessoa está. No celular vira uma barra de 8 pedaços.
+// Mostra em que etapa a pessoa está. No celular vira uma barra de pedaços, um por etapa.
 export default function SumarioEtapas({ atual, concluidas, liberadasAte, cor, aoEscolher }: Props) {
   return (
     <nav aria-label="Etapas da cápsula">
@@ -16,7 +16,7 @@ export default function SumarioEtapas({ atual, concluidas, liberadasAte, cor, ao
         <p className="text-sm text-suave">
           Etapa {atual + 1} de {etapas.length} · <span className="font-semibold text-texto">{etapas[atual].nome}</span>
         </p>
-        <div className="mt-2 grid grid-cols-8 gap-1.5">
+        <div className="mt-2 grid gap-1.5" style={{ gridTemplateColumns: `repeat(${etapas.length}, 1fr)` }}>
           {etapas.map((e, i) => (
             <span
               key={e.id}

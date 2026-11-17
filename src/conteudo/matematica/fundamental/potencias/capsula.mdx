@@ -152,53 +152,7 @@ Isso explica o total: 1 + 2 + 4 + ... + 2⁶³ = 2⁶⁴ − 1. Experimente na c
 
 <Etapa id="pratica">
 
-## Números grandes e pequenos: a notação científica
-
-A luz viaja a cerca de 300.000.000 metros por segundo. Escrever tantos zeros cansa e dá erro. Então os cientistas usam a **notação científica**: um número entre 1 e 10 multiplicado por uma potência de 10.
-
-300.000.000 = 3 × 10⁸. O expoente 8 diz quantos zeros vêm depois do 3.
-
-Para números minúsculos, o expoente é negativo. Um átomo tem cerca de 0,0000000001 metro de largura: 10⁻¹⁰ m. A distância da Terra ao Sol é de uns 150 milhões de km, ou cerca de 1,5 × 10¹¹ metros. Em potências de 10, do átomo ao Sol são **21 "degraus"**.
-
-<ExemploResolvido titulo="Escreva 4.500.000 em notação científica.">
-  <Passo>Escolha o número entre 1 e 10: **4,5**. A vírgula andou do fim do número até depois do 4.</Passo>
-  <Passo>Conte quantas casas a vírgula andou: de 4.500.000, são **6** casas.</Passo>
-  <Passo>Então 4.500.000 = 4,5 × 10⁶.</Passo>
-  <Passo>Para número pequeno, a vírgula anda para o outro lado e o expoente fica negativo: 0,0003 = 3 × 10⁻⁴.</Passo>
-</ExemploResolvido>
-
-<Exercicio enunciado="300.000 = 3 × 10 elevado a quê? Digite só o expoente." resposta="5" dica="Quantos zeros tem 300.000?" resolucao="300.000 = 3 × 100.000 = 3 × 10⁵." />
-
-<Exercicio enunciado="0,0004 = 4 × 10 elevado a quê? Digite só o expoente (com sinal)." resposta="-4" dica="Para números menores que 1, o expoente é negativo. Quantas casas a vírgula andou?" resolucao="A vírgula andou 4 casas para a direita: 0,0004 = 4 × 10⁻⁴." />
-
-## O computador conta em potências de 2
-
-Cada **bit** vale 0 ou 1. Com 8 bits formamos um **byte**, e ele pode ter 2⁸ = **256** combinações diferentes. Com 10 bits são 2¹⁰ = 1.024, número que aparece o tempo todo em memória e arquivos (um "quilo" de computador é 1.024, e não 1.000).
-
-Cada bit a mais **dobra** as possibilidades. É a lenda do xadrez, só que com circuitos. Na cápsula de Binário isso volta com lâmpadas.
-
-## Dobrar papel e juros
-
-Se você pudesse dobrar uma folha de 0,1 mm ao meio **42 vezes**, a espessura seria de 0,1 mm × 2⁴² ≈ **440 mil km**. A Lua fica a cerca de 384 mil km. Nenhuma folha real dobra tanto, mas a conta mostra a força do crescimento exponencial.
-
-É o mesmo mecanismo dos juros compostos: o que você tem a cada mês é multiplicado pelo mesmo fator. Quando o expoente é o tempo, a função se chama **exponencial**, tema do Ensino Médio.
-
-## Onde mais aparece
-
-- **Áreas e volumes:** aumentar as medidas k vezes multiplica a área por k² e o volume por k³.
-- **Contágio e redes sociais:** quando cada pessoa passa para duas, o número dobra a cada rodada.
-- **Terremotos, som e acidez** usam escalas de potências de 10 (os logaritmos).
-- **Informação:** quantos números cabem em 16 bits? 2¹⁶ = 65.536.
-
-## Experimente em casa
-
-Pegue uma folha e dobre ao meio, de novo e de novo. Quantas vezes você consegue? Em geral, 6 ou 7. Cada dobra dobra a espessura e metade da área: depois de 7, você tem 2⁷ = 128 camadas.
-
-</Etapa>
-
-<Etapa id="aprofundar">
-
-## 1. Definição
+<Aprofundar titulo="Definição">
 
 Para um número **a** e um inteiro positivo **n**:
 
@@ -208,7 +162,9 @@ Para um número **a** e um inteiro positivo **n**:
 
 A base é *a*, o expoente é *n*. Por definição, a¹ = a.
 
-## 2. Multiplicar potências de mesma base
+</Aprofundar>
+
+<Aprofundar titulo="Multiplicar potências de mesma base">
 
 Veja 2³ × 2² = (2 × 2 × 2) × (2 × 2) = 2⁵. Contamos os fatores: 3 + 2 = 5. A regra geral:
 
@@ -220,7 +176,9 @@ Os expoentes **se somam**. Este é o mesmo resultado que Arquimedes provou para 
 
 <RegrasDosExpoentes />
 
-## 3. Dividir potências de mesma base
+</Aprofundar>
+
+<Aprofundar titulo="Dividir potências de mesma base">
 
 2⁵ ÷ 2² = (2 × 2 × 2 × 2 × 2) ÷ (2 × 2). Cortam-se dois fatores, sobram 3: 2³. A regra:
 
@@ -230,7 +188,9 @@ Os expoentes **se somam**. Este é o mesmo resultado que Arquimedes provou para 
 
 Os expoentes **se subtraem**. E essa regra explica sozinha o zero: aⁿ ÷ aⁿ = 1 (qualquer número dividido por ele mesmo) e também = aⁿ⁻ⁿ = a⁰. Logo, a⁰ = 1.
 
-## 4. Expoentes negativos, com rigor
+</Aprofundar>
+
+<Aprofundar titulo="Expoentes negativos, com rigor">
 
 Pela regra da divisão, a⁰ ÷ aⁿ = a⁰⁻ⁿ = a⁻ⁿ. Mas a⁰ = 1, então a⁰ ÷ aⁿ também é 1 ÷ aⁿ. Os dois lados têm de ser iguais:
 
@@ -250,7 +210,9 @@ Pela regra da divisão, a⁰ ÷ aⁿ = a⁰⁻ⁿ = a⁻ⁿ. Mas a⁰ = 1, entã
 
 <Exercicio enunciado="Quanto é (2³)²?" resposta="64" dica="Potência de potência: multiplique os expoentes." resolucao="(2³)² = 2⁶ = 64." />
 
-## 5. Potência de potência, produto e quociente
+</Aprofundar>
+
+<Aprofundar titulo="Potência de potência, produto e quociente">
 
 <Formula>
   <Linha>(aᵐ)ⁿ = aᵐˣⁿ</Linha>
@@ -260,7 +222,9 @@ Pela regra da divisão, a⁰ ÷ aⁿ = a⁰⁻ⁿ = a⁻ⁿ. Mas a⁰ = 1, entã
 
 Exemplo do produto: (2 × 3)² = 6² = 36 = 2² × 3² = 4 × 9.
 
-## 6. Base negativa: cuidado com o sinal
+</Aprofundar>
+
+<Aprofundar titulo="Base negativa: cuidado com o sinal">
 
 Um número negativo elevado a um expoente **par** dá resultado positivo; elevado a um expoente **ímpar** dá negativo. Pense: (−2)² = (−2) × (−2) = +4. Já (−2)³ = (−2) × (−2) × (−2) = −8.
 
@@ -270,32 +234,85 @@ A **posição dos parênteses** muda tudo: (−3)² = 9, mas −3² = −(3²) =
 
 <Exercicio enunciado="Quanto é −3² (sem parênteses)?" resposta="-9" dica="Primeiro a potência, depois o sinal de menos." resolucao="3² = 9 e o sinal de menos fica de fora: −9. Já (−3)² daria +9." />
 
-## 7. Ordem das operações
+</Aprofundar>
+
+<Aprofundar titulo="Ordem das operações">
 
 Potências vêm **antes** de multiplicações e divisões, que vêm antes de somas e subtrações. Então 2 + 3 × 2² = 2 + 3 × 4 = 2 + 12 = 14. Parênteses mandam em tudo.
 
-## 8. Erros comuns
+</Aprofundar>
+
+## Números grandes e pequenos: a notação científica
+
+A luz viaja a cerca de 300.000.000 metros por segundo. Escrever tantos zeros cansa e dá erro. Então os cientistas usam a **notação científica**: um número entre 1 e 10 multiplicado por uma potência de 10.
+
+300.000.000 = 3 × 10⁸. O expoente 8 diz quantos zeros vêm depois do 3.
+
+Para números minúsculos, o expoente é negativo. Um átomo tem cerca de 0,0000000001 metro de largura: 10⁻¹⁰ m. A distância da Terra ao Sol é de uns 150 milhões de km, ou cerca de 1,5 × 10¹¹ metros. Em potências de 10, do átomo ao Sol são **21 "degraus"**.
+
+<ExemploResolvido titulo="Escreva 4.500.000 em notação científica.">
+  <Passo>Escolha o número entre 1 e 10: **4,5**. A vírgula andou do fim do número até depois do 4.</Passo>
+  <Passo>Conte quantas casas a vírgula andou: de 4.500.000, são **6** casas.</Passo>
+  <Passo>Então 4.500.000 = 4,5 × 10⁶.</Passo>
+  <Passo>Para número pequeno, a vírgula anda para o outro lado e o expoente fica negativo: 0,0003 = 3 × 10⁻⁴.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="300.000 = 3 × 10 elevado a quê? Digite só o expoente." resposta="5" dica="Quantos zeros tem 300.000?" resolucao="300.000 = 3 × 100.000 = 3 × 10⁵." />
+
+<Exercicio enunciado="0,0004 = 4 × 10 elevado a quê? Digite só o expoente (com sinal)." resposta="-4" dica="Para números menores que 1, o expoente é negativo. Quantas casas a vírgula andou?" resolucao="A vírgula andou 4 casas para a direita: 0,0004 = 4 × 10⁻⁴." />
+
+<Aprofundar titulo="Notação científica com rigor">
+
+Um número está em notação científica quando é escrito como **m × 10ⁿ**, com 1 ≤ m < 10 e n inteiro. Multiplicar: (2 × 10³) × (3 × 10⁴) = 6 × 10⁷, porque os expoentes se somam. Dividir: os expoentes se subtraem.
+
+</Aprofundar>
+
+## O computador conta em potências de 2
+
+Cada **bit** vale 0 ou 1. Com 8 bits formamos um **byte**, e ele pode ter 2⁸ = **256** combinações diferentes. Com 10 bits são 2¹⁰ = 1.024, número que aparece o tempo todo em memória e arquivos (um "quilo" de computador é 1.024, e não 1.000).
+
+Cada bit a mais **dobra** as possibilidades. É a lenda do xadrez, só que com circuitos. Na cápsula de Binário isso volta com lâmpadas.
+
+## Dobrar papel e juros
+
+Se você pudesse dobrar uma folha de 0,1 mm ao meio **42 vezes**, a espessura seria de 0,1 mm × 2⁴² ≈ **440 mil km**. A Lua fica a cerca de 384 mil km. Nenhuma folha real dobra tanto, mas a conta mostra a força do crescimento exponencial.
+
+É o mesmo mecanismo dos juros compostos: o que você tem a cada mês é multiplicado pelo mesmo fator. Quando o expoente é o tempo, a função se chama **exponencial**, tema do Ensino Médio.
+
+<Aprofundar titulo="Quem cresce mais: n² ou 2ⁿ?">
+
+No começo, n² parece maior. Mas observe: com n = 4, os dois valem 16. Com n = 5, 2⁵ = 32 e 5² = 25. Com n = 10, 2¹⁰ = 1.024 e 10² = 100. A partir daí, a potência com o **expoente variável** (2ⁿ) deixa a outra para trás, e a distância só aumenta.
+
+Isso é o que separa o crescimento por **potência** (quadrado, cubo) do crescimento **exponencial** (2ⁿ), ideia central quando você chegar nas funções exponenciais.
+
+</Aprofundar>
+
+<Aprofundar titulo="Uma porta para as raízes">
+
+Se elevar ao quadrado "desfaz" a raiz quadrada, então talvez exista um jeito de escrever a raiz como potência. Existe: raiz quadrada de a é a^(1/2). Isso vai ficar claro na cápsula de Raízes.
+
+</Aprofundar>
+
+## Onde mais aparece
+
+- **Áreas e volumes:** aumentar as medidas k vezes multiplica a área por k² e o volume por k³.
+- **Contágio e redes sociais:** quando cada pessoa passa para duas, o número dobra a cada rodada.
+- **Terremotos, som e acidez** usam escalas de potências de 10 (os logaritmos).
+- **Informação:** quantos números cabem em 16 bits? 2¹⁶ = 65.536.
+
+## Erros comuns
 
 - **2³ não é 2 × 3.** 2³ = 8; 2 × 3 = 6.
 - **(a + b)² não é a² + b².** Teste: (3 + 4)² = 49, mas 3² + 4² = 25. Na verdade, (a + b)² = a² + 2ab + b². Esse tema volta nos produtos notáveis.
 - **aᵐ + aⁿ não vira aᵐ⁺ⁿ.** A regra dos expoentes é para **multiplicar**.
 - **Expoente negativo não faz o número ficar negativo.**
 
-## 9. Notação científica com rigor
+## Experimente em casa
 
-Um número está em notação científica quando é escrito como **m × 10ⁿ**, com 1 ≤ m < 10 e n inteiro. Multiplicar: (2 × 10³) × (3 × 10⁴) = 6 × 10⁷, porque os expoentes se somam. Dividir: os expoentes se subtraem.
-
-## 10. Quem cresce mais: n² ou 2ⁿ?
-
-No começo, n² parece maior. Mas observe: com n = 4, os dois valem 16. Com n = 5, 2⁵ = 32 e 5² = 25. Com n = 10, 2¹⁰ = 1.024 e 10² = 100. A partir daí, a potência com o **expoente variável** (2ⁿ) deixa a outra para trás, e a distância só aumenta.
-
-Isso é o que separa o crescimento por **potência** (quadrado, cubo) do crescimento **exponencial** (2ⁿ), ideia central quando você chegar nas funções exponenciais.
-
-## 11. Uma porta para as raízes
-
-Se elevar ao quadrado "desfaz" a raiz quadrada, então talvez exista um jeito de escrever a raiz como potência. Existe: raiz quadrada de a é a^(1/2). Isso vai ficar claro na cápsula de Raízes.
+Pegue uma folha e dobre ao meio, de novo e de novo. Quantas vezes você consegue? Em geral, 6 ou 7. Cada dobra dobra a espessura e metade da área: depois de 7, você tem 2⁷ = 128 camadas.
 
 </Etapa>
+
 
 <Etapa id="desafio">
 
@@ -399,6 +416,8 @@ Se elevar ao quadrado "desfaz" a raiz quadrada, então talvez exista um jeito de
 - **Cuidado com sinais:** (−3)² = 9, mas −3² = −9.
 - **Notação científica** escreve números enormes e minúsculos: m × 10ⁿ, com m entre 1 e 10.
 - **Crescimento exponencial** (dobrar, dobrar...) assusta: foi o que enganou o rei do tabuleiro.
+
+**Um pouco de história.** No século III a.C., Arquimedes provou que 10ᵃ × 10ᵇ = 10ᵃ⁺ᵇ para contar grãos de areia do universo. No século IX, Al-Khwarizmi usava palavras para quadrado e cubo. A lenda do tabuleiro de xadrez aparece por escrito em 1256, com Ibn Khallikan. Stifel inventou a palavra "expoente" em 1544, e Descartes, no início do século XVII, passou a escrever o número pequeno no alto.
 
 </Resumo>
 

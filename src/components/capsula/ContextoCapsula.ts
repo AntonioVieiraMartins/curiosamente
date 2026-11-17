@@ -11,6 +11,8 @@ type Contexto = {
   // Palpites guardados para a cápsula poder "lembrar" o que a pessoa achava no começo
   palpites: Record<string, number>
   registrarPalpite: (chave: string, opcao: number) => void
+  // Abrir uma caixa "Aprofundar" conta como a camada 3 (Rigor)
+  registrarAprofundar: () => void
 }
 
 export const ContextoCapsula = createContext<Contexto | null>(null)

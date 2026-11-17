@@ -19,7 +19,7 @@ export function useProgresso(capsulaId: string) {
     atualizar(capsulaId, (p) => {
       const id = etapas[indice].id
       const ultima = indice === etapas.length - 1
-      const camada = id === 'aprofundar' ? 3 : indice >= 3 ? 2 : 1
+      const camada = indice >= 3 ? 2 : 1
       return {
         ...p,
         concluidas: p.concluidas.includes(id) ? p.concluidas : [...p.concluidas, id],
@@ -39,5 +39,9 @@ export function useProgresso(capsulaId: string) {
     atualizar(capsulaId, (p) => ({ ...p, palpites: { ...p.palpites, [chave]: opcao } }))
   }
 
-  return { progresso, irPara, concluirEtapa, registrarPontuacao, registrarPalpite }
+  function registrarAprofundar() {
+    atualizar(capsulaId, (p) => (p.camadaMax === 3 ? p : { ...p, camadaMax: 3 }))
+  }
+
+  return { progresso, irPara, concluirEtapa, registrarPontuacao, registrarPalpite, registrarAprofundar }
 }

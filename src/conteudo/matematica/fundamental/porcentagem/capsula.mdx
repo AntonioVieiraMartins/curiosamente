@@ -181,6 +181,50 @@ O mesmo vale para aumentos. Um aumento de 10% faz o valor virar **110%** do que 
 
 <Etapa id="pratica">
 
+<Aprofundar titulo="A definição">
+
+**p%** é o mesmo que a fração **p/100**. Então **p% de um valor** é:
+
+<Formula>
+  <Linha>p% de x = <Fracao cima="p × x" baixo="100" /></Linha>
+</Formula>
+
+Exemplo: 20% de 200 = 20 × 200 ÷ 100 = 40.
+
+</Aprofundar>
+
+<Aprofundar titulo="O fator multiplicativo">
+
+- **Desconto de d%:** multiplique por (1 − d/100). Desconto de 20% é multiplicar por **0,8**.
+- **Aumento de a%:** multiplique por (1 + a/100). Aumento de 10% é multiplicar por **1,1**.
+
+</Aprofundar>
+
+<Aprofundar titulo="Descontos seguidos se multiplicam">
+
+Dois descontos seguidos são dois fatores seguidos:
+
+<Formula>
+  <Linha>200 × 0,5 × 0,8 = 200 × 0,4 = 80</Linha>
+</Formula>
+
+Você paga **40%** do preço, então o desconto foi **60%**. Como a multiplicação não depende da ordem (0,5 × 0,8 = 0,8 × 0,5), inverter os descontos dá no mesmo.
+
+</Aprofundar>
+
+<Aprofundar titulo="A fórmula geral">
+
+Escrevendo os descontos como decimais (50% = 0,5), o desconto total de dois descontos seguidos **a** e **b** é:
+
+<Formula>
+  <Linha>1 − (1 − a) × (1 − b)</Linha>
+  <Linha>= a + b − a × b</Linha>
+</Formula>
+
+Com a = 0,5 e b = 0,2: 0,5 + 0,2 − 0,1 = 0,6, ou seja, 60%. O pedaço **a × b** é o "desconto sobre o desconto" que a soma ingênua conta a mais. Ela só vira a soma simples quando um dos descontos é zero.
+
+</Aprofundar>
+
 ## Sobe e desce não se cancelam
 
 Um salário de R$ 2.000 tem aumento de 10%. Meses depois, um corte de 10%. Voltou ao mesmo valor? Mexa e veja:
@@ -188,6 +232,18 @@ Um salário de R$ 2.000 tem aumento de 10%. Meses depois, um corte de 10%. Volto
 <SobeEDesce />
 
 O aumento foi calculado sobre R$ 2.000, mas o corte veio sobre R$ 2.200, um valor maior. Por isso o corte "pesa" mais e você termina com R$ 1.980.
+
+<Aprofundar titulo="Por que sobe e desce dá prejuízo">
+
+Subir x e depois descer x (em decimais) dá:
+
+<Formula>
+  <Linha>(1 + x) × (1 − x) = 1 − x²</Linha>
+</Formula>
+
+Com x = 0,1: 1 − 0,01 = 0,99. Sobra 99%: perda de 1%. Como x² nunca é negativo, o resultado **nunca** passa de 1.
+
+</Aprofundar>
 
 ## Descobrindo o preço de antes
 
@@ -201,11 +257,42 @@ O jeito certo: o preço novo é 120% do antigo. Então divida por 1,2: 300 ÷ 1,
 
 <Exercicio enunciado="Depois de um aumento de 25%, um produto custa R$ 150. Quanto custava antes?" resposta="120" unidade="reais" dica="O preço novo é 125% do antigo. Divida por 1,25." resolucao="150 ÷ 1,25 = 120. Confira: 25% de 120 = 30, e 120 + 30 = 150." />
 
+<Aprofundar titulo="Desfazer aumentos e descontos">
+
+Se o preço novo é o antigo vezes um fator, o antigo é o novo **dividido** pelo fator:
+
+<Formula>
+  <Linha>antigo = <Fracao cima="novo" baixo="fator" /></Linha>
+</Formula>
+
+E para desfazer um desconto d (em decimal), o aumento necessário é:
+
+<Formula>
+  <Linha><Fracao cima="d" baixo="1 − d" /></Linha>
+</Formula>
+
+- Desconto de 20% → precisa subir 0,2 ÷ 0,8 = **25%**.
+- Desconto de 50% → precisa subir 0,5 ÷ 0,5 = **100%** (dobrar).
+
+</Aprofundar>
+
 ## Quanto subiu, em porcentagem?
 
 A gasolina foi de R$ 5,00 para R$ 6,00. Subiu R$ 1,00. Em porcentagem, compare o aumento com o **preço antigo**: 1 ÷ 5 = 0,2 = **20%**.
 
 <Exercicio enunciado="O aluguel passou de R$ 1.200 para R$ 1.320. De quanto por cento foi o aumento?" resposta="10" unidade="%" dica="Quanto subiu? Divida isso pelo valor antigo." resolucao="Subiu 1.320 − 1.200 = 120. E 120 ÷ 1.200 = 0,1 = 10%." />
+
+<Aprofundar titulo="Variação percentual">
+
+Quanto um valor mudou, em porcentagem, sempre em relação ao valor **antigo**:
+
+<Formula>
+  <Linha>variação = <Fracao cima="novo − antigo" baixo="antigo" /></Linha>
+</Formula>
+
+Por isso de R$ 5 para R$ 6 é +20%, mas de R$ 6 para R$ 5 é só −16,7%. A base mudou.
+
+</Aprofundar>
 
 ## "Por cento" ou "pontos percentuais"?
 
@@ -235,6 +322,37 @@ Quase tudo no mundo real (cartão de crédito, cheque especial, financiamento, p
 
 <Exercicio enunciado="Você deve R$ 200, com juros compostos de 10% ao mês. Quanto vai dever depois de 2 meses?" resposta="242" unidade="reais" dica="Multiplique por 1,1 duas vezes." resolucao="200 × 1,1 = 220. Depois 220 × 1,1 = 242." />
 
+<Aprofundar titulo="Juros compostos e a inflação de 1994">
+
+Com juros compostos de taxa i (em decimal), depois de n períodos o valor fica multiplicado por:
+
+<Formula>
+  <Linha>(1 + i) × (1 + i) × … × (1 + i) = (1 + i)ⁿ</Linha>
+</Formula>
+
+Na inflação de junho de 1994, i = 0,4658. Em dois meses: 1,4658 × 1,4658 ≈ 2,15 (os preços mais que dobram). Em doze meses: 1,4658¹² ≈ 98. Quase **cem vezes**. É o mesmo cálculo da dívida de cartão, só que com os preços.
+
+</Aprofundar>
+
+<Aprofundar titulo="A regra dos 70">
+
+Quanto tempo leva para algo dobrar com juros compostos? Um atalho famoso: divida **70** pela taxa.
+
+- 7% ao ano → dobra em cerca de 70 ÷ 7 = **10 anos**.
+- 10% ao mês → dobra em cerca de **7 meses** (a conta exata dá 7,3).
+
+É uma aproximação, que funciona bem para taxas pequenas. A conta exata usa logaritmos, que têm uma cápsula própria.
+
+</Aprofundar>
+
+<Aprofundar titulo="Bônus: um truque de cabeça">
+
+**x% de y** é igual a **y% de x**, porque as duas contas dão x × y ÷ 100.
+
+Quanto é 8% de 50? Difícil. Mas 50% de 8 é metade de 8: **4**.
+
+</Aprofundar>
+
 ## Onde mais aparece
 
 - **Gorjeta e taxa de serviço:** os 10% do restaurante são calculados sobre a conta.
@@ -247,109 +365,6 @@ Pegue um encarte de supermercado ou um site de loja. Ache uma promoção do tipo
 
 </Etapa>
 
-<Etapa id="aprofundar">
-
-Agora vamos trocar o "parece que" por contas que funcionam sempre.
-
-## 1. A definição
-
-**p%** é o mesmo que a fração **p/100**. Então **p% de um valor** é:
-
-<Formula>
-  <Linha>p% de x = <Fracao cima="p × x" baixo="100" /></Linha>
-</Formula>
-
-Exemplo: 20% de 200 = 20 × 200 ÷ 100 = 40.
-
-## 2. O fator multiplicativo
-
-- **Desconto de d%:** multiplique por (1 − d/100). Desconto de 20% é multiplicar por **0,8**.
-- **Aumento de a%:** multiplique por (1 + a/100). Aumento de 10% é multiplicar por **1,1**.
-
-## 3. Descontos seguidos se multiplicam
-
-Dois descontos seguidos são dois fatores seguidos:
-
-<Formula>
-  <Linha>200 × 0,5 × 0,8 = 200 × 0,4 = 80</Linha>
-</Formula>
-
-Você paga **40%** do preço, então o desconto foi **60%**. Como a multiplicação não depende da ordem (0,5 × 0,8 = 0,8 × 0,5), inverter os descontos dá no mesmo.
-
-## 4. A fórmula geral
-
-Escrevendo os descontos como decimais (50% = 0,5), o desconto total de dois descontos seguidos **a** e **b** é:
-
-<Formula>
-  <Linha>1 − (1 − a) × (1 − b)</Linha>
-  <Linha>= a + b − a × b</Linha>
-</Formula>
-
-Com a = 0,5 e b = 0,2: 0,5 + 0,2 − 0,1 = 0,6, ou seja, 60%. O pedaço **a × b** é o "desconto sobre o desconto" que a soma ingênua conta a mais. Ela só vira a soma simples quando um dos descontos é zero.
-
-## 5. Por que sobe e desce dá prejuízo
-
-Subir x e depois descer x (em decimais) dá:
-
-<Formula>
-  <Linha>(1 + x) × (1 − x) = 1 − x²</Linha>
-</Formula>
-
-Com x = 0,1: 1 − 0,01 = 0,99. Sobra 99%: perda de 1%. Como x² nunca é negativo, o resultado **nunca** passa de 1.
-
-## 6. Desfazer aumentos e descontos
-
-Se o preço novo é o antigo vezes um fator, o antigo é o novo **dividido** pelo fator:
-
-<Formula>
-  <Linha>antigo = <Fracao cima="novo" baixo="fator" /></Linha>
-</Formula>
-
-E para desfazer um desconto d (em decimal), o aumento necessário é:
-
-<Formula>
-  <Linha><Fracao cima="d" baixo="1 − d" /></Linha>
-</Formula>
-
-- Desconto de 20% → precisa subir 0,2 ÷ 0,8 = **25%**.
-- Desconto de 50% → precisa subir 0,5 ÷ 0,5 = **100%** (dobrar).
-
-## 7. Variação percentual
-
-Quanto um valor mudou, em porcentagem, sempre em relação ao valor **antigo**:
-
-<Formula>
-  <Linha>variação = <Fracao cima="novo − antigo" baixo="antigo" /></Linha>
-</Formula>
-
-Por isso de R$ 5 para R$ 6 é +20%, mas de R$ 6 para R$ 5 é só −16,7%. A base mudou.
-
-## 8. Juros compostos e a inflação de 1994
-
-Com juros compostos de taxa i (em decimal), depois de n períodos o valor fica multiplicado por:
-
-<Formula>
-  <Linha>(1 + i) × (1 + i) × … × (1 + i) = (1 + i)ⁿ</Linha>
-</Formula>
-
-Na inflação de junho de 1994, i = 0,4658. Em dois meses: 1,4658 × 1,4658 ≈ 2,15 (os preços mais que dobram). Em doze meses: 1,4658¹² ≈ 98. Quase **cem vezes**. É o mesmo cálculo da dívida de cartão, só que com os preços.
-
-## 9. A regra dos 70
-
-Quanto tempo leva para algo dobrar com juros compostos? Um atalho famoso: divida **70** pela taxa.
-
-- 7% ao ano → dobra em cerca de 70 ÷ 7 = **10 anos**.
-- 10% ao mês → dobra em cerca de **7 meses** (a conta exata dá 7,3).
-
-É uma aproximação, que funciona bem para taxas pequenas. A conta exata usa logaritmos, que têm uma cápsula própria.
-
-## Bônus: um truque de cabeça
-
-**x% de y** é igual a **y% de x**, porque as duas contas dão x × y ÷ 100.
-
-Quanto é 8% de 50? Difícil. Mas 50% de 8 é metade de 8: **4**.
-
-</Etapa>
 
 <Etapa id="desafio">
 
@@ -441,6 +456,8 @@ Quanto é 8% de 50? Difícil. Mas 50% de 8 é metade de 8: **4**.
 - **Descontos e aumentos seguidos se multiplicam**, não se somam: 50% e 20% dão 60%.
 - **Para achar o preço de antes, divida pelo fator**, não tire a porcentagem do preço novo.
 - **Juros compostos são uma bola de neve:** a porcentagem incide sobre o valor que já cresceu.
+
+**Um pouco de história.** O "por cento" nasceu do comércio. O imperador romano Augusto cobrava 1/100 sobre mercadorias vendidas em leilão, e os escribas italianos foram encurtando "per cento" até virar o símbolo %. Em junho de 1994 os preços no Brasil subiram 46,58% num só mês. Em 1º de julho entrou o Real, e a inflação do mês caiu para 6,08%.
 
 </Resumo>
 

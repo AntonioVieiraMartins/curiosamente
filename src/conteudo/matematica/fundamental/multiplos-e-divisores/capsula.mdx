@@ -184,40 +184,15 @@ Uma tábua de 120 cm e outra de 180 cm vão ser cortadas em pedaços **do mesmo 
 
 Outro exemplo: uma escola tem 24 meninas e 36 meninos e quer formar o **maior número de equipes iguais**, sem sobrar ninguém. O MDC de 24 e 36 é 12, então são 12 equipes, cada uma com 2 meninas e 3 meninos.
 
-### Engrenagens
-
-Duas rodas dentadas encaixadas só voltam à posição inicial, com os dois dentes marcados juntos, depois que um número de dentes que é **múltiplo dos dois** passa. O primeiro desses números é o MMC.
-
-<EngrenagensMMC />
-
-<Exercicio enunciado="Uma roda tem 12 dentes e outra tem 18. Quantas voltas a roda de 12 dentes dá até as duas voltarem à posição inicial?" resposta="3" dica="MMC(12, 18) = 36. Quantas vezes o 12 cabe em 36?" resolucao="MMC(12, 18) = 36 dentes. A roda de 12 dá 36 ÷ 12 = 3 voltas (e a de 18 dá 2)." />
-
-<Exercicio enunciado="Na mesma situação, quantas voltas dá a roda de 18 dentes?" resposta="2" dica="36 ÷ 18." resolucao="36 ÷ 18 = 2 voltas." />
-
-### Somar frações
-
-O MMC já apareceu na cápsula de Frações: para somar 1/4 + 1/6, os denominadores precisam ser iguais. O menor denominador comum é o MMC de 4 e 6, ou seja, 12. Então 1/4 = 3/12 e 1/6 = 2/12, e a soma é 5/12.
-
-E o MDC serve para **simplificar**: 12/18 vira 2/3 quando dividimos em cima e embaixo pelo MDC, que é 6.
-
-## Onde mais aparece
-
-- **Calendários e plantões:** duas pessoas fazem plantão a cada 3 e a cada 4 dias. Elas se encontram a cada 12 dias.
-- **Engrenagens:** duas rodas dentadas voltam à posição inicial depois de um número de dentes que é múltiplo dos dois.
-- **Música:** ritmos de 3 batidas e de 4 batidas se alinham a cada 12 batidas.
-- **Pisos e azulejos:** o maior ladrilho quadrado sem cortes é o MDC das medidas.
-
-</Etapa>
-
-<Etapa id="aprofundar">
-
-## 1. Definições
+<Aprofundar titulo="Definições">
 
 Um número **a** é múltiplo de **b** quando a = b × k, com k inteiro. Dizemos também que **b é divisor de a**, ou que a é divisível por b. O resto da divisão de a por b é zero.
 
 Sobre números inteiros positivos: o menor múltiplo de b é o próprio b; já os divisores de b nunca passam de b.
 
-## 2. Decomposição em fatores primos
+</Aprofundar>
+
+<Aprofundar titulo="Decomposição em fatores primos">
 
 Todo número maior que 1 pode ser escrito como um produto de números primos, e esse jeito é **único** (fora a ordem). É como o "RG" do número.
 
@@ -230,7 +205,9 @@ Para decompor, divida repetidamente pelo menor primo que divide:
   <Passo>5 é primo. Fica o 5. Então 60 = **2 × 2 × 3 × 5 = 2² × 3 × 5**.</Passo>
 </ExemploResolvido>
 
-## 3. MDC e MMC pela decomposição
+</Aprofundar>
+
+<Aprofundar titulo="MDC e MMC pela decomposição">
 
 Com as decomposições, dá para calcular rápido, sem listar:
 
@@ -247,7 +224,9 @@ Exemplo com 12 = 2² × 3 e 18 = 2 × 3². O MDC fica 2¹ × 3¹ = **6**. O MMC 
 
 <Exercicio enunciado="Quantos divisores tem 36 = 2² × 3²? (Dica: some 1 a cada expoente e multiplique.)" resposta="9" dica="(2 + 1) × (2 + 1)." resolucao="Cada divisor usa o 2 de 0 a 2 vezes (3 opções) e o 3 de 0 a 2 vezes (3 opções): 3 × 3 = 9 divisores." />
 
-## 4. Uma relação bonita
+</Aprofundar>
+
+<Aprofundar titulo="Uma relação bonita">
 
 Para dois números positivos, vale sempre:
 
@@ -259,7 +238,19 @@ Teste com 12 e 18: MDC = 6 e MMC = 36, e 6 × 36 = 216 = 12 × 18. Dá para acha
 
 <Exercicio enunciado="O MDC de 8 e 12 é 4. Qual é o MMC de 8 e 12?" resposta="24" dica="MMC = (8 × 12) ÷ MDC." resolucao="8 × 12 = 96. 96 ÷ 4 = 24." />
 
-## 5. O algoritmo de Euclides
+</Aprofundar>
+
+### Engrenagens
+
+Duas rodas dentadas encaixadas só voltam à posição inicial, com os dois dentes marcados juntos, depois que um número de dentes que é **múltiplo dos dois** passa. O primeiro desses números é o MMC.
+
+<EngrenagensMMC />
+
+<Exercicio enunciado="Uma roda tem 12 dentes e outra tem 18. Quantas voltas a roda de 12 dentes dá até as duas voltarem à posição inicial?" resposta="3" dica="MMC(12, 18) = 36. Quantas vezes o 12 cabe em 36?" resolucao="MMC(12, 18) = 36 dentes. A roda de 12 dá 36 ÷ 12 = 3 voltas (e a de 18 dá 2)." />
+
+<Exercicio enunciado="Na mesma situação, quantas voltas dá a roda de 18 dentes?" resposta="2" dica="36 ÷ 18." resolucao="36 ÷ 18 = 2 voltas." />
+
+<Aprofundar titulo="O algoritmo de Euclides">
 
 Para achar o MDC de dois números grandes, divida o maior pelo menor e olhe o **resto**. Troque: o menor passa a ser o maior, o resto passa a ser o menor. Repita até o resto ser zero. O último divisor é o MDC.
 
@@ -271,24 +262,44 @@ Para achar o MDC de dois números grandes, divida o maior pelo menor e olhe o **
 
 Por que funciona? Quem divide 48 e 18 também divide o resto 12 (porque 12 = 48 − 2 × 18). Então a lista de divisores comuns não muda quando trocamos o par por (18, 12). E o par vai ficando cada vez menor. É o mesmo que cobrir o terreno de Euclides com quadrados.
 
-## 6. Por que o truque da soma dos algarismos funciona
+</Aprofundar>
+
+### Somar frações
+
+O MMC já apareceu na cápsula de Frações: para somar 1/4 + 1/6, os denominadores precisam ser iguais. O menor denominador comum é o MMC de 4 e 6, ou seja, 12. Então 1/4 = 3/12 e 1/6 = 2/12, e a soma é 5/12.
+
+E o MDC serve para **simplificar**: 12/18 vira 2/3 quando dividimos em cima e embaixo pelo MDC, que é 6.
+
+<Aprofundar titulo="Por que o truque da soma dos algarismos funciona">
 
 Pegue 1.296. Ele é 1 × 1000 + 2 × 100 + 9 × 10 + 6. Repare que 10, 100 e 1000 deixam **resto 1** na divisão por 9 (10 = 9 + 1, 100 = 99 + 1, 1000 = 999 + 1). Então cada algarismo conta só **ele mesmo** para o resto: o resto de 1.296 por 9 é o resto de 1 + 2 + 9 + 6 = 18 por 9. Como 3 também divide 9, o truque vale para o 3.
 
 Já para o 4, basta olhar o final porque 100 é múltiplo de 4: tudo que está do lado das centenas "some".
 
-## 7. Números primos entre si
+</Aprofundar>
+
+<Aprofundar titulo="Números primos entre si">
 
 Dois números são **primos entre si** quando o único divisor comum é o 1, ou seja, MDC = 1. Eles não precisam ser primos: 8 e 15 não são primos, mas são primos entre si. Nesse caso, o MMC é o produto: MMC(8, 15) = 120.
 
-## 8. Erros comuns
+</Aprofundar>
+
+## Erros comuns
 
 - **Confundir múltiplo com divisor.** 12 é múltiplo de 3 (12 = 3 × 4); 3 é divisor de 12.
 - **Achar que MMC é somar.** As luzes de 6 e 8 não piscam juntas no 14.
 - **Esquecer o 1 e o próprio número** na lista de divisores.
 - **Achar que o zero não é múltiplo.** Zero é múltiplo de todo número.
 
+## Onde mais aparece
+
+- **Calendários e plantões:** duas pessoas fazem plantão a cada 3 e a cada 4 dias. Elas se encontram a cada 12 dias.
+- **Engrenagens:** duas rodas dentadas voltam à posição inicial depois de um número de dentes que é múltiplo dos dois.
+- **Música:** ritmos de 3 batidas e de 4 batidas se alinham a cada 12 batidas.
+- **Pisos e azulejos:** o maior ladrilho quadrado sem cortes é o MDC das medidas.
+
 </Etapa>
+
 
 <Etapa id="desafio">
 
@@ -386,6 +397,8 @@ Dois números são **primos entre si** quando o único divisor comum é o 1, ou 
 - **MDC:** o maior ladrilho (divisores). Use para "pedaços iguais, os maiores possíveis" e para simplificar frações.
 - **Fatores primos:** MDC usa os comuns com o menor expoente; MMC usa todos com o maior expoente. E MDC × MMC = a × b.
 - **Euclides:** divida, olhe o resto e repita até o resto ser zero.
+
+**Um pouco de história.** Por volta de 300 a.C., Euclides descreveu nos *Elementos* o método para achar o MDC cobrindo um terreno com quadrados cada vez menores. Provavelmente ele reuniu resultados mais antigos. É um dos algoritmos mais velhos que ainda se usam, e hoje roda dentro de computadores.
 
 </Resumo>
 

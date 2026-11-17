@@ -13,7 +13,7 @@ type Props = {
 export default function NavegacaoEtapas({ atual, concluida, aoVoltar, aoConcluir }: Props) {
   const ultima = atual === etapas.length - 1
   const proxima = etapas[atual + 1]
-  const xp = etapas[atual].id === 'aprofundar' ? XP.aprofundar : XP.etapa
+  const xp = XP.etapa
 
   const textoPrincipal = ultima
     ? concluida ? 'Cápsula concluída ✓' : 'Concluir a cápsula'
