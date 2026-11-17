@@ -1,7 +1,9 @@
 import FichasDeSaldo from '../../../../components/simulacoes/FichasDeSaldo'
 import RetaNumerica from '../../../../components/simulacoes/RetaNumerica'
+import Elevador from '../../../../components/simulacoes/Elevador'
+import TanqueNoTempo from '../../../../components/simulacoes/TanqueNoTempo'
 
-{/* Fatos históricos conferidos na Wikipedia em inglês (Negative number), listada no meta.ts. */}
+{/* Fatos históricos conferidos na Wikipedia em inglês (Negative number, Brahmagupta, Celsius), listadas no meta.ts. */}
 
 <Etapa id="gancho">
 
@@ -15,28 +17,58 @@ Estranho? Por mais de mil anos, muitos matemáticos acharam que sim. E tem uma r
   opcoes={['−6', '6', 'Não dá para multiplicar dois negativos']}
 />
 
-Ao longo da cápsula você vai ver **por que** a resposta é essa, e não só decorar.
+Ao longo da cápsula você vai ver **por que** a resposta é essa, com uma caixa d'água e um filme passando de trás para a frente. Nada de decorar.
 
 </Etapa>
 
 <Etapa id="historia">
 
-Os números negativos foram aceitos aos poucos, e com muita desconfiança.
+Os números negativos foram aceitos aos poucos, e com muita desconfiança. Gente muito inteligente chamou esses números de "absurdos" por séculos.
 
 <LinhaDoTempo marcos={[
-  { ano: 'Dinastia Han (China)', texto: 'O livro "Os Nove Capítulos sobre a Arte Matemática" já resolve contas com negativos. Os calculistas usavam varetas: vermelhas para positivos, pretas para negativos. O contrário do "ficar no vermelho" de hoje!' },
-  { ano: 'Séc. III', texto: 'O grego Diofanto encontra uma equação equivalente a 4x + 20 = 4 e a chama de "absurda", porque a resposta seria negativa.' },
-  { ano: 'c. 630', texto: 'Na Índia, Brahmagupta escreve regras para somar, subtrair e multiplicar "fortunas" (positivos) e "dívidas" (negativos).' },
+  { ano: 'Dinastia Han (China)', texto: 'O livro "Os Nove Capítulos sobre a Arte Matemática" já resolve contas com negativos, usando varetas coloridas.' },
+  { ano: 'Séc. III', texto: 'O grego Diofanto encontra uma equação equivalente a 4x + 20 = 4 e a chama de "absurda".' },
+  { ano: 'c. 630', texto: 'Na Índia, Brahmagupta escreve regras para somar, subtrair e multiplicar positivos, negativos e o zero.' },
   { ano: '1202', texto: 'Fibonacci, no Liber Abaci, aceita uma resposta negativa num problema, interpretando-a como um débito.' },
-  { ano: '1544', texto: 'O alemão Michael Stifel ainda chama os negativos de "números absurdos".' },
-  { ano: '1545', texto: 'O italiano Cardano, no livro Ars Magna, faz o primeiro tratamento europeu satisfatório dos negativos.' },
+  { ano: '1544–1545', texto: 'Stifel ainda chama os negativos de "números absurdos"; Cardano, no Ars Magna, faz o primeiro tratamento europeu satisfatório deles.' },
+  { ano: '1742', texto: 'Anders Celsius propõe sua escala de temperatura, mas de cabeça para baixo.' },
 ]} />
 
-O problema não era a conta. Era a pergunta: "como um número pode ser **menor que nada**?" A resposta veio quando as pessoas pararam de pensar em "quantidade de coisas" e passaram a pensar em **posição** e **direção**.
+## Varetas vermelhas e pretas
+
+Na China antiga, as contas eram feitas com **varetas** espalhadas numa mesa. Para separar o que se ganhava do que se devia, os calculistas usavam duas cores: varetas **vermelhas** para os positivos e **pretas** para os negativos.
+
+O matemático Liu Hui, no século III, escreveu as regras para somar e subtrair essas varetas. Repare na ironia: hoje, "ficar no vermelho" quer dizer estar devendo. Na China antiga, vermelho era o lado bom.
+
+## O "absurdo" de Diofanto
+
+Diofanto de Alexandria foi um dos maiores matemáticos gregos. Mesmo assim, quando uma equação dava resposta negativa, ele dizia que ela era **absurda** e a descartava.
+
+Para os gregos, número era quantidade de coisas, ou comprimento de um segmento. Não existe um segmento de −4 centímetros nem um rebanho de −4 ovelhas. Então, para eles, −4 simplesmente não era número.
+
+## Fortunas e dívidas na Índia
+
+Foi na Índia que os negativos ganharam regras completas. Por volta do ano 630, **Brahmagupta** escreveu, em versos, como calcular com positivos, negativos **e o zero**. Entre as regras: "o produto de dois negativos é positivo". Exatamente a regra que vamos entender nesta cápsula.
+
+Brahmagupta também errou em uma: ele escreveu que zero dividido por zero dá zero. Hoje sabemos que essa conta não tem um resultado definido. Até os gênios tropeçam quando estão desbravando uma ideia nova.
+
+## A Europa desconfiada
+
+Na Europa, os negativos demoraram a ser aceitos. Fibonacci, em 1202, aceitou uma resposta negativa num problema de dinheiro, entendendo-a como **débito**. Mas em 1544 o alemão Michael Stifel ainda os chamava de "números absurdos".
+
+No ano seguinte, o italiano Cardano publicou o *Ars Magna*, com o primeiro tratamento europeu satisfatório dos negativos. Ainda assim, muitos matemáticos usavam esses números nas contas mesmo achando que eles "não existiam de verdade".
+
+## O termômetro de cabeça para baixo
+
+Em 1742, o sueco Anders Celsius criou sua escala de temperatura. Só que ao contrário da que usamos: **0 era a água fervendo e 100 era a água congelando**. Nessa escala, quanto mais frio, maior o número.
+
+Logo depois, em 1743, o francês Jean-Pierre Christin inverteu a escala, e em 1744 o sueco Carl Linnaeus fez o mesmo. Desde então, 0 °C é o gelo, e o inverno rigoroso ganhou números negativos.
 
 </Etapa>
 
 <Etapa id="intuicao">
+
+## 1. O zero como ponto de referência
 
 O truque é ver o zero como um **ponto de referência**, e não como "nada".
 
@@ -46,7 +78,37 @@ Coloque tudo numa reta. À direita do zero, os <Termo cor="verde">positivos</Ter
 
 <RetaNumerica valor={-3} />
 
-A bolinha está em −3: três passos à esquerda do zero. Quanto mais à esquerda, **menor** o número. Por isso −10 é menor que −2, mesmo o 10 sendo "maior" que o 2. Pense no termômetro: −10 °C é bem mais frio.
+A bolinha está em −3: três passos à esquerda do zero.
+
+## 2. Oposto e módulo
+
+Todo número tem um **oposto**: o reflexo dele no espelho do zero. O oposto de 3 é −3, e o oposto de −3 é 3. Um número somado ao seu oposto dá sempre zero: ganhar R$ 3 e gastar R$ 3 deixa você onde estava.
+
+O **módulo** é a **distância até o zero**, sem ligar para o lado. Ele se escreve entre barrinhas: |−3| = 3 e |3| = 3. Distância nunca é negativa: andar 3 quarteirões para o norte ou para o sul dá os mesmos 3 quarteirões de caminhada.
+
+<Exercicio enunciado="Qual é o oposto de −7?" resposta="7" dica="O oposto fica do outro lado do zero, à mesma distância." resolucao="−7 está 7 passos à esquerda do zero. O oposto está 7 passos à direita: 7. E −7 + 7 = 0." />
+
+<Exercicio enunciado="Quanto é |−12|?" resposta="12" dica="O módulo é a distância até o zero." resolucao="−12 está a 12 passos do zero. Então |−12| = 12." />
+
+## 3. Quem é maior?
+
+Na reta, **quanto mais à direita, maior**. Por isso −2 é maior que −10, mesmo o 10 sendo "maior" que o 2. Pense no termômetro: −2 °C é frio, mas −10 °C é bem mais frio.
+
+Um jeito lúdico de lembrar: entre duas dívidas, quem deve **menos** está em melhor situação. Dever R$ 2 é melhor que dever R$ 10.
+
+<ExemploResolvido titulo="Coloque em ordem, do menor para o maior: 3, −8, 0, −1, −5">
+  <Passo>Os negativos vêm primeiro. Entre eles, o que está mais longe do zero é o menor: **−8**, depois **−5**, depois **−1**.</Passo>
+  <Passo>Depois vem o **0**, e por fim os positivos: **3**.</Passo>
+  <Passo>Resposta: −8 &lt; −5 &lt; −1 &lt; 0 &lt; 3.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é o maior: −15 ou −8? Digite o maior." resposta="-8" dica="Qual dívida é menor: R$ 15 ou R$ 8?" resolucao="−8 está mais perto do zero, mais à direita na reta. Então −8 é maior que −15." />
+
+<Exercicio enunciado="Qual é o menor destes números: 2, −3, 0, −10, −0,5?" resposta="-10" dica="O menor é o que está mais à esquerda na reta." resolucao="De todos, −10 é o mais à esquerda, o mais longe do zero entre os negativos." />
+
+Os negativos também podem ter vírgula ou ser frações: −0,5 fica no meio do caminho entre −1 e 0. A mesma regra vale: mais à esquerda, menor.
+
+<Exercicio enunciado="Qual é maior: −1/2 ou −1/3? Digite o maior." resposta="-1/3" dica="Qual está mais perto do zero? 1/3 é menor que 1/2." resolucao="1/3 é menor que 1/2, então −1/3 fica mais perto do zero, mais à direita. Logo −1/3 é maior que −1/2." />
 
 </Etapa>
 
@@ -72,59 +134,138 @@ E quando não há dívida para tirar? O simulador coloca um par verde + vermelho
 
 </Previsao>
 
+## Somar e subtrair, com as fichas na cabeça
+
+Com as fichas, as regras saem sozinhas:
+
+- **Mesmo sinal:** junte tudo. (−4) + (−3) = −7: duas dívidas viram uma dívida maior.
+- **Sinais diferentes:** cada verde "anula" uma vermelha. Sobra a diferença, com a cor de quem tinha mais. (−8) + 3 = −5: três pares se anulam e sobram 5 vermelhas.
+- **Subtrair:** tirar algo é o mesmo que acrescentar o oposto. 7 − (−2) = 7 + 2 = 9.
+
+<ExemploResolvido titulo="Quanto é −6 − (−9)?">
+  <Passo>Subtrair −9 é o mesmo que somar o oposto: **−6 + 9**.</Passo>
+  <Passo>6 vermelhas e 9 verdes: 6 pares se anulam.</Passo>
+  <Passo>Sobram 3 verdes: **3**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é −8 + 3?" resposta="-5" dica="8 dívidas e 3 créditos. Quantos pares se anulam?" resolucao="3 pares se anulam e sobram 5 dívidas: −5." />
+
+<Exercicio enunciado="Quanto é −4 − 6?" resposta="-10" dica="Você devia 4 e ganhou mais 6 de dívida." resolucao="−4 − 6 = −4 + (−6) = −10. Duas dívidas se juntam." />
+
+<Exercicio enunciado="Quanto é 7 − (−2)?" resposta="9" dica="Tirar uma dívida de 2 é como ganhar 2." resolucao="7 − (−2) = 7 + 2 = 9." />
+
+<Exercicio enunciado="Quanto é −5 − (−5)?" resposta="0" dica="Você tinha 5 dívidas e tirou 5 dívidas." resolucao="−5 − (−5) = −5 + 5 = 0. Tirar tudo o que se devia zera a conta." />
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['−6', '6', 'Não dá para multiplicar dois negativos']}
+  correta={1}
+  seAcertou="Seu palpite lá do começo, (−2) × (−3) = 6, está certo. Na próxima etapa você vai VER o porquê."
+  seErrou="Lá no começo era sobre multiplicação: (−2) × (−3). A resposta é 6, e na próxima etapa você vai VER o porquê."
+/>
+
 </Etapa>
 
 <Etapa id="pratica">
 
-## Onde os negativos aparecem
+## Distâncias: o elevador
+
+No elevador, quanto você sobe ou desce? A conta é sempre **chegada menos saída**. Do subsolo 2 até o 5º andar: 5 − (−2) = 7 andares. Escolha outros andares:
+
+<Elevador />
+
+Se o resultado for positivo, o elevador subiu. Se for negativo, desceu. O tamanho do caminho é o módulo do resultado.
+
+<Exercicio enunciado="De manhã fazia −4 °C. À tarde, 9 °C. Quantos graus a temperatura subiu?" resposta="13" unidade="graus" dica="Chegada menos saída: 9 − (−4)." resolucao="9 − (−4) = 9 + 4 = 13 graus. Faz sentido: de −4 até 0 são 4 graus, e de 0 até 9 são mais 9." />
+
+<Exercicio enunciado="Um mergulhador está a −12 metros e sobe 5 metros. Em que profundidade ele fica?" resposta="-7" unidade="metros" dica="Subir é somar: −12 + 5." resolucao="−12 + 5 = −7. Ele fica a 7 metros abaixo da superfície." />
+
+## Multiplicar: a caixa d'água e o filme
+
+Multiplicar positivo por negativo é fácil de imaginar: 3 × (−2) são **três dívidas de R$ 2**, uma dívida de R$ 6. Mas e **negativo vezes negativo**?
+
+Imagine uma caixa d'água com 50 litros e um filme dela. A torneira pode estar **enchendo** (+) ou **esvaziando** (−). E o filme pode andar para o **futuro** (+) ou voltar para o **passado** (−).
+
+Pergunta: a caixa está **esvaziando** 5 litros por minuto. Como ela estava **3 minutos atrás**? Com **mais** água, claro: 15 litros a mais. É exatamente (−5) × (−3) = +15. Mexa e confira os quatro casos:
+
+<TanqueNoTempo />
+
+Os quatro casos viram a famosa regra dos sinais:
+
+- (+) × (+) = + : enchendo, no futuro → mais água.
+- (+) × (−) = − : enchendo, no passado → menos água.
+- (−) × (+) = − : esvaziando, no futuro → menos água.
+- (−) × (−) = + : esvaziando, no passado → mais água.
+
+<ExemploResolvido titulo="Quanto é (−4) × 3? E (−6) × (−5)?">
+  <Passo>(−4) × 3: sinais **diferentes**, resultado negativo. 4 × 3 = 12, então **−12**. (Esvaziando 4 por minuto, daqui a 3 minutos: 12 litros a menos.)</Passo>
+  <Passo>(−6) × (−5): sinais **iguais**, resultado positivo. 6 × 5 = 30, então **30**.</Passo>
+  <Passo>Regra curta: multiplique os números sem sinal; sinais iguais dão +, diferentes dão −.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é (−7) × 4?" resposta="-28" dica="Sinais diferentes." resolucao="7 × 4 = 28, e sinais diferentes dão negativo: −28." />
+
+<Exercicio enunciado="Quanto é (−6) × (−5)?" resposta="30" dica="Sinais iguais." resolucao="6 × 5 = 30, e sinais iguais dão positivo: 30." />
+
+## Dividir: as mesmas regras
+
+Dividir é desfazer a multiplicação, então os sinais seguem as **mesmas regras**. (−20) ÷ 4 = −5, porque (−5) × 4 = −20. E (−18) ÷ (−3) = 6, porque 6 × (−3) = −18.
+
+<Exercicio enunciado="Quanto é (−20) ÷ 4?" resposta="-5" dica="Sinais diferentes dão negativo." resolucao="20 ÷ 4 = 5, sinais diferentes: −5. Confira: (−5) × 4 = −20." />
+
+<Exercicio enunciado="Quanto é (−18) ÷ (−3)?" resposta="6" dica="Sinais iguais dão positivo." resolucao="18 ÷ 3 = 6, sinais iguais: 6. Confira: 6 × (−3) = −18." />
+
+## Contas com várias operações
+
+A ordem é a mesma de sempre: primeiro **parênteses**, depois **potências**, depois **multiplicações e divisões**, por último **somas e subtrações**. O sinal de menos vai junto com o número.
+
+<ExemploResolvido titulo="Quanto é −2 + 3 × (−4)?">
+  <Passo>Primeiro a multiplicação: 3 × (−4) = **−12**.</Passo>
+  <Passo>Depois a soma: −2 + (−12) = **−14**.</Passo>
+  <Passo>Se você somasse primeiro, daria (1) × (−4) = −4, que está errado. A ordem importa.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 5 − 2 × (−3)?" resposta="11" dica="Primeiro 2 × (−3). Depois tire isso de 5." resolucao="2 × (−3) = −6. Então 5 − (−6) = 5 + 6 = 11." />
+
+## Onde mais os negativos aparecem
 
 - **Clima:** um freezer comum fica perto de −18 °C. A menor temperatura já medida por um termômetro foi −89,2 °C, na estação russa Vostok, na Antártida, em 1983.
 - **Futebol:** o **saldo de gols** é gols feitos menos gols sofridos. Um time que fez 40 e sofreu 52 tem saldo −12.
 - **Fuso horário:** o horário de Brasília é **UTC−3**: três horas a menos que o horário de referência mundial. Tóquio é UTC+9.
-- **Elevador:** o subsolo 2 é o andar −2. Do −2 ao 5º andar são 7 andares: 5 − (−2) = 7.
 - **Banco:** no cheque especial, o saldo negativo é uma dívida, e ela cobra juros.
-
-## Distância entre dois números
-
-Do −2 até o 5 no elevador, você sobe 7 andares. A conta é sempre **o de cima menos o de baixo**: 5 − (−2) = 5 + 2 = 7. Funciona para temperaturas também: de −3 °C para 8 °C, a temperatura subiu 11 graus.
 
 ## Experimente em casa
 
-Olhe a tabela do campeonato brasileiro. Escolha dois times com saldo de gols negativo e descubra: qual saldo é **maior**? (Dica: o que está mais perto do zero.)
+Olhe a tabela do campeonato brasileiro. Escolha dois times com saldo de gols negativo e descubra: qual saldo é **maior**? E qual a diferença entre o melhor e o pior saldo da tabela?
 
 </Etapa>
 
 <Etapa id="aprofundar">
 
-Agora as regras, cada uma com o seu porquê.
+Agora as regras com rigor, cada uma com o seu porquê.
 
-## 1. Oposto e módulo
+## 1. Somar com régua
 
-Todo número tem um **oposto** do outro lado do zero: o oposto de 3 é −3, e o de −3 é 3. Somados, eles dão zero: 3 + (−3) = 0. É o par verde + vermelho das fichas.
-
-O **módulo** é a distância até o zero, sem ligar para o lado: |−3| = 3 e |3| = 3.
-
-## 2. Somar
-
-- **Mesmo sinal:** junte os módulos e mantenha o sinal. (−4) + (−3) = −7: duas dívidas viram uma dívida maior.
-- **Sinais diferentes:** os pares se anulam. Subtraia os módulos e fique com o sinal de quem "sobrou". (−4) + 7 = 3.
-
-## 3. Subtrair é somar o oposto
+Somar um positivo é andar para a **direita** na reta; somar um negativo é andar para a **esquerda**. Subtrair é andar no sentido contrário. Assim, toda soma e subtração vira uma caminhada na reta.
 
 <Formula>
   <Linha>a − b = a + (−b)</Linha>
   <Linha>5 − (−3) = 5 + 3 = 8</Linha>
 </Formula>
 
-Tirar 3 dívidas é o mesmo que ganhar 3 créditos. Foi exatamente isso que você viu nas fichas.
+## 2. Distância entre dois números
 
-## 4. Positivo vezes negativo
+A distância entre dois pontos da reta é o **módulo da diferença**:
 
-3 × (−2) é "três dívidas de 2": uma dívida de 6. Então 3 × (−2) = −6.
+<Formula>
+  <Linha>distância entre a e b = |a − b|</Linha>
+</Formula>
 
-## 5. Negativo vezes negativo
+Entre −2 e 5: |5 − (−2)| = |7| = 7. Entre 5 e −2: |−2 − 5| = |−7| = 7. A ordem não importa, porque distância não tem sentido.
 
-Observe o padrão. A cada linha, o primeiro número diminui 1, e o resultado **sobe 2**:
+## 3. Negativo vezes negativo: o padrão
+
+Observe. A cada linha, o primeiro número diminui 1, e o resultado **sobe 2**:
 
 <Formula>
   <Linha>3 × (−2) = −6</Linha>
@@ -138,7 +279,9 @@ Observe o padrão. A cada linha, o primeiro número diminui 1, e o resultado **s
 
 Se o padrão continua (e a matemática exige que continue), negativo vezes negativo **tem** que dar positivo.
 
-Uma prova mais rigorosa usa a propriedade distributiva. Sabemos que 3 + (−3) = 0, então:
+## 4. A prova pela distributiva
+
+Uma prova mais rigorosa usa a propriedade distributiva, que já vale para os positivos. Sabemos que 3 + (−3) = 0, então:
 
 <Formula>
   <Linha>(−2) × [3 + (−3)] = (−2) × 0 = 0</Linha>
@@ -146,23 +289,15 @@ Uma prova mais rigorosa usa a propriedade distributiva. Sabemos que 3 + (−3) =
   <Linha>−6 + (−2) × (−3) = 0</Linha>
 </Formula>
 
-O único número que somado a −6 dá zero é 6. Logo, (−2) × (−3) = 6. Não é uma convenção arbitrária: qualquer outra resposta quebraria as regras que já usamos com os positivos.
+O único número que somado a −6 dá zero é 6. Logo, (−2) × (−3) = 6. Não é uma convenção arbitrária: qualquer outra resposta quebraria regras que já usamos com os positivos.
 
-<LembrarPalpite
-  chave="inicial"
-  opcoes={['−6', '6', 'Não dá para multiplicar dois negativos']}
-  correta={1}
-  seAcertou="Você acertou, e agora sabe provar por que é 6."
-  seErrou="A resposta é 6. E agora você tem dois argumentos: o padrão das multiplicações e a prova pela distributiva."
-/>
+## 5. Por que não se divide por zero
 
-## 6. Divisão segue as mesmas regras
+Brahmagupta errou ao dizer que 0 ÷ 0 = 0. Veja o problema: dividir é desfazer a multiplicação. 6 ÷ 0 seria um número que, vezes 0, dá 6. Mas **qualquer** número vezes 0 dá 0. Não existe resposta.
 
-Como dividir é desfazer a multiplicação: (−6) ÷ (−2) = 3, porque 3 × (−2) = −6. E (−6) ÷ 2 = −3.
+E 0 ÷ 0 seria um número que, vezes 0, dá 0. Aí **todo** número serve: 5, −3, 1.000. Como não há um único resultado, dizemos que a conta é **indeterminada**.
 
-Resumo dos sinais (vale para multiplicar e dividir): sinais **iguais** dão positivo; sinais **diferentes** dão negativo.
-
-## 7. Cuidado com potências
+## 6. Cuidado com potências
 
 <Formula>
   <Linha>(−2)² = (−2) × (−2) = 4</Linha>
@@ -170,7 +305,15 @@ Resumo dos sinais (vale para multiplicar e dividir): sinais **iguais** dão posi
   <Linha>(−2)³ = (−2) × (−2) × (−2) = −8</Linha>
 </Formula>
 
-Os parênteses fazem diferença. E potência de negativo com expoente **par** dá positivo; com expoente **ímpar**, dá negativo.
+Os parênteses fazem diferença. E potência de negativo com expoente **par** dá positivo (os sinais se cancelam de dois em dois); com expoente **ímpar**, sobra um sinal de menos.
+
+<Exercicio enunciado="Quanto é (−3)²?" resposta="9" dica="(−3) × (−3)." resolucao="(−3) × (−3) = 9. Sinais iguais, positivo." />
+
+<Exercicio enunciado="Quanto é (−2)⁵?" resposta="-32" dica="Expoente ímpar: o resultado é negativo. Quanto é 2⁵?" resolucao="2⁵ = 32, e com expoente ímpar o sinal de menos sobra: −32." />
+
+## 7. Os inteiros: um conjunto com nome
+
+Os números ..., −3, −2, −1, 0, 1, 2, 3, ... formam o conjunto dos **números inteiros**, representado pela letra **ℤ** (do alemão *Zahlen*, "números"). Com eles, toda subtração tem resposta: 3 − 5 = −2. Sem os negativos, ela não teria.
 
 </Etapa>
 
@@ -182,6 +325,24 @@ Os parênteses fazem diferença. E potência de negativo com expoente **par** d�
     opcoes: ['−8 °C', '−3 °C', 'São iguais'],
     correta: 0,
     explicacao: 'Na reta, −8 fica mais à esquerda que −3, então é menor. Em temperatura, menor é mais frio.',
+  },
+  {
+    enunciado: 'Qual é o oposto de −9?',
+    opcoes: ['−9', '9', '0'],
+    correta: 1,
+    explicacao: 'O oposto fica do outro lado do zero, à mesma distância: 9. E −9 + 9 = 0.',
+  },
+  {
+    enunciado: 'Quanto é |−6| + |4|?',
+    opcoes: ['−2', '2', '10'],
+    correta: 2,
+    explicacao: 'Módulo é distância até o zero: |−6| = 6 e |4| = 4. Somando: 10.',
+  },
+  {
+    enunciado: 'Qual lista está em ordem do menor para o maior?',
+    opcoes: ['−2, −7, 0, 3', '−7, −2, 0, 3', '0, −2, −7, 3'],
+    correta: 1,
+    explicacao: '−7 está mais à esquerda que −2. A ordem certa é −7, −2, 0, 3.',
   },
   {
     enunciado: 'Quanto é −4 + 7?',
@@ -196,10 +357,34 @@ Os parênteses fazem diferença. E potência de negativo com expoente **par** d�
     explicacao: 'Subtrair um negativo é somar o oposto: 2 − (−5) = 2 + 5 = 7. Tirar cinco dívidas deixa você cinco mais rico.',
   },
   {
+    enunciado: 'Um mergulhador está a −12 metros e sobe 5 metros. Onde ele fica?',
+    opcoes: ['−17 m', '−7 m', '7 m'],
+    correta: 1,
+    explicacao: 'Subir é somar: −12 + 5 = −7. Ele continua debaixo d\'água, a 7 metros.',
+  },
+  {
     enunciado: 'Quanto é (−3) × (−4)?',
     opcoes: ['−12', '12', '−7'],
     correta: 1,
-    explicacao: 'Sinais iguais dão positivo: 3 × 4 = 12. É o mesmo raciocínio do padrão e da prova pela distributiva.',
+    explicacao: 'Sinais iguais dão positivo: 3 × 4 = 12. É a caixa d\'água esvaziando, vista no passado.',
+  },
+  {
+    enunciado: 'Quanto é (−20) ÷ 5?',
+    opcoes: ['4', '−4', '−15'],
+    correta: 1,
+    explicacao: 'Sinais diferentes dão negativo: 20 ÷ 5 = 4, então −4. Confira: (−4) × 5 = −20.',
+  },
+  {
+    enunciado: 'Quanto é −2 + 3 × (−4)?',
+    opcoes: ['4', '−14', '−20'],
+    correta: 1,
+    explicacao: 'Primeiro a multiplicação: 3 × (−4) = −12. Depois −2 + (−12) = −14.',
+  },
+  {
+    enunciado: 'Quanto é (−1) elevado a 100?',
+    opcoes: ['1', '−1', '−100'],
+    correta: 0,
+    explicacao: '100 é par: os sinais de menos se cancelam de dois em dois. (−1)¹⁰⁰ = 1.',
   },
   {
     enunciado: 'São 8h em Brasília (UTC−3). Que horas são em Tóquio (UTC+9)?',
@@ -216,10 +401,12 @@ Os parênteses fazem diferença. E potência de negativo com expoente **par** d�
 <Resumo>
 
 - **O zero é um ponto de referência**, não "nada". Negativos são posições do outro lado.
+- **Oposto** é o reflexo no espelho do zero; **módulo** é a distância até o zero.
 - **Na reta, mais à esquerda é menor:** −10 é menor que −2.
 - **Subtrair é somar o oposto:** tirar uma dívida é ganhar um crédito.
-- **Menos vezes menos dá mais** porque qualquer outra resposta quebraria a distributiva.
+- **Menos vezes menos dá mais:** a caixa esvaziando, vista no passado, tinha mais água.
 - **Sinais iguais dão positivo, diferentes dão negativo**, na multiplicação e na divisão.
+- **Não se divide por zero:** não existe resposta (ou existem todas).
 
 </Resumo>
 

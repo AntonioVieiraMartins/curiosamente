@@ -119,7 +119,9 @@ const simbolos: Record<string, string> = {
 export function prepararParaFala(texto: string) {
   let saida = texto
     .replace(/"\|"/g, 'vertical') // 'A barra "|" se lê...' vira 'A barra vertical se lê...'
-    .replace(/\|([^|\s]+)\|/g, ' módulo de $1 ') // "|−3|" vira "módulo de menos 3"
+    // "|−3|" e "|5 − (−2)|" viram "módulo de ...". Só números e sinais entre as barras,
+    // para não confundir com o "|" de "P(A | B)" (que tem letras).
+    .replace(/\|([^|A-Za-z]+)\|/g, ' módulo de $1 ')
     .replace(/\bP\(/g, 'P de ') // "P(A | B)" vira "P de A sabendo que B"
     .replace(/[()]/g, ' ')
     // Número misto: "1 1/2" vira "1 e meio", e não "1 um meio"
