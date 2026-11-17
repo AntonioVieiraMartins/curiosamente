@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Pizza from './Pizza'
+import Passo from './Passo'
 import { cartao } from '../ui/estilos'
 
 type Fracao = { cima: number; baixo: number }
@@ -8,20 +9,6 @@ const mdc = (a: number, b: number): number => (b === 0 ? a : mdc(b, a % b))
 const mmc = (a: number, b: number) => (a * b) / mdc(a, b)
 
 const MAX = 10
-const botaoPasso = 'grid size-11 shrink-0 place-items-center rounded-full border border-borda text-xl font-semibold enabled:hover:border-texto/30 disabled:opacity-30'
-
-function Passo({ rotulo, valor, min, max, mudar }: { rotulo: string; valor: number; min: number; max: number; mudar: (v: number) => void }) {
-  return (
-    <div className="flex flex-col items-center gap-1">
-      <span className="text-center text-sm text-suave">{rotulo}</span>
-      <div className="flex items-center gap-2">
-        <button type="button" aria-label={`${rotulo}: menos`} className={botaoPasso} disabled={valor <= min} onClick={() => mudar(valor - 1)}>−</button>
-        <span className="w-6 text-center font-semibold">{valor}</span>
-        <button type="button" aria-label={`${rotulo}: mais`} className={botaoPasso} disabled={valor >= max} onClick={() => mudar(valor + 1)}>+</button>
-      </div>
-    </div>
-  )
-}
 
 function Lado({ f, mudar, cor }: { f: Fracao; mudar: (f: Fracao) => void; cor: string }) {
   return (

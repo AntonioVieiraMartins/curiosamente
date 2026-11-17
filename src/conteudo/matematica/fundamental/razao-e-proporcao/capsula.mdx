@@ -1,0 +1,227 @@
+import MisturaDeSuco from '../../../../components/simulacoes/MisturaDeSuco'
+import ReceitaEscalavel from '../../../../components/simulacoes/ReceitaEscalavel'
+import Pizza from '../../../../components/simulacoes/Pizza'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Thales, Cross-multiplication, Golden ratio), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Na pizzaria, a pizza <Termo cor="coral">pequena</Termo> tem 20 cm de largura e custa R$ 30. A <Termo cor="azul">grande</Termo> tem 40 cm, o dobro, e custa R$ 90, o triplo.
+
+"O triplo do preço por só o dobro do tamanho? Que roubo!", pensa alguém na fila.
+
+<Palpite
+  chave="inicial"
+  pergunta="Qual compensa mais?"
+  opcoes={['A pequena', 'A grande', 'Dá na mesma']}
+/>
+
+Para responder, precisamos comparar do jeito certo. É disso que trata esta cápsula: **razões**.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Comparar coisas por divisão é uma das ideias mais antigas e úteis da matemática.
+
+<LinhaDoTempo marcos={[
+  { ano: 'c. 600 a.C.', texto: 'Conta a tradição que o grego Tales mediu a altura de uma pirâmide do Egito pela sombra: esperou o momento em que a sombra dele tinha o mesmo tamanho que a altura dele. Nessa hora, a sombra da pirâmide (contada a partir do centro da base) também media a altura dela.' },
+  { ano: 'c. 300 a.C.', texto: 'Euclides, no livro V dos Elementos, organiza uma teoria completa das proporções, atribuída ao matemático Eudoxo.' },
+  { ano: 'Antes do séc. II', texto: 'Matemáticos chineses já usavam a regra de três, muito antes de ela aparecer na Europa.' },
+  { ano: 'Séc. XVI e XVII', texto: 'A regra de três vira item obrigatório nos livros de aritmética europeus, usados por comerciantes. Às vezes era chamada de "regra de ouro".' },
+]} />
+
+A história de Tales foi contada por autores que viveram séculos depois dele, então não dá para ter certeza de que aconteceu assim. Mas a ideia funciona, e você mesmo pode testar com um poste e a sua sombra.
+
+## Um mito famoso: a "proporção áurea em tudo"
+
+Você talvez já tenha ouvido que a proporção áurea (cerca de 1,618) está no Partenon, nas pirâmides, na Mona Lisa e no rosto "perfeito". É em grande parte **mito**.
+
+As medidas do Partenon não confirmam isso. Os estudiosos não acham que as pirâmides foram planejadas com ela. Nada nos escritos de Leonardo da Vinci indica que ele a usou na Mona Lisa. E os testes sobre a preferência das pessoas por retângulos "áureos" deram resultados inconclusivos.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+Uma **razão** compara duas quantidades dividindo uma pela outra. "1 copo de suco concentrado para 3 de água" é a razão **1 para 3**, que se escreve 1 : 3 ou 1/3.
+
+O que importa numa razão não é o tamanho das quantidades, mas a **relação** entre elas. 1 copo de suco para 3 de água tem o mesmo gosto que 2 para 6 ou 10 para 30. A jarra é maior, mas o sabor é igual.
+
+Quando duas razões são iguais, temos uma <Termo cor="azul">proporção</Termo>: 1/3 = 2/6. É o que faz uma receita para 3 pessoas virar uma receita para 30 sem estragar o bolo: **tudo** é multiplicado pelo mesmo número.
+
+O erro clássico é **somar** em vez de multiplicar: pôr 1 copo a mais de suco e 1 a mais de água. Isso muda a razão, e o sabor.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Jarra A: 2 copos de suco concentrado e 3 de água. Jarra B: 3 copos de suco e 5 de água. Qual fica mais forte?"
+  opcoes={['Jarra A', 'Jarra B', 'Mesmo sabor']}
+  correta={0}
+  explicacao="Na jarra A, 2 de cada 5 copos são suco (40%). Na B, 3 de cada 8 (37,5%). A jarra B tem mais suco, mas também tem muito mais água: o que conta é a razão."
+>
+
+Monte as duas jarras. A cor mostra a força do suco: quanto mais escura, maior a parte de suco na mistura.
+
+<MisturaDeSuco />
+
+Tente deixar as duas com o **mesmo sabor** usando quantidades diferentes. Por exemplo, 1 de suco e 2 de água numa jarra, e 3 e 6 na outra.
+
+Repare que a jarra B pode ter **mais suco** e mesmo assim ficar **mais fraca**. Comparar só uma das quantidades engana. Por isso usamos a razão.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['A pequena', 'A grande', 'Dá na mesma']}
+  correta={1}
+  seAcertou="E a pizza? Você acertou que a grande compensa. A explicação completa está no Aprofundar, e é surpreendente."
+  seErrou="E a pizza? A grande compensa mais, mesmo custando o triplo. A pista: o que você come é a área, não a largura. A conta está no Aprofundar."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Receita para a festa
+
+Esta receita de bolo serve 6 pessoas. Arraste para fazer para mais ou menos gente:
+
+<ReceitaEscalavel />
+
+Repare no fator: para 12 pessoas tudo dobra (×2), para 3 tudo cai pela metade (×0,5). E o ovo mostra um limite do mundo real: 4,5 ovos não existem. Na cozinha, a gente arredonda.
+
+## Onde mais aparece
+
+- **Mapas:** escala 1 : 50.000 quer dizer que 1 cm no mapa vale 50.000 cm (500 metros) no chão.
+- **Preço por quilo:** o pacote de 5 kg sai mais barato que o de 1 kg? Divida o preço pelo peso e compare.
+- **Velocidade:** 80 km/h é uma razão entre distância e tempo.
+- **Tela da TV:** 16 : 9 é a razão entre largura e altura. Toda TV "widescreen" tem esse formato, de qualquer tamanho.
+
+## Experimente em casa
+
+Num dia de sol, meça a sua altura e o comprimento da sua sombra. Depois meça a sombra de um poste ou de uma árvore. Com uma proporção, como Tales, descubra a altura dela.
+
+</Etapa>
+
+<Etapa id="aprofundar">
+
+## 1. Razão
+
+A razão entre **a** e **b** é a divisão a ÷ b, escrita a/b ou a : b. A **ordem importa**: 1 de suco para 3 de água (1 : 3) é bem diferente de 3 de suco para 1 de água (3 : 1).
+
+Quando as grandezas são diferentes, a razão ganha unidade: km/h, R$/kg, pessoas por metro quadrado. Essas razões costumam ser chamadas de **taxas**.
+
+## 2. Proporção e o produto cruzado
+
+Duas razões formam uma proporção quando são iguais:
+
+<Formula>
+  <Linha><Fracao cima="a" baixo="b" /> = <Fracao cima="c" baixo="d" />   quando   a × d = b × c</Linha>
+</Formula>
+
+O simulador compara as jarras assim. Jarra A: 2 de suco em 5 copos. Jarra B: 3 de suco em 8. Como 2 × 8 = 16 é maior que 3 × 5 = 15, a jarra A é mais forte.
+
+## 3. Regra de três
+
+Se 6 pessoas pedem 3 ovos, quantos ovos para 10 pessoas? Monte a proporção e use o produto cruzado:
+
+<Formula>
+  <Linha><Fracao cima="6" baixo="3" /> = <Fracao cima="10" baixo="x" /></Linha>
+  <Linha>6 × x = 3 × 10   →   x = 5</Linha>
+</Formula>
+
+## 4. Diretamente proporcionais
+
+Duas grandezas são **diretamente proporcionais** quando uma é sempre a outra vezes um mesmo número **k**:
+
+<Formula>
+  <Linha>y = k × x</Linha>
+</Formula>
+
+Se o tomate custa R$ 8 o quilo, o preço é 8 × (quilos). Dobrou o peso, dobra o preço. No gráfico, isso vira uma **reta que passa pelo zero**.
+
+## 5. Inversamente proporcionais
+
+Às vezes, quando uma grandeza dobra, a outra cai pela metade. Aí o **produto** é que fica constante:
+
+<Formula>
+  <Linha>x × y = k</Linha>
+</Formula>
+
+Se 2 pedreiros fazem um muro em 6 dias, o trabalho total é 2 × 6 = 12 "dias de pedreiro". Com 3 pedreiros: 12 ÷ 3 = 4 dias. (Isso supõe que todos trabalham no mesmo ritmo e não atrapalham uns aos outros.)
+
+## 6. Nem tudo é proporcional
+
+Uma criança de 5 anos com 1,10 m **não** terá 2,20 m aos 10. Uma corrida de táxi de 10 km não custa o dobro de uma de 5 km, porque tem a **bandeirada**, um valor fixo que se paga só por entrar. Antes de usar regra de três, pergunte: se uma dobra, a outra dobra mesmo?
+
+## 7. A pizza: escala, área e volume
+
+Quando você aumenta **todas** as medidas de uma figura pelo fator **k**, o comprimento cresce k vezes, mas a **área** cresce **k²** vezes:
+
+<div className="flex justify-center gap-6">
+  <Pizza cima={1} baixo={1} tamanho={60} legenda={false} />
+  <Pizza cima={1} baixo={1} tamanho={120} legenda={false} cor="var(--color-azul)" />
+</div>
+
+A pizza grande tem o dobro da largura (k = 2), então tem **2² = 4** vezes mais pizza. Custa 3 vezes mais. Cada "pizza pequena" de comida sai por R$ 90 ÷ 4 = R$ 22,50, contra R$ 30 na pequena. A grande é **25% mais barata** por pedaço.
+
+E o **volume** cresce **k³**: uma caixa com o dobro de largura, altura e profundidade cabe 2³ = 8 vezes mais coisa.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Qual suco é mais forte: 1 copo de suco para 4 de água, ou 2 de suco para 7 de água?',
+    opcoes: ['1 para 4', '2 para 7', 'Mesmo sabor'],
+    correta: 1,
+    explicacao: 'No primeiro, 1 de cada 5 copos é suco (20%). No segundo, 2 de cada 9 (cerca de 22%). Produto cruzado: 2 × 5 = 10 é maior que 1 × 9 = 9.',
+  },
+  {
+    enunciado: '3 kg de arroz custam R$ 12. Quanto custam 5 kg, pelo mesmo preço por quilo?',
+    opcoes: ['R$ 14', 'R$ 20', 'R$ 15'],
+    correta: 1,
+    explicacao: 'O quilo sai a 12 ÷ 3 = R$ 4. Então 5 kg custam 5 × 4 = R$ 20. A resposta R$ 14 é o erro de somar 2 em vez de multiplicar.',
+  },
+  {
+    enunciado: '4 torneiras iguais enchem uma caixa d\'água em 6 horas. Em quanto tempo 8 torneiras iguais enchem a mesma caixa?',
+    opcoes: ['12 horas', '3 horas', '6 horas'],
+    correta: 1,
+    explicacao: 'Mais torneiras, menos tempo: as grandezas são inversamente proporcionais. 4 × 6 = 24 "horas de torneira"; 24 ÷ 8 = 3 horas.',
+  },
+  {
+    enunciado: 'Num mapa com escala 1 : 100.000, duas cidades estão a 3 cm uma da outra. Qual a distância real?',
+    opcoes: ['300 metros', '3 km', '30 km'],
+    correta: 1,
+    explicacao: '3 cm × 100.000 = 300.000 cm. Como 1 metro tem 100 cm, são 3.000 metros, ou seja, 3 km.',
+  },
+  {
+    enunciado: 'Uma foto é ampliada para o triplo da largura e o triplo da altura. Quantas vezes mais papel ela usa?',
+    opcoes: ['3 vezes', '6 vezes', '9 vezes'],
+    correta: 2,
+    explicacao: 'A área cresce com o quadrado do fator: 3² = 9. É o mesmo motivo pelo qual a pizza grande rende tanto.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Razão é uma comparação por divisão.** O que importa é a relação, não o tamanho.
+- **Proporção é uma igualdade de razões**, conferida pelo produto cruzado: a × d = b × c.
+- **Para aumentar uma receita, multiplique tudo**; somar o mesmo a tudo muda o sabor.
+- **Diretas: y = k × x. Inversas: x × y = k.** E muita coisa não é nenhuma das duas.
+- **Aumentar as medidas k vezes multiplica a área por k²** e o volume por k³.
+
+</Resumo>
+
+Razão é a ponte entre frações, porcentagens e funções. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>
