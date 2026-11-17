@@ -322,7 +322,7 @@ VITE_SUPABASE_ANON_KEY=...
 - [x] 4. Narração com a voz do navegador (voz padrão: Francisca, natural, disponível no Edge)
 - [x] 5. Supabase: login, perfis, progresso, XP e histórico (login com Google ainda não ativado)
 - [x] 6. Perfil, conquistas e sequência de dias
-- [ ] 7. Matemática do fundamental (primeiras 5 cápsulas)
+- [x] 7. Matemática do fundamental (primeiras 5 cápsulas: Frações, Porcentagem, Números negativos, Razão e proporção, Potências)
 - [ ] 8. Computação, módulo 1 e 2 (primeiras 5 cápsulas)
 - [ ] 9. Matemática do médio
 - [ ] 10. Caderno pessoal e revisão espaçada

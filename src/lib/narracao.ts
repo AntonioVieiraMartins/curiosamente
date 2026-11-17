@@ -127,6 +127,10 @@ export function prepararParaFala(texto: string) {
     // Número misto: "1 1/2" vira "1 e meio", e não "1 um meio"
     .replace(/\b(\d+) (\d+)\/(\d+)\b/g, (_, inteiro, a, b) => `${inteiro} e ${fracoesComuns[`${a}/${b}`] ?? `${a} sobre ${b}`}`)
     .replace(/\b(\d+)\/(\d+)\b/g, (fracao, a, b) => fracoesComuns[fracao] ?? `${a} sobre ${b}`)
+  // Expoentes pequenos e no alto: "2⁵" vira "2 elevado a 5" ("²" e "³" sozinhos seguem como quadrado e cubo)
+  const dessobrescrever = (e: string) => [...e].map((c) => '0123456789'['⁰¹²³⁴⁵⁶⁷⁸⁹'.indexOf(c)] ?? ' menos ').join('')
+  saida = saida.replace(/(\d+)([⁻⁰¹²³⁴⁵⁶⁷⁸⁹]+)/g, (tudo, base, exp) =>
+    exp === '²' || exp === '³' ? tudo : `${base} elevado a ${dessobrescrever(exp)}`)
   for (const [simbolo, fala] of Object.entries(simbolos)) saida = saida.split(simbolo).join(fala)
   return saida.replace(/\s+/g, ' ').trim()
 }

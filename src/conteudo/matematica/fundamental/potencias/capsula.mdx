@@ -1,0 +1,409 @@
+import TabuleiroDeXadrez from '../../../../components/simulacoes/TabuleiroDeXadrez'
+import QuadradoECubo from '../../../../components/simulacoes/QuadradoECubo'
+import EscadaDosExpoentes from '../../../../components/simulacoes/EscadaDosExpoentes'
+import RegrasDosExpoentes from '../../../../components/simulacoes/RegrasDosExpoentes'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Wheat and chessboard problem, Exponentiation), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Conta a lenda que o inventor do xadrez pediu um prêmio ao rei: **1 grão de trigo** na primeira casa do tabuleiro, **2** na segunda, **4** na terceira, e assim por diante, sempre dobrando até a última casa.
+
+O rei riu. "Só isso? Pedido modesto!", e mandou trazer o saco de trigo.
+
+<Palpite
+  chave="inicial"
+  pergunta="Quando chegar na casa 64, o monte de grãos vai ser do tamanho de..."
+  opcoes={['Um saco de mercado', 'Um caminhão cheio', 'Mais que a colheita de trigo do mundo num ano']}
+/>
+
+Esta cápsula é sobre **potências**: a forma de escrever, em poucos símbolos, multiplicações repetidas. Com elas você escreve números gigantes e minúsculos sem se perder nos zeros.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Potências nasceram da necessidade de falar de números grandes demais para contar de um em um.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Séc. III a.C.', texto: 'Arquimedes, em O Contador de Areia, prova a regra de que 10ᵃ × 10ᵇ = 10ᵃ⁺ᵇ e a usa para estimar quantos grãos de areia caberiam no universo.' },
+  { ano: 'Séc. IX', texto: 'Al-Khwarizmi chama o quadrado de "mal" (posses) e o cubo de "kaʿbah" (cubo).' },
+  { ano: '1256', texto: 'Ibn Khallikan registra por escrito a lenda do tabuleiro de xadrez, a mais antiga versão que se conhece.' },
+  { ano: '1544', texto: 'Michael Stifel inventa a palavra "expoente".' },
+  { ano: 'Início do séc. XVII', texto: 'Descartes, em La Géométrie, introduz a notação moderna: um número pequeno no alto, como em a².' },
+]} />
+
+## A lenda do tabuleiro
+
+A história tem várias versões. Numa delas, o inventor do xadrez é um ministro da Índia. O rei, encantado com o jogo, oferece qualquer prêmio. O ministro pede os grãos de trigo dobrando casa a casa.
+
+O rei acha pouco, mas os tesoureiros começam a conta e logo percebem: não existe trigo suficiente no reino. As versões diferem no final: em algumas o inventor vira conselheiro, em outras acaba mal. O que não muda é a conta.
+
+O total de grãos é 2⁶⁴ − 1, ou seja, **18.446.744.073.709.551.615**. Pesaria cerca de 1,2 trilhão de toneladas, mais de 1.400 vezes a colheita mundial de trigo de um ano.
+
+## Arquimedes e a areia
+
+Uns 1.500 anos antes de Ibn Khallikan, Arquimedes de Siracusa propôs um desafio: dá para escrever um número maior que a quantidade de grãos de areia que enchem o universo? Os gregos não tinham jeito prático de nomear números tão grandes.
+
+Ele inventou um sistema de "ordens" de números e, no caminho, provou a regra de que multiplicar potências de 10 soma os expoentes. É a mesma regra que você vai usar nesta cápsula.
+
+## De "posses" a "expoente"
+
+Por que dizemos "ao quadrado" e "ao cubo"? Porque a área de um quadrado de lado *b* é b × b, e o volume de um cubo é b × b × b. Os nomes vêm da geometria. Al-Khwarizmi, no século IX, já usava as palavras árabes para quadrado e cubo.
+
+Foi só no século XVI que a notação ficou curta. Stifel batizou o "expoente" em 1544, e Descartes, no início do século XVII, passou a escrever a potência com o número pequeno no alto, do jeito que usamos hoje.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O que é uma potência
+
+Multiplicar é somar a mesma coisa várias vezes: 5 + 5 + 5 = 3 × 5. Já uma **potência** é multiplicar a mesma coisa várias vezes.
+
+2 × 2 × 2 × 2 × 2 é um monte de 2 para escrever. Então escrevemos **2⁵**. O número de baixo, o <Termo cor="azul">base</Termo>, é o que se multiplica. O número pequeno no alto, o <Termo cor="coral">expoente</Termo>, diz **quantas vezes** a base aparece.
+
+Cuidado com a pegadinha mais comum: 2⁵ **não** é 2 × 5. É 2 × 2 × 2 × 2 × 2 = 32.
+
+<ExemploResolvido titulo="Quanto é 3⁴?">
+  <Passo>A base é 3 e o expoente é 4: o 3 aparece **4 vezes**.</Passo>
+  <Passo>3 × 3 = 9. Depois, 9 × 3 = 27. Depois, 27 × 3 = **81**.</Passo>
+  <Passo>Não é 3 × 4 = 12. Potência é multiplicação repetida, não uma multiplicação só.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 2⁵?" resposta="32" dica="Multiplique 2 cinco vezes: 2, 4, 8, 16..." resolucao="2 × 2 = 4; × 2 = 8; × 2 = 16; × 2 = 32." />
+
+<Exercicio enunciado="Quanto é 5³?" resposta="125" dica="5 × 5 × 5." resolucao="5 × 5 = 25. Depois 25 × 5 = 125." />
+
+## 2. Quadrado e cubo
+
+Os dois expoentes mais famosos têm nome de figura. Elevar **ao quadrado** (n²) é contar os quadradinhos de um quadrado de lado n. Elevar **ao cubo** (n³) é contar os cubinhos de um cubo de lado n.
+
+Mexa no lado e veja as camadas se empilhando.
+
+<QuadradoECubo />
+
+Repare que n² e n³ crescem **muito** mais rápido que n. Dobrar o lado quadruplica a área (2² = 4) e multiplica por 8 o volume (2³ = 8).
+
+<Exercicio enunciado="Quantos cubinhos tem um cubo de 4 de lado?" resposta="64" dica="Calcule 4³." resolucao="4 × 4 × 4 = 64 cubinhos. São 4 camadas de 16." />
+
+## 3. Casos especiais: expoente 1 e expoente 0
+
+Qualquer número com expoente **1** é ele mesmo: 7¹ = 7. A base aparece uma vez só.
+
+E com expoente **0**? Parece estranho: multiplicar o número zero vezes? A saída é descer uma escada. Na escada abaixo, cada degrau para baixo **divide o resultado pela base**. Siga: 2⁵ = 32, 2⁴ = 16, 2³ = 8, 2² = 4, 2¹ = 2... e o próximo degrau é 2 ÷ 2 = **1**. É por isso que 2⁰ = 1.
+
+## 4. Expoentes negativos
+
+A escada não precisa parar no zero. Dividindo mais uma vez, 1 ÷ 2 = 1/2. Então 2⁻¹ = 1/2. Mais um degrau: 2⁻² = 1/4, depois 1/8, e assim por diante.
+
+Expoente negativo **não dá resultado negativo**: dá uma fração. É a base "do lado de baixo".
+
+<EscadaDosExpoentes />
+
+Troque a base para 10 e veja os zeros aparecerem para os dois lados: 10³ = 1.000 e 10⁻³ = 1/1.000.
+
+<ExemploResolvido titulo="Quanto é 2⁻³?">
+  <Passo>Expoente negativo é "um sobre a potência positiva": 2⁻³ = 1 ÷ 2³.</Passo>
+  <Passo>2³ = 8.</Passo>
+  <Passo>Então 2⁻³ = **1/8**, que é 0,125.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 7⁰?" resposta="1" dica="Todo número (menos o zero) elevado a zero dá o mesmo resultado." resolucao="Qualquer número diferente de zero, elevado a 0, vale 1. Na escada: 7¹ ÷ 7 = 1." />
+
+<Exercicio enunciado="Quanto é 2⁻³? (Pode escrever 1/8 ou 0,125.)" resposta="1/8" dica="2⁻³ = 1 ÷ 2³." resolucao="2³ = 8, então 2⁻³ = 1/8 = 0,125." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="No tabuleiro do rei, quantos grãos terá só a casa 32, a metade do tabuleiro?"
+  opcoes={['Uns 32 mil', 'Uns 2 milhões', 'Mais de 2 bilhões']}
+  correta={2}
+  explicacao="A casa 32 tem 2³¹ = 2.147.483.648 grãos: mais de 2 bilhões. Metade do tabuleiro, e o monte já é gigante. A outra metade é que decide tudo."
+>
+
+Arraste a casa e acompanhe: quantos grãos há **nela**, quantos há **no total**, e quanto isso pesaria.
+
+<TabuleiroDeXadrez />
+
+Até a casa 20, o total ainda cabe num carrinho de mercado (uns 68 kg). Na casa 30, já são umas 70 toneladas. Na 40, passa de 70 mil toneladas. E nas últimas casas o número cresce tanto que a conta sai da escala do mundo.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Um saco de mercado', 'Um caminhão cheio', 'Mais que a colheita de trigo do mundo num ano']}
+  correta={2}
+  seAcertou="E o palpite do começo? Você acertou: o monte da casa 64 vale mais de 1.400 colheitas mundiais."
+  seErrou="E o palpite do começo? O monte da casa 64 vale mais de 1.400 colheitas mundiais de trigo. Dobrar parece pouco, mas se acumula depressa."
+/>
+
+</Previsao>
+
+## Por que o crescimento assusta
+
+Somar 2 em cada casa cresceria devagar: 1, 3, 5, 7... Já **dobrar** (multiplicar por 2) é crescimento de potência: 1, 2, 4, 8, 16... Cada degrau vale tanto quanto **todos os anteriores juntos, mais 1**.
+
+Isso explica o total: 1 + 2 + 4 + ... + 2⁶³ = 2⁶⁴ − 1. Experimente na casa 8: o total é 2⁸ − 1 = 255.
+
+<Exercicio enunciado="Quantos grãos há só na casa 11? (Dica: a casa 10 tem 512.)" resposta="1024" dica="Cada casa tem o dobro da anterior." resolucao="Dobrando 512, dá 1.024. Também é 2¹⁰ = 1.024. A casa 1 tem 2⁰, então a casa 11 tem 2¹⁰." />
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Números grandes e pequenos: a notação científica
+
+A luz viaja a cerca de 300.000.000 metros por segundo. Escrever tantos zeros cansa e dá erro. Então os cientistas usam a **notação científica**: um número entre 1 e 10 multiplicado por uma potência de 10.
+
+300.000.000 = 3 × 10⁸. O expoente 8 diz quantos zeros vêm depois do 3.
+
+Para números minúsculos, o expoente é negativo. Um átomo tem cerca de 0,0000000001 metro de largura: 10⁻¹⁰ m. A distância da Terra ao Sol é de uns 150 milhões de km, ou cerca de 1,5 × 10¹¹ metros. Em potências de 10, do átomo ao Sol são **21 "degraus"**.
+
+<ExemploResolvido titulo="Escreva 4.500.000 em notação científica.">
+  <Passo>Escolha o número entre 1 e 10: **4,5**. A vírgula andou do fim do número até depois do 4.</Passo>
+  <Passo>Conte quantas casas a vírgula andou: de 4.500.000, são **6** casas.</Passo>
+  <Passo>Então 4.500.000 = 4,5 × 10⁶.</Passo>
+  <Passo>Para número pequeno, a vírgula anda para o outro lado e o expoente fica negativo: 0,0003 = 3 × 10⁻⁴.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="300.000 = 3 × 10 elevado a quê? Digite só o expoente." resposta="5" dica="Quantos zeros tem 300.000?" resolucao="300.000 = 3 × 100.000 = 3 × 10⁵." />
+
+<Exercicio enunciado="0,0004 = 4 × 10 elevado a quê? Digite só o expoente (com sinal)." resposta="-4" dica="Para números menores que 1, o expoente é negativo. Quantas casas a vírgula andou?" resolucao="A vírgula andou 4 casas para a direita: 0,0004 = 4 × 10⁻⁴." />
+
+## O computador conta em potências de 2
+
+Cada **bit** vale 0 ou 1. Com 8 bits formamos um **byte**, e ele pode ter 2⁸ = **256** combinações diferentes. Com 10 bits são 2¹⁰ = 1.024, número que aparece o tempo todo em memória e arquivos (um "quilo" de computador é 1.024, e não 1.000).
+
+Cada bit a mais **dobra** as possibilidades. É a lenda do xadrez, só que com circuitos. Na cápsula de Binário isso volta com lâmpadas.
+
+## Dobrar papel e juros
+
+Se você pudesse dobrar uma folha de 0,1 mm ao meio **42 vezes**, a espessura seria de 0,1 mm × 2⁴² ≈ **440 mil km**. A Lua fica a cerca de 384 mil km. Nenhuma folha real dobra tanto, mas a conta mostra a força do crescimento exponencial.
+
+É o mesmo mecanismo dos juros compostos: o que você tem a cada mês é multiplicado pelo mesmo fator. Quando o expoente é o tempo, a função se chama **exponencial**, tema do Ensino Médio.
+
+## Onde mais aparece
+
+- **Áreas e volumes:** aumentar as medidas k vezes multiplica a área por k² e o volume por k³.
+- **Contágio e redes sociais:** quando cada pessoa passa para duas, o número dobra a cada rodada.
+- **Terremotos, som e acidez** usam escalas de potências de 10 (os logaritmos).
+- **Informação:** quantos números cabem em 16 bits? 2¹⁶ = 65.536.
+
+## Experimente em casa
+
+Pegue uma folha e dobre ao meio, de novo e de novo. Quantas vezes você consegue? Em geral, 6 ou 7. Cada dobra dobra a espessura e metade da área: depois de 7, você tem 2⁷ = 128 camadas.
+
+</Etapa>
+
+<Etapa id="aprofundar">
+
+## 1. Definição
+
+Para um número **a** e um inteiro positivo **n**:
+
+<Formula>
+  <Linha>aⁿ = a × a × ... × a   (n fatores)</Linha>
+</Formula>
+
+A base é *a*, o expoente é *n*. Por definição, a¹ = a.
+
+## 2. Multiplicar potências de mesma base
+
+Veja 2³ × 2² = (2 × 2 × 2) × (2 × 2) = 2⁵. Contamos os fatores: 3 + 2 = 5. A regra geral:
+
+<Formula>
+  <Linha>aᵐ × aⁿ = aᵐ⁺ⁿ</Linha>
+</Formula>
+
+Os expoentes **se somam**. Este é o mesmo resultado que Arquimedes provou para a base 10.
+
+<RegrasDosExpoentes />
+
+## 3. Dividir potências de mesma base
+
+2⁵ ÷ 2² = (2 × 2 × 2 × 2 × 2) ÷ (2 × 2). Cortam-se dois fatores, sobram 3: 2³. A regra:
+
+<Formula>
+  <Linha>aᵐ ÷ aⁿ = aᵐ⁻ⁿ</Linha>
+</Formula>
+
+Os expoentes **se subtraem**. E essa regra explica sozinha o zero: aⁿ ÷ aⁿ = 1 (qualquer número dividido por ele mesmo) e também = aⁿ⁻ⁿ = a⁰. Logo, a⁰ = 1.
+
+## 4. Expoentes negativos, com rigor
+
+Pela regra da divisão, a⁰ ÷ aⁿ = a⁰⁻ⁿ = a⁻ⁿ. Mas a⁰ = 1, então a⁰ ÷ aⁿ também é 1 ÷ aⁿ. Os dois lados têm de ser iguais:
+
+<Formula>
+  <Linha>a⁻ⁿ = 1 ÷ aⁿ</Linha>
+</Formula>
+
+(com a diferente de zero). Isso mantém as regras de multiplicação e divisão valendo para todos os expoentes inteiros.
+
+<ExemploResolvido titulo="Simplifique 2⁶ ÷ 2² e (2³)².">
+  <Passo>Divisão, mesma base: subtrai os expoentes. 2⁶ ÷ 2² = 2⁶⁻² = 2⁴ = **16**.</Passo>
+  <Passo>Potência de potência: (2³)² = 2³ × 2³ = 2⁶. Os expoentes se **multiplicam**: 3 × 2 = 6.</Passo>
+  <Passo>2⁶ = **64**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 2³ × 2⁴?" resposta="128" dica="Some os expoentes e depois calcule." resolucao="2³ × 2⁴ = 2⁷ = 128." />
+
+<Exercicio enunciado="Quanto é (2³)²?" resposta="64" dica="Potência de potência: multiplique os expoentes." resolucao="(2³)² = 2⁶ = 64." />
+
+## 5. Potência de potência, produto e quociente
+
+<Formula>
+  <Linha>(aᵐ)ⁿ = aᵐˣⁿ</Linha>
+  <Linha>(a × b)ⁿ = aⁿ × bⁿ</Linha>
+  <Linha>(a ÷ b)ⁿ = aⁿ ÷ bⁿ</Linha>
+</Formula>
+
+Exemplo do produto: (2 × 3)² = 6² = 36 = 2² × 3² = 4 × 9.
+
+## 6. Base negativa: cuidado com o sinal
+
+Um número negativo elevado a um expoente **par** dá resultado positivo; elevado a um expoente **ímpar** dá negativo. Pense: (−2)² = (−2) × (−2) = +4. Já (−2)³ = (−2) × (−2) × (−2) = −8.
+
+A **posição dos parênteses** muda tudo: (−3)² = 9, mas −3² = −(3²) = **−9**, porque o expoente só vale para o que está encostado nele.
+
+<Exercicio enunciado="Quanto é (−2)³?" resposta="-8" dica="Três fatores negativos: o sinal de menos aparece 3 vezes." resolucao="(−2) × (−2) = 4; 4 × (−2) = −8." />
+
+<Exercicio enunciado="Quanto é −3² (sem parênteses)?" resposta="-9" dica="Primeiro a potência, depois o sinal de menos." resolucao="3² = 9 e o sinal de menos fica de fora: −9. Já (−3)² daria +9." />
+
+## 7. Ordem das operações
+
+Potências vêm **antes** de multiplicações e divisões, que vêm antes de somas e subtrações. Então 2 + 3 × 2² = 2 + 3 × 4 = 2 + 12 = 14. Parênteses mandam em tudo.
+
+## 8. Erros comuns
+
+- **2³ não é 2 × 3.** 2³ = 8; 2 × 3 = 6.
+- **(a + b)² não é a² + b².** Teste: (3 + 4)² = 49, mas 3² + 4² = 25. Na verdade, (a + b)² = a² + 2ab + b². Esse tema volta nos produtos notáveis.
+- **aᵐ + aⁿ não vira aᵐ⁺ⁿ.** A regra dos expoentes é para **multiplicar**.
+- **Expoente negativo não faz o número ficar negativo.**
+
+## 9. Notação científica com rigor
+
+Um número está em notação científica quando é escrito como **m × 10ⁿ**, com 1 ≤ m < 10 e n inteiro. Multiplicar: (2 × 10³) × (3 × 10⁴) = 6 × 10⁷, porque os expoentes se somam. Dividir: os expoentes se subtraem.
+
+## 10. Quem cresce mais: n² ou 2ⁿ?
+
+No começo, n² parece maior. Mas observe: com n = 4, os dois valem 16. Com n = 5, 2⁵ = 32 e 5² = 25. Com n = 10, 2¹⁰ = 1.024 e 10² = 100. A partir daí, a potência com o **expoente variável** (2ⁿ) deixa a outra para trás, e a distância só aumenta.
+
+Isso é o que separa o crescimento por **potência** (quadrado, cubo) do crescimento **exponencial** (2ⁿ), ideia central quando você chegar nas funções exponenciais.
+
+## 11. Uma porta para as raízes
+
+Se elevar ao quadrado "desfaz" a raiz quadrada, então talvez exista um jeito de escrever a raiz como potência. Existe: raiz quadrada de a é a^(1/2). Isso vai ficar claro na cápsula de Raízes.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Quanto vale 2⁴?',
+    opcoes: ['8', '16', '6'],
+    correta: 1,
+    explicacao: '2 × 2 × 2 × 2 = 16. Dizer 8 é confundir com 2 × 4.',
+  },
+  {
+    enunciado: 'Quanto vale 10³?',
+    opcoes: ['30', '100', '1.000'],
+    correta: 2,
+    explicacao: '10 × 10 × 10 = 1.000. O expoente da base 10 diz quantos zeros vêm depois do 1.',
+  },
+  {
+    enunciado: 'Quanto vale 7⁰?',
+    opcoes: ['0', '7', '1'],
+    correta: 2,
+    explicacao: 'Qualquer número diferente de zero elevado a 0 vale 1. Na escada: 7¹ ÷ 7 = 1.',
+  },
+  {
+    enunciado: 'Quanto vale 2⁻²?',
+    opcoes: ['−4', '1/4', '−1/4'],
+    correta: 1,
+    explicacao: '2⁻² = 1 ÷ 2² = 1/4. Expoente negativo vira fração, não número negativo.',
+  },
+  {
+    enunciado: 'Quanto vale 2³ × 2⁵?',
+    opcoes: ['2⁸', '2¹⁵', '4⁸'],
+    correta: 0,
+    explicacao: 'Na multiplicação de mesma base, os expoentes se somam: 3 + 5 = 8. A base continua 2.',
+  },
+  {
+    enunciado: 'Quanto vale 3⁶ ÷ 3⁴?',
+    opcoes: ['3²', '3¹⁰', '1⁶'],
+    correta: 0,
+    explicacao: 'Na divisão de mesma base, os expoentes se subtraem: 6 − 4 = 2. Então 3² = 9.',
+  },
+  {
+    enunciado: 'Quanto vale (3²)³?',
+    opcoes: ['3⁵', '3⁶', '3⁸'],
+    correta: 1,
+    explicacao: 'Potência de potência: multiplicam-se os expoentes. 2 × 3 = 6, então 3⁶ = 729.',
+  },
+  {
+    enunciado: 'Qual é a diferença entre (−3)² e −3²?',
+    opcoes: ['Nenhuma: as duas valem 9', '(−3)² = 9 e −3² = −9', '(−3)² = −9 e −3² = 9'],
+    correta: 1,
+    explicacao: 'Com parênteses a base é −3: (−3) × (−3) = 9. Sem parênteses, o expoente só vale para o 3, e o sinal de menos fica de fora: −(3²) = −9.',
+  },
+  {
+    enunciado: 'Qual destas é a notação científica de 45.000?',
+    opcoes: ['45 × 10³', '4,5 × 10⁴', '0,45 × 10⁵'],
+    correta: 1,
+    explicacao: 'Na notação científica o número da frente fica entre 1 e 10. 45.000 = 4,5 × 10.000 = 4,5 × 10⁴.',
+  },
+  {
+    enunciado: 'Qual é a notação científica de 0,0006?',
+    opcoes: ['6 × 10⁴', '6 × 10⁻⁴', '6 × 10⁻³'],
+    correta: 1,
+    explicacao: 'A vírgula anda 4 casas para a direita até o 6. Para números menores que 1, o expoente é negativo: 6 × 10⁻⁴.',
+  },
+  {
+    enunciado: 'Um cubo tem lado 5. Quantos cubinhos de lado 1 cabem dentro dele?',
+    opcoes: ['15', '25', '125'],
+    correta: 2,
+    explicacao: '5³ = 5 × 5 × 5 = 125. São 5 camadas de 25 cubinhos.',
+  },
+  {
+    enunciado: 'No tabuleiro do rei, o total até a casa 8 é...',
+    opcoes: ['255', '256', '128'],
+    correta: 0,
+    explicacao: 'O total até a casa n é 2ⁿ − 1. Com n = 8: 256 − 1 = 255. Já a casa 8 sozinha tem 2⁷ = 128 grãos.',
+  },
+  {
+    enunciado: 'Um byte tem 8 bits. Quantos valores diferentes ele pode guardar?',
+    opcoes: ['16', '64', '256'],
+    correta: 2,
+    explicacao: 'Cada bit dobra as possibilidades: 2⁸ = 256.',
+  },
+  {
+    enunciado: 'Uma caixa tem o comprimento, a largura e a altura dobrados. Quantas vezes o volume cresce?',
+    opcoes: ['2 vezes', '4 vezes', '8 vezes'],
+    correta: 2,
+    explicacao: 'O volume cresce com o cubo do fator: 2³ = 8. A área cresceria 2² = 4 vezes.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Potência é multiplicação repetida:** aⁿ tem n fatores iguais a a. A base é o que se multiplica; o expoente diz quantas vezes.
+- **Quadrado e cubo** vêm da geometria: n² é uma área, n³ é um volume.
+- **a¹ = a, a⁰ = 1 e a⁻ⁿ = 1/aⁿ.** Cada degrau para baixo na escada divide pela base.
+- **Mesma base:** multiplicar soma os expoentes, dividir subtrai e potência de potência multiplica.
+- **Cuidado com sinais:** (−3)² = 9, mas −3² = −9.
+- **Notação científica** escreve números enormes e minúsculos: m × 10ⁿ, com m entre 1 e 10.
+- **Crescimento exponencial** (dobrar, dobrar...) assusta: foi o que enganou o rei do tabuleiro.
+
+</Resumo>
+
+Potências conectam a matemática ao computador (binário) e ao dinheiro (juros compostos). Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

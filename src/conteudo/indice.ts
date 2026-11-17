@@ -63,7 +63,7 @@ export const capsulas: ResumoCapsula[] = [
   // Fundamental (6º ao 9º ano), agrupado pelo ano em que a BNCC põe cada assunto
   m('fundamental', 'fracoes', 'Frações', 'Qual pedaço é maior: 1/3 ou 1/4 da pizza?', { grupo: '6º ano', estado: 'pronta', duracaoMin: 40 }),
   m('fundamental', 'porcentagem', 'Porcentagem', '50% de desconto e mais 20% dá 70%? Não dá.', { grupo: '6º ano', estado: 'pronta', duracaoMin: 40, conexoes: ['exponencial'] }),
-  m('fundamental', 'potencias', 'Potências', 'Grãos de arroz dobrando num tabuleiro de xadrez.', { grupo: '6º ano', conexoes: ['binario', 'exponencial'] }),
+  m('fundamental', 'potencias', 'Potências', 'Grãos de arroz dobrando num tabuleiro de xadrez.', { grupo: '6º ano', estado: 'pronta', duracaoMin: 40, conexoes: ['binario', 'exponencial'] }),
   m('fundamental', 'multiplos-e-divisores', 'Múltiplos, divisores, MMC e MDC', 'Quando dois semáforos piscam juntos de novo?', { grupo: '6º ano' }),
   m('fundamental', 'numeros-primos', 'Números primos', 'Os números que não se dividem e guardam segredos.', { grupo: '6º ano' }),
   m('fundamental', 'plano-cartesiano', 'Plano cartesiano', 'Batalha naval é matemática.', { grupo: '6º ano', conexoes: ['geometria-analitica'] }),
