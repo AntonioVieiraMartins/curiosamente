@@ -8,6 +8,8 @@ import Conexoes from './Conexoes'
 import { Formula, Fracao, Linha } from './Formula'
 import { Palpite, LembrarPalpite } from './Palpite'
 import Resumo from './Resumo'
+import Exercicio from './Exercicio'
+import ExemploResolvido, { Passo } from './ExemploResolvido'
 
 // Componentes que todo capsula.mdx pode usar sem precisar de "import",
 // e o visual dos elementos comuns do Markdown (parágrafo, lista, código...)
@@ -24,6 +26,9 @@ export const componentesMdx: MDXComponents = {
   Palpite,
   LembrarPalpite,
   Resumo,
+  Exercicio,
+  ExemploResolvido,
+  Passo,
   p: (props) => <p className="max-w-[65ch] text-[17px] leading-[1.7]" {...props} />,
   h2: (props) => <h2 className="pt-2 font-serif text-2xl font-medium" {...props} />,
   h3: (props) => <h3 className="pt-2 font-semibold" {...props} />,

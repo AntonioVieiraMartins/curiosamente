@@ -1,7 +1,11 @@
 import Pizza from '../../../../components/simulacoes/Pizza'
 import ComparadorFracoes from '../../../../components/simulacoes/ComparadorFracoes'
+import FracaoDeQuantidade from '../../../../components/simulacoes/FracaoDeQuantidade'
+import SomaDeFracoes from '../../../../components/simulacoes/SomaDeFracoes'
+import MultiplicacaoArea from '../../../../components/simulacoes/MultiplicacaoArea'
+import QuantosCabem from '../../../../components/simulacoes/QuantosCabem'
 
-{/* Fatos históricos conferidos nas fontes do meta.ts (Wikipedia: Fraction, Rhind Papyrus, Liber Abaci, A&W). */}
+{/* Fatos históricos conferidos nas fontes do meta.ts (Wikipedia: Fraction, Rhind Papyrus, Sexagesimal, Uncia, Simon Stevin, Liber Abaci, A&W). */}
 
 <Etapa id="gancho">
 
@@ -15,33 +19,62 @@ Você pode pegar um pedaço de qualquer uma delas. Com fome, qual você escolhe?
   opcoes={['1/4, porque 4 é maior que 3', '1/3', 'São do mesmo tamanho']}
 />
 
-Parece fácil. Mas uma rede de lanchonetes americana perdeu dinheiro por causa dessa pergunta. A história está na próxima etapa.
+Parece fácil. Mas uma rede de lanchonetes americana perdeu dinheiro por causa dessa pergunta. A história está na próxima etapa, junto com 4 mil anos de gente dividindo pão, terra e dinheiro.
 
 </Etapa>
 
 <Etapa id="historia">
 
-As frações são muito antigas: os egípcios já faziam contas com elas há mais de 3.500 anos.
+As frações nasceram de um problema bem concreto: **dividir as coisas de forma justa**. Pão entre trabalhadores, terra entre herdeiros, mercadoria entre sócios. Cada povo inventou seu jeito.
 
 <LinhaDoTempo marcos={[
-  { ano: 'c. 1550 a.C.', texto: 'O papiro de Rhind, copiado pelo escriba egípcio Ahmes, traz tabelas para escrever frações como somas de frações com 1 em cima, como 2/5 = 1/3 + 1/15. Os egípcios preferiam essas "frações unitárias".' },
-  { ano: 'Séc. VII', texto: 'Matemáticos da Índia, como Brahmagupta, escrevem um número em cima do outro, já com regras para somar e multiplicar frações. Mas ainda sem o tracinho.' },
-  { ano: 'c. 1200', texto: 'Al-Hassar, matemático de Fez, no Marrocos, é o primeiro de quem se tem registro a usar a barra horizontal entre os dois números.' },
-  { ano: '1202', texto: 'Fibonacci publica o Liber Abaci, que ajuda a espalhar pela Europa os algarismos indo-arábicos e a barra de fração.' },
-  { ano: '1985', texto: 'A rede A&W lança um hambúrguer de 1/3 de libra, maior que o famoso de 1/4 de libra do concorrente, e mais barato. Não vende.' },
+  { ano: 'c. 2000 a.C.', texto: 'Na Mesopotâmia, os escribas babilônios escrevem números na base 60, e as frações como partes de 60.' },
+  { ano: 'c. 1550 a.C.', texto: 'No Egito, o escriba Ahmes copia o papiro que hoje chamamos de papiro de Rhind, cheio de problemas de dividir pães.' },
+  { ano: 'Roma antiga', texto: 'Os romanos dividem pesos e medidas em 12 partes: cada parte é uma "uncia".' },
+  { ano: 'Séc. VII', texto: 'Na Índia, Brahmagupta escreve regras para somar e multiplicar frações, com um número em cima do outro.' },
+  { ano: 'c. 1200', texto: 'Al-Hassar, em Fez (Marrocos), é o primeiro registro da barra entre os dois números.' },
+  { ano: '1202', texto: 'Fibonacci publica o Liber Abaci e espalha pela Europa os algarismos indo-arábicos e a barra de fração.' },
+  { ano: '1585', texto: 'Simon Stevin publica "De Thiende" e defende usar frações decimais (com vírgula) no dia a dia.' },
+  { ano: '1985', texto: 'A rede A&W lança um hambúrguer de 1/3 de libra. Não vende.' },
 ]} />
+
+## O pão do Egito
+
+O papiro de Rhind tem uns 3.500 anos. Foi copiado pelo escriba **Ahmes** de um texto ainda mais antigo, e hoje está quase todo no Museu Britânico, em Londres. Seus seis primeiros problemas são iguais na forma: **dividir pães entre 10 homens**.
+
+Por exemplo: 9 pães para 10 homens. Hoje diríamos "9/10 de pão para cada um". Os egípcios escreviam outra coisa: **2/3 + 1/5 + 1/30**. Eles quase só usavam frações com 1 em cima, as **frações unitárias**, e decompunham todo o resto em somas delas. Confira: 20/30 + 6/30 + 1/30 = 27/30 = 9/10.
+
+## Por que uma hora tem 60 minutos?
+
+Os babilônios contavam em **base 60**. Parece estranho, mas tem uma vantagem enorme: 60 pode ser dividido igualmente por 2, 3, 4, 5, 6, 10, 12, 15, 20 e 30. Metade, terço, quarto, quinto: tudo dá número inteiro.
+
+Essa herança está no seu relógio até hoje. Uma hora tem 60 minutos, e um minuto tem 60 segundos. Meia hora são 30 minutos, um quarto de hora são 15. Os ângulos também: a volta completa tem 360 graus.
+
+## A onça e a polegada
+
+Os romanos preferiam dividir em **12**, outro número cheio de divisores (2, 3, 4 e 6). A libra romana tinha 12 "uncias", e o pé romano também. A palavra *uncia* quer dizer "um doze avos".
+
+Dela vieram duas palavras que você conhece: **onça**, a medida de peso, e a **polegada**, que em inglês se diz *inch*. As duas vêm de "uma parte de doze".
+
+## O tracinho e a vírgula
+
+Durante muito tempo, cada povo escreveu frações de um jeito. Na Índia, um número ia em cima do outro, sem nada no meio. O tracinho apareceu no norte da África, com **Al-Hassar**, e chegou à Europa pelo livro de **Fibonacci**.
+
+Depois veio outra revolução: as frações **decimais**. Matemáticos do mundo islâmico, como al-Uqlidisi, já as usavam no século X. Mas foi o flamengo **Simon Stevin**, em 1585, quem as levou para o dia a dia. Ele previu que um dia moedas, pesos e medidas seriam todos decimais. Hoje é assim: R$ 2,50 é uma fração decimal.
 
 ## O hambúrguer que encolheu na cabeça das pessoas
 
-Segundo as memórias de Alfred Taubman, então dono da A&W, os clientes achavam que estavam pagando o mesmo por **menos** carne. "Três é menor que quatro", raciocinavam.
+Em 1985, a rede americana A&W lançou um hambúrguer com **1/3 de libra** de carne, para competir com o famoso de **1/4 de libra** do concorrente. Era maior e mais barato. Não vendeu.
 
-Vale um cuidado: essa é a explicação do próprio Taubman, contada em livro. Não houve uma pesquisa científica medindo isso. Mas mostra bem como frações enganam.
+Segundo as memórias de Alfred Taubman, então dono da A&W, os clientes achavam que estavam pagando o mesmo por **menos** carne. "Três é menor que quatro", raciocinavam. Vale um cuidado: essa é a explicação do próprio Taubman, contada em livro, e não uma pesquisa científica. Mas mostra bem como frações enganam.
 
 </Etapa>
 
 <Etapa id="intuicao">
 
-Uma fração conta duas coisas. O número de **baixo** diz em quantos pedaços iguais o inteiro foi cortado. O de **cima** diz quantos desses pedaços você pegou.
+## 1. O que é uma fração
+
+Uma fração conta duas coisas. O número de **baixo** (o <Termo cor="azul">denominador</Termo>) diz em quantos pedaços iguais o inteiro foi cortado. O de **cima** (o <Termo cor="coral">numerador</Termo>) diz quantos desses pedaços você pegou.
 
 <div className="flex justify-center gap-8">
   <Pizza cima={1} baixo={3} />
@@ -51,6 +84,82 @@ Uma fração conta duas coisas. O número de **baixo** diz em quantos pedaços i
 Agora a pegadinha do hambúrguer: quanto **mais** cortes, **menor** fica cada pedaço. Dividir a pizza entre 3 amigos rende fatias maiores do que dividir entre 4.
 
 Por isso 1/3 é maior que 1/4, mesmo com o 4 sendo "maior" que o 3. O número de baixo trabalha ao contrário do que a gente espera.
+
+A palavra-chave é **iguais**. Se você corta um bolo em 4 pedaços de tamanhos diferentes, cada pedaço **não** é 1/4 do bolo.
+
+<Exercicio
+  enunciado="Uma pizza foi cortada em 8 pedaços iguais e você comeu 3. Que fração da pizza você comeu?"
+  resposta="3/8"
+  dica="O de baixo é em quantos pedaços a pizza foi cortada; o de cima, quantos você comeu."
+  resolucao="Foram 8 pedaços (embaixo) e você comeu 3 (em cima): 3/8."
+/>
+
+<Exercicio
+  enunciado="E que fração da pizza sobrou?"
+  resposta="5/8"
+  dica="De 8 pedaços, quantos sobraram depois de você comer 3?"
+  resolucao="Sobraram 8 − 3 = 5 pedaços dos 8: 5/8. Repare que 3/8 + 5/8 = 8/8, a pizza inteira."
+/>
+
+## 2. Fração de uma quantidade
+
+Frações não servem só para pizza. Também dizem quanto é "uma parte" de uma quantidade: 2/3 dos alunos, 3/4 do salário, 1/2 do caminho.
+
+O jeito lúdico de pensar: **reparta em grupos iguais e pegue alguns grupos**. Para achar 2/3 de 12 balas, separe as 12 em 3 grupos iguais (4 em cada) e pegue 2 grupos: 8 balas.
+
+<FracaoDeQuantidade />
+
+<ExemploResolvido titulo="Uma turma tem 30 alunos. 2/5 vão para a escola de ônibus. Quantos alunos são?">
+  <Passo>O de baixo é 5: divida a turma em 5 grupos iguais. 30 ÷ 5 = **6** alunos em cada grupo.</Passo>
+  <Passo>O de cima é 2: pegue 2 grupos. 2 × 6 = **12**.</Passo>
+  <Passo>Resposta: **12 alunos** vão de ônibus. Atalho: divida pelo de baixo e multiplique pelo de cima.</Passo>
+</ExemploResolvido>
+
+<Exercicio
+  enunciado="Quanto é 3/4 de 20?"
+  resposta="15"
+  dica="Divida 20 em 4 grupos iguais e pegue 3 grupos."
+  resolucao="20 ÷ 4 = 5 em cada grupo. Três grupos: 3 × 5 = 15."
+/>
+
+<Exercicio
+  enunciado="Num pacote com 18 balas, você deu 1/3 para seu irmão. Quantas balas ficaram com você?"
+  resposta="12"
+  unidade="balas"
+  dica="Primeiro descubra quanto é 1/3 de 18. Depois, quanto sobra."
+  resolucao="1/3 de 18 é 18 ÷ 3 = 6 balas para o irmão. Sobram 18 − 6 = 12. Outro jeito: ficaram 2/3 de 18 = 12."
+/>
+
+## 3. Mais de um inteiro: frações impróprias e números mistos
+
+E se você comer 7 pedaços de pizzas cortadas em 4? Uma pizza inteira tem só 4 pedaços. Então 7/4 é **mais que uma pizza**: uma inteira e mais 3 pedaços.
+
+<div className="flex justify-center gap-6">
+  <Pizza cima={4} baixo={4} tamanho={110} />
+  <Pizza cima={3} baixo={4} tamanho={110} />
+</div>
+
+Uma fração com o de cima **maior** que o de baixo, como 7/4, se chama <Termo cor="amarelo">fração imprópria</Termo>. A mesma quantidade escrita como "1 inteiro e 3/4" é um **número misto**: 1 3/4. Na receita, "1 1/2 xícara" é exatamente isso: uma xícara e meia.
+
+<ExemploResolvido titulo="Escreva 11/4 como número misto">
+  <Passo>Quantas pizzas inteiras cabem em 11 pedaços de 4? Divida: 11 ÷ 4 = **2**, com resto **3**.</Passo>
+  <Passo>São 2 pizzas inteiras e sobram 3 pedaços de 4.</Passo>
+  <Passo>Resposta: 11/4 = **2 3/4**.</Passo>
+</ExemploResolvido>
+
+<Exercicio
+  enunciado="Escreva 2 1/3 como uma fração só (imprópria)."
+  resposta="7/3"
+  dica="Cada inteiro tem 3 terços. Quantos terços há em 2 inteiros? Some mais 1."
+  resolucao="2 inteiros = 6 terços. Mais 1 terço: 7 terços, ou seja, 7/3."
+/>
+
+<Exercicio
+  enunciado="Escreva 9/2 como número misto (pode digitar, por exemplo, 3 1/2)."
+  resposta="4 1/2"
+  dica="Quantas vezes o 2 cabe no 9? E quanto sobra?"
+  resolucao="9 ÷ 2 = 4, com resto 1. Então 9/2 = 4 1/2: quatro inteiros e meio."
+/>
 
 </Etapa>
 
@@ -69,8 +178,6 @@ Monte as duas frações com os botões de **+** e **−** e compare as pizzas:
 
 Quando as fatias têm tamanhos diferentes, é difícil comparar só olhando. O truque é **cortar as duas pizzas em pedaços do mesmo tamanho**. Aperte o botão e veja: aí basta contar.
 
-Experimente montar 1/2 e 2/4, ou 2/3 e 4/6. Os números são diferentes, mas a quantidade de pizza é a mesma. Essas são as **frações equivalentes**.
-
 <LembrarPalpite
   chave="inicial"
   opcoes={['1/4, porque 4 é maior que 3', '1/3', 'São do mesmo tamanho']}
@@ -81,102 +188,233 @@ Experimente montar 1/2 e 2/4, ou 2/3 e 4/6. Os números são diferentes, mas a q
 
 </Previsao>
 
-</Etapa>
+## Frações equivalentes: a mesma pizza, cortada de outro jeito
 
-<Etapa id="pratica">
+No comparador, monte 1/2 e 2/4. Depois 2/3 e 4/6. Os números são diferentes, mas a quantidade de pizza é a mesma. São as <Termo cor="verde">frações equivalentes</Termo>.
 
-## Na cozinha
-
-Receitas vivem de frações: 1/2 xícara de açúcar, 3/4 de xícara de leite. Para fazer **metade** da receita, você precisa achar a metade de 3/4. (Spoiler: 3/8, e a conta está no Aprofundar.)
-
-## Na caixa de ferramentas
-
-Brocas, chaves e parafusos costumam vir em **polegadas** e frações: 1/4", 3/8", 1/2". Qual broca é mais grossa, a de 3/8 ou a de 1/2? Cortando em oitavos: 3/8 contra 4/8. A de 1/2 ganha.
-
-## Na música
-
-Na partitura de uma valsa aparece o sinal **3/4**: três tempos por compasso, cada um durando uma semínima, a nota que vale 1/4 da semibreve. As figuras musicais são frações umas das outras: cada uma vale metade da anterior.
-
-## Experimente em casa
-
-Pegue uma folha de papel e dobre ao meio. Abra: duas partes, cada uma é 1/2. Dobre de novo duas vezes e conte as partes a cada vez: 1/4, depois 1/8. Pinte 3 partes de 8 e compare com 1/2 da folha. Qual é maior?
-
-</Etapa>
-
-<Etapa id="aprofundar">
-
-Agora vamos às regras, e ao **porquê** de cada uma.
-
-## 1. Frações equivalentes
-
-Multiplicar (ou dividir) o número de cima e o de baixo pelo mesmo número não muda a fração. É só cortar cada pedaço em pedaços menores:
+Pense assim: se você corta **cada** pedaço ao meio, fica com o dobro de pedaços, cada um com metade do tamanho. A quantidade de pizza não muda. Por isso dá para multiplicar o de cima e o de baixo pelo **mesmo número**.
 
 <Formula>
   <Linha><Fracao cima="2" baixo="3" /> = <Fracao cima="2 × 5" baixo="3 × 5" /> = <Fracao cima="10" baixo="15" /></Linha>
 </Formula>
 
-O caminho de volta é **simplificar**: 6/8 vira 3/4 dividindo os dois por 2.
+<Exercicio
+  enunciado="Complete: 3/5 é igual a quantos vinte avos? (3/5 = ?/20)"
+  resposta="12"
+  dica="Por quanto você multiplicou o 5 para chegar em 20? Faça o mesmo com o 3."
+  resolucao="5 × 4 = 20. Multiplicando o de cima também por 4: 3 × 4 = 12. Então 3/5 = 12/20."
+/>
 
-## 2. Comparar sem desenhar
+## Simplificar: juntar pedaços de volta
 
-Para comparar a/b com c/d, corte as duas em b × d pedaços. Na prática, basta comparar os "produtos cruzados" **a × d** e **c × b**:
+O caminho contrário é **simplificar**: dividir o de cima e o de baixo pelo mesmo número, até não dar mais. É como colar os pedaços de volta em pedaços maiores.
+
+<ExemploResolvido titulo="Simplifique 12/18">
+  <Passo>12 e 18 são pares: divida os dois por 2. Fica **6/9**.</Passo>
+  <Passo>6 e 9 estão na tabuada do 3: divida os dois por 3. Fica **2/3**.</Passo>
+  <Passo>2 e 3 não têm mais nenhum divisor em comum (além do 1). Pronto: 12/18 = **2/3**. Atalho: dividir direto por 6, o maior divisor comum (o MDC).</Passo>
+</ExemploResolvido>
+
+<Exercicio
+  enunciado="Simplifique 15/20 o máximo possível."
+  resposta="3/4"
+  dica="15 e 20 estão juntos em qual tabuada?"
+  resolucao="Os dois estão na tabuada do 5: 15 ÷ 5 = 3 e 20 ÷ 5 = 4. Fica 3/4."
+/>
+
+## Comparar sem desenhar
+
+Para comparar duas frações sem pizza, faça o que o comparador faz: corte as duas no mesmo tamanho. Um atalho é o **produto cruzado**: para 2/3 contra 3/5, compare 2 × 5 = 10 com 3 × 3 = 9. Quem ganha é a fração do lado do número maior.
+
+<Exercicio
+  enunciado="Qual é maior: 5/6 ou 7/9? Digite a fração maior."
+  resposta="5/6"
+  dica="Compare 5 × 9 com 7 × 6."
+  resolucao="5 × 9 = 45 e 7 × 6 = 42. Como 45 é maior, 5/6 é maior. Em dezoito avos: 15/18 contra 14/18."
+/>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+Agora as contas que aparecem na cozinha, no mercado e na oficina. Para cada uma: primeiro a ideia com desenho, depois a regra.
+
+## Somar e subtrair: só com pedaços do mesmo tamanho
+
+Meia xícara de leite mais um terço de xícara de água: quanto líquido? Não dá para somar "meios" com "terços" direto, assim como não dá para somar 1 metro com 30 centímetros sem antes passar tudo para centímetros.
+
+A solução é cortar os dois em pedaços do mesmo tamanho. Teste com 1/2 + 1/3:
+
+<SomaDeFracoes />
+
+<ExemploResolvido titulo="1/2 xícara + 1/3 de xícara">
+  <Passo>Meios e terços só se encontram nos **sextos** (6 é o menor número que 2 e 3 dividem).</Passo>
+  <Passo>1/2 = **3/6** e 1/3 = **2/6**.</Passo>
+  <Passo>Agora os pedaços são iguais: 3/6 + 2/6 = **5/6** de xícara. Repare que somamos só em cima; o de baixo (o tamanho do pedaço) não muda.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 1/4 + 1/2?" resposta="3/4" dica="Escreva 1/2 em quartos." resolucao="1/2 = 2/4. Então 1/4 + 2/4 = 3/4." />
+
+<Exercicio enunciado="Quanto é 2/3 + 1/6?" resposta="5/6" dica="Escreva 2/3 em sextos." resolucao="2/3 = 4/6. Então 4/6 + 1/6 = 5/6." />
+
+<Exercicio
+  enunciado="Você tinha 3/4 de um bolo e comeu 1/3 do bolo inteiro. Que fração do bolo sobrou?"
+  resposta="5/12"
+  dica="Quartos e terços se encontram nos doze avos."
+  resolucao="3/4 = 9/12 e 1/3 = 4/12. Então 9/12 − 4/12 = 5/12 do bolo."
+/>
+
+<Exercicio
+  enunciado="Uma receita pede 1 1/2 xícara de farinha e outra pede 3/4 de xícara. Quanto dá juntando as duas? (Pode responder 2 1/4 ou 9/4.)"
+  resposta="9/4"
+  dica="Passe 1 1/2 para quartos: quantos quartos há em uma xícara e meia?"
+  resolucao="1 1/2 = 6/4. Então 6/4 + 3/4 = 9/4 = 2 1/4 xícaras."
+/>
+
+## Multiplicar: pegar uma fração de outra
+
+Para fazer **metade** de uma receita que pede 3/4 de xícara, você precisa de "metade de 3/4". Na matemática, esse "de" vira **vezes**: 1/2 × 3/4.
+
+Imagine uma barra de chocolate. Primeiro pinte 3/4 dela (em colunas). Depois pegue metade disso (em linhas). O pedaço com as duas marcas é a resposta:
+
+<MultiplicacaoArea />
+
+Aqui sim se faz "em cima com em cima, embaixo com embaixo". O de baixo multiplica porque a barra fica cortada em linhas **e** colunas: 2 × 4 = 8 quadradinhos. O de cima conta os quadradinhos verdes: 1 × 3 = 3.
+
+<ExemploResolvido titulo="Quanto é 2/3 × 3/5?">
+  <Passo>Em cima: 2 × 3 = **6**. Embaixo: 3 × 5 = **15**. Fica 6/15.</Passo>
+  <Passo>Simplifique: 6 e 15 estão na tabuada do 3. Fica **2/5**.</Passo>
+  <Passo>Dica para contas maiores: dá para simplificar **antes** de multiplicar. O 3 de cima e o 3 de baixo se cancelam: 2/3 × 3/5 = 2/5 direto.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é metade de 2/3?" resposta="1/3" dica="Metade de 2/3 é 1/2 × 2/3." resolucao="1/2 × 2/3 = 2/6 = 1/3. Faz sentido: metade de dois terços é um terço." />
+
+<Exercicio
+  enunciado="Cada pessoa come 2/5 de uma pizza. Quanta pizza 3 pessoas comem? (Pode responder como fração ou número misto.)"
+  resposta="6/5"
+  dica="3 × 2/5 é o mesmo que 2/5 + 2/5 + 2/5."
+  resolucao="3 × 2/5 = 6/5 = 1 1/5 pizza: uma inteira e mais um quinto."
+/>
+
+## Dividir: quantas vezes cabe?
+
+Dividir por uma fração assusta, mas a pergunta é simples: **quantas vezes este pedaço cabe ali?** Quantos copos de 1/4 de litro enchem uma garrafa de 2 litros?
+
+<QuantosCabem />
+
+Cada litro tem 4 quartos, então 2 litros têm 2 × 4 = 8 quartos: cabem 8 copos. Dividir por 1/4 virou **multiplicar por 4**. Essa é a regra famosa: para dividir por uma fração, **multiplique pela fração virada**.
+
+<ExemploResolvido titulo="Quantos pedaços de 1/8 cabem em 3/4 de uma barra?">
+  <Passo>Pergunta lúdica: corte 3/4 da barra em pedaços de 1/8. Como 3/4 = 6/8, cabem **6** pedaços.</Passo>
+  <Passo>Pela regra: 3/4 ÷ 1/8 = 3/4 × 8/1 = 24/4 = **6**.</Passo>
+  <Passo>Os dois caminhos dão o mesmo resultado. A regra é só um atalho para a pergunta "quantos cabem?".</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 3 ÷ 1/2? (Quantas metades cabem em 3 inteiros?)" resposta="6" dica="Cada inteiro tem 2 metades." resolucao="3 × 2 = 6 metades. Pela regra: 3 ÷ 1/2 = 3 × 2/1 = 6." />
+
+<Exercicio
+  enunciado="Uma fita de 2 metros vai ser cortada em pedaços de 2/3 de metro. Quantos pedaços saem?"
+  resposta="3"
+  unidade="pedaços"
+  dica="2 ÷ 2/3 = 2 × 3/2."
+  resolucao="2 × 3/2 = 6/2 = 3 pedaços. Confira: 3 × 2/3 = 6/3 = 2 metros."
+/>
+
+<Exercicio
+  enunciado="Quanto é 5/6 ÷ 1/3? (Pode responder como fração ou número misto.)"
+  resposta="5/2"
+  dica="Multiplique 5/6 pela fração virada de 1/3, que é 3/1."
+  resolucao="5/6 × 3/1 = 15/6 = 5/2 = 2 1/2. Ou seja, um pedaço de 1/3 cabe duas vezes e meia dentro de 5/6."
+/>
+
+## Ainda no dia a dia
+
+- **Caixa de ferramentas:** brocas e chaves costumam vir em polegadas e frações: 1/4", 3/8", 1/2". Qual broca é mais grossa, a de 3/8 ou a de 1/2? Em oitavos: 3/8 contra 4/8. A de 1/2 ganha.
+- **Música:** na partitura de uma valsa aparece o sinal **3/4**: três tempos por compasso, cada um durando uma semínima, a nota que vale 1/4 da semibreve. Cada figura musical vale metade da anterior.
+- **Relógio:** "um quarto de hora" são 15 minutos, porque 1/4 de 60 = 15. Herança dos babilônios.
+
+## Experimente em casa
+
+Pegue uma folha de papel e dobre ao meio. Abra: duas partes, cada uma é 1/2. Dobre de novo duas vezes e conte as partes a cada vez: 1/4, depois 1/8. Pinte 3 partes de 8 e compare com 1/2 da folha. Qual é maior? Agora tente achar, na folha, 1/2 de 3/4.
+
+</Etapa>
+
+<Etapa id="aprofundar">
+
+Nesta etapa, o **porquê** de cada regra. Nada de decorar: cada regra é um atalho de algo que você já viu com pizza, balas e chocolate.
+
+## 1. Por que só somamos o de cima?
+
+O de baixo diz o **tamanho** do pedaço; o de cima, **quantos** pedaços. Somar 2/7 + 3/7 é como somar 2 maçãs + 3 maçãs: dá 5 maçãs, e "maçã" continua sendo maçã. Dá 5/7, e o "sétimo" continua sendo sétimo.
+
+Somar os de baixo seria como dizer que 2 maçãs + 3 maçãs dá "5 maçãs de tamanho dobrado". Dá até para ver que o erro é absurdo: 1/2 + 1/3 "daria" 2/5, que é **menos** que 1/2. Somar algo positivo não pode diminuir.
+
+## 2. A regra geral da soma
+
+Para somar a/b + c/d, corte os dois em pedaços de tamanho 1/(b × d):
 
 <Formula>
-  <Linha>2/3 ou 3/5?   2 × 5 = 10   e   3 × 3 = 9</Linha>
+  <Linha><Fracao cima="a" baixo="b" /> + <Fracao cima="c" baixo="d" /> = <Fracao cima="a × d + c × b" baixo="b × d" /></Linha>
 </Formula>
 
-10 é maior que 9, então 2/3 é maior. São exatamente os 10/15 e 9/15 do comparador.
+Funciona sempre, mas às vezes dá números grandes. Usar o **MMC** (o menor múltiplo comum dos de baixo) deixa as contas menores: para 1/4 + 1/6, em vez de 24 avos, use 12 avos.
 
-## 3. Somar: só com pedaços iguais
+## 3. Por que multiplicamos "reto"?
 
-Um erro muito comum é somar em cima com em cima e embaixo com embaixo:
+É a barra de chocolate: tomar a/b **de** c/d corta a barra em b × d quadradinhos, e você fica com a × c deles.
 
 <Formula>
-  <Linha><Fracao cima="1" baixo="2" /> + <Fracao cima="1" baixo="3" /> ≠ <Fracao cima="2" baixo="5" /></Linha>
+  <Linha><Fracao cima="a" baixo="b" /> × <Fracao cima="c" baixo="d" /> = <Fracao cima="a × c" baixo="b × d" /></Linha>
 </Formula>
 
-Dá para ver que está errado sem fazer conta: 2/5 é **menos** que 1/2, e somar algo positivo não pode diminuir. O certo é primeiro cortar tudo no mesmo tamanho (sextos):
+Uma curiosidade: multiplicar por uma fração menor que 1 **diminui** o número. "Multiplicar sempre aumenta" só vale para números maiores que 1.
+
+## 4. Por que viramos a fração na divisão?
+
+Dividir é desfazer a multiplicação. Se 3/4 ÷ 1/8 = 6, então 6 × 1/8 tem que dar 3/4. Confira: 6/8 = 3/4.
+
+A regra "multiplique pela virada" sempre passa nesse teste:
 
 <Formula>
-  <Linha><Fracao cima="3" baixo="6" /> + <Fracao cima="2" baixo="6" /> = <Fracao cima="5" baixo="6" /></Linha>
+  <Linha>(<Fracao cima="a" baixo="b" /> × <Fracao cima="d" baixo="c" />) × <Fracao cima="c" baixo="d" /> = <Fracao cima="a" baixo="b" /></Linha>
 </Formula>
 
-## 4. Multiplicar é "pegar uma fração de outra"
+Os c e os d se cancelam, e sobra exatamente a/b. Por isso a regra está certa, e não é mágica.
 
-"Metade de 3/4 de xícara" é 1/2 × 3/4. Aqui sim se multiplica em cima com em cima e embaixo com embaixo:
+## 5. Frações viram decimais e porcentagens
+
+A fração **é** uma divisão: 3/4 = 3 ÷ 4 = 0,75. E porcentagem é fração com 100 embaixo: 0,75 = 75/100 = 75%.
+
+Algumas divisões não terminam e repetem um padrão para sempre: 1/3 = 0,333… e 1/7 = 0,142857142857… Isso acontece quando o de baixo (já simplificado) tem algum fator primo diferente de 2 e 5, os fatores do 10.
+
+<Exercicio enunciado="Escreva 3/5 como número decimal." resposta="0,6" dica="Faça 3 ÷ 5, ou transforme em décimos." resolucao="3/5 = 6/10 = 0,6." />
+
+<Exercicio enunciado="Quanto por cento é 3/4?" resposta="75" unidade="%" dica="Transforme 3/4 em centésimos." resolucao="3/4 = 75/100 = 75%." />
+
+<Exercicio enunciado="Escreva 0,25 como fração simplificada." resposta="1/4" dica="0,25 são 25 centésimos." resolucao="0,25 = 25/100. Dividindo os dois por 25: 1/4." />
+
+## 6. Entre duas frações sempre cabe outra
+
+Entre 1 e 2 não existe nenhum número inteiro. Mas entre duas frações **sempre** existe outra. Entre 1/3 e 1/2, por exemplo, está a média das duas:
 
 <Formula>
-  <Linha><Fracao cima="1" baixo="2" /> × <Fracao cima="3" baixo="4" /> = <Fracao cima="3" baixo="8" /></Linha>
+  <Linha>(<Fracao cima="1" baixo="3" /> + <Fracao cima="1" baixo="2" />) ÷ 2 = <Fracao cima="5" baixo="12" /></Linha>
 </Formula>
 
-Por quê? Cortar cada quarto ao meio transforma a pizza em oitavos. Dos 3 quartos, sobram 3 oitavos.
+E entre 1/3 e 5/12 cabe outra, e assim para sempre. Entre 0 e 1 existem **infinitas** frações.
 
-## 5. Dividir é "quantas vezes cabe"
+## 7. O jeito egípcio
 
-Quantos copos de 1/4 de litro enchem uma garrafa de 2 litros? Cada litro tem 4 copos, então 8 copos:
-
-<Formula>
-  <Linha>2 ÷ <Fracao cima="1" baixo="4" /> = 2 × 4 = 8</Linha>
-</Formula>
-
-Dividir por uma fração é multiplicar pela fração "virada". Dividir por 1/4 é perguntar quantos quartos cabem, e cada inteiro tem 4.
-
-## 6. Frações viram decimais
-
-A fração é uma divisão: 1/4 = 1 ÷ 4 = 0,25. Algumas divisões não terminam nunca e repetem um padrão: 1/3 = 0,333… e 1/7 = 0,142857142857…
-
-Isso acontece quando o número de baixo (simplificado) tem fatores primos diferentes de 2 e 5, que são os fatores do 10.
-
-## Bônus: o jeito egípcio
-
-Os egípcios escreviam quase tudo como soma de frações com 1 em cima, todas diferentes:
+Os egípcios escreviam quase tudo como soma de frações unitárias, todas diferentes:
 
 <Formula>
   <Linha><Fracao cima="2" baixo="5" /> = <Fracao cima="1" baixo="3" /> + <Fracao cima="1" baixo="15" /></Linha>
-  <Linha><Fracao cima="2" baixo="7" /> = <Fracao cima="1" baixo="4" /> + <Fracao cima="1" baixo="28" /></Linha>
+  <Linha><Fracao cima="9" baixo="10" /> = <Fracao cima="2" baixo="3" /> + <Fracao cima="1" baixo="5" /> + <Fracao cima="1" baixo="30" /></Linha>
 </Formula>
 
-Confira a primeira em quinze avos: 5/15 + 1/15 = 6/15, que simplifica para 2/5.
+(O 2/3 era a única exceção que eles usavam.) Um desafio para se divertir: escreva 3/4 como soma de duas frações unitárias diferentes.
+
+<Exercicio enunciado="Se 3/4 = 1/2 + 1/x, quanto vale x?" resposta="4" dica="Quanto falta de 1/2 para chegar em 3/4?" resolucao="3/4 − 1/2 = 3/4 − 2/4 = 1/4. Então x = 4: 3/4 = 1/2 + 1/4." />
 
 </Etapa>
 
@@ -190,10 +428,22 @@ Confira a primeira em quinze avos: 5/15 + 1/15 = 6/15, que simplifica para 2/5.
     explicacao: 'Cortando em oitavos, 3/4 vira 6/8. Seis oitavos ganham de cinco oitavos.',
   },
   {
+    enunciado: 'Quanto é 2/5 de 25?',
+    opcoes: ['5', '10', '15'],
+    correta: 1,
+    explicacao: '25 ÷ 5 = 5 em cada grupo. Dois grupos: 2 × 5 = 10.',
+  },
+  {
     enunciado: 'Quanto é 1/2 + 1/4?',
     opcoes: ['2/6', '3/4', '1/8'],
     correta: 1,
     explicacao: 'Em quartos, 1/2 vira 2/4. Então 2/4 + 1/4 = 3/4. A resposta 2/6 é o erro de somar em cima com em cima e embaixo com embaixo.',
+  },
+  {
+    enunciado: 'Como fica 7/3 em número misto?',
+    opcoes: ['2 1/3', '1 4/3', '3 1/7'],
+    correta: 0,
+    explicacao: '7 ÷ 3 = 2, com resto 1. São 2 inteiros e 1 terço: 2 1/3.',
   },
   {
     enunciado: 'A receita pede 3/4 de xícara de leite. Você vai fazer metade da receita. Quanto leite usa?',
@@ -208,6 +458,12 @@ Confira a primeira em quinze avos: 5/15 + 1/15 = 6/15, que simplifica para 2/5.
     explicacao: 'Cada litro tem 4 copos de 1/4. Dois litros têm 8. Em conta: 2 ÷ 1/4 = 2 × 4 = 8.',
   },
   {
+    enunciado: 'Quanto é 2/3 − 1/2?',
+    opcoes: ['1/6', '1/1', '1/5'],
+    correta: 0,
+    explicacao: 'Em sextos: 2/3 = 4/6 e 1/2 = 3/6. Então 4/6 − 3/6 = 1/6.',
+  },
+  {
     enunciado: 'Por que o hambúrguer de 1/3 de libra tem mais carne que o de 1/4 de libra?',
     opcoes: [
       'Porque dividir em 3 partes iguais dá pedaços maiores que dividir em 4',
@@ -215,6 +471,30 @@ Confira a primeira em quinze avos: 5/15 + 1/15 = 6/15, que simplifica para 2/5.
     ],
     correta: 0,
     explicacao: 'O número de baixo diz em quantas partes o inteiro foi dividido. Mais partes, pedaços menores. 1/3 de libra é cerca de 151 gramas; 1/4 de libra, cerca de 113.',
+  },
+  {
+    enunciado: 'Qual destas frações fica entre 1/3 e 1/2?',
+    opcoes: ['1/4', '5/12', '3/5'],
+    correta: 1,
+    explicacao: 'Em doze avos: 1/3 = 4/12 e 1/2 = 6/12. O 5/12 fica bem no meio. 1/4 = 3/12 é menor e 3/5 é maior que 1/2.',
+  },
+  {
+    enunciado: 'Quanto é 3/4 ÷ 3/8?',
+    opcoes: ['9/32', '2', '1/2'],
+    correta: 1,
+    explicacao: 'Quantos pedaços de 3/8 cabem em 3/4 = 6/8? Dois. Pela regra: 3/4 × 8/3 = 24/12 = 2.',
+  },
+  {
+    enunciado: 'Qual destas frações vira um decimal que nunca termina?',
+    opcoes: ['1/8', '3/20', '2/3'],
+    correta: 2,
+    explicacao: '1/8 = 0,125 e 3/20 = 0,15 terminam, porque 8 e 20 só têm os fatores 2 e 5. Já 2/3 = 0,666…, porque o 3 não é fator do 10.',
+  },
+  {
+    enunciado: 'Você gasta 1/4 do salário com aluguel e 1/3 com mercado. Que fração do salário sobra?',
+    opcoes: ['5/12', '2/7', '7/12'],
+    correta: 0,
+    explicacao: 'Gastos: 1/4 + 1/3 = 3/12 + 4/12 = 7/12. Sobra 12/12 − 7/12 = 5/12. A resposta 7/12 é o que foi gasto, não o que sobrou.',
   },
 ]} />
 
@@ -226,9 +506,11 @@ Confira a primeira em quinze avos: 5/15 + 1/15 = 6/15, que simplifica para 2/5.
 
 - **Embaixo: em quantos pedaços iguais. Em cima: quantos você pegou.**
 - **Mais cortes, pedaços menores:** por isso 1/3 é maior que 1/4.
-- **Frações equivalentes** são a mesma quantidade cortada de outro jeito: 2/3 = 10/15.
-- **Para comparar ou somar**, corte tudo em pedaços do mesmo tamanho primeiro.
-- **Multiplicar é pegar uma fração de outra**; dividir é contar quantas vezes cabe.
+- **Fração de uma quantidade:** divida pelo de baixo e multiplique pelo de cima.
+- **Frações equivalentes** são a mesma quantidade cortada de outro jeito; simplificar é juntar os pedaços de volta.
+- **Somar e subtrair:** primeiro corte tudo no mesmo tamanho, depois some só em cima.
+- **Multiplicar** é pegar uma fração de outra; **dividir** é contar quantas vezes cabe (e por isso se multiplica pela virada).
+- **Fração é divisão:** vira decimal e porcentagem.
 
 </Resumo>
 

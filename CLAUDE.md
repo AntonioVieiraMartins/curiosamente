@@ -51,6 +51,12 @@ até o dono pedir. A estrutura do app precisa permitir adicionar áreas novas se
 4. **Errar é parte do jogo**: resposta errada mostra o porquê, sem punir com perda de XP.
 5. **Verdade acima de tudo**: datas, nomes e fatos históricos precisam de fonte. Mitos populares (ex.: proporção áurea em tudo) são apresentados como mitos.
 6. **Textos curtos**: blocos de no máximo ~4 frases entre interações.
+7. **Aprofundado, mas não complexo** (pedido do dono): cada cápsula ensina o assunto **inteiro**, não só uma passada por cima.
+   Tudo o que for difícil é explicado **primeiro de forma lúdica** (história, desenho, brincadeira, simulação) e só depois com a conta ou a regra.
+   - Cubra todos os subtópicos que a BNCC espera para o assunto (ex.: Frações = o que é, fração de quantidade, equivalentes, simplificar, comparar, mistas, somar, subtrair, multiplicar, dividir, decimais).
+   - História contada como narrativa (personagens, problema, solução), não só tópicos na linha do tempo.
+   - Para cada subtópico: explicação lúdica → exemplo resolvido (`<ExemploResolvido>`) → exercícios (`<Exercicio>`).
+   - Várias simulações ao longo da cápsula, não só uma. Desafio final com 10 ou mais perguntas, do fácil ao difícil.
 
 ## Estrutura de uma cápsula
 
@@ -85,6 +91,8 @@ Componentes disponíveis sem precisar de `import` (ficam em `src/components/caps
 | `<Palpite chave="inicial" pergunta opcoes />` | Guarda o que a pessoa acha no começo (vai no Gancho) |
 | `<LembrarPalpite chave="inicial" opcoes correta seAcertou seErrou />` | Mais adiante, lembra o palpite e compara |
 | `<Resumo>…lista…</Resumo>` | Caixa "Para levar" com as ideias principais (vai em Conexões) |
+| `<ExemploResolvido titulo="…"><Passo>…</Passo>…</ExemploResolvido>` | Conta resolvida, um passo revelado por vez |
+| `<Exercicio enunciado="…" resposta="3/8" dica="…" resolucao="…" />` | Exercício com resposta digitada (aceita 3/8, 0,375 ou 1 1/2) |
 
 A camada **Aprofundar** é o "Rigor": defina os termos, mostre a conta passo a passo,
 explique onde a intuição falha, mostre variações do problema e generalize. Confira toda conta

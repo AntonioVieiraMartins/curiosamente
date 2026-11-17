@@ -1,12 +1,10 @@
 import { useState } from 'react'
 import Pizza from './Pizza'
-import Passo from './Passo'
+import Contador from './Contador'
 import { cartao } from '../ui/estilos'
+import { mmc } from '../../lib/fracoes'
 
 type Fracao = { cima: number; baixo: number }
-
-const mdc = (a: number, b: number): number => (b === 0 ? a : mdc(b, a % b))
-const mmc = (a: number, b: number) => (a * b) / mdc(a, b)
 
 const MAX = 10
 
@@ -14,8 +12,8 @@ function Lado({ f, mudar, cor }: { f: Fracao; mudar: (f: Fracao) => void; cor: s
   return (
     <div className="space-y-3">
       <Pizza cima={f.cima} baixo={f.baixo} cor={cor} tamanho={110} />
-      <Passo rotulo="Pedaços pegos" valor={f.cima} min={0} max={f.baixo} mudar={(v) => mudar({ ...f, cima: v })} />
-      <Passo rotulo="Cortes (partes)" valor={f.baixo} min={1} max={MAX} mudar={(v) => mudar({ baixo: v, cima: Math.min(f.cima, v) })} />
+      <Contador rotulo="Pedaços pegos" valor={f.cima} min={0} max={f.baixo} mudar={(v) => mudar({ ...f, cima: v })} />
+      <Contador rotulo="Cortes (partes)" valor={f.baixo} min={1} max={MAX} mudar={(v) => mudar({ baixo: v, cima: Math.min(f.cima, v) })} />
     </div>
   )
 }

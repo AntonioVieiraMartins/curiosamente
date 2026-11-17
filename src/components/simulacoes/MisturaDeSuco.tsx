@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Passo from './Passo'
+import Contador from './Contador'
 import { cartao } from '../ui/estilos'
 
 type Jarra = { suco: number; agua: number }
@@ -28,8 +28,8 @@ function Lado({ j, mudar, nome }: { j: Jarra; mudar: (j: Jarra) => void; nome: s
       <p className="text-[15px]">
         {j.suco} : {j.agua} · <strong>{pct(porcento(j))}</strong> é suco
       </p>
-      <Passo rotulo="Copos de suco" valor={j.suco} min={0} max={MAX} mudar={(v) => mudar({ ...j, suco: v })} />
-      <Passo rotulo="Copos de água" valor={j.agua} min={0} max={MAX} mudar={(v) => mudar({ ...j, agua: v })} />
+      <Contador rotulo="Copos de suco" valor={j.suco} min={0} max={MAX} mudar={(v) => mudar({ ...j, suco: v })} />
+      <Contador rotulo="Copos de água" valor={j.agua} min={0} max={MAX} mudar={(v) => mudar({ ...j, agua: v })} />
     </div>
   )
 }

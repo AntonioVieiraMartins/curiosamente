@@ -122,6 +122,8 @@ export function prepararParaFala(texto: string) {
     .replace(/\|([^|\s]+)\|/g, ' módulo de $1 ') // "|−3|" vira "módulo de menos 3"
     .replace(/\bP\(/g, 'P de ') // "P(A | B)" vira "P de A sabendo que B"
     .replace(/[()]/g, ' ')
+    // Número misto: "1 1/2" vira "1 e meio", e não "1 um meio"
+    .replace(/\b(\d+) (\d+)\/(\d+)\b/g, (_, inteiro, a, b) => `${inteiro} e ${fracoesComuns[`${a}/${b}`] ?? `${a} sobre ${b}`}`)
     .replace(/\b(\d+)\/(\d+)\b/g, (fracao, a, b) => fracoesComuns[fracao] ?? `${a} sobre ${b}`)
   for (const [simbolo, fala] of Object.entries(simbolos)) saida = saida.split(simbolo).join(fala)
   return saida.replace(/\s+/g, ' ').trim()
