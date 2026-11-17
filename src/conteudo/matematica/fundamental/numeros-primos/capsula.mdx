@@ -1,0 +1,319 @@
+import CrivoDeEratostenes from '../../../../components/simulacoes/CrivoDeEratostenes'
+import DetetiveDePrimos from '../../../../components/simulacoes/DetetiveDePrimos'
+import ArvoreDeFatores from '../../../../components/simulacoes/ArvoreDeFatores'
+import DivisoresDeUmNumero from '../../../../components/simulacoes/DivisoresDeUmNumero'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Prime number, Sieve of Eratosthenes), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Pegue o 7. Dá para dividir 7 em grupos iguais? Em 2 grupos, sobra 1. Em 3, sobra 1. Em 4, 5 ou 6, também sobra. Só dá para fazer 1 grupo de 7 ou 7 grupos de 1.
+
+Agora o 8: dá em 2 grupos de 4, em 4 grupos de 2. O 7 é **teimoso**: não se divide. Números assim se chamam **primos**, e eles guardam segredos que ajudam a proteger mensagens na internet.
+
+<Palpite
+  chave="inicial"
+  pergunta="Os primos são 2, 3, 5, 7, 11, 13... Será que existe um último primo, maior que todos os outros?"
+  opcoes={['Sim, existe um maior de todos', 'Não, a lista nunca acaba', 'Ninguém sabe']}
+/>
+
+Nesta cápsula você vai descobrir como achar primos, por que eles são os "átomos" de todos os números, e como alguém provou a resposta há mais de dois mil anos.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Os gregos antigos já eram fascinados por números que não se quebram.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Séc. III a.C.', texto: 'Eratóstenes, o mesmo que mediu a Terra, inventa uma "peneira" para separar os primos dos outros números.' },
+  { ano: 'c. 300 a.C.', texto: 'Euclides prova, nos Elementos, que os primos nunca acabam.' },
+  { ano: 'Início do séc. II', texto: 'Nicômaco de Gerasa registra o método da peneira em seu livro Introdução à Aritmética, a referência mais antiga que se conhece.' },
+  { ano: '1951', texto: 'Desde então, todos os maiores primos conhecidos foram achados com computadores.' },
+  { ano: 'Anos 1970', texto: 'Inventam o RSA, um sistema de segurança de mensagens que usa números primos.' },
+]} />
+
+## A peneira de Eratóstenes
+
+Eratóstenes cuidava da Biblioteca de Alexandria e gostava de organizar. Para separar os primos, ele escrevia todos os números numa lista e ia **riscando** os que não serviam.
+
+O truque: o 2 é primo, então todos os múltiplos de 2 (4, 6, 8...) não são. Risque. O próximo que sobrou é o 3: primo. Risque os múltiplos de 3. Repita com o 5, o 7... No fim, **os números que escaparam da peneira são os primos**.
+
+## Euclides e o "último primo"
+
+Por volta de 300 a.C., Euclides fez uma pergunta ousada: e se os primos acabassem? Imagine que você tem uma lista de **todos** os primos. Multiplique todos e some 1. Esse número novo não é divisível por nenhum da lista (sempre sobra 1). Então ou ele é primo, ou tem um fator primo que **não estava na lista**. Nos dois casos a lista estava incompleta.
+
+Conclusão: **nenhuma lista finita contém todos os primos**. Eles nunca acabam. Você vai refazer essa prova, com números de verdade, na etapa Aprofundar.
+
+## O número 1 não entrou no clube
+
+Os primeiros matemáticos gregos nem tratavam o 1 como "número" de verdade: era a unidade, o tijolo que forma os números. No início do século XX os matemáticos concordaram em deixá-lo de fora dos primos. Você vai ver o motivo prático no Aprofundar.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Primo ou composto?
+
+Um número **primo** tem **exatamente dois divisores**: o 1 e ele mesmo. Um número **composto** tem mais de dois.
+
+Pense em arrumar quadradinhos em retângulos. O 7 só forma uma fila de 7 (1 × 7). O 12 forma 1 × 12, 2 × 6 e 3 × 4. Os primos só formam **uma** fila. Os compostos formam várias.
+
+O **1** não é primo nem composto: ele tem **um** divisor só. E o **2** é o único primo **par**: todo outro par é divisível por 2, então tem pelo menos três divisores.
+
+<DivisoresDeUmNumero />
+
+Passe pelos números e conte divisores. Os que têm exatamente 2 são os primos.
+
+<Exercicio enunciado="Qual é o único número primo que é par?" resposta="2" dica="Todo par é divisível por 2. Quem escapa?" resolucao="O 2: seus únicos divisores são 1 e 2. Qualquer outro par é divisível por 2 e por ele mesmo, e portanto tem mais de dois divisores." />
+
+## 2. Como saber se um número é primo
+
+Para saber se 91 é primo, você poderia testar todos os números de 2 até 90. Mas existe um atalho: só é preciso testar até a **raiz** do número.
+
+Por quê? Se 91 se dividisse por um número grande, o "par" dele (91 ÷ esse número) seria pequeno. Então, se existe divisor, ele aparece entre os pequenos. Como 9 × 9 = 81 e 10 × 10 = 100, a raiz de 91 fica entre 9 e 10. Basta testar até 9.
+
+<DetetiveDePrimos />
+
+O 91 parece primo, mas tem um disfarce: 7 × 13. Os números que mais enganam são 51 (3 × 17), 57 (3 × 19) e 87 (3 × 29).
+
+<ExemploResolvido titulo="O 97 é primo?">
+  <Passo>A raiz de 97 fica entre 9 e 10 (9 × 9 = 81 e 10 × 10 = 100). Testamos até 9.</Passo>
+  <Passo>97 não é par (não divide por 2). A soma dos algarismos é 16, então não divide por 3. Não termina em 0 ou 5.</Passo>
+  <Passo>97 ÷ 7 = 13 e sobra 6. Não divide. 97 ÷ 9 não precisa, porque 3 já falhou.</Passo>
+  <Passo>Nenhum divisor até 9: o 97 é **primo**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é o maior fator primo de 91?" resposta="13" dica="Teste os divisores pequenos: 2, 3, 5, 7..." resolucao="91 = 7 × 13. Os dois são primos, e o maior é o 13." />
+
+## 3. Os primos são os átomos dos números
+
+Tudo no mundo é feito de átomos. Todo número é feito de **primos**. O 12 é 2 × 2 × 3. O 30 é 2 × 3 × 5. Não dá para quebrar mais, e o jeito de montar é único.
+
+Para desmontar, divida pelo menor primo possível, de novo e de novo, até chegar em 1. Os divisores que você usou são as peças.
+
+<ArvoreDeFatores />
+
+<ExemploResolvido titulo="Desmonte o 84.">
+  <Passo>84 é par: 84 ÷ 2 = 42.</Passo>
+  <Passo>42 é par: 42 ÷ 2 = 21.</Passo>
+  <Passo>21 não é par. Soma dos algarismos 3: divide por 3. 21 ÷ 3 = 7.</Passo>
+  <Passo>7 é primo. Então 84 = 2 × 2 × 3 × 7 = **2² × 3 × 7**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos números primos existem entre 20 e 40?" resposta="4" dica="Os candidatos são ímpares. Teste 23, 25, 27, 29, 31, 33, 35, 37, 39." resolucao="São 23, 29, 31 e 37. Os outros ímpares são compostos: 25 = 5 × 5, 27 = 3 × 9, 33 = 3 × 11, 35 = 5 × 7, 39 = 3 × 13." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Quando a peneira de Eratóstenes terminar de riscar os números de 1 a 100, quantos primos vão sobrar?"
+  opcoes={['Uns 15', 'Uns 25', 'Uns 40']}
+  correta={1}
+  explicacao="Sobram 25 primos até 100. Eles ficam mais raros conforme os números crescem: 25 até 100, mas só 168 até 1.000."
+>
+
+Clique em **"Riscar múltiplos de..."** para ver a peneira trabalhar, passo a passo. O número em **verde** é um primo confirmado; o **amarelo** é o próximo da vez.
+
+<CrivoDeEratostenes />
+
+Repare em duas coisas. Depois de riscar os múltiplos de 2, 3, 5 e 7, **todos** os restantes já são primos. E o 11 não riscou nada novo: o primeiro múltiplo de 11 que ainda não tinha sido riscado seria 11 × 11 = 121, que passa de 100. Por isso a peneira pode parar cedo, como o detetive de primos.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Sim, existe um maior de todos', 'Não, a lista nunca acaba', 'Ninguém sabe']}
+  correta={1}
+  seAcertou="E o palpite do começo? Você acertou: os primos nunca acabam. A prova de Euclides está no Aprofundar."
+  seErrou="E o palpite do começo? A resposta é que os primos nunca acabam. Euclides provou isso há mais de 2.000 anos. A prova está no Aprofundar."
+/>
+
+</Previsao>
+
+<Exercicio enunciado="Quantos números primos existem de 1 a 20?" resposta="8" dica="Liste: 2, 3, 5, 7, 11..." resolucao="São 2, 3, 5, 7, 11, 13, 17 e 19: oito primos." />
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Primos protegem segredos
+
+Multiplicar dois primos é fácil: 61 × 53 = 3.233. Fez em segundos. Mas se eu der só o **3.233** e perguntar "quais dois primos multiplicados dão isso?", você precisa testar e testar.
+
+Agora imagine primos com **centenas de algarismos**. Para um computador, multiplicá-los é instantâneo. Desfazer a conta, achar os dois primos de volta, leva uma eternidade com os métodos que se conhecem. Essa assimetria é a base do RSA, criado nos anos 1970 para proteger mensagens e usado em vários sistemas de segurança da internet.
+
+Em resumo: **fácil de montar, difícil de desmontar**. É isso que mantém seus dados seguros.
+
+## Primos gêmeos
+
+Alguns primos andam em dupla, com diferença de 2: (3, 5), (5, 7), (11, 13), (17, 19), (29, 31), (41, 43). São os **primos gêmeos**. Será que há infinitos pares assim? Acredita-se que sim, mas **ninguém provou**. É um problema aberto.
+
+## O mistério de Goldbach
+
+Pegue um par maior que 2: 4 = 2 + 2, 6 = 3 + 3, 8 = 3 + 5, 10 = 5 + 5, 12 = 5 + 7. Sempre dá para escrever como soma de **dois primos**. A "conjectura de Goldbach" diz que isso vale para todos os pares. Já foi testada em números gigantescos, mas continua **sem prova**.
+
+<Exercicio enunciado="Escreva 20 como soma de dois primos. Digite o menor dos dois." resposta="3" dica="Teste 3 + 17, 7 + 13..." resolucao="20 = 3 + 17 = 7 + 13. O menor primo possível é o 3. (O 2 não funciona: 20 − 2 = 18 não é primo.)" />
+
+## Onde mais aparecem
+
+- **MMC e MDC:** os primos são os blocos que facilitam as duas contas.
+- **Frações:** simplificar uma fração é cortar os primos que se repetem em cima e embaixo.
+- **Natureza:** alguns insetos têm ciclos de vida longos. Há hipóteses ligando isso a primos, mas é um assunto de debate científico, então fica só como curiosidade.
+- **Computação:** gerar e testar primos é uma tarefa diária de programas de segurança.
+
+</Etapa>
+
+<Etapa id="aprofundar">
+
+## 1. O teorema fundamental da aritmética
+
+Todo número inteiro maior que 1 pode ser escrito como produto de primos, e esse jeito é **único**, a menos da ordem dos fatores.
+
+É por isso que o 1 **não** é primo. Se fosse, a unicidade quebraria: 6 = 2 × 3 = 1 × 2 × 3 = 1 × 1 × 2 × 3... infinitas maneiras. Deixar o 1 de fora mantém a regra limpa.
+
+## 2. A prova de Euclides, com números de verdade
+
+Vamos testar com uma lista: os primos 2, 3, 5, 7, 11 e 13.
+
+<ExemploResolvido titulo="Existe um primo fora da lista 2, 3, 5, 7, 11, 13?">
+  <Passo>Multiplique todos: 2 × 3 × 5 × 7 × 11 × 13 = 30.030. Some 1: **30.031**.</Passo>
+  <Passo>30.031 não é divisível por nenhum primo da lista: dividindo por qualquer um deles sobra resto 1.</Passo>
+  <Passo>Mesmo assim ele **não é primo**: 30.031 = 59 × 509. Mas os fatores 59 e 509 não estavam na lista.</Passo>
+  <Passo>Então a lista estava incompleta. O mesmo raciocínio funciona com qualquer lista. Logo, **os primos nunca acabam**.</Passo>
+</ExemploResolvido>
+
+Repare num detalhe: o número "produto + 1" nem sempre é primo. O que a prova garante é que ele traz **pelo menos um primo novo**.
+
+## 3. Por que basta testar até a raiz
+
+Se n = a × b e a for o menor dos dois, então a × a ≤ a × b = n, ou seja, **a ≤ √n**. Portanto, se n tem algum divisor além de 1, ele tem um divisor até √n. Se testamos todos até √n e nenhum serve, n é primo. É o mesmo motivo que deixa a peneira parar no 7 (porque 11² = 121 passa de 100).
+
+## 4. Os primos ficam mais raros
+
+Entre 1 e 100 há **25 primos**. Entre 1 e 1.000, **168**. Quanto maior o número, menor a "densidade" de primos, mas eles nunca acabam. É como uma floresta que vai ficando mais esparsa sem nunca terminar.
+
+## 5. Um padrão: 6k ± 1
+
+Todo primo maior que 3 é vizinho de um múltiplo de 6: ou é da forma 6k − 1 (5, 11, 17, 23, 29) ou da forma 6k + 1 (7, 13, 19, 31, 37). Por quê? Os outros números são pares (6k, 6k + 2, 6k + 4) ou múltiplos de 3 (6k + 3). Mas **atenção**: nem todo 6k ± 1 é primo. 25 = 6 × 4 + 1 e 25 = 5 × 5.
+
+<Exercicio enunciado="Qual é a soma dos fatores primos distintos de 30? (30 = 2 × 3 × 5)" resposta="10" dica="Some 2 + 3 + 5." resolucao="2 + 3 + 5 = 10." />
+
+<Exercicio enunciado="Quantos divisores tem o número primo 13?" resposta="2" dica="Um primo só tem dois divisores." resolucao="O 1 e o 13: dois divisores." />
+
+## 6. Erros comuns
+
+- **"Todo ímpar é primo."** Falso: 9, 15, 21, 25, 27... são ímpares e compostos.
+- **"O 1 é primo."** Falso: tem um só divisor.
+- **Esquecer o 2.** É primo, e é o único par.
+- **Testar só até a metade.** Só é preciso até a raiz.
+
+## 7. Problemas em aberto
+
+Os primos têm perguntas simples que ninguém sabe responder: há infinitos primos gêmeos? Todo par é soma de dois primos? Matemáticos testaram bilhões de casos e nunca acharam exceções, mas ainda não existe prova. São fronteiras da matemática, e a pergunta é simples o bastante para você entender.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Qual destes números é primo?',
+    opcoes: ['21', '23', '27'],
+    correta: 1,
+    explicacao: '21 = 3 × 7 e 27 = 3 × 9. O 23 só se divide por 1 e por 23.',
+  },
+  {
+    enunciado: 'Qual é o único primo par?',
+    opcoes: ['4', '2', '0'],
+    correta: 1,
+    explicacao: 'O 2 tem só dois divisores. Todo outro par é divisível por 2 e por ele mesmo, então tem pelo menos 3.',
+  },
+  {
+    enunciado: 'O número 1 é primo?',
+    opcoes: ['Sim', 'Não, ele tem um só divisor', 'Depende do livro'],
+    correta: 1,
+    explicacao: 'Um primo precisa ter exatamente dois divisores. O 1 só tem um. Além disso, se o 1 fosse primo, a decomposição em primos não seria única.',
+  },
+  {
+    enunciado: 'Qual destes é composto?',
+    opcoes: ['29', '31', '33'],
+    correta: 2,
+    explicacao: '33 = 3 × 11. Os outros dois são primos.',
+  },
+  {
+    enunciado: 'Qual é a decomposição em fatores primos de 36?',
+    opcoes: ['2 × 18', '2² × 3²', '6 × 6'],
+    correta: 1,
+    explicacao: '36 = 2 × 2 × 3 × 3 = 2² × 3². Em 2 × 18 e 6 × 6 há números que não são primos.',
+  },
+  {
+    enunciado: 'Quantos números primos existem de 1 a 20?',
+    opcoes: ['7', '8', '9'],
+    correta: 1,
+    explicacao: '2, 3, 5, 7, 11, 13, 17 e 19: são 8.',
+  },
+  {
+    enunciado: 'Na peneira de Eratóstenes, depois de riscar os múltiplos de 2 e de 3, qual é o próximo primo?',
+    opcoes: ['4', '5', '6'],
+    correta: 1,
+    explicacao: 'O 4 e o 6 já foram riscados (múltiplos de 2). O 5 sobrou, então é o próximo primo.',
+  },
+  {
+    enunciado: 'Para saber se 97 é primo, até que número basta testar divisores?',
+    opcoes: ['9', '48', '96'],
+    correta: 0,
+    explicacao: 'A raiz de 97 fica entre 9 e 10 (9 × 9 = 81, 10 × 10 = 100). Se há divisor, aparece até o 9.',
+  },
+  {
+    enunciado: 'Todo número ímpar é primo?',
+    opcoes: ['Sim', 'Não: 9 = 3 × 3, por exemplo', 'Só os maiores que 10'],
+    correta: 1,
+    explicacao: '9, 15, 21, 25, 27... são ímpares e compostos.',
+  },
+  {
+    enunciado: 'Existe um maior número primo de todos?',
+    opcoes: ['Sim, o 97', 'Não: Euclides provou que nunca acabam', 'Depende do computador'],
+    correta: 1,
+    explicacao: 'Euclides mostrou que qualquer lista finita de primos está incompleta, então há infinitos primos.',
+  },
+  {
+    enunciado: 'Qual é o maior fator primo de 91?',
+    opcoes: ['7', '13', '91'],
+    correta: 1,
+    explicacao: '91 = 7 × 13. Os dois são primos, e o maior é o 13.',
+  },
+  {
+    enunciado: 'Qual destes pares é de "primos gêmeos" (diferença 2)?',
+    opcoes: ['11 e 13', '13 e 17', '7 e 11'],
+    correta: 0,
+    explicacao: '13 − 11 = 2. Os outros pares têm diferença 4.',
+  },
+  {
+    enunciado: 'Todo número par maior que 2 pode ser escrito como soma de dois primos (conjectura de Goldbach). Isso já foi provado?',
+    opcoes: ['Sim, por Euclides', 'Não: ninguém achou exceção, mas também não há prova', 'Sim, e é falso para números grandes'],
+    correta: 1,
+    explicacao: 'Foi testada em números gigantescos sem exceção, mas continua sem demonstração: é um problema em aberto.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Primo:** tem exatamente dois divisores (1 e ele mesmo). **Composto:** tem mais de dois. **O 1 não é nem um nem outro.**
+- **O 2 é o único primo par.**
+- **Peneira de Eratóstenes:** risque os múltiplos de cada primo; o que sobra é primo.
+- **Para testar um número,** basta dividir pelos primos até a raiz dele.
+- **Todo número é um produto de primos**, de um único jeito: são os átomos dos números.
+- **Os primos nunca acabam** (Euclides): "produto de todos + 1" traz sempre um primo novo.
+- **Segurança:** multiplicar primos é fácil, desfazer é difícil. É a base do RSA.
+
+</Resumo>
+
+Primos são a base de MMC, MDC, frações e segurança digital. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

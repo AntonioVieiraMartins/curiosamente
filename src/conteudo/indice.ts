@@ -65,7 +65,7 @@ export const capsulas: ResumoCapsula[] = [
   m('fundamental', 'porcentagem', 'Porcentagem', '50% de desconto e mais 20% dá 70%? Não dá.', { grupo: '6º ano', estado: 'pronta', duracaoMin: 40, conexoes: ['exponencial'] }),
   m('fundamental', 'potencias', 'Potências', 'Grãos de arroz dobrando num tabuleiro de xadrez.', { grupo: '6º ano', estado: 'pronta', duracaoMin: 40, conexoes: ['binario', 'exponencial'] }),
   m('fundamental', 'multiplos-e-divisores', 'Múltiplos, divisores, MMC e MDC', 'Quando dois semáforos piscam juntos de novo?', { grupo: '6º ano', estado: 'pronta', duracaoMin: 40 }),
-  m('fundamental', 'numeros-primos', 'Números primos', 'Os números que não se dividem e guardam segredos.', { grupo: '6º ano' }),
+  m('fundamental', 'numeros-primos', 'Números primos', 'Os números que não se dividem e guardam segredos.', { grupo: '6º ano', estado: 'pronta', duracaoMin: 40, conexoes: ['senhas-e-hash'] }),
   m('fundamental', 'plano-cartesiano', 'Plano cartesiano', 'Batalha naval é matemática.', { grupo: '6º ano', conexoes: ['geometria-analitica'] }),
   m('fundamental', 'angulos', 'Ângulos', 'Por que uma volta tem 360 graus?', { grupo: '6º ano' }),
 
