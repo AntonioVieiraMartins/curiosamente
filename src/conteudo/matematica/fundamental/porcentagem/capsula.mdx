@@ -1,0 +1,250 @@
+import GradeCem from '../../../../components/simulacoes/GradeCem'
+import SimuladorPromocao from '../../../../components/simulacoes/SimuladorPromocao'
+import SobeEDesce from '../../../../components/simulacoes/SobeEDesce'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Percentage e Percent sign), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Na vitrine, a placa grita: <Termo cor="coral">50% de desconto</Termo>. No caixa, outra surpresa: <Termo cor="azul">mais 20% de desconto</Termo> sobre o preço da vitrine.
+
+Parece que você levou 70% de desconto. Será?
+
+<Palpite
+  chave="inicial"
+  pergunta="Qual é o desconto total?"
+  opcoes={['70%', '60%', 'Depende do preço']}
+/>
+
+Guarde seu palpite. No fim da simulação a gente volta nele.
+
+</Etapa>
+
+<Etapa id="historia">
+
+A ideia de contar "de cada 100" é bem mais velha que as promoções de loja.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Roma antiga', texto: 'O imperador Augusto cobra um imposto de 1/100 sobre as mercadorias vendidas em leilão, a "centesima rerum venalium" (o centésimo das coisas vendidas).' },
+  { ano: 'Fim do séc. XV', texto: 'Com o comércio crescendo na Europa, os livros de aritmética começam a trazer muitas contas com "partes de 100", principalmente sobre dinheiro.' },
+  { ano: 'Séc. XVII', texto: 'Já era o costume dizer as taxas de juros em centésimos, como fazemos até hoje com "ao mês" e "ao ano".' },
+  { ano: 'Aos poucos', texto: 'Os escribas italianos encurtam "per cento" (por cento). De abreviação em abreviação, a expressão vira o símbolo %.' },
+]} />
+
+Por que 100? Porque é um número fácil de imaginar e de dividir. Comparar "3 em 20" com "7 em 50" é difícil. Comparar 15% com 14% é imediato.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+**Por cento** quer dizer **de cada 100**. 25% é pintar 25 quadradinhos numa grade de 100.
+
+<GradeCem />
+
+Agora vem o detalhe que engana todo mundo: porcentagem é sempre **de alguma coisa**. 20% de R$ 200 é R$ 40. Mas 20% de R$ 100 é só R$ 20.
+
+Pense num bolo. Você come <Termo cor="coral">metade</Termo>. Depois come <Termo cor="azul">20% do que sobrou</Termo>. Esse segundo pedaço é pequeno, porque o bolo já estava pela metade.
+
+Na loja é igual: o desconto do caixa é calculado sobre o preço **que já caiu**. Por isso os dois descontos não se somam.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Uma calça custa R$ 200. Tem 50% de desconto na vitrine e mais 20% no caixa. Quanto você paga?"
+  opcoes={['R$ 60', 'R$ 80', 'R$ 100']}
+  correta={1}
+  explicacao="Primeiro cai para R$ 100 (metade). Depois, 20% de R$ 100 são R$ 20: sobram R$ 80. Você pagou 40% do preço, ou seja, teve 60% de desconto, e não 70%."
+>
+
+Mexa nos dois descontos e veja o preço encolher em duas etapas:
+
+<SimuladorPromocao />
+
+Experimente apertar **Inverter a ordem**. Dar 20% primeiro e 50% depois chega no **mesmo** preço. A ordem não importa; o que importa é que o segundo desconto encolhe junto com o preço.
+
+Tente também 50% e 50%. A soma diria 100%, ou seja, calça de graça. Na verdade você paga um quarto do preço: desconto de 75%.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['70%', '60%', 'Depende do preço']}
+  correta={1}
+  seAcertou="Você acertou: são 60%. E repare que vale para qualquer preço, de R$ 10 ou de R$ 10 mil."
+  seErrou="O desconto total é 60%, para qualquer preço. O segundo desconto age sobre um valor menor, por isso rende menos do que parece."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Sobe e desce não se cancelam
+
+Um salário de R$ 2.000 tem aumento de 10%. Meses depois, um corte de 10%. Voltou ao mesmo valor? Mexa e veja:
+
+<SobeEDesce />
+
+O aumento foi calculado sobre R$ 2.000, mas o corte veio sobre R$ 2.200, um valor maior. Por isso o corte "pesa" mais e você termina com R$ 1.980.
+
+## "Por cento" ou "pontos percentuais"?
+
+Uma taxa de juros passou de 10% para 15% ao ano. Ela subiu 5%? Não exatamente.
+
+- Ela subiu **5 pontos percentuais**: de 10 para 15.
+- Em relação ao que era, ela subiu **50%**, porque 5 é metade de 10.
+
+Jornais sérios usam "pontos percentuais" justamente para não confundir as duas coisas.
+
+## Onde mais aparece
+
+- **Juros do cartão e do empréstimo:** "só 1% ao mês" parece pouco, mas os juros vão se acumulando por cima dos juros.
+- **Gorjeta e taxa de serviço:** os 10% do restaurante são calculados sobre a conta.
+- **Bateria do celular:** 20% de uma bateria grande duram mais que 20% de uma pequena. De novo: porcentagem **de quê?**
+
+## Experimente em casa
+
+Pegue um encarte de supermercado ou um site de loja. Ache uma promoção do tipo "leve 3, pague 2" e descubra quanto por cento ela vale de desconto. (Dica: você paga 2 de cada 3.)
+
+</Etapa>
+
+<Etapa id="aprofundar">
+
+Agora vamos trocar o "parece que" por contas que funcionam sempre.
+
+## 1. A definição
+
+**p%** é o mesmo que a fração **p/100**. Então **p% de um valor** é:
+
+<Formula>
+  <Linha>p% de x = <Fracao cima="p × x" baixo="100" /></Linha>
+</Formula>
+
+Exemplo: 20% de 200 = 20 × 200 ÷ 100 = 40.
+
+## 2. O fator multiplicativo
+
+Em vez de calcular o desconto e subtrair, dá para ir direto ao preço final:
+
+- **Desconto de d%:** multiplique por (1 − d/100). Desconto de 20% é multiplicar por **0,8**.
+- **Aumento de a%:** multiplique por (1 + a/100). Aumento de 10% é multiplicar por **1,1**.
+
+Esse número (0,8 ou 1,1) se chama **fator multiplicativo**. Ele diz "quanto sobra" ou "quanto vira".
+
+## 3. Descontos seguidos se multiplicam
+
+Dois descontos seguidos são dois fatores seguidos:
+
+<Formula>
+  <Linha>200 × 0,5 × 0,8 = 200 × 0,4 = 80</Linha>
+</Formula>
+
+Você paga **40%** do preço, então o desconto foi **60%**. Como a multiplicação não depende da ordem (0,5 × 0,8 = 0,8 × 0,5), inverter os descontos dá no mesmo.
+
+## 4. A fórmula geral
+
+Escrevendo os descontos como decimais (50% = 0,5), o desconto total de dois descontos seguidos **a** e **b** é:
+
+<Formula>
+  <Linha>1 − (1 − a) × (1 − b)</Linha>
+  <Linha>= a + b − a × b</Linha>
+</Formula>
+
+Com a = 0,5 e b = 0,2: 0,5 + 0,2 − 0,1 = 0,6, ou seja, 60%. O pedaço **a × b** é o "desconto sobre o desconto" que a soma ingênua conta a mais.
+
+Ela só vira a soma simples quando um dos descontos é zero.
+
+## 5. Por que sobe e desce dá prejuízo
+
+Subir x e depois descer x (em decimais) dá:
+
+<Formula>
+  <Linha>(1 + x) × (1 − x) = 1 − x²</Linha>
+</Formula>
+
+Com x = 0,1: 1 − 0,01 = 0,99. Sobra 99%: perda de 1%. Como x² nunca é negativo, o resultado **nunca** passa de 1. Subir e descer a mesma porcentagem sempre deixa você no prejuízo (ou empatado, se x = 0).
+
+## 6. Quanto subir para desfazer um desconto?
+
+Depois de um desconto de d (em decimal), para voltar ao preço original é preciso um aumento de:
+
+<Formula>
+  <Linha><Fracao cima="d" baixo="1 − d" /></Linha>
+</Formula>
+
+- Desconto de 20% → precisa subir 0,2 ÷ 0,8 = **25%**.
+- Desconto de 50% → precisa subir 0,5 ÷ 0,5 = **100%** (dobrar).
+
+## 7. Juros sobre juros
+
+Uma dívida cresce 1% ao mês. Em 12 meses, ela não cresce 12%. São 12 fatores de 1,01 seguidos:
+
+<Formula>
+  <Linha>1,01 × 1,01 × … × 1,01 (12 vezes) ≈ 1,1268</Linha>
+</Formula>
+
+Cresceu cerca de **12,7%**. A diferença parece pequena aqui, mas com taxas maiores e mais tempo ela explode. Essa é a porta de entrada para a função **exponencial**.
+
+## Bônus: um truque de cabeça
+
+**x% de y** é igual a **y% de x**, porque as duas contas dão x × y ÷ 100.
+
+Quanto é 8% de 50? Difícil. Mas 50% de 8 é metade de 8: **4**.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Uma camiseta de R$ 100 tem 30% de desconto e, em cima disso, mais 10%. Quanto ela custa?',
+    opcoes: ['R$ 60', 'R$ 63', 'R$ 70'],
+    correta: 1,
+    explicacao: 'Com 30% de desconto ela vai para R$ 70. Os 10% seguintes são sobre R$ 70, ou seja, R$ 7. Sobram R$ 63 (desconto total de 37%, não 40%).',
+  },
+  {
+    enunciado: 'Um salário subiu 10% e depois caiu 10%. Como ele ficou?',
+    opcoes: ['Igual ao começo', '1% menor que no começo', '1% maior que no começo'],
+    correta: 1,
+    explicacao: 'Os fatores são 1,1 e 0,9. Multiplicando: 1,1 × 0,9 = 0,99. Sobram 99% do salário inicial.',
+  },
+  {
+    enunciado: 'Um produto ficou 25% mais caro. Quanto ele precisa baixar para voltar ao preço antigo?',
+    opcoes: ['25%', '20%', '30%'],
+    correta: 1,
+    explicacao: 'Se custava 100, foi para 125. Para voltar a 100, precisa cair 25, que é 20% de 125. A base mudou, então a porcentagem também muda.',
+  },
+  {
+    enunciado: 'Quanto é 8% de 50?',
+    opcoes: ['0,4', '4', '40'],
+    correta: 1,
+    explicacao: 'Use o truque: 8% de 50 é igual a 50% de 8, que é a metade de 8. Resposta: 4.',
+  },
+  {
+    enunciado: 'A taxa de juros passou de 10% para 15% ao ano. Qual frase está correta?',
+    opcoes: ['A taxa subiu 5%', 'A taxa subiu 5 pontos percentuais, o que é um aumento de 50%'],
+    correta: 1,
+    explicacao: 'De 10 para 15 são 5 pontos percentuais. Em relação aos 10% de antes, isso é um aumento de 50%, porque 5 é metade de 10.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Por cento é "de cada 100"**: p% é a fração p/100.
+- **Porcentagem é sempre de alguma coisa.** Mudou a base, mudou o valor.
+- **Descontos e aumentos seguidos se multiplicam**, não se somam: 50% e 20% dão 60%.
+- **Subir e descer a mesma porcentagem dá prejuízo**, porque (1 + x)(1 − x) = 1 − x².
+- **Ponto percentual** é a diferença entre duas porcentagens; "por cento" compara com o valor antigo.
+
+</Resumo>
+
+Porcentagem é uma fração com cara de dinheiro. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>
