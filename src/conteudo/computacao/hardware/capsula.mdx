@@ -1,0 +1,404 @@
+import CozinhaDoComputador from '../../../components/simulacoes/CozinhaDoComputador'
+import CicloDaCpu from '../../../components/simulacoes/CicloDaCpu'
+import EscalaDeTempo from '../../../components/simulacoes/EscalaDeTempo'
+import RamCheia from '../../../components/simulacoes/RamCheia'
+import LigaEDesliga from '../../../components/simulacoes/LigaEDesliga'
+import QuantoCabe from '../../../components/simulacoes/QuantoCabe'
+
+{/* Fatos conferidos na Wikipedia em inglês (CPU, RAM, Hard disk drive), listadas no meta.ts. Tempos de acesso são ordens de grandeza. */}
+
+<Etapa id="gancho">
+
+Você abre um jogo e ele demora para carregar. Depois que carregou, tudo roda rápido. Você fecha o computador sem salvar o trabalho e **perde o texto**. Por que o computador esquece algumas coisas e lembra de outras? E por que "abrir" demora, mas "usar" é rápido?
+
+A resposta está em três peças que trabalham juntas: a **CPU**, a **memória RAM** e o **disco**. Cada uma tem um papel, e a melhor forma de entender é imaginar uma **cozinha**.
+
+<Palpite
+  chave="inicial"
+  pergunta="Você está escrevendo um texto e a luz acaba de repente. Sem ter salvado, o que acontece com ele?"
+  opcoes={['Fica guardado no disco, volta quando a luz voltar', 'Some, porque estava só na memória RAM', 'Fica guardado na CPU']}
+/>
+
+Nesta cápsula você vai ver um programa viajar do disco até a CPU, executar instruções passo a passo, comparar tempos de acesso numa escala humana, encher a "bancada" de memória e descobrir quanto cabe num disco.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Os primeiros computadores não tinham "memória" como a de hoje, e mudar o que faziam dava trabalho.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Década de 1940', texto: 'Máquinas como o ENIAC precisam ser religadas fisicamente para cada nova tarefa: são computadores de "programa fixo".' },
+  { ano: '1945', texto: 'John von Neumann distribui o "First Draft of a Report on the EDVAC" (30 de junho): programa e dados ficam na mesma memória.' },
+  { ano: '1949', texto: 'O EDVAC é concluído e guarda seus programas na memória, não na fiação.' },
+  { ano: '1956', texto: 'A IBM apresenta o IBM 350 (RAMAC): o primeiro disco rígido, com 3,75 MB em 52 discos e do tamanho de duas geladeiras grandes.' },
+  { ano: '1966', texto: 'Robert Dennard inventa a arquitetura moderna da memória DRAM: um transistor e um capacitor por bit.' },
+  { ano: '1970', texto: 'A Intel lança o 1103, o primeiro chip comercial de DRAM, com 1 kbit.' },
+  { ano: '1971', texto: 'A Intel 4004 é o primeiro microprocessador disponível comercialmente: a CPU inteira num chip.' },
+]} />
+
+## Programas que viviam na fiação
+
+Nos primeiros computadores, "programar" era mexer em cabos e chaves. Para trocar a tarefa, era preciso reconfigurar a máquina. As fontes dizem que a ideia do programa guardado já estava no projeto do ENIAC, mas foi deixada de fora para terminar mais rápido.
+
+## A grande ideia de von Neumann
+
+Em 30 de junho de 1945, John von Neumann distribuiu um relatório sobre o EDVAC. A ideia: guardar **o programa e os dados na mesma memória**. Assim, trocar de programa é só **carregar outro conjunto de números**, sem mexer em fio nenhum. Essa organização é chamada de **arquitetura de von Neumann**, e o crédito é discutido: Konrad Zuse e o Harvard Mark I também usaram ideias parecidas de programa guardado.
+
+## Armazenar: do refrigerador ao bolso
+
+O primeiro disco rígido, o IBM 350, foi apresentado em 1956 e o primeiro exemplar saiu em 1957. Guardava 3,75 megabytes em 52 discos e pesava cerca de 910 kg. Hoje um cartão do tamanho de uma unha guarda milhões de vezes mais.
+
+## Memória rápida e CPU num chip
+
+Em 1966 Robert Dennard criou a ideia de uma célula de memória com **um transistor e um capacitor**, que é a base da DRAM usada como memória RAM. Em 1970 saiu o Intel 1103, primeiro chip comercial de DRAM, com 1 kbit. Em 1971, a Intel 4004 colocou a CPU inteira num único chip: nascia o microprocessador.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. A cozinha do computador
+
+Imagine uma cozinha de restaurante. Três coisas fazem o trabalho:
+
+- A **despensa** guarda todos os ingredientes, por muito tempo. É grande, mas ir até lá e voltar demora.
+- A **bancada** guarda só o que está sendo usado agora. É pequena, mas tudo está ao alcance da mão.
+- O **cozinheiro** faz o trabalho de verdade: corta, mistura, decide.
+
+No computador: a despensa é o **disco** (HD ou SSD), a bancada é a **memória RAM** e o cozinheiro é a **CPU**. Veja o caminho de um programa:
+
+<CozinhaDoComputador />
+
+Repare na ordem: o programa **mora** no disco, **vem** para a RAM quando você abre e a CPU **trabalha** em cima do que está na RAM. É por isso que abrir demora (copiar da despensa para a bancada) e usar é rápido.
+
+<ExemploResolvido titulo="Onde está cada coisa quando você joga?">
+  <Passo>O arquivo do jogo, instalado, está **no disco**. Ele fica lá mesmo com o computador desligado.</Passo>
+  <Passo>Ao abrir o jogo, as partes necessárias são copiadas para a **RAM**. Essa cópia é a "tela de carregamento".</Passo>
+  <Passo>A **CPU** lê as instruções na RAM e executa uma por uma. Quem mexe é ela.</Passo>
+  <Passo>Seu progresso só fica guardado de verdade quando o jogo **salva no disco**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Na cozinha do computador, qual peça faz o papel da despensa? (disco ou ram)" resposta="disco" dica="A despensa guarda tudo por muito tempo, mesmo desligado." resolucao="A despensa é o disco: grande e permanente. A bancada é a RAM e o cozinheiro é a CPU." />
+
+## 2. A CPU: o cozinheiro que só sabe fazer instruções
+
+A CPU é muito rápida, mas só entende **instruções bem simples**: some estes dois números, copie aquele valor, pule para outra linha se for zero. Um programa é uma fila enorme dessas instruções.
+
+Quase toda CPU repete o mesmo ciclo, sem parar:
+
+1. **Buscar**: pega a próxima instrução na memória.
+2. **Decodificar**: entende o que ela pede.
+3. **Executar**: faz a conta ou a ação.
+
+Esse ciclo se chama **ciclo de instrução**. Veja um programa de brinquedo com 3 instruções que soma 5 + 3 + 4.
+
+<CicloDaCpu />
+
+A "mãozinha" onde a CPU guarda o resultado do momento se chama **registrador** (aqui, chamamos de acumulador). Ela tem alguns poucos, muito pequenos e muito rápidos.
+
+<Exercicio enunciado="No programa de brinquedo (GUARDE 5, SOME 3, SOME 4), quanto vale o acumulador no fim?" resposta="12" dica="5 + 3 + 4." resolucao="Guarda 5; soma 3 dá 8; soma 4 dá 12." />
+
+<Exercicio enunciado="Quantas fases tem o ciclo de uma instrução (buscar, decodificar...)?" resposta="3" dica="Buscar, decodificar e executar." resolucao="São 3: buscar, decodificar e executar." />
+
+## 3. Por que o computador esquece?
+
+A RAM é **volátil**: precisa de energia o tempo todo. Quando a luz acaba, o que estava nela **some**. O disco, não: guarda mesmo desligado.
+
+<LigaEDesliga />
+
+Por isso apps antigos pedem "salve seu trabalho" e os modernos salvam sozinhos de tempos em tempos: eles copiam da RAM para o disco.
+
+<Exercicio enunciado="Quantas vezes você precisa salvar para o texto sobreviver à falta de luz? Digite 0 se a RAM guarda sozinha, ou 1 se precisa copiar para o disco." resposta="1" dica="A RAM esquece quando falta energia." resolucao="Precisa copiar para o disco pelo menos uma vez: só ele guarda sem energia." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Se um ciclo da CPU durasse 1 segundo, quanto tempo levaria para buscar um dado num HD (disco giratório)?"
+  opcoes={['Alguns minutos', 'Cerca de 1 dia', 'Mais ou menos 1 ano']}
+  correta={2}
+  explicacao="Um ciclo da CPU dura uma fração de nanossegundo, e um HD leva alguns milissegundos para achar um dado. Em escala humana, isso dá algo em torno de 1 ano. É por isso que o computador evita ir ao disco o tempo todo."
+>
+
+Aperte o botão e veja a escala:
+
+<EscalaDeTempo />
+
+Pela escala: a CPU "espera" a RAM como quem espera uns minutos, e o disco como quem espera dias ou um ano. Por isso há memórias menores e ainda mais rápidas dentro da CPU, chamadas **cache**, que guardam o que será usado de novo.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Fica guardado no disco, volta quando a luz voltar', 'Some, porque estava só na memória RAM', 'Fica guardado na CPU']}
+  correta={1}
+  seAcertou="E o palpite do começo? Certo: sem salvar, o texto estava só na RAM, que é volátil, e some."
+  seErrou="E o palpite do começo? O texto some: sem ter sido salvo, ele só existia na RAM, que esvazia sem energia. Só o disco guarda desligado."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## A CPU em mais detalhes
+
+A velocidade de uma CPU é medida pelo **clock**: quantos "tiques" por segundo. Um **gigahertz** (GHz) são 1 bilhão de ciclos por segundo. As CPUs mais antigas, da era das válvulas, ficavam entre 100 kHz e 4 MHz; os microprocessadores modernos chegam a vários GHz.
+
+Mas clock alto não é tudo. Duas CPUs com o mesmo clock podem fazer trabalhos diferentes, porque uma pode fazer mais coisa por ciclo.
+
+<ExemploResolvido titulo="Quantos ciclos acontecem em 1 milissegundo numa CPU de 3 GHz?">
+  <Passo>3 GHz = 3 bilhões de ciclos por segundo = 3.000.000.000.</Passo>
+  <Passo>1 milissegundo é 1 milésimo de segundo: divida por 1.000.</Passo>
+  <Passo>3.000.000.000 ÷ 1.000 = **3.000.000** de ciclos em um milissegundo.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma CPU de 2 GHz faz quantos ciclos em 1 segundo? Escreva só o número (2 bilhões = 2000000000)." resposta="2000000000" dica="1 GHz = 1 bilhão por segundo." resolucao="2 GHz = 2 bilhões de ciclos por segundo = 2.000.000.000." />
+
+<Exercicio enunciado="Uma CPU de 4 GHz faz quantos milhões de ciclos em 1 milissegundo?" resposta="4" dica="4 GHz = 4.000.000.000 por segundo; divida por 1.000." resolucao="4.000.000.000 ÷ 1.000 = 4.000.000, ou seja, 4 milhões." />
+
+### Núcleos: vários cozinheiros
+
+Um **núcleo** (core) é um cozinheiro completo. Os chips modernos têm vários núcleos no mesmo chip e podem fazer várias tarefas ao mesmo tempo. A história disso começou com várias CPUs em placas separadas e terminou com tudo no mesmo chip, chamado de **processador multi-núcleo**.
+
+Mas mais núcleos não adiantam tudo: se a tarefa é uma fila que cada passo depende do anterior, só um cozinheiro trabalha. Já somar milhões de números independentes dá para dividir entre vários.
+
+<Aprofundar titulo="Arquitetura de von Neumann e o gargalo">
+
+Na arquitetura de von Neumann, programa e dados ficam **na mesma memória** e passam pelo mesmo caminho até a CPU. Isso deixa o projeto simples e flexível, mas o caminho único vira um **gargalo**: a CPU pode ficar esperando a memória. É o chamado "gargalo de von Neumann". Caches e vários níveis de memória existem em grande parte para aliviar isso.
+
+</Aprofundar>
+
+<Exercicio enunciado="Um chip tem 4 núcleos. Em teoria, quantas tarefas independentes ele faz ao mesmo tempo?" resposta="4" dica="Um cozinheiro por núcleo." resolucao="Um núcleo trabalha numa tarefa por vez, então 4 núcleos fazem 4 tarefas ao mesmo tempo." />
+
+## A memória RAM: a bancada
+
+RAM quer dizer *Random Access Memory* (memória de acesso aleatório): dá para ir direto a qualquer posição, sem passar por todas as outras. Cada posição tem um **endereço**, como cada apartamento tem um número.
+
+Dois tipos importantes:
+
+- **DRAM**: cada bit usa 1 transistor e 1 capacitor. É barata e compacta, mas "vaza" e precisa ser **reescrita** o tempo todo (refresh). É a RAM do seu computador.
+- **SRAM**: cada bit usa 6 transistores. É mais rápida, mas cara e ocupa mais espaço. É usada na **cache** dentro da CPU.
+
+Quando a bancada enche, o sistema usa o disco como bancada extra, e tudo fica lento. Veja:
+
+<RamCheia />
+
+<ExemploResolvido titulo="O computador cabe esses programas na RAM?">
+  <Passo>Tenho 8 GB de RAM. O sistema usa 3 GB, o navegador 2,5 GB e um jogo 6 GB.</Passo>
+  <Passo>Some: 3 + 2,5 + 6 = **11,5 GB**.</Passo>
+  <Passo>11,5 é maior que 8: **não cabe**. O excedente (3,5 GB) vai para o disco e o computador fica lento.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um computador tem 16 GB de RAM e programas usam 10,5 GB. Quantos GB de RAM ainda estão livres?" resposta="5,5" dica="16 − 10,5." resolucao="16 − 10,5 = 5,5 GB livres." />
+
+<Exercicio enunciado="Programas somam 9 GB e a RAM tem 8 GB. Quantos GB sobram sem lugar na RAM?" resposta="1" dica="9 − 8." resolucao="9 − 8 = 1 GB não cabe: vai para o disco." />
+
+<Aprofundar titulo="DRAM e SRAM por dentro">
+
+Na DRAM, o bit é a carga de um capacitor minúsculo. Como a carga vaza, o chip precisa **recarregar** as células o tempo todo. Na SRAM, o bit fica preso num circuito de 6 transistores que o mantém sem precisar recarregar: é mais veloz, mas ocupa mais espaço no chip, por isso há pouca (a cache, de poucos megabytes) e muita DRAM (os gigabytes da RAM).
+
+</Aprofundar>
+
+## O disco: a despensa
+
+O disco guarda os dados **sem energia**. Há dois tipos:
+
+- **HD (disco rígido)**: discos magnéticos que giram, geralmente a 5.400 ou 7.200 rotações por minuto nos de uso doméstico. Uma cabeça leitora se move sobre eles. O acesso leva alguns milissegundos (de 2,5 a 10 ms).
+- **SSD**: sem peças que se mexem, usa memória flash (NAND). Tem latência bem menor, e a taxa de transferência é maior, mas custa mais por gigabyte.
+
+Quanto cabe num disco? Depende do tamanho do que se guarda:
+
+<QuantoCabe />
+
+<ExemploResolvido titulo="Quantas fotos cabem em 64 GB?">
+  <Passo>Cada foto ocupa cerca de 3 MB. Troque GB por MB: 64 GB = 64.000 MB (1 GB ≈ 1.000 MB).</Passo>
+  <Passo>Divida: 64.000 ÷ 3 ≈ 21.333.</Passo>
+  <Passo>Cabem uns **21 mil** fotos (sem contar o espaço do sistema).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas músicas de 4 MB cabem em 8 GB? (use 1 GB = 1.000 MB)" resposta="2000" dica="8 GB = 8.000 MB; divida por 4." resolucao="8.000 ÷ 4 = 2.000 músicas." />
+
+<Exercicio enunciado="Um filme tem 2 GB. Quantos cabem em um disco de 1 TB? (1 TB = 1.000 GB)" resposta="500" dica="1.000 ÷ 2." resolucao="1.000 ÷ 2 = 500 filmes." />
+
+<Aprofundar titulo="Por que o disco 'diz' ter menos espaço do que a embalagem?">
+
+Os fabricantes contam 1 GB como **1.000.000.000 bytes** (potência de 10). Já alguns sistemas contam em potências de 2: 1 GiB = 2³⁰ = 1.073.741.824 bytes. Por isso um disco de "500 GB" aparece com cerca de 465 no computador. Ninguém está roubando: são duas formas de contar, como a diferença entre 1.000 e 1.024 vista na cápsula de Binário.
+
+</Aprofundar>
+
+## Hierarquia: do rápido-e-pequeno ao lento-e-grande
+
+As memórias formam uma **pirâmide**. Em cima, o mais rápido e menor; embaixo, o mais lento e maior:
+
+1. **Registradores** (dentro da CPU): pouquíssimos, instantâneos.
+2. **Cache** (SRAM, na CPU): poucos megabytes, muito rápida.
+3. **RAM** (DRAM): gigabytes, rápida.
+4. **SSD ou HD**: centenas de gigabytes ou terabytes, bem mais lentos.
+
+O truque do computador é **guardar o que você usou há pouco nas camadas de cima**, porque provavelmente você vai usar de novo.
+
+<ExemploResolvido titulo="Em qual camada fica?">
+  <Passo>O número que a CPU está somando agora: está num **registrador**.</Passo>
+  <Passo>A foto que você abriu há 5 segundos: provavelmente está na **RAM**.</Passo>
+  <Passo>Uma foto de 3 anos atrás que você nunca abriu: está só no **disco**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é mais rápida: cache ou disco? (cache ou disco)" resposta="cache" dica="Quanto mais perto da CPU, mais rápida." resolucao="A cache é muito mais rápida que o disco." />
+
+<Aprofundar titulo="Por que a cache funciona: localidade">
+
+Programas costumam reutilizar os mesmos dados (**localidade no tempo**) e acessar dados vizinhos (**localidade no espaço**). Por isso, trazer um bloco inteiro para a cache costuma valer a pena: o próximo acesso provavelmente já estará lá (um "acerto" de cache). Quando não está, é um "erro" de cache e a CPU espera.
+
+</Aprofundar>
+
+## Lendo a ficha técnica de um computador
+
+Quando você olha o anúncio de um celular ou notebook, aparecem números como "8 núcleos, 3 GHz, 16 GB de RAM, 512 GB de SSD". Agora você sabe traduzir:
+
+- **8 núcleos**: oito cozinheiros trabalhando ao mesmo tempo.
+- **3 GHz**: cada um faz 3 bilhões de passos por segundo.
+- **16 GB de RAM**: o tamanho da bancada. Mais bancada permite abrir mais coisas ao mesmo tempo sem travar.
+- **512 GB de SSD**: o tamanho da despensa, ou seja, quanto você pode guardar.
+
+Repare que **nenhum número sozinho decide tudo**. Um computador com muita RAM e HD lento ainda demora para abrir os programas. Um com CPU rápida e pouca RAM trava quando você abre muitas abas. O que importa é o conjunto.
+
+<ExemploResolvido titulo="Qual computador é melhor para editar vídeo?">
+  <Passo>Edição de vídeo usa **muita RAM** (o vídeo precisa estar à mão) e **muito disco** (os arquivos são grandes).</Passo>
+  <Passo>O computador A tem 8 GB de RAM e 128 GB de disco. O B tem 32 GB de RAM e 1 TB de SSD.</Passo>
+  <Passo>O B tem 4 vezes mais RAM (32 ÷ 8) e cerca de 8 vezes mais disco (1.000 ÷ 128). Para o vídeo, **o B é a melhor escolha**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um celular tem 6 GB de RAM e outro tem 12 GB. O segundo tem quantas vezes mais RAM?" resposta="2" dica="12 ÷ 6." resolucao="12 ÷ 6 = 2 vezes mais." />
+
+## O que acontece quando você liga o computador
+
+Ao apertar o botão, a RAM está **vazia** (lembre: ela esquece). A CPU precisa de instruções para começar, e elas vêm de uma pequena memória que **não esquece**, guardada na placa-mãe, que traz o primeiro programa de inicialização.
+
+Esse programa checa as peças, procura o sistema operacional no disco e **copia-o para a RAM**. É por isso que ligar leva alguns segundos (ou mais, num HD): o sistema inteiro está sendo levado da despensa para a bancada. Num SSD, essa viagem é bem mais rápida, e é por isso que trocar o HD por um SSD costuma ser a melhoria mais perceptível num computador antigo.
+
+<Exercicio enunciado="Ao ligar, o sistema operacional é copiado do disco para onde? (ram ou cpu)" resposta="ram" dica="A bancada, não o cozinheiro." resolucao="Vai para a RAM, de onde a CPU o executa." />
+
+## Outras peças que você já viu
+
+- **Placa-mãe**: a placa onde tudo se encaixa e conversa.
+- **GPU**: processador feito para fazer milhares de contas simples ao mesmo tempo (gráficos, jogos, inteligência artificial).
+- **Fonte**: transforma a energia da tomada na que as peças aguentam.
+- **Entrada e saída**: teclado, mouse, tela, caixas de som.
+
+<Exercicio enunciado="Quantos bits tem 1 byte? (veja a cápsula de Binário)" resposta="8" dica="Um byte é um grupo de bits." resolucao="1 byte = 8 bits." />
+
+<Aprofundar titulo="Cozinha e restaurante: o que a analogia esconde">
+
+A analogia é boa, mas simplifica. Na vida real, o cozinheiro (CPU) pode ter vários **assistentes** (núcleos, GPU) e há várias bancadas pequenas (caches). E o "bandejão" que liga tudo, o **barramento**, também tem limite de velocidade. Um computador rápido é um conjunto **equilibrado**: de nada adianta um cozinheiro muito rápido se a bancada é pequena ou a despensa é lenta.
+
+</Aprofundar>
+
+<Aprofundar titulo="Memória não volátil: o meio-termo">
+
+Memórias como a ROM e a flash (NOR e NAND) guardam dados **sem energia**, como o disco, mas funcionam por circuitos, sem partes móveis. O SSD é feito de flash NAND. Há também a EEPROM, que pode ser reescrita. Nem toda memória "esquece" ao desligar; a RAM é que é volátil.
+
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Na analogia da cozinha, o que faz o papel do cozinheiro?',
+    opcoes: ['A CPU', 'A RAM', 'O disco'],
+    correta: 0,
+    explicacao: 'A CPU é quem faz as contas e executa as instruções. A bancada é a RAM e a despensa é o disco.',
+  },
+  {
+    enunciado: 'O que é a memória RAM?',
+    opcoes: ['A memória de longo prazo do computador', 'A memória rápida de trabalho, que esvazia ao desligar', 'Um tipo de processador'],
+    correta: 1,
+    explicacao: 'A RAM guarda o que está em uso agora. É rápida e volátil.',
+  },
+  {
+    enunciado: 'O que acontece com o conteúdo da RAM quando falta energia?',
+    opcoes: ['Fica guardado', 'Some', 'Vai para a CPU'],
+    correta: 1,
+    explicacao: 'A RAM é volátil: precisa de energia para guardar os dados.',
+  },
+  {
+    enunciado: 'Quais as três fases do ciclo de instrução?',
+    opcoes: ['Buscar, decodificar e executar', 'Ligar, desligar e salvar', 'Ler, escrever e apagar'],
+    correta: 0,
+    explicacao: 'A CPU busca a instrução, decodifica (entende) e executa.',
+  },
+  {
+    enunciado: 'Quantos ciclos por segundo faz uma CPU de 1 GHz?',
+    opcoes: ['1 milhão', '1 bilhão', '1 mil'],
+    correta: 1,
+    explicacao: '1 gigahertz é 1 bilhão de ciclos por segundo.',
+  },
+  {
+    enunciado: 'Quem tem acesso mais lento: RAM ou disco?',
+    opcoes: ['RAM', 'Disco', 'Os dois são iguais'],
+    correta: 1,
+    explicacao: 'O disco leva muito mais tempo para achar um dado do que a RAM, mesmo no SSD.',
+  },
+  {
+    enunciado: 'Um computador tem 8 GB de RAM e os programas pedem 10 GB. O que acontece?',
+    opcoes: ['Nada', 'O excedente vai para o disco e tudo fica mais lento', 'A CPU aumenta a RAM'],
+    correta: 1,
+    explicacao: 'O sistema usa o disco como bancada extra, que é bem mais lento.',
+  },
+  {
+    enunciado: 'O que diferencia um SSD de um HD?',
+    opcoes: ['O SSD não tem partes que giram e usa memória flash', 'O SSD é feito de RAM', 'O HD não guarda dados desligado'],
+    correta: 0,
+    explicacao: 'O HD tem discos magnéticos que giram; o SSD usa memória flash NAND, sem partes móveis.',
+  },
+  {
+    enunciado: 'Quantos MB cabem, aproximadamente, em 1 GB (como as embalagens contam)?',
+    opcoes: ['10', '1.000', '1.000.000'],
+    correta: 1,
+    explicacao: 'Nas embalagens, 1 GB = 1.000 MB.',
+  },
+  {
+    enunciado: 'Qual memória fica dentro da CPU e é a mais rápida?',
+    opcoes: ['Disco', 'Cache e registradores', 'Cartão de memória'],
+    correta: 1,
+    explicacao: 'A cache e os registradores ficam dentro do chip da CPU e são os mais rápidos.',
+  },
+  {
+    enunciado: 'Qual a ideia principal da arquitetura de von Neumann?',
+    opcoes: ['Programa e dados ficam na mesma memória', 'Cada programa tem um fio próprio', 'O computador não usa memória'],
+    correta: 0,
+    explicacao: 'Programa e dados guardados na mesma memória permitem trocar de programa sem mexer na fiação.',
+  },
+  {
+    enunciado: 'Qual foi o primeiro microprocessador comercial?',
+    opcoes: ['Intel 4004, em 1971', 'IBM 350, em 1956', 'Intel 1103, em 1970'],
+    correta: 0,
+    explicacao: 'A Intel 4004 (1971) colocou a CPU num chip. O IBM 350 é um disco e o Intel 1103 é uma memória DRAM.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **CPU** é o cozinheiro: executa instruções em ciclos de buscar, decodificar e executar.
+- **RAM** é a bancada: rápida, pequena e volátil (esvazia sem energia).
+- **Disco** (HD ou SSD) é a despensa: grande, permanente e mais lento.
+- **Para usar um programa:** disco → RAM → CPU. **Para guardar:** RAM → disco.
+- **Cache** e registradores ficam na CPU, são os mais rápidos e os menores.
+- **Vários núcleos** são vários cozinheiros, úteis quando as tarefas são independentes.
+- **Computador equilibrado** vale mais que uma peça só muito rápida.
+
+**Um pouco de história.** Nos anos 1940 os computadores eram religados fisicamente para cada tarefa. Em 1945, von Neumann propôs guardar programa e dados na mesma memória. O primeiro disco rígido, o IBM 350, é de 1956 e guardava 3,75 MB. Dennard criou a DRAM em 1966, a Intel lançou o chip DRAM 1103 em 1970 e a Intel 4004, primeiro microprocessador comercial, em 1971.
+
+</Resumo>
+
+Agora que você sabe quem é quem dentro da máquina, o próximo passo é saber **quem organiza tudo isso**: o sistema operacional.
+
+<Conexoes />
+
+</Etapa>
