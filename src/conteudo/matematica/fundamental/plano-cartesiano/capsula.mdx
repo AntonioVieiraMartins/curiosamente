@@ -1,0 +1,316 @@
+import PlanoDePontos from '../../../../components/simulacoes/PlanoDePontos'
+import CacaAoTesouro from '../../../../components/simulacoes/CacaAoTesouro'
+import ReflexoEMovimento from '../../../../components/simulacoes/ReflexoEMovimento'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Cartesian coordinate system), listada no meta.ts. */}
+
+<Etapa id="gancho">
+
+Na batalha naval, você grita "**C4!**" e o adversário responde "água" ou "afundou". Duas informações bastam para apontar **qualquer** quadradinho do tabuleiro: uma coluna e uma linha.
+
+A matemática usa a mesma ideia para localizar qualquer ponto de uma folha, de um mapa ou de uma tela de celular. Só que, em vez de letra e número, usamos **dois números**: o primeiro diz quanto andar para o lado, o segundo diz quanto andar para cima ou para baixo.
+
+<Palpite
+  chave="inicial"
+  pergunta="O ponto (3, 2) e o ponto (2, 3) são o mesmo lugar?"
+  opcoes={['Sim, são o mesmo lugar', 'Não, são lugares diferentes', 'Depende do tamanho da folha']}
+/>
+
+Esta cápsula ensina a **ler e marcar pontos** no plano cartesiano, a andar nele com números negativos e a mover figuras só mexendo nos números.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Localizar um ponto com números é uma das ideias que mais mudaram a matemática.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Antes do séc. XVII', texto: 'O clérigo francês Nicole Oresme já usava construções parecidas com as coordenadas cartesianas, muito antes de Descartes e Fermat.' },
+  { ano: '1637', texto: 'René Descartes publica a ideia, quando morava nos Países Baixos.' },
+  { ano: 'Séc. XVII', texto: 'Pierre de Fermat descobre a mesma ideia por conta própria, inclusive em três dimensões, mas não a publica.' },
+  { ano: '1649', texto: 'A obra de Descartes é traduzida para o latim por Frans van Schooten e seus alunos, e a ideia de dois eixos se espalha.' },
+]} />
+
+## Duas pessoas, uma ideia
+
+Antes de Descartes, a geometria era feita com desenhos e régua, e a álgebra, com equações. Eram dois mundos separados. A grande sacada foi **juntar os dois**: dar a cada ponto um endereço de números, e assim transformar uma figura numa equação e uma equação numa figura.
+
+Descartes publicou a ideia em 1637, enquanto vivia na Holanda. Fermat chegou ao mesmo lugar por conta própria, mas não publicou. É um caso bonito de duas pessoas inventando a mesma coisa sem combinar. Por causa de Descartes, dizemos plano **cartesiano**.
+
+## Um detalhe curioso
+
+No começo, Descartes e Fermat usavam um eixo só. A ideia dos **dois eixos** que usamos hoje apareceu depois, quando a obra de Descartes foi traduzida para o latim.
+
+## Do papel ao planeta
+
+A mesma ideia de "dois números para achar um lugar" aparece nos mapas do mundo: a **latitude** e a **longitude** são o endereço de qualquer ponto da Terra.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Os dois eixos
+
+Desenhe duas retas de números que se cruzam num ponto. Uma fica **deitada** (horizontal) e se chama **eixo x**. A outra fica **em pé** (vertical) e se chama **eixo y**. O lugar onde elas se cruzam é a **origem**, o ponto zero de tudo.
+
+Qualquer ponto ganha um **par ordenado** (x, y): o primeiro número diz quanto andar na horizontal (x positivo é para a direita, negativo é para a esquerda). O segundo diz quanto andar na vertical (y positivo é para cima, negativo é para baixo).
+
+A **ordem importa**: por isso o par se chama "ordenado". (3, 2) é "3 para a direita, 2 para cima". Já (2, 3) é "2 para a direita, 3 para cima". Lugares diferentes!
+
+<PlanoDePontos />
+
+Toque no plano ou use os botões para mover o ponto. Repare que as linhas tracejadas mostram o caminho: primeiro o x, depois o y.
+
+<ExemploResolvido titulo="Marque o ponto (−3, 2).">
+  <Passo>Comece na origem (0, 0).</Passo>
+  <Passo>O primeiro número é −3: ande **3 casas para a esquerda** (negativo é para a esquerda).</Passo>
+  <Passo>O segundo número é 2: ande **2 casas para cima**.</Passo>
+  <Passo>Você chegou ao ponto (−3, 2). Ele fica na parte de cima e à esquerda.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="No ponto (−2, 5), qual é o valor de y?" resposta="5" dica="O y é o segundo número do par." resolucao="O par ordenado é (x, y). Em (−2, 5), o x é −2 e o y é 5." />
+
+## 2. Os quatro quadrantes
+
+Os eixos dividem o plano em **quatro regiões**, chamadas **quadrantes**. Eles são numerados no sentido anti-horário (contrário ao dos ponteiros do relógio), começando pelo canto de cima à direita:
+
+- **1º quadrante:** x positivo e y positivo (+, +). Cima e direita.
+- **2º quadrante:** x negativo e y positivo (−, +). Cima e esquerda.
+- **3º quadrante:** x negativo e y negativo (−, −). Baixo e esquerda.
+- **4º quadrante:** x positivo e y negativo (+, −). Baixo e direita.
+
+Quem está **em cima de um eixo** não está em nenhum quadrante. Por exemplo, (4, 0) fica no eixo x, e (0, −3) fica no eixo y.
+
+<Exercicio enunciado="Em que quadrante está o ponto (−3, 4)? Digite o número." resposta="2" dica="x negativo (esquerda) e y positivo (cima)." resolucao="Esquerda e cima: é o 2º quadrante." />
+
+<Exercicio enunciado="Em que quadrante está o ponto (5, −2)? Digite o número." resposta="4" dica="x positivo (direita) e y negativo (baixo)." resolucao="Direita e baixo: é o 4º quadrante." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Você espelha o ponto (3, 2) no eixo y (a linha vertical), como se ela fosse um espelho. Onde o ponto vai parar?"
+  opcoes={['(−3, 2)', '(3, −2)', '(−3, −2)']}
+  correta={0}
+  explicacao="O eixo y é vertical, então o espelho troca esquerda por direita: o x muda de sinal, o y fica igual. O ponto vai para (−3, 2). Espelhar no eixo x (horizontal) trocaria cima por baixo: (3, −2)."
+>
+
+Mexa no triângulo: ande com ele para os lados e espelhe nos eixos. O triângulo cinza tracejado é o original.
+
+<ReflexoEMovimento />
+
+Quando você anda para a direita, **todos os x** ganham +1. Quando espelha no eixo y, **todos os x** trocam de sinal. Mover e espelhar figuras é só **mexer nos números**.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Sim, são o mesmo lugar', 'Não, são lugares diferentes', 'Depende do tamanho da folha']}
+  correta={1}
+  seAcertou="E o palpite do começo? Você acertou: (3, 2) e (2, 3) são lugares diferentes. A ordem do par importa."
+  seErrou="E o palpite do começo? (3, 2) é 3 para a direita e 2 para cima; (2, 3) é 2 para a direita e 3 para cima. São lugares diferentes: a ordem importa."
+/>
+
+</Previsao>
+
+## Caça ao tesouro
+
+Agora jogue de verdade, como na batalha naval. Há 4 tesouros escondidos. Cada casa tem um endereço (x, y): o x está na régua de baixo e o y na régua da esquerda.
+
+<CacaAoTesouro />
+
+<Exercicio enunciado="Num tabuleiro, o tesouro está 5 casas para a direita e 2 para cima da origem. Qual é o valor de x do endereço dele?" resposta="5" dica="O x vem primeiro e conta as casas na horizontal." resolucao="O endereço é (5, 2). O x é 5." />
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Onde o plano cartesiano aparece
+
+- **Mapas e GPS:** latitude e longitude são um par de números que localiza qualquer lugar do planeta.
+- **Jogos e telas:** cada pixel da tela do celular tem um endereço (x, y). Nas telas, o y costuma crescer para **baixo**, o contrário do plano da matemática.
+- **Xadrez e batalha naval:** letra e número são o par ordenado.
+- **Gráficos:** quando você vê uma linha subindo num gráfico de preços ou de crescimento, cada ponto dela é um par (x, y).
+
+## Distâncias na horizontal e na vertical
+
+Se dois pontos têm o **mesmo y**, a distância entre eles é só a diferença dos x. Entre (1, 3) e (6, 3), é só andar de 1 a 6: **5 casas**.
+
+Se têm o **mesmo x**, é a diferença dos y. Entre (−2, 1) e (−2, −4), o caminho vai de 1 até −4: **5 casas**.
+
+<ExemploResolvido titulo="Qual a distância entre (−3, 2) e (4, 2)?">
+  <Passo>Os dois pontos têm y = 2: estão na mesma linha horizontal.</Passo>
+  <Passo>De −3 até 4, passamos por 3 casas até o zero e mais 4 depois dele.</Passo>
+  <Passo>3 + 4 = **7 casas** de distância.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual a distância entre (1, 3) e (6, 3)?" resposta="5" dica="Mesmo y: conte a diferença dos x." resolucao="6 − 1 = 5 casas." />
+
+<Exercicio enunciado="Qual a distância entre (−2, 1) e (−2, −4)?" resposta="5" dica="Mesmo x: conte a diferença dos y. De 1 até −4." resolucao="De 1 até 0 são 1 casa e de 0 até −4 são 4 casas: total 5." />
+
+## Figuras no plano
+
+Marque os pontos (1, 1), (5, 1), (5, 4) e (1, 4) e ligue-os. Você desenhou um retângulo. O lado horizontal mede 5 − 1 = 4 e o vertical mede 4 − 1 = 3. A área é 4 × 3 = **12 quadradinhos**.
+
+<Exercicio enunciado="Um retângulo tem vértices em (1, 1), (5, 1), (5, 4) e (1, 4). Qual é a área em quadradinhos?" resposta="12" dica="Base × altura." resolucao="Base 5 − 1 = 4 e altura 4 − 1 = 3: 4 × 3 = 12." />
+
+## Experimente em casa
+
+Desenhe um plano numa folha quadriculada e marque seu nome com pontos. Escreva os pares ordenados e passe para um amigo desenhar só com os números. Se ele acertar, você acertou a ordem do par.
+
+</Etapa>
+
+<Etapa id="aprofundar">
+
+## 1. Definições
+
+Um **par ordenado** é um par (x, y) em que a **ordem** importa. O plano cartesiano associa cada ponto do plano a **um único** par ordenado, e cada par a um único ponto. O x é a **abscissa** e o y é a **ordenada**.
+
+A origem é o ponto (0, 0). Os pontos do eixo x têm y = 0, e os do eixo y têm x = 0.
+
+## 2. Reflexões (espelhos)
+
+- **No eixo x** (espelho horizontal): (x, y) vira **(x, −y)**.
+- **No eixo y** (espelho vertical): (x, y) vira **(−x, y)**.
+- **Na origem** (um giro de meia-volta): (x, y) vira **(−x, −y)**.
+
+<ExemploResolvido titulo="Espelhe o ponto (−3, 5) no eixo x.">
+  <Passo>O eixo x é horizontal, então ele troca cima por baixo.</Passo>
+  <Passo>O x continua o mesmo: −3.</Passo>
+  <Passo>O y muda de sinal: 5 vira −5. O ponto fica em **(−3, −5)**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Espelhando (−3, 5) no eixo x, qual é o novo valor de y? (Digite com sinal.)" resposta="-5" dica="Espelhar no eixo x troca o sinal do y." resolucao="O y muda de sinal: 5 vira −5." />
+
+## 3. Deslocamentos (translação)
+
+Somar o mesmo número aos x de todos os pontos **empurra** a figura para os lados. Somar aos y, para cima ou para baixo. A figura **não muda de forma nem de tamanho**; só de lugar. Por exemplo, (2, 3) deslocado 4 para a direita e 1 para baixo vira (2 + 4, 3 − 1) = (6, 2).
+
+## 4. Ponto médio
+
+O ponto no meio do caminho entre dois pontos tem como coordenadas a **média** dos x e a **média** dos y:
+
+<Formula>
+  <Linha>ponto médio = ( (x₁ + x₂) ÷ 2 , (y₁ + y₂) ÷ 2 )</Linha>
+</Formula>
+
+Entre (2, 4) e (6, 8): x = (2 + 6) ÷ 2 = 4 e y = (4 + 8) ÷ 2 = 6. O ponto médio é (4, 6).
+
+<Exercicio enunciado="Qual é a coordenada x do ponto médio entre (2, 4) e (6, 8)?" resposta="4" dica="Faça a média dos dois x." resolucao="(2 + 6) ÷ 2 = 4." />
+
+## 5. Distância entre dois pontos quaisquer
+
+E se os pontos não estiverem alinhados? Entre (0, 0) e (3, 4), o caminho "reto" não está na horizontal nem na vertical. Mas dá para formar um triângulo retângulo com catetos 3 e 4. A distância é a hipotenusa: a raiz de 3² + 4² = 9 + 16 = 25, ou seja, **5**. Esse é o **teorema de Pitágoras**, que você vai ver numa cápsula só dele.
+
+<Exercicio enunciado="Num triângulo retângulo com catetos 6 e 8, a hipotenusa mede 10. Esse triângulo é o dobro do (3, 4, 5). Qual é a distância entre (0, 0) e (6, 8)?" resposta="10" dica="É o dobro de 5." resolucao="6² + 8² = 36 + 64 = 100, e a raiz de 100 é 10." />
+
+## 6. Gráficos: uma tabela vira um desenho
+
+Uma tabela com x e y vira um conjunto de pontos. Para y = x + 2: (0, 2), (1, 3), (2, 4), (3, 5)... Quando você liga os pontos, aparece uma **reta**. Esse é o jeito de **ver** uma equação, e é a porta de entrada para as funções, no Ensino Médio.
+
+## 7. Erros comuns
+
+- **Trocar a ordem do par.** (3, 2) não é (2, 3).
+- **Esquecer que negativo é esquerda e baixo.**
+- **Achar que um ponto no eixo está em algum quadrante.** Pontos nos eixos não estão em quadrante nenhum.
+- **Contar o ponto de partida** ao medir distância: de 1 a 6 são 5 passos, não 6.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Em um par ordenado (x, y), o que o primeiro número indica?',
+    opcoes: ['Quanto andar na vertical', 'Quanto andar na horizontal', 'A distância até a origem'],
+    correta: 1,
+    explicacao: 'O primeiro número é o x: ele diz quanto andar para a direita (positivo) ou para a esquerda (negativo).',
+  },
+  {
+    enunciado: 'O ponto (0, 0) é chamado de...',
+    opcoes: ['Quadrante', 'Origem', 'Abscissa'],
+    correta: 1,
+    explicacao: 'A origem é o ponto onde os eixos se cruzam.',
+  },
+  {
+    enunciado: 'Em que quadrante está (−4, −1)?',
+    opcoes: ['2º', '3º', '4º'],
+    correta: 1,
+    explicacao: 'x negativo (esquerda) e y negativo (baixo): é o 3º quadrante.',
+  },
+  {
+    enunciado: 'O ponto (0, −3) está...',
+    opcoes: ['No eixo x', 'No eixo y', 'No 4º quadrante'],
+    correta: 1,
+    explicacao: 'Quando x = 0 o ponto fica no eixo y. Pontos nos eixos não estão em nenhum quadrante.',
+  },
+  {
+    enunciado: 'Qual par fica no 1º quadrante?',
+    opcoes: ['(−2, 3)', '(4, 5)', '(3, −1)'],
+    correta: 1,
+    explicacao: 'O 1º quadrante tem x positivo e y positivo: (4, 5).',
+  },
+  {
+    enunciado: 'Qual é a distância entre (2, 7) e (2, 1)?',
+    opcoes: ['5', '6', '8'],
+    correta: 1,
+    explicacao: 'Mesmo x, então é a diferença dos y: 7 − 1 = 6.',
+  },
+  {
+    enunciado: 'Qual é a distância entre (−4, 3) e (3, 3)?',
+    opcoes: ['1', '7', '12'],
+    correta: 1,
+    explicacao: 'Mesmo y: de −4 até 3 são 4 casas até o zero e mais 3 depois: 7.',
+  },
+  {
+    enunciado: 'Qual é o espelho do ponto (4, −2) no eixo x?',
+    opcoes: ['(−4, −2)', '(4, 2)', '(−4, 2)'],
+    correta: 1,
+    explicacao: 'Espelhar no eixo x troca o sinal do y: (4, −2) vira (4, 2).',
+  },
+  {
+    enunciado: 'Qual é o espelho do ponto (4, −2) no eixo y?',
+    opcoes: ['(−4, −2)', '(4, 2)', '(−4, 2)'],
+    correta: 0,
+    explicacao: 'Espelhar no eixo y troca o sinal do x: (4, −2) vira (−4, −2).',
+  },
+  {
+    enunciado: 'Qual é o ponto médio entre (2, 4) e (8, 10)?',
+    opcoes: ['(5, 7)', '(10, 14)', '(3, 3)'],
+    correta: 0,
+    explicacao: 'Média dos x: (2 + 8) ÷ 2 = 5. Média dos y: (4 + 10) ÷ 2 = 7.',
+  },
+  {
+    enunciado: 'Um triângulo com vértices (1, 1), (4, 1) e (2, 3) é deslocado 2 para a direita e 1 para cima. Onde fica o vértice (1, 1)?',
+    opcoes: ['(3, 2)', '(2, 3)', '(−1, 0)'],
+    correta: 0,
+    explicacao: 'Somamos 2 ao x e 1 ao y: (1 + 2, 1 + 1) = (3, 2).',
+  },
+  {
+    enunciado: 'Um retângulo tem vértices (0, 0), (6, 0), (6, 2) e (0, 2). Qual a área?',
+    opcoes: ['8', '12', '16'],
+    correta: 1,
+    explicacao: 'Base 6 e altura 2: 6 × 2 = 12.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Dois eixos:** x (horizontal) e y (vertical) se cruzam na **origem** (0, 0).
+- **Par ordenado (x, y):** primeiro o lado, depois o alto. A ordem importa.
+- **Sinais:** x positivo é direita, negativo é esquerda; y positivo é cima, negativo é baixo.
+- **Quatro quadrantes**, contados no sentido anti-horário a partir do canto superior direito.
+- **Distância no mesmo y ou no mesmo x:** diferença das coordenadas.
+- **Espelhos:** no eixo x troca o sinal de y; no eixo y troca o sinal de x. Deslocar é somar o mesmo número.
+- **Ponto médio:** a média dos x e a média dos y.
+
+</Resumo>
+
+O plano cartesiano é a base dos gráficos, da geometria com números e dos mapas. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

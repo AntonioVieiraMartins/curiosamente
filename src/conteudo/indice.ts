@@ -66,8 +66,8 @@ export const capsulas: ResumoCapsula[] = [
   m('fundamental', 'potencias', 'Potências', 'Grãos de arroz dobrando num tabuleiro de xadrez.', { grupo: '6º ano', estado: 'pronta', duracaoMin: 40, conexoes: ['binario', 'exponencial'] }),
   m('fundamental', 'multiplos-e-divisores', 'Múltiplos, divisores, MMC e MDC', 'Quando dois semáforos piscam juntos de novo?', { grupo: '6º ano', estado: 'pronta', duracaoMin: 40 }),
   m('fundamental', 'numeros-primos', 'Números primos', 'Os números que não se dividem e guardam segredos.', { grupo: '6º ano', estado: 'pronta', duracaoMin: 40, conexoes: ['senhas-e-hash'] }),
-  m('fundamental', 'plano-cartesiano', 'Plano cartesiano', 'Batalha naval é matemática.', { grupo: '6º ano', conexoes: ['geometria-analitica'] }),
-  m('fundamental', 'angulos', 'Ângulos', 'Por que uma volta tem 360 graus?', { grupo: '6º ano' }),
+  m('fundamental', 'plano-cartesiano', 'Plano cartesiano', 'Batalha naval é matemática.', { grupo: '6º ano', estado: 'pronta', duracaoMin: 40, conexoes: ['geometria-analitica'] }),
+  m('fundamental', 'angulos', 'Ângulos', 'Por que uma volta tem 360 graus?', { grupo: '6º ano', estado: 'pronta', duracaoMin: 40, conexoes: ['trigonometria'] }),
 
   m('fundamental', 'numeros-negativos', 'Números negativos', 'Como algo pode valer menos que nada?', { grupo: '7º ano', estado: 'pronta', duracaoMin: 40 }),
   m('fundamental', 'razao-e-proporcao', 'Razão e proporção', 'A receita é para 3. A festa é para 30.', { grupo: '7º ano', estado: 'pronta', duracaoMin: 40, conexoes: ['funcao-afim'] }),

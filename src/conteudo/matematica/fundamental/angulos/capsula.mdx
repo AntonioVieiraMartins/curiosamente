@@ -1,0 +1,335 @@
+import Transferidor from '../../../../components/simulacoes/Transferidor'
+import RelogioDeAngulos from '../../../../components/simulacoes/RelogioDeAngulos'
+import RetasQueSeCruzam from '../../../../components/simulacoes/RetasQueSeCruzam'
+import SomaDoTriangulo from '../../../../components/simulacoes/SomaDoTriangulo'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Degree (angle), Sexagesimal), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Quando um skatista gira no ar, o narrador grita: "**360!**". Quando alguém faz o contrário e muda totalmente de ideia, diz que deu um "**180**". Esses números vêm dos **ângulos**: a medida de quanto algo gira ou se abre.
+
+Uma porta entreaberta, os ponteiros de um relógio, uma curva na estrada, o canto de uma mesa: tudo tem um ângulo. A matemática dá um número a cada um.
+
+<Palpite
+  chave="inicial"
+  pergunta="Uma volta completa tem quantos graus?"
+  opcoes={['100 graus', '360 graus', '400 graus']}
+/>
+
+Mas por que 360, e não um número "redondo" como 100? Essa pergunta tem uma resposta que mistura calendário, astronomia e os números da Babilônia. Vamos descobrir.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Medir giros e aberturas é coisa de quem olha para o céu.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Antiguidade', texto: 'Povos da Mesopotâmia usavam o sistema de base 60 (sexagesimal) para contar e calendários de 360 dias.' },
+  { ano: 'Antiguidade', texto: 'A divisão da volta em 360 partes chega até nós, mas ninguém sabe ao certo como ela surgiu: há várias teorias.' },
+  { ano: 'Hoje', texto: 'Cada grau se divide em 60 minutos de arco, e cada minuto em 60 segundos de arco, herança do sistema de base 60.' },
+]} />
+
+## O mistério do 360
+
+Ninguém sabe ao certo por que a volta tem 360 graus. Existem teorias, e talvez várias tenham contribuído.
+
+**Teoria do calendário.** O ano tem cerca de 365 dias, perto de 360. Os calendários da Babilônia e da Pérsia usavam 360 dias. Quem olhava o Sol "andando" pelo céu ao longo do ano podia dividir o círculo em um grau por dia.
+
+**Teoria do triângulo.** Outra ideia diz que os babilônios usavam o ângulo de um **triângulo equilátero** como unidade básica e o dividiam em 60 partes. Como cabem 6 triângulos assim em volta de um ponto, 6 × 60 = 360.
+
+**Teoria dos divisores.** O 360 tem **24 divisores** e é divisível por todos os números de 1 a 10, exceto o 7. Isso é uma maravilha para dividir: meia volta, um terço, um quarto, um quinto, um sexto, um oitavo, um décimo... tudo dá número inteiro de graus.
+
+## Minutos e segundos
+
+O grau pode ser cortado em partes menores: 1 grau tem **60 minutos de arco** e 1 minuto tem **60 segundos de arco**. É o mesmo sistema de base 60 que usamos no relógio (60 minutos, 60 segundos). Em ângulos, escreve-se com sinais: 12° 30′ 15″.
+
+A origem da palavra "grau" aqui não importa tanto quanto a ideia: **dividir a volta em partes iguais pequenas** para poder medir com precisão.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O que é um ângulo
+
+Pegue duas varetas presas num mesmo ponto, como um compasso. Quanto mais você **abre**, maior fica o ângulo. O ponto onde as varetas se encontram é o **vértice**. As varetas são os **lados**.
+
+O ângulo mede a **abertura** entre os lados, não o comprimento deles. Uma porta de 2 metros e uma portinha de armário abertas do mesmo jeito formam o **mesmo** ângulo.
+
+## 2. Medindo em graus
+
+A unidade é o **grau**, escrito com um °. Uma **volta inteira** tem 360°. Metade de uma volta tem **180°**. Um quarto de volta tem **90°**.
+
+Use o transferidor abaixo para abrir e fechar o ângulo e ver a classificação.
+
+<Transferidor />
+
+Os ângulos ganham nomes de acordo com a abertura:
+
+- **Agudo:** menor que 90° (abertura pequena, "pontudo").
+- **Reto:** exatamente 90° (o canto de uma folha). Desenha-se com um quadradinho.
+- **Obtuso:** maior que 90° e menor que 180° ("aberto").
+- **Raso:** exatamente 180°: os lados formam uma **reta**.
+- Acima de 180° e até 360°: ângulo maior que meia-volta. Com 360° completa-se uma **volta inteira**.
+
+<ExemploResolvido titulo="Quantos graus tem 1/4 de volta? E 3/4 de volta?">
+  <Passo>Uma volta inteira tem 360°.</Passo>
+  <Passo>1/4 de 360 é 360 ÷ 4 = **90°** (um ângulo reto).</Passo>
+  <Passo>3/4 de volta são 3 × 90 = **270°**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos graus tem 1/3 de volta?" resposta="120" dica="Divida 360 por 3." resolucao="360 ÷ 3 = 120°." />
+
+<Exercicio enunciado="Quantos graus tem 1/8 de volta?" resposta="45" dica="Divida 360 por 8." resolucao="360 ÷ 8 = 45°." />
+
+## 3. Usando o transferidor de verdade
+
+Para medir um ângulo no papel com o transferidor: (1) ponha o **centro** do transferidor em cima do vértice; (2) alinhe o zero com um dos lados; (3) leia o número onde o outro lado cruza a escala. Cuidado para ler na escala certa: se o ângulo é agudo, a resposta é menor que 90, e se é obtuso, é maior.
+
+Uma dica: **estime antes de medir**. Se o ângulo parece menor que um canto de folha, é agudo. Se você leu 130° num ângulo agudo, leu a escala errada: o certo é 50°.
+
+<Exercicio enunciado="Você mede um ângulo que é claramente menor que o canto de uma folha e lê 130° numa escala e 50° na outra. Qual é a medida certa?" resposta="50" dica="Menor que um ângulo reto é agudo: menor que 90°." resolucao="Ângulo agudo tem menos de 90°. Portanto, 50°. O 130° é a leitura da escala errada (130° + 50° = 180°)." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Que ângulo os ponteiros do relógio formam às 4 horas em ponto?"
+  opcoes={['90°', '120°', '150°']}
+  correta={1}
+  explicacao="O relógio tem 12 horas em 360°, então cada hora vale 30°. Entre o 12 (onde fica o ponteiro dos minutos) e o 4 há 4 horas: 4 × 30 = 120°."
+>
+
+Mexa na hora e no minuto e veja o ângulo entre os ponteiros. O **ponteiro grosso** é o das horas e o **fino** é o dos minutos.
+
+<RelogioDeAngulos />
+
+Repare em duas coisas. Cada hora do relógio vale **30°** (360 ÷ 12) e cada minuto vale **6°** (360 ÷ 60). E repare também que o ponteiro das horas **anda um pouquinho** junto com os minutos: às 3h30, ele já está no meio caminho entre o 3 e o 4.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['100 graus', '360 graus', '400 graus']}
+  correta={1}
+  seAcertou="E o palpite do começo? Você acertou: uma volta tem 360 graus, e o relógio mostra 12 horas em 360°."
+  seErrou="E o palpite do começo? Uma volta tem 360 graus. Em outros sistemas ela tem 400 (o grado), mas o grau com 360 é o mais usado."
+/>
+
+</Previsao>
+
+<ExemploResolvido titulo="Qual é o ângulo entre os ponteiros às 3h30?">
+  <Passo>O ponteiro dos minutos está no 6: 30 minutos × 6° = **180°**.</Passo>
+  <Passo>O ponteiro das horas saiu do 3 (90°) e andou meia hora: 90° + 15° = **105°**.</Passo>
+  <Passo>A diferença é 180° − 105° = **75°**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é o ângulo entre os ponteiros às 3h30?" resposta="75" dica="Hora: 3 × 30 + 15. Minutos: 30 × 6." resolucao="Horas: 105°. Minutos: 180°. A diferença é 75°." />
+
+<Exercicio enunciado="Qual é o menor ângulo entre os ponteiros às 5 horas em ponto?" resposta="150" dica="Cada hora vale 30°." resolucao="Às 5h o ponteiro das horas está em 5 × 30 = 150° e o dos minutos em 0°. O ângulo é 150°." />
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Ângulos que se encontram
+
+Quando duas retas se cruzam, formam quatro ângulos. Mexa no controle e observe.
+
+<RetasQueSeCruzam />
+
+Três ideias importantes saem dessa figura:
+
+- **Opostos pelo vértice** (os que ficam "de costas" um para o outro) são **iguais**.
+- Ângulos **vizinhos** formam uma reta e somam **180°**. Eles são **suplementares**.
+- Dois ângulos que somam **90°** (um canto reto) são **complementares**.
+
+<ExemploResolvido titulo="Qual é o complemento de 35°? E o suplemento de 110°?">
+  <Passo>Complemento é o que falta para **90°**: 90° − 35° = **55°**.</Passo>
+  <Passo>Suplemento é o que falta para **180°**: 180° − 110° = **70°**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é o complemento de 35°?" resposta="55" dica="Quanto falta para 90°?" resolucao="90° − 35° = 55°." />
+
+<Exercicio enunciado="Qual é o suplemento de 110°?" resposta="70" dica="Quanto falta para 180°?" resolucao="180° − 110° = 70°." />
+
+## Onde aparece
+
+- **Bússola e direções:** do Norte, um quarto de volta (90°) à direita leva ao Leste; meia volta (180°) leva ao Sul.
+- **Esportes:** no skate, um "360" é uma volta inteira, e um "180" é meia volta.
+- **Construção e carpintaria:** os cantos precisam de 90° exatos, senão a mesa fica torta.
+- **Rampas e telhados:** a inclinação é um ângulo.
+- **Relógio, mapa e GPS:** tudo envolve giros.
+
+<Exercicio enunciado="Você está virado para o Norte e gira meia volta. Quantos graus girou?" resposta="180" dica="Meia volta é metade de 360°." resolucao="Meia volta: 360° ÷ 2 = 180°. Você ficou virado para o Sul." />
+
+## Experimente em casa
+
+Abra uma porta devagar e pare em 45° (metade de um canto reto). Depois em 90°. Com uma folha de papel dobrada ao meio duas vezes, você tem um ângulo reto de verdade para comparar com cantos de móveis.
+
+</Etapa>
+
+<Etapa id="aprofundar">
+
+## 1. Definições
+
+Um **ângulo** é a região entre duas semirretas que saem do mesmo ponto, o **vértice**. Sua medida diz quanto uma semirreta teria de girar para chegar à outra. A unidade é o grau (°).
+
+- **Complementares:** somam 90°.
+- **Suplementares:** somam 180°.
+- **Opostos pelo vértice (OPV):** ficam em lados opostos de duas retas que se cruzam.
+
+## 2. Por que os opostos pelo vértice são iguais
+
+Duas retas se cruzando formam quatro ângulos: a, b, c e d, nessa ordem em volta do ponto. Como a e b são vizinhos, a + b = 180°. Como b e c também são vizinhos, b + c = 180°. Então a + b = b + c. Cortando o b dos dois lados: **a = c**. Mesma prova para os outros dois.
+
+## 3. A soma dos ângulos de um triângulo
+
+Em **qualquer** triângulo, os três ângulos somam **180°**. Mexa nos dois primeiros e veja o terceiro mudar:
+
+<SomaDoTriangulo />
+
+Uma forma lúdica de ver isso: recorte um triângulo de papel, arranque os três cantos e junte as pontas. Elas formam um ângulo **raso**, uma reta de 180°. Isso é uma demonstração por experiência. A prova rigorosa usa uma reta paralela à base, e você vai vê-la mais adiante.
+
+<ExemploResolvido titulo="Dois ângulos de um triângulo medem 50° e 60°. Quanto mede o terceiro?">
+  <Passo>A soma dos três é 180°.</Passo>
+  <Passo>50° + 60° = 110°.</Passo>
+  <Passo>180° − 110° = **70°**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Dois ângulos de um triângulo medem 50° e 60°. Quanto mede o terceiro?" resposta="70" dica="180 menos a soma dos dois." resolucao="180° − 50° − 60° = 70°." />
+
+## 4. Quadriláteros somam 360°
+
+Um quadrilátero (como um retângulo ou um losango) pode ser cortado por uma diagonal em **dois triângulos**. Cada triângulo soma 180°, então o quadrilátero soma 2 × 180° = **360°**.
+
+<Exercicio enunciado="Três ângulos de um quadrilátero medem 90°, 80° e 100°. Quanto mede o quarto?" resposta="90" dica="A soma dos quatro é 360°." resolucao="90° + 80° + 100° = 270°. 360° − 270° = 90°." />
+
+## 5. A fórmula do relógio
+
+O ponteiro dos minutos anda 6° por minuto. O das horas anda 30° por hora, ou seja, **0,5° por minuto**. Então, às h horas e m minutos:
+
+<Formula>
+  <Linha>ângulo = | 30 × h − 5,5 × m |</Linha>
+</Formula>
+
+(Se o resultado passar de 180°, pegue 360° menos ele.) Teste às 3h30: 30 × 3 − 5,5 × 30 = 90 − 165 = −75. O valor sem sinal é 75°.
+
+## 6. Outras unidades
+
+Além do grau, existe o **radiano**, que é a unidade preferida no Ensino Médio. Uma volta inteira vale 2π radianos (cerca de 6,28). Você vai usar isso em Trigonometria. Por ora, basta saber que o grau não é a única forma de medir um giro.
+
+## 7. Erros comuns
+
+- **Medir o comprimento dos lados** em vez da abertura.
+- **Ler a escala errada do transferidor.** Estime antes de medir.
+- **Confundir complementar (90°) com suplementar (180°).**
+- **Esquecer que o ponteiro das horas também anda** quando os minutos passam.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Quantos graus tem uma volta completa?',
+    opcoes: ['180°', '360°', '90°'],
+    correta: 1,
+    explicacao: 'Uma volta inteira tem 360°. Meia volta tem 180° e um quarto tem 90°.',
+  },
+  {
+    enunciado: 'Um ângulo de 90° se chama...',
+    opcoes: ['Agudo', 'Reto', 'Raso'],
+    correta: 1,
+    explicacao: 'Reto é exatamente 90°, como o canto de uma folha.',
+  },
+  {
+    enunciado: 'Um ângulo de 135° é...',
+    opcoes: ['Agudo', 'Reto', 'Obtuso'],
+    correta: 2,
+    explicacao: 'Obtuso é maior que 90° e menor que 180°.',
+  },
+  {
+    enunciado: 'Um ângulo de 180° forma...',
+    opcoes: ['Um canto', 'Uma reta', 'Um triângulo'],
+    correta: 1,
+    explicacao: 'Os dois lados ficam em linha reta, em sentidos opostos. É o ângulo raso.',
+  },
+  {
+    enunciado: 'Qual é o complemento de 40°?',
+    opcoes: ['50°', '140°', '320°'],
+    correta: 0,
+    explicacao: 'Complemento é o que falta para 90°: 90° − 40° = 50°.',
+  },
+  {
+    enunciado: 'Qual é o suplemento de 40°?',
+    opcoes: ['50°', '140°', '320°'],
+    correta: 1,
+    explicacao: 'Suplemento é o que falta para 180°: 180° − 40° = 140°.',
+  },
+  {
+    enunciado: 'Duas retas se cruzam e um dos ângulos vale 70°. Quanto vale o ângulo oposto pelo vértice?',
+    opcoes: ['70°', '110°', '20°'],
+    correta: 0,
+    explicacao: 'Ângulos opostos pelo vértice são iguais. Os vizinhos valeriam 110°.',
+  },
+  {
+    enunciado: 'Quantos graus vale cada hora no mostrador do relógio?',
+    opcoes: ['6°', '12°', '30°'],
+    correta: 2,
+    explicacao: '360° ÷ 12 horas = 30° por hora. Cada minuto, 360° ÷ 60 = 6°.',
+  },
+  {
+    enunciado: 'Qual é o ângulo entre os ponteiros às 9 horas em ponto?',
+    opcoes: ['90°', '180°', '270°'],
+    correta: 0,
+    explicacao: 'O ângulo grande é 270°, mas o menor ângulo entre os ponteiros é 360° − 270° = 90°.',
+  },
+  {
+    enunciado: 'Um triângulo tem ângulos de 90° e 35°. Quanto mede o terceiro?',
+    opcoes: ['45°', '55°', '125°'],
+    correta: 1,
+    explicacao: '180° − 90° − 35° = 55°.',
+  },
+  {
+    enunciado: 'Quanto soma os ângulos de um quadrilátero qualquer?',
+    opcoes: ['180°', '360°', '540°'],
+    correta: 1,
+    explicacao: 'Uma diagonal divide o quadrilátero em dois triângulos: 2 × 180° = 360°.',
+  },
+  {
+    enunciado: 'Você está virado para o Norte e vira 90° para a direita. Para onde está olhando?',
+    opcoes: ['Leste', 'Sul', 'Oeste'],
+    correta: 0,
+    explicacao: 'Um quarto de volta para a direita, a partir do Norte, leva ao Leste.',
+  },
+  {
+    enunciado: 'Qual é o ângulo entre os ponteiros do relógio às 6 horas em ponto?',
+    opcoes: ['90°', '180°', '360°'],
+    correta: 1,
+    explicacao: 'O ponteiro das horas está no 6 e o dos minutos no 12: meia volta, 180°. Os ponteiros formam uma reta.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Ângulo** é a abertura entre dois lados que saem do mesmo vértice. Mede-se em **graus**.
+- **Uma volta tem 360°.** Meia volta, 180°. Um quarto, 90°.
+- **Tipos:** agudo (menos de 90°), reto (90°), obtuso (entre 90° e 180°), raso (180°).
+- **Complementares somam 90°. Suplementares somam 180°.**
+- **Opostos pelo vértice são iguais.**
+- **No relógio:** 30° por hora e 6° por minuto.
+- **Triângulo soma 180°. Quadrilátero soma 360°.**
+- **Ninguém sabe ao certo** por que a volta foi dividida em 360 partes, mas o número tem 24 divisores e facilita as contas.
+
+</Resumo>
+
+Ângulos aparecem em todas as figuras e na trigonometria. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>
