@@ -1,0 +1,372 @@
+import PacoteNoMapa from '../../../components/simulacoes/PacoteNoMapa'
+import CartaEmPacotes from '../../../components/simulacoes/CartaEmPacotes'
+import TempoDeViagem from '../../../components/simulacoes/TempoDeViagem'
+import PacotesPerdidos from '../../../components/simulacoes/PacotesPerdidos'
+import InternetOuWeb from '../../../components/simulacoes/InternetOuWeb'
+import TempoDeDownload from '../../../components/simulacoes/TempoDeDownload'
+
+{/* Fatos conferidos na Wikipedia em inglês (Internet, Packet switching, Submarine communications cable), listadas no meta.ts. Distâncias e tempos nas simulações são aproximados. */}
+
+<Etapa id="gancho">
+
+Você aperta "enviar" numa mensagem para alguém do outro lado do planeta e, em menos de um segundo, ela chega. Entre os dois celulares há oceanos, montanhas, dezenas de cidades. Não existe um fio único ligando você a essa pessoa. Então, **por onde a mensagem passou**?
+
+A resposta é surpreendente: ela foi **cortada em pedacinhos**, cada pedacinho foi por um caminho, e tudo foi remontado no destino. Esses pedacinhos se chamam **pacotes**, e a rede que os leva é a **internet**.
+
+<Palpite
+  chave="inicial"
+  pergunta="Quando você envia uma foto pela internet, o que viaja de um lado para o outro?"
+  opcoes={['A foto inteira, de uma vez, por um fio exclusivo', 'A foto cortada em muitos pedaços pequenos, que se juntam no destino', 'Só o nome da foto; o resto fica no seu aparelho']}
+/>
+
+Nesta cápsula você vai mandar um pacote por um mapa de roteadores (e cortar cabos para ver o que acontece), cortar uma mensagem em pedaços, medir o tempo mínimo que a física permite, ver pacotes se perdendo e descobrir qual é a diferença entre **internet** e **Web**.
+
+</Etapa>
+
+<Etapa id="historia">
+
+A internet não foi inventada de uma vez. Ela cresceu de ideias que se encaixaram ao longo de décadas.
+
+<LinhaDoTempo marcos={[
+  { ano: '1858', texto: 'O primeiro cabo telegráfico atravessa o Atlântico (16 de agosto), mas funciona por apenas cerca de um mês.' },
+  { ano: 'Início dos anos 1960', texto: 'Paul Baran, na RAND, desenvolve a ideia de enviar dados em pequenos blocos.' },
+  { ano: '1965', texto: 'Donald Davies, no Laboratório Nacional de Física do Reino Unido, desenvolve a ideia por conta própria e cunha o termo "packet switching" (comutação de pacotes).' },
+  { ano: '1969', texto: 'Em 29 de outubro, os dois primeiros nós da ARPANET, na UCLA e no SRI, são conectados.' },
+  { ano: '1974', texto: 'Vint Cerf e Bob Kahn publicam uma proposta para interligar redes de pacotes. Cerf e seus alunos usam "internet" como abreviação de "internetwork".' },
+  { ano: '1982', texto: 'A família de protocolos TCP/IP é padronizada.' },
+  { ano: '1986', texto: 'A NSFNET dá acesso à rede a centros de supercomputação nos EUA, a 56 kbit/s no início.' },
+  { ano: '1990', texto: 'Tim Berners-Lee escreve o WorldWideWeb, o primeiro navegador, e os primeiros blocos da Web (HTTP 0.9, HTML).' },
+]} />
+
+## Um telégrafo debaixo do mar
+
+Muito antes de computadores, as pessoas já ligavam continentes por cabos submarinos. O primeiro cabo telegráfico pelo Atlântico ficou operacional em 16 de agosto de 1858, mas durou só cerca de um mês. Em 1956 foi inaugurado o TAT-1, o primeiro cabo telefônico transatlântico, com 36 canais. Em 1988 o TAT-8 foi o primeiro a usar **fibra óptica**. Hoje, cabos submarinos carregam cerca de **99%** do tráfego de dados entre os oceanos; os satélites cuidam de menos de 5%.
+
+## A ideia de cortar tudo em pedaços
+
+Nos anos 1960, duas pessoas pensaram o mesmo problema sem se conhecerem. Paul Baran, nos Estados Unidos, e Donald Davies, no Reino Unido (em 1965), tiveram a ideia de dividir a informação em **blocos pequenos**, cada um viajando sozinho. Davies batizou a técnica de *packet switching*. Em vez de reservar uma linha só para uma conversa, os pacotes de várias conversas dividem os mesmos fios.
+
+## ARPANET e a palavra "internet"
+
+Em 29 de outubro de 1969, os dois primeiros computadores da ARPANET (UCLA e SRI) foram ligados. Em 1974, Vint Cerf e Bob Kahn propuseram como **interligar várias redes** diferentes numa só. Cerf e seus alunos passaram a abreviar "internetwork" como "internet". Em 1982 o **TCP/IP**, o conjunto de regras que todos os computadores da rede seguem, foi padronizado.
+
+## A Web chega depois
+
+Muita gente confunde as duas coisas, mas a **Web** é bem mais nova. Em 1990, Tim Berners-Lee escreveu o primeiro navegador e as primeiras peças da Web. Ou seja: a internet já existia há anos quando os sites apareceram. Voltaremos a isso.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Cartas, não ligações
+
+Há duas formas de conversar à distância. A **ligação telefônica** reserva uma linha só para vocês dois durante toda a conversa, mesmo nos silêncios. A **carta** é diferente: você escreve, o correio leva, e ninguém precisa reservar a rua inteira.
+
+A internet funciona mais como o correio: nada de linha exclusiva. A mensagem é cortada em partes, cada parte recebe um **envelope** com o endereço e é jogada na rede. Esse sistema se chama **comutação de pacotes**. Cada pacote tem duas partes:
+
+- o **cabeçalho**: o envelope, com o destino e outras informações para a viagem;
+- a **carga** (payload): o pedacinho da mensagem de verdade.
+
+E um canal só fica ocupado enquanto um pacote passa por ele. Logo depois, outro pacote, de qualquer outra conversa, pode usar o mesmo cabo.
+
+<CartaEmPacotes />
+
+Mexa nos controles: as letras viram pacotes numerados. Repare que os pacotes podem **chegar fora de ordem**. Não é problema: o número de cada um permite remontar tudo no destino.
+
+<ExemploResolvido titulo="Quantos pacotes tem a mensagem?">
+  <Passo>A mensagem "Oi, tudo bem com você?" tem 22 caracteres (contando espaços e pontuação).</Passo>
+  <Passo>Se cada pacote leva 5 caracteres, dividimos: 22 ÷ 5 = 4,4.</Passo>
+  <Passo>Não existe 0,4 de pacote: sobra um pedaço, então são **5 pacotes** (4 cheios e 1 com 2 letras).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma mensagem de 30 caracteres é cortada em pacotes de 10. Quantos pacotes são?" resposta="3" dica="30 ÷ 10." resolucao="30 ÷ 10 = 3 pacotes." />
+
+<Exercicio enunciado="Uma mensagem de 21 caracteres vai em pacotes de 5. Quantos pacotes são? (lembre-se do pedaço que sobra)" resposta="5" dica="21 ÷ 5 = 4,2." resolucao="21 ÷ 5 = 4,2: são 4 pacotes cheios e mais 1 para o resto, ou seja, 5." />
+
+## 2. O mapa: roteadores e saltos
+
+Os pacotes não viajam sozinhos pelo desconhecido: passam por **roteadores**, aparelhos que funcionam como cruzamentos com placa. Cada roteador olha o endereço no cabeçalho e **decide o próximo caminho**. Receber, guardar um instante e repassar é o que se chama de *store and forward* (guardar e encaminhar).
+
+Cada passagem de um roteador para o seguinte é um **salto**. Veja um pacote indo de uma casa até um site e, depois, corte cabos para ver o que acontece:
+
+<PacoteNoMapa />
+
+Cortar um cabo não derruba a rede: o pacote **dá a volta** por outro caminho. Se todos os caminhos forem cortados, aí sim ele não chega. Essa capacidade de contornar problemas era um dos objetivos da ideia de Baran: uma rede sem um único ponto frágil.
+
+<Exercicio enunciado="Na rede de brinquedo, Casa → A → C → Site tem quantos saltos?" resposta="3" dica="Conte os trechos entre os pontos, não os pontos." resolucao="São 3 saltos: Casa-A, A-C e C-Site." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Quanto tempo, no mínimo, um sinal leva para ir e voltar entre São Paulo e Lisboa (cerca de 7.900 km) numa fibra óptica?"
+  opcoes={['Menos de 1 milissegundo', 'Cerca de 80 milissegundos', 'Cerca de 5 segundos']}
+  correta={1}
+  explicacao="A luz na fibra anda a cerca de 200 mil km por segundo (200 km por milissegundo). Ida: 7.900 ÷ 200 ≈ 40 ms. Ida e volta: cerca de 80 ms. É um mínimo imposto pela física, antes de contar roteadores e curvas dos cabos."
+>
+
+Escolha uma rota e veja o mínimo físico:
+
+<TempoDeViagem />
+
+Isso mostra um limite curioso: **mesmo com a internet perfeita, existe um tempo mínimo** que depende da distância. É por isso que um servidor mais perto de você responde mais rápido, e por isso jogos online costumam ter servidores em cada região.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['A foto inteira, de uma vez, por um fio exclusivo', 'A foto cortada em muitos pedaços pequenos, que se juntam no destino', 'Só o nome da foto; o resto fica no seu aparelho']}
+  correta={1}
+  seAcertou="E o palpite do começo? Isso: a foto é cortada em muitos pacotes que se juntam no destino."
+  seErrou="E o palpite do começo? A foto é cortada em muitos pacotes, cada um com seu envelope, e se junta no destino. Não existe um fio exclusivo."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## A rede de redes
+
+A palavra **internet** vem de *internetwork*: "rede entre redes". Ela não é uma única rede enorme, e sim milhares de redes (de empresas, universidades, operadoras e casas) conectadas entre si. Seu Wi-Fi é uma rede pequena. A rede da sua operadora é outra, maior. As redes se ligam em pontos de troca, e assim vão formando o mapa mundial.
+
+Para tantas redes diferentes conversarem, todos precisam seguir as **mesmas regras**: o **TCP/IP**. Ele é uma família de protocolos (combinados) que define como endereçar, dividir, enviar e remontar os pacotes. Se alguém usasse regras diferentes, os pacotes não seriam entendidos.
+
+<ExemploResolvido titulo="Por que as regras precisam ser as mesmas?">
+  <Passo>Imagine que o computador A manda pacotes com o endereço escrito no início, mas o B espera o endereço no fim.</Passo>
+  <Passo>O roteador leria um pedaço da mensagem como se fosse o endereço. O pacote iria parar em lugar nenhum.</Passo>
+  <Passo>Por isso há **protocolos**: todos escrevem e leem o envelope do mesmo jeito. Fabricantes diferentes, países diferentes, a mesma regra.</Passo>
+</ExemploResolvido>
+
+<Aprofundar titulo="TCP e IP: cada um com seu papel">
+
+O **IP** cuida do **endereço**: diz de onde vem e para onde vai cada pacote (a próxima cápsula explica os endereços IP). O **TCP** cuida da **confiabilidade**: numera os pacotes, confere se todos chegaram e pede de novo os que faltam. Os dois juntos formam a base do que usamos todo dia. Existem outras opções, como o UDP, que não confere e é usado quando velocidade importa mais que perfeição, como em chamadas de vídeo e jogos.
+
+</Aprofundar>
+
+## Quando um pacote se perde
+
+Pacotes podem se perder: um roteador congestionado descarta, um cabo falha, o Wi-Fi tem interferência. Como a mensagem chega inteira mesmo assim? O destino percebe que um número está faltando e **pede de novo** só aquele pacote. É por isso que sua mensagem não chega pela metade.
+
+<PacotesPerdidos />
+
+Quanto maior a perda, mais pedidos de reenvio e mais lenta a conversa, o que você sente como "travadas" numa chamada de vídeo.
+
+<Exercicio enunciado="De 20 pacotes enviados, 5 se perderam. Quantos pacotes chegaram sem precisar reenviar?" resposta="15" dica="20 − 5." resolucao="20 − 5 = 15 pacotes chegaram." />
+
+<Exercicio enunciado="Uma perda de 10% em 50 pacotes significa quantos pacotes perdidos?" resposta="5" dica="10% de 50 = 50 ÷ 10." resolucao="10% de 50 é 5 pacotes. (veja a cápsula de Porcentagem)" />
+
+## O caminho físico: cabos, fibras e ondas
+
+No fim, os pacotes são **sinais** viajando por algum meio:
+
+- **Fibra óptica**: pulsos de luz dentro de um fio fino de vidro. É o que forma a espinha dorsal da internet.
+- **Cabo de cobre**: sinais elétricos, usados em redes locais e linhas mais antigas.
+- **Ondas de rádio**: Wi-Fi e o 4G/5G do celular. Funcionam até uma antena, e de lá o sinal entra num cabo.
+
+Mesmo no celular, o sinal sem fio só percorre o trecho final: logo depois, ele cai num cabo. Os grandes saltos entre continentes acontecem por **cabos submarinos**, que carregam cerca de 99% dos dados entre os oceanos.
+
+<Exercicio enunciado="Em %, quanto do tráfego de dados entre os oceanos passa por cabos submarinos? (aproximadamente)" resposta="99" dica="É quase tudo; os satélites cuidam de menos de 5%." resolucao="Cerca de 99%." />
+
+<Aprofundar titulo="Por que não um satélite para tudo?">
+
+Satélites são úteis onde cabos não chegam, mas a luz precisa subir e descer a uma altitude enorme, e isso aumenta o atraso. Cabos submarinos têm, além disso, muito mais capacidade e custo menor por dado. Como sempre, a escolha depende do problema, e por isso a maior parte do tráfego entre continentes anda no fundo do mar.
+
+</Aprofundar>
+
+## Largura de banda e velocidade
+
+Quando você contrata "100 Mega", isso significa **100 megabits por segundo** (Mbps). Um *bit* é um dígito binário, e **1 byte tem 8 bits** (como na cápsula de Binário). Já os arquivos costumam aparecer em **megabytes** (MB). Por isso, o download "demora mais do que você achava" se você não converter:
+
+<TempoDeDownload />
+
+<ExemploResolvido titulo="Quanto demora para baixar um arquivo de 500 MB a 100 Mbps?">
+  <Passo>Converta o arquivo em bits: 500 MB × 8 = **4.000 megabits**.</Passo>
+  <Passo>Divida pela velocidade: 4.000 ÷ 100 = **40 segundos**.</Passo>
+  <Passo>É o melhor caso. Na prática, o tráfego, o Wi-Fi e o servidor deixam um pouco mais lento.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos megabits tem um arquivo de 10 MB?" resposta="80" dica="Multiplique por 8." resolucao="10 × 8 = 80 megabits." />
+
+<Exercicio enunciado="Baixar 800 megabits a 100 Mbps leva quantos segundos?" resposta="8" dica="800 ÷ 100." resolucao="800 ÷ 100 = 8 segundos." />
+
+<Exercicio enunciado="Um arquivo de 200 MB, a 50 Mbps, leva quantos segundos? (converta para megabits primeiro)" resposta="32" dica="200 × 8 = 1.600 megabits; depois divida por 50." resolucao="200 × 8 = 1.600 megabits; 1.600 ÷ 50 = 32 segundos." />
+
+<Aprofundar titulo="Latência x largura de banda">
+
+São duas medidas diferentes. A **largura de banda** diz quantos bits cabem por segundo: é a "largura da estrada". A **latência** diz quanto tempo um pacote leva para ir e voltar: é o "tamanho da viagem". Dá para ter uma estrada larguíssima e uma viagem longa (satélite, por exemplo) ou o contrário. Para baixar um filme, a largura importa mais. Para jogo online, a latência importa mais.
+
+</Aprofundar>
+
+## Internet não é a mesma coisa que Web
+
+A **internet** é a rede, a infraestrutura de cabos, roteadores e regras. A **Web** é um serviço que anda **em cima** da internet: os sites, ligados por links e acessados por endereços. Outros serviços também usam a internet: e-mail, jogos online, chamadas de vídeo.
+
+Uma imagem: a internet é a **rede de estradas**, e a Web é só um dos tipos de veículo que passam por elas (ao lado de caminhões de e-mail, ônibus de videochamada...).
+
+<InternetOuWeb />
+
+<Exercicio enunciado="Em que ano Tim Berners-Lee escreveu o primeiro navegador, o WorldWideWeb?" resposta="1990" dica="A internet já existia há mais de 20 anos." resolucao="Em 1990. A ARPANET, de 1969, é anterior à Web." />
+
+<Aprofundar titulo="Quem manda na internet?">
+
+Ninguém manda sozinho. A internet é uma união de redes independentes que concordam em seguir os mesmos protocolos. As empresas operam suas redes, governos criam leis para o seu território, e organizações técnicas mantêm os padrões. Essa descentralização foi desenhada desde o começo: a ideia de Baran era uma rede sem um ponto único de falha.
+
+</Aprofundar>
+
+## Como a sua casa entra na rede
+
+Entre o seu celular e um site, existem alguns degraus, parecidos com ruas que desembocam em avenidas e depois em estradas:
+
+1. **Seu aparelho** fala por Wi-Fi ou cabo com o **roteador da sua casa**.
+2. O roteador da casa liga na **operadora** (o provedor de internet), que é uma rede maior.
+3. A operadora se conecta a outras operadoras e a grandes redes, em pontos de troca de tráfego.
+4. Do outro lado, a rede do site (um servidor numa empresa de hospedagem) recebe o pacote.
+
+Por isso o "roteador do Wi-Fi" que você tem em casa faz o mesmo trabalho dos roteadores gigantes: olha o endereço e escolhe o próximo salto. Só que o dele tem poucos caminhos, enquanto os da operadora têm milhares.
+
+<ExemploResolvido titulo="Onde pode estar o problema?">
+  <Passo>O celular mostra "conectado ao Wi-Fi", mas nenhum site abre.</Passo>
+  <Passo>Primeiro degrau: o celular fala com o roteador da casa. Está ok, pois o Wi-Fi conectou.</Passo>
+  <Passo>O segundo degrau é do roteador até a operadora: se ele está sem internet (cabo solto, falha na região), nada sai da casa.</Passo>
+  <Passo>Teste: outro aparelho na mesma casa também não abre? Então o problema está depois do roteador. Se só um aparelho falha, o problema está nele.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos degraus há entre seu aparelho e o roteador da operadora, na lista acima (aparelho, roteador da casa, operadora)? Conte os saltos." resposta="2" dica="Aparelho → roteador da casa → operadora." resolucao="São 2 saltos: aparelho até o roteador da casa, e dele até a operadora." />
+
+<Exercicio enunciado="Dois aparelhos da casa estão sem internet, mas o Wi-Fi aparece conectado. O defeito está antes ou depois do roteador da casa? (antes ou depois)" resposta="depois" dica="Se o roteador da casa funciona e os dois aparelhos falam com ele..." resolucao="Os aparelhos falam com o roteador, então o problema está depois dele: na ligação com a operadora." />
+
+<Aprofundar titulo="Quem pode ler os seus pacotes?">
+
+Os pacotes passam por vários aparelhos de terceiros. Por isso a informação mais sensível precisa ser **criptografada**: embaralhada de um jeito que só quem está nas pontas entende. Sem isso, os intermediários poderiam, em princípio, ler o conteúdo. A cápsula de HTTP e HTTPS explica como o cadeado do navegador faz isso.
+
+</Aprofundar>
+
+## O que acontece quando você abre uma página
+
+Juntando tudo, uma visita a um site faz isto, em poucos instantes:
+
+1. Seu computador descobre **o endereço** do servidor do site (a cápsula de DNS conta como).
+2. Ele cria um pedido e o **corta em pacotes**, cada um com cabeçalho.
+3. Os pacotes passam por vários **roteadores**, cada um decidindo o próximo salto.
+4. O servidor recebe, **remonta o pedido** e responde, também em pacotes.
+5. Seu navegador remonta a resposta e **desenha a página**.
+
+Tudo isso leva uma fração de segundo, e o tempo mínimo é limitado pela distância e pela velocidade da luz.
+
+<ExemploResolvido titulo="Conte o tempo de ida e volta">
+  <Passo>O servidor está a 4.000 km. A luz na fibra anda a cerca de 200 km por milissegundo.</Passo>
+  <Passo>Ida: 4.000 ÷ 200 = 20 ms.</Passo>
+  <Passo>Ida e volta: 20 × 2 = **40 ms** no mínimo, sem contar roteadores e curvas.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um servidor está a 2.000 km. Quantos milissegundos leva só a ida, a 200 km por ms?" resposta="10" dica="2.000 ÷ 200." resolucao="2.000 ÷ 200 = 10 ms." />
+
+<Aprofundar titulo="Traceroute: espiando os saltos">
+
+Existe uma ferramenta chamada *traceroute* (no Windows, `tracert`) que mostra os roteadores por onde seus pacotes passam até um destino, com o tempo de cada salto. Rodá-la costuma revelar de 5 a 20 saltos até um site. Você vai aprender a usá-la quando chegar na cápsula do terminal.
+
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'O que é um pacote?',
+    opcoes: ['Um pedacinho da mensagem com um cabeçalho de endereço', 'Um cabo da internet', 'Um tipo de roteador'],
+    correta: 0,
+    explicacao: 'Cada pacote tem cabeçalho (o envelope) e carga (o pedaço da mensagem).',
+  },
+  {
+    enunciado: 'Por que a internet usa pacotes em vez de uma linha exclusiva?',
+    opcoes: ['Várias conversas dividem os mesmos canais', 'Porque é mais caro', 'Porque não há cabos'],
+    correta: 0,
+    explicacao: 'Na comutação de pacotes, o canal só fica ocupado enquanto um pacote passa. Assim, muitas conversas dividem os mesmos fios.',
+  },
+  {
+    enunciado: 'O que faz um roteador?',
+    opcoes: ['Decide o próximo caminho de cada pacote', 'Guarda arquivos', 'Desenha as páginas'],
+    correta: 0,
+    explicacao: 'O roteador lê o cabeçalho e encaminha o pacote para o próximo salto.',
+  },
+  {
+    enunciado: 'Um cabo foi cortado. O que costuma acontecer com os pacotes?',
+    opcoes: ['Dão a volta por outro caminho', 'Todos se perdem para sempre', 'A internet para no mundo todo'],
+    correta: 0,
+    explicacao: 'Havendo outro caminho vivo, a rede encaminha por ele. Só se todos os caminhos forem cortados o pacote não chega.',
+  },
+  {
+    enunciado: 'Os pacotes sempre chegam na ordem em que foram enviados?',
+    opcoes: ['Sim, sempre', 'Não: podem chegar fora de ordem e são remontados pela numeração', 'Só os maiores'],
+    correta: 1,
+    explicacao: 'Pacotes podem seguir rotas diferentes. O destino usa os números para remontar a mensagem.',
+  },
+  {
+    enunciado: 'O que acontece quando um pacote se perde?',
+    opcoes: ['O destino percebe e pede de novo aquele pacote', 'A mensagem chega pela metade', 'O computador desliga'],
+    correta: 0,
+    explicacao: 'A numeração mostra o que falta, e o pedido de reenvio completa a mensagem.',
+  },
+  {
+    enunciado: 'Em que ano os dois primeiros nós da ARPANET (UCLA e SRI) foram conectados?',
+    opcoes: ['1858', '1969', '1990'],
+    correta: 1,
+    explicacao: 'Em 29 de outubro de 1969. 1858 é o primeiro cabo telegráfico transatlântico e 1990 é o primeiro navegador.',
+  },
+  {
+    enunciado: 'Qual é a diferença entre internet e Web?',
+    opcoes: ['São a mesma coisa', 'Internet é a rede; a Web é um serviço (sites) que roda nela', 'Web é a rede; internet são os sites'],
+    correta: 1,
+    explicacao: 'A internet é a infraestrutura. A Web é um dos serviços que a usam, ao lado de e-mail, jogos e chamadas.',
+  },
+  {
+    enunciado: 'Um arquivo de 100 MB tem quantos megabits?',
+    opcoes: ['100', '800', '12,5'],
+    correta: 1,
+    explicacao: '1 byte tem 8 bits, então 100 × 8 = 800 megabits.',
+  },
+  {
+    enunciado: 'Quantos segundos leva para baixar 400 megabits a 100 Mbps?',
+    opcoes: ['4', '40', '400'],
+    correta: 0,
+    explicacao: '400 ÷ 100 = 4 segundos.',
+  },
+  {
+    enunciado: 'Cerca de quanto do tráfego entre oceanos passa por cabos submarinos?',
+    opcoes: ['1%', '50%', '99%'],
+    correta: 2,
+    explicacao: 'Cerca de 99% dos dados entre os oceanos viajam por cabos submarinos.',
+  },
+  {
+    enunciado: 'A luz na fibra anda a 200 km por ms. Qual é o tempo de ida para 6.000 km?',
+    opcoes: ['3 ms', '30 ms', '300 ms'],
+    correta: 1,
+    explicacao: '6.000 ÷ 200 = 30 ms só de ida.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Internet** é uma rede de redes, que seguem as mesmas regras (TCP/IP).
+- **Mensagens são cortadas em pacotes**, cada um com cabeçalho (o envelope) e carga (o pedaço).
+- **Roteadores** leem o cabeçalho e escolhem o próximo salto. Cabo cortado? O pacote dá a volta.
+- **Pacotes podem chegar fora de ordem ou se perder**: a numeração permite remontar e pedir de novo.
+- **A física impõe um mínimo de tempo**: a luz na fibra anda cerca de 200 km por milissegundo.
+- **Mbps são megabits:** divida o arquivo em MB × 8 pela velocidade para estimar o tempo.
+- **Web é só um serviço da internet**, ao lado de e-mail, jogos e chamadas de vídeo.
+
+**Um pouco de história.** O primeiro cabo telegráfico pelo Atlântico é de 1858. Baran (anos 1960) e Davies (1965) criaram a ideia dos pacotes. A ARPANET ligou os primeiros nós em 29 de outubro de 1969. Cerf e Kahn propuseram a interligação de redes em 1974, o TCP/IP foi padronizado em 1982 e Tim Berners-Lee criou o primeiro navegador em 1990.
+
+</Resumo>
+
+Agora você sabe como os pacotes viajam. Falta saber **como cada computador é encontrado**: é o assunto de IP e portas.
+
+<Conexoes />
+
+</Etapa>
