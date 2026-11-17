@@ -1,8 +1,11 @@
 import GradeCem from '../../../../components/simulacoes/GradeCem'
 import SimuladorPromocao from '../../../../components/simulacoes/SimuladorPromocao'
 import SobeEDesce from '../../../../components/simulacoes/SobeEDesce'
+import CalculadoraDeCabeca from '../../../../components/simulacoes/CalculadoraDeCabeca'
+import DesfazerAumento from '../../../../components/simulacoes/DesfazerAumento'
+import JurosBolaDeNeve from '../../../../components/simulacoes/JurosBolaDeNeve'
 
-{/* Fatos históricos conferidos na Wikipedia em inglês (Percentage e Percent sign), listadas no meta.ts. */}
+{/* Fatos históricos conferidos na Wikipedia (Percentage, Percent sign, Plano Real), listadas no meta.ts. */}
 
 <Etapa id="gancho">
 
@@ -16,36 +19,118 @@ Parece que você levou 70% de desconto. Será?
   opcoes={['70%', '60%', 'Depende do preço']}
 />
 
-Guarde seu palpite. No fim da simulação a gente volta nele.
+Guarde seu palpite. Até lá, você vai aprender a calcular porcentagens de cabeça, descobrir preços escondidos e entender por que os juros do cartão assustam tanto.
 
 </Etapa>
 
 <Etapa id="historia">
 
-A ideia de contar "de cada 100" é bem mais velha que as promoções de loja.
+A ideia de contar "de cada 100" é bem mais velha que as promoções de loja. E no Brasil ela tem um capítulo dramático, que muita gente ainda lembra.
 
 <LinhaDoTempo marcos={[
   { ano: 'Roma antiga', texto: 'O imperador Augusto cobra um imposto de 1/100 sobre as mercadorias vendidas em leilão, a "centesima rerum venalium" (o centésimo das coisas vendidas).' },
   { ano: 'Fim do séc. XV', texto: 'Com o comércio crescendo na Europa, os livros de aritmética começam a trazer muitas contas com "partes de 100", principalmente sobre dinheiro.' },
   { ano: 'Séc. XVII', texto: 'Já era o costume dizer as taxas de juros em centésimos, como fazemos até hoje com "ao mês" e "ao ano".' },
   { ano: 'Aos poucos', texto: 'Os escribas italianos encurtam "per cento" (por cento). De abreviação em abreviação, a expressão vira o símbolo %.' },
+  { ano: 'Jun. 1994', texto: 'No Brasil, os preços sobem 46,58% num único mês.' },
+  { ano: '1º jul. 1994', texto: 'Entra em circulação o Real. Cada R$ 1 vale CR$ 2.750 da moeda antiga, e a inflação do mês cai para 6,08%.' },
 ]} />
 
-Por que 100? Porque é um número fácil de imaginar e de dividir. Comparar "3 em 20" com "7 em 50" é difícil. Comparar 15% com 14% é imediato.
+## O imposto do imperador
+
+Os romanos ainda não tinham o símbolo %, mas já pensavam em centésimos. Quando Augusto quis cobrar um imposto sobre os leilões, a regra era simples de entender e de fiscalizar: **1 de cada 100**. Vendeu por 100 moedas, paga 1. Vendeu por 500, paga 5.
+
+A vantagem do 100 é essa: é um número redondo, fácil de imaginar e de dividir. Por isso a ideia pegou e nunca mais saiu do comércio.
+
+## Os mercadores e o "per cento"
+
+No fim da Idade Média, os mercadores italianos faziam negócios por toda a Europa e precisavam calcular juros, lucros e impostos o tempo todo. Escrever "per cento" (por cento) em cada conta cansava.
+
+Os escribas foram encurtando a expressão nos manuscritos. O "per" sumiu, o "cento" virou uma abreviação com bolinhas, e as bolinhas com um tracinho viraram o **%** que usamos hoje.
+
+## Quando os preços dobravam em dois meses
+
+Se você nasceu antes dos anos 1990, talvez lembre: no Brasil, os preços subiam **todo dia**. Em junho de 1994, a inflação foi de **46,58% em um só mês**.
+
+Parece "só" 46%. Mas porcentagem sobre porcentagem cresce como bola de neve: com esse ritmo, um preço **mais que dobra em dois meses**. Se durasse um ano inteiro, ele ficaria quase **100 vezes** maior. Você vai entender essa conta no fim da cápsula.
+
+Em 1º de julho de 1994 entrou em circulação o **Real**. A inflação de julho caiu para 6,08%, e a era dos preços remarcados todo dia foi ficando para trás. Por trás de tudo isso, a mesma ideia simples: "de cada 100".
 
 </Etapa>
 
 <Etapa id="intuicao">
 
-**Por cento** quer dizer **de cada 100**. 25% é pintar 25 quadradinhos numa grade de 100.
+## 1. "Por cento" quer dizer "de cada 100"
+
+25% é pintar 25 quadradinhos numa grade de 100. Arraste e veja:
 
 <GradeCem />
 
-Agora vem o detalhe que engana todo mundo: porcentagem é sempre **de alguma coisa**. 20% de R$ 200 é R$ 40. Mas 20% de R$ 100 é só R$ 20.
+Toda porcentagem é uma **fração com 100 embaixo**: 25% = 25/100. Simplificando, 25/100 = 1/4. E como fração é divisão, 1/4 = 0,25. São três jeitos de escrever a mesma coisa:
+
+- **50%** = 1/2 = 0,5 (metade)
+- **25%** = 1/4 = 0,25 (um quarto)
+- **75%** = 3/4 = 0,75 (três quartos)
+- **20%** = 1/5 = 0,2
+- **10%** = 1/10 = 0,1 (um décimo)
+- **1%** = 1/100 = 0,01 (um centésimo)
+
+Vale a pena decorar essa lista. Ela transforma muita conta difícil em conta de cabeça.
+
+<Exercicio enunciado="Escreva 40% como fração simplificada." resposta="2/5" dica="40% = 40/100. Divida em cima e embaixo pelo mesmo número." resolucao="40/100: dividindo os dois por 20, fica 2/5." />
+
+<Exercicio enunciado="Quanto por cento é 0,07?" resposta="7" unidade="%" dica="0,07 são 7 centésimos." resolucao="0,07 = 7/100 = 7%." />
+
+<Exercicio enunciado="Quanto por cento é 3/5?" resposta="60" unidade="%" dica="Transforme 3/5 em centésimos: por quanto você multiplica o 5 para chegar a 100?" resolucao="5 × 20 = 100. Então 3/5 = 60/100 = 60%." />
+
+## 2. Calcular porcentagem de cabeça
+
+Não precisa de calculadora para a maioria das porcentagens do dia a dia. O segredo é montar tudo a partir de peças fáceis:
+
+- **10%**: divida por 10 (a vírgula anda uma casa para a esquerda). 10% de R$ 85 = R$ 8,50.
+- **1%**: divida por 100 (a vírgula anda duas casas).
+- **50%**: metade. **25%**: metade da metade.
+- **5%**: metade de 10%. **20%**: o dobro de 10%. **15%**: 10% + 5%.
+
+Escolha um valor e uma porcentagem e veja a receita:
+
+<CalculadoraDeCabeca />
+
+<ExemploResolvido titulo="A conta do restaurante deu R$ 86. Quanto são os 10% do garçom? E se você quiser dar 15%?">
+  <Passo>10% de 86: a vírgula anda uma casa. **R$ 8,60**.</Passo>
+  <Passo>5% é metade de 10%: metade de 8,60 = **R$ 4,30**.</Passo>
+  <Passo>15% = 10% + 5% = 8,60 + 4,30 = **R$ 12,90**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 15% de 60?" resposta="9" dica="10% de 60 é 6. E 5%?" resolucao="10% de 60 = 6. 5% = metade = 3. 15% = 6 + 3 = 9." />
+
+<Exercicio enunciado="Quanto é 25% de 48?" resposta="12" dica="25% é metade da metade." resolucao="Metade de 48 = 24. Metade de 24 = 12." />
+
+<Exercicio enunciado="Quanto é 1% de R$ 3.500?" resposta="35" unidade="reais" dica="Para 1%, divida por 100." resolucao="3.500 ÷ 100 = 35. São R$ 35." />
+
+## 3. "Quanto por cento é?"
+
+Às vezes a pergunta é ao contrário: você sabe a **parte** e o **todo**, e quer a porcentagem. Na prova, você acertou 18 de 24 questões. Quanto por cento?
+
+A ideia: escreva como fração (parte sobre todo) e transforme em "de cada 100".
+
+<ExemploResolvido titulo="Acertei 18 de 24 questões. Qual foi a minha porcentagem de acertos?">
+  <Passo>Parte sobre todo: **18/24**.</Passo>
+  <Passo>Simplifique: dividindo por 6, fica **3/4**.</Passo>
+  <Passo>3/4 = 75/100 = **75%**. (Sem simplificar dá na mesma: 18 ÷ 24 = 0,75.)</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Num time de 48 jogadores, 12 são goleiros. Quanto por cento do time são goleiros?" resposta="25" unidade="%" dica="Escreva 12/48 e simplifique." resolucao="12/48 = 1/4 = 25%." />
+
+<Exercicio enunciado="Dos 30 dias do mês, choveu em 9. Em quanto por cento dos dias choveu?" resposta="30" unidade="%" dica="9/30: simplifique ou divida 9 por 30." resolucao="9/30 = 3/10 = 30/100 = 30%." />
+
+## 4. Porcentagem é sempre "de alguma coisa"
+
+Agora vem o detalhe que engana todo mundo: 20% de R$ 200 é R$ 40. Mas 20% de R$ 100 é só R$ 20. A mesma porcentagem vale coisas diferentes, dependendo **de quê** ela é.
 
 Pense num bolo. Você come <Termo cor="coral">metade</Termo>. Depois come <Termo cor="azul">20% do que sobrou</Termo>. Esse segundo pedaço é pequeno, porque o bolo já estava pela metade.
 
-Na loja é igual: o desconto do caixa é calculado sobre o preço **que já caiu**. Por isso os dois descontos não se somam.
+Na loja é igual: o desconto do caixa é calculado sobre o preço **que já caiu**. Guarde isso para a próxima etapa.
 
 </Etapa>
 
@@ -76,6 +161,22 @@ Tente também 50% e 50%. A soma diria 100%, ou seja, calça de graça. Na verdad
 
 </Previsao>
 
+## O atalho do "quanto sobra"
+
+Repare numa coisa: com 20% de desconto, você **paga 80%** do preço. Então, em vez de calcular o desconto e subtrair, dá para ir direto: multiplique o preço por **0,8**.
+
+O mesmo vale para aumentos. Um aumento de 10% faz o valor virar **110%** do que era: multiplique por **1,1**. Esse número (0,8 ou 1,1) se chama **fator**.
+
+<ExemploResolvido titulo="Um tênis de R$ 250 está com 30% de desconto. Quanto ele custa?">
+  <Passo>Com 30% de desconto, você paga 100% − 30% = **70%** do preço.</Passo>
+  <Passo>70% = 0,7. Então o preço é 250 × 0,7.</Passo>
+  <Passo>250 × 0,7 = **R$ 175**. Uma conta só, em vez de duas.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um produto de R$ 80 tem 15% de desconto. Quanto ele passa a custar?" resposta="68" unidade="reais" dica="Você paga 85% do preço: 80 × 0,85." resolucao="80 × 0,85 = 68. Ou: 15% de 80 = 12, e 80 − 12 = 68." />
+
+<Exercicio enunciado="Um salário de R$ 1.500 tem aumento de 8%. Qual é o novo salário?" resposta="1620" unidade="reais" dica="O novo salário é 108% do antigo: 1.500 × 1,08." resolucao="1.500 × 1,08 = 1.620. Ou: 8% de 1.500 = 120, e 1.500 + 120 = 1.620." />
+
 </Etapa>
 
 <Etapa id="pratica">
@@ -88,6 +189,24 @@ Um salário de R$ 2.000 tem aumento de 10%. Meses depois, um corte de 10%. Volto
 
 O aumento foi calculado sobre R$ 2.000, mas o corte veio sobre R$ 2.200, um valor maior. Por isso o corte "pesa" mais e você termina com R$ 1.980.
 
+## Descobrindo o preço de antes
+
+Uma loja diz: "Com o reajuste de 20%, o produto agora custa R$ 300". Quanto custava antes? Quase todo mundo tira 20% de 300 e responde R$ 240. **Está errado.**
+
+Os 20% foram calculados sobre o preço **antigo**, que é menor que R$ 300. Veja a diferença:
+
+<DesfazerAumento />
+
+O jeito certo: o preço novo é 120% do antigo. Então divida por 1,2: 300 ÷ 1,2 = **R$ 250**. Confira: 20% de 250 = 50, e 250 + 50 = 300.
+
+<Exercicio enunciado="Depois de um aumento de 25%, um produto custa R$ 150. Quanto custava antes?" resposta="120" unidade="reais" dica="O preço novo é 125% do antigo. Divida por 1,25." resolucao="150 ÷ 1,25 = 120. Confira: 25% de 120 = 30, e 120 + 30 = 150." />
+
+## Quanto subiu, em porcentagem?
+
+A gasolina foi de R$ 5,00 para R$ 6,00. Subiu R$ 1,00. Em porcentagem, compare o aumento com o **preço antigo**: 1 ÷ 5 = 0,2 = **20%**.
+
+<Exercicio enunciado="O aluguel passou de R$ 1.200 para R$ 1.320. De quanto por cento foi o aumento?" resposta="10" unidade="%" dica="Quanto subiu? Divida isso pelo valor antigo." resolucao="Subiu 1.320 − 1.200 = 120. E 120 ÷ 1.200 = 0,1 = 10%." />
+
 ## "Por cento" ou "pontos percentuais"?
 
 Uma taxa de juros passou de 10% para 15% ao ano. Ela subiu 5%? Não exatamente.
@@ -97,11 +216,30 @@ Uma taxa de juros passou de 10% para 15% ao ano. Ela subiu 5%? Não exatamente.
 
 Jornais sérios usam "pontos percentuais" justamente para não confundir as duas coisas.
 
+## Juros: a bola de neve
+
+Juros são o "aluguel" do dinheiro. Quem empresta cobra uma porcentagem por mês. Existem dois jeitos de cobrar:
+
+- **Juros simples:** todo mês, a porcentagem é calculada sobre o valor do **começo**. Cresce sempre o mesmo tanto.
+- **Juros compostos:** todo mês, a porcentagem é calculada sobre o valor **de agora**, que já inclui os juros anteriores. É uma bola de neve descendo o morro: quanto maior, mais neve gruda.
+
+Quase tudo no mundo real (cartão de crédito, cheque especial, financiamento, poupança) usa juros **compostos**. Compare:
+
+<JurosBolaDeNeve />
+
+<ExemploResolvido titulo="Uma dívida de R$ 1.000 cresce 10% ao mês (juros compostos). Quanto ela vale depois de 3 meses?">
+  <Passo>Mês 1: 1.000 × 1,1 = **R$ 1.100**.</Passo>
+  <Passo>Mês 2: 1.100 × 1,1 = **R$ 1.210**. Repare: os juros desse mês (R$ 110) foram maiores que os do primeiro (R$ 100).</Passo>
+  <Passo>Mês 3: 1.210 × 1,1 = **R$ 1.331**. Com juros simples, seriam só R$ 1.300. Em um ano, a dívida composta passaria de R$ 3.138.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Você deve R$ 200, com juros compostos de 10% ao mês. Quanto vai dever depois de 2 meses?" resposta="242" unidade="reais" dica="Multiplique por 1,1 duas vezes." resolucao="200 × 1,1 = 220. Depois 220 × 1,1 = 242." />
+
 ## Onde mais aparece
 
-- **Juros do cartão e do empréstimo:** "só 1% ao mês" parece pouco, mas os juros vão se acumulando por cima dos juros.
 - **Gorjeta e taxa de serviço:** os 10% do restaurante são calculados sobre a conta.
 - **Bateria do celular:** 20% de uma bateria grande duram mais que 20% de uma pequena. De novo: porcentagem **de quê?**
+- **Pesquisas e notícias:** "o preço do tomate subiu 50%" pode ser de R$ 4 para R$ 6. Sempre pergunte: 50% de quanto?
 
 ## Experimente em casa
 
@@ -125,12 +263,8 @@ Exemplo: 20% de 200 = 20 × 200 ÷ 100 = 40.
 
 ## 2. O fator multiplicativo
 
-Em vez de calcular o desconto e subtrair, dá para ir direto ao preço final:
-
 - **Desconto de d%:** multiplique por (1 − d/100). Desconto de 20% é multiplicar por **0,8**.
 - **Aumento de a%:** multiplique por (1 + a/100). Aumento de 10% é multiplicar por **1,1**.
-
-Esse número (0,8 ou 1,1) se chama **fator multiplicativo**. Ele diz "quanto sobra" ou "quanto vira".
 
 ## 3. Descontos seguidos se multiplicam
 
@@ -151,9 +285,7 @@ Escrevendo os descontos como decimais (50% = 0,5), o desconto total de dois desc
   <Linha>= a + b − a × b</Linha>
 </Formula>
 
-Com a = 0,5 e b = 0,2: 0,5 + 0,2 − 0,1 = 0,6, ou seja, 60%. O pedaço **a × b** é o "desconto sobre o desconto" que a soma ingênua conta a mais.
-
-Ela só vira a soma simples quando um dos descontos é zero.
+Com a = 0,5 e b = 0,2: 0,5 + 0,2 − 0,1 = 0,6, ou seja, 60%. O pedaço **a × b** é o "desconto sobre o desconto" que a soma ingênua conta a mais. Ela só vira a soma simples quando um dos descontos é zero.
 
 ## 5. Por que sobe e desce dá prejuízo
 
@@ -163,11 +295,17 @@ Subir x e depois descer x (em decimais) dá:
   <Linha>(1 + x) × (1 − x) = 1 − x²</Linha>
 </Formula>
 
-Com x = 0,1: 1 − 0,01 = 0,99. Sobra 99%: perda de 1%. Como x² nunca é negativo, o resultado **nunca** passa de 1. Subir e descer a mesma porcentagem sempre deixa você no prejuízo (ou empatado, se x = 0).
+Com x = 0,1: 1 − 0,01 = 0,99. Sobra 99%: perda de 1%. Como x² nunca é negativo, o resultado **nunca** passa de 1.
 
-## 6. Quanto subir para desfazer um desconto?
+## 6. Desfazer aumentos e descontos
 
-Depois de um desconto de d (em decimal), para voltar ao preço original é preciso um aumento de:
+Se o preço novo é o antigo vezes um fator, o antigo é o novo **dividido** pelo fator:
+
+<Formula>
+  <Linha>antigo = <Fracao cima="novo" baixo="fator" /></Linha>
+</Formula>
+
+E para desfazer um desconto d (em decimal), o aumento necessário é:
 
 <Formula>
   <Linha><Fracao cima="d" baixo="1 − d" /></Linha>
@@ -176,15 +314,34 @@ Depois de um desconto de d (em decimal), para voltar ao preço original é preci
 - Desconto de 20% → precisa subir 0,2 ÷ 0,8 = **25%**.
 - Desconto de 50% → precisa subir 0,5 ÷ 0,5 = **100%** (dobrar).
 
-## 7. Juros sobre juros
+## 7. Variação percentual
 
-Uma dívida cresce 1% ao mês. Em 12 meses, ela não cresce 12%. São 12 fatores de 1,01 seguidos:
+Quanto um valor mudou, em porcentagem, sempre em relação ao valor **antigo**:
 
 <Formula>
-  <Linha>1,01 × 1,01 × … × 1,01 (12 vezes) ≈ 1,1268</Linha>
+  <Linha>variação = <Fracao cima="novo − antigo" baixo="antigo" /></Linha>
 </Formula>
 
-Cresceu cerca de **12,7%**. A diferença parece pequena aqui, mas com taxas maiores e mais tempo ela explode. Essa é a porta de entrada para a função **exponencial**.
+Por isso de R$ 5 para R$ 6 é +20%, mas de R$ 6 para R$ 5 é só −16,7%. A base mudou.
+
+## 8. Juros compostos e a inflação de 1994
+
+Com juros compostos de taxa i (em decimal), depois de n períodos o valor fica multiplicado por:
+
+<Formula>
+  <Linha>(1 + i) × (1 + i) × … × (1 + i) = (1 + i)ⁿ</Linha>
+</Formula>
+
+Na inflação de junho de 1994, i = 0,4658. Em dois meses: 1,4658 × 1,4658 ≈ 2,15 (os preços mais que dobram). Em doze meses: 1,4658¹² ≈ 98. Quase **cem vezes**. É o mesmo cálculo da dívida de cartão, só que com os preços.
+
+## 9. A regra dos 70
+
+Quanto tempo leva para algo dobrar com juros compostos? Um atalho famoso: divida **70** pela taxa.
+
+- 7% ao ano → dobra em cerca de 70 ÷ 7 = **10 anos**.
+- 10% ao mês → dobra em cerca de **7 meses** (a conta exata dá 7,3).
+
+É uma aproximação, que funciona bem para taxas pequenas. A conta exata usa logaritmos, que têm uma cápsula própria.
 
 ## Bônus: um truque de cabeça
 
@@ -198,6 +355,24 @@ Quanto é 8% de 50? Difícil. Mas 50% de 8 é metade de 8: **4**.
 
 <Quiz perguntas={[
   {
+    enunciado: 'Quanto é 25% de 80?',
+    opcoes: ['20', '25', '32'],
+    correta: 0,
+    explicacao: '25% é um quarto, ou metade da metade. Metade de 80 é 40; metade de 40 é 20.',
+  },
+  {
+    enunciado: 'Você acertou 27 de 30 questões. Qual foi a sua porcentagem de acertos?',
+    opcoes: ['27%', '90%', '3%'],
+    correta: 1,
+    explicacao: '27/30 = 9/10 = 90/100 = 90%.',
+  },
+  {
+    enunciado: 'Pagar 85% do preço é o mesmo que ter um desconto de:',
+    opcoes: ['85%', '15%', '8,5%'],
+    correta: 1,
+    explicacao: 'Se você paga 85%, deixou de pagar 100% − 85% = 15%.',
+  },
+  {
     enunciado: 'Uma camiseta de R$ 100 tem 30% de desconto e, em cima disso, mais 10%. Quanto ela custa?',
     opcoes: ['R$ 60', 'R$ 63', 'R$ 70'],
     correta: 1,
@@ -210,10 +385,22 @@ Quanto é 8% de 50? Difícil. Mas 50% de 8 é metade de 8: **4**.
     explicacao: 'Os fatores são 1,1 e 0,9. Multiplicando: 1,1 × 0,9 = 0,99. Sobram 99% do salário inicial.',
   },
   {
+    enunciado: 'Depois de um aumento de 10%, um produto custa R$ 220. Quanto custava antes?',
+    opcoes: ['R$ 198', 'R$ 200', 'R$ 210'],
+    correta: 1,
+    explicacao: '220 ÷ 1,1 = 200. A resposta R$ 198 é o erro de tirar 10% de 220: os 10% foram calculados sobre o preço antigo, não sobre o novo.',
+  },
+  {
     enunciado: 'Um produto ficou 25% mais caro. Quanto ele precisa baixar para voltar ao preço antigo?',
     opcoes: ['25%', '20%', '30%'],
     correta: 1,
     explicacao: 'Se custava 100, foi para 125. Para voltar a 100, precisa cair 25, que é 20% de 125. A base mudou, então a porcentagem também muda.',
+  },
+  {
+    enunciado: 'A gasolina foi de R$ 5,00 para R$ 6,00. De quanto por cento foi o aumento?',
+    opcoes: ['1%', '16,7%', '20%'],
+    correta: 2,
+    explicacao: 'Subiu R$ 1 sobre um preço antigo de R$ 5: 1 ÷ 5 = 20%. O 16,7% seria a queda de R$ 6 para R$ 5, com outra base.',
   },
   {
     enunciado: 'Quanto é 8% de 50?',
@@ -227,6 +414,18 @@ Quanto é 8% de 50? Difícil. Mas 50% de 8 é metade de 8: **4**.
     correta: 1,
     explicacao: 'De 10 para 15 são 5 pontos percentuais. Em relação aos 10% de antes, isso é um aumento de 50%, porque 5 é metade de 10.',
   },
+  {
+    enunciado: 'Uma dívida de R$ 1.000 cresce com juros compostos de 10% ao mês. Quanto ela vale depois de 2 meses?',
+    opcoes: ['R$ 1.200', 'R$ 1.210', 'R$ 1.020'],
+    correta: 1,
+    explicacao: '1.000 × 1,1 = 1.100; depois 1.100 × 1,1 = 1.210. Os R$ 10 a mais em relação aos juros simples são juros sobre juros.',
+  },
+  {
+    enunciado: 'Pela regra dos 70, um investimento que rende 7% ao ano dobra em cerca de:',
+    opcoes: ['7 anos', '10 anos', '70 anos'],
+    correta: 1,
+    explicacao: '70 ÷ 7 = 10. Em cerca de 10 anos o valor dobra (a conta exata dá 10,2 anos).',
+  },
 ]} />
 
 </Etapa>
@@ -235,11 +434,13 @@ Quanto é 8% de 50? Difícil. Mas 50% de 8 é metade de 8: **4**.
 
 <Resumo>
 
-- **Por cento é "de cada 100"**: p% é a fração p/100.
+- **Por cento é "de cada 100"**: 25% = 25/100 = 1/4 = 0,25.
+- **De cabeça:** 10% anda a vírgula, 1% anda duas casas, 5% é metade de 10%.
+- **"Quanto por cento é":** parte sobre todo, depois transforme em centésimos.
 - **Porcentagem é sempre de alguma coisa.** Mudou a base, mudou o valor.
 - **Descontos e aumentos seguidos se multiplicam**, não se somam: 50% e 20% dão 60%.
-- **Subir e descer a mesma porcentagem dá prejuízo**, porque (1 + x)(1 − x) = 1 − x².
-- **Ponto percentual** é a diferença entre duas porcentagens; "por cento" compara com o valor antigo.
+- **Para achar o preço de antes, divida pelo fator**, não tire a porcentagem do preço novo.
+- **Juros compostos são uma bola de neve:** a porcentagem incide sobre o valor que já cresceu.
 
 </Resumo>
 
