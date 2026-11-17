@@ -118,7 +118,7 @@ export const capsulas: ResumoCapsula[] = [
 
   c('o-computador', 'binario', 'Binário', 'Escrever números acendendo lâmpadas.', { estado: 'pronta', duracaoMin: 40, conexoes: ['potencias'] }),
   c('o-computador', 'hardware', 'Hardware', 'A cozinha que existe dentro do computador.', { estado: 'pronta', duracaoMin: 40, conexoes: ['binario'] }),
-  c('o-computador', 'sistema-operacional', 'Sistema operacional', 'O gerente que ninguém vê trabalhar.'),
+  c('o-computador', 'sistema-operacional', 'Sistema operacional', 'O gerente que ninguém vê trabalhar.', { estado: 'pronta', duracaoMin: 40, conexoes: ['hardware'] }),
   c('o-computador', 'terminal', 'Terminal', 'Comandos sem medo da tela preta.'),
   c('redes-e-internet', 'como-a-internet-funciona', 'Como a internet funciona', 'A viagem de um pacote, roteador por roteador.', { duracaoMin: 10 }),
   c('redes-e-internet', 'ip-e-portas', 'IP e portas', 'O que significa localhost:5173?'),

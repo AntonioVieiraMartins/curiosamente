@@ -1,0 +1,379 @@
+import CamadasDoSistema from '../../../components/simulacoes/CamadasDoSistema'
+import RodizioDaCpu from '../../../components/simulacoes/RodizioDaCpu'
+import EstadosDoProcesso from '../../../components/simulacoes/EstadosDoProcesso'
+import MapaDaMemoria from '../../../components/simulacoes/MapaDaMemoria'
+import GerenciadorDeTarefas from '../../../components/simulacoes/GerenciadorDeTarefas'
+import QuemFazOQue from '../../../components/simulacoes/QuemFazOQue'
+
+{/* Fatos conferidos na Wikipedia em inglês (Operating system, Process, Unix, Linux), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Seu computador tem **uma** CPU (ou poucos núcleos) e, ao mesmo tempo, toca música, mantém dez abas abertas, baixa um arquivo e deixa você digitar. Como tanta coisa roda ao "mesmo tempo" em tão pouco hardware? E por que um jogo que trava não derruba o computador inteiro?
+
+Quem organiza tudo isso é um programa especial que fica por trás de todos os outros: o **sistema operacional**. Windows, macOS, Linux, Android e iOS são sistemas operacionais. Você quase nunca o vê trabalhando, e é por isso que ele é bom.
+
+<Palpite
+  chave="inicial"
+  pergunta="Quando você abre dez programas num computador de poucos núcleos, o que realmente acontece?"
+  opcoes={['Todos rodam exatamente ao mesmo tempo, cada um no seu núcleo', 'A CPU alterna entre eles tão rápido que parece simultâneo', 'Só um roda e os outros ficam congelados até você voltar']}
+/>
+
+Nesta cápsula você vai dividir a CPU num rodízio, acompanhar a vida de um processo, repartir a memória entre programas, usar um gerenciador de tarefas de brinquedo e descobrir quem cuida de quê.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Os primeiros computadores não tinham sistema operacional: uma pessoa carregava um programa, esperava o resultado e só depois carregava o próximo. Aos poucos, as tarefas repetitivas foram sendo entregues a um programa gerente.
+
+<LinhaDoTempo marcos={[
+  { ano: '1969', texto: 'No Bell Labs, Ken Thompson e Dennis Ritchie começam o Unix, depois de trabalharem no Multics, que acharam grande e complexo demais.' },
+  { ano: '1970', texto: 'O grupo batiza o sistema de "Unics", brincando com Multics. Depois a grafia vira UNIX.' },
+  { ano: '1973', texto: 'O Unix (versão 4) é reescrito na linguagem C, o que ajuda a levá-lo a computadores diferentes.' },
+  { ano: '1983', texto: 'Começa o projeto GNU, que quer um sistema compatível com Unix, mas ainda sem um kernel funcionando.' },
+  { ano: '1987', texto: 'Surge o MINIX, um sistema feito para ensinar, que inspira o Linux.' },
+  { ano: '1991', texto: 'Em 17 de setembro, Linus Torvalds lança o kernel Linux.' },
+  { ano: '2007 e 2008', texto: 'O iPhone traz o iOS (2007) e o Android é apresentado (2008): sistemas operacionais de bolso.' },
+]} />
+
+## O gerente nasce
+
+Um sistema operacional é o software que **gerencia os recursos do computador** (CPU, memória, disco, dispositivos) e oferece serviços comuns aos programas. Sem ele, cada programa teria que saber falar com cada peça de hardware.
+
+## Unix: uma ideia pequena que ficou enorme
+
+O Unix nasceu em 1969, no Bell Labs, de uma "fuga" de um projeto grande demais: o Multics, um sistema de tempo compartilhado para um computador de grande porte, feito pelo MIT, pelo Bell Labs e pela General Electric. Thompson, Ritchie, Douglas McIlroy e Joe Ossanna deixaram o Multics e começaram algo menor. Em 1970 o nome virou "Unics", um trocadilho (um "Multics" de uma coisa só, o *uniplexed*), e depois ficou UNIX. Em 1973 reescreveram o sistema em C, e isso foi um passo decisivo para ele rodar em máquinas diferentes.
+
+## Linux e a família do pinguim
+
+Quando o Linux nasceu, o projeto GNU (de 1983) tinha muitos programas, mas ainda não tinha um kernel funcionando. Linus Torvalds criou um e lançou a primeira versão em 17 de setembro de 1991. O MINIX, de 1987, serviu de inspiração. O **kernel** é só o coração; junto com outros programas ele forma uma **distribuição** ("distro"), um sistema completo. O mascote do Linux é o pinguim Tux, criado por Larry Ewing.
+
+## Janelas e telas de toque
+
+O Macintosh foi o primeiro computador popular com **interface gráfica**: janelas, ícones e mouse. A Microsoft depois adicionou o Windows como uma camada gráfica sobre o MS-DOS. Em 2007 chegou o iOS (iPhone) e em 2008, o Android, que usa um kernel baseado em Linux.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O gerente do hotel
+
+Imagine um hotel. Os hóspedes são os **programas**. Eles não ficam entrando nos quartos dos outros, escolhendo quartos ou abrindo o cofre da recepção. Quem cuida disso é o **gerente**: dá chaves, resolve quem usa a piscina primeiro e impede brigas.
+
+No computador, o gerente é o **sistema operacional**. Ele fica **entre** os programas e o hardware:
+
+<CamadasDoSistema />
+
+Repare que o programa **nunca toca o hardware diretamente**. Quando um jogo quer desenhar na tela ou ler um arquivo, ele **pede** ao sistema, que decide e faz. É por isso que o mesmo programa roda em computadores com peças diferentes: o sistema "traduz" para cada máquina.
+
+<ExemploResolvido titulo="Salvar um arquivo: quem faz o quê?">
+  <Passo>Você clica em "Salvar" no editor. O **programa** só diz: "quero gravar estes dados com este nome".</Passo>
+  <Passo>O **sistema operacional** escolhe um lugar livre no disco, anota o nome e a pasta e controla quem pode ler depois.</Passo>
+  <Passo>O **driver** do disco traduz o pedido para a linguagem exata daquele modelo de disco.</Passo>
+  <Passo>O **hardware** (disco) grava os bits. O programa nunca precisou saber como.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Entre programa, sistema operacional e hardware, qual fica no meio? (programa, sistema ou hardware)" resposta="sistema" dica="O gerente fica entre os hóspedes e o hotel." resolucao="O sistema operacional fica entre os programas e o hardware." />
+
+## 2. Os quatro grandes trabalhos
+
+O gerente faz muita coisa, mas quase tudo cabe em quatro serviços:
+
+- **Processos**: decidir quem usa a CPU e quando.
+- **Memória**: repartir a RAM entre os programas, sem deixar um invadir o outro.
+- **Arquivos**: dar nome, pasta e lugar no disco para tudo que é guardado.
+- **Dispositivos**: conversar com teclado, tela, impressora e rede (por meio dos drivers).
+
+Teste se você reconhece quem cuida de quê:
+
+<QuemFazOQue />
+
+<Exercicio enunciado="Quantos são os grandes serviços do sistema operacional listados aqui (processos, memória, arquivos e dispositivos)?" resposta="4" dica="Conte a lista." resolucao="São 4: processos, memória, arquivos e dispositivos." />
+
+## 3. Programa e processo
+
+Aqui está uma diferença que confunde muita gente:
+
+- **Programa**: o arquivo guardado no disco. É a **receita**.
+- **Processo**: o programa **em execução**, carregado na RAM. É a **cozinha trabalhando** na receita.
+
+O mesmo programa pode ter vários processos: se você abre duas janelas do mesmo editor, são dois processos de um programa. Cada processo recebe o seu pedaço de memória e seu lugar na fila da CPU.
+
+<Exercicio enunciado="Você abriu 3 janelas do mesmo programa de calculadora. Quantos processos pode haver (no mínimo, se cada janela é um processo)?" resposta="3" dica="Cada janela, um processo." resolucao="Pode haver 3 processos, todos do mesmo programa." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Três programas pedem a CPU ao mesmo tempo e ela só faz uma coisa por vez (um núcleo). Como o sistema divide?"
+  opcoes={['Roda um até o fim e depois o próximo', 'Dá uma fatia de tempo para cada um, em rodízio', 'Escolhe o mais importante e ignora os outros']}
+  correta={1}
+  explicacao="É o rodízio (escalonamento): cada processo usa a CPU por uma fatia minúscula, e depois a vez passa. Como as trocas são rapidíssimas, parece que tudo roda ao mesmo tempo."
+>
+
+Dê uma fatia de cada vez e veja os três avançando:
+
+<RodizioDaCpu />
+
+Cada troca de quem está na CPU se chama **troca de contexto**: o sistema guarda onde cada processo parou e carrega o próximo. Fazendo isso milhares de vezes por segundo, o usuário só vê todos andando.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Todos rodam exatamente ao mesmo tempo, cada um no seu núcleo', 'A CPU alterna entre eles tão rápido que parece simultâneo', 'Só um roda e os outros ficam congelados até você voltar']}
+  correta={1}
+  seAcertou="E o palpite do começo? Isso mesmo: o sistema alterna tão rápido que parece simultâneo."
+  seErrou="E o palpite do começo? O sistema alterna a CPU entre os programas tão rápido que parece que todos rodam juntos. Só com mais núcleos há trabalho realmente simultâneo."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Processos em detalhes
+
+Quando você abre um programa, o sistema cria um **processo**: reserva memória, define sua prioridade, carrega o código e o coloca na fila. Um processo passa por alguns **estados** durante a vida:
+
+- **Esperando**: carregado e pronto, aguardando a vez na CPU.
+- **Rodando**: usando a CPU agora.
+- **Bloqueado**: parado esperando algo lento, como uma tecla, um arquivo ou a rede.
+- **Terminado**: acabou o trabalho ou foi encerrado.
+
+Experimente fazer um processo passar por todos:
+
+<EstadosDoProcesso />
+
+O estado **bloqueado** é a chave de tudo: se um programa está esperando você digitar, não faz sentido ele ocupar a CPU. O sistema o tira da fila e dá a vez a outro. Assim quase nenhum tempo da CPU é desperdiçado.
+
+<ExemploResolvido titulo="Por que a música não para quando você digita?">
+  <Passo>O editor de texto fica **bloqueado** esperando a próxima tecla. Ele não usa a CPU enquanto espera.</Passo>
+  <Passo>Nesse tempo, o escalonador dá a CPU ao player de música, que fica **rodando**.</Passo>
+  <Passo>Quando você digita, o editor sai do bloqueio, vai para **esperando** e logo ganha uma fatia da CPU.</Passo>
+  <Passo>Tudo isso acontece em milissegundos, então você não percebe a troca.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um programa que espera você apertar uma tecla está em qual estado? (rodando, bloqueado ou terminado)" resposta="bloqueado" dica="Ele está esperando algo lento." resolucao="Esperando uma tecla, o processo fica bloqueado, sem usar a CPU." />
+
+<Exercicio enunciado="Se cada fatia de tempo dura 2 milissegundos e há 3 processos em rodízio, quantos milissegundos leva para todos terem uma vez a CPU?" resposta="6" dica="3 fatias de 2 ms." resolucao="3 × 2 = 6 milissegundos para uma volta completa." />
+
+<Aprofundar titulo="Threads: cozinheiros dentro da mesma cozinha">
+
+Um processo pode ter várias **threads** (linhas de execução), que fazem coisas ao mesmo tempo e **compartilham** parte dos recursos do processo. Num navegador, por exemplo, uma thread pode baixar uma página e outra desenhar a tela. Já processos diferentes são isolados: um não enxerga a memória do outro. Threads são mais leves de criar, mas, como compartilham dados, exigem mais cuidado para não se atrapalharem.
+
+</Aprofundar>
+
+## Escalonamento: quem usa a CPU
+
+O **escalonador** (scheduler) é a parte do sistema que decide quem roda, por quanto tempo e em qual ordem. Nos sistemas modernos o kernel pode **interromper** um processo que já usou seu tempo justo (isso se chama multitarefa preemptiva), em vez de esperar o processo ceder a CPU por vontade própria.
+
+Por que isso é importante? Imagine um programa com um erro que fica em um laço infinito. Num sistema sem preempção, a CPU ficaria presa nele para sempre e o computador congelaria. Com preempção, o sistema simplesmente tira a CPU dele no fim da fatia e segue a vida.
+
+<ExemploResolvido titulo="Quantas voltas de rodízio para terminar?">
+  <Passo>Cada um dos 3 processos precisa de 6 fatias para terminar.</Passo>
+  <Passo>Em cada volta, cada processo recebe 1 fatia. Então, são 6 voltas.</Passo>
+  <Passo>Cada volta tem 3 fatias: 6 × 3 = **18 fatias** no total.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quatro processos precisam de 5 fatias cada. Quantas fatias de CPU são usadas no total?" resposta="20" dica="4 × 5." resolucao="4 × 5 = 20 fatias." />
+
+<Aprofundar titulo="Preemptivo x cooperativo">
+
+Em sistemas **cooperativos**, cada programa decide quando devolve a CPU: um programa travado derruba todo mundo. Em sistemas **preemptivos**, o kernel tem o poder de interromper qualquer processo. A maioria dos sistemas atuais usa o modelo preemptivo, porque é muito mais robusto contra programas defeituosos.
+
+</Aprofundar>
+
+## Gerenciando a memória
+
+A RAM é um recurso compartilhado. O sistema precisa **reservar** uma parte para cada processo, **impedir** que um acesse a parte do outro e **liberar** quando o programa fecha. Veja a RAM sendo repartida em 16 blocos:
+
+<MapaDaMemoria />
+
+O isolamento da memória é um dos principais motivos de um programa travar sozinho sem derrubar os outros. Se um processo tenta acessar um endereço que não é dele, o sistema o **encerra** antes que ele estrague o resto.
+
+<ExemploResolvido titulo="Quantos blocos sobram?">
+  <Passo>A memória tem 16 blocos. Abrimos o Navegador (5) e o Jogo (6).</Passo>
+  <Passo>Usados: 5 + 6 = 11 blocos.</Passo>
+  <Passo>Livres: 16 − 11 = **5 blocos**. Dá para abrir a Música (2) ou o Editor (4), mas não os dois: 2 + 4 = 6 > 5.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Com 16 blocos, abrimos programas de 5, 6 e 2 blocos. Quantos blocos ainda estão livres?" resposta="3" dica="16 − (5 + 6 + 2)." resolucao="5 + 6 + 2 = 13 usados; 16 − 13 = 3 livres." />
+
+<Exercicio enunciado="Dois programas ocupam 7 e 8 blocos de 16. Cabe um programa de 2 blocos? (sim ou nao)" resposta="sim" dica="7 + 8 = 15." resolucao="Sobra 1 bloco apenas: 16 − 15 = 1. Um programa de 2 blocos não cabe." />
+
+<Aprofundar titulo="Memória virtual: mais memória do que RAM">
+
+O sistema pode dar aos programas a impressão de que há **mais RAM do que existe de fato**, usando parte do disco como extensão. Isso se chama **memória virtual**. O que não cabe na RAM fica guardado temporariamente no disco, e é trazido de volta quando precisa. É um bom truque, mas o disco é muito mais lento que a RAM (veja a cápsula de Hardware). Quando o computador depende demais disso, tudo fica lento.
+
+</Aprofundar>
+
+## O sistema de arquivos
+
+Para o disco ser útil, o sistema oferece um **sistema de arquivos**: uma forma de organizar os bits em **arquivos** e **pastas**, com nomes que humanos entendem e informações extras (tamanho, data, dono). Sem isso, o disco seria uma imensa fila de bits sem nome.
+
+Pense numa biblioteca: os livros (dados) ficam nas estantes (disco), e o **catálogo** (sistema de arquivos) diz onde está cada um, quem pode pegar e quando foi mudado. Quando você apaga um arquivo, o sistema normalmente só **retira o item do catálogo**, e o espaço fica disponível para uso futuro.
+
+<Exercicio enunciado="O sistema de arquivos organiza dados no disco ou na CPU? (disco ou cpu)" resposta="disco" dica="Pense em arquivos e pastas guardados." resolucao="Organiza o armazenamento permanente, o disco." />
+
+## Drivers: os tradutores
+
+Existem milhares de modelos de impressoras, placas de vídeo, teclados e discos. Seria impossível o sistema saber falar com todos. Por isso cada fabricante entrega um **driver**: um pequeno programa que traduz os pedidos do sistema para a língua específica daquele aparelho.
+
+É também por isso que, ao conectar uma impressora nova, às vezes o sistema "instala algo" ou pede um driver. Quando o sistema já traz o driver, ela "funciona sozinha" (plug and play).
+
+<Exercicio enunciado="O que traduz os pedidos do sistema para um dispositivo específico, como uma impressora? (driver ou kernel)" resposta="driver" dica="É o tradutor do aparelho." resolucao="O driver faz essa tradução." />
+
+## Quem manda: usuário e administrador
+
+O sistema também decide **quem pode fazer o quê**. Um usuário comum pode abrir e editar os próprios arquivos, mas não deve poder mudar arquivos do sistema. Já o administrador (ou "root", no Linux) tem permissão para quase tudo. Essa separação protege o computador: um programa malicioso aberto por um usuário comum tem muito menos poder para estragar o sistema.
+
+Por isso aparecem avisos como "Permitir que este programa faça alterações no computador?": o sistema está pedindo sua autorização para um programa fazer algo que exige mais poder.
+
+## O gerenciador de tarefas
+
+Quase todo sistema tem um **gerenciador de tarefas**, que mostra quais processos estão rodando e quanto da CPU e da memória cada um usa. É a janela mais útil quando algo trava. Experimente:
+
+<GerenciadorDeTarefas />
+
+Se um programa travou e está sozinho consumindo 85% da CPU, você pode **encerrar o processo** sem reiniciar o computador. Os outros continuam funcionando, graças ao isolamento. Atenção: não encerre processos do sistema se não souber o que são.
+
+<ExemploResolvido titulo="Qual processo está engasgando o computador?">
+  <Passo>O computador está lento. Abrimos o gerenciador e olhamos a lista: Sistema 3%, Navegador 12%, Música 2% e Editor travado 85%.</Passo>
+  <Passo>O culpado é claro: o **Editor travado**, com 85% da CPU. Encerramos só esse processo.</Passo>
+  <Passo>Sobram 3 + 12 + 2 = **17%** de uso: o computador volta ao normal. (Num computador de verdade o total passa de 100% só se houver vários núcleos; o brinquedo é só uma ilustração.)</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="No gerenciador, um processo usa 60% da CPU e outro, 25%. Qual a soma?" resposta="85" dica="60 + 25." resolucao="60 + 25 = 85%." />
+
+<Aprofundar titulo="O que é o kernel">
+
+O **kernel** é o núcleo do sistema operacional: a parte que está sempre rodando, protege os programas uns dos outros, gerencia a memória dos processos e controla o acesso aos dispositivos. Todo o resto do sistema (janelas, menus, aplicativos de fábrica) roda **em cima** dele. É por isso que o Linux, que é "só" um kernel, precisa de outros programas para formar um sistema completo, a **distribuição**.
+
+</Aprofundar>
+
+## Por que existem vários sistemas
+
+Windows, macOS, Linux, Android e iOS fazem os mesmos grandes serviços, mas têm jeitos diferentes de organizar pastas, de instalar programas e de tratar a segurança. Cada um nasceu para um público: computadores de escritório, notebooks de design, servidores, celulares.
+
+Uma pesquisa da Wikipédia de novembro de 2025 apontava a fatia de uso: Android com cerca de 38%, Windows com 33%, iOS e iPadOS com 15%, macOS com 4% e Linux com 1% (nos dispositivos em geral). Mas o Linux domina em outro lugar: os **servidores**, os computadores que mantêm sites no ar, o assunto de uma cápsula futura.
+
+<Exercicio enunciado="O Android usa um kernel baseado em qual sistema? (linux ou windows)" resposta="linux" dica="O mascote é um pinguim." resolucao="O Android usa um kernel baseado em Linux." />
+
+<Aprofundar titulo="Por que um programa de Windows não roda no Mac">
+
+Cada sistema oferece aos programas o **seu próprio conjunto de pedidos** (sua "interface de programação"). Um programa feito para Windows pede coisas no jeito do Windows; o macOS não entende esses pedidos. Por isso existem versões diferentes do mesmo programa, ou ferramentas que fazem a tradução (como emuladores). A existência do sistema como intermediário é que permite o mesmo programa funcionar em computadores de marcas diferentes, desde que rodem o mesmo sistema.
+
+</Aprofundar>
+
+## O que acontece quando algo dá errado
+
+Um programa com defeito tenta, por exemplo, acessar um endereço de memória que não é dele. O sistema detecta e **encerra aquele processo**, mostrando uma mensagem de erro ("o programa parou de funcionar"). O resto do computador segue normal.
+
+Isso mostra um dos maiores benefícios do sistema operacional: **o erro de um programa fica preso nele**. Sem o isolamento, qualquer falha pequena poderia derrubar o computador todo.
+
+<Exercicio enunciado="Se um programa trava, o sistema operacional normalmente derruba todos os outros? (sim ou nao)" resposta="nao" dica="Pense no isolamento entre processos." resolucao="Não. O isolamento prende o erro ao processo que falhou." />
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'O que faz o sistema operacional?',
+    opcoes: ['Gerencia os recursos do computador e serve os programas', 'Só desenha a tela', 'Apenas guarda arquivos'],
+    correta: 0,
+    explicacao: 'Ele gerencia CPU, memória, arquivos e dispositivos, oferecendo serviços comuns aos programas.',
+  },
+  {
+    enunciado: 'Qual a diferença entre programa e processo?',
+    opcoes: ['Nenhuma', 'Programa é o arquivo no disco; processo é ele em execução', 'Processo é o arquivo; programa é a execução'],
+    correta: 1,
+    explicacao: 'Programa é a receita no disco. Processo é o programa carregado na memória e em execução.',
+  },
+  {
+    enunciado: 'Como um computador com 1 núcleo parece rodar vários programas ao mesmo tempo?',
+    opcoes: ['Alternando a CPU entre eles em fatias de tempo', 'Duplicando a CPU', 'Rodando só o primeiro'],
+    correta: 0,
+    explicacao: 'O escalonador reveza a CPU em fatias minúsculas, e a troca é tão rápida que parece simultâneo.',
+  },
+  {
+    enunciado: 'Um processo que espera você apertar uma tecla está...',
+    opcoes: ['Rodando', 'Bloqueado', 'Terminado'],
+    correta: 1,
+    explicacao: 'Esperando algo lento (como uma tecla), o processo fica bloqueado e não gasta CPU.',
+  },
+  {
+    enunciado: 'O que é o escalonador?',
+    opcoes: ['A parte do sistema que decide quem usa a CPU e por quanto tempo', 'O programa que baixa arquivos', 'Um tipo de memória'],
+    correta: 0,
+    explicacao: 'O escalonador decide a ordem e o tempo de CPU de cada processo.',
+  },
+  {
+    enunciado: 'Para que serve o isolamento de memória?',
+    opcoes: ['Deixar o computador mais bonito', 'Impedir que um programa mexa na memória de outro', 'Aumentar a RAM'],
+    correta: 1,
+    explicacao: 'Cada processo só pode usar a sua parte da memória. Se tenta invadir outra, o sistema o encerra.',
+  },
+  {
+    enunciado: 'O que é um driver?',
+    opcoes: ['Um programa que traduz os pedidos do sistema para um dispositivo específico', 'Um tipo de disco', 'Um vírus'],
+    correta: 0,
+    explicacao: 'O driver é o tradutor entre o sistema e um aparelho, como impressora ou placa de vídeo.',
+  },
+  {
+    enunciado: 'O que é o kernel?',
+    opcoes: ['A tela inicial', 'O núcleo do sistema, sempre rodando', 'Um antivírus'],
+    correta: 1,
+    explicacao: 'O kernel é o coração do sistema: protege os processos, gerencia memória e dispositivos.',
+  },
+  {
+    enunciado: 'O que um sistema de arquivos faz?',
+    opcoes: ['Organiza os dados do disco em arquivos e pastas', 'Aumenta a velocidade da CPU', 'Apaga programas'],
+    correta: 0,
+    explicacao: 'Ele dá nomes, pastas e lugares para os dados guardados no disco.',
+  },
+  {
+    enunciado: 'Quem criou o Unix, a partir de 1969, no Bell Labs?',
+    opcoes: ['Ken Thompson e Dennis Ritchie, com outros', 'Linus Torvalds', 'Steve Jobs'],
+    correta: 0,
+    explicacao: 'O Unix foi desenvolvido a partir de 1969 por Ken Thompson e Dennis Ritchie, entre outros. Torvalds lançou o Linux em 1991.',
+  },
+  {
+    enunciado: 'Em qual dia e ano Linus Torvalds lançou o kernel Linux?',
+    opcoes: ['17 de setembro de 1991', '1 de janeiro de 1970', '30 de junho de 1945'],
+    correta: 0,
+    explicacao: 'O kernel Linux foi lançado em 17 de setembro de 1991.',
+  },
+  {
+    enunciado: 'Um programa trava. O que o isolamento de processos costuma garantir?',
+    opcoes: ['Todo o computador trava junto', 'O erro fica preso nesse processo e os outros seguem', 'O sistema é apagado'],
+    correta: 1,
+    explicacao: 'Como os processos são isolados, o sistema pode encerrar só o que falhou.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Sistema operacional** é o gerente: fica entre os programas e o hardware.
+- **Quatro serviços principais:** processos, memória, arquivos e dispositivos.
+- **Programa** é o arquivo no disco; **processo** é o programa em execução.
+- **Escalonador** reveza a CPU em fatias de tempo: parece simultâneo, mas é uma troca rápida.
+- **Estados do processo:** esperando, rodando, bloqueado e terminado.
+- **Isolamento de memória** impede que um programa derrube os outros.
+- **Drivers** traduzem o sistema para cada dispositivo; **kernel** é o núcleo do sistema.
+
+**Um pouco de história.** O Unix começou em 1969 no Bell Labs, com Ken Thompson e Dennis Ritchie, e foi reescrito em C em 1973. O projeto GNU nasceu em 1983. Em 17 de setembro de 1991, Linus Torvalds lançou o kernel Linux, inspirado no MINIX de 1987. Em 2007 e 2008 vieram o iOS e o Android.
+
+</Resumo>
+
+Agora que você sabe quem gerencia o computador, dá para conversar com ele diretamente: é o que o **terminal** permite.
+
+<Conexoes />
+
+</Etapa>
