@@ -15,3 +15,10 @@ export type MetaCapsula = {
   videoUrl: string | null
   fontes: { titulo: string; url: string }[]
 }
+
+// Cartão de revisão já pronto, escrito junto com a cápsula (arquivo cartoes.ts na pasta dela)
+export type CartaoPronto = {
+  tipo: 'definição' | 'conta' | 'regra' | 'por quê' | 'pegadinha' | 'história' | 'problema'
+  frente: string
+  verso: string
+}

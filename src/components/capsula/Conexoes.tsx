@@ -1,6 +1,7 @@
 import Ficha from '../ui/Ficha'
 import { buscarCapsula } from '../../conteudo/indice'
 import { useCapsula } from './ContextoCapsula'
+import RevisaoDaCapsula from './RevisaoDaCapsula'
 
 // Última etapa: para onde ir depois e de onde vieram os fatos
 export default function Conexoes() {
@@ -9,6 +10,7 @@ export default function Conexoes() {
 
   return (
     <div data-sem-narracao className="space-y-10">
+      <RevisaoDaCapsula />
       {proximas.length > 0 && (
         <div className="grid gap-4 sm:grid-cols-2">
           {proximas.map((c) => <Ficha key={c.id} capsula={c} />)}
