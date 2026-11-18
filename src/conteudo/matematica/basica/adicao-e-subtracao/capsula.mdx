@@ -1,0 +1,392 @@
+import VaiUm from '../../../../components/simulacoes/VaiUm'
+import EmprestimoNaConta from '../../../../components/simulacoes/EmprestimoNaConta'
+import ContaDeCabeca2 from '../../../../components/simulacoes/ContaDeCabeca2'
+import TrocoNaReta from '../../../../components/simulacoes/TrocoNaReta'
+import FamiliaDeFatos from '../../../../components/simulacoes/FamiliaDeFatos'
+import EscolhaAConta from '../../../../components/simulacoes/EscolhaAConta'
+
+{/* Fatos conferidos na Wikipedia em inglês (Addition e Subtraction), listadas no meta.ts. A explicação do "vai um" e do empréstimo como trocas de 10 em 10 e as estratégias de cabeça são conteúdo escolar geral da BNCC. */}
+
+<Etapa id="gancho">
+
+Você compra um lanche de **R$ 37** e paga com uma nota de **R$ 50**. Quanto vem de troco? A maioria das pessoas faz uma subtração "de armar", com lápis. Mas o caixa experiente não arma nada: ele **conta para a frente** a partir do preço (37, 40, 50) e já sabe: R$ 13. Mesma resposta, caminhos completamente diferentes.
+
+Somar e subtrair parecem coisa de criança pequena, mas escondem ideias profundas: o famoso **"vai um"**, o **"empréstimo"**, e uma relação secreta entre as duas operações. Entendendo de verdade o que acontece, você passa a fazer contas **de cabeça**, sem decorar regras.
+
+<Palpite
+  chave="inicial"
+  pergunta="Na conta 8 + 5 = 13, o “1” do 13 é o famoso “vai um”. Para onde ele vai?"
+  opcoes={['Para a casa das dezenas: ele vale 1 dezena, ou 10 unidades', 'Para a casa das unidades', 'Ele some, só o 3 conta']}
+/>
+
+Nesta cápsula você vai ver a soma e a subtração coluna por coluna, somar de cabeça de dois jeitos, conferir um troco contando para a frente, descobrir que somar e subtrair são **inversas** e escolher a conta certa em problemas do dia a dia.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Somar é tão antigo quanto contar. Mas as **máquinas e os nomes** que usamos têm uma história bem documentada.
+
+<LinhaDoTempo marcos={[
+  { ano: '2700 a 2300 a.C.', texto: 'O ábaco já existe na Suméria, uma das primeiras ferramentas para somar e subtrair.' },
+  { ano: '628', texto: 'O livro Brahmasphutasiddhanta, de Brahmagupta, identifica pela primeira vez que somar zero não muda o número.' },
+  { ano: 'Cerca de 830', texto: 'Mahavira refina a regra do zero. Bhaskara a refina de novo no século 12.' },
+  { ano: '1642', texto: 'Blaise Pascal inventa uma calculadora mecânica que soma.' },
+  { ano: '1694', texto: 'Leibniz termina a sua calculadora de rodas escalonadas, que também faz as outras contas.' },
+  { ano: '1992', texto: 'A pesquisadora Karen Wynn mostra que bebês de 5 meses esperam que 1 + 1 seja 2.' },
+]} />
+
+## O ábaco: somar com contas
+
+Segundo a fonte, o **ábaco** existe desde pelo menos **2700 a 2300 a.C.**, na Suméria. É uma moldura com fileiras de contas: cada fileira é uma **casa** (unidades, dezenas, centenas), e juntar 10 contas numa fileira manda 1 para a fileira seguinte. É o "vai um" em forma de objeto, 4.500 anos antes de existir o caderno.
+
+## Palavras de origem latina
+
+A palavra **adição** vem do latim *addere* ("dar a", "juntar"). **Soma** vem de *summa*, e a expressão medieval *summa linea* ("linha de cima") era o total de uma coluna. Da mesma forma, **subtrair** vem de *subtrahere*: "puxar de baixo", isto é, **tirar**.
+
+## O zero entra na soma
+
+Em **628**, o matemático indiano **Brahmagupta** descreveu, no *Brahmasphutasiddhanta*, a regra de que **somar zero não muda o número**. Esse fato, que hoje parece óbvio, foi anotado pela primeira vez ali, e refinado por Mahavira, por volta do ano 830, e por Bhaskara, no século 12.
+
+## Das rodas às máquinas
+
+Em **1642**, **Blaise Pascal** inventou uma calculadora mecânica: uma caixa de engrenagens que **soma** girando rodas, com o "vai um" feito por um mecanismo. **Leibniz** terminou a sua máquina, que fazia mais contas, em **1694**, e Poleni a aperfeiçoou em 1709. Hoje, todo computador soma com circuitos que fazem o "vai um" em bilionésimos de segundo.
+
+## Bebês que sabem somar?
+
+Em **1992**, a pesquisadora **Karen Wynn** fez um experimento com bebês de **cinco meses**. Segundo a fonte, o resultado mostrou que eles **esperam que 1 + 1 seja 2**. Ou seja, uma noção bem simples de quantidade parece existir antes mesmo de aprendermos a falar.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Somar é juntar, ou acrescentar
+
+Há duas ideias principais de **adição**:
+
+- **Juntar:** 3 maçãs e 4 maçãs, juntas, são 7.
+- **Acrescentar:** você tem 3 e ganha mais 4: ficam 7.
+
+Os números que se somam se chamam **parcelas** (a fonte, em inglês, usa *addends*), e o resultado é a **soma** (ou total). No fundo, somar é **contar para a frente**: segundo a fonte, é um hábito quase universal das crianças resolver 2 + 3 contando "três, quatro, cinco" a partir do 2.
+
+## 2. Subtrair é tirar, comparar ou completar
+
+A subtração tem **três caras**:
+
+- **Tirar:** você tinha 8 balas e comeu 3. Sobram 5.
+- **Comparar:** João tem 8 e Maria tem 3. João tem **5 a mais**.
+- **Completar:** quero ter 8 e tenho 3. **Faltam 5**.
+
+Os termos são: **minuendo** (o número de onde se tira), **subtraendo** (o número que sai) e **diferença** (o resultado). Em 8 - 3 = 5, o 8 é o minuendo, o 3 é o subtraendo e o 5 é a diferença.
+
+## 3. As duas são inversas
+
+Se 5 + 3 = 8, então 8 - 3 = 5. A fonte define: a diferença é "o número que, somado ao segundo, dá o primeiro". Ou seja, **subtrair desfaz a soma**, e somar desfaz a subtração. Isso é muito útil para **conferir contas**.
+
+## 4. Ordem importa na subtração, mas não na soma
+
+Somar 3 + 5 dá o mesmo que 5 + 3. Já 8 - 3 é **diferente** de 3 - 8. A soma é **comutativa**; a subtração, não. (Com os números naturais, 3 - 8 nem tem resposta: vai exigir os números negativos, que você verá mais adiante.)
+
+<ExemploResolvido titulo="Os três jeitos de subtrair 8 - 3">
+  <Passo>**Tirar:** 8 balas, come 3. Ficam 5.</Passo>
+  <Passo>**Comparar:** 8 contra 3. A diferença é 5.</Passo>
+  <Passo>**Completar:** de 3 até 8 faltam 5 (3 + 5 = 8).</Passo>
+  <Passo>Os três jeitos dão o mesmo resultado, mas cada situação do dia a dia combina melhor com um deles.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Em 15 - 6 = 9, como se chama o número 15? (uma palavra: minuendo ou subtraendo)" resposta="minuendo" dica="É o número de onde se tira." resolucao="15 é o minuendo (de onde se tira), 6 é o subtraendo e 9 é a diferença." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Quando você faz 8 + 5 = 13 e coloca o 3, o “vai um” do 1 vai para qual casa?"
+  opcoes={['Para as dezenas: ele vale 1 dezena (10 unidades)', 'Para as unidades de novo', 'Ele desaparece']}
+  correta={0}
+  explicacao="8 + 5 = 13 unidades. Dá 1 dezena e 3 unidades. As 3 unidades ficam; a dezena vai para a casa das dezenas. O vai um é a troca de 10 em 10 que você viu no sistema decimal."
+>
+
+Escolha dois números e aperte “Próxima casa” para ver cada coluna, com o vai um aparecendo quando passa de 9.
+
+<VaiUm />
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Para a casa das dezenas: ele vale 1 dezena, ou 10 unidades', 'Para a casa das unidades', 'Ele some, só o 3 conta']}
+  correta={0}
+  seAcertou="E o palpite do começo? Isso: o vai um vira 1 dezena, que passa para a casa das dezenas."
+  seErrou="E o palpite do começo? O 1 do 13 é uma dezena (10 unidades) e vai para a casa das dezenas. Ele não some: se sumisse, o resultado estaria errado."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## O vai um, explicado
+
+Veja 59 + 27. Começamos pelas **unidades**: 9 + 7 = 16. Mas cada casa guarda só até 9. Então 16 unidades são **1 dezena e 6 unidades**: escrevemos o **6** e "vai **1**" para a casa das dezenas. Nas dezenas: 5 + 2 + 1 (que veio) = 8. Resultado: **86**. A fonte dá exatamente esse exemplo: 59 + 27 = 86.
+
+Repare: o "vai um" **não é mágica**, é a troca de 10 em 10 do sistema decimal. Quando uma casa passa de 9, as unidades "sobrando" se agrupam e **sobem** para a casa de cima.
+
+<ExemploResolvido titulo="Somando 478 + 256">
+  <Passo>Unidades: 8 + 6 = 14. Escreve **4** e vai **1** (uma dezena).</Passo>
+  <Passo>Dezenas: 7 + 5 + 1 = 13. Escreve **3** e vai **1** (uma centena).</Passo>
+  <Passo>Centenas: 4 + 2 + 1 = 7. Escreve **7**.</Passo>
+  <Passo>Resultado: **734**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 59 + 27? (número)" resposta="86" dica="9 + 7 = 16: escreve 6 e vai 1." resolucao="Unidades: 9 + 7 = 16 (escreve 6, vai 1). Dezenas: 5 + 2 + 1 = 8. Resultado: 86." />
+
+<Exercicio enunciado="Quanto é 478 + 256? (número)" resposta="734" dica="Duas vezes o vai um." resolucao="8 + 6 = 14 (4, vai 1). 7 + 5 + 1 = 13 (3, vai 1). 4 + 2 + 1 = 7. Resultado: 734." />
+
+<Exercicio enunciado="Quanto é 999 + 1? (número)" resposta="1000" dica="O vai um percorre todas as casas." resolucao="Cada casa chega a 10 e manda 1 para a seguinte: 1.000." />
+
+<Aprofundar titulo="O vai um nunca passa de 1 (na soma de dois números)">
+Quando somamos dois números, a coluna recebe no máximo 9 + 9 + 1 = **19**. Então o vai um é sempre **0 ou 1**. Por isso a conta armada tem espaço para um "pequeno 1" em cima da coluna. Já ao somar muitos números de uma vez (por exemplo, uma coluna com cinco 9), o vai um pode ser maior (5 x 9 = 45: escreve 5, vai 4). A regra continua a mesma: **as dezenas do resultado da coluna sobem**.
+</Aprofundar>
+
+## A subtração e o "empréstimo"
+
+Agora 52 - 27. Nas unidades, queremos tirar 7 de 2. **Não dá!** Então "pedimos emprestado": trocamos **1 dezena** das 5 dezenas por **10 unidades**. Sobram 4 dezenas e 12 unidades. Agora 12 - 7 = 5. Nas dezenas: 4 - 2 = 2. Resultado: **25**.
+
+O nome "empréstimo" é antigo, mas a ideia é uma **troca**, a mesma troca de 10 em 10 do sistema decimal ao contrário: 1 dezena **vira** 10 unidades. A fonte descreve o método de "emprestar" 10 da casa à esquerda, que fica com 1 a menos.
+
+<EmprestimoNaConta />
+
+<ExemploResolvido titulo="Subtraindo 502 - 278">
+  <Passo>Unidades: 2 - 8, não dá. Mas as dezenas são 0, então não há o que trocar ali. Troca-se uma centena: 5 centenas viram 4 centenas e 10 dezenas.</Passo>
+  <Passo>Agora 1 dezena das 10 vira 10 unidades: ficam 12 unidades e 9 dezenas.</Passo>
+  <Passo>Unidades: 12 - 8 = 4. Dezenas: 9 - 7 = 2. Centenas: 4 - 2 = 2.</Passo>
+  <Passo>Resultado: **224**. Conferindo com a soma: 224 + 278 = 502. Bate!</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 52 - 27? (número)" resposta="25" dica="Troque 1 dezena por 10 unidades: 12 - 7." resolucao="12 - 7 = 5 nas unidades. 4 - 2 = 2 nas dezenas. Resultado: 25." />
+
+<Exercicio enunciado="Quanto é 502 - 278? (número)" resposta="224" dica="Troque pelas casas: o zero atrapalha." resolucao="Cadeia de trocas: 502 vira 4 centenas, 9 dezenas e 12 unidades. 12 - 8 = 4, 9 - 7 = 2, 4 - 2 = 2. Resultado: 224." />
+
+<Exercicio enunciado="Quanto é 1.000 - 1? (número)" resposta="999" dica="O antecessor de 1.000." resolucao="1.000 - 1 = 999: o empréstimo percorre todas as casas." />
+
+<Aprofundar titulo="Existem outros jeitos de armar a conta">
+A fonte descreve variações do método. No "americano", o empréstimo vem da casa à esquerda, que fica com 1 a menos. Na variante "trocar primeiro", faz-se **todos os empréstimos antes** de subtrair. E no método "austríaco", em vez de emprestar, **soma-se 10 ao número de cima e 1 ao próximo de baixo**, o que dá o mesmo resultado sem riscar nada. Todos funcionam porque, no fundo, mantêm a **diferença** igual. Escolha o que fizer mais sentido para você.
+</Aprofundar>
+
+## Propriedades da soma
+
+Algumas regras tornam as contas de cabeça mais fáceis. Segundo a fonte, a soma tem:
+
+- **Comutativa:** a ordem das parcelas não importa. 17 + 5 = 5 + 17.
+- **Associativa:** dá para agrupar como quiser. (28 + 15) + 5 = 28 + (15 + 5).
+- **Elemento neutro (zero):** somar zero não muda nada. Brahmagupta registrou isso em 628.
+
+Elas são ótimas para **reorganizar** uma conta: em 28 + 15 + 2, é mais fácil somar 28 + 2 = 30 primeiro, e depois 30 + 15 = 45.
+
+<ExemploResolvido titulo="Reorganizando 38 + 17 + 12">
+  <Passo>Na ordem, 38 + 17 = 55 e 55 + 12 = 67.</Passo>
+  <Passo>Mas pela propriedade associativa e comutativa, 38 + 12 = 50 é mais fácil.</Passo>
+  <Passo>Depois 50 + 17 = **67**. Mesmo resultado, com menos esforço.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 25 + 48 + 5? (dica: some 25 + 5 primeiro) (número)" resposta="78" dica="25 + 5 = 30." resolucao="25 + 5 = 30, depois 30 + 48 = 78." />
+
+<Exercicio enunciado="Em 13 + 0, qual é o resultado? (número)" resposta="13" dica="O zero é o elemento neutro." resolucao="Somar zero não muda o número: 13." />
+
+## Somar de cabeça
+
+Armar a conta é ótimo, mas no dia a dia a gente faz de cabeça. Dois jeitos:
+
+- **Por partes:** separe dezenas e unidades. 47 + 36 = (40 + 30) + (7 + 6) = 70 + 13 = 83.
+- **Completando a dezena:** 47 precisa de 3 para ser 50. Tire 3 do 36: sobra 33. 50 + 33 = 83.
+
+<ContaDeCabeca2 />
+
+<ExemploResolvido titulo="Somando 68 + 25 de cabeça">
+  <Passo>**Por partes:** 60 + 20 = 80 e 8 + 5 = 13. Depois 80 + 13 = **93**.</Passo>
+  <Passo>**Completando:** 68 precisa de 2 para ser 70. Tire 2 do 25: sobram 23. 70 + 23 = **93**.</Passo>
+  <Passo>Os dois jeitos chegam ao mesmo número. Use o que parecer mais fácil.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Some de cabeça: 36 + 28. (número)" resposta="64" dica="30 + 20 = 50 e 6 + 8 = 14." resolucao="30 + 20 = 50 e 6 + 8 = 14. 50 + 14 = 64." />
+
+<Exercicio enunciado="Some de cabeça: 99 + 99. (número)" resposta="198" dica="Dois números a 1 de 100." resolucao="99 + 99 = 100 + 100 - 2 = 198." />
+
+<Aprofundar titulo="A conta mágica do Gauss (prévia)">
+Uma história famosa: quando o menino **Gauss** era criança, o professor pediu para somar todos os números de 1 a 100. Gauss percebeu que 1 + 100 = 101, 2 + 99 = 101, e assim por diante: são **50 pares** que valem 101, ou seja, 5.050. Ele **reorganizou** a soma usando as propriedades comutativa e associativa. Você verá isso melhor nas progressões, no Ensino Médio, mas já dá para sentir o poder de **agrupar de um jeito esperto**.
+</Aprofundar>
+
+## Subtrair contando a partir do menor
+
+Quando você confere um troco, raramente faz uma conta armada. Em vez disso, **conta para a frente** a partir do preço: R$ 37 de lanche, pagou R$ 50. De 37 para 40 são 3; de 40 para 50 são 10. Total do troco: 13. É a ideia de **completar**: quanto falta para chegar até o valor pago?
+
+Isso funciona porque subtrair e somar são **inversas**. Se 37 + 13 = 50, então 50 - 37 = 13.
+
+<TrocoNaReta />
+
+<ExemploResolvido titulo="Troco de R$ 100 numa compra de R$ 63">
+  <Passo>De 63 para 70: +7.</Passo>
+  <Passo>De 70 para 100: +30.</Passo>
+  <Passo>Troco: 7 + 30 = **R$ 37**.</Passo>
+  <Passo>Conferindo: 63 + 37 = 100. Bate.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Você pagou R$ 100 numa compra de R$ 68. Quanto é o troco? (número)" resposta="32" dica="68 para 70 (+2), 70 para 100 (+30)." resolucao="+2 e +30 = 32." />
+
+<Exercicio enunciado="Você pagou R$ 50 numa compra de R$ 29. Quanto é o troco? (número)" resposta="21" dica="29 para 30, depois 30 para 50." resolucao="+1 (até 30) e +20 (até 50) = 21." />
+
+## A família de fatos
+
+Se você sabe que 8 + 5 = 13, sabe **quatro coisas**: 8 + 5 = 13, 5 + 8 = 13, 13 - 5 = 8 e 13 - 8 = 5. É a **família de fatos**: um trio de números (8, 5, 13) com **duas somas e duas subtrações**.
+
+<FamiliaDeFatos />
+
+<ExemploResolvido titulo="Usando a família para achar o número escondido">
+  <Passo>Problema: ? + 17 = 40.</Passo>
+  <Passo>A família (17, ?, 40) diz que ? = 40 - 17.</Passo>
+  <Passo>40 - 17 = **23**. Conferindo: 23 + 17 = 40.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual número somado a 17 dá 40? (número)" resposta="23" dica="40 menos 17." resolucao="40 - 17 = 23." />
+
+<Exercicio enunciado="Se 15 + 27 = 42, quanto é 42 - 27? (número)" resposta="15" dica="Operação inversa." resolucao="42 - 27 = 15: subtrair desfaz a soma." />
+
+<Aprofundar titulo="A prova real">
+Uma forma de **conferir** qualquer conta é fazer a operação **inversa**. Se você calculou 83 - 47 = 36, confira somando: 36 + 47 = 83. Se der certo, o resultado está certo. Se não, procure o erro. A prova real da soma é a subtração (e vice-versa). É um hábito simples que evita muitos erros em provas.
+</Aprofundar>
+
+## Estimativa: antes de calcular, adivinhe
+
+Antes de somar 398 + 205, arredonde: 400 + 200 = 600. Se o resultado exato der algo como 6.030, você nota na hora que **deu errado**. A estimativa é um **alarme** contra erros bobos. (Arredondar você viu na cápsula de Sistema decimal.)
+
+<ExemploResolvido titulo="Estimando 4.738 + 2.291">
+  <Passo>Arredonde cada um à centena: 4.700 e 2.300.</Passo>
+  <Passo>Some as aproximações: 4.700 + 2.300 = **7.000**.</Passo>
+  <Passo>O valor exato é 7.029. Ficou muito perto da estimativa: o resultado é plausível.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Estime 596 + 304 arredondando para a centena (600 + 300). Qual é a estimativa? (número)" resposta="900" dica="600 + 300." resolucao="600 + 300 = 900. (O exato é 900 também.)" />
+
+## Problemas do dia a dia
+
+Para resolver um problema, leia e pergunte: **a situação junta ou tira?** **Compara?** **Completa?** Depois escolha a operação.
+
+<EscolhaAConta />
+
+<ExemploResolvido titulo="Um problema em duas etapas">
+  <Passo>Numa loja, há 120 camisetas. Vendem 45 na segunda e 38 na terça. Quantas sobram?</Passo>
+  <Passo>Primeiro, juntamos o que saiu: 45 + 38 = **83**.</Passo>
+  <Passo>Depois tiramos do total: 120 - 83 = **37**.</Passo>
+  <Passo>Sobram 37 camisetas. Conferindo: 37 + 83 = 120.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma turma tem 28 alunos. Chegam 5 novos e saem 3. Quantos ficam? (número)" resposta="30" dica="28 + 5 - 3." resolucao="28 + 5 = 33; 33 - 3 = 30." />
+
+<Exercicio enunciado="Léo tem 74 figurinhas e Bia tem 49. Quantas Léo tem a mais? (número)" resposta="25" dica="Comparar é subtrair." resolucao="74 - 49 = 25." />
+
+<Aprofundar titulo="Quando a subtração dá negativo">
+Com os números naturais, 11 - 26 não tem resposta: você não consegue tirar 26 de 11. A fonte mostra que, se o minuendo for menor que o subtraendo, o resultado é um **número negativo**: 11 - 26 = -15. Na **reta numérica**, subtrair é **andar para a esquerda**, e quando passamos do zero entramos nos negativos. Você vai explorar isso na cápsula de **Números negativos**.
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Em 59 + 27, o que significa o "vai um" que aparece nas unidades?',
+    opcoes: ['9 + 7 = 16: escreve 6 e 1 dezena sobe para a casa das dezenas', 'Que o resultado é 1 maior', 'Que o 1 é jogado fora'],
+    correta: 0,
+    explicacao: '16 unidades = 1 dezena e 6 unidades. A dezena sobe para a casa das dezenas.',
+  },
+  {
+    enunciado: 'Quanto é 59 + 27?',
+    opcoes: ['86', '76', '85'],
+    correta: 0,
+    explicacao: '9 + 7 = 16 (6, vai 1); 5 + 2 + 1 = 8. Resultado: 86.',
+  },
+  {
+    enunciado: 'Em 15 - 6 = 9, o número 9 é o...',
+    opcoes: ['Diferença', 'Minuendo', 'Subtraendo'],
+    correta: 0,
+    explicacao: 'O 15 é o minuendo, o 6 é o subtraendo e o 9 é a diferença.',
+  },
+  {
+    enunciado: 'A soma é comutativa. Isso quer dizer que...',
+    opcoes: ['A ordem das parcelas não muda o resultado', 'O resultado é sempre par', 'Só vale com números pequenos'],
+    correta: 0,
+    explicacao: '7 + 3 = 3 + 7. Já a subtração não tem essa propriedade.',
+  },
+  {
+    enunciado: 'Por que 8 - 3 é diferente de 3 - 8?',
+    opcoes: ['A subtração não é comutativa: trocar a ordem muda o resultado', 'Porque o 8 é par', 'Não é diferente'],
+    correta: 0,
+    explicacao: '8 - 3 = 5, mas 3 - 8 não dá um número natural (dá -5). A ordem importa.',
+  },
+  {
+    enunciado: 'Somar zero a um número...',
+    opcoes: ['Não muda o número', 'Dobra o número', 'Zera o número'],
+    correta: 0,
+    explicacao: 'O zero é o elemento neutro da soma. Brahmagupta registrou isso em 628.',
+  },
+  {
+    enunciado: 'Qual é a operação inversa da soma?',
+    opcoes: ['A subtração', 'A multiplicação', 'Nenhuma'],
+    correta: 0,
+    explicacao: 'Se 5 + 3 = 8, então 8 - 3 = 5. Uma desfaz a outra.',
+  },
+  {
+    enunciado: 'Você pagou R$ 50 numa compra de R$ 37. Contando para a frente (37 até 40, 40 até 50), qual é o troco?',
+    opcoes: ['R$ 13', 'R$ 23', 'R$ 17'],
+    correta: 0,
+    explicacao: '3 + 10 = 13. Conferindo: 37 + 13 = 50.',
+  },
+  {
+    enunciado: 'Quanto é 502 - 278?',
+    opcoes: ['224', '234', '324'],
+    correta: 0,
+    explicacao: 'Com trocas em cadeia: 12 - 8 = 4, 9 - 7 = 2, 4 - 2 = 2. Resultado: 224.',
+  },
+  {
+    enunciado: 'Com a família de fatos (8, 5, 13), qual destas contas está CERTA?',
+    opcoes: ['13 - 5 = 8', '13 + 5 = 8', '8 - 13 = 5'],
+    correta: 0,
+    explicacao: 'Da soma 8 + 5 = 13 saem as subtrações 13 - 5 = 8 e 13 - 8 = 5.',
+  },
+  {
+    enunciado: 'Para conferir 83 - 47 = 36, qual é a prova real?',
+    opcoes: ['36 + 47 = 83', '83 + 47 = 36', '36 - 47 = 83'],
+    correta: 0,
+    explicacao: 'A prova da subtração é a soma do resultado com o subtraendo, que deve dar o minuendo.',
+  },
+  {
+    enunciado: 'Segundo a fonte, desde quando se sabe que o ábaco existe?',
+    opcoes: ['Pelo menos 2700 a 2300 a.C., na Suméria', 'Desde 1642', 'Desde 1992'],
+    correta: 0,
+    explicacao: 'O ábaco é uma das ferramentas de contar mais antigas. Pascal inventou a calculadora mecânica em 1642.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Somar** é juntar ou acrescentar; as parcelas se somam e dão o **total**.
+- **Subtrair** é **tirar, comparar ou completar**; os termos são minuendo, subtraendo e diferença.
+- O **vai um** é a troca de 10 em 10: quando uma casa passa de 9, 1 dezena (ou centena...) sobe. O **empréstimo** faz o contrário: 1 dezena vira 10 unidades.
+- A soma é **comutativa**, **associativa** e tem o **zero** como elemento neutro; a subtração **não é comutativa**.
+- Soma e subtração são **inversas**: de 8 + 5 = 13 nascem quatro fatos. Use isso na **prova real**.
+- Para o **troco**, conte para a frente a partir do preço. De cabeça, some **por partes** ou **completando a dezena**.
+- **Estime** antes de calcular: arredonde e confira se o resultado é plausível.
+
+**Um pouco de história.** O ábaco já existia na Suméria há cerca de 4.500 anos. Em 628, Brahmagupta registrou que somar zero não muda o número, e em 1642 Pascal construiu uma calculadora mecânica que somava com engrenagens, fazendo o "vai um" sem ninguém pensar. Hoje, cada computador faz o mesmo bilhões de vezes por segundo.
+
+</Resumo>
+
+Somar muitas vezes o mesmo número dá trabalho. Na próxima cápsula, vamos ver como a **multiplicação** é uma forma rápida de somar parcelas iguais, e por que a tabuada tem padrões que dá para entender em vez de decorar.
+
+<Conexoes />
+
+</Etapa>
