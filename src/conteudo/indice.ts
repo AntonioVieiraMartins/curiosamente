@@ -95,7 +95,7 @@ export const capsulas: ResumoCapsula[] = [
 
   // Médio: a BNCC não fixa o ano de cada assunto, então os grupos são por tema
   m('medio', 'funcoes', 'Funções', 'Uma máquina que transforma números.', { grupo: 'Funções', estado: 'pronta', duracaoMin: 40 }),
-  m('medio', 'funcao-afim', 'Função afim', 'Quanto vai custar essa corrida de táxi?', { grupo: 'Funções' }),
+  m('medio', 'funcao-afim', 'Função afim', 'Quanto vai custar essa corrida de táxi?', { grupo: 'Funções', estado: 'pronta', duracaoMin: 40, conexoes: ['sistemas-de-equacoes'] }),
   m('medio', 'funcao-quadratica', 'Função quadrática', 'O caminho de uma bola arremessada.', { grupo: 'Funções' }),
   m('medio', 'exponencial', 'Exponencial', 'Dobrar uma folha 42 vezes alcança a Lua?', { grupo: 'Funções', conexoes: ['potencias'] }),
   m('medio', 'logaritmo', 'Logaritmo', 'Quantas vezes eu dobrei?', { grupo: 'Funções' }),
