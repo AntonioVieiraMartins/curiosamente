@@ -94,7 +94,7 @@ export const capsulas: ResumoCapsula[] = [
   m('fundamental', 'graficos-e-pesquisas', 'Gráficos e pesquisas', 'Como montar uma pesquisa que não engana.', { grupo: '9º ano', conexoes: ['estatistica'] }),
 
   // Médio: a BNCC não fixa o ano de cada assunto, então os grupos são por tema
-  m('medio', 'funcoes', 'Funções', 'Uma máquina que transforma números.', { grupo: 'Funções' }),
+  m('medio', 'funcoes', 'Funções', 'Uma máquina que transforma números.', { grupo: 'Funções', estado: 'pronta', duracaoMin: 40 }),
   m('medio', 'funcao-afim', 'Função afim', 'Quanto vai custar essa corrida de táxi?', { grupo: 'Funções' }),
   m('medio', 'funcao-quadratica', 'Função quadrática', 'O caminho de uma bola arremessada.', { grupo: 'Funções' }),
   m('medio', 'exponencial', 'Exponencial', 'Dobrar uma folha 42 vezes alcança a Lua?', { grupo: 'Funções', conexoes: ['potencias'] }),
