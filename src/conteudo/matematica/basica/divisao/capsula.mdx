@@ -1,0 +1,387 @@
+import RepartirBalas from '../../../../components/simulacoes/RepartirBalas'
+import SubtracaoRepetida from '../../../../components/simulacoes/SubtracaoRepetida'
+import RestoNoRelogio from '../../../../components/simulacoes/RestoNoRelogio'
+import ContaDeDividir from '../../../../components/simulacoes/ContaDeDividir'
+import DivisivelPor from '../../../../components/simulacoes/DivisivelPor'
+import DivisaoPorZero from '../../../../components/simulacoes/DivisaoPorZero'
+
+{/* Fatos conferidos na Wikipedia em inglês (Division e Long division), listadas no meta.ts. Os critérios de divisibilidade (2, 3, 5, 9, 10) são conteúdo escolar geral da BNCC e foram conferidos por cálculo; a fonte só os cita de passagem. */}
+
+<Etapa id="gancho">
+
+Você tem **23 balas** e quer dividir entre **4 amigos**, sem brigas: cada um deve receber a mesma quantidade. Quantas balas cada um leva? Se cada um ficar com 5, serão 20 balas entregues. E as **3 que sobraram**? Elas são o **resto**.
+
+A divisão é a operação mais "esquisita" das quatro, porque às vezes **sobra algo**, e porque existe uma conta que **não pode ser feita**: dividir por zero. Nesta cápsula você vai entender por que o resto existe, por que ele nunca passa do divisor, como fazer a conta armada **sem decorar passos** e por que ninguém, nem o computador, consegue dividir por zero.
+
+<Palpite
+  chave="inicial"
+  pergunta="Dividindo 23 balas entre 4 amigos igualmente, quantas balas sobram?"
+  opcoes={['Nenhuma: 23 divide exatamente por 4', 'Sobram 3: cada um leva 5 e 3 ficam de fora', 'Sobram 5']}
+/>
+
+Você vai repartir balas, descobrir "quantas vezes cabe", ver o resto dar voltas, fazer a divisão armada passo a passo, testar quando um número divide outro sem sobrar e ver por que 12 ÷ 0 não tem resposta.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Dividir é, junto com multiplicar, o que mais deu trabalho para a humanidade resolver **de forma prática**.
+
+<LinhaDoTempo marcos={[
+  { ano: '1125 a 1174', texto: 'Al-Samawal al-Maghribi faz cálculos decimais que exigem, na prática, a divisão longa, sem formalizar o método.' },
+  { ano: '1491', texto: 'O italiano Caldrini publica o exemplo impresso mais antigo de divisão longa, no método "Danda".' },
+  { ano: 'Cerca de 1600', texto: 'Henry Briggs introduz o algoritmo em uso moderno.' },
+  { ano: '1608', texto: 'Bartholomaeus Pitiscus usa a notação decimal das frações, o que torna o método mais prático.' },
+  { ano: '1659', texto: 'Johann Rahn introduz o símbolo ÷, o obelus.' },
+  { ano: '1684', texto: 'Leibniz introduz os dois pontos (:) para a divisão.' },
+]} />
+
+## Dividir era trabalhoso
+
+Para os antigos, dividir era a conta mais difícil. Dependendo da época, usava-se o **ábaco**, a **régua de cálculo**, tabelas de logaritmos ou o método de **"retirar pedaços"** do número (o *chunking*, que a fonte cita). A fonte menciona também que os computadores modernos costumam **multiplicar pelo inverso** do divisor, em vez de dividir, justamente porque dividir é mais lento.
+
+## A divisão longa
+
+A **divisão longa** é o método armado que você vai aprender, em quatro passos que se repetem: **dividir, multiplicar, subtrair e baixar** o próximo algarismo. Segundo a fonte, o matemático **Al-Samawal al-Maghribi** (1125 a 1174) fazia cálculos decimais que exigiam esse método, sem formalizá-lo. O exemplo impresso mais antigo é de **Caldrini** (**1491**), no método "Danda", como era chamado na Itália medieval. Por volta de **1600**, o inglês **Henry Briggs** introduziu o algoritmo em uso moderno, e em **1608** **Pitiscus** tornou-o mais prático com a notação decimal.
+
+## Os símbolos
+
+Hoje usamos várias notações: a barra de fração, a barra inclinada (/), os dois pontos (:) e o **÷**, chamado de **óbelo**. Segundo a fonte, o ÷ foi introduzido por **Johann Rahn**, em **1659**, e **Leibniz** introduziu os **dois pontos** em **1684**. A **chave** que usamos na conta armada, aquela em que o divisor fica separado do dividendo por um traço, desenvolveu-se no **século 18** a partir de uma notação de uma linha só.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Dividir é repartir
+
+Se você tem 20 maçãs e 4 pessoas, e todo mundo deve receber igual, cada uma leva 5. A fonte dá exatamente esse exemplo. Dividir é **repartir em partes iguais**. Os termos são: **dividendo** (o que se reparte: 20), **divisor** (entre quantos: 4), **quociente** (quanto cada um leva: 5) e, quando sobra, o **resto**.
+
+## 2. Dividir é "quantas vezes cabe"
+
+Há outro jeito de pensar: **quantas vezes o 4 cabe dentro do 20**? Tirando de 4 em 4: 20, 16, 12, 8, 4, 0. Foram **5 vezes**. É o mesmo 20 ÷ 4 = 5, só que visto por outro lado: **quantos grupos de 4** dá para formar. Segundo a fonte, as duas interpretações estão certas: quantas vezes um número cabe no outro, e qual é o tamanho de cada parte quando um conjunto é dividido em grupos iguais.
+
+## 3. Dividir é o contrário de multiplicar
+
+Se 4 × 5 = 20, então 20 ÷ 4 = 5 e 20 ÷ 5 = 4. A fonte diz que, para números reais, dividir por b é o mesmo que achar o número que, multiplicado por b, dá o dividendo. **A tabuada ao contrário** é a tabela da divisão. Quem sabe a tabuada, já sabe dividir.
+
+## 4. O resto
+
+Se 23 balas são repartidas entre 4 amigos, cada um leva 5 (4 × 5 = 20) e **sobram 3**. A relação é: **dividendo = divisor × quociente + resto**, ou 23 = 4 × 5 + 3. A fonte chama isso de **divisão euclidiana** e acrescenta uma regra importante: o **resto é sempre menor que o divisor**. Se sobrassem 4 balas, daria para dar mais uma a cada um.
+
+<ExemploResolvido titulo="Dividindo 23 por 4">
+  <Passo>Quanto de 4 cabe em 23? 4 × 5 = 20, e 4 × 6 = 24 (passa de 23). Então o quociente é **5**.</Passo>
+  <Passo>Resto: 23 - 20 = **3**.</Passo>
+  <Passo>O resto (3) é menor que o divisor (4): está certo.</Passo>
+  <Passo>Prova: 4 × 5 + 3 = 23. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 20 ÷ 4? (número)" resposta="5" dica="4 × 5 = 20." resolucao="20 ÷ 4 = 5, porque 4 × 5 = 20." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Ao repartir 23 balas entre 4 amigos, o que acontece com as balas que sobram?"
+  opcoes={['Cada um recebe 5 e sobram 3, que não dão para repartir igualmente', 'Cada um recebe 6, e falta 1', 'Não sobra nada']}
+  correta={0}
+  explicacao="4 × 5 = 20, e 4 × 6 = 24 (mais que 23). Então cada um leva 5 e sobram 3: o resto. Ele é sempre menor que o divisor (3 é menor que 4)."
+>
+
+Mude o total de balas e o número de amigos e veja o resto.
+
+<RepartirBalas />
+
+Agora o outro jeito de olhar: **quantas vezes cabe**. Tire um grupo de cada vez até não caber mais.
+
+<SubtracaoRepetida />
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Nenhuma: 23 divide exatamente por 4', 'Sobram 3: cada um leva 5 e 3 ficam de fora', 'Sobram 5']}
+  correta={1}
+  seAcertou="E o palpite do começo? Isso: 23 = 4 × 5 + 3."
+  seErrou="E o palpite do começo? Sobram 3: cada amigo leva 5 (4 × 5 = 20) e as 3 restantes não dão para repartir igual."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Dividir usando a tabuada
+
+Para 56 ÷ 7, pergunte: **7 vezes quanto dá 56?** 7 × 8 = 56, então 56 ÷ 7 = **8**. Quem sabe a tabuada divide sem esforço. A fonte descreve isso como a divisão sendo a operação inversa da multiplicação.
+
+<ExemploResolvido titulo="Usando a família de fatos">
+  <Passo>Sabendo que 6 × 7 = 42, o trio (6, 7, 42) gera: 42 ÷ 6 = 7 e 42 ÷ 7 = 6.</Passo>
+  <Passo>Para 63 ÷ 9, pense: "9 vezes quanto dá 63?". 9 × 7 = 63.</Passo>
+  <Passo>Então 63 ÷ 9 = **7**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 56 ÷ 7? (número)" resposta="8" dica="7 vezes quanto dá 56?" resolucao="7 × 8 = 56, então 56 ÷ 7 = 8." />
+
+<Exercicio enunciado="Quanto é 63 ÷ 9? (número)" resposta="7" dica="Tabuada do 9." resolucao="9 × 7 = 63." />
+
+<Exercicio enunciado="Se 8 × 6 = 48, quanto é 48 ÷ 6? (número)" resposta="8" dica="Operação inversa." resolucao="48 ÷ 6 = 8." />
+
+## O resto e a divisão euclidiana
+
+Quando a divisão **não é exata**, sobra um **resto**. A relação é **dividendo = divisor × quociente + resto**, e o resto é **menor que o divisor**. Com divisor 5, os restos possíveis são só 0, 1, 2, 3 e 4. O resto "dá voltas", como os números de um relógio.
+
+<RestoNoRelogio />
+
+<ExemploResolvido titulo="Dividindo 47 por 5">
+  <Passo>5 × 9 = 45 (cabe), 5 × 10 = 50 (passa). Quociente: **9**.</Passo>
+  <Passo>Resto: 47 - 45 = **2**.</Passo>
+  <Passo>Prova: 5 × 9 + 2 = 47. O resto 2 é menor que 5. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é o resto de 47 ÷ 5? (número)" resposta="2" dica="5 × 9 = 45." resolucao="47 - 45 = 2." />
+
+<Exercicio enunciado="Qual é o resto de 30 ÷ 6? (número)" resposta="0" dica="6 × 5 = 30." resolucao="30 é múltiplo de 6: a divisão é exata e o resto é 0." />
+
+<Exercicio enunciado="Dividindo por 7, qual é o maior resto possível? (número)" resposta="6" dica="O resto é menor que o divisor." resolucao="Os restos vão de 0 a 6. Com resto 7, caberia mais uma vez." />
+
+<Aprofundar titulo="Por que o resto é sempre menor que o divisor">
+Se o resto fosse **igual ou maior** que o divisor, ainda caberia **mais um grupo**, e o quociente deveria ser maior. Por exemplo, 23 ÷ 4 com quociente 4 e resto 7 estaria errado: o 7 ainda contém mais um 4 (7 = 4 + 3), então o quociente correto é 5 e o resto, 3. A fonte lembra que essa condição ("resto menor que o divisor") é o que faz a divisão euclidiana **única**: para cada par de números, há um só quociente e um só resto.
+</Aprofundar>
+
+## A divisão armada, passo a passo
+
+Para dividir números maiores, usamos a **conta armada**, que a fonte chama de **divisão longa**. Os quatro passos se repetem para cada algarismo: **dividir, multiplicar, subtrair e baixar** o próximo. Veja 758 ÷ 6.
+
+- Pegamos o **7**: 7 ÷ 6 = 1. Multiplica: 1 × 6 = 6. Subtrai: 7 - 6 = 1.
+- Baixamos o **5**: fica 15. 15 ÷ 6 = 2. Multiplica: 2 × 6 = 12. Subtrai: 15 - 12 = 3.
+- Baixamos o **8**: fica 38. 38 ÷ 6 = 6. Multiplica: 6 × 6 = 36. Subtrai: 38 - 36 = 2.
+
+Quociente: **126**, resto **2**. Prova: 6 × 126 + 2 = 756 + 2 = 758. ✓
+
+<ContaDeDividir />
+
+<ExemploResolvido titulo="Dividindo 135 por 5">
+  <Passo>O 1 é menor que 5, então começamos com 13: 13 ÷ 5 = 2. Multiplica: 2 × 5 = 10. Subtrai: 13 - 10 = 3.</Passo>
+  <Passo>Baixa o 5: fica 35. 35 ÷ 5 = 7. Multiplica: 7 × 5 = 35. Subtrai: 35 - 35 = 0.</Passo>
+  <Passo>Quociente: **27**, resto 0.</Passo>
+  <Passo>Prova: 5 × 27 = 135. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 135 ÷ 5? (número)" resposta="27" dica="13 ÷ 5 = 2, depois 35 ÷ 5." resolucao="27, porque 5 × 27 = 135." />
+
+<Exercicio enunciado="Qual é o quociente de 758 ÷ 6? (número)" resposta="126" dica="Siga os passos: 1, depois 2, depois 6." resolucao="126, com resto 2." />
+
+<Exercicio enunciado="Quanto é 96 ÷ 4? (número)" resposta="24" dica="9 ÷ 4 = 2, sobra 1; baixa o 6: 16 ÷ 4." resolucao="24, porque 4 × 24 = 96." />
+
+<Aprofundar titulo="Divisão curta e divisão longa">
+Segundo a fonte, existe uma versão abreviada, a **divisão curta**, quase sempre usada quando o divisor tem **um só algarismo**: você faz a multiplicação e a subtração de cabeça e escreve só o quociente e os restos. A divisão longa mostra todos os passos, e é a que costuma ser ensinada primeiro. A fonte também diz que o método da chave se desenvolveu no **século 18**, a partir de uma notação em uma linha só. O que importa: os dois métodos fazem o mesmo, e o passo "dividir, multiplicar, subtrair, baixar" **nunca muda**.
+</Aprofundar>
+
+## Prova real
+
+Para conferir uma divisão, **multiplique o quociente pelo divisor e some o resto**: o resultado deve ser o dividendo. Se 758 ÷ 6 deu 126 resto 2, confira 6 × 126 + 2 = 758. Se não bateu, procure o erro. A prova real é a operação inversa em ação.
+
+<ExemploResolvido titulo="Conferindo 100 ÷ 7">
+  <Passo>7 × 14 = 98, e 7 × 15 = 105 (passa). Quociente 14, resto 2.</Passo>
+  <Passo>Prova: 7 × 14 + 2 = 98 + 2 = **100**. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é o resto de 100 ÷ 7? (número)" resposta="2" dica="7 × 14 = 98." resolucao="100 - 98 = 2." />
+
+## Divisão exata: o número divide sem sobrar?
+
+Dizemos que um número é **divisível** por outro quando a divisão é exata (resto 0). Há regras para saber **sem fazer a conta**:
+
+- **Por 2:** o último algarismo é par (0, 2, 4, 6, 8).
+- **Por 5:** o último algarismo é 0 ou 5.
+- **Por 10:** o último algarismo é 0.
+- **Por 3:** a soma dos algarismos é múltiplo de 3.
+- **Por 9:** a soma dos algarismos é múltiplo de 9.
+
+<DivisivelPor />
+
+<ExemploResolvido titulo="2.340 é divisível por quem?">
+  <Passo>Por 2: o último algarismo é 0 (par). Sim.</Passo>
+  <Passo>Por 5 e por 10: termina em 0. Sim, os dois.</Passo>
+  <Passo>Por 3 e por 9: 2 + 3 + 4 + 0 = 9, que é múltiplo de 3 e de 9. Sim, os dois.</Passo>
+  <Passo>Então 2.340 é divisível por 2, 3, 5, 9 e 10.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O número 135 é divisível por 5? (sim ou nao)" resposta="sim" dica="O último algarismo é 5." resolucao="Sim: termina em 5. (135 ÷ 5 = 27.)" />
+
+<Exercicio enunciado="O número 124 é divisível por 3? (sim ou nao)" resposta="nao" dica="1 + 2 + 4 = 7." resolucao="Não: a soma 7 não é múltiplo de 3." />
+
+<Aprofundar titulo="Por que a regra do 9 funciona">
+Cada casa decimal vale 1, 10, 100, 1.000... e todos esses números deixam **resto 1** quando divididos por 9 (10 = 9 + 1, 100 = 99 + 1...). Então um número tem o **mesmo resto** que a **soma dos seus algarismos**. Por exemplo, 2.340 deixa o mesmo resto que 2 + 3 + 4 + 0 = 9, que dá resto 0 por 9. A mesma ideia funciona para o 3, porque 3 divide 9. Isso volta na cápsula de **Múltiplos e divisores**, no Fundamental.
+</Aprofundar>
+
+## Dividir por 10, 100 e 1.000
+
+Assim como multiplicar por 10 acrescenta um zero, **dividir por 10** tira um zero (se o número terminar em zero): 3.500 ÷ 10 = 350, e 3.500 ÷ 100 = 35. Cada algarismo anda **uma casa para a direita** e passa a valer 10 vezes menos.
+
+<ExemploResolvido titulo="Dividindo por potências de 10">
+  <Passo>2.400 ÷ 10 = **240** (tira um zero).</Passo>
+  <Passo>2.400 ÷ 100 = **24** (tira dois zeros).</Passo>
+  <Passo>E 240 ÷ 40? Divida por 10 os dois: 24 ÷ 4 = **6**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 3.500 ÷ 100? (número)" resposta="35" dica="Tire dois zeros." resolucao="35." />
+
+<Exercicio enunciado="Quanto é 240 ÷ 40? (número)" resposta="6" dica="24 ÷ 4." resolucao="Tirando um zero de cada: 24 ÷ 4 = 6." />
+
+## Dividir por zero: a conta proibida
+
+O que dá 12 ÷ 0? Dividir é achar o número que, **multiplicado pelo divisor**, dá o dividendo. Então precisaríamos de um número que vezes 0 desse 12. Mas **qualquer número vezes 0 dá 0**, nunca 12. Nenhum número serve, e a conta **não tem resposta**. A fonte diz que, na maioria dos sistemas matemáticos, a divisão por zero é **indefinida** (existem estruturas especiais que a permitem, mas com outras definições).
+
+<DivisaoPorZero />
+
+<ExemploResolvido titulo="Procurando 12 ÷ 0">
+  <Passo>12 ÷ 0 = ? significa ? × 0 = 12.</Passo>
+  <Passo>Teste: 1 × 0 = 0, 5 × 0 = 0, 100 × 0 = 0.</Passo>
+  <Passo>Nunca dá 12. **Não existe** esse número.</Passo>
+  <Passo>E 0 ÷ 0? Qualquer número serve (0 × qualquer coisa = 0), e aí a resposta não é única: também fica indefinida.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 0 ÷ 5? (número)" resposta="0" dica="5 vezes quanto dá 0?" resolucao="0 ÷ 5 = 0, porque 5 × 0 = 0. Dividir zero por um número não nulo é permitido." />
+
+<Exercicio enunciado="5 ÷ 0 tem resposta? (sim ou nao)" resposta="nao" dica="Que número vezes 0 dá 5?" resolucao="Não: nenhum número multiplicado por 0 dá 5." />
+
+<Aprofundar titulo="Zero dividido por um número e divisão por quase-zero">
+Dividir **por** zero é proibido, mas dividir **zero** por outro número é normal: 0 ÷ 5 = 0. E o que acontece se o divisor se aproxima de zero? 12 ÷ 4 = 3, 12 ÷ 2 = 6, 12 ÷ 1 = 12, 12 ÷ 0,5 = 24, 12 ÷ 0,1 = 120. O resultado **cresce sem parar**. No Ensino Médio e na universidade, isso é a ideia de **limite** e de infinito. Por ora, guarde: dividir por zero é uma conta sem resposta.
+</Aprofundar>
+
+## A divisão não é comutativa
+
+12 ÷ 3 = 4, mas 3 ÷ 12 não é um número inteiro. E a fonte mostra que a divisão também **não é associativa**: (24 ÷ 6) ÷ 2 = 2, mas 24 ÷ (6 ÷ 2) = 8. Por isso, em uma sequência de divisões, resolvemos **da esquerda para a direita**.
+
+<ExemploResolvido titulo="Ordem das divisões">
+  <Passo>24 ÷ 6 ÷ 2: da esquerda para a direita.</Passo>
+  <Passo>24 ÷ 6 = 4. Depois 4 ÷ 2 = **2**.</Passo>
+  <Passo>Se agrupássemos diferente, 6 ÷ 2 = 3 e 24 ÷ 3 = 8, que é outra coisa. Por isso a ordem manda.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 24 ÷ 6 ÷ 2, da esquerda para a direita? (número)" resposta="2" dica="Primeiro 24 ÷ 6." resolucao="24 ÷ 6 = 4 e 4 ÷ 2 = 2." />
+
+## Problemas de dividir
+
+A divisão aparece quando você **reparte**, **agrupa** ou **compara por quantas vezes**:
+
+- **Repartir:** 150 reais entre 5 pessoas.
+- **Agrupar:** 150 balas em pacotes de 12.
+- **Resto importa:** "quantos ônibus de 40 lugares para 100 alunos?" Dá 100 ÷ 40 = 2 com resto 20, mas os 20 alunos que sobraram também precisam de lugar: são **3 ônibus**.
+
+<ExemploResolvido titulo="Quantos pacotes?">
+  <Passo>150 balas em pacotes de 12. 150 ÷ 12 = 12, resto 6.</Passo>
+  <Passo>São **12 pacotes cheios** (12 × 12 = 144) e **sobram 6 balas**.</Passo>
+  <Passo>Se perguntarem quantos pacotes são necessários para guardar todas, são 13, o último incompleto.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 250 ÷ 5? (número)" resposta="50" dica="25 ÷ 5 = 5, mais um zero." resolucao="250 ÷ 5 = 50." />
+
+<Exercicio enunciado="Quantos ônibus de 40 lugares são necessários para levar 100 alunos? (número)" resposta="3" dica="2 ônibus levam 80." resolucao="100 ÷ 40 = 2 resto 20. Os 20 restantes precisam de mais um ônibus: 3." />
+
+<Exercicio enunciado="Dividindo 1.000 por 8, qual é o quociente? (número)" resposta="125" dica="8 × 125 = 1000." resolucao="1.000 ÷ 8 = 125." />
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Em 20 ÷ 4 = 5, como se chama o número 20?',
+    opcoes: ['Dividendo', 'Divisor', 'Quociente'],
+    correta: 0,
+    explicacao: 'O dividendo é o que se reparte. O divisor é 4 e o quociente é 5.',
+  },
+  {
+    enunciado: 'Qual é o resto de 23 ÷ 4?',
+    opcoes: ['3', '5', '0'],
+    correta: 0,
+    explicacao: '4 × 5 = 20 e 23 - 20 = 3.',
+  },
+  {
+    enunciado: 'O resto de uma divisão é sempre...',
+    opcoes: ['Menor que o divisor', 'Maior que o divisor', 'Igual ao quociente'],
+    correta: 0,
+    explicacao: 'Se fosse igual ou maior, caberia mais um grupo.',
+  },
+  {
+    enunciado: 'Qual é a operação inversa da multiplicação?',
+    opcoes: ['A divisão', 'A soma', 'A subtração'],
+    correta: 0,
+    explicacao: 'Se 4 × 5 = 20, então 20 ÷ 4 = 5.',
+  },
+  {
+    enunciado: 'Como conferir que 758 ÷ 6 = 126 com resto 2?',
+    opcoes: ['6 × 126 + 2 = 758', '6 + 126 + 2 = 758', '758 × 6 = 126'],
+    correta: 0,
+    explicacao: 'Prova real: quociente vezes divisor, mais o resto, deve dar o dividendo.',
+  },
+  {
+    enunciado: 'Quais são os quatro passos que se repetem na divisão longa?',
+    opcoes: ['Dividir, multiplicar, subtrair e baixar', 'Somar, subtrair, dividir e arredondar', 'Multiplicar, somar, copiar e apagar'],
+    correta: 0,
+    explicacao: 'Para cada algarismo: divide, multiplica, subtrai, e baixa o próximo.',
+  },
+  {
+    enunciado: 'O número 2.340 é divisível por 9?',
+    opcoes: ['Sim: 2 + 3 + 4 + 0 = 9', 'Não, porque termina em 0', 'Só por 2'],
+    correta: 0,
+    explicacao: 'A soma dos algarismos é 9, múltiplo de 9. Então a divisão é exata.',
+  },
+  {
+    enunciado: 'Por que não se divide por zero?',
+    opcoes: ['Nenhum número vezes zero dá o dividendo, então a conta não tem resposta', 'Porque dá zero', 'Porque dá infinito, sem problema nenhum'],
+    correta: 0,
+    explicacao: 'Dividir por 0 exigiria um número que vezes 0 desse, por exemplo, 12. Isso não existe.',
+  },
+  {
+    enunciado: 'Quanto é 24 ÷ 6 ÷ 2, resolvido da esquerda para a direita?',
+    opcoes: ['2', '8', '12'],
+    correta: 0,
+    explicacao: '24 ÷ 6 = 4 e 4 ÷ 2 = 2. Se agrupássemos 6 ÷ 2 primeiro, daria 8: a divisão não é associativa.',
+  },
+  {
+    enunciado: 'Quanto é 3.500 ÷ 100?',
+    opcoes: ['35', '350', '3,5'],
+    correta: 0,
+    explicacao: 'Dividir por 100 tira dois zeros.',
+  },
+  {
+    enunciado: 'Quem introduziu o símbolo ÷, segundo a fonte, e em que ano?',
+    opcoes: ['Johann Rahn, em 1659', 'Leibniz, em 1684', 'Pascal, em 1642'],
+    correta: 0,
+    explicacao: 'Rahn introduziu o ÷ em 1659. Leibniz introduziu os dois pontos (:) em 1684.',
+  },
+  {
+    enunciado: 'Para levar 100 alunos em ônibus de 40 lugares, quantos ônibus são necessários?',
+    opcoes: ['3', '2', '2,5'],
+    correta: 0,
+    explicacao: '100 ÷ 40 = 2 com resto 20. Os 20 restantes precisam de um terceiro ônibus.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Dividir** é repartir em partes iguais ou ver **quantas vezes cabe**. Os termos são **dividendo**, **divisor**, **quociente** e **resto**.
+- É a **operação inversa** da multiplicação: a tabuada ao contrário.
+- **Dividendo = divisor × quociente + resto**, e o **resto é menor que o divisor**.
+- A **divisão armada** repete quatro passos: **dividir, multiplicar, subtrair e baixar**.
+- **Prova real:** quociente × divisor + resto = dividendo.
+- Regras de **divisibilidade**: por 2 (último par), 5 (termina em 0 ou 5), 10 (termina em 0), 3 e 9 (soma dos algarismos).
+- **Dividir por zero é indefinido**: nenhum número vezes 0 dá um dividendo diferente de zero.
+- A divisão **não é comutativa nem associativa**: resolva da esquerda para a direita.
+
+**Um pouco de história.** A divisão longa moderna veio de séculos de tentativas: o exemplo impresso mais antigo é de 1491, e por volta de 1600 Henry Briggs introduziu o algoritmo que usamos hoje. O símbolo ÷ foi criado por Johann Rahn em 1659, e Leibniz propôs os dois pontos em 1684. Já a chave da conta armada apareceu no século 18.
+
+</Resumo>
+
+Agora você domina as quatro operações. Na próxima cápsula, vamos ver o que acontece quando elas aparecem **juntas** numa mesma conta: por que 2 + 3 × 4 dá 14 e não 20?
+
+<Conexoes />
+
+</Etapa>
