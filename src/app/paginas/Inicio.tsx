@@ -1,10 +1,11 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import PortasTeaser from '../../components/simulacoes/PortasTeaser'
 import Rotulo from '../../components/ui/Rotulo'
 import Ficha from '../../components/ui/Ficha'
 import { botaoPrimario, botaoSecundario, cartao } from '../../components/ui/estilos'
-import { buscarCapsula, numeroDaCapsula } from '../../conteudo/indice'
-import { etapas } from '../../conteudo/etapas'
+import { buscarCapsula, capsulas, linhaDaCapsula, linhas, numeroDaCapsula } from '../../conteudo/indice'
+import CartaoDaLinha from '../../components/mapa/CartaoDaLinha'
+import { useTodoProgresso } from '../../hooks/useProgresso'
 import { useCartoesDeHoje } from '../../hooks/useCartoes'
 
 const paraComecar = ['monty-hall', 'porcentagem', 'como-a-internet-funciona'].map((id) => buscarCapsula(id)!)
@@ -17,6 +18,9 @@ const combinado = [
 
 export default function Inicio() {
   const pendentes = useCartoesDeHoje().length
+  const progresso = useTodoProgresso()
+  const navegar = useNavigate()
+  const retomar = capsulas.find((c) => !progresso[c.id]?.concluida && (progresso[c.id]?.concluidas.length ?? 0) > 0)
   return (
     <>
       {pendentes > 0 && (
@@ -26,6 +30,17 @@ export default function Inicio() {
               Você tem {pendentes} {pendentes === 1 ? 'cartão' : 'cartões'} para revisar hoje.
             </p>
             <Link to="/revisar" className={botaoPrimario}>Revisar agora</Link>
+          </div>
+        </section>
+      )}
+      {retomar && (
+        <section className="mx-auto max-w-3xl px-4 pt-4">
+          <div className={`${cartao} flex flex-wrap items-center justify-between gap-3 p-4 sm:p-5`}>
+            <p className="min-w-0 font-semibold">
+              <span className="block text-sm font-normal text-suave">Continuar de onde parou</span>
+              {retomar.titulo}
+            </p>
+            <Link to={`/capsula/${retomar.id}`} className={botaoPrimario}>Continuar</Link>
           </div>
         </section>
       )}
@@ -49,20 +64,23 @@ export default function Inicio() {
         <PortasTeaser />
       </section>
 
-      <section className="mx-auto mt-24 max-w-5xl px-4 sm:mt-32">
-        <Rotulo>Como é uma cápsula</Rotulo>
+      <section className="mx-auto mt-16 max-w-5xl px-4 sm:mt-24">
+        <Rotulo>Suas trilhas</Rotulo>
         <h2 className="mt-3 max-w-2xl font-serif text-3xl font-medium leading-tight sm:text-[2.6rem]">
-          Nada de aula de 40 minutos. <em>Sete paradas</em>, e você decide até onde ir.
+          Escolha uma linha e <em>siga seu ritmo.</em>
         </h2>
-        <ol className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
-          {etapas.map((e, i) => (
-            <li key={e.id} className={`${cartao} rounded-2xl p-5`}>
-              <span className="grid size-8 place-items-center rounded-full bg-fundo text-sm font-bold text-suave">{i + 1}</span>
-              <p className="mt-4 font-semibold">{e.nome}</p>
-              <p className="mt-0.5 text-sm leading-snug text-suave">{e.dica}</p>
-            </li>
+        <p className="mt-3 max-w-xl text-suave">Cada cápsula tem sete paradas curtas: do palpite ao desafio final. Você decide até onde ir.</p>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          {linhas.map((l) => (
+            <CartaoDaLinha
+              key={l.id}
+              linha={l}
+              capsulas={capsulas.filter((c) => linhaDaCapsula(c) === l.id)}
+              progresso={progresso}
+              aoAbrir={() => navegar(`/mapa?linha=${l.id}`)}
+            />
           ))}
-        </ol>
+        </div>
       </section>
 
       <section className="mx-auto mt-24 max-w-5xl px-4 sm:mt-32">
