@@ -1,0 +1,361 @@
+import MoedorDeHash from '../../../components/simulacoes/MoedorDeHash'
+import LoginComHash from '../../../components/simulacoes/LoginComHash'
+import SalNaSenha from '../../../components/simulacoes/SalNaSenha'
+import TempoParaQuebrar from '../../../components/simulacoes/TempoParaQuebrar'
+import FatoresDeLogin from '../../../components/simulacoes/FatoresDeLogin'
+import LimiteDeTentativas from '../../../components/simulacoes/LimiteDeTentativas'
+
+{/* Fatos conferidos na Wikipedia em inglês (Cryptographic hash function, Password hashing, Multi-factor authentication), listadas no meta.ts. O hash das simulações é de brinquedo (32 bits) e as velocidades de ataque são números de comparação, não medições. */}
+
+<Etapa id="gancho">
+
+Você esquece a senha de um site, aperta "Esqueci minha senha" e recebe um e-mail. Em alguns casos, o e-mail traz um **link para criar uma senha nova**. Em outros (e isso é mau sinal!), o e-mail traz a **sua senha antiga, escrita por extenso**.
+
+A diferença entre os dois mostra algo importante sobre como o site guarda sua senha. No primeiro caso, o site **nem sabe** qual é a sua senha. No segundo, ela estava guardada em texto puro, como um bilhete numa gaveta, esperando um ladrão.
+
+<Palpite
+  chave="inicial"
+  pergunta="Um site que consegue te enviar sua senha antiga por e-mail está guardando-a de que jeito?"
+  opcoes={['De forma segura e secreta', 'Em texto puro (ou de um jeito que dá para desfazer), o que é um mau sinal', 'Não guarda: adivinha a senha na hora']}
+/>
+
+Nesta cápsula você vai conhecer o **hash**, ver como um site confere sua senha sem guardá-la, descobrir o que é **sal**, medir quanto tempo leva para quebrar senhas fracas e fortes, aprender os **três tipos de prova de identidade** e ver por que limitar tentativas protege.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Proteger senhas é um problema tão antigo quanto os computadores com várias pessoas usando.
+
+<LinhaDoTempo marcos={[
+  { ano: '1978', texto: 'O crypt(3), do Unix, escrito por Robert Morris, guarda senhas "embaralhadas" (limite de 8 caracteres, sal de 12 bits).' },
+  { ano: '1991', texto: 'Ronald Rivest cria o MD5, que gera um resumo de 128 bits.' },
+  { ano: '1995', texto: 'O SHA-1 é publicado, com resumo de 160 bits.' },
+  { ano: '1996', texto: 'A AT&T descreve um sistema de códigos enviados a pagers para autorizar transações, um dos primeiros usos de segundo fator.' },
+  { ano: '2001', texto: 'A NSA publica o SHA-2 (que inclui SHA-256 e SHA-512).' },
+  { ano: '2004', texto: 'Colisões do MD5 são encontradas, em agosto.' },
+  { ano: '2015', texto: 'O Argon2 vence a competição de hash de senhas (20 de julho) e o SHA-3 é lançado (5 de agosto).' },
+  { ano: '2017', texto: 'O Google anuncia uma colisão prática do SHA-1, em fevereiro. Ele passa a ser considerado quebrado.' },
+]} />
+
+## Embaralhar a senha desde os anos 1970
+
+Nos primeiros sistemas Unix, as senhas ficavam num arquivo. Guardá-las em texto puro era perigoso, então em 1978 Robert Morris escreveu a função **crypt(3)**: ela "criptografava" uma constante usando a **senha como chave**, repetindo uma versão modificada do algoritmo DES 25 vezes e acrescentando um **sal** de 12 bits. Limitava as senhas a 8 caracteres. Com os computadores ficando mais rápidos, o projeto deixou de ser suficiente.
+
+## O hash ganha as famílias MD e SHA
+
+O **MD5**, de Ronald Rivest (1991, especificado em 1992), gera um "resumo" de 128 bits. O **SHA-1** (1995) gera 160 bits. O **SHA-2** (2001) inclui os conhecidos SHA-256 e SHA-512. O **SHA-3** foi lançado em 5 de agosto de 2015.
+
+Mas funções de hash envelhecem. Em agosto de 2004, **colisões** do MD5 foram encontradas, e em 2008 um ataque prático foi usado para criar um certificado falso de autoridade certificadora. Hoje colisões do MD5 saem em segundos. Em fevereiro de 2017, o Google anunciou uma colisão prática do SHA-1, que passou a ser considerado quebrado.
+
+## Senhas exigem hashes lentos
+
+Para senhas, a lição foi inesperada: um hash **rápido** é um problema, porque ajuda o atacante a testar milhões de chutes por segundo. Surgiram hashes **lentos de propósito**, como **bcrypt**, **scrypt** e **Argon2**. O Argon2 venceu a *Password Hashing Competition*, anunciada em 20 de julho de 2015. A lista de prioridade da OWASP (maio de 2023) recomenda Argon2id, depois scrypt, bcrypt (considerado legado) e PBKDF2.
+
+Um caso real mostra o custo da escolha errada: no vazamento do site Ashley Madison, mais de **11 milhões de senhas** foram quebradas porque algumas contas usavam o MD5 (rápido) em vez do bcrypt (lento).
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O hash: uma máquina de moer
+
+Um **hash** é uma "máquina de moer" matemática: você joga qualquer texto dentro e sai um **resumo de tamanho fixo**, como uma impressão digital do texto. Uma **função de hash criptográfica** tem estas propriedades (da fonte):
+
+- **Determinística:** o mesmo texto sempre dá o mesmo resumo, e é rápida de calcular.
+- **De mão única:** dado o resumo, deve ser inviável achar o texto original. Ela é "fácil de calcular, difícil de reverter".
+- **Resistente a colisões:** deve ser inviável achar dois textos diferentes com o mesmo resumo.
+- **Efeito avalanche:** uma mudança minúscula no texto muda o resumo drasticamente.
+
+Pense num liquidificador: você consegue transformar uma banana em vitamina, mas não consegue transformar a vitamina de volta numa banana.
+
+<MoedorDeHash />
+
+<ExemploResolvido titulo="Resumo de tamanho fixo">
+  <Passo>Você mói "oi" e sai um resumo de 8 dígitos (no nosso brinquedo).</Passo>
+  <Passo>Você mói um texto de 1.000 palavras: sai um resumo **também de 8 dígitos**.</Passo>
+  <Passo>Mói "oi" outra vez: sai **exatamente o mesmo** resumo do primeiro.</Passo>
+  <Passo>Mói "oj" (uma letra diferente): sai um resumo **totalmente diferente**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O mesmo texto, moído duas vezes, gera o mesmo hash? (sim ou nao)" resposta="sim" dica="A função é determinística." resolucao="Sim: a função de hash é determinística." />
+
+<Exercicio enunciado="Dá para recuperar o texto original a partir do hash? (sim ou nao)" resposta="nao" dica="É uma função de mão única." resolucao="Não: o hash foi feito para ser difícil de reverter." />
+
+## 2. Como o site confere a senha sem guardá-la
+
+Quando você cria a conta, o site calcula o **hash** da sua senha e guarda **só o hash**. Quando você tenta entrar, ele calcula o hash do que você digitou e **compara** com o guardado. Se forem iguais, a senha estava certa. O site **nunca precisa saber** a sua senha.
+
+Se o banco de dados vazar (e já vazaram muitos), o ladrão só leva hashes, e não consegue "desmoer" para descobrir as senhas.
+
+<ExemploResolvido titulo="Criando a conta e entrando">
+  <Passo>Você cria a conta com a senha "gato123".</Passo>
+  <Passo>O servidor calcula o hash de "gato123" e guarda **só o hash** no banco de dados.</Passo>
+  <Passo>Depois você digita "gato123" para entrar. O servidor calcula o hash e compara: **iguais**, então você entra.</Passo>
+  <Passo>Se alguém digitar "gato124", o hash é totalmente diferente: **entrada recusada**.</Passo>
+</ExemploResolvido>
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="O banco de dados de um site vaza. O ladrão lê a linha da Ana. Em qual situação ele descobre a senha dela imediatamente?"
+  opcoes={['Quando o site guarda o hash da senha', 'Quando o site guarda a senha pura', 'Nas duas situações']}
+  correta={1}
+  explicacao="Com a senha pura, basta ler. Com o hash, o ladrão tem só um resumo de mão única, e precisaria adivinhar a senha testando muitos chutes."
+>
+
+Veja o que o ladrão enxerga em cada caso, e como o login funciona com o hash:
+
+<LoginComHash />
+
+Repare: nos dois casos a Ana entra com a senha certa. A diferença está no que **fica exposto** se o banco vazar.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['De forma segura e secreta', 'Em texto puro (ou de um jeito que dá para desfazer), o que é um mau sinal', 'Não guarda: adivinha a senha na hora']}
+  correta={1}
+  seAcertou="E o palpite do começo? Isso: se o site consegue te enviar a senha antiga, ele a guardou de um jeito reversível, o que é um mau sinal. O correto é mandar um link para criar uma senha nova."
+  seErrou="E o palpite do começo? Se o site consegue te mostrar a senha antiga, ela estava guardada em texto puro (ou de um jeito reversível). Sites sérios só guardam o hash e mandam um link para você criar uma senha nova."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## O problema: pessoas escolhem senhas parecidas
+
+O hash é de mão única, mas o ladrão não precisa reverter nada. Ele pode **adivinhar**: calcula o hash de "123456", compara com os hashes do banco, depois de "senha", "qwerty", e assim por diante. Isso se chama **ataque de dicionário** (testar senhas comuns) ou de **força bruta** (testar todas as combinações). A fonte lembra que esses ataques funcionam contra senhas de **baixa entropia**, ou seja, previsíveis.
+
+Pior: como o hash é determinístico, **quem tem a mesma senha tem o mesmo hash**. O ladrão pode até calcular uma tabela pronta de hashes de senhas comuns, uma vez, e reaproveitá-la contra qualquer site.
+
+## O sal: um tempero diferente para cada pessoa
+
+A solução é o **sal** (*salt*): um valor aleatório, **não secreto**, que se junta à senha **antes** de calcular o hash. Cada pessoa tem o seu próprio sal, guardado ao lado do hash. A fonte explica que o sal impede o atacante de **pré-calcular um dicionário** de resultados.
+
+Três pessoas usam a mesma senha, 123456. Veja o que o site guarda, sem sal e com sal:
+
+<SalNaSenha />
+
+<ExemploResolvido titulo="Com sal e sem sal">
+  <Passo>Sem sal: Ana, Bruno e Carla usam "123456", e os três hashes são **iguais**.</Passo>
+  <Passo>O ladrão calcula o hash de "123456" uma vez e acha as **três** contas de uma vez.</Passo>
+  <Passo>Com sal: o servidor junta um sal aleatório diferente à senha de cada um antes de moer.</Passo>
+  <Passo>Os três hashes ficam **diferentes**. Para quebrar cada conta, o ladrão precisa refazer o trabalho do zero.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Sem sal, duas pessoas com a mesma senha têm o mesmo hash? (sim ou nao)" resposta="sim" dica="O hash é determinístico." resolucao="Sim: mesma entrada, mesmo hash. É por isso que o sal é útil." />
+
+<Aprofundar titulo="Sal não é segredo">
+O sal **não precisa ser secreto**: ele fica guardado no banco, ao lado do hash. O que ele faz é impedir o reaproveitamento de trabalho: como cada pessoa tem um sal diferente, um dicionário pré-calculado (uma tabela de hashes de senhas comuns) deixaria de servir, e o atacante teria de calcular tudo de novo para cada conta. O que protege contra o chute em si é a **lentidão** do hash e a **força** da senha, que veremos a seguir.
+</Aprofundar>
+
+## Quanto tempo leva para quebrar?
+
+Cada **caractere a mais** na senha multiplica o número de possibilidades. Uma senha com `n` caracteres de um alfabeto de `k` símbolos tem `k` elevado a `n` combinações. Mexa nos controles:
+
+<TempoParaQuebrar />
+
+<ExemploResolvido titulo="Contando combinações">
+  <Passo>Um PIN de 4 dígitos usa o alfabeto de 10 números.</Passo>
+  <Passo>Combinações: 10 × 10 × 10 × 10 = **10.000**.</Passo>
+  <Passo>Se o atacante testa 1.000 por segundo, leva 10.000 ÷ 1.000 = **10 segundos** para testar todos.</Passo>
+  <Passo>Por isso PIN de 4 dígitos sem limite de tentativas é fraquíssimo.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas combinações tem um PIN de 4 dígitos (0000 a 9999)? (número)" resposta="10000" dica="10 × 10 × 10 × 10." resolucao="10.000 combinações." />
+
+<Exercicio enunciado="Quantas combinações tem uma senha de 5 dígitos? (número)" resposta="100000" dica="10 elevado a 5." resolucao="10^5 = 100.000." />
+
+<Exercicio enunciado="Um atacante testa 1.000 senhas por segundo contra 10.000 combinações. Quantos segundos para testar todas? (número)" resposta="10" dica="10.000 dividido por 1.000." resolucao="10.000 ÷ 1.000 = 10 segundos." />
+
+Duas lições aparecem: **tamanho importa mais que enfeite** (um caractere a mais multiplica o trabalho) e **a velocidade do hash também importa**. A fonte explica que hashes rápidos permitem testar muito rápido espaços pequenos de senhas, e que as placas de vídeo (GPUs) e circuitos dedicados (ASICs) agravam isso. Por isso se usam funções **lentas de propósito**.
+
+<Aprofundar titulo="Key stretching: deixar o hash lento de propósito">
+Para senhas, o hash ideal é **lento**. O truque se chama **alongamento de chave** (*key stretching*): repetir o cálculo muitas vezes. Isso não atrapalha quem entra (um login com 0,1 segundo a mais passa batido), mas multiplica o custo para quem testa **bilhões** de chutes. A fonte diz que o NIST recomenda **pelo menos 10.000 iterações**, e que o limite prático é o que as pessoas toleram esperar. Funções feitas para isso: **PBKDF2**, **bcrypt**, **scrypt** e **Argon2**.
+</Aprofundar>
+
+<Exercicio enunciado="Quantas iterações, no mínimo, o NIST recomenda para o alongamento de chave? (número)" resposta="10000" dica="É um número redondo, de 5 dígitos." resolucao="Pelo menos 10.000 iterações." />
+
+<Aprofundar titulo="O que fazer com um hash rápido, como MD5 ou SHA-256">
+Hashes como MD5, SHA-1 e SHA-256 foram feitos para ser **rápidos**: servem para conferir se um arquivo foi alterado no caminho (**integridade**) e para **assinaturas digitais**, em que se assina o resumo de tamanho fixo em vez da mensagem inteira. A fonte diz que, para senhas, hashes rápidos de uso geral **já não são considerados seguros**, e recomenda PBKDF2, scrypt ou Argon2 com sal. MD5 e SHA-1 estão quebrados em termos de colisão, então nem para integridade são recomendados em contextos de segurança.
+</Aprofundar>
+
+## Quem é você? Os fatores de autenticação
+
+Fazer **login** é **provar quem você é**. Isso se chama **autenticação**. A fonte lista três grandes tipos de prova, chamados **fatores**:
+
+- **Conhecimento:** algo que você **sabe**, como senha, PIN ou frase secreta.
+- **Posse:** algo que você **tem**, como celular, cartão ou chave de segurança.
+- **Inerência:** algo que você **é**, como impressão digital, rosto ou voz.
+
+A **autenticação em dois fatores** (2FA) exige **dois tipos diferentes**. O exemplo do caixa eletrônico é clássico: o **cartão** (algo que você tem) e a **senha** (algo que você sabe). Duas senhas **não** valem como dois fatores: são do mesmo tipo.
+
+<FatoresDeLogin />
+
+<ExemploResolvido titulo="Quantos fatores?">
+  <Passo>No caixa eletrônico você usa o **cartão** e o **PIN**.</Passo>
+  <Passo>O cartão é algo que você **tem** (posse). O PIN é algo que você **sabe** (conhecimento).</Passo>
+  <Passo>São **dois tipos diferentes**: autenticação em **dois fatores**.</Passo>
+  <Passo>Se fossem duas senhas, ainda seriam **um** fator só (conhecimento).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O cartão do banco é algo que você sabe, tem ou é? (sabe, tem ou e)" resposta="tem" dica="É um objeto." resolucao="O cartão é algo que você tem: fator de posse." />
+
+<Exercicio enunciado="A impressão digital é algo que você sabe, tem ou é? (sabe, tem ou e)" resposta="e" dica="É uma característica do seu corpo." resolucao="A impressão digital é algo que você é: fator de inerência." />
+
+<Exercicio enunciado="Cartão mais PIN: quantos fatores (tipos diferentes)? (número)" resposta="2" dica="Um é posse, o outro é conhecimento." resolucao="São 2 fatores: posse e conhecimento." />
+
+## Os segundos fatores na prática
+
+- **Código por SMS:** um código de uso único chega por mensagem. É a opção mais usada, mas tem **preocupações de segurança**: trocas fraudulentas de chip (SIM swap) e falhas na rede de sinalização das operadoras (SS7). Em 2017, clientes de uma operadora alemã tiveram códigos redirecionados por um ataque desse tipo.
+- **Aplicativo autenticador:** mostra um código que muda a cada poucos segundos (**TOTP**, senha de uso único baseada em tempo). O código é gerado dentro do aplicativo, e não enviado pela rede.
+- **Chave de segurança física** (incluindo as com padrão FIDO2): segundo a fonte, é geralmente **a opção mais segura**.
+
+Mesmo assim, nenhum método é perfeito. A fonte lista fraquezas: **phishing** (um site falso que engana a pessoa para dar o código), **ataques de fadiga** (inundar a pessoa de pedidos de aprovação até ela aceitar um por engano) e **recuperação de conta** (muitas vezes, a recuperação ignora o segundo fator).
+
+<Aprofundar titulo="Autenticação e autorização">
+São duas palavras parecidas, com trabalhos diferentes. **Autenticar** é descobrir **quem você é** (provar a identidade, com senha, código, digital). **Autorizar** é decidir **o que você pode fazer** depois de identificado (ver só os seus pedidos, apagar só os seus dados, ser administrador). Primeiro vem a autenticação; só depois faz sentido perguntar o que a pessoa pode fazer. Um erro comum de projeto é só autenticar e esquecer de autorizar. É a regra de ouro de novo: o servidor confere **cada** pedido.
+</Aprofundar>
+
+## Limitando as tentativas
+
+Mesmo um bom segundo fator precisa de defesas simples. A mais importante é **limitar as tentativas**. Um PIN de 4 dígitos tem 10.000 possibilidades. Se o sistema bloqueia depois de 3 erros, quem chuta tem **3 chances em 10.000** (0,03%). Sem limite, tem certeza de acertar. A fonte lista a **limitação insuficiente de tentativas** entre as fraquezas: atacantes podem tentar adivinhar códigos ou reiniciar o limite trocando de sessão ou de endereço IP.
+
+<LimiteDeTentativas />
+
+<ExemploResolvido titulo="Chance de acertar chutando">
+  <Passo>O PIN tem 4 dígitos: **10.000** possibilidades.</Passo>
+  <Passo>O sistema bloqueia depois de 3 tentativas.</Passo>
+  <Passo>A chance de acertar é 3 em 10.000, ou seja, **0,03%**.</Passo>
+  <Passo>Sem bloqueio, o ladrão poderia testar todas as 10.000 e acertaria com certeza.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um PIN de 4 dígitos, com bloqueio depois de 3 erros: em 10.000 possibilidades, quantas o chutador consegue testar? (número)" resposta="3" dica="É o limite de tentativas." resolucao="Só 3 tentativas: 3 chances em 10.000." />
+
+<Aprofundar titulo="Por que não dá para ser 100% seguro">
+Cada defesa tem um ponto fraco. O hash lento protege o banco vazado, mas não impede o **phishing**. O segundo fator protege contra senha roubada, mas pode ser driblado por fadiga de aprovações ou por falhas na recuperação de conta. O limite de tentativas protege contra chute, mas não contra quem **já sabe** a senha. A segurança vem de **camadas**: senha forte e única, hash lento com sal, segundo fator, limite de tentativas, avisos de acesso novo e backups. A fonte menciona que em 2022 a Microsoft acrescentou "correspondência de número" em seu autenticador, contra os ataques de fadiga, e que a CISA recomendou autenticação resistente a phishing.
+</Aprofundar>
+
+## O que você, como pessoa usuária, pode fazer
+
+- Use uma senha **diferente para cada site**: se um site vazar, os outros ficam seguros.
+- Prefira senhas **longas** (frases) a senhas curtas cheias de símbolos: cada caractere a mais multiplica o trabalho do atacante.
+- Ative a **verificação em dois passos**, de preferência por **aplicativo autenticador** ou **chave de segurança**, em vez de SMS.
+- Desconfie de qualquer site que **te mande a senha por e-mail**.
+- Use um **gerenciador de senhas**, para não depender da memória.
+
+E como pessoa que **constrói** sistemas: **nunca** guarde senhas puras, **nunca** use MD5 ou SHA-1 para senhas, use um hash lento com sal (como Argon2id ou bcrypt) e, melhor ainda, use um serviço de autenticação pronto e bem testado (o Supabase, usado neste app, é um exemplo) em vez de inventar o seu.
+
+<Exercicio enunciado="Em que ano o Google anunciou uma colisão prática do SHA-1? (número)" resposta="2017" dica="Foi em fevereiro." resolucao="Em fevereiro de 2017." />
+
+<Exercicio enunciado="Quantos bits tem o resumo do MD5? (número)" resposta="128" dica="O SHA-1 tem 160." resolucao="O MD5 gera 128 bits." />
+
+<Exercicio enunciado="Em que ano o SHA-3 foi lançado? (número)" resposta="2015" dica="Foi em agosto." resolucao="Em 5 de agosto de 2015." />
+
+<Exercicio enunciado="Em que ano Robert Morris escreveu o crypt(3) do Unix? (número)" resposta="1978" dica="É o mais antigo da linha do tempo." resolucao="Em 1978." />
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'O que é um hash?',
+    opcoes: ['Um resumo de tamanho fixo calculado a partir de um texto, difícil de reverter', 'Uma senha em texto puro', 'Um tipo de tela'],
+    correta: 0,
+    explicacao: 'O hash é como uma impressão digital do texto: tamanho fixo e mão única.',
+  },
+  {
+    enunciado: 'Como um site confere sua senha sem guardá-la?',
+    opcoes: ['Calcula o hash do que você digitou e compara com o hash guardado', 'Pergunta a outra pessoa', 'Adivinha'],
+    correta: 0,
+    explicacao: 'Hashes iguais indicam senhas iguais, e o site nunca precisa da senha pura.',
+  },
+  {
+    enunciado: 'O que é o efeito avalanche?',
+    opcoes: ['Uma pequena mudança no texto muda o hash por completo', 'O hash fica enorme', 'O hash congela'],
+    correta: 0,
+    explicacao: 'É uma das propriedades de uma boa função de hash.',
+  },
+  {
+    enunciado: 'Para que serve o sal?',
+    opcoes: ['Deixar hashes diferentes mesmo com senhas iguais, e impedir dicionários pré-calculados', 'Deixar o site mais saboroso', 'Apagar a senha'],
+    correta: 0,
+    explicacao: 'O sal é um valor aleatório, único por pessoa, junto da senha antes do hash.',
+  },
+  {
+    enunciado: 'O sal precisa ser secreto?',
+    opcoes: ['Não: ele fica guardado ao lado do hash', 'Sim, e ninguém pode vê-lo', 'Só às terças'],
+    correta: 0,
+    explicacao: 'Ele existe para impedir reaproveitamento de trabalho, e não para esconder nada.',
+  },
+  {
+    enunciado: 'Por que, para senhas, um hash lento é melhor que um hash rápido?',
+    opcoes: ['Porque encarece cada chute do atacante, que testa bilhões', 'Porque ocupa menos espaço', 'Porque é mais bonito'],
+    correta: 0,
+    explicacao: 'Um login a mais de 0,1 segundo não atrapalha, mas multiplica o custo de quem chuta bilhões de senhas.',
+  },
+  {
+    enunciado: 'Qual destes é um fator de posse?',
+    opcoes: ['Uma chave de segurança física', 'A senha', 'A impressão digital'],
+    correta: 0,
+    explicacao: 'Posse é algo que você tem. A senha é conhecimento e a digital é inerência.',
+  },
+  {
+    enunciado: 'Duas senhas diferentes contam como autenticação em dois fatores?',
+    opcoes: ['Não: são do mesmo tipo (conhecimento)', 'Sim, sempre', 'Só no celular'],
+    correta: 0,
+    explicacao: 'Dois fatores significam dois tipos diferentes, como cartão mais PIN.',
+  },
+  {
+    enunciado: 'Qual segundo fator a fonte considera, em geral, o mais seguro?',
+    opcoes: ['Chave de segurança física (como FIDO2)', 'Código por SMS', 'Pergunta sobre o nome do cachorro'],
+    correta: 0,
+    explicacao: 'O SMS é o mais usado, mas tem fraquezas como a troca fraudulenta de chip.',
+  },
+  {
+    enunciado: 'Um PIN de 4 dígitos com bloqueio depois de 3 erros. Qual a chance de acertar chutando?',
+    opcoes: ['3 em 10.000', '3 em 10', '100%'],
+    correta: 0,
+    explicacao: 'São 10.000 possibilidades e só 3 tentativas.',
+  },
+  {
+    enunciado: 'O que mostra o caso do vazamento do Ashley Madison?',
+    opcoes: ['Hash rápido (MD5) ajudou a quebrar mais de 11 milhões de senhas; o certo era usar bcrypt', 'Que hashes são inúteis', 'Que ninguém usa senhas'],
+    correta: 0,
+    explicacao: 'Algumas contas usavam MD5, rápido, e não bcrypt, lento. A escolha do hash faz diferença.',
+  },
+  {
+    enunciado: 'Qual a diferença entre autenticação e autorização?',
+    opcoes: ['Autenticar é provar quem você é; autorizar é decidir o que você pode fazer', 'São sinônimos', 'Autorizar vem sempre antes'],
+    correta: 0,
+    explicacao: 'Primeiro se identifica a pessoa, depois se verifica o que ela pode fazer.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Hash:** resumo de tamanho fixo, determinístico, de mão única e com efeito avalanche. O site guarda o hash, e não a senha.
+- **Login:** o servidor calcula o hash do que você digitou e compara com o guardado.
+- **Sal:** valor aleatório por pessoa, junto da senha, que deixa hashes diferentes e inutiliza dicionários pré-calculados.
+- **Hash lento de propósito** (Argon2, scrypt, bcrypt, PBKDF2) encarece cada chute. MD5 e SHA-1 estão quebrados.
+- **Fatores:** conhecimento (sabe), posse (tem) e inerência (é). Dois fatores exigem tipos diferentes.
+- **Limitar tentativas**, usar senhas longas e únicas e ativar o segundo fator completam a defesa.
+
+**Um pouco de história.** Em 1978, Robert Morris escreveu o crypt(3) do Unix, com sal de 12 bits. Rivest criou o MD5 em 1991, o SHA-1 saiu em 1995 e o SHA-2 em 2001. Colisões do MD5 apareceram em 2004, o Argon2 venceu a competição de senhas em 2015 e o Google quebrou o SHA-1 na prática em 2017.
+
+</Resumo>
+
+Você completou o módulo sobre **como um sistema web é feito**: do salão (front-end) à cozinha (back-end), passando pelo cardápio (API), pela despensa (banco de dados) e pela porta de entrada (login). No próximo módulo, vamos **colocar tudo no ar**.
+
+<Conexoes />
+
+</Etapa>
