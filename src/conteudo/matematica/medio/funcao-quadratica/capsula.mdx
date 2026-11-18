@@ -1,0 +1,372 @@
+import ParabolaInterativa from '../../../../components/simulacoes/ParabolaInterativa'
+import BolaArremessada from '../../../../components/simulacoes/BolaArremessada'
+import SimetriaDaParabola from '../../../../components/simulacoes/SimetriaDaParabola'
+import QuantasRaizes from '../../../../components/simulacoes/QuantasRaizes'
+import LucroMaximo from '../../../../components/simulacoes/LucroMaximo'
+import TresFormas from '../../../../components/simulacoes/TresFormas'
+
+{/* Fatos conferidos na Wikipedia em inglês (Quadratic function, Parabola e Projectile motion), listadas no meta.ts. A página de movimento de projéteis traz aviso de revisão pendente, então só usamos o que é conhecido e conferido por cálculo (g arredondado para 10 m/s² nas contas). O modelo de lucro é de exemplo; a fórmula de Bhaskara e a relação entre soma e produto das raízes são conteúdo geral da BNCC, conferidos por cálculo. */}
+
+<Etapa id="gancho">
+
+Você joga uma bola para cima. Ela sobe rápido, vai **desacelerando**, para por um instante no topo, e começa a descer cada vez mais rápido. Se você anotasse a **altura** da bola a cada instante e fizesse o gráfico, não sairia uma reta, como na função afim: sairia uma **curva em forma de arco**, perfeitamente simétrica, a **parábola**.
+
+A mesma curva aparece nas **antenas parabólicas**, nos **faróis** de carro, nos arcos de fontes e nos gráficos de **lucro**: o preço que dá o lucro máximo costuma ser o vértice de uma parábola. A função que gera essa curva é a **função quadrática**, a de **2º grau**: f(x) = ax² + bx + c.
+
+<Palpite
+  chave="inicial"
+  pergunta="Uma bola é jogada para cima. Quando ela está no ponto mais alto, qual é a sua velocidade vertical naquele instante?"
+  opcoes={['Zero: ela para por um instante antes de começar a descer', 'A mesma de quando saiu da mão', 'Ela continua subindo mais devagar']}
+/>
+
+Nesta cápsula você vai mexer nos coeficientes da parábola, acompanhar uma bola arremessada, ver a **simetria**, descobrir **quantas raízes** uma parábola pode ter, achar o preço do **lucro máximo** e ver a mesma função em **três formas**.
+
+</Etapa>
+
+<Etapa id="historia">
+
+A parábola é uma das curvas mais antigas estudadas, e a história dela passa pelos gregos, pelos astrônomos e por Galileu.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Século 4 a.C.', texto: 'Menecmo é o primeiro conhecido a trabalhar com seções cônicas, incluindo uma abordagem com parábola para duplicar o cubo.' },
+  { ano: 'Século 3 a.C.', texto: 'Arquimedes calcula a área de um segmento de parábola, em A Quadratura da Parábola.' },
+  { ano: 'Séc. 3 a.C.', texto: 'Apolônio dá à curva o nome "parábola".' },
+  { ano: '1638', texto: 'Galileu apresenta o princípio do movimento composto: a trajetória de um projétil é uma parábola.' },
+  { ano: '1668', texto: 'Newton usa um espelho esférico no seu telescópio porque espelhos parabólicos eram difíceis de fabricar.' },
+]} />
+
+## A curva dos gregos
+
+Segundo a fonte, **Menecmo**, no século 4 a.C., foi o primeiro de que se tem notícia a trabalhar com **seções cônicas**, as curvas que aparecem quando um plano corta um cone. A parábola é uma delas. No século 3 a.C., **Arquimedes** calculou a **área** de um pedaço de parábola, um feito notável sem a álgebra moderna. E foi **Apolônio** quem deu à curva o nome **parábola**.
+
+## O que é a parábola, geometricamente
+
+Antes de ser gráfico de função, a parábola era uma **figura geométrica**. Segundo a fonte, ela é o conjunto dos pontos que ficam à **mesma distância** de um ponto fixo (o **foco**) e de uma reta fixa (a **diretriz**). Todas as parábolas têm o **mesmo formato**: qualquer uma pode ser obtida a partir de y = x² por uma mudança de escala. E, segundo a fonte, **toda parábola é o gráfico de uma função quadrática**.
+
+## Galileu e os projéteis
+
+Em 1638, **Galileu** publicou o resultado que ligou a curva ao mundo real: sem a resistência do ar, um objeto lançado segue uma **trajetória parabólica**. A ideia-chave é que o movimento horizontal (velocidade **constante**) e o vertical (aceleração **uniforme**, da gravidade) acontecem **de forma independente**. A fonte chama isso de **princípio do movimento composto**, estabelecido por Galileu em 1638. (A página consultada tem aviso de revisão pendente, então este é um ponto a conferir em livros de física.)
+
+## Antenas, faróis e espelhos
+
+A parábola tem uma propriedade que a torna **muito útil**: a luz que chega **paralela ao eixo** e bate no lado côncavo é refletida **para o foco**. E o contrário também vale: uma fonte no foco produz um feixe **paralelo**. Segundo a fonte, a mesma ideia serve para o som e outras ondas, e é usada em **antenas parabólicas**, **microfones**, **refletores de faróis** de carros e até no estudo de trajetórias de mísseis. Newton, em 1668, usou um espelho esférico no seu telescópio porque espelhos parabólicos eram **difíceis de fabricar**.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O ritmo muda
+
+Na função afim, o ritmo era constante: cada passo em x mudava y pelo mesmo tanto. Na **quadrática**, o ritmo **muda**. A bola sobe rápido no começo, mais devagar perto do topo, e depois desce cada vez mais rápido. É por isso que o gráfico **curva**.
+
+## 2. A fórmula
+
+Segundo a fonte, uma função quadrática de uma variável é **f(x) = ax² + bx + c**, com **a ≠ 0**, e seu gráfico é uma **parábola**. O termo **x²** é o que faz toda a diferença: se a fosse zero, sobraria bx + c, uma função afim.
+
+## 3. Boca para cima ou para baixo
+
+A fonte diz que a parábola abre **para cima** se **a > 0** e **para baixo** se **a < 0**. Com a boca para cima, há um **ponto mais baixo** (o **mínimo**); com a boca para baixo, há um **ponto mais alto** (o **máximo**). Esse ponto extremo se chama **vértice**.
+
+## 4. O vértice e o eixo
+
+O **vértice** tem coordenadas: **xᵥ = -b/(2a)** e **yᵥ = c - b²/(4a)**, segundo a fonte. A reta vertical que passa pelo vértice é o **eixo de simetria**: a parábola é um **espelho** em relação a ele. Se um ponto está a 2 unidades à esquerda do eixo, há outro, com a mesma altura, 2 unidades à direita.
+
+<ExemploResolvido titulo="Vértice de f(x) = x² - 4x + 3">
+  <Passo>Aqui a = 1, b = -4 e c = 3.</Passo>
+  <Passo>xᵥ = -b/(2a) = 4/2 = **2**.</Passo>
+  <Passo>yᵥ = f(2) = 4 - 8 + 3 = **-1**.</Passo>
+  <Passo>Como a é positivo, a parábola abre para cima, e o vértice (2, -1) é o ponto **mais baixo**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Em f(x) = x² - 4x + 3, qual é o x do vértice? (número)" resposta="2" dica="-b/(2a) com b = -4 e a = 1." resolucao="4/2 = 2." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Uma bola é jogada para cima e vai subindo. No ponto mais alto da trajetória, o que acontece com ela naquele instante?"
+  opcoes={['Ela para por um instante (velocidade vertical zero) e depois desce', 'Ela continua subindo com a mesma velocidade', 'Ela cai de uma vez']}
+  correta={0}
+  explicacao="A gravidade vai diminuindo a velocidade da subida até zerar. Nesse instante, a bola está no topo e a velocidade vertical é zero. Depois a velocidade muda de sentido e a bola desce. O topo da trajetória é o vértice da parábola."
+>
+
+Lance a bola e mexa na velocidade inicial e no tempo.
+
+<BolaArremessada />
+
+Agora mexa nos três coeficientes de uma parábola qualquer.
+
+<ParabolaInterativa />
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Zero: ela para por um instante antes de começar a descer', 'A mesma de quando saiu da mão', 'Ela continua subindo mais devagar']}
+  correta={0}
+  seAcertou="E o palpite do começo? Isso: no topo, a velocidade vertical é zero. Esse instante é o vértice da parábola."
+  seErrou="E o palpite do começo? No topo, a velocidade vertical é zero: a bola para por um instante e depois desce. Esse ponto é o vértice da parábola."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Os coeficientes um a um
+
+Em **f(x) = ax² + bx + c**:
+
+- **a** controla a **abertura** e o sentido: positivo abre para cima, negativo para baixo. Quanto **maior o valor absoluto** de a, mais **fechada** (estreita) a parábola.
+- **c** é onde a parábola **corta o eixo y**: f(0) = c.
+- **b** desloca o vértice (xᵥ = -b/(2a)) e define a inclinação da curva ao cruzar o eixo y.
+
+<ExemploResolvido titulo="Lendo f(x) = -x² + 6x - 5">
+  <Passo>a = -1 (negativo): a parábola abre **para baixo**, com um **máximo**.</Passo>
+  <Passo>c = -5: corta o eixo y em (0, -5).</Passo>
+  <Passo>xᵥ = -6/(2 · (-1)) = **3**. yᵥ = f(3) = -9 + 18 - 5 = **4**.</Passo>
+  <Passo>O ponto mais alto é (3, 4).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Em f(x) = -x² + 6x - 5, qual é o valor máximo da função (o y do vértice)? (número)" resposta="4" dica="f(3)." resolucao="-9 + 18 - 5 = 4." />
+
+<Exercicio enunciado="Em f(x) = x² + 5x + 6, onde a parábola corta o eixo y? (número)" resposta="6" dica="É o c." resolucao="f(0) = 6." />
+
+<Exercicio enunciado="A parábola de f(x) = 3x² - 2x + 1 abre para cima ou para baixo? (cima ou baixo)" resposta="cima" dica="Olhe o sinal de a." resolucao="a = 3, positivo: abre para cima." />
+
+## A simetria
+
+Como a parábola é simétrica em relação ao eixo x = xᵥ, **dois valores de x** equidistantes do eixo têm **o mesmo f(x)**. Para um ponto x, o "espelhado" é 2xᵥ - x. Isso economiza trabalho: calculando um lado, você já conhece o outro.
+
+<SimetriaDaParabola />
+
+<ExemploResolvido titulo="Espelhando em f(x) = x² - 4x + 1">
+  <Passo>O eixo está em xᵥ = 4/2 = 2.</Passo>
+  <Passo>f(0,5) = 0,25 - 2 + 1 = -0,75.</Passo>
+  <Passo>O espelho de 0,5 é 2 · 2 - 0,5 = 3,5.</Passo>
+  <Passo>f(3,5) = 12,25 - 14 + 1 = **-0,75**. A mesma altura, como previsto.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Em f(x) = x² - 4x + 1, o eixo de simetria está em x = 2. Qual é o ponto espelhado de x = 0? (número)" resposta="4" dica="2 · 2 - 0." resolucao="4. (f(0) = f(4) = 1.)" />
+
+<Aprofundar titulo="De onde vem o vértice -b/(2a)">
+Uma forma de ver: a parábola é simétrica em relação ao eixo, então o vértice fica **no meio das duas raízes** (se elas existirem). Se as raízes são x₁ e x₂, o meio é (x₁ + x₂)/2. Pela fórmula de Bhaskara, a soma das duas raízes é **-b/a**, e metade disso é **-b/(2a)**. O valor yᵥ = c - b²/(4a) é só f(xᵥ), calculado com essa fórmula. A fonte também apresenta a **forma canônica**, f(x) = a(x - h)² + k, em que o vértice aparece direto: (h, k).
+</Aprofundar>
+
+## As raízes e a fórmula de Bhaskara
+
+As **raízes** (ou **zeros**) são os valores de x em que **f(x) = 0**: onde a parábola cruza o eixo x. Resolva ax² + bx + c = 0 pela **fórmula**:
+
+**x = (-b ± √Δ) / (2a)**, em que **Δ = b² - 4ac** é o **discriminante**.
+
+A fonte diz que o número de raízes reais pode ser **duas, uma ou nenhuma**. O discriminante diz qual:
+
+- **Δ > 0:** duas raízes reais diferentes.
+- **Δ = 0:** uma única raiz (a parábola **encosta** no eixo no vértice).
+- **Δ < 0:** nenhuma raiz real (a parábola não chega ao eixo).
+
+<QuantasRaizes />
+
+<ExemploResolvido titulo="Resolvendo x² - 5x + 6 = 0">
+  <Passo>a = 1, b = -5, c = 6.</Passo>
+  <Passo>Δ = (-5)² - 4 · 1 · 6 = 25 - 24 = **1**. Como Δ é positivo, há duas raízes.</Passo>
+  <Passo>x = (5 ± 1)/2: x₁ = 6/2 = **3** e x₂ = 4/2 = **2**.</Passo>
+  <Passo>Conferindo em f(x) = x² - 5x + 6: f(2) = 4 - 10 + 6 = 0 ✓ e f(3) = 9 - 15 + 6 = 0 ✓.</Passo>
+</ExemploResolvido>
+
+<ExemploResolvido titulo="Quando não há raiz real: x² + x + 1">
+  <Passo>a = 1, b = 1, c = 1.</Passo>
+  <Passo>Δ = 1 - 4 = **-3**, negativo.</Passo>
+  <Passo>Não existe raiz quadrada real de -3, então **não há raízes reais**.</Passo>
+  <Passo>O gráfico fica inteiro acima do eixo x: a parábola abre para cima e o vértice está acima dele.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é o discriminante Δ de x² - 5x + 6? (número)" resposta="1" dica="25 - 24." resolucao="Δ = 1." />
+
+<Exercicio enunciado="Qual é a maior raiz de x² - 5x + 6 = 0? (número)" resposta="3" dica="(5 + 1)/2." resolucao="3." />
+
+<Exercicio enunciado="Quantas raízes reais tem x² + x + 1 = 0? (número)" resposta="0" dica="Δ = -3." resolucao="Nenhuma, porque Δ é negativo." />
+
+<Exercicio enunciado="Qual é o discriminante de x² - 4x + 4? (número)" resposta="0" dica="16 - 16." resolucao="Δ = 0: uma raiz só (x = 2)." />
+
+<Aprofundar titulo="Soma e produto das raízes">
+Das fórmulas sai uma relação elegante: a **soma** das raízes é **-b/a** e o **produto** é **c/a**. Em x² - 5x + 6 = 0, a soma é 5 e o produto é 6, e as raízes 2 e 3 satisfazem: 2 + 3 = 5 e 2 · 3 = 6. Isso permite **chutar raízes inteiras** sem a fórmula: procure dois números que somem 5 e multipliquem 6. É o chamado método da "soma e produto", muito rápido quando as raízes são inteiras.
+</Aprofundar>
+
+## Três formas da mesma função
+
+Segundo a fonte, uma quadrática pode ser escrita de três jeitos, cada um mostrando uma coisa:
+
+- **Padrão:** f(x) = ax² + bx + c. Mostra o **c** (onde corta o eixo y).
+- **Fatorada:** f(x) = a(x - r₁)(x - r₂). Mostra as **raízes** r₁ e r₂.
+- **Canônica (vértice):** f(x) = a(x - h)² + k. Mostra o **vértice** (h, k).
+
+<TresFormas />
+
+<ExemploResolvido titulo="A mesma parábola nas três formas">
+  <Passo>**Fatorada:** f(x) = (x - 1)(x - 5). Raízes 1 e 5.</Passo>
+  <Passo>**Padrão:** desenvolvendo, f(x) = x² - 6x + 5. Corta o eixo y em 5.</Passo>
+  <Passo>**Canônica:** o vértice fica no meio das raízes: h = 3, k = f(3) = -4. Então f(x) = (x - 3)² - 4.</Passo>
+  <Passo>Conferindo: (x - 3)² - 4 = x² - 6x + 9 - 4 = x² - 6x + 5 ✓.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Na forma fatorada f(x) = (x - 1)(x - 5), qual é a maior raiz? (número)" resposta="5" dica="Onde cada fator zera." resolucao="x = 1 e x = 5. A maior é 5." />
+
+<Exercicio enunciado="Em f(x) = (x - 3)² - 4, qual é o valor mínimo? (número)" resposta="-4" dica="O k da forma canônica." resolucao="O mínimo é -4, no vértice (3, -4)." />
+
+## Problemas de máximo e mínimo
+
+Muitos problemas pedem o **máximo** ou o **mínimo** de algo, e o vértice responde. Exemplo: **cercar um terreno retangular** com 40 m de cerca. Se um lado mede x, o outro mede 20 - x, e a área é **A(x) = x(20 - x) = -x² + 20x**. É uma parábola de boca para baixo; o máximo está no vértice, x = 10, e a área é 10 · 10 = **100 m²**: o quadrado é o retângulo de maior área para um perímetro dado.
+
+<ExemploResolvido titulo="O terreno de área máxima">
+  <Passo>Perímetro 40: 2x + 2y = 40, logo y = 20 - x.</Passo>
+  <Passo>Área: A(x) = x(20 - x) = -x² + 20x.</Passo>
+  <Passo>a = -1, b = 20: xᵥ = -20/(2 · (-1)) = **10**.</Passo>
+  <Passo>A(10) = 10 · 10 = **100 m²**. Os lados são iguais: um quadrado.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual a área máxima, em m², de um retângulo com 40 m de perímetro? (número)" resposta="100" dica="Lados iguais a 10." resolucao="10 · 10 = 100." />
+
+<Exercicio enunciado="Dois números somam 10. Qual o maior produto possível? (número)" resposta="25" dica="x(10 - x), vértice em x = 5." resolucao="5 · 5 = 25." />
+
+## Lucro máximo
+
+A parábola também aparece nos **negócios**. Suponha (exemplo) que cada unidade custe R$ 10 e que, ao preço p, se vendam 60 - p unidades por semana. O lucro é **L(p) = (p - 10)(60 - p) = -p² + 70p - 600**. O lucro **máximo** está no vértice: p = 70/2 = **R$ 35**, e o lucro vale **R$ 625**. Preço baixo demais vende muito mas lucra pouco por unidade; preço alto demais lucra muito por unidade mas vende pouco. O equilíbrio é o vértice.
+
+<LucroMaximo />
+
+<ExemploResolvido titulo="Comparando dois preços">
+  <Passo>Ao preço R$ 20: vendem-se 40 unidades. Lucro = (20 - 10) · 40 = **R$ 400**.</Passo>
+  <Passo>Ao preço R$ 35: vendem-se 25. Lucro = (35 - 10) · 25 = **R$ 625**.</Passo>
+  <Passo>Ao preço R$ 50: vendem-se 10. Lucro = (50 - 10) · 10 = **R$ 400**.</Passo>
+  <Passo>Repare na simetria: R$ 20 e R$ 50 dão o mesmo lucro, e o máximo fica no meio (R$ 35).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Ao preço R$ 20 (vendas 60 - p), quanto é o lucro, em reais? (número)" resposta="400" dica="(20 - 10) · 40." resolucao="400." />
+
+<Exercicio enunciado="Qual o preço que dá o lucro máximo, em reais? (número)" resposta="35" dica="Vértice: 70/2." resolucao="35." />
+
+<Aprofundar titulo="A bola: de onde vem -5t²">
+Na física, a altura de um objeto lançado para cima é h(t) = h₀ + v₀t - (1/2)gt², em que **g** é a aceleração da gravidade (cerca de 9,81 m/s² perto da superfície da Terra, segundo a fonte). Nas contas escolares, **arredonda-se g para 10**, e (1/2) · 10 = 5: daí o **-5t²**. O coeficiente a é negativo, então a parábola abre para baixo: há um **máximo**, o topo da trajetória. A fonte diz também que a altura máxima e o alcance **não dependem da massa** do objeto. O ar, na vida real, freia a bola e **achata** a curva, então a parábola é um modelo, não a realidade exata.
+</Aprofundar>
+
+## Quando a bola volta ao chão?
+
+Para saber **quando a bola chega ao chão**, resolva h(t) = 0. Se h(t) = -5t² + 20t (lançada do chão, a 20 m/s), então -5t(t - 4) = 0, e **t = 0** (lançamento) ou **t = 4** (volta ao chão). O topo está no meio: **t = 2**, com altura h(2) = -20 + 40 = **20 m**.
+
+<ExemploResolvido titulo="h(t) = -5t² + 20t">
+  <Passo>Raízes: -5t² + 20t = 0 dá -5t(t - 4) = 0, logo t = 0 ou t = 4.</Passo>
+  <Passo>O vértice fica no meio das raízes: t = 2.</Passo>
+  <Passo>h(2) = -5 · 4 + 20 · 2 = -20 + 40 = **20 m**.</Passo>
+  <Passo>A bola sobe 2 segundos e desce 2 segundos: a parábola é simétrica.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Em h(t) = -5t² + 20t, em que instante (em segundos) a bola chega ao topo? (número)" resposta="2" dica="Meio entre 0 e 4." resolucao="t = 2 s." />
+
+<Exercicio enunciado="Qual a altura máxima, em metros, de h(t) = -5t² + 20t? (número)" resposta="20" dica="h(2)." resolucao="20 m." />
+
+<Exercicio enunciado="Em h(t) = -5t² + 20t, quanto tempo (s) a bola fica no ar? (número)" resposta="4" dica="Raiz diferente de zero." resolucao="4 s." />
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Qual é a forma geral da função quadrática, segundo a fonte?',
+    opcoes: ['f(x) = ax² + bx + c, com a diferente de 0', 'f(x) = ax + b', 'f(x) = a/x'],
+    correta: 0,
+    explicacao: 'O termo x² é o que a distingue da afim.',
+  },
+  {
+    enunciado: 'O gráfico de uma função quadrática é...',
+    opcoes: ['Uma parábola', 'Uma reta', 'Um círculo'],
+    correta: 0,
+    explicacao: 'A fonte afirma que o gráfico é uma parábola.',
+  },
+  {
+    enunciado: 'Se a é negativo, a parábola...',
+    opcoes: ['Abre para baixo e tem um máximo', 'Abre para cima e tem um mínimo', 'Vira uma reta'],
+    correta: 0,
+    explicacao: 'a < 0 abre para baixo, e o vértice é o ponto mais alto.',
+  },
+  {
+    enunciado: 'Qual é o x do vértice de f(x) = x² - 4x + 3?',
+    opcoes: ['2', '4', '-2'],
+    correta: 0,
+    explicacao: '-b/(2a) = 4/2 = 2.',
+  },
+  {
+    enunciado: 'Qual é o discriminante de x² - 5x + 6?',
+    opcoes: ['1', '49', '-1'],
+    correta: 0,
+    explicacao: '25 - 24 = 1.',
+  },
+  {
+    enunciado: 'Se Δ é negativo, a equação ax² + bx + c = 0...',
+    opcoes: ['Não tem raízes reais', 'Tem duas raízes', 'Tem uma raiz'],
+    correta: 0,
+    explicacao: 'Não existe raiz quadrada real de número negativo, e a parábola não toca o eixo x.',
+  },
+  {
+    enunciado: 'Quais são as raízes de x² - 5x + 6 = 0?',
+    opcoes: ['2 e 3', '1 e 6', '-2 e -3'],
+    correta: 0,
+    explicacao: '(5 ± 1)/2 dá 3 e 2. Soma 5 e produto 6.',
+  },
+  {
+    enunciado: 'Onde a parábola de f(x) = ax² + bx + c corta o eixo y?',
+    opcoes: ['Em (0, c)', 'Em (0, b)', 'Em (0, a)'],
+    correta: 0,
+    explicacao: 'f(0) = c.',
+  },
+  {
+    enunciado: 'O que é o eixo de simetria da parábola?',
+    opcoes: ['A reta vertical que passa pelo vértice (x = -b/(2a))', 'O eixo y', 'A reta horizontal pelo vértice'],
+    correta: 0,
+    explicacao: 'A parábola é um espelho em relação a ele.',
+  },
+  {
+    enunciado: 'Qual o maior produto de dois números que somam 10?',
+    opcoes: ['25', '24', '30'],
+    correta: 0,
+    explicacao: 'x(10 - x) é máximo em x = 5: 5 · 5 = 25.',
+  },
+  {
+    enunciado: 'Quem mostrou, em 1638, que um projétil segue uma parábola (princípio do movimento composto)?',
+    opcoes: ['Galileu', 'Arquimedes', 'Apolônio'],
+    correta: 0,
+    explicacao: 'A fonte atribui a Galileu o princípio do movimento composto, de 1638. Apolônio deu o nome à curva.',
+  },
+  {
+    enunciado: 'Por que antenas e faróis usam o formato parabólico?',
+    opcoes: ['A parábola reflete o que chega paralelo ao eixo para o foco (e vice-versa)', 'Porque é mais bonita', 'Porque é mais barata'],
+    correta: 0,
+    explicacao: 'É a propriedade refletora da parábola, citada na fonte para antenas, microfones e refletores de faróis.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Função quadrática:** f(x) = ax² + bx + c, com a ≠ 0. O gráfico é uma **parábola**.
+- **a > 0:** abre para cima (mínimo). **a < 0:** abre para baixo (máximo).
+- **Vértice:** xᵥ = -b/(2a) e yᵥ = c - b²/(4a). O **eixo de simetria** passa por ele.
+- **c** é onde corta o eixo y. As **raízes** vêm de x = (-b ± √Δ)/(2a), com **Δ = b² - 4ac**.
+- **Δ > 0:** duas raízes; **Δ = 0:** uma; **Δ < 0:** nenhuma real.
+- Soma das raízes = -b/a; produto = c/a.
+- Três formas: **padrão**, **fatorada** (mostra raízes) e **canônica** (mostra o vértice).
+- O vértice resolve problemas de **máximo e mínimo**: área, lucro, altura da bola.
+
+**Um pouco de história.** Menecmo estudou as cônicas no século 4 a.C., Arquimedes mediu a área de um segmento de parábola e Apolônio deu à curva o seu nome. Em 1638, Galileu mostrou que um projétil sem resistência do ar segue uma parábola. E a propriedade refletora da curva explica as antenas parabólicas e os refletores de faróis.
+
+</Resumo>
+
+Na quadrática, o ritmo muda aos poucos. E se uma quantidade **dobrar a cada passo**? O crescimento vira explosivo: é o assunto da **função exponencial**.
+
+<Conexoes />
+
+</Etapa>
