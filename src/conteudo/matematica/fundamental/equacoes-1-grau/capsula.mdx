@@ -1,0 +1,431 @@
+import BalancaDeEquacao from '../../../../components/simulacoes/BalancaDeEquacao'
+import TesteDeValor from '../../../../components/simulacoes/TesteDeValor'
+import TraduzirProblema from '../../../../components/simulacoes/TraduzirProblema'
+import CorridaDeTaxi from '../../../../components/simulacoes/CorridaDeTaxi'
+import CacaAoErro from '../../../../components/simulacoes/CacaAoErro'
+import TruqueDoNumero from '../../../../components/simulacoes/TruqueDoNumero'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Equals sign, Algebra, Linear equation), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Pense num número. Dobre. Some 6. Divida por 2. Agora **tire o número que você pensou**. O resultado é... **3**. Sempre. Não importa se você pensou em 7, em 100 ou em −20.
+
+Parece mágica, mas é matemática. E existe uma ferramenta que explica o truque e resolve milhares de problemas parecidos, do preço de uma corrida de táxi à idade de uma pessoa: a **equação**.
+
+<Palpite
+  chave="inicial"
+  pergunta="Você pensou num número, somou 5 e deu 12. Qual era o número?"
+  opcoes={['17', '7', '60']}
+/>
+
+Nesta cápsula você vai equilibrar uma balança, testar valores até acertar o x, traduzir histórias para equações, descobrir quantos quilômetros rodou um táxi e caçar erros em contas erradas.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Resolver "problemas de descobrir um número" é uma das coisas mais antigas da matemática. Mas o jeito de **escrever** isso demorou séculos para ficar simples.
+
+<LinhaDoTempo marcos={[
+  { ano: 'c. 1650 a.C.', texto: 'O Papiro de Rhind, do Egito, traz problemas de álgebra, entre eles equações lineares.' },
+  { ano: 'c. 250 d.C.', texto: 'Diofanto escreve a Arithmetica e é o primeiro a experimentar símbolos para os números desconhecidos.' },
+  { ano: '825', texto: 'Al-Khwarizmi publica o "Livro Compendioso sobre Cálculo por Restauração e Balanceamento", com a primeira teoria analítica de resolver equações.' },
+  { ano: '1557', texto: 'Robert Recorde publica o sinal de igual (=) no livro The Whetstone of Witte.' },
+  { ano: 'Séculos XVI e XVII', texto: 'Viète e Descartes passam a usar letras para os valores desconhecidos e para as operações.' },
+]} />
+
+## Problemas antigos, sem letras
+
+Há cerca de 3.600 anos, escribas egípcios copiaram no Papiro de Rhind problemas do tipo "um número mais uma parte dele dá tal valor". Os babilônios, em tabletes de argila da mesma época, também ensinavam a resolver equações. Mas ninguém escrevia "x": tudo era contado em palavras.
+
+## A palavra "álgebra"
+
+No ano 825, o matemático persa **al-Khwarizmi** publicou um livro cujo título trazia a palavra árabe *al-jabr* ("completar", "restaurar"). Ela vem da ideia de **mover um termo para o outro lado** da equação para restaurar o equilíbrio. Dessa palavra nasceu **álgebra**. Ele classificou as equações em seis tipos e deu regras para resolver cada um. (Curiosidade: a palavra *al-jabr* também era usada para o ato de consertar ossos.)
+
+## O sinal de igual
+
+Imagine escrever "é igual a" por extenso em cada linha. Foi assim durante séculos. Em 1557, o galês **Robert Recorde** inventou duas linhas paralelas, porque, segundo ele, "duas coisas não podem ser mais iguais". O primeiro sinal era bem mais comprido que o de hoje. Ele demorou para pegar: só no início do século XVIII se tornou dominante, em boa parte porque Newton e Leibniz o usaram.
+
+## Letras no lugar de números
+
+Nos séculos XVI e XVII, **Viète** e **Descartes** consolidaram o hábito de usar letras para as incógnitas, que é como escrevemos hoje. Só então o "problema em palavras" pôde virar uma equação curta.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. A balança
+
+Imagine uma balança de dois pratos, em **equilíbrio**. À esquerda: um saquinho misterioso (peso desconhecido, o nosso **x**) e 3 pesinhos de 1 kg. À direita: 8 pesinhos de 1 kg. Escrevemos assim:
+
+**x + 3 = 8**
+
+O sinal de igual é a balança equilibrada. Para descobrir o peso do saquinho, a regra é uma só:
+
+<Termo cor="coral">O que você faz num prato, faz no outro.</Termo>
+
+Tire 3 pesinhos **dos dois lados**: a balança continua equilibrada, e sobra **x = 5**. Experimente:
+
+<BalancaDeEquacao />
+
+Repare que você nunca "passa para o outro lado e troca o sinal" por mágica. O que acontece é que **tirar 3 dos dois lados** deixa o x sozinho. A "regra do troca de sinal" é só um atalho dessa ideia.
+
+<ExemploResolvido titulo="Resolver x + 3 = 8 na balança">
+  <Passo>Equação: x + 3 = 8. A balança tem o saquinho e 3 pesinhos de um lado, 8 pesinhos do outro.</Passo>
+  <Passo>Tire 3 pesinhos dos **dois lados**: x + 3 − 3 = 8 − 3.</Passo>
+  <Passo>Sobra: **x = 5**.</Passo>
+  <Passo>Confira trocando x por 5 na equação do começo: 5 + 3 = 8. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Resolva: x + 4 = 11" resposta="7" dica="Tire 4 dos dois lados." resolucao="x + 4 − 4 = 11 − 4, então x = 7." />
+
+<Exercicio enunciado="Resolva: x − 6 = 9" resposta="15" dica="Para desfazer o −6, some 6 dos dois lados." resolucao="x − 6 + 6 = 9 + 6, então x = 15." />
+
+## 2. O que é uma equação
+
+Uma **equação** é uma igualdade que tem um **valor desconhecido**, geralmente chamado de x (a **incógnita**). Resolver a equação é descobrir o valor de x que deixa os dois lados **realmente iguais**. Esse valor é a **solução** (ou raiz).
+
+Uma equação é do **1º grau** quando o x aparece **sem expoente** (só x, nunca x²). Exemplos: 2x + 3 = 11, x − 4 = 9. Já x² = 9 não é do 1º grau.
+
+<Exercicio enunciado="Em 2x + 3 = 11, qual é o valor de x que torna a igualdade verdadeira?" resposta="4" dica="Teste: 2 × 4 + 3 é igual a quanto?" resolucao="2 × 4 + 3 = 11. Então x = 4." />
+
+## 3. Testar valores
+
+Um jeito de procurar a solução é **testar**: troque x por um número e compare os dois lados. Se forem iguais, achou. Se o lado esquerdo ficou maior ou menor, você sabe para onde ir.
+
+<TesteDeValor />
+
+Testar é lento, mas é a **prova dos nove** das equações: depois de resolver, sempre dá para trocar x pela resposta e conferir.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Na balança, 2x + 4 = 18. Qual é a ordem mais segura para isolar o x?"
+  opcoes={['Primeiro dividir por 2 e depois tirar 4 (sem ajustar o 4)', 'Primeiro tirar 4 dos dois lados e depois dividir por 2', 'Somar 4 e depois multiplicar por 2']}
+  correta={1}
+  explicacao="Tirar 4 dos dois lados dá 2x = 14. Depois, dividindo os dois lados por 2, x = 7. Dá para dividir tudo por 2 antes também, mas aí o 4 precisa ser dividido junto (virando 2). O erro comum é esquecer isso."
+>
+
+Use a balança com a equação 2x + 4 = 18 (a segunda opção do alto):
+
+<BalancaDeEquacao />
+
+Faça "− 4 dos dois lados" e depois "÷ 2 dos dois lados". Veja o x aparecer sozinho. Depois tente a ordem contrária: o simulador só deixa dividir quando tudo (os dois lados, inteiros) fica em números inteiros.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['17', '7', '60']}
+  correta={1}
+  seAcertou="E o palpite do começo? Certo: x + 5 = 12 dá x = 7."
+  seErrou="E o palpite do começo? O número era 7, porque x + 5 = 12 e 12 − 5 = 7. O 17 vem de somar, em vez de desfazer a soma."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Desfazer as operações, de trás para frente
+
+Para resolver uma equação, pense em **desfazer** o que foi feito ao x, na ordem contrária. Se o x foi multiplicado por 2 e depois somado a 3, desfaça primeiro o "+ 3" e depois o "× 2".
+
+- Somou um número? **Subtraia** o mesmo número.
+- Subtraiu um número? **Some** o mesmo número.
+- Multiplicou por um número? **Divida** por ele.
+- Dividiu por um número? **Multiplique** por ele.
+
+Sempre nos **dois lados**.
+
+<ExemploResolvido titulo="Resolver 3x + 5 = 20">
+  <Passo>O x foi multiplicado por 3 e depois somou-se 5. Desfazemos na ordem contrária: primeiro o "+ 5".</Passo>
+  <Passo>Tire 5 dos dois lados: 3x = 20 − 5 = 15.</Passo>
+  <Passo>Agora desfaça o "× 3": divida os dois lados por 3. x = 15 ÷ 3 = **5**.</Passo>
+  <Passo>Conferência: 3 × 5 + 5 = 20. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Resolva: 2x + 3 = 11" resposta="4" dica="Tire 3, depois divida por 2." resolucao="2x = 11 − 3 = 8. Então x = 8 ÷ 2 = 4." />
+
+<Exercicio enunciado="Resolva: 5x − 4 = 21" resposta="5" dica="Some 4 dos dois lados, depois divida por 5." resolucao="5x = 21 + 4 = 25. Então x = 25 ÷ 5 = 5." />
+
+<Exercicio enunciado="Resolva: 4x + 7 = 31" resposta="6" dica="Tire 7, depois divida por 4." resolucao="4x = 31 − 7 = 24. Então x = 24 ÷ 4 = 6." />
+
+<Aprofundar titulo="Por que 'passa para o outro lado trocando o sinal'">
+
+Quando você escreve x + 3 = 8 e depois x = 8 − 3, parece que o 3 "mudou de lado e trocou de sinal". Na verdade, você tirou 3 dos dois lados: do esquerdo (x + 3 − 3 = x) e do direito (8 − 3). O "+3" some à esquerda porque +3 − 3 = 0. O truque do "troca de sinal" é só um **resumo** dessa operação. Entender o motivo evita erros em equações mais complicadas.
+
+</Aprofundar>
+
+## Equações com números negativos
+
+A solução pode ser **negativa** ou zero. Isso não é erro: é só mais um número da reta.
+
+<ExemploResolvido titulo="Resolver x + 9 = 4">
+  <Passo>Tire 9 dos dois lados: x = 4 − 9.</Passo>
+  <Passo>4 − 9 = −5. (Na reta numérica, voltar 9 casas a partir do 4 cai em −5.)</Passo>
+  <Passo>**x = −5**. Conferência: −5 + 9 = 4. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Resolva: x + 12 = 5" resposta="−7" dica="5 − 12 passa do zero." resolucao="x = 5 − 12 = −7. Conferência: −7 + 12 = 5." />
+
+<Exercicio enunciado="Resolva: 3x + 10 = 1" resposta="−3" dica="Tire 10: 3x = 1 − 10." resolucao="3x = 1 − 10 = −9. Então x = −9 ÷ 3 = −3." />
+
+## O x aparecendo dos dois lados
+
+Às vezes o x aparece **nos dois lados**. A ideia continua a mesma: junte os x de um lado e os números do outro, sempre fazendo a mesma operação nos dois lados.
+
+<ExemploResolvido titulo="Resolver 5x + 2 = 2x + 11">
+  <Passo>Queremos todos os x do lado esquerdo. Tire 2x dos dois lados: 5x − 2x + 2 = 11, ou seja, 3x + 2 = 11.</Passo>
+  <Passo>Agora tire 2 dos dois lados: 3x = 9.</Passo>
+  <Passo>Divida por 3: **x = 3**.</Passo>
+  <Passo>Conferência: esquerdo 5 × 3 + 2 = 17; direito 2 × 3 + 11 = 17. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Resolva: 4x + 1 = 2x + 9" resposta="4" dica="Tire 2x dos dois lados, depois tire 1." resolucao="2x + 1 = 9, então 2x = 8 e x = 4." />
+
+<Exercicio enunciado="Resolva: 6x − 5 = 3x + 7" resposta="4" dica="Tire 3x dos dois lados." resolucao="3x − 5 = 7; 3x = 12; x = 4." />
+
+<Aprofundar titulo="Quando não há solução (ou há infinitas)">
+
+Nem toda equação tem exatamente uma solução. Em 2x + 3 = 2x + 7, tirando 2x dos dois lados sobra 3 = 7, que é falso: **nenhum** x serve. Já em 2x + 3 = 2x + 3, sobra 3 = 3, sempre verdadeiro: **qualquer** x serve. Uma equação do tipo ax + b = 0 com a diferente de zero tem **exatamente uma solução**: x = −b/a.
+
+</Aprofundar>
+
+## Traduzir histórias para equações
+
+Metade do trabalho é transformar o português em equação. Algumas traduções:
+
+- "um número" → x
+- "o dobro de um número" → 2x
+- "a metade de um número" → x ÷ 2
+- "um número mais 5" → x + 5
+- "5 a menos que um número" → x − 5
+- "é", "dá", "resulta em" → =
+
+Experimente:
+
+<TraduzirProblema />
+
+<ExemploResolvido titulo="Idade de Ana">
+  <Passo>Problema: "Daqui a 5 anos Ana terá 20 anos. Quantos anos ela tem hoje?"</Passo>
+  <Passo>Chame a idade de hoje de x. Daqui a 5 anos será x + 5. Então: x + 5 = 20.</Passo>
+  <Passo>Tire 5 dos dois lados: **x = 15**.</Passo>
+  <Passo>Confira: 15 + 5 = 20. ✓ Ana tem 15 anos.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O triplo de um número, menos 4, dá 17. Qual é o número?" resposta="7" dica="3x − 4 = 17." resolucao="3x = 17 + 4 = 21, então x = 7." />
+
+<Exercicio enunciado="Um número mais a sua metade dá 18. Qual é o número? (x + x/2 = 18, ou seja, 1,5x = 18)" resposta="12" dica="1,5x = 18, então divida por 1,5." resolucao="x = 18 ÷ 1,5 = 12. Conferência: 12 + 6 = 18." />
+
+<Exercicio enunciado="Pedro tem o dobro da idade de Lia. Juntos têm 30 anos. Qual é a idade de Lia? (x + 2x = 30)" resposta="10" dica="3x = 30." resolucao="x + 2x = 3x = 30, então x = 10. Lia tem 10 anos e Pedro, 20." />
+
+## Uma aplicação: o táxi
+
+Uma corrida cobra **R$ 6,00 de bandeirada** mais **R$ 2,50 por quilômetro**. Quanto mais rodar, mais paga: preço = 6 + 2,5 × km. Se você souber o **preço final**, a equação diz **quantos quilômetros** foram:
+
+<CorridaDeTaxi />
+
+<ExemploResolvido titulo="Quantos km rodou?">
+  <Passo>A corrida custou R$ 31,00: 6 + 2,5x = 31.</Passo>
+  <Passo>Tire a bandeirada: 2,5x = 31 − 6 = 25.</Passo>
+  <Passo>Divida por 2,5: x = 25 ÷ 2,5 = **10 km**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Com a mesma tarifa (R$ 6 + R$ 2,50 por km), uma corrida custou R$ 21. Quantos km foram?" resposta="6" dica="6 + 2,5x = 21." resolucao="2,5x = 15, então x = 15 ÷ 2,5 = 6 km." />
+
+<Aprofundar titulo="Equações viram retas">
+
+A conta preço = 6 + 2,5x é uma **função afim**: o gráfico é uma reta que começa em 6 (a bandeirada) e sobe 2,5 a cada quilômetro. Resolver 6 + 2,5x = 31 é perguntar: **em que ponto a reta atinge a altura 31?** É a ponte para as funções, que você verá no ensino médio.
+
+</Aprofundar>
+
+## O truque do número, explicado
+
+Voltemos ao começo. Pense em n. Dobre: 2n. Some 6: 2n + 6. Divida por 2: n + 3. Tire n: **3**. A letra mostra por que o truque sempre dá 3: o n **some** na última etapa.
+
+<TruqueDoNumero />
+
+Essa é a força da álgebra: **provar para todos os números de uma vez**, em vez de testar um por um.
+
+<Exercicio enunciado="No truque, se você começar com n = 10, quanto dá no final?" resposta="3" dica="O n sempre se anula." resolucao="Dá 3, qualquer que seja o n." />
+
+## Fórmulas também são equações
+
+Muitas fórmulas que você já viu são equações com mais de uma letra. Quando você conhece todas menos uma, ela vira uma equação de uma incógnita só.
+
+Exemplo: o perímetro de um retângulo é **P = 2·(b + h)**. Se você sabe que o perímetro é 30 cm e a base é 9 cm, a altura é a incógnita:
+
+<ExemploResolvido titulo="Achar a altura de um retângulo">
+  <Passo>Troque o que você sabe: 30 = 2·(9 + h).</Passo>
+  <Passo>Divida os dois lados por 2: 15 = 9 + h.</Passo>
+  <Passo>Tire 9 dos dois lados: **h = 6 cm**.</Passo>
+  <Passo>Confira: 2·(9 + 6) = 2 × 15 = 30. ✓</Passo>
+</ExemploResolvido>
+
+Outro exemplo é a velocidade média: **distância = velocidade × tempo**. Se um carro andou 150 km a 60 km/h, quanto tempo levou? É a equação 60·t = 150, e t = 150 ÷ 60 = 2,5 horas (duas horas e meia).
+
+<Exercicio enunciado="O perímetro de um retângulo é 28 cm e a base mede 8 cm. Quanto mede a altura em cm? (P = 2·(b + h))" resposta="6" dica="28 = 2·(8 + h), divida por 2 primeiro." resolucao="14 = 8 + h, então h = 6 cm." />
+
+<Exercicio enunciado="Um ciclista anda a 20 km/h. Em quantas horas percorre 50 km? (20·t = 50)" resposta="2,5" dica="t = 50 ÷ 20." resolucao="t = 2,5 horas." />
+
+## Problemas de dinheiro
+
+Equações aparecem muito em contas do dia a dia. Quando um problema envolve **valores fixos** (uma taxa, uma entrada) e **valores que se repetem** (parcelas, preço por unidade), costuma ser do tipo ax + b = c.
+
+<ExemploResolvido titulo="O celular parcelado">
+  <Passo>Um celular custa R$ 1.200. Você dá R$ 300 de entrada e paga o resto em parcelas iguais de R$ 150. Quantas parcelas?</Passo>
+  <Passo>A equação é 300 + 150x = 1.200, em que x é o número de parcelas.</Passo>
+  <Passo>Tire 300: 150x = 900.</Passo>
+  <Passo>Divida por 150: **x = 6 parcelas**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma bicicleta custa R$ 900. Com R$ 200 de entrada e parcelas de R$ 100, quantas parcelas são? (200 + 100x = 900)" resposta="7" dica="100x = 700." resolucao="100x = 900 − 200 = 700, então x = 7 parcelas." />
+
+<Aprofundar titulo="Por que o resultado precisa fazer sentido">
+
+Resolver a equação não termina o problema: é preciso olhar se a resposta **faz sentido na história**. Se o número de parcelas der 4,5, algo está errado (não existe meia parcela). Se a idade der negativa, também. Por isso, depois da conta, volte ao enunciado e pergunte: "Essa resposta é possível?"
+
+</Aprofundar>
+
+## Caçando erros
+
+Os erros mais comuns em equações:
+
+- **Esquecer o outro lado**: fazer a operação só de um lado.
+- **Errar o sinal** ao tirar ou somar.
+- **Dividir só um termo**: em 2x + 4 = 18, dividir por 2 exige dividir **todos** os termos (x + 2 = 9).
+- **Não conferir** a resposta no final.
+
+<CacaAoErro />
+
+<Exercicio enunciado="Um aluno resolveu 2x − 4 = 10 e achou x = 3. Qual é a resposta certa?" resposta="7" dica="Some 4 dos dois lados, depois divida por 2." resolucao="2x = 10 + 4 = 14, então x = 7." />
+
+<Aprofundar titulo="Equivalentes: equações com a mesma solução">
+
+Duas equações são **equivalentes** quando têm exatamente as mesmas soluções. Somar ou subtrair o mesmo número dos dois lados, ou multiplicar ou dividir os dois lados pelo mesmo número **diferente de zero**, sempre gera uma equação equivalente. É por isso que a balança funciona: cada passo mantém a solução, até sobrar x = número.
+
+</Aprofundar>
+
+## Equações com frações
+
+Se aparecer uma fração, **multiplicar os dois lados** pelo denominador costuma limpar a conta.
+
+<ExemploResolvido titulo="Resolver x/3 + 2 = 6">
+  <Passo>Tire 2 dos dois lados: x/3 = 4.</Passo>
+  <Passo>Multiplique os dois lados por 3 (desfaz o "÷ 3"): x = 12.</Passo>
+  <Passo>Confira: 12 ÷ 3 + 2 = 4 + 2 = 6. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Resolva: x/4 + 1 = 5" resposta="16" dica="Tire 1; depois multiplique por 4." resolucao="x/4 = 4, então x = 16." />
+
+<Aprofundar titulo="A letra pode ser qualquer uma">
+
+O x é só costume. Podemos usar y, n, t, ou até uma estrela. O que importa é o papel: representa o valor **que queremos descobrir**. Em problemas de física, por exemplo, escolhe-se v para velocidade e t para tempo. A letra é um nome; a ideia é a mesma.
+
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'O que é uma equação?',
+    opcoes: ['Uma igualdade com um valor desconhecido', 'Qualquer conta de somar', 'Um tipo de gráfico'],
+    correta: 0,
+    explicacao: 'Equação é uma igualdade com uma incógnita. Resolver é achar o valor que a torna verdadeira.',
+  },
+  {
+    enunciado: 'Resolva: x + 6 = 15',
+    opcoes: ['9', '21', '90'],
+    correta: 0,
+    explicacao: 'Tire 6 dos dois lados: x = 15 − 6 = 9.',
+  },
+  {
+    enunciado: 'Resolva: 3x = 21',
+    opcoes: ['18', '7', '63'],
+    correta: 1,
+    explicacao: 'Divida os dois lados por 3: x = 7.',
+  },
+  {
+    enunciado: 'Resolva: 2x + 5 = 17',
+    opcoes: ['6', '11', '8,5'],
+    correta: 0,
+    explicacao: '2x = 17 − 5 = 12, então x = 6.',
+  },
+  {
+    enunciado: 'Resolva: 4x − 8 = 12',
+    opcoes: ['1', '5', '20'],
+    correta: 1,
+    explicacao: '4x = 12 + 8 = 20, então x = 5.',
+  },
+  {
+    enunciado: 'Resolva: x + 15 = 6',
+    opcoes: ['9', '−9', '21'],
+    correta: 1,
+    explicacao: 'x = 6 − 15 = −9. A solução pode ser negativa.',
+  },
+  {
+    enunciado: 'Qual é a solução de 5x + 3 = 2x + 15?',
+    opcoes: ['4', '6', '12'],
+    correta: 0,
+    explicacao: 'Tire 2x: 3x + 3 = 15; tire 3: 3x = 12; x = 4.',
+  },
+  {
+    enunciado: 'A regra de ouro da balança é...',
+    opcoes: ['O que se faz de um lado, faz-se do outro', 'Mexer só no lado esquerdo', 'Trocar o sinal de tudo'],
+    correta: 0,
+    explicacao: 'Só assim a igualdade continua verdadeira.',
+  },
+  {
+    enunciado: 'Qual equação traduz "o dobro de um número, mais 3, dá 19"?',
+    opcoes: ['2x + 3 = 19', 'x + 2 + 3 = 19', '2 + 3x = 19'],
+    correta: 0,
+    explicacao: 'O dobro de x é 2x; mais 3 é 2x + 3; dá 19.',
+  },
+  {
+    enunciado: 'A bandeirada é R$ 6 e cada km custa R$ 2,50. Uma corrida de R$ 26 tem quantos km?',
+    opcoes: ['8 km', '10 km', '13 km'],
+    correta: 0,
+    explicacao: '6 + 2,5x = 26, então 2,5x = 20 e x = 8.',
+  },
+  {
+    enunciado: 'Quem inventou o sinal de igual, em 1557?',
+    opcoes: ['Robert Recorde', 'Isaac Newton', 'Euclides'],
+    correta: 0,
+    explicacao: 'O galês Robert Recorde, no livro The Whetstone of Witte, escolheu duas linhas paralelas porque duas coisas não podem ser mais iguais.',
+  },
+  {
+    enunciado: 'De que palavra árabe vem "álgebra"?',
+    opcoes: ['al-jabr', 'al-kitab', 'al-gebra-ton'],
+    correta: 0,
+    explicacao: 'Al-jabr aparece no título do livro de al-Khwarizmi (825) e dá a ideia de completar e restaurar o equilíbrio.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Equação** é uma igualdade com uma incógnita (o x). **Resolver** é achar o valor que a torna verdadeira.
+- **Regra da balança:** o que se faz de um lado, faz-se do outro.
+- **Desfaça as operações na ordem contrária** (primeiro somar/subtrair, depois multiplicar/dividir).
+- **Sempre confira** trocando x pelo resultado.
+- **O x pode aparecer nos dois lados:** junte os x de um lado e os números do outro.
+- **A solução pode ser negativa ou fracionária.**
+- **Traduza a história para a equação:** "dobro" é 2x, "é" é =.
+
+**Um pouco de história.** O Papiro de Rhind (c. 1650 a.C.) já tinha problemas de equações. Al-Khwarizmi publicou em 825 o livro que deu nome à álgebra, Robert Recorde inventou o sinal de igual em 1557 e Viète e Descartes popularizaram o uso de letras nos séculos XVI e XVII.
+
+</Resumo>
+
+As equações são a porta de entrada da álgebra. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

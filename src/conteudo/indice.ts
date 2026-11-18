@@ -72,7 +72,7 @@ export const capsulas: ResumoCapsula[] = [
   m('fundamental', 'numeros-negativos', 'Números negativos', 'Como algo pode valer menos que nada?', { grupo: '7º ano', estado: 'pronta', duracaoMin: 40 }),
   m('fundamental', 'razao-e-proporcao', 'Razão e proporção', 'A receita é para 3. A festa é para 30.', { grupo: '7º ano', estado: 'pronta', duracaoMin: 40, conexoes: ['funcao-afim'] }),
   m('fundamental', 'expressoes-algebricas', 'Letras na matemática', 'Por que trocar números por letras?', { grupo: '7º ano' }),
-  m('fundamental', 'equacoes-1-grau', 'Equações do 1º grau', 'Uma balança que precisa ficar equilibrada.', { grupo: '7º ano' }),
+  m('fundamental', 'equacoes-1-grau', 'Equações do 1º grau', 'Uma balança que precisa ficar equilibrada.', { grupo: '7º ano', estado: 'pronta', duracaoMin: 40, conexoes: ['razao-e-proporcao', 'sistemas-de-equacoes'] }),
   m('fundamental', 'poligonos', 'Triângulos e polígonos', 'Por que as abelhas usam hexágonos?', { grupo: '7º ano' }),
   m('fundamental', 'circunferencia-e-pi', 'Circunferência e Pi', 'Toda roda esconde o mesmo número.', { grupo: '7º ano' }),
   m('fundamental', 'simetria', 'Simetria e transformações', 'Espelhar, girar e deslizar figuras.', { grupo: '7º ano', conexoes: ['matrizes'] }),
@@ -90,7 +90,7 @@ export const capsulas: ResumoCapsula[] = [
   m('fundamental', 'numeros-reais', 'Números reais e irracionais', 'Um número que nunca termina e nunca se repete.', { grupo: '9º ano' }),
   m('fundamental', 'equacao-2-grau', 'Equação do 2º grau', 'O quadrado que os babilônios completavam.', { grupo: '9º ano', conexoes: ['funcao-quadratica'] }),
   m('fundamental', 'semelhanca', 'Semelhança e Teorema de Tales', 'Medir uma pirâmide pela sombra.', { grupo: '9º ano', conexoes: ['trigonometria'] }),
-  m('fundamental', 'pitagoras', 'Teorema de Pitágoras', 'Uma prova que se faz arrastando quadrados.', { grupo: '9º ano' }),
+  m('fundamental', 'pitagoras', 'Teorema de Pitágoras', 'Uma prova que se faz arrastando quadrados.', { grupo: '9º ano', estado: 'pronta', duracaoMin: 40, conexoes: ['plano-cartesiano', 'angulos'] }),
   m('fundamental', 'graficos-e-pesquisas', 'Gráficos e pesquisas', 'Como montar uma pesquisa que não engana.', { grupo: '9º ano', conexoes: ['estatistica'] }),
 
   // Médio: a BNCC não fixa o ano de cada assunto, então os grupos são por tema

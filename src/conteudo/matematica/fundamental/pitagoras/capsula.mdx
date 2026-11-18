@@ -1,0 +1,393 @@
+import QuadradosNosLados from '../../../../components/simulacoes/QuadradosNosLados'
+import ProvaPorRearranjo from '../../../../components/simulacoes/ProvaPorRearranjo'
+import EsquadroDeTresLados from '../../../../components/simulacoes/EsquadroDeTresLados'
+import EscadaNaParede from '../../../../components/simulacoes/EscadaNaParede'
+import DiagonalDaTela from '../../../../components/simulacoes/DiagonalDaTela'
+import TernosPitagoricos from '../../../../components/simulacoes/TernosPitagoricos'
+import CordaDeDozeNos from '../../../../components/simulacoes/CordaDeDozeNos'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Pythagorean theorem, Pythagorean triple), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Você apoia uma escada de 5 metros numa parede, com o pé a 3 metros dela. Até que altura a escada chega? Você não precisa subir nem medir: **uma conta de cabeça** responde. A resposta é 4 metros, e o motivo é um dos resultados mais famosos de toda a matemática.
+
+Ele diz que, em todo triângulo com um **ângulo reto** (de 90°), os três lados guardam uma relação secreta. E existe uma prova que se faz só **arrastando quadrados**.
+
+<Palpite
+  chave="inicial"
+  pergunta="Um triângulo tem lados 3, 4 e 5. Se você construir um quadrado sobre cada lado, qual será a relação entre as áreas?"
+  opcoes={['9 + 16 = 25: os dois quadrados menores juntos têm a área do maior', 'As três áreas são iguais', '3 + 4 = 7, que é maior que 5, então não há relação']}
+/>
+
+Nesta cápsula você vai ver as áreas dos quadrados somarem, **provar** o teorema rearranjando peças, testar se um triângulo é reto só pelos lados, medir escada e tela de TV e conhecer ternos pitagóricos como o 3-4-5.
+
+</Etapa>
+
+<Etapa id="historia">
+
+O nome é de **Pitágoras**, mas a ideia é muito mais antiga que ele.
+
+<LinhaDoTempo marcos={[
+  { ano: 'c. 1800 a.C.', texto: 'Os babilônios registram, na tábua de argila Plimpton 322, números que podem ser lidos como 15 ternos pitagóricos.' },
+  { ano: 'c. 1800 a.C.', texto: 'No Egito, o Papiro de Berlim 6619 tem um problema cuja solução é 6, 8 e 10, sem nunca mencionar um triângulo.' },
+  { ano: 'Séc. VIII a V a.C.', texto: 'Na Índia, o Sulba Sutra de Baudhayana enuncia o teorema e lista ternos.' },
+  { ano: 'c. 570 a.C.', texto: 'Nasce Pitágoras, filósofo grego. Nenhum texto grego dos cinco séculos seguintes lhe atribui explicitamente o teorema.' },
+  { ano: 'c. 300 a.C.', texto: 'Euclides, nos Elementos (Livro I, Proposição 47), traz a mais antiga prova axiomática conhecida.' },
+  { ano: 'Séc. I a.C.', texto: 'Na China, o Zhoubi Suanjing explica o triângulo 3-4-5. O teorema lá se chama "Gougu".' },
+]} />
+
+## Mais velho que Pitágoras
+
+Há quase 4 mil anos, escribas babilônios já sabiam usar a relação. A tábua **Plimpton 322** (c. 1800 a.C.) tem linhas que se leem como ternos pitagóricos. Historiadores dizem que a regra era de uso comum, mais de mil anos antes de Pitágoras. Na Índia, o *Sulba Sutra* de Baudhayana (entre os séculos VIII e V a.C.) já escrevia o enunciado, e na China o teorema é conhecido como **teorema de Gougu**.
+
+## E o Pitágoras?
+
+Pitágoras nasceu por volta de 570 a.C. na Grécia. O curioso é que **nenhum texto grego dos cinco séculos depois dele** o cita explicitamente como autor do teorema. Só autores bem posteriores, como Plutarco e Cícero, o fizeram. Historiadores atuais duvidam que ele tenha produzido muita matemática. O nome ficou, mas a história é mais ampla.
+
+## A primeira prova que se conhece
+
+Por volta de 300 a.C., **Euclides** escreveu os *Elementos*. O Livro I, Proposição 47, contém a mais antiga prova axiomática do teorema que chegou até nós. A Proposição 48 prova o **inverso**: se os lados satisfazem a relação, o triângulo tem ângulo reto.
+
+## Prova de presidente
+
+O teorema tem mais provas que qualquer outro: um livro, *The Pythagorean Proposition*, reúne **370**. Uma delas, usando um trapézio, é de **James Garfield**, que a publicou quando era deputado, antes de se tornar presidente dos Estados Unidos.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Um quadrado em cada lado
+
+Pegue um triângulo com um ângulo reto (como o canto de uma folha de papel). Os dois lados que formam o ângulo reto se chamam **catetos**. O lado oposto ao ângulo reto, sempre o maior, é a **hipotenusa**.
+
+Agora desenhe um **quadrado sobre cada lado** do triângulo. O que acontece com as áreas?
+
+<QuadradosNosLados />
+
+Mexa nos controles. Não importa o tamanho do triângulo: a área do quadrado da hipotenusa é **sempre** a soma das áreas dos quadrados dos catetos. É o **teorema de Pitágoras**:
+
+<Formula>
+  <Linha>a² + b² = c²</Linha>
+</Formula>
+
+em que **a** e **b** são os catetos e **c** é a hipotenusa.
+
+<ExemploResolvido titulo="Confirmando com o triângulo 3-4-5">
+  <Passo>Catetos 3 e 4. Quadrado do primeiro: 3² = 9. Quadrado do segundo: 4² = 16.</Passo>
+  <Passo>Some as áreas: 9 + 16 = 25.</Passo>
+  <Passo>25 é a área de um quadrado de lado 5 (5² = 25). Então a hipotenusa vale **5**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Num triângulo retângulo os catetos medem 6 e 8. Quanto mede a hipotenusa?" resposta="10" dica="6² + 8² = 36 + 64 = 100." resolucao="a² + b² = 36 + 64 = 100, então c = 10 (porque 10² = 100)." />
+
+<Exercicio enunciado="Catetos 5 e 12. Quanto mede a hipotenusa?" resposta="13" dica="25 + 144 = 169." resolucao="5² + 12² = 25 + 144 = 169 = 13², então c = 13." />
+
+## 2. Por que funciona: uma prova com quadrados
+
+Dá para **ver** a prova arrastando peças. Pegue 4 cópias do mesmo triângulo retângulo (catetos a e b, hipotenusa c) e um quadrado grande de lado **a + b**. Arrume os triângulos de dois jeitos dentro dele:
+
+- No **arranjo 1**, os triângulos ficam nos cantos e deixam no meio um quadrado de lado **c**.
+- No **arranjo 2**, os triângulos formam dois retângulos e deixam dois quadrados, um de lado **a** e outro de lado **b**.
+
+<ProvaPorRearranjo />
+
+Nos dois casos o quadrado grande é o mesmo e os triângulos são os mesmos. Então o que **sobra** tem de ter a mesma área: **c² = a² + b²**. Sem fórmula decorada, só peças.
+
+<ExemploResolvido titulo="A prova em palavras">
+  <Passo>O quadrado grande tem lado a + b e área (a + b)².</Passo>
+  <Passo>Os 4 triângulos ocupam, juntos, 4 × (a·b ÷ 2) = 2ab da área.</Passo>
+  <Passo>No arranjo 1, o que sobra é c². No arranjo 2, o que sobra é a² + b².</Passo>
+  <Passo>Como o espaço total e os triângulos são iguais nos dois, **c² = a² + b²**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="No arranjo da prova, com a = 3 e b = 7, qual é a área do quadrado grande de lado a + b?" resposta="100" dica="(3 + 7)²." resolucao="(a + b)² = 10² = 100." />
+
+<Exercicio enunciado="Com a = 3 e b = 7, qual é a área total dos quatro triângulos (cada um com área a·b ÷ 2)?" resposta="42" dica="4 × (3 × 7 ÷ 2) = 2 × 21." resolucao="Cada triângulo tem 21 ÷ 2 = 10,5; os quatro têm 42." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Uma escada de 5 m está apoiada numa parede, com o pé a 3 m dela. Qual é a altura que ela alcança?"
+  opcoes={['2 metros (5 − 3)', '4 metros', '8 metros (5 + 3)']}
+  correta={1}
+  explicacao="A escada é a hipotenusa (5), o chão é um cateto (3) e a parede é o outro. h² = 5² − 3² = 25 − 9 = 16, então h = 4. O erro comum é subtrair 5 − 3 direto, sem elevar ao quadrado."
+>
+
+Arraste o pé da escada e veja a altura mudar:
+
+<EscadaNaParede />
+
+Quando o pé da escada fica a 3 m, a altura é 4 m. O triângulo 3-4-5 aparece de novo. Perto de 5 m a escada fica quase deitada no chão e a altura vai a zero.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['9 + 16 = 25: os dois quadrados menores juntos têm a área do maior', 'As três áreas são iguais', '3 + 4 = 7, que é maior que 5, então não há relação']}
+  correta={0}
+  seAcertou="E o palpite do começo? Isso: 9 + 16 = 25. As áreas dos quadrados dos catetos somam a área do quadrado da hipotenusa."
+  seErrou="E o palpite do começo? A relação é entre as áreas: 3² + 4² = 9 + 16 = 25 = 5². Somar os comprimentos (3 + 4) não leva a lugar nenhum."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Achando a hipotenusa
+
+Quando você conhece os dois catetos, **some os quadrados** e tire a **raiz quadrada**. A raiz quadrada de um número é o valor que, elevado ao quadrado, dá esse número. Por exemplo, √49 = 7, porque 7² = 49.
+
+<Formula>
+  <Linha>c = √(a² + b²)</Linha>
+</Formula>
+
+<ExemploResolvido titulo="A diagonal de um retângulo">
+  <Passo>Um retângulo de 9 cm por 12 cm. A diagonal o corta em dois triângulos retângulos, com catetos 9 e 12.</Passo>
+  <Passo>c² = 9² + 12² = 81 + 144 = 225.</Passo>
+  <Passo>c = √225 = **15 cm**, porque 15² = 225.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="A diagonal de um retângulo de 20 cm por 15 cm mede quantos cm?" resposta="25" dica="400 + 225 = 625." resolucao="c² = 20² + 15² = 400 + 225 = 625, e √625 = 25 cm." />
+
+<Exercicio enunciado="Quanto vale √81?" resposta="9" dica="Que número ao quadrado dá 81?" resolucao="9² = 81, então √81 = 9." />
+
+<Exercicio enunciado="Catetos 8 e 15. Qual é a hipotenusa?" resposta="17" dica="64 + 225 = 289." resolucao="c² = 64 + 225 = 289 = 17², então c = 17." />
+
+## Achando um cateto
+
+Se você conhece a **hipotenusa** e **um cateto**, a conta é a mesma, só que **subtraindo**: a² = c² − b².
+
+<ExemploResolvido titulo="Voltando à escada">
+  <Passo>A escada (hipotenusa) mede 5 m e o pé fica a 3 m da parede (cateto).</Passo>
+  <Passo>h² = 5² − 3² = 25 − 9 = 16.</Passo>
+  <Passo>h = √16 = **4 m**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma escada de 13 m tem o pé a 5 m da parede. Que altura alcança em m?" resposta="12" dica="169 − 25 = 144." resolucao="h² = 13² − 5² = 169 − 25 = 144, e √144 = 12 m." />
+
+<Exercicio enunciado="Num triângulo retângulo a hipotenusa mede 10 e um cateto mede 6. Quanto mede o outro cateto?" resposta="8" dica="100 − 36." resolucao="b² = 100 − 36 = 64, então b = 8." />
+
+<Aprofundar titulo="Por que a hipotenusa é sempre o maior lado">
+
+Como c² = a² + b², o valor de c² é **maior** que a² e maior que b². Logo c é maior que a e maior que b. Isso também explica um erro comum: somar os catetos dá um número **maior** que a hipotenusa. No 3-4-5, 3 + 4 = 7 é bem maior que 5. A hipotenusa é o "atalho" mais curto entre os dois extremos.
+
+</Aprofundar>
+
+## Quando o resultado não é redondo
+
+Nem toda raiz dá número inteiro. Num triângulo com catetos 1 e 1, a hipotenusa vale √(1 + 1) = √2, cerca de **1,414**. Dá para usar uma calculadora, ou **estimar**: √2 fica entre 1 (porque 1² = 1) e 2 (porque 2² = 4), mais perto de 1.
+
+<ExemploResolvido titulo="Estimar uma raiz">
+  <Passo>Queremos √20. Procure os quadrados perfeitos vizinhos: 4² = 16 e 5² = 25.</Passo>
+  <Passo>20 está entre 16 e 25, então √20 fica entre 4 e 5.</Passo>
+  <Passo>20 está mais perto de 16 do que de 25? A distância é 4 até o 16 e 5 até o 25. Está um pouco mais perto de 16: algo como **4,5** (o valor real é cerca de 4,47).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="√30 fica entre quais dois inteiros? Escreva o menor." resposta="5" dica="5² = 25 e 6² = 36." resolucao="30 está entre 25 e 36, então √30 está entre 5 e 6. O menor é 5." />
+
+<Aprofundar titulo="A diagonal do quadrado e um número 'sem fim'">
+
+A diagonal de um quadrado de lado 1 mede √2. Esse número tem infinitas casas decimais e **nunca se repete**: é um **irracional**. Os gregos antigos ficaram perturbados com isso, porque achavam que todo comprimento podia ser escrito como fração. Na cápsula de Números reais você verá esse tema com calma.
+
+</Aprofundar>
+
+## O inverso: será que é um triângulo retângulo?
+
+O teorema também **funciona ao contrário**. Se três lados satisfazem a² + b² = c², então o ângulo entre os lados a e b é **reto**. Foi o que Euclides provou na Proposição 48. Isso permite **conferir esquadro** só com uma fita métrica:
+
+<EsquadroDeTresLados />
+
+Além disso: se a soma dos quadrados dos dois lados menores for **maior** que o quadrado do maior, o triângulo é **acutângulo** (todos os ângulos menores que 90°). Se for **menor**, é **obtusângulo** (um ângulo maior que 90°).
+
+<ExemploResolvido titulo="Este triângulo é retângulo?">
+  <Passo>Lados 7, 24 e 25. O maior é 25.</Passo>
+  <Passo>7² + 24² = 49 + 576 = 625.</Passo>
+  <Passo>25² = 625. As duas são iguais: **é retângulo**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O triângulo de lados 6, 8 e 10 é retângulo? (sim ou nao)" resposta="sim" dica="36 + 64 = 100." resolucao="6² + 8² = 100 = 10², então sim." />
+
+<Exercicio enunciado="O triângulo de lados 4, 5 e 7 é retângulo? (sim ou nao)" resposta="nao" dica="16 + 25 = 41 e 7² = 49." resolucao="4² + 5² = 41, mas 7² = 49. Não são iguais, então não é retângulo." />
+
+## Ternos pitagóricos
+
+Três números inteiros positivos (a, b, c) com a² + b² = c² formam um **terno pitagórico**. O mais famoso é **3, 4, 5**. Outros: **5, 12, 13**, **8, 15, 17** e **7, 24, 25**. Se você multiplicar todos os números de um terno por um mesmo valor, ele continua valendo: 3-4-5 vira 6-8-10, 9-12-15... Os que não são múltiplos de outros se chamam **primitivos**.
+
+Existe uma **fórmula de Euclides** para fabricar ternos. Escolha dois inteiros m > n > 0:
+
+<Formula>
+  <Linha>a = m² − n²   b = 2mn   c = m² + n²</Linha>
+</Formula>
+
+<TernosPitagoricos />
+
+<Exercicio enunciado="Com m = 2 e n = 1 a fórmula dá o terno 3, 4, 5. Com m = 3 e n = 2, quanto vale c = m² + n²?" resposta="13" dica="9 + 4." resolucao="c = 9 + 4 = 13. O terno é (5, 12, 13)." />
+
+<Aprofundar titulo="A corda de 12 nós">
+
+Há uma história popular de que antigos construtores marcavam uma corda com 12 espaços iguais e formavam um triângulo 3-4-5 para conseguir um **ângulo reto** no terreno. As fontes históricas sólidas dizem apenas que, séculos depois, o autor grego Plutarco afirmou que os egípcios conheciam o triângulo 3-4-5; **não** há prova de que usassem uma corda assim. Mas a ideia funciona de verdade, e você pode testá-la:
+
+<CordaDeDozeNos />
+
+Experimente combinações: só 3, 4 e 5 dão o ângulo de 90°. Com 12 espaços e lados inteiros, nenhum outro triângulo é retângulo.
+
+</Aprofundar>
+
+## Aplicação: a polegada da TV
+
+A "polegada" de uma TV é o comprimento da **diagonal da tela**. Como a tela é um retângulo, a diagonal é a hipotenusa de um triângulo retângulo cujos catetos são a largura e a altura. E 1 polegada vale 2,54 cm.
+
+<DiagonalDaTela />
+
+<ExemploResolvido titulo="Qual a polegada de uma tela de 40 cm por 30 cm?">
+  <Passo>Largura 40 e altura 30. Diagonal² = 40² + 30² = 1.600 + 900 = 2.500.</Passo>
+  <Passo>Diagonal = √2.500 = 50 cm.</Passo>
+  <Passo>Em polegadas: 50 ÷ 2,54 ≈ **19,7 polegadas**, ou seja, "uma tela de 20 polegadas".</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma tela tem 96 cm de largura e 54 cm de altura. Quanto mede a diagonal, aproximadamente em cm? (use 110)" resposta="110" dica="96² + 54² = 9.216 + 2.916 = 12.132, raiz perto de 110." resolucao="√12.132 ≈ 110,1 cm. Aproximadamente 110 cm (cerca de 43 polegadas)." />
+
+## Distância entre dois pontos no plano
+
+No plano cartesiano, para ir do ponto A = (1, 2) ao ponto B = (4, 6), você anda 3 para a direita e 4 para cima. Esses dois passos são os **catetos**, e a linha reta de A a B é a **hipotenusa**!
+
+<ExemploResolvido titulo="Distância entre (1, 2) e (4, 6)">
+  <Passo>Diferença nas colunas: 4 − 1 = 3. Diferença nas linhas: 6 − 2 = 4.</Passo>
+  <Passo>d² = 3² + 4² = 9 + 16 = 25.</Passo>
+  <Passo>d = √25 = **5**. É o triângulo 3-4-5 de novo.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é a distância entre os pontos (0, 0) e (6, 8)?" resposta="10" dica="Catetos 6 e 8." resolucao="d² = 36 + 64 = 100, então d = 10." />
+
+<Aprofundar titulo="Pitágoras no espaço">
+
+No espaço, a diagonal de uma caixa com lados a, b e c vale √(a² + b² + c²). É o teorema aplicado duas vezes: primeiro a diagonal da base, depois a diagonal da caixa. Numa caixa de 3 × 4 × 12, a diagonal é √(9 + 16 + 144) = √169 = 13. O mesmo teorema, em uma dimensão a mais.
+
+</Aprofundar>
+
+## Erros comuns
+
+- **Somar os lados** em vez dos quadrados: a + b = c está errado.
+- **Esquecer a raiz** no final: c² = 25 não é o fim, falta tirar a raiz.
+- **Usar o teorema em triângulo que não é retângulo**: ele só vale com ângulo de 90°.
+- **Trocar a hipotenusa por um cateto**: a hipotenusa é sempre o lado maior.
+
+<ExemploResolvido titulo="Cuidado: qual é a hipotenusa?">
+  <Passo>Um triângulo retângulo tem lados 5, 13 e 12. A hipotenusa é o **maior**: 13.</Passo>
+  <Passo>Confira: 5² + 12² = 25 + 144 = 169 = 13². ✓</Passo>
+  <Passo>Se alguém somar 13² + 5² ficaria 194, que não é quadrado de 12: foi o erro de escolher o lado errado.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Num triângulo retângulo, os lados medem 9, 15 e 12. Qual deles é a hipotenusa?" resposta="15" dica="É o maior lado." resolucao="A hipotenusa é o maior lado: 15. (9² + 12² = 81 + 144 = 225 = 15².)" />
+
+<Aprofundar titulo="Semelhança e o fim do mistério">
+
+Existe uma outra prova do teorema usando **triângulos semelhantes**: baixando a altura da hipotenusa, o triângulo se divide em dois menores que têm o mesmo formato do triângulo original. As proporções entre os lados desses três triângulos levam direto a a² + b² = c². É um caminho que você vai conhecer na cápsula de Semelhança.
+
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Como se chama o maior lado de um triângulo retângulo?',
+    opcoes: ['Hipotenusa', 'Cateto', 'Diagonal menor'],
+    correta: 0,
+    explicacao: 'A hipotenusa é o lado oposto ao ângulo reto e é sempre o maior.',
+  },
+  {
+    enunciado: 'O que diz o teorema de Pitágoras?',
+    opcoes: ['a² + b² = c², em que c é a hipotenusa', 'a + b = c', 'a × b = c'],
+    correta: 0,
+    explicacao: 'A soma dos quadrados dos catetos é igual ao quadrado da hipotenusa.',
+  },
+  {
+    enunciado: 'Catetos 6 e 8. Qual é a hipotenusa?',
+    opcoes: ['10', '14', '48'],
+    correta: 0,
+    explicacao: '36 + 64 = 100 e √100 = 10.',
+  },
+  {
+    enunciado: 'Hipotenusa 13 e um cateto 5. Quanto vale o outro cateto?',
+    opcoes: ['8', '12', '18'],
+    correta: 1,
+    explicacao: '13² − 5² = 169 − 25 = 144 e √144 = 12.',
+  },
+  {
+    enunciado: 'O triângulo 5, 12, 13 é retângulo?',
+    opcoes: ['Sim', 'Não', 'Depende do tamanho'],
+    correta: 0,
+    explicacao: '5² + 12² = 25 + 144 = 169 = 13².',
+  },
+  {
+    enunciado: 'O triângulo 4, 6, 8 é retângulo?',
+    opcoes: ['Sim', 'Não, porque 16 + 36 = 52, e 8² = 64', 'Sim, porque 4 + 6 = 10'],
+    correta: 1,
+    explicacao: '4² + 6² = 52, que é diferente de 8² = 64. A soma é menor: o ângulo maior é obtuso.',
+  },
+  {
+    enunciado: 'Quanto vale √144?',
+    opcoes: ['12', '72', '14'],
+    correta: 0,
+    explicacao: '12 × 12 = 144.',
+  },
+  {
+    enunciado: 'Uma escada de 10 m tem o pé a 6 m da parede. Que altura alcança?',
+    opcoes: ['4 m', '8 m', '16 m'],
+    correta: 1,
+    explicacao: '10² − 6² = 100 − 36 = 64 e √64 = 8.',
+  },
+  {
+    enunciado: 'Qual é a diagonal de um quadrado de lado 1?',
+    opcoes: ['√2, cerca de 1,41', '2', '1'],
+    correta: 0,
+    explicacao: 'Catetos 1 e 1: c² = 1 + 1 = 2. A diagonal é √2 ≈ 1,414.',
+  },
+  {
+    enunciado: 'Qual é a distância entre (0, 0) e (5, 12)?',
+    opcoes: ['13', '17', '7'],
+    correta: 0,
+    explicacao: '5² + 12² = 169 e √169 = 13.',
+  },
+  {
+    enunciado: 'Quem escreveu a mais antiga prova axiomática conhecida do teorema?',
+    opcoes: ['Euclides, nos Elementos', 'Garfield', 'Os egípcios, com uma corda'],
+    correta: 0,
+    explicacao: 'Euclides, por volta de 300 a.C., no Livro I, Proposição 47. Garfield é muito mais recente e a corda egípcia não tem prova histórica.',
+  },
+  {
+    enunciado: 'A tábua Plimpton 322 mostra que...',
+    opcoes: ['Os babilônios já conheciam ternos pitagóricos, bem antes de Pitágoras', 'Pitágoras escreveu o teorema na Babilônia', 'O teorema foi descoberto em 1900'],
+    correta: 0,
+    explicacao: 'A tábua, de cerca de 1800 a.C., traz números que podem ser lidos como ternos pitagóricos, mais de mil anos antes de Pitágoras.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Triângulo retângulo** tem um ângulo de 90°. Os lados dele são dois **catetos** e a **hipotenusa** (o maior).
+- **Teorema de Pitágoras:** a² + b² = c². Vale só em triângulos retângulos.
+- **Para a hipotenusa:** c = √(a² + b²). **Para um cateto:** subtraia, a² = c² − b².
+- **O inverso vale:** se a² + b² = c², o triângulo é retângulo.
+- **Ternos pitagóricos:** 3-4-5, 5-12-13, 8-15-17, 7-24-25. A fórmula de Euclides fabrica ternos.
+- **Aplicações:** escadas, diagonal da tela, distância entre pontos no plano.
+- **Erro comum:** somar os lados em vez dos quadrados, ou esquecer a raiz.
+
+**Um pouco de história.** Os babilônios já usavam ternos pitagóricos por volta de 1800 a.C. (Plimpton 322), e na Índia e na China o teorema também aparece escrito. Pitágoras viveu por volta de 570 a.C., mas nenhum texto grego antigo o credita explicitamente. Euclides deu a mais antiga prova axiomática, por volta de 300 a.C., e hoje se conhecem centenas de provas, incluindo uma de James Garfield.
+
+</Resumo>
+
+O teorema de Pitágoras é uma ponte entre a geometria e a álgebra. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>
