@@ -1,0 +1,360 @@
+import CamadasDoSite from '../../../components/simulacoes/CamadasDoSite'
+import EtiquetasHtml from '../../../components/simulacoes/EtiquetasHtml'
+import AnatomiaDeUmaTag from '../../../components/simulacoes/AnatomiaDeUmaTag'
+import SeletorCss from '../../../components/simulacoes/SeletorCss'
+import CascataCss from '../../../components/simulacoes/CascataCss'
+import OuvinteDeCliques from '../../../components/simulacoes/OuvinteDeCliques'
+
+{/* Fatos conferidos na Wikipedia em inglês (HTML, CSS, JavaScript), listadas no meta.ts. As simulações são de brinquedo: não executam código digitado pela pessoa. */}
+
+<Etapa id="gancho">
+
+Abra qualquer site e pense: o que você está vendo? Um título grande, textos, imagens, botões, cores, um menu que abre quando você toca. Parece uma coisa só, mas é feito de **três linguagens** trabalhando juntas, cada uma com um trabalho bem diferente.
+
+Uma casa ajuda a entender. O **HTML** é o **esqueleto**: paredes, portas, janelas. O **CSS** é a **roupa**: tinta, móveis, decoração. O **JavaScript** é o **movimento**: a campainha que toca, a luz que acende quando você aperta o interruptor.
+
+<Palpite
+  chave="inicial"
+  pergunta="Um site aparece com todo o texto no lugar, mas sem nenhuma cor nem estilo (tudo preto no branco, sem espaçamento). Qual linguagem 'sumiu'?"
+  opcoes={['HTML', 'CSS', 'JavaScript']}
+/>
+
+Nesta cápsula você vai ligar e desligar cada camada de uma página, escolher etiquetas HTML, desmontar uma etiqueta, testar seletores de CSS, ver quem ganha quando duas regras brigam, e instalar um "ouvinte" de cliques como o JavaScript faz.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Cada uma das três linguagens nasceu num lugar diferente, para resolver um problema diferente.
+
+<LinhaDoTempo marcos={[
+  { ano: '1990', texto: 'No fim do ano, Tim Berners-Lee, no CERN, escreve a especificação do HTML e o primeiro navegador e servidor.' },
+  { ano: '1991', texto: 'Um documento chamado "HTML Tags", com 18 elementos, é mencionado publicamente.' },
+  { ano: '1994', texto: 'Håkon Wium Lie propõe o CSS, em 10 de outubro.' },
+  { ano: '1995', texto: 'O JavaScript chega ao navegador da Netscape (lançamento em 4 de dezembro). O HTML 2.0 sai em novembro.' },
+  { ano: '1996', texto: 'O CSS1 é publicado, em 17 de dezembro.' },
+  { ano: '1997', texto: 'Sai a primeira especificação do ECMAScript (o padrão do JavaScript), em junho. O HTML 4.0 sai em dezembro.' },
+  { ano: '2009', texto: 'Ryan Dahl cria o Node.js, que leva o JavaScript para fora do navegador.' },
+  { ano: '2014', texto: 'O HTML5 vira recomendação do W3C, em 28 de outubro.' },
+]} />
+
+## O HTML: texto com etiquetas
+
+No fim de 1990, Tim Berners-Lee, que trabalhava no CERN como contratado, especificou a linguagem HTML e escreveu o primeiro navegador e o primeiro servidor. O colega Robert Cailliau ajudou nos primeiros pedidos de verba. Em 1991, o documento "HTML Tags" descrevia **18 elementos**.
+
+Depois vieram as versões: o **HTML 2.0** (24 de novembro de 1995, RFC 1866), o **HTML 3.2** (janeiro de 1997, a primeira versão padronizada só pelo W3C), o **HTML 4.0** (dezembro de 1997) e o 4.01 (dezembro de 1999). Em 2004 começou, no grupo WHATWG, o trabalho do **HTML5**, que virou recomendação do W3C em 28 de outubro de 2014. Em 2019 o W3C anunciou que o WHATWG ficaria como único responsável pelo padrão, mantido como um "padrão vivo" que muda aos poucos.
+
+## O CSS: a roupa chega depois
+
+Nos primeiros anos, a aparência de uma página vinha misturada no HTML, com etiquetas só para deixar o texto em negrito ou colorido. Isso virou bagunça. Em 10 de outubro de 1994, **Håkon Wium Lie**, que trabalhava com Berners-Lee no CERN, propôs o **CSS**. Bert Bos é considerado co-criador. O **CSS1** foi publicado em 17 de dezembro de 1996, com fontes, cores, espaçamentos, bordas e posicionamento básico. O CSS2 veio em 1998.
+
+## O JavaScript: a página ganha vida
+
+Em 1995, **Brendan Eich**, contratado pela Netscape, criou o JavaScript. Ele saiu primeiro como **LiveScript**, num teste (beta) do navegador Navigator em setembro de 1995, e foi renomeado para JavaScript no lançamento de 4 de dezembro. Apesar do nome, **não tem relação** com a linguagem Java: só compartilham um estilo parecido de escrever. O próprio Eich via o nome como uma escolha de marketing da Netscape, na época da bolha da internet.
+
+Em novembro de 1996 a Netscape entregou o JavaScript à organização Ecma International, e a primeira especificação do **ECMAScript** saiu em junho de 1997. Em 2009, Ryan Dahl criou o **Node.js**, que permite rodar JavaScript fora do navegador, e isso aumentou muito o uso da linguagem em servidores.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Três camadas, três trabalhos
+
+Na cápsula anterior você viu que o **front-end** é a parte que o navegador mostra. Ele é feito de três ingredientes:
+
+- **HTML**: o **conteúdo e a estrutura**. "Aqui há um título, ali um parágrafo, aqui um botão."
+- **CSS**: a **aparência**. "O título é grande e azul, o botão é redondo."
+- **JavaScript**: o **comportamento**. "Quando tocarem no botão, conte uma curtida."
+
+Cada camada pode existir sem as outras, mas elas funcionam melhor juntas. Uma página só com HTML é feia, mas **funciona e é legível**. É por isso que o HTML é a base.
+
+<ExemploResolvido titulo="Qual camada resolve?">
+  <Passo>Você quer que o título fique **azul**. Isso é aparência: **CSS**.</Passo>
+  <Passo>Você quer trocar a frase "Olá" por "Bom dia" conforme a hora. Isso muda o conteúdo por regra: **JavaScript**.</Passo>
+  <Passo>Você quer adicionar um novo parágrafo na página. Isso é estrutura e conteúdo: **HTML**.</Passo>
+  <Passo>Você quer que um menu abra ao tocar. Isso é comportamento: **JavaScript** (com a aparência do menu em **CSS**).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual linguagem dá a estrutura da página, o esqueleto? (html, css ou javascript)" resposta="html" dica="É a base: sem ela não há conteúdo." resolucao="O HTML descreve o conteúdo e a estrutura: títulos, parágrafos, botões, imagens." />
+
+<Exercicio enunciado="Qual linguagem cuida da aparência, as cores e o espaçamento? (html, css ou javascript)" resposta="css" dica="Seria a roupa da casa." resolucao="O CSS (folhas de estilo) define cores, fontes, espaçamentos e posições." />
+
+<Exercicio enunciado="Qual linguagem faz a página reagir ao toque, o movimento? (html, css ou javascript)" resposta="javascript" dica="Não confunda com Java." resolucao="O JavaScript roda no navegador e responde a cliques, toques, teclado e outros eventos." />
+
+## 2. Cada camada pode falhar sozinha
+
+Imagine que o CSS não carregou: a página aparece sem estilo, mas dá para ler tudo. Imagine que o JavaScript quebrou: a página aparece bonita, mas os botões não fazem nada. E se o HTML estiver errado, não há página. Entender isso ajuda a achar o defeito: **conteúdo faltando** é HTML, **visual estranho** é CSS, **botão que não reage** é JavaScript.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Você abre uma página e o CSS não carrega. O que você vê?"
+  opcoes={['Uma página em branco, sem nada', 'O conteúdo todo, mas sem cores e sem estilo', 'Só as cores, sem texto']}
+  correta={1}
+  explicacao="O conteúdo e a estrutura vêm do HTML, então o texto aparece. Sem o CSS, ele fica com o aspecto 'cru' do navegador, sem cores nem espaçamentos bonitos."
+>
+
+Ligue e desligue o CSS e o JavaScript para sentir o que cada um faz:
+
+<CamadasDoSite />
+
+Repare: o texto e o botão estão **sempre** lá, porque são HTML. O CSS só muda a roupa. O JavaScript só dá vida ao botão.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['HTML', 'CSS', 'JavaScript']}
+  correta={1}
+  seAcertou="E o palpite do começo? Isso: sem cor e sem estilo, o que 'sumiu' foi o CSS."
+  seErrou="E o palpite do começo? O que dá cor e estilo é o CSS. O HTML continua mostrando o conteúdo, e o JavaScript cuida do movimento."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## HTML: o esqueleto
+
+O HTML é feito de **elementos**, marcados por **etiquetas** (*tags*) entre sinais de menor e maior. A maioria tem uma etiqueta de **abertura** e uma de **fechamento**, como `<p>` e `</p>`. Entre as duas fica o **conteúdo**. Algumas etiquetas não têm conteúdo e se fecham sozinhas, como a de quebra de linha, `<br>`.
+
+<AnatomiaDeUmaTag />
+
+Um **atributo** acrescenta informação à etiqueta, no formato `nome="valor"`. Atributos comuns: `id`, `class`, `lang` e `title`. Num link, o atributo `href` diz para onde ele leva.
+
+<ExemploResolvido titulo="Lendo uma etiqueta">
+  <Passo>Veja: `<a href="https://exemplo.com">Visite</a>`.</Passo>
+  <Passo>A abertura é `<a ...>` e o fechamento é `</a>`.</Passo>
+  <Passo>O atributo é `href="https://exemplo.com"`: **1** atributo.</Passo>
+  <Passo>O conteúdo é "Visite", que é o texto visível.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Em <a href='https://exemplo.com'>Visite</a>, quantos atributos há? (número)" resposta="1" dica="Procure algo no formato nome=valor." resolucao="Só o href. São 1 atributo." />
+
+<Exercicio enunciado="Quantas etiquetas (contando abertura e fechamento) há em <p>oi</p>? (número)" resposta="2" dica="Uma abre, outra fecha." resolucao="São 2 etiquetas: <p> e </p>." />
+
+## Etiquetas que dizem o que o texto é
+
+O bom HTML descreve o **significado** do conteúdo (isso é um título, isso é um parágrafo, isso é uma lista), e não o aspecto. A fonte explica que as etiquetas servem para o navegador **interpretar** o conteúdo: o navegador **não mostra** as etiquetas, ele as usa para saber o que fazer.
+
+<EtiquetasHtml />
+
+O significado ajuda muito: leitores de tela (usados por pessoas cegas) e buscadores dependem das etiquetas para entender a página.
+
+<Aprofundar titulo="A estrutura de todo documento HTML">
+Todo documento HTML começa com a declaração `<!DOCTYPE html>`, que ajuda o navegador a usar o modo certo de interpretação (o "modo padrão", e não um modo antigo de compatibilidade). Depois vem o elemento `<html>`, que contém duas partes: o `<head>` (a cabeça, com informações *sobre* a página, como o título da aba) e o `<body>` (o corpo, com tudo o que aparece na tela).
+
+Num exemplo mínimo: `<html>`, dentro dele `<head>` com `<title>`, e `<body>` com um `<h1>` e um `<p>`. É o esqueleto de todo site que você visita.
+</Aprofundar>
+
+## CSS: regras de aparência
+
+Uma folha de estilo é uma lista de **regras**. Cada regra tem um **seletor** (quem recebe o estilo) e um **bloco de declarações** (o que mudar). Cada declaração é uma **propriedade**, dois pontos e um **valor**.
+
+A fonte dá este exemplo: a regra `h1 { color: red; }` deixa **todo** título `h1` vermelho. Trocar `red` por `blue` muda todos de uma vez. É essa a grande vantagem do CSS: **um lugar só** para mudar o visual do site inteiro.
+
+Os valores podem ser palavras (`red`), números com unidade (`200px`, `80%`) ou cores (nomeadas, em hexadecimal, RGB ou HSL).
+
+## Seletores: quem recebe o estilo
+
+Os principais seletores:
+
+- **Por elemento:** `p` pega todos os parágrafos.
+- **Por classe:** `.aviso` (com **ponto**) pega tudo que tem `class="aviso"`.
+- **Por id:** `#topo` (com **cerquilha**) pega o elemento com `id="topo"`, que deve ser único.
+- **Combinados:** `p.aviso` pega só parágrafos que também têm a classe `aviso`.
+
+<SeletorCss />
+
+<ExemploResolvido titulo="O que o seletor pega?">
+  <Passo>A página tem 2 parágrafos (`p`): um deles tem a classe `aviso`.</Passo>
+  <Passo>O seletor `p` pega **os 2**.</Passo>
+  <Passo>O seletor `p.aviso` pega só o parágrafo que tem a classe: **1**.</Passo>
+  <Passo>O seletor `.aviso` pega tudo com a classe, de qualquer tipo (aqui, parágrafo, item de lista e botão): **3**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Na página da simulação, quantos elementos o seletor .aviso pega? (número)" resposta="3" dica="Conte tudo que tem class='aviso': parágrafo, item e botão." resolucao="São 3: um parágrafo, um item de lista e um botão." />
+
+<Exercicio enunciado="Na mesma página, quantos elementos o seletor p pega? (número)" resposta="2" dica="Só os parágrafos." resolucao="Há 2 parágrafos." />
+
+## A cascata: quando duas regras brigam
+
+Várias regras podem tentar mudar a **mesma coisa**. Quem ganha? O "C" de CSS vem de *Cascading* (em cascata): existe uma ordem de prioridade. O que importa é a **especificidade**: quanto mais específico o seletor, mais forte. Pela fonte, a força cresce nesta ordem: **elemento** (mais fraco), **classe**, **id** e, por último, o estilo escrito **na própria etiqueta** (o mais forte).
+
+<CascataCss />
+
+<ExemploResolvido titulo="Quem vence?">
+  <Passo>O texto é `<p id="topo" class="aviso">`.</Passo>
+  <Passo>Regra por elemento: `p { color: blue }`. Regra por classe: `.aviso { color: green }`. Regra por id: `#topo { color: red }`.</Passo>
+  <Passo>O id é mais específico que a classe, e a classe mais que o elemento.</Passo>
+  <Passo>Vence o **id**: o texto fica vermelho.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Entre uma regra por classe e uma regra por elemento, qual vence? (classe ou elemento)" resposta="classe" dica="A mais específica." resolucao="A classe é mais específica que o elemento, então a regra por classe vence." />
+
+<Exercicio enunciado="Entre uma regra por id e uma regra por classe, qual vence? (id ou classe)" resposta="id" dica="O id é único: o mais específico dos seletores." resolucao="O id vence a classe." />
+
+<Aprofundar titulo="Como a especificidade é calculada">
+A fonte mostra a especificidade como uma sequência de quatro números, do mais forte ao mais fraco. Um seletor de **elemento** (como `h1`) vale 0,0,0,1. Uma **classe** (como `.uva`) vale 0,0,1,0. Um **id** vale 0,1,0,0. O estilo na própria etiqueta (atributo `style`) vale 1,0,0,0. Quando os seletores se combinam, os valores se somam coluna por coluna.
+
+Por exemplo, `p.aviso` vale 0,0,1,1 (um elemento e uma classe), e por isso vence `p` sozinho (0,0,0,1) e perde para `#topo` (0,1,0,0). Se a especificidade empata, vale a regra que vem **por último** no arquivo. E acima de tudo isso existe o `!important`, que deve ser usado com muito cuidado.
+</Aprofundar>
+
+## Por que separar conteúdo e aparência
+
+O CSS foi pensado para **separar conteúdo e apresentação**. Isso traz vantagens que a fonte lista: o HTML fica mais simples, vários arquivos HTML podem **dividir o mesmo arquivo de estilo** (que o navegador guarda em memória para não baixar de novo), dá para ter estilos diferentes para tela, impressão ou leitura por voz, e a acessibilidade melhora. O CSS também permite o **design responsivo**: o mesmo conteúdo se adapta a telas de tamanhos e orientações diferentes (celular em pé, computador deitado).
+
+<Aprofundar titulo="Design responsivo e consultas de mídia">
+O mesmo site precisa ficar bom num celular de 375 pixels e num monitor de 1.280. O CSS permite escrever regras que só valem **em certas condições**, como "se a tela for larga". Essas condições se chamam **consultas de mídia** (*media queries*), listadas como um módulo do CSS3, recomendado em junho de 2012. Este app usa essa ideia: os estilos são escritos primeiro para o celular e depois adaptados para telas maiores.
+</Aprofundar>
+
+## JavaScript: o comportamento
+
+O JavaScript é uma linguagem de programação que roda no navegador. Todo grande navegador tem um **motor de JavaScript** embutido. Segundo a fonte, em 2025 cerca de **98,9%** dos sites usavam JavaScript para o comportamento no navegador.
+
+Ele conversa com a página por meio do **DOM** (*Document Object Model*), uma representação da página que o navegador monta a partir do HTML, em forma de árvore. O JavaScript pode ler e **mudar** essa árvore: trocar um texto, esconder um elemento, adicionar um item à lista.
+
+O truque central é o **evento**. Um evento é "algo que aconteceu": um clique, um toque, uma tecla apertada. O programador registra um **ouvinte**: "quando este botão for clicado, execute esta função".
+
+<OuvinteDeCliques />
+
+<ExemploResolvido titulo="O contador de curtidas">
+  <Passo>O HTML tem um botão e um número na tela (começa em 0).</Passo>
+  <Passo>O JavaScript registra um ouvinte: "quando clicarem no botão, some 1 ao contador".</Passo>
+  <Passo>Você toca 3 vezes. O ouvinte roda 3 vezes.</Passo>
+  <Passo>O DOM é atualizado: o número na tela agora é **3**. Sem o ouvinte, o botão ficaria parado.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um contador começa em 0 e o ouvinte soma 1 a cada clique. Depois de 7 cliques, qual é o valor? (número)" resposta="7" dica="Um por clique." resolucao="Cada clique soma 1, então 7 cliques levam a 7." />
+
+<Exercicio enunciado="Em 'quando clicarem, faça isto', o 'clicarem' é um ... (evento ou atributo)" resposta="evento" dica="Algo que aconteceu." resolucao="Clique é um evento. O ouvinte espera por ele." />
+
+<Aprofundar titulo="JavaScript não é Java">
+O nome confunde. Segundo a fonte, as duas linguagens têm uma aparência de código parecida (o estilo "C"), mas são muito diferentes por dentro. O JavaScript nasceu como LiveScript e ganhou o nome para aproveitar a fama do Java na época, uma decisão de marketing da Netscape. Hoje, a linguagem é padronizada pelo nome **ECMAScript**, e as versões novas do JavaScript seguem esse padrão.
+</Aprofundar>
+
+<Aprofundar titulo="JavaScript também roda no servidor">
+O JavaScript nasceu no navegador, mas em 2009 Ryan Dahl criou o **Node.js**, que junta o motor V8 (o mesmo do Chrome), um laço de eventos e funções de entrada e saída num programa independente. Com ele dá para escrever o **back-end** em JavaScript também. Antes disso, tentativas de usar JavaScript no servidor existiam, mas ficaram restritas. Depois do Node.js, a linguagem passou a ser muito usada fora do navegador.
+</Aprofundar>
+
+## Como as três trabalham juntas
+
+Quando o navegador recebe uma página, ele lê o **HTML** e monta o **DOM**. Em seguida, lê o **CSS** e decide a aparência de cada elemento. Por fim, roda o **JavaScript**, que pode mudar o DOM a qualquer momento, e então o navegador **atualiza a tela**.
+
+O JavaScript costuma também fazer pedidos ao servidor (a conversa com o back-end da cápsula anterior) sem recarregar a página, e atualizar só um pedaço da tela com a resposta. Foi isso que o Gmail e o Google Maps mostraram na prática, e que ganhou o nome de **Ajax** em 2005.
+
+<Exercicio enunciado="Em que ano o JavaScript foi lançado, em dezembro? (número)" resposta="1995" dica="Está na linha do tempo." resolucao="Foi lançado em 4 de dezembro de 1995." />
+
+<Exercicio enunciado="Em que ano a primeira especificação do ECMAScript foi lançada? (número)" resposta="1997" dica="Dois anos depois do JavaScript." resolucao="Em junho de 1997." />
+
+<Exercicio enunciado="Em que ano Håkon Wium Lie propôs o CSS? (número)" resposta="1994" dica="Foi em outubro." resolucao="Em 10 de outubro de 1994." />
+
+<Exercicio enunciado="Em que ano o Node.js foi criado? (número)" resposta="2009" dica="Foi Ryan Dahl." resolucao="Em 2009." />
+
+## Por que HTML, CSS e JavaScript juntos?
+
+Dá para fazer sites de muitas formas, mas essas três são as únicas que **todo navegador entende sem instalar nada**. O front-end moderno usa bibliotecas e ferramentas (como React, Angular e Vue.js) para organizar telas grandes, mas por baixo, no final, o navegador recebe **HTML, CSS e JavaScript**. Entender esses três é entender o chão sobre o qual tudo é construído.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Qual linguagem descreve a estrutura e o conteúdo da página?',
+    opcoes: ['HTML', 'CSS', 'JavaScript'],
+    correta: 0,
+    explicacao: 'O HTML é o esqueleto: títulos, parágrafos, botões e imagens.',
+  },
+  {
+    enunciado: 'O que faz a regra h1 { color: red; }?',
+    opcoes: ['Deixa todos os títulos h1 vermelhos', 'Cria um título vermelho novo', 'Apaga os títulos'],
+    correta: 0,
+    explicacao: 'O seletor h1 escolhe todos os títulos e a declaração muda a cor deles.',
+  },
+  {
+    enunciado: 'Um botão aparece bonito, mas não reage ao toque. Qual camada provavelmente falhou?',
+    opcoes: ['HTML', 'CSS', 'JavaScript'],
+    correta: 2,
+    explicacao: 'Comportamento é com o JavaScript. A aparência (CSS) e o conteúdo (HTML) estão certos.',
+  },
+  {
+    enunciado: 'Qual seletor pega os elementos com class="aviso"?',
+    opcoes: ['.aviso', '#aviso', 'aviso'],
+    correta: 0,
+    explicacao: 'O ponto indica classe. A cerquilha (#) indica id.',
+  },
+  {
+    enunciado: 'Qual regra vence: por id ou por elemento?',
+    opcoes: ['Por elemento', 'Por id', 'A mais curta'],
+    correta: 1,
+    explicacao: 'O id é mais específico, então ganha da regra por elemento.',
+  },
+  {
+    enunciado: 'O JavaScript tem relação com a linguagem Java?',
+    opcoes: ['Sim, é uma versão do Java', 'Não, só o nome e o estilo do código são parecidos', 'Sim, o Java foi criado a partir dele'],
+    correta: 1,
+    explicacao: 'Foram criadas para propósitos diferentes. O nome foi uma escolha de marketing da Netscape.',
+  },
+  {
+    enunciado: 'Quem propôs o CSS, em 1994?',
+    opcoes: ['Håkon Wium Lie', 'Brendan Eich', 'Ryan Dahl'],
+    correta: 0,
+    explicacao: 'Lie propôs o CSS em 10 de outubro de 1994. Eich criou o JavaScript e Dahl, o Node.js.',
+  },
+  {
+    enunciado: 'O que é um evento no JavaScript?',
+    opcoes: ['Algo que aconteceu, como um clique ou um toque', 'Uma cor', 'Um tipo de servidor'],
+    correta: 0,
+    explicacao: 'Eventos são ocorrências que o ouvinte espera para reagir.',
+  },
+  {
+    enunciado: 'O que é o DOM?',
+    opcoes: ['Um navegador', 'A representação da página em árvore, que o JavaScript pode ler e mudar', 'Um tipo de arquivo de imagem'],
+    correta: 1,
+    explicacao: 'O navegador monta o DOM a partir do HTML, e o JavaScript o modifica.',
+  },
+  {
+    enunciado: 'Qual é a grande vantagem de ter um arquivo de CSS compartilhado?',
+    opcoes: ['Mudar o visual do site inteiro num lugar só', 'Deixar o site mais lento', 'Eliminar o HTML'],
+    correta: 0,
+    explicacao: 'Uma única regra muda todas as páginas que usam aquele arquivo de estilo.',
+  },
+  {
+    enunciado: 'O Node.js serve para...',
+    opcoes: ['Rodar JavaScript fora do navegador, como no servidor', 'Trocar cores', 'Guardar imagens'],
+    correta: 0,
+    explicacao: 'Criado em 2009 por Ryan Dahl, ele permite escrever back-ends em JavaScript.',
+  },
+  {
+    enunciado: 'Por que o HTML deve descrever o significado e não o aspecto?',
+    opcoes: ['Porque ajuda leitores de tela e buscadores, e o aspecto fica com o CSS', 'Porque o navegador não entende cores', 'Por nenhum motivo'],
+    correta: 0,
+    explicacao: 'Significado vai no HTML e aparência vai no CSS. Isso melhora a acessibilidade.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **HTML** é o esqueleto: elementos com etiquetas de abertura e fechamento, atributos (`nome="valor"`) e conteúdo.
+- **CSS** é a roupa: regras com seletor e declarações. Seletores por elemento, `.classe` e `#id`.
+- **Cascata:** quando regras brigam, ganha a mais específica (elemento < classe < id < estilo na etiqueta).
+- **JavaScript** é o movimento: ouve eventos (cliques, toques) e muda a página pelo DOM.
+- O navegador lê o HTML, monta o DOM, aplica o CSS e roda o JavaScript.
+- Conteúdo faltando é HTML, visual estranho é CSS, botão parado é JavaScript.
+
+**Um pouco de história.** Tim Berners-Lee especificou o HTML no fim de 1990 (o documento de 1991 tinha 18 elementos). Håkon Wium Lie propôs o CSS em 1994 e o CSS1 saiu em 1996. Brendan Eich criou o JavaScript em 1995 na Netscape (primeiro como LiveScript), e o padrão ECMAScript veio em 1997. O Node.js (2009) e o HTML5 (2014) completam a história até hoje.
+
+</Resumo>
+
+Agora você conhece as três peças do salão. Na próxima cápsula, vamos ver como o salão e a cozinha conversam de verdade: **APIs e JSON**.
+
+<Conexoes />
+
+</Etapa>
