@@ -1,0 +1,374 @@
+import DobrarAFolha from '../../../../components/simulacoes/DobrarAFolha'
+import LinearContraExponencial from '../../../../components/simulacoes/LinearContraExponencial'
+import FatorExponencial from '../../../../components/simulacoes/FatorExponencial'
+import TempoParaDobrar from '../../../../components/simulacoes/TempoParaDobrar'
+import LendaDoXadrez from '../../../../components/simulacoes/LendaDoXadrez'
+import NenufarNoLago from '../../../../components/simulacoes/NenufarNoLago'
+
+{/* Fatos conferidos na Wikipedia em inglês (Exponential growth), listada no meta.ts. A distância média à Lua (cerca de 384.400 km) é um dado geral conhecido, não da fonte. A dobra de uma folha de papel é uma conta ideal; na prática, a folha não pode ser dobrada tantas vezes, e isso é dito no texto. Valores de juros e populações são exemplos conferidos por cálculo. */}
+
+<Etapa id="gancho">
+
+Pegue uma folha de papel, daquelas comuns, com cerca de **0,1 milímetro** de espessura. Dobre-a ao meio: agora são 2 camadas. Dobre de novo: 4. Mais uma: 8. **Se você pudesse dobrar a folha 42 vezes**, qual seria a altura da pilha?
+
+A resposta ingênua é "uns metros". Mas a conta dá **mais de 439 mil quilômetros**, o suficiente para **ultrapassar a distância da Terra à Lua** (cerca de 384 mil km, em média). Parece absurdo, mas é pura matemática: quando uma quantidade **dobra** a cada passo, os números explodem de um jeito que o nosso cérebro não consegue imaginar. Esse tipo de crescimento é o **exponencial**.
+
+<Palpite
+  chave="inicial"
+  pergunta="Quantas vezes você precisa dobrar uma folha de 0,1 mm para a pilha passar de 1 metro de altura (supondo que fosse possível dobrar)?"
+  opcoes={['Cerca de 100 vezes', 'Cerca de 14 vezes', 'Cerca de 1.000 vezes']}
+/>
+
+Nesta cápsula você vai dobrar a folha (de brinquedo), comparar **somar contra dobrar**, ver o que o **fator** faz ao gráfico, descobrir o **tempo de dobrar** (e a regra do 70), ver a **lenda do xadrez** e acompanhar a planta que **dobra todo dia** num lago.
+
+</Etapa>
+
+<Etapa id="historia">
+
+O crescimento exponencial assusta desde que se contam histórias.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Lenda antiga', texto: 'A história dos grãos de arroz no tabuleiro de xadrez ilustra o poder da duplicação, a ponto de passar de um milhão de grãos na casa 21.' },
+  { ano: '1845', texto: 'Pierre François Verhulst propõe o modelo de crescimento logístico, em que o crescimento desacelera ao encontrar limites.' },
+  { ano: 'Século 20 e 21', texto: 'O crescimento exponencial é usado para descrever o início de epidemias, o crescimento de juros compostos e a viralização de conteúdos na internet.' },
+]} />
+
+## A lenda do tabuleiro
+
+Há uma lenda famosa sobre um **tabuleiro de xadrez**. Alguém pede, como recompensa, **1 grão de arroz** na primeira casa, **2** na segunda, **4** na terceira, e assim por diante, **dobrando** a cada casa. Parece um pedido modesto. Mas, segundo a fonte, só **na casa 21** já são **mais de um milhão de grãos**. Ao chegar na casa 64, a quantidade total ultrapassa qualquer colheita do planeta. (A lenda existe em várias versões; o que importa é o efeito da duplicação.)
+
+## O enigma do nenúfar
+
+Outro exemplo, citado na fonte, é o **enigma da planta aquática**: uma planta dobra de tamanho todo dia e cobre um lago inteiro no **dia 30**. Em que dia ela cobria **metade** do lago? No **dia 29**. Quem olha o lago no dia 25 vê pouquíssima planta e acha que há muito tempo pela frente. A lição: o crescimento exponencial pode parecer **lento e inofensivo até muito perto do fim**.
+
+## Quando o crescimento encontra limites
+
+Nada cresce exponencialmente para sempre. Bactérias acabam o alimento, epidemias acabam encontrando pessoas imunes. Em **1845**, **Pierre François Verhulst** propôs o modelo de crescimento **logístico**, em que o crescimento começa exponencial e depois **desacelera** conforme esbarra em limites. A fonte afirma que, na prática, o crescimento real quase sempre **diminui** por limites externos.
+
+## Do mundo natural ao dinheiro
+
+A fonte cita vários exemplos de crescimento exponencial: **colônias de bactérias** (até faltar nutriente), o **início da disseminação de vírus**, **juros compostos** e dívidas, **conteúdo viral** na internet e até **reações em cadeia**. Em todos, a regra é a mesma: **o quanto cresce depende do quanto já existe**.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Quanto mais tem, mais cresce
+
+No crescimento **linear** (função afim), você soma sempre a mesma quantidade: +10 por dia. No **exponencial**, você **multiplica**: x2 por dia. Segundo a fonte, o crescimento exponencial ocorre quando a quantidade cresce a uma taxa **diretamente proporcional ao seu tamanho atual**: uma quantidade três vezes maior cresce três vezes mais rápido.
+
+## 2. A fórmula
+
+A fonte dá a fórmula: **x(t) = x₀ · bᵗ**, em que **x₀** é o valor inicial, **b** é o **fator de crescimento** por intervalo de tempo e **t** é o número de intervalos. Exemplo da fonte: uma bactéria que **dobra a cada 10 minutos** (b = 2) chega a **2⁶ = 64 bactérias em uma hora** (6 intervalos).
+
+## 3. Crescer ou decair
+
+Se **b > 1**, o valor **cresce**. Se **0 < b < 1**, ele **decai** (encolhe, como uma substância radioativa perdendo metade de si a cada intervalo). A fonte diz que, quando o fator é menor que 1, a quantidade decai em vez de crescer.
+
+## 4. Começa devagar, depois explode
+
+O exponencial **não é sinônimo de rápido**. A fonte avisa que ele pode **começar devagar**. A diferença está no **longo prazo**: segundo a fonte, o exponencial acaba **ultrapassando** qualquer crescimento linear ou polinomial.
+
+<ExemploResolvido titulo="Bactérias que dobram a cada 10 minutos">
+  <Passo>Comece com 1 bactéria. Cada 10 minutos, o número dobra.</Passo>
+  <Passo>Em 1 hora há 6 intervalos de 10 minutos: x = 1 · 2⁶ = **64**.</Passo>
+  <Passo>Em 2 horas (12 intervalos): 2¹² = **4.096**.</Passo>
+  <Passo>Dobrou o tempo (de 1 para 2 horas), e o número foi de 64 para 4.096: **64 vezes mais**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma bactéria dobra a cada 10 minutos. Quantas há depois de 1 hora (6 dobras)? (número)" resposta="64" dica="2 elevado a 6." resolucao="2⁶ = 64." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Uma folha de 0,1 mm dobrada ao meio 10 vezes (em contas ideais) tem cerca de quanto de altura?"
+  opcoes={['Cerca de 1 mm', 'Cerca de 10 cm', 'Cerca de 10 m']}
+  correta={1}
+  explicacao="2¹⁰ = 1.024 camadas de 0,1 mm = 102,4 mm, cerca de 10 cm. Parece pouco, mas cada dobra nova dobra a altura: com 20 dobras já seriam mais de 100 metros, e com 42, mais que a distância da Terra à Lua."
+>
+
+Dobre a folha e acompanhe a altura crescer.
+
+<DobrarAFolha />
+
+Agora compare **somar** (+10 por dia) com **dobrar** (x2 por dia).
+
+<LinearContraExponencial />
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Cerca de 100 vezes', 'Cerca de 14 vezes', 'Cerca de 1.000 vezes']}
+  correta={1}
+  seAcertou="E o palpite do começo? Isso: 2 elevado a 14 camadas de 0,1 mm dão 1,6 m. Passa de 1 metro com apenas 14 dobras."
+  seErrou="E o palpite do começo? Bastam 14 dobras: 2¹⁴ = 16.384 camadas de 0,1 mm = 1.638 mm, ou 1,6 metro. A duplicação é muito mais rápida do que o nosso instinto imagina."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## A função exponencial
+
+A **função exponencial** tem a variável **no expoente**: **f(x) = bˣ**, com b > 0 e b diferente de 1. Não confunda com a quadrática (x²), em que a variável é a **base**. Em 2ˣ, a base é fixa (2) e o expoente é que varia.
+
+<ExemploResolvido titulo="Valores de f(x) = 2ˣ">
+  <Passo>f(0) = 2⁰ = **1** (qualquer número não nulo elevado a 0 dá 1).</Passo>
+  <Passo>f(1) = 2, f(2) = 4, f(3) = 8, f(4) = 16, f(10) = 1.024.</Passo>
+  <Passo>Para x negativo: f(-1) = 2⁻¹ = 1/2 e f(-2) = 1/4. Os valores ficam pequenos, mas **nunca zero** nem negativos.</Passo>
+  <Passo>Repare: cada vez que x aumenta 1, f(x) **dobra**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto vale 2⁵? (número)" resposta="32" dica="2 · 2 · 2 · 2 · 2." resolucao="32." />
+
+<Exercicio enunciado="Quanto vale 3² · 3³? Dica: some os expoentes. (número)" resposta="243" dica="3⁵." resolucao="3⁵ = 243." />
+
+## O fator manda
+
+O número **b** é o fator: o que acontece com o valor a cada passo. Se **b > 1**, o gráfico **sobe cada vez mais rápido**; se **0 < b < 1**, ele **desce**, aproximando-se do eixo x sem nunca tocá-lo. Em qualquer caso, o gráfico passa por **(0, 1)**.
+
+<FatorExponencial />
+
+<ExemploResolvido titulo="Crescimento e decaimento">
+  <Passo>f(x) = 2ˣ (b = 2): **cresce**. f(3) = 8.</Passo>
+  <Passo>g(x) = (1/2)ˣ (b = 1/2): **decai**. g(3) = 1/8 = 0,125.</Passo>
+  <Passo>Os dois gráficos são **espelhos** um do outro em relação ao eixo y, porque (1/2)ˣ = 2⁻ˣ.</Passo>
+  <Passo>Nenhum toca o eixo x: nunca chegam a zero.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Em g(x) = (1/2)ˣ, quanto vale g(3)? (decimal, com vírgula)" resposta="0,125" dica="1/8." resolucao="0,125." />
+
+<Exercicio enunciado="Quanto é 10 · 2³? (número)" resposta="80" dica="2³ = 8." resolucao="80." />
+
+## A fórmula x(t) = x₀ · bᵗ
+
+Para modelar situações reais, use **x(t) = x₀ · bᵗ**: x₀ é o **valor inicial**, b o **fator por intervalo** e t o **número de intervalos**. Para um crescimento de **r% por período**, o fator é **b = 1 + r/100**. Para um **decaimento** de r%, b = 1 - r/100.
+
+<ExemploResolvido titulo="Juros compostos: R$ 1.000 a 10% ao ano">
+  <Passo>x₀ = 1.000 e b = 1 + 10/100 = **1,1**.</Passo>
+  <Passo>Depois de t anos: x(t) = 1.000 · 1,1ᵗ.</Passo>
+  <Passo>x(1) = 1.100; x(2) = 1.210; x(3) = **1.331**.</Passo>
+  <Passo>Repare: o ganho de cada ano é 10% do valor **do ano anterior**, então cresce mais a cada ano. É por isso que os juros compostos são exponenciais.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um valor de 3 dobra 4 vezes: x = 3 · 2⁴. Quanto dá? (número)" resposta="48" dica="3 vezes 16." resolucao="48." />
+
+<Exercicio enunciado="R$ 100 crescem 10% por ano. Quanto há depois de 2 anos, em reais? (número)" resposta="121" dica="100 · 1,1²." resolucao="100 · 1,21 = 121." />
+
+<Exercicio enunciado="Qual é o fator de crescimento de 20% por período? (decimal, com vírgula)" resposta="1,2" dica="1 + 20/100." resolucao="1,2." />
+
+<Aprofundar titulo="Por que f(0) é sempre 1">
+Em bˣ, f(0) = b⁰ = 1 para qualquer base b não nula. Isso não é uma convenção arbitrária: vem da regra de que, ao multiplicar potências de mesma base, **somam-se os expoentes**: b³ · b⁰ = b³⁺⁰ = b³. Para isso funcionar, b⁰ tem que ser 1, o "elemento neutro" da multiplicação. Em x(t) = x₀ · bᵗ, isso significa: em t = 0, o valor é exatamente o **inicial** x₀. Perfeito para um modelo.
+</Aprofundar>
+
+## Somar contra dobrar
+
+A diferença entre **linear** e **exponencial** é a diferença entre **somar** e **multiplicar**. Na tabela: +10 por dia dá 10, 20, 30, 40, 50, 60... Dobrando a partir de 1: 1, 2, 4, 8, 16, 32, 64... No começo, o linear ganha. No **dia 6**, o exponencial já passou (64 contra 60) e nunca mais é alcançado.
+
+<ExemploResolvido titulo="Quem vence em 10 dias?">
+  <Passo>Plano A (+10 por dia): em 10 dias, 10 · 10 = **100**.</Passo>
+  <Passo>Plano B (dobra por dia, começando em 1): 2¹⁰ = **1.024**.</Passo>
+  <Passo>B é mais de 10 vezes maior.</Passo>
+  <Passo>Em 20 dias: A = 200 e B = 2²⁰ = **1.048.576**. A diferença virou um abismo.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Em 20 dias, quanto dá o plano A (+10 por dia)? (número)" resposta="200" dica="10 vezes 20." resolucao="200." />
+
+<Exercicio enunciado="Em quantos dias o plano B (dobra, começando em 1) passa do plano A (+10 por dia)? (número)" resposta="6" dica="64 contra 60." resolucao="No dia 6: 2⁶ = 64 e A = 60." />
+
+<Aprofundar titulo="Por que o exponencial sempre vence no fim">
+A fonte afirma que, no longo prazo, o crescimento exponencial **ultrapassa** o linear e o polinomial. Intuição: no linear, o que você soma é **fixo**; no exponencial, o que você soma é uma **parte do que já tem**, e esse "já tem" não para de crescer. Dá para ver numa tabela de razão: no exponencial, y(t+1)/y(t) = b é **constante**; no linear (10, 20, 30, 40...), a razão y(t+1)/y(t) **diminui** com o tempo (20/10 = 2, 30/20 = 1,5, 40/30 ≈ 1,33...). Quando a razão constante é maior que 1, o exponencial vence todo mundo. A fonte lembra que existem crescimentos **ainda mais rápidos** que o exponencial, como o fatorial.
+</Aprofundar>
+
+## Tempo de dobrar e a regra do 70
+
+Uma pergunta útil: **em quanto tempo o valor dobra?** A fonte apresenta a **regra do 70**: o **tempo de dobrar** é aproximadamente **70 dividido pela taxa percentual** por período. Se uma dívida cresce **5% ao mês**, ela dobra em cerca de 70/5 = **14 meses**. Com 10%, em cerca de 7 períodos. É um atalho para a conta exata, que usa logaritmos.
+
+<TempoParaDobrar />
+
+<ExemploResolvido titulo="Quando dobra o dinheiro a 7% ao ano?">
+  <Passo>Regra do 70: 70 ÷ 7 = **10 anos**.</Passo>
+  <Passo>Conferindo: 1,07¹⁰ ≈ 1,967. Quase 2 (a regra é aproximada).</Passo>
+  <Passo>Em 11 anos: 1,07¹¹ ≈ 2,105. Já passou de 2: o tempo exato é cerca de 10,2 anos.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Pela regra do 70, em quantos períodos um valor dobra crescendo 5% por período? (número)" resposta="14" dica="70 dividido por 5." resolucao="14 períodos." />
+
+<Exercicio enunciado="Pela regra do 70, em quantos períodos dobra um valor que cresce 10% por período? (número)" resposta="7" dica="70 ÷ 10." resolucao="7 períodos." />
+
+## A lenda do xadrez
+
+Na lenda, a casa 1 tem 1 grão, a casa 2 tem 2, a casa 3 tem 4: **na casa n, há 2ⁿ⁻¹ grãos**. Na casa 21, são 2²⁰ = **1.048.576**, mais de um milhão. E o **total** até a casa n é **2ⁿ - 1**: cada casa tem quase tanto quanto **todas as anteriores somadas**.
+
+<LendaDoXadrez />
+
+<ExemploResolvido titulo="Quantos grãos na casa 11?">
+  <Passo>Na casa n, há 2ⁿ⁻¹ grãos.</Passo>
+  <Passo>Casa 11: 2¹⁰ = **1.024**.</Passo>
+  <Passo>Total acumulado até a casa 11: 2¹¹ - 1 = **2.047**.</Passo>
+  <Passo>Note que o total (2.047) é quase o dobro da última casa: 2 · 1.024 - 1.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos grãos há na casa 11 do tabuleiro (1, 2, 4, ...)? (número)" resposta="1024" dica="2 elevado a 10." resolucao="1.024." />
+
+<Exercicio enunciado="Quantos grãos há na casa 5? (número)" resposta="16" dica="2⁴." resolucao="16." />
+
+## O lago e a planta
+
+A planta que **dobra todo dia** e cobre o lago em 30 dias: no dia 29, ela cobre **a metade**; no 28, **um quarto**; no 27, **um oitavo** (12,5%). Para saber a cobertura no dia d, use **2^(d - 30)**. Isso ensina uma lição importante sobre crescimento exponencial: ele pode parecer **inofensivo** até estar **muito perto do limite**.
+
+<NenufarNoLago />
+
+<ExemploResolvido titulo="Quanto do lago no dia 27?">
+  <Passo>Cada dia para trás, a cobertura cai pela metade.</Passo>
+  <Passo>Dia 30: 100%. Dia 29: 50%. Dia 28: 25%. Dia 27: **12,5%**.</Passo>
+  <Passo>Em fórmula: 2²⁷⁻³⁰ = 2⁻³ = 1/8 = 0,125.</Passo>
+  <Passo>Faltam só 3 dias para o lago todo, mas só 12,5% está coberto.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Em que dia a planta cobre metade do lago (ela dobra todo dia e cobre tudo no dia 30)? (número)" resposta="29" dica="Um dia antes do fim." resolucao="No dia 29." />
+
+<Exercicio enunciado="No dia 28, que porcentagem do lago está coberta? (número)" resposta="25" dica="Metade da metade." resolucao="25%." />
+
+<Aprofundar titulo="Epidemias e o cuidado com o 'começo lento'">
+A fonte lista o **início da disseminação de vírus** como exemplo de crescimento exponencial. Nos primeiros dias, o número de casos parece pequeno, mas **dobra** em intervalos fixos. Por isso, especialistas em saúde dão tanta importância a agir **cedo**: é como ver a planta no dia 25. A fonte também lembra que o exponencial **não é a mesma coisa que "rápido"**: no início ele pode ser até lento, e só depois acelera. E que, com o tempo, a epidemia esbarra em limites (imunidade, isolamento), o que leva ao modelo logístico, de Verhulst, de 1845.
+</Aprofundar>
+
+## Dívidas e a bola de neve
+
+A fonte cita **juros compostos e dívidas** entre os exemplos de crescimento exponencial. Quando uma dívida **não é paga**, os juros do mês passam a render juros no mês seguinte: o valor cresce como uma **bola de neve**. Se uma dívida de R$ 1.000 crescer **12% ao mês** (taxa de exemplo, não é uma taxa real de nenhum banco), o fator é 1,12 e, depois de 3 meses, a dívida vale 1.000 · 1,12³ ≈ **R$ 1.404,93**. Depois de 12 meses, 1.000 · 1,12¹² ≈ R$ 3.895,98: quase **quatro vezes** o valor inicial. Entender isso ajuda a **fugir das dívidas que crescem sozinhas** e é o ponto de partida da cápsula de **Matemática financeira**.
+
+<ExemploResolvido titulo="Uma dívida de R$ 1.000 a 12% ao mês">
+  <Passo>Fator mensal: 1 + 12/100 = **1,12**.</Passo>
+  <Passo>Mês 1: 1.000 · 1,12 = 1.120. Mês 2: 1.120 · 1,12 = 1.254,40.</Passo>
+  <Passo>Mês 3: 1.254,40 · 1,12 ≈ **1.404,93**.</Passo>
+  <Passo>Em juros simples (12% do valor inicial, R$ 120 por mês), seriam R$ 1.360. A diferença, R$ 44,93, vem de juros sobre juros.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma dívida de R$ 100 cresce 10% ao mês. Quanto vale depois de 2 meses, em reais? (número)" resposta="121" dica="100 · 1,1 · 1,1." resolucao="121." />
+
+<Exercicio enunciado="Uma dívida de R$ 1.000 cresce com fator 2 a cada ano. Quanto vale depois de 3 anos, em reais? (número)" resposta="8000" dica="1.000 · 2³." resolucao="8.000." />
+
+## Decaimento exponencial
+
+Quando **0 < b < 1**, o valor **decai**. Se uma substância perde **metade** a cada 3 horas (b = 1/2 por intervalo de 3 horas), a quantidade, a partir de 100 g, vai a 50, 25, 12,5... Nunca chega a zero, mas fica cada vez menor. É assim com **medicamentos no corpo**, com a **carga de um celular** em alguns modelos e com a **radioatividade**.
+
+<ExemploResolvido titulo="Uma substância que pela metade a cada 3 horas">
+  <Passo>Comece com 100 g. Fator por intervalo: 1/2.</Passo>
+  <Passo>Depois de 3 h: 50 g. Depois de 6 h: 25 g. Depois de 9 h: **12,5 g**.</Passo>
+  <Passo>Em fórmula: x = 100 · (1/2)³ = 100/8 = 12,5.</Passo>
+  <Passo>O valor nunca chega a 0: sempre sobra a metade da metade.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="100 g perdem metade a cada 3 horas. Quantos gramas restam após 9 horas? (decimal, com vírgula)" resposta="12,5" dica="3 meias-vidas." resolucao="100 · (1/2)³ = 12,5." />
+
+<Exercicio enunciado="Quanto vale 2⁻² ? (decimal, com vírgula)" resposta="0,25" dica="1/2²." resolucao="1/4 = 0,25." />
+
+<Exercicio enunciado="Se 2ˣ = 32, qual é x? (número)" resposta="5" dica="Quantas vezes dobrar 1 para chegar a 32?" resolucao="x = 5, porque 2⁵ = 32. (Achar o expoente é o trabalho do logaritmo, na próxima cápsula.)" />
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Qual é a forma da função exponencial?',
+    opcoes: ['f(x) = bˣ, com a variável no expoente', 'f(x) = x², com a variável na base', 'f(x) = ax + b'],
+    correta: 0,
+    explicacao: 'A variável fica no expoente.',
+  },
+  {
+    enunciado: 'Segundo a fonte, quando ocorre o crescimento exponencial?',
+    opcoes: ['Quando a taxa de crescimento é proporcional ao tamanho atual', 'Quando se soma sempre o mesmo valor', 'Quando o valor é constante'],
+    correta: 0,
+    explicacao: 'Quanto maior a quantidade, mais rápido ela cresce.',
+  },
+  {
+    enunciado: 'Uma bactéria dobra a cada 10 minutos. Quantas há após 1 hora?',
+    opcoes: ['64', '60', '12'],
+    correta: 0,
+    explicacao: '6 intervalos: 2⁶ = 64 (exemplo da fonte).',
+  },
+  {
+    enunciado: 'Quanto vale f(0) em f(x) = bˣ?',
+    opcoes: ['1', '0', 'b'],
+    correta: 0,
+    explicacao: 'Qualquer base não nula elevada a 0 dá 1.',
+  },
+  {
+    enunciado: 'Se b é um número entre 0 e 1, a função bˣ...',
+    opcoes: ['Decai (encolhe)', 'Cresce', 'É constante'],
+    correta: 0,
+    explicacao: 'Cada passo multiplica por menos de 1, então o valor diminui.',
+  },
+  {
+    enunciado: 'R$ 1.000 a 10% ao ano, em juros compostos, valem quanto após 3 anos?',
+    opcoes: ['R$ 1.331', 'R$ 1.300', 'R$ 1.030'],
+    correta: 0,
+    explicacao: '1.000 · 1,1³ = 1.331. Os juros compostos incidem também sobre os juros anteriores.',
+  },
+  {
+    enunciado: 'Pela regra do 70, quanto tempo leva para dobrar um valor que cresce 5% por período?',
+    opcoes: ['Cerca de 14 períodos', 'Cerca de 5 períodos', 'Cerca de 70 períodos'],
+    correta: 0,
+    explicacao: '70/5 = 14.',
+  },
+  {
+    enunciado: 'Na lenda do xadrez, quantos grãos há na casa 21 (1, 2, 4, 8...)?',
+    opcoes: ['Mais de um milhão (1.048.576)', 'Cerca de 21', 'Cerca de 441'],
+    correta: 0,
+    explicacao: '2²⁰ = 1.048.576, segundo o exemplo da fonte.',
+  },
+  {
+    enunciado: 'A planta dobra todo dia e cobre o lago inteiro no dia 30. Quando cobria metade?',
+    opcoes: ['Dia 29', 'Dia 15', 'Dia 25'],
+    correta: 0,
+    explicacao: 'Um dia antes, ela tinha metade do tamanho.',
+  },
+  {
+    enunciado: 'No longo prazo, o crescimento exponencial...',
+    opcoes: ['Ultrapassa o linear e o polinomial', 'Fica sempre abaixo do linear', 'Para de crescer'],
+    correta: 0,
+    explicacao: 'A fonte afirma que o exponencial acaba ultrapassando qualquer linear ou polinomial.',
+  },
+  {
+    enunciado: 'Por que o crescimento real raramente é exponencial para sempre?',
+    opcoes: ['Há limites externos (alimento, espaço, pessoas imunes), e ele vira logístico', 'Porque a matemática está errada', 'Porque a taxa sempre aumenta'],
+    correta: 0,
+    explicacao: 'Verhulst propôs o modelo logístico em 1845: o crescimento desacelera ao encontrar limites.',
+  },
+  {
+    enunciado: 'Quantas dobras de uma folha de 0,1 mm bastam para passar de 1 metro (em contas ideais)?',
+    opcoes: ['14', '100', '1.000'],
+    correta: 0,
+    explicacao: '2¹⁴ camadas de 0,1 mm dão cerca de 1,6 m.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- No crescimento **exponencial**, o valor é **multiplicado** a cada passo: a taxa de crescimento é proporcional ao tamanho atual.
+- **x(t) = x₀ · bᵗ:** x₀ é o valor inicial, b o fator e t o número de passos. **f(x) = bˣ** tem a variável no expoente e f(0) = 1.
+- **b > 1:** cresce. **0 < b < 1:** decai. O gráfico nunca toca o eixo x.
+- Crescer r% por período dá fator **b = 1 + r/100**. Juros compostos são exponenciais.
+- O exponencial pode **começar devagar**, mas no longo prazo **ultrapassa** o linear e o polinomial.
+- **Regra do 70:** tempo de dobrar ≈ 70 ÷ taxa percentual.
+- Na **lenda do xadrez**, a casa 21 já tem mais de um milhão de grãos; no **nenúfar**, metade do lago está coberta um dia antes do fim.
+- Na prática, o crescimento encontra limites e vira **logístico** (Verhulst, 1845).
+
+**Um pouco de história.** A lenda do tabuleiro de xadrez é um dos exemplos mais antigos do poder da duplicação. Em 1845, Pierre François Verhulst mostrou que o crescimento de uma população esbarra em limites e propôs o modelo logístico. Hoje, o crescimento exponencial é usado para descrever juros, epidemias nos primeiros dias e conteúdo que viraliza.
+
+</Resumo>
+
+Sabemos calcular **para onde** vai um valor que dobra. Mas e a pergunta contrária: **quantas vezes** foi preciso dobrar para chegar a 1.024? A resposta é o **logaritmo**.
+
+<Conexoes />
+
+</Etapa>
