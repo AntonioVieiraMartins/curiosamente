@@ -22,7 +22,7 @@ const cartoes: CartaoPronto[] = [
   { tipo: 'regra', frente: 'O que é um poliedro e quais sólidos não são?', verso: 'Sólido só com faces planas (cubo, pirâmide, prisma). Cilindro, cone e esfera têm superfície curva e não são poliedros. Nos poliedros V − A + F = 2.' },
   { tipo: 'conta', frente: 'Quantas faces tem uma pirâmide de base quadrada? E um cilindro tem quantas faces planas?', verso: 'Pirâmide: 5 (1 base e 4 triângulos). Cilindro: 2 faces planas (as bases) e 1 superfície curva.' },
   { tipo: 'história', frente: 'De onde vem a palavra geometria e quem organizou a geometria grega?', verso: 'Do grego, "medir a terra". Euclides a organizou nos Elementos, por volta de 300 a.C.' },
-  { tipo: 'história', frente: 'O que a fonte conta sobre pentagrama e polígonos não convexos?', verso: 'Um pentagrama aparece num vaso grego (krater) do século 7 a.C. O primeiro estudo sistemático de polígonos não convexos é do século 14, de Thomas Bradwardine.' },
+  { tipo: 'história', frente: 'O que se sabe sobre o pentagrama e os polígonos não convexos na história?', verso: 'Um pentagrama aparece num vaso grego (krater) do século 7 a.C. O primeiro estudo sistemático de polígonos não convexos é do século 14, de Thomas Bradwardine.' },
 ]
 
 export default cartoes

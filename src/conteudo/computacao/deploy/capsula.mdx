@@ -38,11 +38,11 @@ Publicar software nem sempre foi "apertar um botão".
 
 ## Quando publicar era instalar
 
-Antes da internet banda larga, "publicar" um programa era colocá-lo em **disquetes e CDs**, e quem comprava precisava **instalar** no próprio computador. Segundo a fonte, os instaladores com assistente, como o InstallShield, ficaram populares nos anos 1990. Ali, o deploy era **responsabilidade de quem usava**: se a versão nova chegasse, a pessoa tinha que instalar de novo.
+Antes da internet banda larga, "publicar" um programa era colocá-lo em **disquetes e CDs**, e quem comprava precisava **instalar** no próprio computador. Os instaladores com assistente, como o InstallShield, ficaram populares nos anos 1990. Ali, o deploy era **responsabilidade de quem usava**: se a versão nova chegasse, a pessoa tinha que instalar de novo.
 
 ## A nuvem muda o jogo
 
-Nos anos 2000, a **computação em nuvem** e o **software como serviço** (SaaS) mudaram quem controla a publicação. Segundo a fonte, passou a ser possível implantar para muitos clientes **em minutos**, e o calendário de lançamentos passou das mãos do usuário para as do **fornecedor**. Em um site, a pessoa só abre o endereço e já vê a última versão.
+Nos anos 2000, a **computação em nuvem** e o **software como serviço** (SaaS) mudaram quem controla a publicação. Passou a ser possível implantar para muitos clientes **em minutos**, e o calendário de lançamentos passou das mãos do usuário para as do **fornecedor**. Em um site, a pessoa só abre o endereço e já vê a última versão.
 
 ## Publicar sem medo
 
@@ -50,7 +50,7 @@ Em paralelo, nasceu a ideia de **integração contínua**: Kent Beck a desenvolv
 
 ## As plataformas que fazem tudo isso por você
 
-A **Vercel**, que hospeda este app, foi fundada em **2015 por Guillermo Rauch** com o nome **ZEIT**, e adotou o nome atual em **abril de 2020**. Segundo a fonte, os deploys ali são feitos a partir de repositórios Git (GitHub, GitLab e Bitbucket) e cada deploy recebe automaticamente um endereço `vercel.app`, com a opção de usar um domínio próprio.
+A **Vercel**, que hospeda este app, foi fundada em **2015 por Guillermo Rauch** com o nome **ZEIT**, e adotou o nome atual em **abril de 2020**. Os deploys ali são feitos a partir de repositórios Git (GitHub, GitLab e Bitbucket) e cada deploy recebe automaticamente um endereço `vercel.app`, com a opção de usar um domínio próprio.
 
 </Etapa>
 
@@ -60,11 +60,11 @@ A **Vercel**, que hospeda este app, foi fundada em **2015 por Guillermo Rauch** 
 
 Imagine que você montou uma loja. Você arrumou as prateleiras, testou o caixa e colocou a placa. **Abrir as portas para o público** é o deploy. Antes disso a loja existe, mas só você entra.
 
-No mundo do software, o deploy reúne todas as atividades que tornam o sistema **disponível para uso**. A fonte lista, entre elas: **liberar** a versão (preparar o pacote), **instalar** e **ativar** (ligar pela primeira vez), **desativar** e **atualizar**. Para um site, quase tudo isso acontece em segundos, e sem que você mexa em nada além do código.
+No mundo do software, o deploy reúne todas as atividades que tornam o sistema **disponível para uso**. Entre elas: **liberar** a versão (preparar o pacote), **instalar** e **ativar** (ligar pela primeira vez), **desativar** e **atualizar**. Para um site, quase tudo isso acontece em segundos, e sem que você mexa em nada além do código.
 
 ## 2. Três ambientes: ensaio, ensaio geral e estreia
 
-Teatros fazem **ensaios** antes da estreia. Com software é igual. Segundo a fonte, existem o ambiente de **produção** (onde os usuários usam a cópia principal) e ambientes de **teste** (pré-produção) e **desenvolvimento**.
+Teatros fazem **ensaios** antes da estreia. Com software é igual. Existem o ambiente de **produção** (onde os usuários usam a cópia principal) e ambientes de **teste** (pré-produção) e **desenvolvimento**.
 
 - **Desenvolvimento**: o seu computador, onde você pode errar à vontade.
 - **Teste** (também chamado *staging*): uma cópia parecida com a real, para conferir antes.
@@ -121,7 +121,7 @@ Em um deploy moderno, as etapas rodam **em sequência**, e cada uma só começa 
 
 ## O que é deploy, de verdade
 
-Segundo a fonte, o deploy é um processo **geral**, que precisa ser adaptado a cada sistema. Ele pode envolver quem produz o software, quem usa, ou os dois. Entre as atividades típicas:
+O deploy é um processo **geral**, que precisa ser adaptado a cada sistema. Ele pode envolver quem produz o software, quem usa, ou os dois. Entre as atividades típicas:
 
 - **Release (liberação):** preparar o sistema para ser montado e enviado aos servidores de produção.
 - **Instalação e ativação:** instalar configura o programa (comando, atalho, serviço), e ativar é executá-lo pela primeira vez.
@@ -169,7 +169,7 @@ Quem testa na produção usa os usuários como cobaias. Um defeito pode **derrub
 
 No **deploy manual**, uma pessoa segue uma lista: gerar o pacote, copiar para o servidor, reiniciar, conferir. Cada passo é uma chance de **esquecer algo** ou fazer errado. No **deploy automático**, essa lista vira um programa: toda mudança enviada ao repositório dispara a mesma sequência, **sempre igual**.
 
-A fonte sobre entrega contínua distingue dois níveis. Na **entrega contínua** (*continuous delivery*), o software está sempre pronto para ser liberado, e uma pessoa ainda decide apertar o botão. Na **implantação contínua** (*continuous deployment*), a última etapa também é automática: sem o "clique" manual, o que passa nos testes vai direto para a produção.
+A entrega contínua tem dois níveis. Na **entrega contínua** (*continuous delivery*), o software está sempre pronto para ser liberado, e uma pessoa ainda decide apertar o botão. Na **implantação contínua** (*continuous deployment*), a última etapa também é automática: sem o "clique" manual, o que passa nos testes vai direto para a produção.
 
 <ManualOuAutomatico />
 
@@ -184,8 +184,8 @@ A fonte sobre entrega contínua distingue dois níveis. Na **entrega contínua**
 
 <Exercicio enunciado="Na implantação contínua, a última etapa (publicar) é manual ou automática? (manual ou automatica)" resposta="automatica" dica="Não há um clique humano no final." resolucao="Automática: se passou nos testes, vai direto para a produção. Na entrega contínua, ainda há o clique manual." />
 
-<Aprofundar titulo="Benefícios que a fonte lista">
-Segundo a fonte, a entrega contínua traz **menos tempo até o produto chegar ao mercado**, **opiniões dos usuários mais cedo**, **mais produtividade** (a automação tira trabalho repetitivo), **lançamentos mais confiáveis**, **melhor qualidade** e **mais satisfação** de quem usa. A fonte cita também as **chaves de funcionalidade** (*feature toggles*): um truque para enviar código ainda inacabado já "desligado", de modo que ele não apareça para os usuários até estar pronto.
+<Aprofundar titulo="Benefícios">
+A entrega contínua traz **menos tempo até o produto chegar ao mercado**, **opiniões dos usuários mais cedo**, **mais produtividade** (a automação tira trabalho repetitivo), **lançamentos mais confiáveis**, **melhor qualidade** e **mais satisfação** de quem usa. Há também as **chaves de funcionalidade** (*feature toggles*): um truque para enviar código ainda inacabado já "desligado", de modo que ele não apareça para os usuários até estar pronto.
 </Aprofundar>
 
 ## O pipeline em detalhes
@@ -197,7 +197,7 @@ Um pipeline tem etapas encadeadas. Na prática:
 3. **Testes automáticos:** programas conferem se o que existia antes continua funcionando.
 4. **Publicação:** a versão aprovada vira a versão ativa.
 
-Segundo a fonte, esse conjunto de validações pelas quais o software passa antes de ser liberado é o **pipeline de implantação**, e ele dá **visibilidade** (todo mundo vê em que etapa a mudança está) e **retorno rápido** (se algo falha, você descobre logo).
+Esse conjunto de validações pelas quais o software passa antes de ser liberado é o **pipeline de implantação**, e ele dá **visibilidade** (todo mundo vê em que etapa a mudança está) e **retorno rápido** (se algo falha, você descobre logo).
 
 <ExemploResolvido titulo="Lendo um pipeline que parou">
   <Passo>O pipeline mostra: commit ✓, push ✓, build ✓, testes ✗.</Passo>
@@ -214,11 +214,11 @@ Segundo a fonte, esse conjunto de validações pelas quais o software passa ante
 
 ## Trocar de versão sem derrubar o site
 
-O que acontece com quem está navegando **no instante** em que a versão nova entra? Se o servidor precisasse ser desligado e religado, haveria uma janela de erro. Há técnicas para evitar isso. Uma delas, citada na fonte, é o **deploy azul e verde** (*blue-green*): o sistema tem **dois grupos de servidores**. Um (o "azul") atende os visitantes. O outro (o "verde") recebe a versão nova, é testado e fica **escondido**, ainda sem tráfego real. Quando está tudo certo, o **tráfego é trocado** para o verde. E, se algo der errado, **voltar** é só trocar de novo.
+O que acontece com quem está navegando **no instante** em que a versão nova entra? Se o servidor precisasse ser desligado e religado, haveria uma janela de erro. Há técnicas para evitar isso. Uma delas é o **deploy azul e verde** (*blue-green*): o sistema tem **dois grupos de servidores**. Um (o "azul") atende os visitantes. O outro (o "verde") recebe a versão nova, é testado e fica **escondido**, ainda sem tráfego real. Quando está tudo certo, o **tráfego é trocado** para o verde. E, se algo der errado, **voltar** é só trocar de novo.
 
 <AzulEVerde />
 
-Voltar para a versão anterior depois de um problema se chama, em geral, **rollback** (reversão). A fonte principal não detalha o termo, mas a ideia aparece naturalmente no azul e verde: como a versão antiga continua pronta, a volta é rápida.
+Voltar para a versão anterior depois de um problema se chama, em geral, **rollback** (reversão). A ideia aparece naturalmente no azul e verde: como a versão antiga continua pronta, a volta é rápida.
 
 <ExemploResolvido titulo="Uma troca com plano de volta">
   <Passo>A versão 1 (azul) atende 100% dos visitantes.</Passo>
@@ -232,7 +232,7 @@ Voltar para a versão anterior depois de um problema se chama, em geral, **rollb
 <Exercicio enunciado="Voltar para a versão anterior depois de um problema se chama...? (uma palavra em inglês, sem hífen)" resposta="rollback" dica="Roll = rolar, back = para trás." resolucao="Rollback: a reversão para a versão anterior." />
 
 <Aprofundar titulo="Lançamento gradual (canary) e A/B">
-A fonte também descreve a liberação **gradual** para grupos de clientes, com a opção de **cancelar** o deploy no meio, e cita o uso do Twitter para **testes A/B** (mostrar versões diferentes a grupos diferentes). Em um *canary release*, a versão nova vai primeiro para uma **pequena fatia** dos usuários, como o canário que os mineiros levavam para a mina: se algo vai mal, o estrago é pequeno. Se tudo corre bem, a fatia cresce até chegar a 100%. (A fonte cita o nome "canary", mas não descreve a mecânica; a explicação aqui é a ideia geral da técnica.)
+Existe também a liberação **gradual** para grupos de clientes, com a opção de **cancelar** o deploy no meio, e cita o uso do Twitter para **testes A/B** (mostrar versões diferentes a grupos diferentes). Em um *canary release*, a versão nova vai primeiro para uma **pequena fatia** dos usuários, como o canário que os mineiros levavam para a mina: se algo vai mal, o estrago é pequeno. Se tudo corre bem, a fatia cresce até chegar a 100%. (A explicação aqui é a ideia geral da técnica.)
 </Aprofundar>
 
 <LancamentoGradual />
@@ -241,7 +241,7 @@ A fonte também descreve a liberação **gradual** para grupos de clientes, com 
 
 ## Endereço e domínio
 
-Depois do deploy, o site precisa de um **endereço**. Segundo a fonte, as plataformas como a Vercel dão a cada deploy um endereço automático (um subdomínio `vercel.app`), e permitem usar um **domínio próprio**. Para apontar um domínio seu para o site, você usa o que viu na cápsula de **DNS**: um registro que liga o nome ao servidor. E, por **HTTPS** (cápsula anterior), o cadeado protege a conversa entre o visitante e o site.
+Depois do deploy, o site precisa de um **endereço**. As plataformas como a Vercel dão a cada deploy um endereço automático (um subdomínio `vercel.app`), e permitem usar um **domínio próprio**. Para apontar um domínio seu para o site, você usa o que viu na cápsula de **DNS**: um registro que liga o nome ao servidor. E, por **HTTPS** (cápsula anterior), o cadeado protege a conversa entre o visitante e o site.
 
 <ExemploResolvido titulo="Do código ao endereço">
   <Passo>Você envia o código ao GitHub.</Passo>

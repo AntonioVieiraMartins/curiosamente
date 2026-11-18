@@ -60,7 +60,7 @@ Um caso real mostra o custo da escolha errada: no vazamento do site Ashley Madis
 
 ## 1. O hash: uma máquina de moer
 
-Um **hash** é uma "máquina de moer" matemática: você joga qualquer texto dentro e sai um **resumo de tamanho fixo**, como uma impressão digital do texto. Uma **função de hash criptográfica** tem estas propriedades (da fonte):
+Um **hash** é uma "máquina de moer" matemática: você joga qualquer texto dentro e sai um **resumo de tamanho fixo**, como uma impressão digital do texto. Uma **função de hash criptográfica** tem estas propriedades:
 
 - **Determinística:** o mesmo texto sempre dá o mesmo resumo, e é rápida de calcular.
 - **De mão única:** dado o resumo, deve ser inviável achar o texto original. Ela é "fácil de calcular, difícil de reverter".
@@ -128,13 +128,13 @@ Repare: nos dois casos a Ana entra com a senha certa. A diferença está no que 
 
 ## O problema: pessoas escolhem senhas parecidas
 
-O hash é de mão única, mas o ladrão não precisa reverter nada. Ele pode **adivinhar**: calcula o hash de "123456", compara com os hashes do banco, depois de "senha", "qwerty", e assim por diante. Isso se chama **ataque de dicionário** (testar senhas comuns) ou de **força bruta** (testar todas as combinações). A fonte lembra que esses ataques funcionam contra senhas de **baixa entropia**, ou seja, previsíveis.
+O hash é de mão única, mas o ladrão não precisa reverter nada. Ele pode **adivinhar**: calcula o hash de "123456", compara com os hashes do banco, depois de "senha", "qwerty", e assim por diante. Isso se chama **ataque de dicionário** (testar senhas comuns) ou de **força bruta** (testar todas as combinações). Esses ataques funcionam contra senhas de **baixa entropia**, ou seja, previsíveis.
 
 Pior: como o hash é determinístico, **quem tem a mesma senha tem o mesmo hash**. O ladrão pode até calcular uma tabela pronta de hashes de senhas comuns, uma vez, e reaproveitá-la contra qualquer site.
 
 ## O sal: um tempero diferente para cada pessoa
 
-A solução é o **sal** (*salt*): um valor aleatório, **não secreto**, que se junta à senha **antes** de calcular o hash. Cada pessoa tem o seu próprio sal, guardado ao lado do hash. A fonte explica que o sal impede o atacante de **pré-calcular um dicionário** de resultados.
+A solução é o **sal** (*salt*): um valor aleatório, **não secreto**, que se junta à senha **antes** de calcular o hash. Cada pessoa tem o seu próprio sal, guardado ao lado do hash. O sal impede o atacante de **pré-calcular um dicionário** de resultados.
 
 Três pessoas usam a mesma senha, 123456. Veja o que o site guarda, sem sal e com sal:
 
@@ -172,21 +172,21 @@ Cada **caractere a mais** na senha multiplica o número de possibilidades. Uma s
 
 <Exercicio enunciado="Um atacante testa 1.000 senhas por segundo contra 10.000 combinações. Quantos segundos para testar todas? (número)" resposta="10" dica="10.000 dividido por 1.000." resolucao="10.000 ÷ 1.000 = 10 segundos." />
 
-Duas lições aparecem: **tamanho importa mais que enfeite** (um caractere a mais multiplica o trabalho) e **a velocidade do hash também importa**. A fonte explica que hashes rápidos permitem testar muito rápido espaços pequenos de senhas, e que as placas de vídeo (GPUs) e circuitos dedicados (ASICs) agravam isso. Por isso se usam funções **lentas de propósito**.
+Duas lições aparecem: **tamanho importa mais que enfeite** (um caractere a mais multiplica o trabalho) e **a velocidade do hash também importa**. Hashes rápidos permitem testar muito rápido espaços pequenos de senhas, e que as placas de vídeo (GPUs) e circuitos dedicados (ASICs) agravam isso. Por isso se usam funções **lentas de propósito**.
 
 <Aprofundar titulo="Key stretching: deixar o hash lento de propósito">
-Para senhas, o hash ideal é **lento**. O truque se chama **alongamento de chave** (*key stretching*): repetir o cálculo muitas vezes. Isso não atrapalha quem entra (um login com 0,1 segundo a mais passa batido), mas multiplica o custo para quem testa **bilhões** de chutes. A fonte diz que o NIST recomenda **pelo menos 10.000 iterações**, e que o limite prático é o que as pessoas toleram esperar. Funções feitas para isso: **PBKDF2**, **bcrypt**, **scrypt** e **Argon2**.
+Para senhas, o hash ideal é **lento**. O truque se chama **alongamento de chave** (*key stretching*): repetir o cálculo muitas vezes. Isso não atrapalha quem entra (um login com 0,1 segundo a mais passa batido), mas multiplica o custo para quem testa **bilhões** de chutes. O NIST recomenda **pelo menos 10.000 iterações**, e que o limite prático é o que as pessoas toleram esperar. Funções feitas para isso: **PBKDF2**, **bcrypt**, **scrypt** e **Argon2**.
 </Aprofundar>
 
 <Exercicio enunciado="Quantas iterações, no mínimo, o NIST recomenda para o alongamento de chave? (número)" resposta="10000" dica="É um número redondo, de 5 dígitos." resolucao="Pelo menos 10.000 iterações." />
 
 <Aprofundar titulo="O que fazer com um hash rápido, como MD5 ou SHA-256">
-Hashes como MD5, SHA-1 e SHA-256 foram feitos para ser **rápidos**: servem para conferir se um arquivo foi alterado no caminho (**integridade**) e para **assinaturas digitais**, em que se assina o resumo de tamanho fixo em vez da mensagem inteira. A fonte diz que, para senhas, hashes rápidos de uso geral **já não são considerados seguros**, e recomenda PBKDF2, scrypt ou Argon2 com sal. MD5 e SHA-1 estão quebrados em termos de colisão, então nem para integridade são recomendados em contextos de segurança.
+Hashes como MD5, SHA-1 e SHA-256 foram feitos para ser **rápidos**: servem para conferir se um arquivo foi alterado no caminho (**integridade**) e para **assinaturas digitais**, em que se assina o resumo de tamanho fixo em vez da mensagem inteira. Para senhas, hashes rápidos de uso geral **já não são considerados seguros**, e recomenda PBKDF2, scrypt ou Argon2 com sal. MD5 e SHA-1 estão quebrados em termos de colisão, então nem para integridade são recomendados em contextos de segurança.
 </Aprofundar>
 
 ## Quem é você? Os fatores de autenticação
 
-Fazer **login** é **provar quem você é**. Isso se chama **autenticação**. A fonte lista três grandes tipos de prova, chamados **fatores**:
+Fazer **login** é **provar quem você é**. Isso se chama **autenticação**. Existem três grandes tipos de prova, chamados **fatores**:
 
 - **Conhecimento:** algo que você **sabe**, como senha, PIN ou frase secreta.
 - **Posse:** algo que você **tem**, como celular, cartão ou chave de segurança.
@@ -213,9 +213,9 @@ A **autenticação em dois fatores** (2FA) exige **dois tipos diferentes**. O ex
 
 - **Código por SMS:** um código de uso único chega por mensagem. É a opção mais usada, mas tem **preocupações de segurança**: trocas fraudulentas de chip (SIM swap) e falhas na rede de sinalização das operadoras (SS7). Em 2017, clientes de uma operadora alemã tiveram códigos redirecionados por um ataque desse tipo.
 - **Aplicativo autenticador:** mostra um código que muda a cada poucos segundos (**TOTP**, senha de uso único baseada em tempo). O código é gerado dentro do aplicativo, e não enviado pela rede.
-- **Chave de segurança física** (incluindo as com padrão FIDO2): segundo a fonte, é geralmente **a opção mais segura**.
+- **Chave de segurança física** (incluindo as com padrão FIDO2): é geralmente **a opção mais segura**.
 
-Mesmo assim, nenhum método é perfeito. A fonte lista fraquezas: **phishing** (um site falso que engana a pessoa para dar o código), **ataques de fadiga** (inundar a pessoa de pedidos de aprovação até ela aceitar um por engano) e **recuperação de conta** (muitas vezes, a recuperação ignora o segundo fator).
+Mesmo assim, nenhum método é perfeito. Fraquezas conhecidas: **phishing** (um site falso que engana a pessoa para dar o código), **ataques de fadiga** (inundar a pessoa de pedidos de aprovação até ela aceitar um por engano) e **recuperação de conta** (muitas vezes, a recuperação ignora o segundo fator).
 
 <Aprofundar titulo="Autenticação e autorização">
 São duas palavras parecidas, com trabalhos diferentes. **Autenticar** é descobrir **quem você é** (provar a identidade, com senha, código, digital). **Autorizar** é decidir **o que você pode fazer** depois de identificado (ver só os seus pedidos, apagar só os seus dados, ser administrador). Primeiro vem a autenticação; só depois faz sentido perguntar o que a pessoa pode fazer. Um erro comum de projeto é só autenticar e esquecer de autorizar. É a regra de ouro de novo: o servidor confere **cada** pedido.
@@ -223,7 +223,7 @@ São duas palavras parecidas, com trabalhos diferentes. **Autenticar** é descob
 
 ## Limitando as tentativas
 
-Mesmo um bom segundo fator precisa de defesas simples. A mais importante é **limitar as tentativas**. Um PIN de 4 dígitos tem 10.000 possibilidades. Se o sistema bloqueia depois de 3 erros, quem chuta tem **3 chances em 10.000** (0,03%). Sem limite, tem certeza de acertar. A fonte lista a **limitação insuficiente de tentativas** entre as fraquezas: atacantes podem tentar adivinhar códigos ou reiniciar o limite trocando de sessão ou de endereço IP.
+Mesmo um bom segundo fator precisa de defesas simples. A mais importante é **limitar as tentativas**. Um PIN de 4 dígitos tem 10.000 possibilidades. Se o sistema bloqueia depois de 3 erros, quem chuta tem **3 chances em 10.000** (0,03%). Sem limite, tem certeza de acertar. A **limitação insuficiente de tentativas** é uma das fraquezas: atacantes podem tentar adivinhar códigos ou reiniciar o limite trocando de sessão ou de endereço IP.
 
 <LimiteDeTentativas />
 
@@ -237,7 +237,7 @@ Mesmo um bom segundo fator precisa de defesas simples. A mais importante é **li
 <Exercicio enunciado="Um PIN de 4 dígitos, com bloqueio depois de 3 erros: em 10.000 possibilidades, quantas o chutador consegue testar? (número)" resposta="3" dica="É o limite de tentativas." resolucao="Só 3 tentativas: 3 chances em 10.000." />
 
 <Aprofundar titulo="Por que não dá para ser 100% seguro">
-Cada defesa tem um ponto fraco. O hash lento protege o banco vazado, mas não impede o **phishing**. O segundo fator protege contra senha roubada, mas pode ser driblado por fadiga de aprovações ou por falhas na recuperação de conta. O limite de tentativas protege contra chute, mas não contra quem **já sabe** a senha. A segurança vem de **camadas**: senha forte e única, hash lento com sal, segundo fator, limite de tentativas, avisos de acesso novo e backups. A fonte menciona que em 2022 a Microsoft acrescentou "correspondência de número" em seu autenticador, contra os ataques de fadiga, e que a CISA recomendou autenticação resistente a phishing.
+Cada defesa tem um ponto fraco. O hash lento protege o banco vazado, mas não impede o **phishing**. O segundo fator protege contra senha roubada, mas pode ser driblado por fadiga de aprovações ou por falhas na recuperação de conta. O limite de tentativas protege contra chute, mas não contra quem **já sabe** a senha. A segurança vem de **camadas**: senha forte e única, hash lento com sal, segundo fator, limite de tentativas, avisos de acesso novo e backups. Em 2022 a Microsoft acrescentou "correspondência de número" em seu autenticador, contra os ataques de fadiga, e a agência de segurança dos EUA (CISA) recomendou autenticação resistente a phishing.
 </Aprofundar>
 
 ## O que você, como pessoa usuária, pode fazer
@@ -312,7 +312,7 @@ E como pessoa que **constrói** sistemas: **nunca** guarde senhas puras, **nunca
     explicacao: 'Dois fatores significam dois tipos diferentes, como cartão mais PIN.',
   },
   {
-    enunciado: 'Qual segundo fator a fonte considera, em geral, o mais seguro?',
+    enunciado: 'Qual segundo fator é considerado, em geral, o mais seguro?',
     opcoes: ['Chave de segurança física (como FIDO2)', 'Código por SMS', 'Pergunta sobre o nome do cachorro'],
     correta: 0,
     explicacao: 'O SMS é o mais usado, mas tem fraquezas como a troca fraudulenta de chip.',

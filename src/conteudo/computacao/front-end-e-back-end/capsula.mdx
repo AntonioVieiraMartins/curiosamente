@@ -50,7 +50,7 @@ Nas décadas de 1980 e 1990, os microcomputadores passaram trabalho dos grandes 
 
 A Web resolveu isso. Em 1995, a Netscape introduziu o **JavaScript**, e o navegador passou a rodar pequenos programas na própria página. Em 1999, a palavra "aplicação web" apareceu pela primeira vez. Entre 2003 e 2005, Myspace, Gmail, Digg e Google Maps mostraram sites que se comportavam quase como programas instalados. Em 2005, essa técnica ganhou o nome de **Ajax**. Em 2015, o termo "aplicativos web progressivos" foi criado.
 
-A fonte que usamos não diz quando as palavras "front-end" e "back-end" apareceram, então não vamos inventar uma data. O que sabemos é a ideia por trás: **quem apresenta** e **quem processa**.
+Não se sabe ao certo quando as palavras "front-end" e "back-end" apareceram, então não vamos inventar uma data. O que sabemos é a ideia por trás: **quem apresenta** e **quem processa**.
 
 </Etapa>
 
@@ -121,7 +121,7 @@ Note o padrão: o que é **só aparência** fica no salão. O que precisa de **d
 
 Uma boa pergunta para decidir onde algo mora é: **"isso é só para aparecer, ou é uma regra que precisa ser confiável?"** Só aparecer é front-end. Regra que precisa ser confiável e dado compartilhado são back-end.
 
-Exemplos que a fonte dá:
+Exemplos:
 
 - **Site de compras:** o front-end mostra as páginas dos produtos e a busca. O back-end processa os pagamentos e atualiza o estoque.
 - **Aplicativo de banco:** o front-end mostra os saldos. O back-end cuida das transações e dos registros.
@@ -153,7 +153,7 @@ Daí vem a regra de ouro do back-end: **nunca confiar no que vem do navegador**.
 
 ## O back-end por dentro (só a ideia)
 
-O back-end é um programa que **fica rodando num servidor**, esperando pedidos. Ele lê o pedido, decide o que fazer, fala com o banco de dados, e devolve uma resposta. A fonte cita linguagens como PHP, Python, Ruby, Perl e Node.js (que é JavaScript fora do navegador), e também C#, Java e Go. Não existe uma "linguagem certa": o que importa é o papel.
+O back-end é um programa que **fica rodando num servidor**, esperando pedidos. Ele lê o pedido, decide o que fazer, fala com o banco de dados, e devolve uma resposta. Há linguagens como PHP, Python, Ruby, Perl e Node.js (que é JavaScript fora do navegador), e também C#, Java e Go. Não existe uma "linguagem certa": o que importa é o papel.
 
 Além de escrever a lógica, quem cuida do back-end se preocupa com administrar o banco de dados, com **escalabilidade** (aguentar muita gente ao mesmo tempo) e com **segurança**.
 
@@ -161,12 +161,12 @@ Além de escrever a lógica, quem cuida do back-end se preocupa com administrar 
 
 ## A conversa entre as duas metades
 
-Salão e cozinha precisam falar uma língua em comum. No site, essa conversa é feita por **pedidos HTTP** (a cápsula anterior), organizados numa **API**. A fonte explica que o front-end conversa com o back-end por uma API, e que no mundo web ela costuma ser baseada em HTTP, em estilos como **REST** ou **GraphQL**. Uma API é como o **cardápio** da cozinha: lista o que dá para pedir e como pedir. Veremos isso com calma na cápsula de APIs e JSON.
+Salão e cozinha precisam falar uma língua em comum. No site, essa conversa é feita por **pedidos HTTP** (a cápsula anterior), organizados numa **API**. O front-end conversa com o back-end por uma API, e que no mundo web ela costuma ser baseada em HTTP, em estilos como **REST** ou **GraphQL**. Uma API é como o **cardápio** da cozinha: lista o que dá para pedir e como pedir. Veremos isso com calma na cápsula de APIs e JSON.
 
 <Aprofundar titulo="API: o cardápio da cozinha">
 Uma **API** (interface de programação de aplicações) é um conjunto de pedidos que o back-end aceita, cada um com um endereço e um formato. Por exemplo, o pedido "me dê o meu saldo" usa o método GET num endereço combinado; "criar um pedido" usa POST. O front-end não precisa saber **como** a cozinha prepara: só como pedir e como entender a resposta.
 
-Essa separação traz uma vantagem: a mesma cozinha pode atender salões diferentes (o site, o aplicativo de celular, outro sistema). A fonte menciona um padrão chamado **Back end For Front end (BFF)**, em que cada tipo de salão tem seu próprio serviço intermediário, o que pode diminuir o trabalho de processamento do front-end.
+Essa separação traz uma vantagem: a mesma cozinha pode atender salões diferentes (o site, o aplicativo de celular, outro sistema). Existe um padrão chamado **Back end For Front end (BFF)**, em que cada tipo de salão tem seu próprio serviço intermediário, o que pode diminuir o trabalho de processamento do front-end.
 </Aprofundar>
 
 ## Um clique, do começo ao fim
@@ -225,7 +225,7 @@ Há outra razão para dividir o trabalho. O **front-end** roda **um por pessoa**
 
 <FilaDaCozinha />
 
-Para aguentar mais gente, o back-end precisa **escalar**: mais servidores (mais cozinheiros), ou servidores mais rápidos. A fonte menciona que servidores lidam com muitos clientes ao mesmo tempo, usando agendamento e balanceamento de carga, e que enviar muitos pedidos para sobrecarregar um servidor é a base dos ataques de negação de serviço.
+Para aguentar mais gente, o back-end precisa **escalar**: mais servidores (mais cozinheiros), ou servidores mais rápidos. Servidores lidam com muitos clientes ao mesmo tempo, usando agendamento e balanceamento de carga, e que enviar muitos pedidos para sobrecarregar um servidor é a base dos ataques de negação de serviço.
 
 <ExemploResolvido titulo="Quantos cozinheiros?">
   <Passo>Chegam 30 pedidos por minuto. Cada cozinheiro faz 5 por minuto.</Passo>
@@ -252,7 +252,7 @@ Dividir em camadas permite trocar uma sem mexer nas outras: dá para redesenhar 
 
 Antes da Web, para usar um sistema era preciso **instalar** um programa cliente em cada computador. Se o servidor mudava, era preciso atualizar todos os clientes. Na Web, o front-end é **baixado na hora**, então toda visita pega a versão mais nova.
 
-A fonte lista outras vantagens das aplicações web: não é preciso instalar nada, cada aba do navegador funciona "numa caixinha" que restringe o acesso ao seu computador, o mesmo site atende sistemas e aparelhos diferentes, e quem desenvolve pode cobrar pelo uso. Ela também avisa que aplicações web têm **riscos de segurança** importantes que precisam ser tratados.
+Outras vantagens das aplicações web: não é preciso instalar nada, cada aba do navegador funciona "numa caixinha" que restringe o acesso ao seu computador, o mesmo site atende sistemas e aparelhos diferentes, e quem desenvolve pode cobrar pelo uso. Ela também avisa que aplicações web têm **riscos de segurança** importantes que precisam ser tratados.
 
 <Exercicio enunciado="Em que ano a Netscape introduziu o JavaScript? (número)" resposta="1995" dica="Está na linha do tempo." resolucao="Em 1995, a Netscape introduziu o JavaScript." />
 
@@ -278,7 +278,7 @@ Há duas formas de montar uma página dinâmica. Na primeira, o **servidor** mon
 
 ## Juntando tudo
 
-Pela fonte, "front-end" e "back-end" também são usados fora da Web: num sistema de gerenciamento de conteúdo (a parte do visitante e a do administrador), em compiladores, em placas de rede e até em projetos de processadores. A ideia é sempre a mesma: **uma parte conversa com quem usa, outra faz o trabalho de verdade**.
+"Front-end" e "back-end" também são usados fora da Web: num sistema de gerenciamento de conteúdo (a parte do visitante e a do administrador), em compiladores, em placas de rede e até em projetos de processadores. A ideia é sempre a mesma: **uma parte conversa com quem usa, outra faz o trabalho de verdade**.
 
 Resumindo o que você aprendeu: o salão mostra e interage; a cozinha decide e guarda; a despensa lembra. O salão é rápido e conveniente, mas **não é confiável**; a cozinha é o **guardião**. E, como a cozinha atende todo mundo, ela precisa ser capaz de **escalar**.
 

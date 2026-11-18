@@ -125,7 +125,7 @@ O **SQL** é uma linguagem **declarativa**: você diz **o que** quer, não **com
 - **UPDATE**: mudar linhas existentes.
 - **DELETE**: apagar linhas.
 
-Cláusulas que refinam: **WHERE** (filtra), **ORDER BY** (ordena), **GROUP BY** (agrupa) e **JOIN** (junta tabelas). A fonte divide os comandos em famílias: consulta, definição da estrutura, controle de acesso e manipulação de dados.
+Cláusulas que refinam: **WHERE** (filtra), **ORDER BY** (ordena), **GROUP BY** (agrupa) e **JOIN** (junta tabelas). Os comandos se dividem em famílias: consulta, definição da estrutura, controle de acesso e manipulação de dados.
 
 Compare com o que você já viu: **GET** lê, **POST** cria, **PUT** troca e **DELETE** apaga no HTTP. Em SQL: SELECT, INSERT, UPDATE e DELETE. É o mesmo ciclo de ideias, em outro lugar.
 
@@ -143,7 +143,7 @@ Compare com o que você já viu: **GET** lê, **POST** cria, **PUT** troca e **D
 <Exercicio enunciado="Qual comando SQL serve para acrescentar uma linha nova? (select, insert, update ou delete)" resposta="insert" dica="É como o POST do HTTP." resolucao="INSERT acrescenta uma linha. SELECT lê, UPDATE muda e DELETE apaga." />
 
 <Aprofundar titulo="Declarativo: o que, não como">
-No SQL, você escreve "me dê os clientes de Recife, em ordem alfabética" e o banco resolve o resto. Dentro do SGBD, um **otimizador de consultas** escolhe o caminho mais eficiente para achar os dados (por exemplo, usar um índice ou ler a tabela toda). Isso é o contrário dos bancos "navegacionais" dos anos 1960, em que o programador seguia os ponteiros à mão. A fonte observa que o SQL também tem **extensões procedurais**, para quem precisa escrever passo a passo, mas a essência é declarativa.
+No SQL, você escreve "me dê os clientes de Recife, em ordem alfabética" e o banco resolve o resto. Dentro do SGBD, um **otimizador de consultas** escolhe o caminho mais eficiente para achar os dados (por exemplo, usar um índice ou ler a tabela toda). Isso é o contrário dos bancos "navegacionais" dos anos 1960, em que o programador seguia os ponteiros à mão. O SQL também tem **extensões procedurais**, para quem precisa escrever passo a passo, mas a essência é declarativa.
 </Aprofundar>
 
 ## Ligando tabelas: as chaves estrangeiras
@@ -154,7 +154,7 @@ A solução é guardar **cada coisa num lugar só** e **ligar** as tabelas por u
 
 <TabelasLigadas />
 
-A fonte lista os tipos de relação: **um para um**, **um para muitos** (um cliente tem muitos pedidos) e **muitos para muitos** (um produto está em muitos pedidos, e um pedido tem muitos produtos). Esta última costuma precisar de uma tabela intermediária.
+Os tipos de relação são: **um para um**, **um para muitos** (um cliente tem muitos pedidos) e **muitos para muitos** (um produto está em muitos pedidos, e um pedido tem muitos produtos). Esta última costuma precisar de uma tabela intermediária.
 
 <ExemploResolvido titulo="Seguindo a chave estrangeira">
   <Passo>Pedido 101: `cliente_id = 1`.</Passo>
@@ -166,14 +166,14 @@ A fonte lista os tipos de relação: **um para um**, **um para muitos** (um clie
 <Exercicio enunciado="Na simulação, os pedidos 101 e 103 têm cliente_id 1 e o 102 tem cliente_id 2. Quantos pedidos a Ana tem? (número)" resposta="2" dica="Conte os pedidos com cliente_id igual ao id da Ana (1)." resolucao="Ana (id 1) tem os pedidos 101 e 103: 2 pedidos." />
 
 <Aprofundar titulo="Normalização: cada fato num lugar só">
-**Normalização** é um conjunto de procedimentos para organizar as tabelas, **removendo repetições** e valores que juntam várias coisas numa célula só. A fonte explica que isso ajuda a evitar **anomalias** nos dados e perda de integridade. A regra prática é a que você viu: se uma informação aparece repetida em muitas linhas (o nome e a cidade da Ana em dez pedidos), ela provavelmente deveria morar na própria tabela, e as outras apontam para ela por uma chave estrangeira. Assim, corrigir um dado é mudar **um** lugar.
+**Normalização** é um conjunto de procedimentos para organizar as tabelas, **removendo repetições** e valores que juntam várias coisas numa célula só. Isso ajuda a evitar **anomalias** nos dados e perda de integridade. A regra prática é a que você viu: se uma informação aparece repetida em muitas linhas (o nome e a cidade da Ana em dez pedidos), ela provavelmente deveria morar na própria tabela, e as outras apontam para ela por uma chave estrangeira. Assim, corrigir um dado é mudar **um** lugar.
 </Aprofundar>
 
 ## Transações: tudo ou nada
 
 Transferir R$ 50 da Ana para o Bruno é, para o banco de dados, **dois passos**: tirar R$ 50 da conta da Ana e pôr R$ 50 na conta do Bruno. E se o sistema cair **entre** os dois passos? O dinheiro sumiria.
 
-A solução é a **transação**: um grupo de operações tratado como **uma unidade só**. Ou **todas** acontecem, ou **nenhuma**. A fonte chama as propriedades ideais de uma transação de **ACID**.
+A solução é a **transação**: um grupo de operações tratado como **uma unidade só**. Ou **todas** acontecem, ou **nenhuma**. As propriedades ideais de uma transação são chamadas de **ACID**.
 
 <TransacaoPix />
 
@@ -189,12 +189,12 @@ A solução é a **transação**: um grupo de operações tratado como **uma uni
 <Exercicio enunciado="Com transação e a mesma falha, quanto a Ana tem no final? (número)" resposta="100" dica="A transação desfaz tudo." resolucao="A transação é desfeita: Ana volta a ter R$ 100." />
 
 <Aprofundar titulo="ACID: as quatro letras">
-**ACID** vem das iniciais, em inglês, de quatro propriedades: **atomicidade** (a transação acontece inteira ou não acontece, como um átomo que não se divide), **consistência** (os dados continuam obedecendo às regras do banco), **isolamento** (transações simultâneas não se atrapalham) e **durabilidade** (o que foi confirmado não se perde, mesmo se o sistema cair). Segundo a fonte, essas propriedades sustentam a tolerância a falhas e a integridade dos dados depois de uma queda.
+**ACID** vem das iniciais, em inglês, de quatro propriedades: **atomicidade** (a transação acontece inteira ou não acontece, como um átomo que não se divide), **consistência** (os dados continuam obedecendo às regras do banco), **isolamento** (transações simultâneas não se atrapalham) e **durabilidade** (o que foi confirmado não se perde, mesmo se o sistema cair). Essas propriedades sustentam a tolerância a falhas e a integridade dos dados depois de uma queda.
 </Aprofundar>
 
 ## Índices: achando rápido
 
-Lembra do sumário de um livro? Em vez de folhear as 500 páginas para achar um capítulo, você olha o sumário. O banco faz igual: o **índice** é uma estrutura extra, **ordenada**, que permite **ir direto** ao lugar certo. A fonte chama a indexação de técnica padrão para melhorar o desempenho das consultas.
+Lembra do sumário de um livro? Em vez de folhear as 500 páginas para achar um capítulo, você olha o sumário. O banco faz igual: o **índice** é uma estrutura extra, **ordenada**, que permite **ir direto** ao lugar certo. A indexação é a técnica padrão para melhorar o desempenho das consultas.
 
 <ComIndice />
 
@@ -212,7 +212,7 @@ A diferença é gigantesca. Em mil linhas, o índice acha em cerca de 10 passos.
 <Exercicio enunciado="E entre 1.000.000 de linhas, quantos passos (aproximadamente)? (número)" resposta="20" dica="2 elevado a 20 é cerca de 1 milhão." resolucao="2^20 = 1.048.576, então cerca de 20 passos." />
 
 <Aprofundar titulo="O preço do índice">
-O índice não é de graça: ele ocupa espaço e precisa ser **atualizado a cada INSERT, UPDATE ou DELETE**. Por isso não se cria índice em tudo: só nas colunas que mais se usam para buscar. A fonte lembra que o otimizador de consultas escolhe, para cada pedido, o caminho de acesso mais eficiente, usando o índice quando compensa.
+O índice não é de graça: ele ocupa espaço e precisa ser **atualizado a cada INSERT, UPDATE ou DELETE**. Por isso não se cria índice em tudo: só nas colunas que mais se usam para buscar. O otimizador de consultas escolhe, para cada pedido, o caminho de acesso mais eficiente, usando o índice quando compensa.
 </Aprofundar>
 
 ## Perigo: o comando sem WHERE
@@ -221,7 +221,7 @@ O `WHERE` é o que limita um comando às linhas certas. Se você esquece, o `DEL
 
 <ApagarSemWhere />
 
-Como se proteger? A fonte lista práticas de segurança dos bancos de dados: **backups** periódicos ou contínuos, que permitem voltar a um estado anterior se algo for corrompido ou apagado por engano. **Controle de acesso**, com permissões para pessoas, grupos ou papéis, de modo que cada um veja só o que precisa. **Registros (logs)** de mudanças e acessos, que ajudam a auditar. E **proteção dos dados**, física e por criptografia.
+Como se proteger? Práticas de segurança dos bancos de dados: **backups** periódicos ou contínuos, que permitem voltar a um estado anterior se algo for corrompido ou apagado por engano. **Controle de acesso**, com permissões para pessoas, grupos ou papéis, de modo que cada um veja só o que precisa. **Registros (logs)** de mudanças e acessos, que ajudam a auditar. E **proteção dos dados**, física e por criptografia.
 
 <ExemploResolvido titulo="Antes de apagar, confira">
   <Passo>A tabela `pedidos` tem 5 linhas e 2 estão `pendente`.</Passo>
@@ -238,7 +238,7 @@ Se o back-end monta o comando SQL **juntando texto digitado por quem usa o site*
 
 ## Há outros tipos de banco
 
-O modelo relacional (tabelas) domina desde os anos 1980, mas não é o único. A fonte descreve também: **bancos de documentos** (guardam documentos parecidos com JSON, como você viu na cápsula anterior), **chave-valor** (rapidíssimos, mapeiam uma chave a um valor) e **de grafos** (guardam nós e ligações, bons para dados cheios de relações, como redes sociais). Os mais usados (ranking de dezembro de 2024) incluem Oracle Database, MySQL, Microsoft SQL Server, PostgreSQL, Snowflake, IBM Db2 e SQLite. O app Curiosamente usa o **PostgreSQL**, por meio do Supabase.
+O modelo relacional (tabelas) domina desde os anos 1980, mas não é o único. Existem também: **bancos de documentos** (guardam documentos parecidos com JSON, como você viu na cápsula anterior), **chave-valor** (rapidíssimos, mapeiam uma chave a um valor) e **de grafos** (guardam nós e ligações, bons para dados cheios de relações, como redes sociais). Os mais usados (ranking de dezembro de 2024) incluem Oracle Database, MySQL, Microsoft SQL Server, PostgreSQL, Snowflake, IBM Db2 e SQLite. O app Curiosamente usa o **PostgreSQL**, por meio do Supabase.
 
 <Exercicio enunciado="Em que ano Edgar F. Codd propôs o modelo relacional? (número)" resposta="1970" dica="Foi na IBM." resolucao="Em 1970." />
 
@@ -247,7 +247,7 @@ O modelo relacional (tabelas) domina desde os anos 1980, mas não é o único. A
 <Exercicio enunciado="Qual era o nome original do SQL, antes da mudança por causa da marca registrada? (uma palavra)" resposta="sequel" dica="Soa como 'sequência' em inglês." resolucao="SEQUEL (Structured English Query Language)." />
 
 <Aprofundar titulo="Quando usar cada tipo de banco">
-Não existe um "melhor banco": cada tipo resolve um problema. Dados com **estrutura clara e ligações** (clientes, pedidos, estoque) combinam com o **relacional**. Dados em **formato de documento** e que mudam de forma com frequência combinam com **documentos**. Respostas muito rápidas a partir de uma chave combinam com **chave-valor**. Redes de relações combinam com **grafos**. A fonte registra que bancos NoSQL ficaram populares no fim dos anos 2000, em parte por escalarem em vários servidores, e que sistemas **NewSQL** tentam manter o SQL e as garantias do modelo relacional com o desempenho dos NoSQL.
+Não existe um "melhor banco": cada tipo resolve um problema. Dados com **estrutura clara e ligações** (clientes, pedidos, estoque) combinam com o **relacional**. Dados em **formato de documento** e que mudam de forma com frequência combinam com **documentos**. Respostas muito rápidas a partir de uma chave combinam com **chave-valor**. Redes de relações combinam com **grafos**. Bancos NoSQL ficaram populares no fim dos anos 2000, em parte por escalarem em vários servidores, e que sistemas **NewSQL** tentam manter o SQL e as garantias do modelo relacional com o desempenho dos NoSQL.
 </Aprofundar>
 
 </Etapa>

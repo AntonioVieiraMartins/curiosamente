@@ -63,7 +63,7 @@ Num videogame, você salva o jogo em vários pontos. Se der errado, volta a um p
 - O conjunto de commits é o **histórico**. Com ele, dá para ver versões antigas, comparar e **voltar**.
 - A pasta com o projeto e todo o seu histórico se chama **repositório**.
 
-A fonte ainda cita outros benefícios do controle de versões: **responsabilidade** (registros de quem mudou o quê, quando e por quê), **depuração** (testar versões antigas para achar quando um defeito entrou) e **colaboração** (mensagens de commit melhoram a comunicação).
+O controle de versões traz outros benefícios: **responsabilidade** (registros de quem mudou o quê, quando e por quê), **depuração** (testar versões antigas para achar quando um defeito entrou) e **colaboração** (mensagens de commit melhoram a comunicação).
 
 <HistoricoDeCommits />
 
@@ -78,11 +78,11 @@ A fonte ainda cita outros benefícios do controle de versões: **responsabilidad
 
 ## 2. Git guarda fotos, não só diferenças
 
-Segundo a fonte, o Git armazena **instantâneos** (*snapshots*) de toda a árvore de arquivos, e não apenas a lista de mudanças de cada arquivo. Um commit registra uma árvore, um horário, uma mensagem e o(s) commit(s) **pai(s)**: aquele que veio antes. Por isso o histórico é uma **corrente**: cada commit aponta para o anterior.
+O Git armazena **instantâneos** (*snapshots*) de toda a árvore de arquivos, e não apenas a lista de mudanças de cada arquivo. Um commit registra uma árvore, um horário, uma mensagem e o(s) commit(s) **pai(s)**: aquele que veio antes. Por isso o histórico é uma **corrente**: cada commit aponta para o anterior.
 
 ## 3. Distribuído: todo mundo tem uma cópia completa
 
-Os sistemas antigos eram **centralizados**: um servidor, e todo mundo dependia dele. O Git é **distribuído**: cada pessoa tem **o repositório inteiro**, com todo o histórico, no próprio computador. Segundo a fonte, isso significa que o trabalho **não exige rede nem servidor central**, que fazer commits, ver o histórico e voltar atrás é rápido, e que cada cópia funciona também como **backup**. Equipes costumam usar um servidor central (como o GitHub) como cópia compartilhada, por conveniência.
+Os sistemas antigos eram **centralizados**: um servidor, e todo mundo dependia dele. O Git é **distribuído**: cada pessoa tem **o repositório inteiro**, com todo o histórico, no próprio computador. Isso significa que o trabalho **não exige rede nem servidor central**, que fazer commits, ver o histórico e voltar atrás é rápido, e que cada cópia funciona também como **backup**. Equipes costumam usar um servidor central (como o GitHub) como cópia compartilhada, por conveniência.
 
 <Exercicio enunciado="No Git, cada pessoa tem uma cópia do repositório completo, com todo o histórico? (sim ou nao)" resposta="sim" dica="É por isso que ele é chamado de distribuído." resolucao="Sim: cada cópia tem o histórico inteiro, e também serve de backup." />
 
@@ -101,7 +101,7 @@ Teste os dois casos: mude para a mesma linha e junte de novo.
 
 <RamosEConflito />
 
-Um **ramo** (*branch*) é uma linha de desenvolvimento separada: dá para experimentar uma ideia nova sem estragar a versão principal. Segundo a fonte, os ramos no Git são **referências leves** a um commit. **Juntar** (*merge*) combina o trabalho de dois ramos. Se as duas pessoas mexeram no **mesmo trecho** e o sistema não consegue decidir, acontece um **conflito de mesclagem**, e uma pessoa precisa resolvê-lo, combinando as mudanças ou escolhendo uma.
+Um **ramo** (*branch*) é uma linha de desenvolvimento separada: dá para experimentar uma ideia nova sem estragar a versão principal. Os ramos no Git são **referências leves** a um commit. **Juntar** (*merge*) combina o trabalho de dois ramos. Se as duas pessoas mexeram no **mesmo trecho** e o sistema não consegue decidir, acontece um **conflito de mesclagem**, e uma pessoa precisa resolvê-lo, combinando as mudanças ou escolhendo uma.
 
 <LembrarPalpite
   chave="inicial"
@@ -122,10 +122,10 @@ Um **ramo** (*branch*) é uma linha de desenvolvimento separada: dá para experi
 O Git não salva tudo automaticamente. Você **escolhe** o que entra em cada commit. Para isso, existem três áreas:
 
 - A **mesa de trabalho** (diretório de trabalho): onde você edita os arquivos.
-- A **bandeja** (o *index*, ou área de preparação, em inglês *staging area*): o que você **separou** para o próximo commit. A fonte descreve o index como a área entre o diretório de trabalho e o banco de objetos, que guarda as mudanças na fila do próximo commit.
+- A **bandeja** (o *index*, ou área de preparação, em inglês *staging area*): o que você **separou** para o próximo commit. O index é a área entre o diretório de trabalho e o banco de objetos, que guarda as mudanças na fila do próximo commit.
 - O **histórico**: os commits já feitos.
 
-Os comandos que levam de uma área à outra (da fonte):
+Os comandos que levam de uma área à outra :
 
 - `git init`: cria um repositório novo.
 - `git add [arquivo]`: coloca a mudança na bandeja.
@@ -146,12 +146,12 @@ Os comandos que levam de uma área à outra (da fonte):
 <Exercicio enunciado="Você editou um arquivo, fez add e commit, editou de novo e fez add (sem commit). Quantos commits novos existem no histórico a partir de agora (contando só os que você fez)? (número)" resposta="1" dica="O segundo add ainda não virou commit." resolucao="Só 1 commit: o do primeiro ciclo. A segunda mudança está na bandeja, esperando o commit." />
 
 <Aprofundar titulo="Por que existe a bandeja">
-Parece um passo a mais, mas a bandeja deixa **montar commits com sentido**. Suponha que você mexeu no botão e também, sem querer, numa configuração de teste. Com a bandeja, você faz `add` só do botão e dá um commit com a mensagem "corrige o botão". A configuração fica de fora, para ser tratada à parte. Um bom commit conta **uma história só**, e a mensagem explica o **porquê** da mudança, como a fonte ressalta ao falar de mensagens de commit.
+Parece um passo a mais, mas a bandeja deixa **montar commits com sentido**. Suponha que você mexeu no botão e também, sem querer, numa configuração de teste. Com a bandeja, você faz `add` só do botão e dá um commit com a mensagem "corrige o botão". A configuração fica de fora, para ser tratada à parte. Um bom commit conta **uma história só**, e a mensagem explica o **porquê** da mudança, e isso vale para todas as mensagens de commit.
 </Aprofundar>
 
 ## O código de cada commit
 
-Cada objeto do Git é identificado por um **código** calculado a partir do conteúdo, um **hash** (como o que você conheceu na cápsula de senhas). Segundo a fonte, esses códigos eram calculados com o **SHA-1**. Como o código de cada commit depende do conteúdo **e do commit anterior**, mudar algo no passado muda o código dele e de **todos os que vieram depois**. Por isso adulterações antigas ficam **detectáveis**.
+Cada objeto do Git é identificado por um **código** calculado a partir do conteúdo, um **hash** (como o que você conheceu na cápsula de senhas). Esses códigos eram calculados com o **SHA-1**. Como o código de cada commit depende do conteúdo **e do commit anterior**, mudar algo no passado muda o código dele e de **todos os que vieram depois**. Por isso adulterações antigas ficam **detectáveis**.
 
 <CorrenteDeCommits />
 
@@ -163,7 +163,7 @@ Cada objeto do Git é identificado por um **código** calculado a partir do cont
 </ExemploResolvido>
 
 <Aprofundar titulo="SHA-1 e a mudança de hash">
-Em 2017, o Google mostrou um ataque prático ao SHA-1 (você viu isso na cápsula de senhas). Segundo a fonte, depois dessa demonstração o Git passou a usar uma **variante do SHA-1 resistente àquele ataque**, e desde 2020 existe um **plano de transição de hash** em andamento. O Git foi projetado com salvaguardas fortes contra corrupção acidental ou maliciosa, e a ideia de que o histórico "se prova sozinho" é uma das razões da confiança nele.
+Em 2017, o Google mostrou um ataque prático ao SHA-1 (você viu isso na cápsula de senhas). Depois dessa demonstração o Git passou a usar uma **variante do SHA-1 resistente àquele ataque**, e desde 2020 existe um **plano de transição de hash** em andamento. O Git foi projetado com salvaguardas fortes contra corrupção acidental ou maliciosa, e a ideia de que o histórico "se prova sozinho" é uma das razões da confiança nele.
 </Aprofundar>
 
 <Exercicio enunciado="Em que ano o Google mostrou uma colisão prática do SHA-1, levando o Git a mudar? (número)" resposta="2017" dica="Foi em fevereiro." resolucao="Em fevereiro de 2017." />
@@ -172,7 +172,7 @@ Em 2017, o Google mostrou um ataque prático ao SHA-1 (você viu isso na cápsul
 
 Imagine um jogo em que você quer testar uma estratégia arriscada. Em vez de arriscar o seu único salvamento, você **copia** a situação e experimenta nessa cópia. Se der certo, você junta. Se der errado, joga fora.
 
-Isso é um **ramo** (*branch*). Equipes usam ramos para tudo: uma funcionalidade nova, uma correção, uma experiência. Cada pessoa trabalha no seu ramo, e o trabalho é **juntado** (*merge*) no ramo principal quando está pronto. A fonte lembra que o histórico forma, na prática, um grafo de commits; "uma árvore com junções" é uma boa aproximação.
+Isso é um **ramo** (*branch*). Equipes usam ramos para tudo: uma funcionalidade nova, uma correção, uma experiência. Cada pessoa trabalha no seu ramo, e o trabalho é **juntado** (*merge*) no ramo principal quando está pronto. O histórico forma, na prática, um grafo de commits; "uma árvore com junções" é uma boa aproximação.
 
 <ExemploResolvido titulo="Quando há conflito">
   <Passo>O arquivo tem 3 linhas: título, introdução e rodapé.</Passo>
@@ -186,7 +186,7 @@ Isso é um **ramo** (*branch*). Equipes usam ramos para tudo: uma funcionalidade
 <Exercicio enunciado="Duas pessoas mudam linhas DIFERENTES do arquivo. Ao juntar, há conflito? (sim ou nao)" resposta="nao" dica="Dá para combinar sem escolher." resolucao="Não: o Git junta sozinho as duas mudanças." />
 
 <Aprofundar titulo="Por que conflitos são normais">
-A fonte conta que juntar (*merge*) é uma das partes **mais complexas** do controle de versões, especialmente para arquivos que não são texto. O merge automático funciona melhor com texto simples. Alguns sistemas antigos evitavam conflitos **trancando** o arquivo (só uma pessoa edita por vez), mas as trancas podem ser esquecidas e dar pressão para driblar o sistema. A abordagem do Git é deixar todo mundo trabalhar livremente e **resolver os conflitos depois**, porque, na prática, eles são raros e pequenos quando as mudanças são feitas em pedaços pequenos e juntadas com frequência.
+Juntar (*merge*) é uma das partes **mais complexas** do controle de versões, especialmente para arquivos que não são texto. O merge automático funciona melhor com texto simples. Alguns sistemas antigos evitavam conflitos **trancando** o arquivo (só uma pessoa edita por vez), mas as trancas podem ser esquecidas e dar pressão para driblar o sistema. A abordagem do Git é deixar todo mundo trabalhar livremente e **resolver os conflitos depois**, porque, na prática, eles são raros e pequenos quando as mudanças são feitas em pedaços pequenos e juntadas com frequência.
 </Aprofundar>
 
 ## GitHub: onde o Git encontra a equipe
@@ -233,12 +233,12 @@ Um fluxo típico, do começo ao fim:
 - `git push`: envia ao GitHub.
 - `git pull`: traz o que a equipe enviou, de tempos em tempos.
 
-Para começar um projeto **do zero**, o primeiro passo é `git init`. Por tradição, o ramo inicial se chamava `master`, segundo a fonte, e hoje muitos projetos (como este) usam o nome `main`.
+Para começar um projeto **do zero**, o primeiro passo é `git init`. Por tradição, o ramo inicial se chamava `master` e hoje muitos projetos (como este) usam o nome `main`.
 
 <QualComandoGit />
 
 <Aprofundar titulo="Commits enviados não são sobrescritos, e sim revertidos">
-A fonte lembra que, no Git, commits que já foram **enviados** a outras pessoas normalmente não se apagam: eles são **revertidos**, ou seja, cria-se um **novo commit** que desfaz o efeito do antigo. Isso mantém o histórico honesto e evita bagunçar o trabalho de quem já baixou aquela versão. A ferramenta `git bisect`, também citada na fonte, usa **busca binária** (dividir pela metade) no histórico para achar **qual commit introduziu um defeito**: com 1.000 commits, bastam cerca de 10 testes, a mesma lógica dos índices de banco de dados.
+No Git, commits que já foram **enviados** a outras pessoas normalmente não se apagam: eles são **revertidos**, ou seja, cria-se um **novo commit** que desfaz o efeito do antigo. Isso mantém o histórico honesto e evita bagunçar o trabalho de quem já baixou aquela versão. A ferramenta `git bisect`, também útil, usa **busca binária** (dividir pela metade) no histórico para achar **qual commit introduziu um defeito**: com 1.000 commits, bastam cerca de 10 testes, a mesma lógica dos índices de banco de dados.
 </Aprofundar>
 
 ## Boas práticas de quem usa Git
@@ -329,7 +329,7 @@ A fonte lembra que, no Git, commits que já foram **enviados** a outras pessoas 
     explicacao: 'Mesmo apagando depois, o segredo continua no histórico e pode ser lido.',
   },
   {
-    enunciado: 'Como o Git guarda o projeto, segundo a fonte?',
+    enunciado: 'Como o Git guarda o projeto?',
     opcoes: ['Como instantâneos (snapshots) da árvore de arquivos', 'Só uma lista de letras trocadas', 'Em planilhas'],
     correta: 0,
     explicacao: 'Cada commit é uma foto, e aponta para o commit anterior.',

@@ -137,7 +137,7 @@ Um **atributo** acrescenta informação à etiqueta, no formato `nome="valor"`. 
 
 ## Etiquetas que dizem o que o texto é
 
-O bom HTML descreve o **significado** do conteúdo (isso é um título, isso é um parágrafo, isso é uma lista), e não o aspecto. A fonte explica que as etiquetas servem para o navegador **interpretar** o conteúdo: o navegador **não mostra** as etiquetas, ele as usa para saber o que fazer.
+O bom HTML descreve o **significado** do conteúdo (isso é um título, isso é um parágrafo, isso é uma lista), e não o aspecto. As etiquetas servem para o navegador **interpretar** o conteúdo: o navegador **não mostra** as etiquetas, ele as usa para saber o que fazer.
 
 <EtiquetasHtml />
 
@@ -153,7 +153,7 @@ Num exemplo mínimo: `<html>`, dentro dele `<head>` com `<title>`, e `<body>` co
 
 Uma folha de estilo é uma lista de **regras**. Cada regra tem um **seletor** (quem recebe o estilo) e um **bloco de declarações** (o que mudar). Cada declaração é uma **propriedade**, dois pontos e um **valor**.
 
-A fonte dá este exemplo: a regra `h1 { color: red; }` deixa **todo** título `h1` vermelho. Trocar `red` por `blue` muda todos de uma vez. É essa a grande vantagem do CSS: **um lugar só** para mudar o visual do site inteiro.
+Um exemplo: a regra `h1 { color: red; }` deixa **todo** título `h1` vermelho. Trocar `red` por `blue` muda todos de uma vez. É essa a grande vantagem do CSS: **um lugar só** para mudar o visual do site inteiro.
 
 Os valores podem ser palavras (`red`), números com unidade (`200px`, `80%`) ou cores (nomeadas, em hexadecimal, RGB ou HSL).
 
@@ -181,7 +181,7 @@ Os principais seletores:
 
 ## A cascata: quando duas regras brigam
 
-Várias regras podem tentar mudar a **mesma coisa**. Quem ganha? O "C" de CSS vem de *Cascading* (em cascata): existe uma ordem de prioridade. O que importa é a **especificidade**: quanto mais específico o seletor, mais forte. Pela fonte, a força cresce nesta ordem: **elemento** (mais fraco), **classe**, **id** e, por último, o estilo escrito **na própria etiqueta** (o mais forte).
+Várias regras podem tentar mudar a **mesma coisa**. Quem ganha? O "C" de CSS vem de *Cascading* (em cascata): existe uma ordem de prioridade. O que importa é a **especificidade**: quanto mais específico o seletor, mais forte. A força cresce nesta ordem: **elemento** (mais fraco), **classe**, **id** e, por último, o estilo escrito **na própria etiqueta** (o mais forte).
 
 <CascataCss />
 
@@ -197,14 +197,14 @@ Várias regras podem tentar mudar a **mesma coisa**. Quem ganha? O "C" de CSS ve
 <Exercicio enunciado="Entre uma regra por id e uma regra por classe, qual vence? (id ou classe)" resposta="id" dica="O id é único: o mais específico dos seletores." resolucao="O id vence a classe." />
 
 <Aprofundar titulo="Como a especificidade é calculada">
-A fonte mostra a especificidade como uma sequência de quatro números, do mais forte ao mais fraco. Um seletor de **elemento** (como `h1`) vale 0,0,0,1. Uma **classe** (como `.uva`) vale 0,0,1,0. Um **id** vale 0,1,0,0. O estilo na própria etiqueta (atributo `style`) vale 1,0,0,0. Quando os seletores se combinam, os valores se somam coluna por coluna.
+A especificidade é uma sequência de quatro números, do mais forte ao mais fraco. Um seletor de **elemento** (como `h1`) vale 0,0,0,1. Uma **classe** (como `.uva`) vale 0,0,1,0. Um **id** vale 0,1,0,0. O estilo na própria etiqueta (atributo `style`) vale 1,0,0,0. Quando os seletores se combinam, os valores se somam coluna por coluna.
 
 Por exemplo, `p.aviso` vale 0,0,1,1 (um elemento e uma classe), e por isso vence `p` sozinho (0,0,0,1) e perde para `#topo` (0,1,0,0). Se a especificidade empata, vale a regra que vem **por último** no arquivo. E acima de tudo isso existe o `!important`, que deve ser usado com muito cuidado.
 </Aprofundar>
 
 ## Por que separar conteúdo e aparência
 
-O CSS foi pensado para **separar conteúdo e apresentação**. Isso traz vantagens que a fonte lista: o HTML fica mais simples, vários arquivos HTML podem **dividir o mesmo arquivo de estilo** (que o navegador guarda em memória para não baixar de novo), dá para ter estilos diferentes para tela, impressão ou leitura por voz, e a acessibilidade melhora. O CSS também permite o **design responsivo**: o mesmo conteúdo se adapta a telas de tamanhos e orientações diferentes (celular em pé, computador deitado).
+O CSS foi pensado para **separar conteúdo e apresentação**. Isso traz vantagens: o HTML fica mais simples, vários arquivos HTML podem **dividir o mesmo arquivo de estilo** (que o navegador guarda em memória para não baixar de novo), dá para ter estilos diferentes para tela, impressão ou leitura por voz, e a acessibilidade melhora. O CSS também permite o **design responsivo**: o mesmo conteúdo se adapta a telas de tamanhos e orientações diferentes (celular em pé, computador deitado).
 
 <Aprofundar titulo="Design responsivo e consultas de mídia">
 O mesmo site precisa ficar bom num celular de 375 pixels e num monitor de 1.280. O CSS permite escrever regras que só valem **em certas condições**, como "se a tela for larga". Essas condições se chamam **consultas de mídia** (*media queries*), listadas como um módulo do CSS3, recomendado em junho de 2012. Este app usa essa ideia: os estilos são escritos primeiro para o celular e depois adaptados para telas maiores.
@@ -212,7 +212,7 @@ O mesmo site precisa ficar bom num celular de 375 pixels e num monitor de 1.280.
 
 ## JavaScript: o comportamento
 
-O JavaScript é uma linguagem de programação que roda no navegador. Todo grande navegador tem um **motor de JavaScript** embutido. Segundo a fonte, em 2025 cerca de **98,9%** dos sites usavam JavaScript para o comportamento no navegador.
+O JavaScript é uma linguagem de programação que roda no navegador. Todo grande navegador tem um **motor de JavaScript** embutido. Em 2025 cerca de **98,9%** dos sites usavam JavaScript para o comportamento no navegador.
 
 Ele conversa com a página por meio do **DOM** (*Document Object Model*), uma representação da página que o navegador monta a partir do HTML, em forma de árvore. O JavaScript pode ler e **mudar** essa árvore: trocar um texto, esconder um elemento, adicionar um item à lista.
 
@@ -232,7 +232,7 @@ O truque central é o **evento**. Um evento é "algo que aconteceu": um clique, 
 <Exercicio enunciado="Em 'quando clicarem, faça isto', o 'clicarem' é um ... (evento ou atributo)" resposta="evento" dica="Algo que aconteceu." resolucao="Clique é um evento. O ouvinte espera por ele." />
 
 <Aprofundar titulo="JavaScript não é Java">
-O nome confunde. Segundo a fonte, as duas linguagens têm uma aparência de código parecida (o estilo "C"), mas são muito diferentes por dentro. O JavaScript nasceu como LiveScript e ganhou o nome para aproveitar a fama do Java na época, uma decisão de marketing da Netscape. Hoje, a linguagem é padronizada pelo nome **ECMAScript**, e as versões novas do JavaScript seguem esse padrão.
+O nome confunde. As duas linguagens têm uma aparência de código parecida (o estilo "C"), mas são muito diferentes por dentro. O JavaScript nasceu como LiveScript e ganhou o nome para aproveitar a fama do Java na época, uma decisão de marketing da Netscape. Hoje, a linguagem é padronizada pelo nome **ECMAScript**, e as versões novas do JavaScript seguem esse padrão.
 </Aprofundar>
 
 <Aprofundar titulo="JavaScript também roda no servidor">

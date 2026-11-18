@@ -36,7 +36,7 @@ A ideia de que uma coisa **depende** de outra é tão antiga quanto observar o c
 
 ## Quanto um planeta se move?
 
-Segundo a fonte, as funções nasceram como uma forma de modelar **como uma grandeza que varia depende de outra**. O exemplo clássico é a **posição de um planeta em função do tempo**: para cada instante, há uma posição. Os astrônomos faziam tabelas dessas posições, e a tabela é exatamente uma função: "dia" na primeira coluna, "posição" na segunda.
+As funções nasceram como uma forma de modelar **como uma grandeza que varia depende de outra**. O exemplo clássico é a **posição de um planeta em função do tempo**: para cada instante, há uma posição. Os astrônomos faziam tabelas dessas posições, e a tabela é exatamente uma função: "dia" na primeira coluna, "posição" na segunda.
 
 ## O nascimento do cálculo
 
@@ -56,23 +56,23 @@ No **fim do século 19**, os matemáticos perceberam que a ideia de função nã
 
 ## 1. A máquina
 
-Imagine uma **máquina** com uma entrada e uma saída. Você coloca um número, a máquina aplica uma **regra**, e sai um número. Uma máquina "dobra e soma 3" transforma 4 em 11 (4 × 2 + 3). A fonte descreve exatamente essa imagem: uma função pode ser vista como uma **"caixa-preta"** que transforma cada entrada numa saída.
+Imagine uma **máquina** com uma entrada e uma saída. Você coloca um número, a máquina aplica uma **regra**, e sai um número. Uma máquina "dobra e soma 3" transforma 4 em 11 (4 × 2 + 3). É exatamente essa imagem: uma função pode ser vista como uma **"caixa-preta"** que transforma cada entrada numa saída.
 
 ## 2. Exatamente uma saída
 
-A palavra-chave da definição é **exatamente**. Segundo a fonte, uma função de um conjunto X em um conjunto Y **associa a cada elemento de X exatamente um elemento de Y**. Se a mesma entrada pudesse dar duas saídas, a máquina seria "indecisa", e **não** seria uma função. Já **duas entradas diferentes com a mesma saída** é perfeitamente permitido: duas pessoas podem ter a mesma idade.
+A palavra-chave da definição é **exatamente**. Uma função de um conjunto X em um conjunto Y **associa a cada elemento de X exatamente um elemento de Y**. Se a mesma entrada pudesse dar duas saídas, a máquina seria "indecisa", e **não** seria uma função. Já **duas entradas diferentes com a mesma saída** é perfeitamente permitido: duas pessoas podem ter a mesma idade.
 
 ## 3. Os nomes: domínio, contradomínio, imagem
 
 - O conjunto das **entradas** possíveis é o **domínio**.
 - O conjunto onde as saídas podem estar é o **contradomínio**.
-- O conjunto das saídas que **de fato aparecem** é a **imagem** (a fonte avisa que "range", em inglês, às vezes significa o contradomínio).
+- O conjunto das saídas que **de fato aparecem** é a **imagem** (atenção: "range", em inglês, às vezes significa o contradomínio).
 
 Em f(x) = x², com x real, o domínio é todos os reais, o contradomínio pode ser todos os reais, mas a **imagem** só tem os números **maiores ou iguais a 0**, porque um quadrado nunca é negativo.
 
 ## 4. f(x) é só um nome
 
-Escrevemos **y = f(x)** para dizer "y é a saída da máquina f quando a entrada é x". Se f(x) = 2x + 3, então **f(4) = 2 · 4 + 3 = 11**. A fonte dá outro exemplo: se f(x) = x² + 1, então f(4) = 17. O "f" é só o nome da máquina: poderia ser g, h ou "preço".
+Escrevemos **y = f(x)** para dizer "y é a saída da máquina f quando a entrada é x". Se f(x) = 2x + 3, então **f(4) = 2 · 4 + 3 = 11**. Outro exemplo: se f(x) = x² + 1, então f(4) = 17. O "f" é só o nome da máquina: poderia ser g, h ou "preço".
 
 <ExemploResolvido titulo="Calculando valores de f(x) = 2x + 3">
   <Passo>f(4): troque x por 4. 2 · 4 + 3 = 8 + 3 = **11**.</Passo>
@@ -138,7 +138,7 @@ Uma função pode ser apresentada de **quatro formas**, e saber passar de uma pa
 
 ## Da tabela ao gráfico
 
-Cada linha da tabela é um **par ordenado (x, y)**, e cada par é um **ponto** do plano. A fonte define: o **gráfico** de uma função é o conjunto de todos os pares (x, f(x)). Ao marcar os pontos e ligá-los (porque x pode assumir todos os valores, e não só os inteiros), aparece a **curva**.
+Cada linha da tabela é um **par ordenado (x, y)**, e cada par é um **ponto** do plano. O **gráfico** de uma função é o conjunto de todos os pares (x, f(x)). Ao marcar os pontos e ligá-los (porque x pode assumir todos os valores, e não só os inteiros), aparece a **curva**.
 
 <TabelaEGrafico />
 
@@ -159,7 +159,7 @@ Quando a tabela tem só alguns valores de x (como 1, 2, 3), o gráfico são **po
 
 ## O teste da reta vertical
 
-Dá para saber se um **gráfico** representa uma função olhando para ele. A fonte descreve o **teste da reta vertical**: se **qualquer** reta vertical cruza o gráfico em **exatamente um ponto**, o gráfico é de uma função. Se alguma reta vertical encosta em **dois** pontos, uma entrada (x) tem **duas saídas** (y): não é função.
+Dá para saber se um **gráfico** representa uma função olhando para ele. Existe o **teste da reta vertical**: se **qualquer** reta vertical cruza o gráfico em **exatamente um ponto**, o gráfico é de uma função. Se alguma reta vertical encosta em **dois** pontos, uma entrada (x) tem **duas saídas** (y): não é função.
 
 <ExemploResolvido titulo="O círculo não é função">
   <Passo>Considere o círculo de raio 1 centrado na origem.</Passo>
@@ -192,7 +192,7 @@ Nem toda regra funciona para **qualquer** número. Em f(x) = **1/x**, não dá p
 <Exercicio enunciado="Qual é o menor valor que f(x) = x² pode assumir (a imagem começa em quanto)? (número)" resposta="0" dica="Um quadrado nunca é negativo." resolucao="0, quando x = 0." />
 
 <Aprofundar titulo="Domínio, contradomínio e imagem juntos">
-Pense em f(x) = x², com domínio os reais e contradomínio os reais. Cada x tem uma saída, então é função. Mas **nem todo real** aparece como saída: o -4, por exemplo, nunca é o quadrado de nada. O conjunto das saídas que realmente aparecem é a **imagem**: os reais maiores ou iguais a 0. Segundo a fonte, a imagem é o conjunto de todas as saídas dos elementos do domínio. Quando a imagem é **igual** ao contradomínio, a função se chama **sobrejetora**; quando entradas diferentes sempre dão saídas diferentes, ela é **injetora**, conceito que a fonte também cita. Funções que são as duas coisas têm **inversa**, assunto do logaritmo mais adiante.
+Pense em f(x) = x², com domínio os reais e contradomínio os reais. Cada x tem uma saída, então é função. Mas **nem todo real** aparece como saída: o -4, por exemplo, nunca é o quadrado de nada. O conjunto das saídas que realmente aparecem é a **imagem**: os reais maiores ou iguais a 0. A imagem é o conjunto de todas as saídas dos elementos do domínio. Quando a imagem é **igual** ao contradomínio, a função se chama **sobrejetora**; quando entradas diferentes sempre dão saídas diferentes, ela é **injetora**, conceito importante. Funções que são as duas coisas têm **inversa**, assunto do logaritmo mais adiante.
 </Aprofundar>
 
 ## Lendo valores no gráfico
@@ -210,11 +210,11 @@ Num gráfico, **x** está no eixo horizontal e **y** no vertical. Para achar f(2
 
 <Exercicio enunciado="Para f(x) = x²/2 - 2, quanto vale f(2)? (número)" resposta="0" dica="2 ao quadrado é 4; metade é 2." resolucao="4/2 - 2 = 0." />
 
-<Exercicio enunciado="Para f(x) = x² + 1, quanto vale f(4)? (número)" resposta="17" dica="16 mais 1." resolucao="17: é o exemplo da fonte." />
+<Exercicio enunciado="Para f(x) = x² + 1, quanto vale f(4)? (número)" resposta="17" dica="16 mais 1." resolucao="17: é o exemplo do texto." />
 
 ## Compondo funções
 
-E se a saída de uma máquina **entrar em outra**? Isso é **compor** funções. Segundo a fonte, a composição (g∘f)(x) = g(f(x)) é associativa, mas **não é comutativa**: trocar a ordem das máquinas muda o resultado.
+E se a saída de uma máquina **entrar em outra**? Isso é **compor** funções. A composição (g∘f)(x) = g(f(x)) é associativa, mas **não é comutativa**: trocar a ordem das máquinas muda o resultado.
 
 <ComporMaquinas />
 
@@ -256,7 +256,7 @@ A matemática usa funções para **modelar** o mundo: o preço do táxi em funç
 
 <Quiz perguntas={[
   {
-    enunciado: 'O que é uma função, segundo a fonte?',
+    enunciado: 'O que é uma função?',
     opcoes: ['Uma regra que associa a cada elemento do domínio exatamente um elemento do contradomínio', 'Qualquer fórmula com x', 'Um gráfico qualquer'],
     correta: 0,
     explicacao: 'A palavra-chave é "exatamente um".',
@@ -271,7 +271,7 @@ A matemática usa funções para **modelar** o mundo: o preço do táxi em funç
     enunciado: 'Quem usou pela primeira vez a notação f(x), e quando?',
     opcoes: ['Euler, em 1734', 'Newton, em 1687', 'Leibniz, em 1673'],
     correta: 0,
-    explicacao: 'A fonte atribui a notação f(x) a Leonhard Euler, em 1734.',
+    explicacao: 'A notação f(x) é atribuída a Leonhard Euler, em 1734.',
   },
   {
     enunciado: 'Uma entrada pode ter duas saídas diferentes numa função?',
@@ -319,7 +319,7 @@ A matemática usa funções para **modelar** o mundo: o preço do táxi em funç
     enunciado: 'A composição de funções é comutativa?',
     opcoes: ['Não, em geral a ordem muda o resultado', 'Sim, sempre', 'Só para funções lineares'],
     correta: 0,
-    explicacao: 'A fonte diz que a composição é associativa, mas não comutativa.',
+    explicacao: 'A composição é associativa, mas não comutativa.',
   },
   {
     enunciado: 'No preço de uma corrida p(x) = 6 + 2,5x, quem é a variável independente?',

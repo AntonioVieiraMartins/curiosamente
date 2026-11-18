@@ -59,11 +59,11 @@ Em março de 2001, Douglas Crockford ajudou a fundar uma empresa, a State Softwa
 
 Voltando ao restaurante da cápsula anterior: o **cardápio** diz o que dá para pedir (pratos), como pedir (o nome do prato) e o que você recebe (a descrição). Você **não** vê a cozinha, e a cozinha pode mudar a receita por dentro sem você notar, desde que o cardápio continue valendo.
 
-Uma **API** faz o mesmo para programas. A fonte a descreve como uma interface que permite que programas conversem entre si, definida por uma **especificação** (a lista de chamadas possíveis). Uma boa API mostra só o que quem a usa precisa e **esconde os detalhes internos**. Ela também é comparada a **peças de Lego**: serviços diferentes se encaixam por suas APIs para formar produtos novos.
+Uma **API** faz o mesmo para programas. Ela é uma interface que permite que programas conversem entre si, definida por uma **especificação** (a lista de chamadas possíveis). Uma boa API mostra só o que quem a usa precisa e **esconde os detalhes internos**. Ela também é comparada a **peças de Lego**: serviços diferentes se encaixam por suas APIs para formar produtos novos.
 
 ## 2. A API como contrato
 
-Quem cria a API **promete** que os pedidos funcionarão de certo jeito. Quem a usa **confia** nisso. A fonte compara a API a um **contrato** entre quem fornece e quem depende. Por isso uma API estável dá confiança, e mudar a API de forma abrupta pode **quebrar** quem a usa. (Veja a simulação mais adiante.)
+Quem cria a API **promete** que os pedidos funcionarão de certo jeito. Quem a usa **confia** nisso. A API funciona como um **contrato** entre quem fornece e quem depende. Por isso uma API estável dá confiança, e mudar a API de forma abrupta pode **quebrar** quem a usa. (Veja a simulação mais adiante.)
 
 <ExemploResolvido titulo="Quem fala com quem?">
   <Passo>O aplicativo do clima no seu celular quer a temperatura de Recife.</Passo>
@@ -109,7 +109,7 @@ Cada linha tem duas partes: o **método** (o verbo: GET, POST, DELETE) e o **end
 
 ## JSON: o formato da resposta
 
-**JSON** é um jeito de escrever dados como **texto**, de modo que qualquer linguagem de programação consiga ler. É leve (a fonte o promove como uma alternativa de menor custo ao XML) e legível por pessoas.
+**JSON** é um jeito de escrever dados como **texto**, de modo que qualquer linguagem de programação consiga ler. É leve (uma alternativa de menor custo ao XML) e legível por pessoas.
 
 Os **tipos de dados** do JSON são só seis:
 
@@ -143,7 +143,7 @@ Em muitas linguagens, a posição de um item numa lista é a **distância** a pa
 
 ## As regras do JSON são rígidas
 
-O JSON é **exigente**. As regras da fonte:
+O JSON é **exigente**. As regras:
 
 - Textos usam **aspas duplas** (aspas simples não valem).
 - **Não há comentários.** Crockford os removeu porque as pessoas usavam comentários para dar instruções ao leitor, o que prejudicava a compatibilidade.
@@ -175,7 +175,7 @@ Quando o servidor vai responder, ele pega os dados que tem (na memória, na form
 Repare que o nome vira texto com aspas, a idade vira número sem aspas e a conta ativa vira `true` ou `false`. O JSON é só **texto**, e é exatamente isso que viaja pela rede no corpo de uma resposta HTTP.
 
 <Aprofundar titulo="JSON e XML: dois jeitos de escrever dados">
-Antes do JSON, o formato mais comum era o **XML**. Pela fonte, o JSON é promovido como uma alternativa de menor "sobrecarga" (menos texto para dizer a mesma coisa). O XML permite comentários e separa dados de metadados com elementos e atributos; o JSON não tem essa distinção. O XML tem tipagem forte por esquemas, enquanto o JSON tem seus próprios tipos embutidos e um padrão próprio de esquema, o **JSON Schema**.
+Antes do JSON, o formato mais comum era o **XML**. O JSON é visto como uma alternativa de menor "sobrecarga" (menos texto para dizer a mesma coisa). O XML permite comentários e separa dados de metadados com elementos e atributos; o JSON não tem essa distinção. O XML tem tipagem forte por esquemas, enquanto o JSON tem seus próprios tipos embutidos e um padrão próprio de esquema, o **JSON Schema**.
 
 O tipo de mídia do JSON na internet é `application/json`, o que aparece nos cabeçalhos HTTP para o navegador saber que o corpo da resposta é JSON.
 </Aprofundar>
@@ -186,7 +186,7 @@ Em 2000, Roy Fielding descreveu o **REST** na sua tese. Em vez de criar um ender
 
 <MontarPedidoRest />
 
-A fonte lista as **restrições** do estilo REST. As principais:
+As **restrições** do estilo REST. As principais:
 
 - **Cliente e servidor** separados por uma interface bem definida.
 - **Sem estado** (*stateless*): o servidor não guarda a sessão do cliente entre um pedido e outro, cada pedido leva o que precisa.
@@ -195,7 +195,7 @@ A fonte lista as **restrições** do estilo REST. As principais:
 - **Sistema em camadas**: o cliente geralmente não sabe se fala com o servidor final ou com um intermediário.
 - Opcional: **código sob demanda** (o servidor manda lógica para o cliente executar).
 
-Os recursos são identificados por endereços (URIs). Eles são conceitualmente separados das **representações** que o cliente recebe, que podem ser HTML, XML ou JSON. A fonte também faz um alerta: a associação dos métodos HTTP (GET, POST...) com REST é considerada uma boa prática, mas **não faz parte** do REST como Fielding o formulou originalmente.
+Os recursos são identificados por endereços (URIs). Eles são conceitualmente separados das **representações** que o cliente recebe, que podem ser HTML, XML ou JSON. Um alerta: a associação dos métodos HTTP (GET, POST...) com REST é considerada uma boa prática, mas **não faz parte** do REST como Fielding o formulou originalmente.
 
 <ExemploResolvido titulo="Lendo pedidos REST">
   <Passo>`GET /produtos`: o verbo é **buscar**, a coisa é a **coleção** de produtos. Resposta: a lista.</Passo>
@@ -218,7 +218,7 @@ Numa API sem estado, o servidor **não guarda memória** do cliente entre dois p
 
 ## A API como contrato: quando o cardápio muda
 
-Uma API é uma **promessa**. O aplicativo foi escrito esperando um campo chamado "nome". Se o servidor **adiciona** um campo novo ("cor"), quem não conhece o campo novo simplesmente o ignora e nada quebra. Mas se o servidor **renomeia** "nome" para "titulo", o aplicativo procura "nome", não acha, e **quebra**. A fonte lembra que mudanças como acrescentar parâmetros podem quebrar quem usa a API, e que recursos antigos devem ser **marcados como obsoletos** (*deprecated*) antes de saírem, para dar tempo de migrar.
+Uma API é uma **promessa**. O aplicativo foi escrito esperando um campo chamado "nome". Se o servidor **adiciona** um campo novo ("cor"), quem não conhece o campo novo simplesmente o ignora e nada quebra. Mas se o servidor **renomeia** "nome" para "titulo", o aplicativo procura "nome", não acha, e **quebra**. Mudanças como acrescentar parâmetros podem quebrar quem usa a API, e que recursos antigos devem ser **marcados como obsoletos** (*deprecated*) antes de saírem, para dar tempo de migrar.
 
 <ContratoQuebrado />
 
@@ -230,12 +230,12 @@ Uma API é uma **promessa**. O aplicativo foi escrito esperando um campo chamado
 </ExemploResolvido>
 
 <Aprofundar titulo="A documentação é parte da API">
-Uma API precisa de **documentação**: explica quais serviços existem e como usá-los, com descrições dos pedidos, exemplos de uso, trechos de código e restrições. A fonte avisa que a documentação costuma omitir os detalhes internos e que é **difícil mantê-la atualizada**, o que leva a defeitos quando ela diz uma coisa e a API faz outra. Algumas APIs públicas dão acesso por **tokens** (chaves de acesso) ou depois de confirmar quem é o cliente. Lembre da regra de ouro da cápsula anterior: o servidor nunca deve confiar cegamente no que vem de fora.
+Uma API precisa de **documentação**: explica quais serviços existem e como usá-los, com descrições dos pedidos, exemplos de uso, trechos de código e restrições. A documentação costuma omitir os detalhes internos e que é **difícil mantê-la atualizada**, o que leva a defeitos quando ela diz uma coisa e a API faz outra. Algumas APIs públicas dão acesso por **tokens** (chaves de acesso) ou depois de confirmar quem é o cliente. Lembre da regra de ouro da cápsula anterior: o servidor nunca deve confiar cegamente no que vem de fora.
 </Aprofundar>
 
 ## Onde isso aparece no dia a dia
 
-Quando uma página busca dados novos **depois** de carregada e atualiza só um pedaço da tela, ela usa uma chamada a uma API, quase sempre devolvendo JSON. A fonte chama isso de requisições web assíncronas, parente do Ajax (o nome dado em 2005 a esse truque). O JSON também aparece em arquivos de configuração e em **bancos de dados**: bancos de documentos como o MongoDB guardam dados em formato parecido com JSON, e bancos como PostgreSQL e MySQL têm tipos próprios para JSON.
+Quando uma página busca dados novos **depois** de carregada e atualiza só um pedaço da tela, ela usa uma chamada a uma API, quase sempre devolvendo JSON. Isso se chama requisições web assíncronas, parente do Ajax (o nome dado em 2005 a esse truque). O JSON também aparece em arquivos de configuração e em **bancos de dados**: bancos de documentos como o MongoDB guardam dados em formato parecido com JSON, e bancos como PostgreSQL e MySQL têm tipos próprios para JSON.
 
 <Exercicio enunciado="Em que ano Crockford e Morningstar enviaram a primeira mensagem JSON? (número)" resposta="2001" dica="Foi em abril." resolucao="Em abril de 2001." />
 
@@ -244,7 +244,7 @@ Quando uma página busca dados novos **depois** de carregada e atualiza só um p
 <Exercicio enunciado="Em que ano a RFC 8259 virou o padrão de internet do JSON? (número)" resposta="2017" dica="Foi em dezembro." resolucao="Em dezembro de 2017." />
 
 <Aprofundar titulo="Web API e API de biblioteca">
-Segundo a fonte, existem dois grandes tipos. A **API de biblioteca** descreve o comportamento esperado de uma biblioteca de código: a biblioteca é **uma implementação** dessa especificação, e a mesma API pode ter várias implementações. A **API web** é um conjunto de especificações, em geral mensagens de pedido HTTP com respostas estruturadas em XML ou JSON, que permite que computadores ligados à internet se comuniquem. Hoje, a API web é o significado mais comum da palavra "API".
+Existem dois grandes tipos. A **API de biblioteca** descreve o comportamento esperado de uma biblioteca de código: a biblioteca é **uma implementação** dessa especificação, e a mesma API pode ter várias implementações. A **API web** é um conjunto de especificações, em geral mensagens de pedido HTTP com respostas estruturadas em XML ou JSON, que permite que computadores ligados à internet se comuniquem. Hoje, a API web é o significado mais comum da palavra "API".
 </Aprofundar>
 
 </Etapa>
