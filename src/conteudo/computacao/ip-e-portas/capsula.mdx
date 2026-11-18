@@ -1,0 +1,396 @@
+import EnderecoIpEmBytes from '../../../components/simulacoes/EnderecoIpEmBytes'
+import PredioEApartamento from '../../../components/simulacoes/PredioEApartamento'
+import ClassificaIp from '../../../components/simulacoes/ClassificaIp'
+import UrlEmPartes from '../../../components/simulacoes/UrlEmPartes'
+import NatDaCasa from '../../../components/simulacoes/NatDaCasa'
+import PortasOcupadas from '../../../components/simulacoes/PortasOcupadas'
+
+{/* Fatos conferidos na Wikipedia em inglês (IP address, Port, Localhost), listadas no meta.ts. Os endereços usados nas simulações são exemplos. */}
+
+<Etapa id="gancho">
+
+Quando você desenvolve um site no seu computador, o endereço que aparece é algo como **localhost:5173**. Parece um código secreto, mas é só um **endereço**: um nome ("localhost") e um número depois dos dois-pontos ("5173"). E, na internet, todo computador tem um endereço parecido, formado por quatro números como **192.168.0.12**.
+
+Por que precisamos de **dois** números, um para o computador e outro para o "assunto"? A resposta usa um prédio e muitos apartamentos.
+
+<Palpite
+  chave="inicial"
+  pergunta="Um mesmo computador pode ser um servidor de site, de e-mail e de banco de dados ao mesmo tempo. Como os pacotes sabem para qual serviço ir?"
+  opcoes={['Cada serviço usa uma porta diferente no mesmo endereço IP', 'Cada serviço precisa de um computador separado', 'O pacote chega em todos e cada um escolhe']}
+/>
+
+Nesta cápsula você vai montar um endereço IP em bits, bater na porta de cada serviço, descobrir quais endereços são privados, desmontar um endereço de site, ver como a casa inteira divide um IP só e evitar conflito de portas.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Para pacotes chegarem ao destino, alguém precisou inventar **endereços** e **números de apartamento**.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Anos 1970', texto: 'Nas primeiras redes da ARPANET, os "números de porta" se chamavam "números de soquete".' },
+  { ano: '1972', texto: 'A RFC 349 propõe as primeiras atribuições oficiais de números de porta.' },
+  { ano: '1982', texto: 'O TCP/IP é padronizado: cada máquina na rede passa a ter um endereço IP.' },
+  { ano: 'Anos 2010', texto: 'Os endereços IPv4 começam a acabar, e o IPv6, com muito mais endereços, é o sucessor planejado.' },
+]} />
+
+## De "socket" a "porta"
+
+No início, os números que identificavam cada conversa dentro de um computador se chamavam **números de soquete**. A **RFC 349**, de 1972, sugeriu as primeiras atribuições oficiais. Hoje, quem organiza essas atribuições é a **IANA**, uma organização que mantém a lista de serviços e seus números de porta.
+
+## O endereço que todo mundo precisa
+
+Em 1982 o TCP/IP foi padronizado, e com ele o **endereço IP**: um número que identifica cada aparelho numa rede. O formato mais usado, o **IPv4**, tem 32 bits, o que dá cerca de **4,29 bilhões** de endereços. Isso parecia imenso, mas, com a internet crescendo, o estoque foi acabando ao longo dos anos 2010.
+
+## O sucessor
+
+O **IPv6** usa **128 bits** por endereço, um espaço incomparavelmente maior. Ele foi planejado justamente para substituir o IPv4. Enquanto isso, um truque chamado **NAT** permite que muitos aparelhos dividam um único endereço público. Você vai ver ambos nesta cápsula.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O prédio e o apartamento
+
+Imagine um grande prédio com um endereço de rua. Dentro, moram muitas pessoas, cada uma num **apartamento**. Para entregar uma carta, você precisa do **endereço do prédio** e do **número do apartamento**.
+
+Na internet é igual:
+
+- O **endereço IP** identifica o **computador** (o prédio).
+- A **porta** identifica o **serviço** dentro do computador (o apartamento).
+
+Os dois juntos formam o endereço completo, escrito com dois-pontos: **IP:porta**. Por exemplo, `203.0.113.10:80`. (Esse número é só um endereço de exemplo.)
+
+<PredioEApartamento />
+
+Cada tipo de serviço tem uma porta "tradicional", por combinação mundial: a **80** para páginas Web, a **443** para páginas com cadeado, a **22** para entrar remotamente em um computador, a **25** para e-mail, a **53** para DNS. Assim, o seu navegador já sabe em qual apartamento bater, sem você precisar escrever.
+
+<ExemploResolvido titulo="Para onde vai o pacote?">
+  <Passo>Seu navegador quer abrir um site com cadeado (https) num servidor de IP 203.0.113.10.</Passo>
+  <Passo>O IP leva o pacote até o computador certo, o **prédio**.</Passo>
+  <Passo>A porta 443 (padrão do https) leva o pacote ao programa que cuida das páginas, o **apartamento**.</Passo>
+  <Passo>Outro pacote para a porta 25 do mesmo prédio iria para outro programa: o de e-mail.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é a porta padrão para páginas Web com cadeado (HTTPS)?" resposta="443" dica="Está na lista acima." resolucao="HTTPS usa a porta 443. A porta 80 é para HTTP, sem cadeado." />
+
+<Exercicio enunciado="Qual é a porta padrão do DNS?" resposta="53" dica="Está na lista acima." resolucao="O DNS usa a porta 53." />
+
+## 2. O endereço IP por dentro
+
+Um endereço IPv4 são **quatro números de 0 a 255**, separados por pontos, como 192.168.0.12. Por que até 255? Porque cada número é um **byte**: 8 bits (como na cápsula de Binário). Quatro bytes são 32 bits.
+
+<EnderecoIpEmBytes />
+
+Com 32 bits há 2³² combinações, ou **4.294.967.296** endereços possíveis. Cada bit a mais dobra o total. Mas repare: esse total parece muito, e a humanidade mais os aparelhos já precisam de bem mais.
+
+<ExemploResolvido titulo="Quantos valores cabem em uma parte do IP?">
+  <Passo>Cada parte tem 8 bits.</Passo>
+  <Passo>Com 8 bits há 2⁸ = 256 combinações.</Passo>
+  <Passo>Os valores vão de 0 a 255 (o zero também conta). Por isso nenhuma parte passa de 255.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos bits tem um endereço IPv4 inteiro?" resposta="32" dica="4 partes × 8 bits." resolucao="4 × 8 = 32 bits." />
+
+<Exercicio enunciado="Qual é o maior valor possível em uma parte de um endereço IPv4?" resposta="255" dica="8 bits, todos acesos." resolucao="Com 8 bits ligados, 11111111 = 255." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Você abre o endereço localhost:5180 no navegador. O que significa o 'localhost'?"
+  opcoes={['Um servidor longe, na internet', 'O próprio computador onde você está', 'O roteador da sua casa']}
+  correta={1}
+  explicacao="Localhost é o nome do próprio computador (o endereço 127.0.0.1). Os pacotes nunca saem dele. O 5180 é a porta onde o programa de desenvolvimento está escutando."
+>
+
+Veja um endereço de site desmontado em partes e toque em cada pedaço:
+
+<UrlEmPartes />
+
+Repare que `localhost:5180` é exatamente **IP:porta**: o "prédio" é o seu próprio computador e o "apartamento" é a porta do programa que você iniciou. Esse nome é reservado para esse uso, e o tráfego fica todo dentro do aparelho, sem passar pela rede.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Cada serviço usa uma porta diferente no mesmo endereço IP', 'Cada serviço precisa de um computador separado', 'O pacote chega em todos e cada um escolhe']}
+  correta={0}
+  seAcertou="E o palpite do começo? Isso: o mesmo IP, cada serviço numa porta diferente."
+  seErrou="E o palpite do começo? Cada serviço usa uma porta diferente no mesmo IP. O número da porta no pacote diz para qual programa entregar."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Quantas portas existem?
+
+Os números de porta têm **16 bits**, então vão de **0 a 65.535**: são 65.536 apartamentos por endereço (2¹⁶). Eles se dividem em três faixas:
+
+- **Portas conhecidas (0 a 1.023)**: reservadas para serviços tradicionais (22 SSH, 25 e-mail, 53 DNS, 80 HTTP, 443 HTTPS).
+- **Portas registradas (1.024 a 49.151)**: usadas por outros serviços e programas. Muitos servidores de desenvolvimento ficam aqui (3000, 5173, 8080...).
+- **Portas dinâmicas (49.152 a 65.535)**: usadas por poucos instantes quando o seu computador faz um pedido. É o "apartamento temporário" de quem pergunta.
+
+<ExemploResolvido titulo="Em qual faixa está a porta 5173?">
+  <Passo>5173 é maior que 1.023, então não é "conhecida".</Passo>
+  <Passo>5173 é menor que 49.152. Então está entre 1.024 e 49.151.</Passo>
+  <Passo>É uma porta **registrada**, a faixa onde programas de desenvolvimento costumam ficar.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas portas existem no total, de 0 a 65.535?" resposta="65536" dica="Inclua o zero: 65.535 + 1." resolucao="São 65.536 (2¹⁶)." />
+
+<Exercicio enunciado="A porta 80 está na faixa das portas 'conhecidas'? (sim ou nao)" resposta="sim" dica="Conhecidas vão até 1.023." resolucao="Sim: 80 está entre 0 e 1.023." />
+
+<Aprofundar titulo="Soquete: IP + porta + protocolo">
+
+O par **IP + porta** (junto com o protocolo, como TCP ou UDP) forma o que se chama **soquete** (*socket*). Uma conexão TCP é identificada por **quatro** informações: o IP e a porta de quem pergunta e o IP e a porta de quem responde. É por isso que o mesmo navegador pode abrir 20 abas para o mesmo site: cada aba usa uma porta de origem diferente, e as respostas voltam para a aba certa.
+
+</Aprofundar>
+
+## Conflito de portas
+
+Dois programas não podem ficar na mesma porta ao mesmo tempo (com o mesmo IP e o mesmo protocolo). É como dois moradores no mesmo apartamento: o carteiro não saberia a quem entregar. Quando você tenta iniciar um programa numa porta ocupada, aparece o erro de **porta em uso**.
+
+<PortasOcupadas />
+
+Nas ferramentas de desenvolvimento, quando a porta padrão está ocupada, o programa costuma avisar ou escolher outra automaticamente. É por isso que, neste projeto, o servidor de desenvolvimento fica na porta **5180**: a 5173 já estava ocupada por outro programa.
+
+<Exercicio enunciado="Dois programas tentam usar a porta 3000 no mesmo computador. Quantos conseguem iniciar?" resposta="1" dica="Só um por porta." resolucao="Só 1: o segundo recebe erro de porta em uso." />
+
+## Endereços públicos, privados e o loopback
+
+Nem todo endereço IP serve para a internet toda. Há grupos reservados:
+
+- **Privados**: 10.x.x.x, 172.16.x.x até 172.31.x.x e 192.168.x.x. Servem só dentro de redes locais (casa, empresa) e **não são roteados na internet pública**. Muitas casas têm o mesmo 192.168.0.1 e ninguém se confunde, porque cada rede é separada.
+- **Loopback**: 127.x.x.x, em especial **127.0.0.1**. Aponta para o próprio computador, e é o endereço do "localhost". Em IPv6, o loopback é `::1`.
+- **Públicos**: o resto. Podem ser alcançados pela internet.
+
+<ClassificaIp />
+
+<ExemploResolvido titulo="Esse endereço é privado?">
+  <Passo>Endereço: 192.168.1.50. Começa por 192.168, uma faixa reservada.</Passo>
+  <Passo>Faixas privadas: 10.x.x.x, 172.16 a 172.31 e 192.168.x.x. Está na terceira.</Passo>
+  <Passo>**É privado**: serve só dentro da rede local, e o mundo não o enxerga diretamente.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O endereço 127.0.0.1 aponta para o próprio computador ou para um servidor distante? (computador ou servidor)" resposta="computador" dica="É o localhost." resolucao="Aponta para o próprio computador (loopback)." />
+
+<Exercicio enunciado="O endereço 172.20.5.9 é privado? (sim ou nao)" resposta="sim" dica="A faixa privada vai de 172.16 a 172.31." resolucao="Sim: 20 está entre 16 e 31." />
+
+<Exercicio enunciado="O endereço 8.8.8.8 é privado? (sim ou nao)" resposta="nao" dica="Não começa por 10, 172.16-31 nem 192.168." resolucao="Não: é um endereço público." />
+
+<Aprofundar titulo="Por que o localhost é útil">
+
+Como o endereço de loopback só enxerga o próprio computador, ele permite **testar programas sem rede**. Quem cria um site abre o servidor de teste em localhost e vê o resultado no navegador, sem ninguém de fora acessar. Os pacotes de loopback "não devem aparecer fora do computador", e nem chegam a passar pela placa de rede.
+
+</Aprofundar>
+
+## Como a casa inteira usa um IP só
+
+Em casa você tem celular, notebook, TV, videogame... mas o provedor de internet entrega **um** endereço público. Como todos navegam ao mesmo tempo?
+
+Pelo **NAT** (tradução de endereços). Cada aparelho tem um IP **privado** dentro da casa. O roteador, ao mandar um pedido para fora, troca o IP privado pelo IP público **e anota uma porta diferente** para cada aparelho. Quando a resposta volta, ele olha a porta na tabela e entrega ao aparelho certo.
+
+<NatDaCasa />
+
+Uma imagem: o roteador é o **porteiro de um prédio** que só tem um telefone para o mundo. Quando alguém de dentro liga, o porteiro anota o ramal. Quando a resposta chega, ele consulta o caderninho para saber a quem transferir.
+
+<ExemploResolvido titulo="Quem recebe a resposta?">
+  <Passo>O celular (192.168.0.10) e a TV (192.168.0.12) pedem coisas ao mesmo tempo.</Passo>
+  <Passo>O roteador mapeia: celular → porta 50000, TV → porta 50013 (valores de exemplo), os dois com o mesmo IP público.</Passo>
+  <Passo>Uma resposta chega para a porta 50013. O roteador consulta a tabela: é da TV, e entrega a ela.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Em casa há 5 aparelhos navegando. Quantos IPs públicos o provedor precisa entregar (com NAT)?" resposta="1" dica="O NAT divide um único endereço." resolucao="Apenas 1: o NAT permite que todos dividam o mesmo IP público." />
+
+<Aprofundar titulo="IP fixo e IP dinâmico (DHCP)">
+
+O IP de um aparelho pode ser **fixo** (sempre igual) ou **dinâmico** (muda). Em casa, o roteador costuma usar o **DHCP**: ele "empresta" um IP a cada aparelho que entra na rede, com um **prazo de validade** (lease). Quando o prazo acaba, o aparelho renova ou recebe outro. Já o IP público que o provedor dá a uma casa normalmente também é dinâmico. Servidores profissionais, ao contrário, precisam de IP fixo para serem encontrados sempre no mesmo lugar.
+
+</Aprofundar>
+
+## IPv4 acabou? O IPv6
+
+Lembra dos 4,29 bilhões de endereços? Com tantos celulares, TVs, câmeras e sensores, o estoque de IPv4 foi acabando. A solução definitiva é o **IPv6**: **128 bits** por endereço. Ele é escrito em hexadecimal, em oito blocos, como `2001:db8::1` (um endereço de exemplo). O espaço é tão grande que cada aparelho pode ter o seu próprio endereço público, e o NAT deixa de ser necessário.
+
+<ExemploResolvido titulo="Quanto maior é o IPv6?">
+  <Passo>IPv4 tem 32 bits: 2³² endereços, cerca de 4,29 bilhões.</Passo>
+  <Passo>IPv6 tem 128 bits: 2¹²⁸ endereços.</Passo>
+  <Passo>A diferença é 128 − 32 = 96 bits a mais. Cada bit **dobra**: o IPv6 tem 2⁹⁶ vezes mais endereços. Um número gigantesco.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos bits a mais tem o IPv6 em relação ao IPv4 (128 contra 32)?" resposta="96" dica="128 − 32." resolucao="96 bits a mais." />
+
+<Exercicio enunciado="Em IPv6, o endereço ::1 é o loopback. Ele aponta para o próprio computador? (sim ou nao)" resposta="sim" dica="É o equivalente do 127.0.0.1." resolucao="Sim: ::1 é o loopback do IPv6, equivalente ao 127.0.0.1 do IPv4." />
+
+<Aprofundar titulo="Como o roteador descobre o caminho">
+
+Cada roteador tem uma tabela que diz, para cada **faixa de endereços**, qual é o próximo salto. Em vez de saber todos os 4 bilhões de endereços, ele conhece grupos: "tudo que começa assim vai por aqui". Os valores como `/8` e `/16` escritos depois de um endereço dizem **quantos bits iniciais** definem o grupo. É o que torna possível encaminhar pacotes em fração de segundo, mesmo na internet inteira.
+
+</Aprofundar>
+
+## Dos números aos nomes
+
+Ninguém quer decorar `203.0.113.10`. Por isso existem **nomes** como `curiosamente-seven.vercel.app`. Um serviço chamado **DNS** traduz o nome no endereço IP, como uma lista telefônica. A próxima cápsula conta como. Por enquanto, guarde: **o nome é para humanos, o IP é para as máquinas**.
+
+<Exercicio enunciado="O endereço 192.168.0.12 tem 4 partes. Quantas partes tem um endereço IPv4 sempre?" resposta="4" dica="Quatro bytes." resolucao="Sempre 4 partes (4 bytes)." />
+
+## Uma conversa completa: quem fala com quem
+
+Quando você abre um site, não é só o servidor que tem uma porta: **o seu computador também usa uma**. Veja uma conversa passo a passo, com valores de exemplo:
+
+1. Seu notebook (IP 192.168.0.12) quer abrir um site com cadeado. Ele sorteia uma porta temporária para si, por exemplo, **52000** (das portas dinâmicas).
+2. Ele manda o pedido para o IP do servidor, na porta **443**: de `192.168.0.12:52000` para `203.0.113.10:443`.
+3. O servidor responde de volta: de `203.0.113.10:443` para `192.168.0.12:52000`.
+4. Cada aba do navegador usa uma porta temporária diferente, e assim as respostas não se misturam.
+
+Por isso a conexão é identificada por **quatro números**: IP e porta de origem, IP e porta de destino. Duas abas no mesmo site têm o mesmo destino, mas portas de origem diferentes.
+
+<ExemploResolvido titulo="Quantas informações identificam uma conversa?">
+  <Passo>Origem: IP do notebook e porta temporária. São 2 informações.</Passo>
+  <Passo>Destino: IP do servidor e porta 443. São mais 2.</Passo>
+  <Passo>Total: **4 informações**. Mudou qualquer uma delas, é outra conversa.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Você abre 3 abas do mesmo site. Quantas portas temporárias diferentes o seu computador usa, no mínimo?" resposta="3" dica="Uma por conexão (aba)." resolucao="3 portas temporárias, uma para cada aba, para as respostas não se misturarem." />
+
+## Portas abertas e fechadas
+
+Uma porta está **aberta** quando há um programa escutando nela. Se ninguém escuta, ela está **fechada**, e o computador recusa quem tenta falar ali. Um servidor de site, por exemplo, deixa a 443 aberta e deve manter fechado o resto.
+
+Por que isso importa? Cada porta aberta é uma **entrada** para o computador. Por isso há o **firewall**: um filtro que decide quais portas aceitam visitas de fora. Uma regra comum é: abrir só o que o serviço precisa. Também existe a prática de **varrer portas**: tentar conexões em várias portas de um computador para descobrir o que está aberto. Pode ser um ataque, mas também é uma ferramenta legítima para auditar a própria segurança.
+
+<ExemploResolvido titulo="Que portas deixar abertas?">
+  <Passo>Um servidor só mostra um site com cadeado. A única porta necessária é a 443 (e talvez a 80, para redirecionar para a 443).</Passo>
+  <Passo>O banco de dados fica no mesmo servidor, mas só o site precisa falar com ele.</Passo>
+  <Passo>Então a porta do banco de dados deve ficar **fechada para a internet** e aberta só para dentro do próprio servidor.</Passo>
+  <Passo>Menos portas abertas significam menos entradas para quem quer invadir.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Se um servidor tem 3 portas abertas e você fecha 1, quantas ficam abertas?" resposta="2" dica="3 − 1." resolucao="2 portas abertas." />
+
+<Aprofundar titulo="TCP e UDP: dois jeitos de usar a mesma porta">
+
+Uma porta sempre vem junto de um **protocolo de transporte**. O **TCP** confere se tudo chegou, na ordem certa (por isso é usado em páginas e e-mails). O **UDP** manda e não confere, o que o deixa mais rápido (por isso é usado em jogos e chamadas de vídeo, onde um pacote perdido não vale a espera). A porta 53 do DNS, por exemplo, é usada normalmente nos dois. Isso explica por que a mesma porta pode aparecer em TCP e em UDP como coisas diferentes.
+
+</Aprofundar>
+
+## Para quê saber isso na prática?
+
+- Ao rodar um projeto, `localhost:5173` significa "meu computador, porta 5173".
+- Se aparecer "porta em uso", outro programa ocupa aquela porta: feche-o ou escolha outra.
+- Para acessar o seu servidor de teste de **outro aparelho da mesma rede**, use o IP privado do seu computador (como 192.168.0.12) no lugar de localhost.
+- Quando um serviço "não responde", pode ser porta errada, IP errado ou porta bloqueada por um firewall (assunto de uma cápsula futura).
+
+<ExemploResolvido titulo="Abrir o site de teste no celular">
+  <Passo>O servidor de teste roda no notebook, na porta 5180.</Passo>
+  <Passo>No celular, `localhost` seria o **próprio celular**, e não o notebook. Por isso `localhost:5180` não funciona lá.</Passo>
+  <Passo>Use o IP privado do notebook na rede, por exemplo `192.168.0.12:5180` (os dois aparelhos precisam estar na mesma rede, e o servidor precisa aceitar acessos de fora do computador).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="No celular, o endereço localhost aponta para qual aparelho? (celular ou notebook)" resposta="celular" dica="Localhost é sempre o próprio aparelho." resolucao="Para o celular, localhost é o próprio celular." />
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Em "192.168.0.12:8080", o que é o 8080?',
+    opcoes: ['A porta', 'O prédio', 'A máscara'],
+    correta: 0,
+    explicacao: 'O número depois dos dois-pontos é a porta: o "apartamento" do serviço.',
+  },
+  {
+    enunciado: 'Quantos bits tem um endereço IPv4?',
+    opcoes: ['16', '32', '128'],
+    correta: 1,
+    explicacao: 'IPv4 tem 4 partes de 8 bits: 32 bits. O IPv6 tem 128.',
+  },
+  {
+    enunciado: 'Qual é o maior valor em uma parte de um IPv4?',
+    opcoes: ['99', '255', '256'],
+    correta: 1,
+    explicacao: 'Cada parte tem 8 bits: de 0 a 255.',
+  },
+  {
+    enunciado: 'Quantos endereços IPv4 existem, aproximadamente?',
+    opcoes: ['4,29 bilhões', '65 mil', '128 bilhões'],
+    correta: 0,
+    explicacao: '2³² = 4.294.967.296, cerca de 4,29 bilhões.',
+  },
+  {
+    enunciado: 'Qual é a porta padrão do HTTPS?',
+    opcoes: ['80', '443', '25'],
+    correta: 1,
+    explicacao: 'HTTPS usa a 443. A 80 é HTTP e a 25 é e-mail (SMTP).',
+  },
+  {
+    enunciado: 'Qual é o intervalo das portas?',
+    opcoes: ['0 a 255', '0 a 65.535', '1 a 1.000'],
+    correta: 1,
+    explicacao: 'Números de porta têm 16 bits: de 0 a 65.535.',
+  },
+  {
+    enunciado: 'O que é "localhost"?',
+    opcoes: ['O próprio computador (127.0.0.1)', 'Um servidor da Vercel', 'O roteador'],
+    correta: 0,
+    explicacao: 'Localhost é o nome do próprio computador. Os pacotes nem saem dele.',
+  },
+  {
+    enunciado: 'Qual endereço é privado?',
+    opcoes: ['8.8.8.8', '192.168.1.5', '200.10.10.1'],
+    correta: 1,
+    explicacao: 'A faixa 192.168.x.x é reservada a redes locais.',
+  },
+  {
+    enunciado: 'Para que serve o NAT?',
+    opcoes: ['Vários aparelhos dividem um IP público', 'Deixar o IP privado', 'Aumentar a porta'],
+    correta: 0,
+    explicacao: 'O roteador troca IPs privados pelo público e usa portas diferentes para saber a quem entregar as respostas.',
+  },
+  {
+    enunciado: 'O que acontece se dois programas tentam usar a mesma porta?',
+    opcoes: ['Os dois funcionam', 'O segundo dá erro de porta em uso', 'A porta dobra'],
+    correta: 1,
+    explicacao: 'Uma porta só pode ser usada por um programa por vez (com o mesmo IP e protocolo).',
+  },
+  {
+    enunciado: 'Qual é a vantagem do IPv6?',
+    opcoes: ['Tem muito mais endereços (128 bits)', 'É mais curto', 'Só funciona em casa'],
+    correta: 0,
+    explicacao: '128 bits dão um espaço de endereços incomparavelmente maior que os 32 bits do IPv4.',
+  },
+  {
+    enunciado: 'Quem mantém a lista oficial de portas conhecidas?',
+    opcoes: ['A IANA', 'Cada roteador sozinho', 'O navegador'],
+    correta: 0,
+    explicacao: 'A IANA organiza as atribuições de portas. Elas começaram a ser propostas na RFC 349, em 1972.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **IP** é o endereço do computador (o prédio). **Porta** é o endereço do serviço (o apartamento). Juntos: IP:porta.
+- **IPv4:** 4 partes de 0 a 255 (32 bits), cerca de 4,29 bilhões de endereços. **IPv6:** 128 bits.
+- **Portas** vão de 0 a 65.535. Conhecidas: 80 (HTTP), 443 (HTTPS), 22 (SSH), 25 (e-mail), 53 (DNS).
+- **localhost** é 127.0.0.1: o próprio computador.
+- **Privados:** 10.x, 172.16 a 172.31, 192.168.x. Não vão para a internet pública.
+- **NAT:** a casa toda usa um IP público, e as portas separam os aparelhos.
+- **Conflito de portas:** dois programas não dividem a mesma porta.
+
+**Um pouco de história.** Os números de porta começaram, nos anos 1970, como "números de soquete" na ARPANET, e a RFC 349 (1972) propôs as primeiras atribuições oficiais. O TCP/IP foi padronizado em 1982, e nos anos 2010 o estoque de IPv4 foi acabando, o que acelerou o IPv6.
+
+</Resumo>
+
+Agora você sabe **onde** cada pacote chega. Falta descobrir como um **nome** vira um endereço: é o trabalho do DNS.
+
+<Conexoes />
+
+</Etapa>

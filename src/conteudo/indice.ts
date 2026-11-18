@@ -121,7 +121,7 @@ export const capsulas: ResumoCapsula[] = [
   c('o-computador', 'sistema-operacional', 'Sistema operacional', 'O gerente que ninguém vê trabalhar.', { estado: 'pronta', duracaoMin: 40, conexoes: ['hardware'] }),
   c('o-computador', 'terminal', 'Terminal', 'Comandos sem medo da tela preta.', { estado: 'pronta', duracaoMin: 40, conexoes: ['sistema-operacional'] }),
   c('redes-e-internet', 'como-a-internet-funciona', 'Como a internet funciona', 'A viagem de um pacote, roteador por roteador.', { estado: 'pronta', duracaoMin: 40, conexoes: ['sistema-operacional'] }),
-  c('redes-e-internet', 'ip-e-portas', 'IP e portas', 'O que significa localhost:5173?'),
+  c('redes-e-internet', 'ip-e-portas', 'IP e portas', 'O que significa localhost:5173?', { estado: 'pronta', duracaoMin: 40, conexoes: ['como-a-internet-funciona'] }),
   c('redes-e-internet', 'dns', 'DNS e domínios', 'A lista telefônica da internet.'),
   c('redes-e-internet', 'http-https', 'HTTP e HTTPS', 'O que o cadeado do navegador garante?'),
   c('sistema-web', 'banco-de-dados', 'Banco de dados', 'Planilhas que conversam entre si.'),
