@@ -48,7 +48,7 @@ const c = (trilha: string, id: string, titulo: string, gancho: string, extra: Pa
 
 export const capsulas: ResumoCapsula[] = [
   // Básica: o que vem antes do 6º ano. Grupos por tema (a BNCC espalha estes assuntos do 1º ao 5º ano).
-  m('basica', 'sistema-decimal', 'Sistema decimal', 'Com só dez algarismos dá para escrever qualquer número. Como?', { grupo: 'Números e contas' }),
+  m('basica', 'sistema-decimal', 'Sistema decimal', 'Com só dez algarismos dá para escrever qualquer número. Como?', { grupo: 'Números e contas', estado: 'pronta', duracaoMin: 40, conexoes: ['binario'] }),
   m('basica', 'adicao-e-subtracao', 'Adição e subtração', 'O "vai um" explicado com palitos e caixinhas.', { grupo: 'Números e contas' }),
   m('basica', 'multiplicacao', 'Multiplicação e tabuada', 'Dá para entender a tabuada em vez de decorar.', { grupo: 'Números e contas' }),
   m('basica', 'divisao', 'Divisão', 'Dividir 23 balas entre 4 amigos: e o resto?', { grupo: 'Números e contas' }),

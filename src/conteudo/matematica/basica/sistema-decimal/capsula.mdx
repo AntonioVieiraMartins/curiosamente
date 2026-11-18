@@ -1,0 +1,386 @@
+import CaixasDeValor from '../../../../components/simulacoes/CaixasDeValor'
+import ValorDoAlgarismo from '../../../../components/simulacoes/ValorDoAlgarismo'
+import BlocosDeDez from '../../../../components/simulacoes/BlocosDeDez'
+import ComparaNumeros from '../../../../components/simulacoes/ComparaNumeros'
+import ArredondaNumero from '../../../../components/simulacoes/ArredondaNumero'
+import ZeroNoLugar from '../../../../components/simulacoes/ZeroNoLugar'
+
+{/* Fatos conferidos na Wikipedia em inglês (Hindu–Arabic numeral system e Positional notation), listadas no meta.ts. As regras de leitura de números e de arredondamento são conteúdo escolar geral da BNCC, sem fonte específica. */}
+
+<Etapa id="gancho">
+
+Você já escreveu o número **9** e o **10** milhares de vezes. Mas pare um instante: com apenas **dez símbolos** (0, 1, 2, 3, 4, 5, 6, 7, 8 e 9) você consegue escrever **qualquer número que existe**: o número de pessoas numa cidade, a distância até a Lua, o seu CEP. Como é possível?
+
+Os romanos precisavam de letras novas para números grandes (I, V, X, L, C, D, M). Nós não. O segredo está num truque tão esperto que levou séculos para ser inventado: a **posição** de cada algarismo muda o seu valor. É por isso que o 5 de **5**0 vale muito mais do que o 5 de 0**5**.
+
+<Palpite
+  chave="inicial"
+  pergunta="No número 5.305, o primeiro 5 (da esquerda) e o último 5 (da direita) valem a mesma coisa?"
+  opcoes={['Sim, os dois são o algarismo 5, então valem o mesmo', 'Não: o primeiro vale 5.000 e o último vale só 5', 'Não dá para saber']}
+/>
+
+Nesta cápsula você vai brincar com caixas de valor e blocos, descobrir quanto vale cada algarismo, entender para que serve o zero, comparar números, ordená-los e **arredondá-los**.
+
+</Etapa>
+
+<Etapa id="historia">
+
+A ideia de dar valor à **posição** do algarismo é uma das maiores invenções da humanidade, e foi sendo construída por muita gente, em muitos lugares.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Séc. 1 a 4', texto: 'Matemáticos indianos desenvolvem o sistema que hoje usamos. Seus ancestrais, os numerais Brahmi, são ainda mais antigos.' },
+  { ano: '224 a 383', texto: 'Datação por radiocarbono das folhas mais antigas do manuscrito Bakhshali, que já usa valor posicional.' },
+  { ano: 'Cerca de 500', texto: 'Aryabhata usa a palavra "kha" ("vazio") para marcar o zero.' },
+  { ano: 'Cerca de 825', texto: 'Al-Khwarizmi escreve sobre o cálculo com numerais hindus, ajudando a espalhar o sistema pelo mundo islâmico.' },
+  { ano: '876', texto: 'Uma inscrição num templo em Gwalior, na Índia, traz o zero mais antigo com data indiscutível.' },
+  { ano: '976', texto: 'Aparece, num livro copiado na Espanha, a primeira vez que a Europa registra os numerais de 1 a 9.' },
+  { ano: 'Séc. 15', texto: 'O sistema entra em uso comum na Europa.' },
+]} />
+
+## Antes do zero: números que não tinham posição
+
+Os **numerais romanos** são **aditivos**: XXX é 10 + 10 + 10, e o X vale 10 em qualquer lugar. Somar com eles é trabalhoso, e multiplicar, pior ainda. Segundo a fonte, o que torna o sistema que usamos tão bom para fazer contas é justamente o **valor posicional**.
+
+Antes dele, um dos primeiros povos a usar posição foram os **babilônios**, que contavam de 60 em 60 (por isso a hora tem 60 minutos). No começo, eles não tinham um símbolo para o zero: usavam um espaço em branco, e só mais tarde, por volta de 700 a.C., apareceu um marcador. Os maias contavam de 20 em 20.
+
+## A invenção indiana e a ideia do vazio
+
+Segundo a fonte, matemáticos da Índia desenvolveram, entre os séculos 1 e 4, o sistema de **dez algarismos com valor posicional**. Por volta do ano 600, as escritas da Índia e do Sudeste Asiático passaram a usar um **ponto para marcar o zero**, em vez de somar símbolos. O astrônomo **Aryabhata**, por volta de 500, usava a palavra *kha*, que significa "vazio", para marcar o zero. Um livro do século 7, o *Brahmasphuta Siddhanta*, explica com detalhes o papel do zero.
+
+O registro mais antigo de **valor posicional** é o manuscrito **Bakhshali**, cujas folhas mais velhas foram datadas por radiocarbono entre os anos **224 e 383**. E o zero mais antigo com data **indiscutível** está numa inscrição de pedra no **Templo de Chaturbhuj**, em Gwalior, de **876**.
+
+## Do mundo islâmico para a Europa
+
+Por volta de **825**, **Al-Khwarizmi** escreveu um livro sobre o cálculo com os numerais hindus, que ajudou a levar o sistema aos países islâmicos. Pouco depois, **Al-Kindi** escreveu outro, por volta de 830. No século 10, **Abu'l-Hasan al-Uqlidisi** descreveu as **frações decimais** em notação posicional (a vírgula, que você vai conhecer em *Números decimais*).
+
+Na Europa, os algarismos de 1 a 9 aparecem pela primeira vez no **Codex Vigilanus**, escrito em **976** na Espanha, ainda sem o zero. O livro *Liber Abaci*, de **Fibonacci**, ajudou a difundir o sistema no século 13, e só a partir do **século 15** ele passou ao uso comum.
+
+## Por que "arábicos"?
+
+Os matemáticos europeus da Idade Média sabiam que os numerais vinham da Índia, mas algumas fontes de peso creditavam os árabes, e o nome **algarismos arábicos** pegou. A palavra "algarismo", aliás, vem do nome de **Al-Khwarizmi**. Hoje, o nome mais exato é **sistema indo-arábico**.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Contar de dez em dez
+
+Por que a gente conta de **10 em 10**? Uma explicação muito citada é que temos **dez dedos**. (A fonte não diz isso; é uma ideia popular e plausível, mas não uma certeza histórica.) O fato é que o nosso sistema é de **base dez**, ou **decimal**: ele usa dez algarismos (0 a 9) e agrupa tudo de dez em dez.
+
+Imagine uma **caixa de ovos** que cabe 10. Se você tem 7 ovos soltos, são 7. Se ganha mais 3, tem 10: **a caixa fecha**. Em vez de escrever "10 ovos soltos", escrevemos "1 caixa e 0 ovos soltos": é o número **10**. Se juntar 10 caixas, formamos uma **caixa grande**, o 100. É isso que o sistema decimal faz: **agrupa de 10 em 10** e anota quantos grupos de cada tamanho existem.
+
+## 2. A posição manda
+
+Em **325**, o 3 não é "três": ele conta **3 grupos de 100**. O 2 conta **2 grupos de 10**. O 5 conta **5 unidades soltas**. Segundo a fonte, o valor representado por cada símbolo depende **não só do seu desenho, mas da sua posição**. É isso que chamamos de **valor posicional**.
+
+As posições, da direita para a esquerda, são **unidade, dezena, centena, unidade de milhar**... Cada casa vale **10 vezes** a casa à sua direita.
+
+## 3. O zero: o guarda-lugar
+
+Como escrever "3 centenas, nenhuma dezena e 5 unidades"? Se você escrevesse **35**, estaria dizendo 3 dezenas e 5 unidades. O zero resolve: **305**. Ele não vale nada sozinho, mas **segura o lugar** para os outros algarismos ficarem na casa certa.
+
+<ExemploResolvido titulo="Decompondo o 4.307">
+  <Passo>O 4 está na casa dos milhares: vale 4 x 1.000 = 4.000.</Passo>
+  <Passo>O 3 está na casa das centenas: vale 3 x 100 = 300.</Passo>
+  <Passo>O 0 está na casa das dezenas: vale 0 x 10 = 0 (mas segura o lugar!).</Passo>
+  <Passo>O 7 está na casa das unidades: vale 7 x 1 = 7.</Passo>
+  <Passo>Somando: 4.000 + 300 + 0 + 7 = 4.307.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos algarismos diferentes existem no sistema decimal? (número)" resposta="10" dica="De 0 até 9." resolucao="10 algarismos: 0, 1, 2, 3, 4, 5, 6, 7, 8 e 9." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Você tem 9 unidades numa caixa e coloca mais 1. O que acontece no sistema decimal?"
+  opcoes={['A caixa mostra 10 unidades', 'As 10 unidades se trocam por 1 dezena, e a caixa das unidades fica com 0', 'Nada: o limite é 9 e não dá para somar']}
+  correta={1}
+  explicacao="Cada caixa só guarda de 0 a 9. Ao chegar em 10, o grupo se fecha e vira 1 na caixa da esquerda. É a troca de 10 em 10."
+>
+
+Aperte o + da caixa das **unidades** até passar de 9 e veja a troca. Depois tente em outras caixas.
+
+<CaixasDeValor />
+
+Agora veja a mesma ideia com **blocos**: quadradinhos (1), barras (10) e placas (100). Sempre que juntar 10 de um tipo, eles se transformam no tipo seguinte.
+
+<BlocosDeDez />
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Sim, os dois são o algarismo 5, então valem o mesmo', 'Não: o primeiro vale 5.000 e o último vale só 5', 'Não dá para saber']}
+  correta={1}
+  seAcertou="E o palpite do começo? Isso: no 5.305 o primeiro 5 vale 5.000 e o último vale 5."
+  seErrou="E o palpite do começo? No 5.305 o primeiro 5 está na casa dos milhares (vale 5.000) e o último na das unidades (vale 5). A posição muda o valor."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Valor posicional: cada casa vale 10 vezes a anterior
+
+As casas, da direita para a esquerda, são: **unidades (U)**, **dezenas (D)**, **centenas (C)**, **unidades de milhar (UM)**, **dezenas de milhar (DM)** e **centenas de milhar (CM)**. Cada casa vale **10 vezes** a casa à direita.
+
+<ValorDoAlgarismo />
+
+<ExemploResolvido titulo="Quanto vale o 7 em 7.254? E em 2.754?">
+  <Passo>No 7.254, o 7 está na casa dos **milhares**: vale 7 x 1.000 = **7.000**.</Passo>
+  <Passo>No 2.754, o 7 está na casa das **centenas**: vale 7 x 100 = **700**.</Passo>
+  <Passo>É o mesmo algarismo, mas em casas diferentes: o valor muda dez vezes.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="No número 8.246, quanto vale o algarismo 2? (número)" resposta="200" dica="Em que casa ele está? Das centenas." resolucao="O 2 está na casa das centenas: 2 x 100 = 200." />
+
+<Exercicio enunciado="No número 5.305, quanto vale o primeiro 5, da esquerda? (número)" resposta="5000" dica="Casa dos milhares." resolucao="5 x 1.000 = 5.000." />
+
+<Aprofundar titulo="Base: por que só 10, e não outra?">
+O que chamamos de **base** é a quantidade de algarismos distintos do sistema, contando o zero. Segundo a fonte, na base dez cada posição é uma potência de 10: **5.305 = 5 x 10³ + 3 x 10² + 0 x 10¹ + 5 x 10⁰**. Mas dá para usar outras bases. Os **babilônios** usavam 60, os **maias**, 20. E os **computadores** usam a base **2** (apenas 0 e 1), porque é muito mais fácil de fazer em circuitos eletrônicos, como você vê na cápsula de **Binário**. O princípio é o mesmo: a posição dá o valor, só muda o tamanho do grupo.
+</Aprofundar>
+
+## Decompor um número
+
+**Decompor** é escrever um número como uma **soma dos valores de cada algarismo**. Por exemplo, 3.482 = 3.000 + 400 + 80 + 2. Isso ajuda muito nas contas de cabeça e será essencial para entender o "vai um" na próxima cápsula.
+
+<ExemploResolvido titulo="Decompondo e recompondo">
+  <Passo>Decompor 6.059: 6.000 + 0 + 50 + 9 (não há centenas, então o zero guarda o lugar).</Passo>
+  <Passo>Recompor 2.000 + 300 + 5: faltam as dezenas, que viram zero. Fica 2.305.</Passo>
+  <Passo>Repare: sem o zero da dezena, o número ficaria 235, um valor bem diferente.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Escreva o número que é 4.000 + 600 + 7. (número)" resposta="4607" dica="Não há dezenas: o zero guarda o lugar." resolucao="4.000 + 600 + 7 = 4.607 (a casa das dezenas é zero)." />
+
+<Exercicio enunciado="Qual número é 9 x 100 + 3 x 10 + 4? (número)" resposta="934" dica="9 centenas, 3 dezenas, 4 unidades." resolucao="900 + 30 + 4 = 934." />
+
+## O zero em ação
+
+O zero tem duas funções. Primeiro, é o **número "nenhum"**: 5 - 5 = 0. Segundo, é o **guarda-lugar** nas casas vazias. Veja o que acontece quando ele é tirado de um número.
+
+<ZeroNoLugar />
+
+<ExemploResolvido titulo="Quanto vale um zero a mais?">
+  <Passo>Pegue o 35. Se colocar um zero no fim, vira 350.</Passo>
+  <Passo>Cada algarismo andou uma casa para a esquerda e passou a valer 10 vezes mais.</Passo>
+  <Passo>O 3 era 30 e virou 300. O 5 era 5 e virou 50.</Passo>
+  <Passo>Por isso "acrescentar um zero" multiplica por 10.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Se você acrescentar um zero no fim do número 47, qual número aparece? (número)" resposta="470" dica="Cada algarismo anda uma casa." resolucao="47 vira 470: multiplicou por 10." />
+
+<Aprofundar titulo="Por que o zero demorou tanto">
+Muitas civilizações usaram um **espaço em branco** ou deixaram a casa vazia, mas isso gerava confusão: "3 5" era 35 ou 305? Segundo a fonte, os babilônios só criaram um marcador por volta de 700 a.C. A ideia de que o **vazio também é um número**, que dá para somar e subtrair, é um passo maior e foi refinada na Índia: o livro do século 7 já explica o papel do zero nas contas. O zero mais antigo com data indiscutível, de 876, está numa pedra em Gwalior. Um símbolo tão pequeno, e uma ideia tão difícil.
+</Aprofundar>
+
+## Ler e escrever números
+
+Para ler um número grande, separe em grupos de **três algarismos**, da direita para a esquerda. Cada grupo é uma **classe**: unidades, **milhares**, **milhões**. O 3.482.915 lê-se: **três milhões, quatrocentos e oitenta e dois mil, novecentos e quinze**. Usamos um ponto (ou um espaço) para separar as classes e facilitar a leitura.
+
+<ExemploResolvido titulo="Lendo 40.205">
+  <Passo>Separe as classes: **40** (milhares) e **205** (unidades).</Passo>
+  <Passo>Leia a primeira classe e diga "mil": quarenta mil.</Passo>
+  <Passo>Leia a segunda: duzentos e cinco.</Passo>
+  <Passo>Junte: **quarenta mil, duzentos e cinco**. (O zero das dezenas não é lido, mas está ali segurando o lugar.)</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas classes tem o número 3.482.915 (unidades, milhares, milhões)? (número)" resposta="3" dica="Conte os grupos separados por ponto." resolucao="3 classes: milhões (3), milhares (482) e unidades (915)." />
+
+<Exercicio enunciado="Escreva com algarismos: dois mil e trinta. (número)" resposta="2030" dica="Dois milhares, nenhuma centena, três dezenas, zero unidades." resolucao="2.030: o zero da centena e o zero da unidade guardam os lugares." />
+
+## Antecessor, sucessor e a reta numérica
+
+O **sucessor** de um número é o que vem logo depois (somando 1). O **antecessor** é o que vem logo antes (subtraindo 1). O sucessor de 999 é **1.000**: ao passar de 9 em todas as casas, a troca "em cadeia" vira três zeros e 1 na casa nova. O antecessor de 1.000 é 999.
+
+Na **reta numérica**, os números ficam alinhados em ordem, cada um a mesma distância do vizinho. Os maiores ficam à **direita**.
+
+<ExemploResolvido titulo="Sucessor e antecessor de 4.099">
+  <Passo>Sucessor: 4.099 + 1. A casa das unidades chega a 10, troca por 1 dezena; as dezenas chegam a 10, trocam por 1 centena; as centenas viram 1 milhar.</Passo>
+  <Passo>Resultado: **4.100**.</Passo>
+  <Passo>Antecessor: 4.099 - 1 = **4.098**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é o sucessor de 799? (número)" resposta="800" dica="Some 1 e veja as trocas." resolucao="799 + 1 = 800." />
+
+<Exercicio enunciado="Qual é o antecessor de 6.000? (número)" resposta="5999" dica="Subtraia 1." resolucao="6.000 - 1 = 5.999." />
+
+## Comparar números
+
+Para saber qual número é maior: primeiro veja **quantos algarismos** cada um tem (quem tem mais é maior, desde que não comece por zero). Se tiverem a mesma quantidade, compare **da esquerda para a direita**, parando no primeiro algarismo diferente.
+
+<ComparaNumeros />
+
+<ExemploResolvido titulo="Qual é maior: 4.735 ou 4.753?">
+  <Passo>Os dois têm 4 algarismos.</Passo>
+  <Passo>Primeira casa: 4 e 4, iguais. Segunda: 7 e 7, iguais.</Passo>
+  <Passo>Terceira casa: 3 contra 5. Como 5 é maior que 3, **4.753 é maior**.</Passo>
+  <Passo>Escrevendo com símbolo: `4.735 < 4.753` (o sinal "menor que" tem a ponta voltada para o número menor).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é o maior: 9.876 ou 9.867? (escreva o maior, só os algarismos)" resposta="9876" dica="Compare a terceira casa." resolucao="9.876 é maior: na terceira casa, 7 é maior que 6." />
+
+<Exercicio enunciado="Qual é o menor: 1.000 ou 999? (escreva o menor, só os algarismos)" resposta="999" dica="Conte os algarismos." resolucao="999, que tem só 3 algarismos. 1.000 tem 4 e por isso é maior." />
+
+## Ordenar números
+
+**Ordenar** é colocar em fila, do menor para o maior (**ordem crescente**) ou do maior para o menor (**ordem decrescente**). Basta comparar de dois em dois.
+
+<ExemploResolvido titulo="Em ordem crescente: 5.120, 512, 5.021, 5.201">
+  <Passo>O menor tem menos algarismos: **512**.</Passo>
+  <Passo>Entre os de 4 algarismos, todos começam com 5. Compare a segunda casa: 1, 0 e 2.</Passo>
+  <Passo>O de 0 (5.021) vem antes do de 1 (5.120), e o de 2 (5.201) é o maior.</Passo>
+  <Passo>Ordem: **512, 5.021, 5.120, 5.201**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Em ordem crescente de 350, 305, 3.050 e 35, qual número fica em segundo lugar? (número)" resposta="305" dica="Do menor para o maior: 35, ...." resolucao="Ordem: 35, 305, 350, 3.050. O segundo é 305." />
+
+<Aprofundar titulo="Por que o maior em algarismos ganha">
+Num número sem zero à esquerda, ter **um algarismo a mais** significa que ele chegou a uma casa a mais, e cada casa vale **10 vezes** a anterior. O menor número de 4 algarismos (1.000) já é maior que o maior número de 3 algarismos (999). É a troca de 10 em 10 em ação: 999 + 1 fecha todos os grupos e abre a casa nova.
+</Aprofundar>
+
+## Arredondar números
+
+Às vezes não precisamos do número exato. Se o estádio recebeu 4.738 pessoas, dizemos "cerca de **4.700**" ou "cerca de **5.000**". **Arredondar** é trocar o número pelo **múltiplo mais próximo** de 10, 100, 1.000...
+
+A regra: olhe o algarismo **seguinte** à casa em que quer arredondar. Se for **0, 1, 2, 3 ou 4**, o algarismo da casa fica como está (e o resto vira zeros). Se for **5, 6, 7, 8 ou 9**, ele sobe 1.
+
+<ArredondaNumero />
+
+<ExemploResolvido titulo="Arredondando 4.738">
+  <Passo>À **dezena** mais próxima: olhe as unidades (8). Como 8 é 5 ou mais, a dezena sobe: **4.740**.</Passo>
+  <Passo>À **centena** mais próxima: olhe as dezenas (3). Como 3 é menor que 5, a centena fica: **4.700**.</Passo>
+  <Passo>Ao **milhar** mais próximo: olhe as centenas (7). Como 7 é 5 ou mais, o milhar sobe: **5.000**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Arredonde 2.346 para a centena mais próxima. (número)" resposta="2300" dica="Olhe as dezenas: 4." resolucao="Como 4 é menor que 5, a centena fica: 2.300." />
+
+<Exercicio enunciado="Arredonde 8.951 para o milhar mais próximo. (número)" resposta="9000" dica="Olhe as centenas: 9." resolucao="Como 9 é 5 ou mais, o milhar sobe: 9.000." />
+
+<Exercicio enunciado="Arredonde 65 para a dezena mais próxima. (número)" resposta="70" dica="Bem no meio: por convenção, sobe." resolucao="65 está no meio de 60 e 70. Pela regra, 5 ou mais sobe: 70." />
+
+<Aprofundar titulo="Para que serve arredondar">
+No dia a dia, arredondamos **para facilitar**: dizer "cerca de 5 mil pessoas" é mais fácil do que "4.738". Também usamos para **estimar** contas de cabeça: 4.738 + 2.291 fica perto de 4.700 + 2.300 = 7.000. Se o resultado exato for muito diferente da estimativa, é sinal de que há um erro na conta. Mas atenção: arredondar **perde informação**, então em medidas e dinheiro às vezes precisamos do valor exato.
+</Aprofundar>
+
+## Os números no dia a dia
+
+Para que serve tudo isso? Os números aparecem **o tempo todo**: no preço de um produto (R$ 1.299), na idade, na página do livro, no número da casa, no ônibus. Entender a **posição** de cada algarismo evita erros sérios, como pagar R$ 1.000 em vez de R$ 100 por trocar uma casa.
+
+<ExemploResolvido titulo="Quanto custa errar uma casa">
+  <Passo>Um sapato custa R$ 250. Se alguém digitar 2.500, errou **uma casa**.</Passo>
+  <Passo>O preço virou **10 vezes** maior.</Passo>
+  <Passo>Cada casa à esquerda multiplica por 10, então uma posição errada é um erro enorme.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas vezes maior é 3.000 que 300? (número)" resposta="10" dica="Cada casa vale 10 vezes a anterior." resolucao="10 vezes: o 3 andou uma casa para a esquerda." />
+
+<Exercicio enunciado="Quantas centenas há em 1.000? (número)" resposta="10" dica="10 centenas formam 1 milhar." resolucao="10 centenas: 10 x 100 = 1.000." />
+
+<Aprofundar titulo="Outros sistemas: romano e binário">
+Comparar sistemas ajuda a ver o que o nosso tem de especial. No **romano**, MCMXCIV é 1994, mas não dá para "armar a conta" em colunas, porque os símbolos não têm posição. No **binário**, os computadores escrevem 5 como 101: 1 x 4 + 0 x 2 + 1 x 1. É o mesmo princípio de **valor posicional**, só que com grupos de 2 em vez de 10. Aprender o decimal bem, como você fez aqui, é a base para entender qualquer outro.
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Quantos algarismos tem o sistema decimal?',
+    opcoes: ['10', '9', '100'],
+    correta: 0,
+    explicacao: 'São dez: 0, 1, 2, 3, 4, 5, 6, 7, 8 e 9.',
+  },
+  {
+    enunciado: 'No número 5.305, qual é o valor do primeiro 5 (da esquerda)?',
+    opcoes: ['5.000', '5', '500'],
+    correta: 0,
+    explicacao: 'Está na casa dos milhares: 5 x 1.000 = 5.000.',
+  },
+  {
+    enunciado: 'Qual é a principal função do zero em 305?',
+    opcoes: ['Guardar o lugar da casa das dezenas', 'Valer 10', 'Não ter função nenhuma'],
+    correta: 0,
+    explicacao: 'Sem o zero, 305 viraria 35. Ele segura as casas dos outros algarismos.',
+  },
+  {
+    enunciado: 'Quanto é 9 unidades + 1 unidade, no sistema decimal?',
+    opcoes: ['1 dezena e 0 unidades (10)', '9 unidades e 1 dezena', '19'],
+    correta: 0,
+    explicacao: 'Cada casa só guarda até 9. Ao chegar em 10, a troca vira 1 na casa da esquerda.',
+  },
+  {
+    enunciado: 'Qual é a decomposição de 6.059?',
+    opcoes: ['6.000 + 50 + 9', '6.000 + 500 + 9', '600 + 50 + 9'],
+    correta: 0,
+    explicacao: 'Não há centenas: o zero guarda o lugar. Fica 6.000 + 0 + 50 + 9.',
+  },
+  {
+    enunciado: 'Qual número é o sucessor de 999?',
+    opcoes: ['1.000', '1.999', '990'],
+    correta: 0,
+    explicacao: '999 + 1 = 1.000: todas as casas chegam a 10 e trocam.',
+  },
+  {
+    enunciado: 'Qual é o maior número?',
+    opcoes: ['4.753', '4.735', '4.573'],
+    correta: 0,
+    explicacao: 'Todos têm 4 algarismos e começam com 4. Na segunda casa, 7 vence 5. Entre 4.753 e 4.735, a terceira casa (5 contra 3) decide.',
+  },
+  {
+    enunciado: 'Como se lê o número 40.205?',
+    opcoes: ['Quarenta mil, duzentos e cinco', 'Quatro mil, duzentos e cinco', 'Quarenta e dois mil e cinco'],
+    correta: 0,
+    explicacao: 'Classes: 40 (mil) e 205. O zero das dezenas não é lido, mas está ali.',
+  },
+  {
+    enunciado: 'Arredondando 4.738 para a centena mais próxima, temos:',
+    opcoes: ['4.700', '4.800', '4.740'],
+    correta: 0,
+    explicacao: 'O algarismo das dezenas é 3, menor que 5, então a centena fica: 4.700.',
+  },
+  {
+    enunciado: 'De onde vem o sistema de numeração que usamos?',
+    opcoes: ['Da Índia, passando pelo mundo islâmico até a Europa', 'Da Roma Antiga', 'Dos computadores modernos'],
+    correta: 0,
+    explicacao: 'Matemáticos indianos o desenvolveram nos séculos 1 a 4. Ele chegou à Europa pelos árabes, por isso o nome "arábico".',
+  },
+  {
+    enunciado: 'Acrescentando um zero no fim de 47, o número fica:',
+    opcoes: ['10 vezes maior (470)', '2 vezes maior (94)', 'Igual'],
+    correta: 0,
+    explicacao: 'Cada algarismo anda uma casa para a esquerda e passa a valer 10 vezes mais.',
+  },
+  {
+    enunciado: 'Por que os computadores usam a base 2 e não a base 10?',
+    opcoes: ['É mais fácil de implementar em circuitos eletrônicos', 'Porque são mais lentos com números grandes', 'Porque a base 10 foi proibida'],
+    correta: 0,
+    explicacao: 'A fonte explica que o binário é mais fácil de fazer em circuitos. O princípio do valor posicional é o mesmo.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- O **sistema decimal** usa **10 algarismos** (0 a 9) e agrupa tudo de **10 em 10**.
+- O valor de um algarismo depende da sua **posição**: cada casa vale **10 vezes** a anterior (unidade, dezena, centena, milhar...).
+- O **zero** guarda o lugar das casas vazias: sem ele, 305 viraria 35.
+- **Decompor** é escrever o número como soma dos valores de cada algarismo (3.482 = 3.000 + 400 + 80 + 2).
+- Para **comparar**, veja quantos algarismos cada um tem e depois compare da esquerda para a direita.
+- **Arredondar**: olhe o algarismo seguinte; de 0 a 4 a casa fica, de 5 a 9 ela sobe 1.
+- Os computadores usam o mesmo princípio, mas na **base 2**.
+
+**Um pouco de história.** Matemáticos da Índia desenvolveram, entre os séculos 1 e 4, o sistema de dez algarismos com valor posicional, e o zero mais antigo com data indiscutível está numa pedra de 876. Por volta de 825, Al-Khwarizmi escreveu sobre ele e ajudou a espalhá-lo; na Europa, apareceu pela primeira vez em 976 e só virou uso comum no século 15.
+
+</Resumo>
+
+Agora que você entende cada casa, dá para fazer contas com confiança. Na próxima cápsula, vamos ver por que o "vai um" existe: é exatamente a troca de 10 em 10 que você acabou de ver.
+
+<Conexoes />
+
+</Etapa>
