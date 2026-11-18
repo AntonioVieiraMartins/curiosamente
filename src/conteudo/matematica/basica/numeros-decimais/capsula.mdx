@@ -1,0 +1,444 @@
+import GradeDeCentesimos from '../../../../components/simulacoes/GradeDeCentesimos'
+import CasasDoDecimal from '../../../../components/simulacoes/CasasDoDecimal'
+import ComparaDecimais from '../../../../components/simulacoes/ComparaDecimais'
+import SomaDeDinheiro from '../../../../components/simulacoes/SomaDeDinheiro'
+import MovimentoDaVirgula from '../../../../components/simulacoes/MovimentoDaVirgula'
+import DizimaQueNaoAcaba from '../../../../components/simulacoes/DizimaQueNaoAcaba'
+
+{/* Fatos conferidos na Wikipedia em inglês (Decimal e Decimal separator), listadas no meta.ts. Os métodos de somar, multiplicar, dividir e arredondar decimais e as conversões são conteúdo escolar geral da BNCC, conferidos por cálculo. */}
+
+<Etapa id="gancho">
+
+Você paga uma conta de **R$ 2,50** e outra de **R$ 1,75**. Quanto deu no total? A conta de cabeça parece difícil, porque os números têm **vírgula**. Mas a vírgula não é um mistério: ela só mostra **onde termina o inteiro e começa a parte menor que 1**.
+
+Os **números decimais** são a continuação natural do sistema decimal que você já conhece: assim como cada casa à esquerda vale 10 vezes mais, cada casa **à direita da vírgula** vale **10 vezes menos**. Depois da unidade vem o **décimo**, depois o **centésimo**, o **milésimo**. É por isso que o dinheiro tem centavos: **centavo** vem de "centésimo", a centésima parte do real.
+
+<Palpite
+  chave="inicial"
+  pergunta="Qual é maior: 0,5 ou 0,45?"
+  opcoes={['0,45, porque tem mais algarismos', '0,5, porque 5 décimos é mais que 4 décimos', 'São iguais']}
+/>
+
+Nesta cápsula você vai ver o inteiro cortado em 100 pedaços, ler as casas de um decimal, comparar decimais (sem cair em pegadinhas), somar e subtrair dinheiro, ver a vírgula andar e descobrir por que 1 ÷ 3 nunca termina.
+
+</Etapa>
+
+<Etapa id="historia">
+
+A ideia de "pedacinhos de dez em dez" levou séculos para chegar à vírgula que usamos.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Séc. 3 a 5', texto: 'O livro chinês Sunzi Suanjing usa varetas de contar, em valor posicional, para frações decimais.' },
+  { ano: 'Séc. 10', texto: 'Al-Uqlidisi escreve, num livro, as primeiras frações decimais em notação posicional, com uma barra vertical.' },
+  { ano: '1247', texto: 'O chinês Qin Jiushao escreve frações decimais com varetas no seu Tratado Matemático em Nove Seções.' },
+  { ano: 'Séc. 15', texto: 'Al-Kashi trata as frações decimais de modo sistemático em A Chave da Aritmética.' },
+  { ano: '1440', texto: 'Anos 1440: o ponto decimal mais antigo que se conhece aparece em tabelas de Giovanni Bianchini.' },
+  { ano: '1585', texto: 'Simon Stevin publica, em holandês, De Thiende, sobre as frações decimais.' },
+  { ano: '1614', texto: 'As tabelas de logaritmos de Napier (1614 e 1619) usam o ponto como separador.' },
+]} />
+
+## Frações "de dez em dez"
+
+Uma **fração decimal** é aquela cujo denominador é uma **potência de 10**: 1/10, 7/100, 345/1.000. Segundo a fonte, um número é fração decimal **se e só se** tem uma representação decimal **finita**: 0,5, 0,25, 3,75. Esses números já eram usados muito antes da vírgula. Livros chineses antigos, como o **Sunzi Suanjing**, entre os séculos 3 e 5, e o tratado de **Qin Jiushao**, de **1247**, escreviam frações decimais com **varetas de contar** em valor posicional.
+
+## O mundo islâmico e a Europa
+
+No **século 10**, **Abu'l-Hasan al-Uqlidisi** registrou, num livro, as primeiras frações decimais em notação posicional, separando a parte inteira com uma **barra vertical**. No século 15, **Jamshid al-Kashi** (*A Chave da Aritmética*) tratou delas de forma sistemática. Por volta de 1350, **Immanuel Bonfils** já as usava na Europa, sem criar uma notação. E em **1585**, o flamengo **Simon Stevin** publicou *De Thiende* ("O décimo"), um livrinho dedicado a mostrar como as frações decimais facilitam as contas do comércio e da engenharia.
+
+## Ponto ou vírgula?
+
+Quem inventou o ponto decimal? Segundo a fonte, o **mais antigo** que se conhece está em tabelas de **Giovanni Bianchini**, nos anos 1440. As tabelas de logaritmos de **Napier** (1614 e 1619) usaram o ponto, e **Briggs** o adotou. Já a **França** e a **Itália** escolheram a **vírgula**. Hoje, países como o **Brasil** e **Portugal** usam a **vírgula decimal**, enquanto os Estados Unidos e o Reino Unido usam o **ponto**. Em 2003, a conferência internacional de pesos e medidas decidiu que o símbolo pode ser **tanto o ponto quanto a vírgula**.
+
+## Uma confusão que quase parou um programa
+
+A fonte conta que, em **1958**, uma disputa entre delegados europeus e americanos sobre ponto e vírgula **quase travou** o desenvolvimento da linguagem de programação ALGOL. Ela acabou aceitando os dois, mas a maioria das linguagens depois adotou o ponto. É por isso que, em calculadoras e programas, você muitas vezes digita **3.45** em vez de **3,45**.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Cortando o inteiro em 10 e em 100
+
+Imagine uma **barra de chocolate** inteira. Se você a corta em **10 pedaços iguais**, cada pedaço é **1 décimo** (1/10 ou **0,1**). Se corta cada um desses em 10, o inteiro fica com **100 pedacinhos**, e cada um é **1 centésimo** (1/100 ou **0,01**). Com mais um corte, 1.000 pedacinhos: o **milésimo** (0,001).
+
+## 2. A vírgula separa
+
+A **vírgula** separa a **parte inteira** (à esquerda) da **parte decimal** (à direita). Segundo a fonte, o separador decimal é o símbolo que separa a parte inteira da fracionária. Em **3,45**, o 3 é a parte inteira (3 chocolates inteiros) e o ,45 são **45 centésimos** de um chocolate.
+
+## 3. Cada casa vale 10 vezes menos
+
+Você sabe que, indo para a esquerda, cada casa vale 10 vezes mais. Indo para a **direita**, cada casa vale **10 vezes menos**: unidade, **décimo**, **centésimo**, **milésimo**. Segundo a fonte, a contribuição de cada algarismo depende da sua **posição**, tal como nos inteiros.
+
+## 4. Decimais são frações com 10, 100, 1.000 no denominador
+
+**0,5** é 5 décimos: 5/10, que é o mesmo que a **metade** (1/2). **0,25** é 25/100, ou **um quarto**. **0,75** é 75/100, ou **três quartos**. A fonte lembra: com *n* algarismos depois da vírgula, o decimal representa uma fração com denominador 10 elevado a *n*.
+
+<ExemploResolvido titulo="Lendo 3,45 e 0,072">
+  <Passo>3,45: **três inteiros e quarenta e cinco centésimos** (dois algarismos depois da vírgula, então centésimos).</Passo>
+  <Passo>Como fração: 3 + 45/100 = 345/100.</Passo>
+  <Passo>0,072: **setenta e dois milésimos** (três algarismos depois da vírgula, então milésimos).</Passo>
+  <Passo>Como fração: 72/1.000.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos centésimos há em 0,37? (número)" resposta="37" dica="0,37 = 37/100." resolucao="37 centésimos, ou 37/100." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Quantos quadradinhos de um inteiro de 100 quadradinhos representam 0,3?"
+  opcoes={['3 quadradinhos', '30 quadradinhos', '300 quadradinhos']}
+  correta={1}
+  explicacao="0,3 é 3 décimos, que é o mesmo que 30 centésimos: 30 dos 100 quadradinhos. É por isso que 0,3 e 0,30 são o mesmo número."
+>
+
+Mova o controle para pintar quadradinhos e veja o decimal e a fração mudarem.
+
+<GradeDeCentesimos />
+
+Agora digite um decimal e toque em cada algarismo para ver o nome da sua casa.
+
+<CasasDoDecimal />
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['0,45, porque tem mais algarismos', '0,5, porque 5 décimos é mais que 4 décimos', 'São iguais']}
+  correta={1}
+  seAcertou="E o palpite do começo? Isso: 0,5 = 0,50 = 50 centésimos, mais que 45 centésimos."
+  seErrou="E o palpite do começo? 0,5 vale 5 décimos, ou 50 centésimos, e 0,45 vale 45 centésimos. O maior é 0,5. Ter mais algarismos depois da vírgula não faz o número ser maior."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## As casas do número decimal
+
+Veja 3,472: o **3** são 3 unidades; o **4** é 4 décimos (0,4); o **7** é 7 centésimos (0,07); o **2** é 2 milésimos (0,002). Soma: 3 + 0,4 + 0,07 + 0,002 = 3,472.
+
+<ExemploResolvido titulo="Decompondo 5,306">
+  <Passo>5 unidades: 5.</Passo>
+  <Passo>3 décimos: 0,3.</Passo>
+  <Passo>0 centésimos: 0 (o zero guarda o lugar!).</Passo>
+  <Passo>6 milésimos: 0,006.</Passo>
+  <Passo>Soma: 5 + 0,3 + 0,006 = **5,306**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Em 3,472, quanto vale o algarismo 7? (decimal, com vírgula)" resposta="0,07" dica="Segunda casa depois da vírgula: centésimos." resolucao="7 centésimos: 0,07." />
+
+<Exercicio enunciado="Em 5,306, em qual casa está o algarismo 6? (uma palavra: decimos, centesimos ou milesimos)" resposta="milesimos" dica="Terceira casa depois da vírgula." resolucao="Milésimos: 6 milésimos = 0,006." />
+
+## Zeros à direita não mudam nada
+
+**0,3 = 0,30 = 0,300.** Acrescentar zeros no **fim** da parte decimal não muda o valor (3 décimos = 30 centésimos = 300 milésimos). Mas zeros **no meio** mudam: 0,03 é bem menor que 0,3.
+
+Isso é a chave para **comparar**: **iguale o número de casas** colocando zeros à direita.
+
+## Comparar números decimais
+
+Para comparar, siga os passos:
+
+1. Compare a **parte inteira**. Se for diferente, quem tem a parte inteira maior vence.
+2. Se for igual, **iguale as casas** com zeros à direita.
+3. Compare como se fossem números inteiros.
+
+<ComparaDecimais />
+
+<ExemploResolvido titulo="Comparando 2,5 e 2,49">
+  <Passo>A parte inteira é igual (2).</Passo>
+  <Passo>Iguale as casas: 2,5 vira 2,50.</Passo>
+  <Passo>Compare 50 e 49 centésimos: 50 é maior.</Passo>
+  <Passo>Então **2,5 é maior que 2,49**, mesmo com menos algarismos.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é o maior: 0,5 ou 0,45? (escreva o maior, com vírgula)" resposta="0,5" dica="0,50 contra 0,45." resolucao="0,5 = 0,50, que é maior que 0,45." />
+
+<Exercicio enunciado="Qual é o maior: 1,07 ou 1,7? (escreva o maior, com vírgula)" resposta="1,7" dica="Compare os décimos: 0 contra 7." resolucao="1,70 é maior que 1,07." />
+
+<Exercicio enunciado="Qual é o menor: 0,09 ou 0,1? (escreva o menor, com vírgula)" resposta="0,09" dica="0,09 contra 0,10." resolucao="9 centésimos é menos que 10 centésimos." />
+
+<Aprofundar titulo="Por que 'mais algarismos' engana nos decimais">
+Nos números **inteiros**, quem tem mais algarismos é maior (999 é menor que 1.000). Nos **decimais** isso **não vale**, porque os algarismos extras ficam **à direita**, nas casas menores. 0,5 tem um algarismo e 0,45 tem dois, mas 0,5 é maior. A fonte lembra que "um número é uma fração decimal se e só se tem representação finita", e o que decide o tamanho é o **valor de cada casa**, não a quantidade de algarismos.
+</Aprofundar>
+
+## Ordenar decimais
+
+Ordenar é comparar vários de uma vez. **Iguale todos** com o mesmo número de casas e ordene como inteiros.
+
+<ExemploResolvido titulo="Em ordem crescente: 0,4; 0,04; 0,41; 0,404">
+  <Passo>Iguale a 3 casas: 0,400; 0,040; 0,410; 0,404.</Passo>
+  <Passo>Como inteiros: 400, 40, 410, 404.</Passo>
+  <Passo>Em ordem crescente: 40, 400, 404, 410.</Passo>
+  <Passo>Voltando aos decimais: **0,04; 0,4; 0,404; 0,41**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Em ordem crescente de 0,3; 0,25; 0,5 e 0,05, qual fica em segundo lugar? (decimal, com vírgula)" resposta="0,25" dica="Iguale: 0,30; 0,25; 0,50; 0,05." resolucao="Ordem: 0,05; 0,25; 0,3; 0,5. O segundo é 0,25." />
+
+## Decimais e frações
+
+Um decimal é uma fração de denominador 10, 100, 1.000... Para **converter**:
+
+- Decimal em fração: escreva os algarismos depois da vírgula em cima e 1 seguido de tantos zeros (um para cada casa) embaixo. 0,75 = 75/100 (que simplifica para 3/4).
+- Fração em decimal: **divida o numerador pelo denominador**. 3/4 = 3 ÷ 4 = 0,75. A fonte lembra que a divisão longa permite calcular a expansão decimal de qualquer fração.
+
+<ExemploResolvido titulo="Frações e decimais de uso comum">
+  <Passo>1/2 = 1 ÷ 2 = **0,5**.</Passo>
+  <Passo>1/4 = 1 ÷ 4 = **0,25**.</Passo>
+  <Passo>3/4 = 3 ÷ 4 = **0,75**.</Passo>
+  <Passo>1/10 = **0,1**, e 1/100 = **0,01**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Escreva 3/4 como decimal. (com vírgula)" resposta="0,75" dica="3 ÷ 4." resolucao="3 ÷ 4 = 0,75." />
+
+<Exercicio enunciado="Quantos centésimos são 0,5? (número)" resposta="50" dica="0,5 = 0,50." resolucao="50 centésimos." />
+
+<Aprofundar titulo="O que são decimais que terminam e que não terminam">
+Segundo a fonte, um decimal **termina** (é "finito") quando, a partir de certo ponto, só há zeros: 0,75 ou 0,5. Já um decimal **periódico** repete para sempre uma sequência de algarismos, como 0,333... A fonte dá um exemplo bonito: **1/81 = 0,012345679...** (repetindo). Uma fração vira um decimal **exato** só quando o denominador, depois de simplificada, tem apenas os fatores 2 e 5 (como 2, 4, 5, 8, 10, 20, 25...). Para as outras (denominador com 3, 7...), o decimal é periódico.
+</Aprofundar>
+
+## Somar e subtrair decimais
+
+Regra de ouro: **vírgula embaixo de vírgula**. Assim, décimos ficam com décimos, centésimos com centésimos. Complete com zeros se faltar casa. Depois, some ou subtraia como nos inteiros, com o "vai um" e o empréstimo, e coloque a vírgula no resultado, **na mesma coluna**.
+
+<SomaDeDinheiro />
+
+<ExemploResolvido titulo="Somando 2,50 + 1,75">
+  <Passo>Alinhe as vírgulas: 2,50 em cima e 1,75 embaixo.</Passo>
+  <Passo>Centésimos: 0 + 5 = 5. Décimos: 5 + 7 = 12, escreve 2 e vai 1.</Passo>
+  <Passo>Unidades: 2 + 1 + 1 = 4.</Passo>
+  <Passo>Resultado: **4,25**. Conferindo com dinheiro: R$ 2,50 e R$ 1,75 dão R$ 4,25.</Passo>
+</ExemploResolvido>
+
+<ExemploResolvido titulo="Subtraindo 5 - 3,45 (o 5 ganha zeros)">
+  <Passo>Escreva 5 como 5,00 para alinhar com 3,45.</Passo>
+  <Passo>Centésimos: 0 - 5 não dá. Empresta: 10 - 5 = 5.</Passo>
+  <Passo>Décimos: 9 - 4 = 5 (o 0 emprestou e virou 9 depois da troca em cadeia). Unidades: 4 - 3 = 1.</Passo>
+  <Passo>Resultado: **1,55**. Conferindo: 3,45 + 1,55 = 5,00. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 2,50 + 1,75? (com vírgula)" resposta="4,25" dica="Alinhe as vírgulas." resolucao="4,25." />
+
+<Exercicio enunciado="Quanto é 5 - 3,45? (com vírgula)" resposta="1,55" dica="Escreva 5,00." resolucao="5,00 - 3,45 = 1,55." />
+
+<Exercicio enunciado="Quanto é 12,90 + 7,60? (com vírgula)" resposta="20,5" dica="12,90 + 7,60 = 20,50." resolucao="20,50, ou 20,5." />
+
+## A vírgula anda: ×10, ×100, ×1.000
+
+Você viu que multiplicar por 10 anda os algarismos uma casa. Com decimais, é como se a **vírgula andasse** uma casa para a **direita**. Por 100, duas casas; por 1.000, três. Para **dividir**, a vírgula anda para a **esquerda**.
+
+<MovimentoDaVirgula />
+
+<ExemploResolvido titulo="Mudando de unidade de medida">
+  <Passo>3,45 × 10 = **34,5** (uma casa para a direita).</Passo>
+  <Passo>3,45 × 100 = **345** (duas casas para a direita).</Passo>
+  <Passo>0,072 × 100 = **7,2** (duas casas).</Passo>
+  <Passo>8,9 ÷ 10 = **0,89** (uma casa para a esquerda).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 3,45 × 100? (número)" resposta="345" dica="Duas casas para a direita." resolucao="345." />
+
+<Exercicio enunciado="Quanto é 8,9 ÷ 10? (com vírgula)" resposta="0,89" dica="Uma casa para a esquerda." resolucao="0,89." />
+
+<Exercicio enunciado="Quanto é 125 ÷ 100? (com vírgula)" resposta="1,25" dica="Duas casas para a esquerda." resolucao="1,25." />
+
+## Multiplicar decimais
+
+Para **multiplicar** decimais:
+
+1. **Ignore as vírgulas** e multiplique como inteiros.
+2. **Conte** quantas casas decimais têm os dois fatores, somadas.
+3. No resultado, coloque a vírgula para ter **esse mesmo total** de casas.
+
+Por exemplo, **0,4 × 0,6**: 4 × 6 = 24. Cada fator tem 1 casa, então o resultado tem 2: **0,24**. Faz sentido: 4 décimos de 6 décimos é um pedaço **menor** que os dois.
+
+<ExemploResolvido titulo="Multiplicando 2,5 × 3">
+  <Passo>Sem a vírgula: 25 × 3 = 75.</Passo>
+  <Passo>Só o 2,5 tem casa decimal (1 casa).</Passo>
+  <Passo>Coloque a vírgula com 1 casa: **7,5**.</Passo>
+  <Passo>Conferindo por estimativa: 2,5 é um pouco mais que 2, e 2 × 3 = 6; o resultado, 7,5, é plausível.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 2,5 × 3? (com vírgula)" resposta="7,5" dica="25 × 3 = 75, uma casa decimal." resolucao="7,5." />
+
+<Exercicio enunciado="Quanto é 0,4 × 0,6? (com vírgula)" resposta="0,24" dica="4 × 6 = 24; duas casas." resolucao="0,24." />
+
+<Exercicio enunciado="Quanto é 12,5 × 4? (número)" resposta="50" dica="125 × 4 = 500, uma casa decimal." resolucao="50,0 = 50." />
+
+<Aprofundar titulo="Multiplicar nem sempre aumenta">
+Com decimais menores que 1, multiplicar **diminui**: 0,4 × 0,6 = 0,24, que é menor que 0,4 e menor que 0,6. Isso acontece porque 0,4 × 0,6 significa "4 décimos **de** 0,6": uma parte do número. Por isso, 50% de 80 é 0,5 × 80 = 40, que é menor que 80. Na cápsula de **Porcentagem**, essa ideia volta com tudo.
+</Aprofundar>
+
+## Dividir com decimais
+
+Para dividir **um decimal por um inteiro**, faça a divisão armada e coloque a vírgula no quociente **quando "baixar" o primeiro algarismo depois da vírgula**: 7,5 ÷ 3 = 2,5.
+
+Quando a divisão **de inteiros** não é exata, dá para continuar **depois da vírgula**: acrescente um zero ao resto e prossiga. Por exemplo, 1 ÷ 4: 1 não divide por 4, então vira 10 décimos (0,): 10 ÷ 4 = 2, sobra 2. Acrescente um zero: 20 ÷ 4 = 5, sobra 0. Resultado: **0,25**.
+
+<ExemploResolvido titulo="Dividindo 9 por 4">
+  <Passo>9 ÷ 4 = 2, com resto 1.</Passo>
+  <Passo>Coloque a vírgula no quociente e acrescente um zero ao resto: 10 ÷ 4 = 2, resto 2.</Passo>
+  <Passo>Acrescente outro zero: 20 ÷ 4 = 5, resto 0.</Passo>
+  <Passo>Resultado: **2,25**. Conferindo: 4 × 2,25 = 9.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 7,5 ÷ 3? (com vírgula)" resposta="2,5" dica="Divisão como a dos inteiros." resolucao="2,5, porque 3 × 2,5 = 7,5." />
+
+<Exercicio enunciado="Quanto é 9 ÷ 4? (com vírgula)" resposta="2,25" dica="Continue depois da vírgula." resolucao="2,25." />
+
+<Exercicio enunciado="Quanto é 3 ÷ 2? (com vírgula)" resposta="1,5" dica="1 e sobra 1: 10 ÷ 2." resolucao="1,5." />
+
+## Quando a divisão não termina
+
+Nem toda divisão termina. **1 ÷ 4 = 0,25** para por aqui, mas **1 ÷ 3 = 0,333...** continua para sempre. Isso é uma **dízima periódica**: o resto volta a ser o mesmo, e os algarismos se repetem. Segundo a fonte, um decimal infinito representa um número racional (uma fração) **se e só se** se repete (ou termina). E o **1 ÷ 7** repete a sequência 142857.
+
+<DizimaQueNaoAcaba />
+
+<ExemploResolvido titulo="Por que 1 ÷ 3 nunca acaba">
+  <Passo>1 ÷ 3: 10 ÷ 3 = 3, resto 1.</Passo>
+  <Passo>Acrescenta um zero: 10 ÷ 3 = 3, resto 1 de novo.</Passo>
+  <Passo>O resto voltou a ser 1: os mesmos passos vão se repetir para sempre.</Passo>
+  <Passo>Por isso 1 ÷ 3 = 0,333... A **repetição** é indicada com reticências ou com um traço sobre o algarismo.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Em 1 ÷ 3, qual algarismo se repete sempre depois da vírgula? (número)" resposta="3" dica="0,333..." resolucao="O 3: 0,333..." />
+
+## Arredondar decimais
+
+Quando o decimal tem muitas casas, **arredondamos**. A regra é a mesma dos inteiros: olhe o algarismo **seguinte** à casa em que quer parar. Se for 0 a 4, a casa **fica**; se for 5 a 9, ela **sobe 1**. Por exemplo, 3,456 arredondado ao décimo é **3,5** (o 5 do centésimo manda subir), e ao centésimo é **3,46** (o 6 do milésimo manda subir).
+
+<ExemploResolvido titulo="Arredondando 4,38">
+  <Passo>Ao **décimo**: olhe o centésimo (8). Como 8 é 5 ou mais, o 3 sobe: **4,4**.</Passo>
+  <Passo>Ao **inteiro**: olhe o décimo (3). Como 3 é menor que 5, fica: **4**.</Passo>
+  <Passo>Arredondar perde informação, mas simplifica: "cerca de 4,4 metros".</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Arredonde 3,456 ao centésimo. (com vírgula)" resposta="3,46" dica="Olhe o milésimo (6)." resolucao="Como 6 é 5 ou mais, o 5 sobe: 3,46." />
+
+<Exercicio enunciado="Arredonde 4,38 ao décimo. (com vírgula)" resposta="4,4" dica="Olhe o centésimo (8)." resolucao="4,4." />
+
+<Aprofundar titulo="Arredondar dinheiro">
+Em preços, o arredondamento é automático: 1/3 de R$ 10 é 3,3333... mas o centavo é a menor unidade do real, então o valor vira **R$ 3,33**. A fonte lembra que, nos números decimais, a quantidade de casas indica a **precisão**: 4,69 e 4,690 não são exatamente a mesma coisa em medidas de laboratório, porque o segundo diz que se mediu até o milésimo. Em dinheiro e em medidas, escolha a precisão que faz sentido.
+</Aprofundar>
+
+## Números decimais no dia a dia
+
+Você usa decimais o tempo todo: **dinheiro** (R$ 12,90), **medidas** (1,75 m de altura), **peso** (2,5 kg), **tempo em competições** (9,58 s), temperatura (36,5 °C). Em compras, o segredo é **alinhar centavos com centavos**.
+
+<ExemploResolvido titulo="Quanto custa e qual é o troco?">
+  <Passo>Você compra 3 sucos a R$ 4,50 cada.</Passo>
+  <Passo>3 × 4,50 = 13,50. (450 × 3 = 1.350; duas casas: 13,50.)</Passo>
+  <Passo>Paga com uma nota de R$ 20,00.</Passo>
+  <Passo>Troco: 20,00 - 13,50 = **R$ 6,50**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Três sucos a R$ 4,50 cada. Quanto custam, em reais? (com vírgula)" resposta="13,5" dica="3 × 4,50." resolucao="13,50, ou 13,5." />
+
+<Exercicio enunciado="Pagando R$ 20 por uma compra de R$ 13,50, qual é o troco? (com vírgula)" resposta="6,5" dica="20,00 - 13,50." resolucao="6,50, ou 6,5." />
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Qual é o valor do algarismo 7 em 3,472?',
+    opcoes: ['0,07', '0,7', '7'],
+    correta: 0,
+    explicacao: 'O 7 está na segunda casa depois da vírgula: centésimos. 7 centésimos = 0,07.',
+  },
+  {
+    enunciado: 'Qual é maior: 0,5 ou 0,45?',
+    opcoes: ['0,5', '0,45', 'São iguais'],
+    correta: 0,
+    explicacao: '0,5 = 0,50, e 50 centésimos é mais que 45 centésimos.',
+  },
+  {
+    enunciado: '0,3 e 0,30 são...',
+    opcoes: ['Iguais', 'Diferentes: 0,30 é maior', 'Diferentes: 0,3 é maior'],
+    correta: 0,
+    explicacao: 'Zeros à direita da parte decimal não mudam o valor: 3 décimos = 30 centésimos.',
+  },
+  {
+    enunciado: 'Como se lê 0,072?',
+    opcoes: ['Setenta e dois milésimos', 'Setenta e dois centésimos', 'Sete décimos'],
+    correta: 0,
+    explicacao: 'São três casas depois da vírgula, então são milésimos.',
+  },
+  {
+    enunciado: 'Quanto é 2,50 + 1,75?',
+    opcoes: ['4,25', '3,25', '4,15'],
+    correta: 0,
+    explicacao: 'Alinhando as vírgulas: 0 + 5 = 5; 5 + 7 = 12 (2, vai 1); 2 + 1 + 1 = 4. Resultado: 4,25.',
+  },
+  {
+    enunciado: 'Quanto é 3,45 × 100?',
+    opcoes: ['345', '34,5', '0,0345'],
+    correta: 0,
+    explicacao: 'Multiplicar por 100 anda a vírgula duas casas para a direita.',
+  },
+  {
+    enunciado: 'Quanto é 0,4 × 0,6?',
+    opcoes: ['0,24', '2,4', '0,024'],
+    correta: 0,
+    explicacao: '4 × 6 = 24 e os fatores têm, juntos, duas casas decimais: 0,24.',
+  },
+  {
+    enunciado: 'Quanto é 9 ÷ 4?',
+    opcoes: ['2,25', '2,5', '2,15'],
+    correta: 0,
+    explicacao: '9 ÷ 4 = 2, resto 1. Depois 10 ÷ 4 = 2, resto 2; e 20 ÷ 4 = 5. Resultado: 2,25.',
+  },
+  {
+    enunciado: 'O que acontece em 1 ÷ 3?',
+    opcoes: ['Os algarismos 3 se repetem para sempre (dízima periódica)', 'A divisão termina em 0,33', 'Dá 0,3 exatamente'],
+    correta: 0,
+    explicacao: 'O resto volta a ser 1, e os passos se repetem para sempre: 0,333...',
+  },
+  {
+    enunciado: 'Como se escreve 3/4 em decimal?',
+    opcoes: ['0,75', '0,34', '3,4'],
+    correta: 0,
+    explicacao: '3 ÷ 4 = 0,75. Também: 75/100 simplificado dá 3/4.',
+  },
+  {
+    enunciado: 'Que símbolo o Brasil usa para separar a parte inteira da decimal, segundo a fonte?',
+    opcoes: ['A vírgula', 'O ponto', 'A barra vertical'],
+    correta: 0,
+    explicacao: 'Brasil e Portugal usam a vírgula decimal. Estados Unidos e Reino Unido usam o ponto.',
+  },
+  {
+    enunciado: 'Quem publicou, em 1585, o livro De Thiende sobre frações decimais?',
+    opcoes: ['Simon Stevin', 'John Napier', 'Al-Uqlidisi'],
+    correta: 0,
+    explicacao: 'Simon Stevin publicou De Thiende em holandês, em 1585.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- Um **número decimal** estende o sistema decimal para a direita da **vírgula**: décimos, centésimos, milésimos. Cada casa vale **10 vezes menos** que a anterior.
+- Um decimal é uma **fração** de denominador 10, 100, 1.000: 0,75 = 75/100 = 3/4.
+- **0,3 = 0,30**: zeros à direita não mudam o valor. Mas **mais algarismos não quer dizer maior**: 0,5 é maior que 0,45.
+- Para **comparar**, iguale o número de casas e compare como inteiros.
+- Para **somar e subtrair**, alinhe **vírgula com vírgula**.
+- Para **multiplicar por 10, 100, 1.000**, a vírgula anda para a direita; para dividir, para a esquerda.
+- Para **multiplicar decimais**, multiplique como inteiros e conte as casas decimais no final.
+- Há decimais que **terminam** (0,25) e **dízimas periódicas** que repetem sem fim (0,333...).
+- **Arredonde** olhando o algarismo seguinte: de 0 a 4 a casa fica, de 5 a 9 ela sobe.
+
+**Um pouco de história.** As frações decimais já apareciam em livros chineses entre os séculos 3 e 5 e, no século 10, al-Uqlidisi as escreveu num livro. Em 1585, Simon Stevin publicou *De Thiende*, e nos anos 1440 já existia o ponto decimal mais antigo conhecido. Hoje, o Brasil usa a vírgula e os países de língua inglesa usam o ponto: uma diferença tão importante que, em 1958, quase travou o desenvolvimento de uma linguagem de programação.
+
+</Resumo>
+
+Os decimais abrem a porta para a **porcentagem**: 50% é o mesmo que 0,5. Na linha do Fundamental, vamos juntar decimais, frações e porcentagem num só assunto.
+
+<Conexoes />
+
+</Etapa>
