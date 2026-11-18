@@ -1,0 +1,350 @@
+import CardapioDaApi from '../../../components/simulacoes/CardapioDaApi'
+import TiposDeJson from '../../../components/simulacoes/TiposDeJson'
+import ValidoOuInvalido from '../../../components/simulacoes/ValidoOuInvalido'
+import JsonAoVivo from '../../../components/simulacoes/JsonAoVivo'
+import MontarPedidoRest from '../../../components/simulacoes/MontarPedidoRest'
+import ContratoQuebrado from '../../../components/simulacoes/ContratoQuebrado'
+
+{/* Fatos conferidos na Wikipedia em inglês (API, JSON, REST), listadas no meta.ts. As APIs e respostas das simulações são exemplos de brinquedo, não sistemas reais. */}
+
+<Etapa id="gancho">
+
+Quando um aplicativo de clima mostra a temperatura de hoje, ele não tem um termômetro dentro. Ele **pergunta** a outro sistema, que sabe a resposta. Quando um site de viagens mostra preços de várias companhias, ele pergunta a cada uma. Quando você paga com o Pix dentro de um aplicativo, o aplicativo pede a um sistema de pagamento.
+
+Mas como dois sistemas feitos por pessoas diferentes, em linguagens diferentes, em computadores diferentes, conseguem **se entender**? Eles combinam um **cardápio**: a lista do que se pode pedir e o formato da resposta. Esse cardápio é a **API**. E o formato da resposta, quase sempre, é o **JSON**.
+
+<Palpite
+  chave="inicial"
+  pergunta="O que é mais provável de viajar entre o front-end e o back-end de um site moderno?"
+  opcoes={['A página inteira, já desenhada com todas as cores', 'Pequenos pacotes de dados em texto, como o nome e o saldo', 'Imagens e vídeos apenas']}
+/>
+
+Nesta cápsula você vai tocar num cardápio de API, ler e escrever JSON, treinar o olho para achar erros de sintaxe, montar pedidos no estilo REST e ver o que acontece quando o "contrato" de uma API muda sem aviso.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Ideias como "interface" e "contrato" entre programas são **mais antigas que a internet**.
+
+<LinhaDoTempo marcos={[
+  { ano: '1940s', texto: 'Maurice Wilkes e David Wheeler criam uma biblioteca modular de sub-rotinas para o computador EDSAC. Seu catálogo é visto como uma das primeiras especificações de API.' },
+  { ano: '1968', texto: 'A expressão "application program interface" aparece num artigo sobre computação gráfica remota.' },
+  { ano: '1974', texto: 'C. J. Date leva a expressão para o mundo dos bancos de dados.' },
+  { ano: '2000', texto: 'Roy Fielding descreve o REST em sua tese de doutorado. APIs web em XML e JSON se espalham a partir dessa época.' },
+  { ano: '2001', texto: 'Douglas Crockford e Chip Morningstar enviam a primeira mensagem JSON, em abril. O site json.org nasce no mesmo ano.' },
+  { ano: '2013', texto: 'O JSON ganha seu primeiro padrão, o ECMA-404, em outubro.' },
+  { ano: '2017', texto: 'A RFC 8259 se torna o padrão de internet do JSON, em dezembro.' },
+]} />
+
+## As primeiras "APIs": bibliotecas de sub-rotinas
+
+Nos anos 1940, programar o EDSAC era trabalhoso. Wilkes e Wheeler organizaram uma **biblioteca** de pedaços de programa reutilizáveis e um catálogo que dizia o que cada um fazia. Quem usava a biblioteca não precisava saber **como** ela funcionava por dentro, só **como chamá-la**. Essa é a essência de uma API.
+
+A expressão "application program interface" apareceu em 1968, num artigo sobre gráficos remotos, e foi levada para os bancos de dados por C. J. Date em 1974. Hoje a sigla significa "interface de programação de aplicações", e o importante é que ela é uma **interface para programas**, e não para pessoas.
+
+## A virada da Web
+
+Por muito tempo, APIs eram bibliotecas **dentro** do mesmo computador. Em 2000, Roy Fielding descreveu em sua tese um estilo de organizar sistemas que conversam pela rede, o **REST**, e contrastou as APIs "baseadas na rede" com as "baseadas em bibliotecas". Fielding também ajudou a criar as versões 1.0 e 1.1 do HTTP e o padrão de endereços (URI). A partir de cerca de 2000, APIs web em XML e depois em JSON se espalharam.
+
+## O JSON: um formato leve nascido de uma mensagem
+
+Em março de 2001, Douglas Crockford ajudou a fundar uma empresa, a State Software, onde surgiu a sigla **JSON** (*JavaScript Object Notation*, "notação de objetos do JavaScript"). Em abril de 2001, ele e Chip Morningstar enviaram a primeira mensagem JSON. O site json.org foi lançado no mesmo ano. O formato ganhou seu primeiro padrão em outubro de 2013 (ECMA-404) e o padrão de internet atual em dezembro de 2017 (RFC 8259). Hoje é usado muito além do JavaScript, e a extensão de arquivo é **.json**.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. A API como cardápio
+
+Voltando ao restaurante da cápsula anterior: o **cardápio** diz o que dá para pedir (pratos), como pedir (o nome do prato) e o que você recebe (a descrição). Você **não** vê a cozinha, e a cozinha pode mudar a receita por dentro sem você notar, desde que o cardápio continue valendo.
+
+Uma **API** faz o mesmo para programas. A fonte a descreve como uma interface que permite que programas conversem entre si, definida por uma **especificação** (a lista de chamadas possíveis). Uma boa API mostra só o que quem a usa precisa e **esconde os detalhes internos**. Ela também é comparada a **peças de Lego**: serviços diferentes se encaixam por suas APIs para formar produtos novos.
+
+## 2. A API como contrato
+
+Quem cria a API **promete** que os pedidos funcionarão de certo jeito. Quem a usa **confia** nisso. A fonte compara a API a um **contrato** entre quem fornece e quem depende. Por isso uma API estável dá confiança, e mudar a API de forma abrupta pode **quebrar** quem a usa. (Veja a simulação mais adiante.)
+
+<ExemploResolvido titulo="Quem fala com quem?">
+  <Passo>O aplicativo do clima no seu celular quer a temperatura de Recife.</Passo>
+  <Passo>Ele envia um pedido HTTP para a API de um serviço de previsão: "me dê o clima de Recife".</Passo>
+  <Passo>O serviço consulta seus próprios dados e responde com um pequeno texto em JSON.</Passo>
+  <Passo>O aplicativo lê o JSON e desenha a temperatura na tela. Ele nunca soube **como** o serviço descobriu o número.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma API é uma interface feita para pessoas ou para programas? (pessoas ou programas)" resposta="programas" dica="Quem 'conversa' com ela são outros sistemas." resolucao="Uma API é uma interface para programas se comunicarem. As pessoas usam a tela (o front-end)." />
+
+<Exercicio enunciado="Em que ano a expressão 'application program interface' apareceu num artigo sobre gráficos remotos? (número)" resposta="1968" dica="Está na linha do tempo." resolucao="Foi em 1968." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Você pede GET /produtos/99, mas a loja só tem produtos 1 e 2. O que a API provavelmente responde?"
+  opcoes={['200 OK com uma lista vazia', '404 Not Found (não encontrado)', '500 (erro do servidor)']}
+  correta={1}
+  explicacao="O servidor está bem e o pedido foi entendido, mas o produto 99 não existe. A API responde 404, da família 4xx, e costuma explicar o erro no corpo da resposta."
+>
+
+Toque em cada pedido do cardápio e veja a resposta:
+
+<CardapioDaApi />
+
+Cada linha tem duas partes: o **método** (o verbo: GET, POST, DELETE) e o **endereço** (a coisa). A resposta traz um **código de status** (que você viu na cápsula de HTTP) e um **corpo** em JSON.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['A página inteira, já desenhada com todas as cores', 'Pequenos pacotes de dados em texto, como o nome e o saldo', 'Imagens e vídeos apenas']}
+  correta={1}
+  seAcertou="E o palpite do começo? Isso: em muitos sistemas modernos, o back-end manda só dados (em JSON) e o front-end desenha a tela."
+  seErrou="E o palpite do começo? Em muitos sistemas modernos, o que viaja são pequenos pacotes de dados em texto (JSON). O navegador desenha a tela com eles."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## JSON: o formato da resposta
+
+**JSON** é um jeito de escrever dados como **texto**, de modo que qualquer linguagem de programação consiga ler. É leve (a fonte o promove como uma alternativa de menor custo ao XML) e legível por pessoas.
+
+Os **tipos de dados** do JSON são só seis:
+
+- **Objeto**: pares `nome: valor` entre chaves.
+- **Lista (array)**: valores em ordem, entre colchetes.
+- **Texto (string)**: entre **aspas duplas**.
+- **Número**.
+- **Booleano**: `true` ou `false`, sem aspas.
+- **Nulo**: `null`, que significa "sem valor".
+
+<TiposDeJson />
+
+<ExemploResolvido titulo="Lendo um JSON">
+  <Passo>Veja `{ "nome": "Ana", "idade": 30, "notas": [4, 8, 15] }`.</Passo>
+  <Passo>É um **objeto** (entre chaves) com 3 pares: `nome`, `idade` e `notas`.</Passo>
+  <Passo>`nome` é texto, `idade` é número e `notas` é uma lista de 3 números.</Passo>
+  <Passo>O valor de `idade` é **30**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos tipos de dados o JSON tem (objeto, lista, texto, número, booleano e nulo)? (número)" resposta="6" dica="Conte os seis nomes." resolucao="São 6 tipos: objeto, lista, texto, número, booleano e nulo." />
+
+<Exercicio enunciado="Qual é o tipo do valor true? (texto, numero ou booleano)" resposta="booleano" dica="Só pode ser true ou false." resolucao="true é um booleano. Se estivesse entre aspas, seria texto." />
+
+<Exercicio enunciado="No objeto com a, b e c valendo 1, 2 e 3, quantos pares nome-valor há? (número)" resposta="3" dica="Conte os nomes." resolucao="São 3 pares: a, b e c." />
+
+<Exercicio enunciado="Na lista [4, 8, 15], qual valor está na posição 2, contando a partir de 0? (número)" resposta="15" dica="Posição 0 é o 4, posição 1 é o 8." resolucao="As posições começam em 0: 4 está na 0, 8 na 1 e 15 na 2." />
+
+<Aprofundar titulo="Por que as posições começam em 0">
+Em muitas linguagens, a posição de um item numa lista é a **distância** a partir do começo. O primeiro item está a **0** passos do começo, o segundo a **1** passo, e assim por diante. É por isso que, numa lista de 3 itens, as posições são 0, 1 e 2, e não 1, 2 e 3. Parece estranho no início, mas é a convenção da maioria das linguagens de programação, e vale também no JavaScript, onde o JSON nasceu.
+</Aprofundar>
+
+## As regras do JSON são rígidas
+
+O JSON é **exigente**. As regras da fonte:
+
+- Textos usam **aspas duplas** (aspas simples não valem).
+- **Não há comentários.** Crockford os removeu porque as pessoas usavam comentários para dar instruções ao leitor, o que prejudicava a compatibilidade.
+- **Vírgula sobrando** no fim de uma lista ou objeto não é permitida.
+- Os nomes (chaves) também ficam entre aspas duplas.
+- O texto trocado entre sistemas deve usar a codificação UTF-8.
+
+Por que tanta rigidez? Porque o JSON é lido por **programas**, e um programa não "entende o que você quis dizer": se há uma vírgula a mais, ele recusa tudo.
+
+<ValidoOuInvalido />
+
+<ExemploResolvido titulo="Achando o erro">
+  <Passo>Texto: `{ "nome": "Ana", "idade": 30, }`.</Passo>
+  <Passo>Aspas duplas? Sim. Chaves entre aspas? Sim.</Passo>
+  <Passo>Mas há uma vírgula depois de `30`, e nada vem depois dela.</Passo>
+  <Passo>Esse é o erro da **vírgula pendurada**. O JSON é **inválido**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um JSON com vírgula sobrando no final é válido? (sim ou nao)" resposta="nao" dica="Lembre da regra da vírgula pendurada." resolucao="Não: vírgula no final não é permitida em JSON." />
+
+<Exercicio enunciado="Um JSON que usa aspas simples nos textos é válido? (sim ou nao)" resposta="nao" dica="Só aspas duplas servem." resolucao="Não: o JSON só aceita aspas duplas." />
+
+## Escrevendo JSON: dados viram texto
+
+Quando o servidor vai responder, ele pega os dados que tem (na memória, na forma de objetos da linguagem) e os transforma em **texto JSON**. Quando o navegador recebe, faz o caminho inverso: lê o texto e recria os objetos. Preencha os campos e veja o JSON nascer:
+
+<JsonAoVivo />
+
+Repare que o nome vira texto com aspas, a idade vira número sem aspas e a conta ativa vira `true` ou `false`. O JSON é só **texto**, e é exatamente isso que viaja pela rede no corpo de uma resposta HTTP.
+
+<Aprofundar titulo="JSON e XML: dois jeitos de escrever dados">
+Antes do JSON, o formato mais comum era o **XML**. Pela fonte, o JSON é promovido como uma alternativa de menor "sobrecarga" (menos texto para dizer a mesma coisa). O XML permite comentários e separa dados de metadados com elementos e atributos; o JSON não tem essa distinção. O XML tem tipagem forte por esquemas, enquanto o JSON tem seus próprios tipos embutidos e um padrão próprio de esquema, o **JSON Schema**.
+
+O tipo de mídia do JSON na internet é `application/json`, o que aparece nos cabeçalhos HTTP para o navegador saber que o corpo da resposta é JSON.
+</Aprofundar>
+
+## REST: endereços que são coisas, métodos que são ações
+
+Em 2000, Roy Fielding descreveu o **REST** na sua tese. Em vez de criar um endereço para cada ação ("/apagarPedido", "/criarPedido"), o REST sugere que o endereço identifique **uma coisa** (um **recurso**, como `/pedidos` ou `/pedidos/7`) e que o **método HTTP** diga o que fazer com ela.
+
+<MontarPedidoRest />
+
+A fonte lista as **restrições** do estilo REST. As principais:
+
+- **Cliente e servidor** separados por uma interface bem definida.
+- **Sem estado** (*stateless*): o servidor não guarda a sessão do cliente entre um pedido e outro, cada pedido leva o que precisa.
+- **Cache**: as respostas indicam se podem ser guardadas e reaproveitadas.
+- **Interface uniforme**: a restrição fundamental do REST.
+- **Sistema em camadas**: o cliente geralmente não sabe se fala com o servidor final ou com um intermediário.
+- Opcional: **código sob demanda** (o servidor manda lógica para o cliente executar).
+
+Os recursos são identificados por endereços (URIs). Eles são conceitualmente separados das **representações** que o cliente recebe, que podem ser HTML, XML ou JSON. A fonte também faz um alerta: a associação dos métodos HTTP (GET, POST...) com REST é considerada uma boa prática, mas **não faz parte** do REST como Fielding o formulou originalmente.
+
+<ExemploResolvido titulo="Lendo pedidos REST">
+  <Passo>`GET /produtos`: o verbo é **buscar**, a coisa é a **coleção** de produtos. Resposta: a lista.</Passo>
+  <Passo>`GET /produtos/2`: **buscar** o produto de número 2.</Passo>
+  <Passo>`POST /pedidos` (com dados no corpo): **criar** um pedido novo.</Passo>
+  <Passo>`DELETE /pedidos/4821`: **apagar** o pedido 4821.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual método HTTP serve para buscar (ler) algo? (get, post, put ou delete)" resposta="get" dica="Abrir uma página usa esse método." resolucao="GET é o método de leitura." />
+
+<Exercicio enunciado="Qual método serve para apagar algo? (get, post, put ou delete)" resposta="delete" dica="O nome já diz." resolucao="DELETE apaga o recurso indicado." />
+
+<Exercicio enunciado="Em que ano Roy Fielding descreveu o REST na sua tese? (número)" resposta="2000" dica="Está na linha do tempo." resolucao="Em 2000." />
+
+<Exercicio enunciado="Uma resposta 404 pertence a qual família de códigos (2, 3, 4 ou 5)? (número)" resposta="4" dica="O primeiro dígito." resolucao="404 é da família 4xx: o erro está no pedido (o endereço não existe)." />
+
+<Aprofundar titulo="O que significa ser sem estado">
+Numa API sem estado, o servidor **não guarda memória** do cliente entre dois pedidos. Cada pedido precisa trazer tudo o que o servidor precisa para responder (por exemplo, quem é você, quando for o caso). Isso parece trabalhoso, mas traz uma vantagem enorme: qualquer servidor de uma fileira de servidores iguais pode atender qualquer pedido, porque nenhum deles depende de lembrar do último. É assim que um site consegue crescer, adicionando servidores à fila.
+</Aprofundar>
+
+## A API como contrato: quando o cardápio muda
+
+Uma API é uma **promessa**. O aplicativo foi escrito esperando um campo chamado "nome". Se o servidor **adiciona** um campo novo ("cor"), quem não conhece o campo novo simplesmente o ignora e nada quebra. Mas se o servidor **renomeia** "nome" para "titulo", o aplicativo procura "nome", não acha, e **quebra**. A fonte lembra que mudanças como acrescentar parâmetros podem quebrar quem usa a API, e que recursos antigos devem ser **marcados como obsoletos** (*deprecated*) antes de saírem, para dar tempo de migrar.
+
+<ContratoQuebrado />
+
+<ExemploResolvido titulo="Mudança que quebra e mudança que não quebra">
+  <Passo>Contrato original: a resposta tem `nome` e `preco`.</Passo>
+  <Passo>Mudança A: o servidor **acrescenta** `cor`. O aplicativo continua achando `nome` e `preco`. **Não quebra.**</Passo>
+  <Passo>Mudança B: o servidor **renomeia** `nome` para `titulo`. O aplicativo procura `nome` e não encontra. **Quebra.**</Passo>
+  <Passo>Por isso APIs sérias avisam antes, mantêm a versão antiga por um tempo e documentam tudo.</Passo>
+</ExemploResolvido>
+
+<Aprofundar titulo="A documentação é parte da API">
+Uma API precisa de **documentação**: explica quais serviços existem e como usá-los, com descrições dos pedidos, exemplos de uso, trechos de código e restrições. A fonte avisa que a documentação costuma omitir os detalhes internos e que é **difícil mantê-la atualizada**, o que leva a defeitos quando ela diz uma coisa e a API faz outra. Algumas APIs públicas dão acesso por **tokens** (chaves de acesso) ou depois de confirmar quem é o cliente. Lembre da regra de ouro da cápsula anterior: o servidor nunca deve confiar cegamente no que vem de fora.
+</Aprofundar>
+
+## Onde isso aparece no dia a dia
+
+Quando uma página busca dados novos **depois** de carregada e atualiza só um pedaço da tela, ela usa uma chamada a uma API, quase sempre devolvendo JSON. A fonte chama isso de requisições web assíncronas, parente do Ajax (o nome dado em 2005 a esse truque). O JSON também aparece em arquivos de configuração e em **bancos de dados**: bancos de documentos como o MongoDB guardam dados em formato parecido com JSON, e bancos como PostgreSQL e MySQL têm tipos próprios para JSON.
+
+<Exercicio enunciado="Em que ano Crockford e Morningstar enviaram a primeira mensagem JSON? (número)" resposta="2001" dica="Foi em abril." resolucao="Em abril de 2001." />
+
+<Exercicio enunciado="Em que ano saiu o primeiro padrão do JSON, o ECMA-404? (número)" resposta="2013" dica="Foi em outubro." resolucao="Em outubro de 2013." />
+
+<Exercicio enunciado="Em que ano a RFC 8259 virou o padrão de internet do JSON? (número)" resposta="2017" dica="Foi em dezembro." resolucao="Em dezembro de 2017." />
+
+<Aprofundar titulo="Web API e API de biblioteca">
+Segundo a fonte, existem dois grandes tipos. A **API de biblioteca** descreve o comportamento esperado de uma biblioteca de código: a biblioteca é **uma implementação** dessa especificação, e a mesma API pode ter várias implementações. A **API web** é um conjunto de especificações, em geral mensagens de pedido HTTP com respostas estruturadas em XML ou JSON, que permite que computadores ligados à internet se comuniquem. Hoje, a API web é o significado mais comum da palavra "API".
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'O que é uma API?',
+    opcoes: ['Uma interface que permite que programas conversem entre si', 'Um tipo de tela do site', 'Uma marca de computador'],
+    correta: 0,
+    explicacao: 'Uma API é uma interface para programas, definida por uma especificação do que se pode pedir.',
+  },
+  {
+    enunciado: 'A API é comparada a um...',
+    opcoes: ['Cardápio ou contrato entre quem fornece e quem usa', 'Teclado', 'Disco rígido'],
+    correta: 0,
+    explicacao: 'Ela lista o que dá para pedir, e quem a fornece promete manter o combinado.',
+  },
+  {
+    enunciado: 'Qual destes é um tipo de dado do JSON?',
+    opcoes: ['Booleano', 'Planilha', 'Vídeo'],
+    correta: 0,
+    explicacao: 'Os tipos são objeto, lista, texto, número, booleano e nulo.',
+  },
+  {
+    enunciado: 'Qual aspas o JSON aceita nos textos?',
+    opcoes: ['Só aspas duplas', 'Só aspas simples', 'Qualquer uma'],
+    correta: 0,
+    explicacao: 'O JSON exige aspas duplas, inclusive nos nomes das chaves.',
+  },
+  {
+    enunciado: 'O JSON { "a": 1, } é válido?',
+    opcoes: ['Sim', 'Não, por causa da vírgula sobrando', 'Sim, mas só no Windows'],
+    correta: 1,
+    explicacao: 'Vírgula no fim, sem nada depois, não é permitida.',
+  },
+  {
+    enunciado: 'Na lista [4, 8, 15], qual valor está na posição 1 (contando a partir de 0)?',
+    opcoes: ['4', '8', '15'],
+    correta: 1,
+    explicacao: 'Posição 0 é o 4, posição 1 é o 8 e posição 2 é o 15.',
+  },
+  {
+    enunciado: 'No estilo REST, o que o método HTTP expressa?',
+    opcoes: ['O que fazer com o recurso (buscar, criar, apagar...)', 'A cor do botão', 'O tamanho da resposta'],
+    correta: 0,
+    explicacao: 'O endereço diz qual coisa; o método diz a ação.',
+  },
+  {
+    enunciado: 'O que significa "sem estado" (stateless) numa API?',
+    opcoes: ['O servidor não guarda a sessão do cliente entre pedidos; cada pedido leva o que precisa', 'O servidor não responde', 'A API não tem endereço'],
+    correta: 0,
+    explicacao: 'Cada pedido é independente, o que facilita atender com vários servidores.',
+  },
+  {
+    enunciado: 'Uma API muda o campo "nome" para "titulo" sem avisar. O que tende a acontecer com quem usa o campo "nome"?',
+    opcoes: ['Nada', 'Quebra, pois não encontra mais o campo', 'Fica mais rápido'],
+    correta: 1,
+    explicacao: 'Renomear quebra o contrato. Acrescentar um campo novo, em geral, não quebra.',
+  },
+  {
+    enunciado: 'Quem descreveu o REST em sua tese de doutorado, em 2000?',
+    opcoes: ['Roy Fielding', 'Douglas Crockford', 'Tim Berners-Lee'],
+    correta: 0,
+    explicacao: 'Fielding descreveu o REST em 2000. Crockford popularizou o JSON.',
+  },
+  {
+    enunciado: 'Qual código o servidor devolve quando o endereço pedido não existe?',
+    opcoes: ['200', '404', '500'],
+    correta: 1,
+    explicacao: '404 Not Found, da família 4xx: o erro está no pedido.',
+  },
+  {
+    enunciado: 'Por que um site moderno costuma receber JSON, e não a página pronta, em muitos pedidos?',
+    opcoes: ['Porque só os dados mudaram e o navegador consegue redesenhar o pedaço da tela', 'Porque o JSON é uma imagem', 'Porque o servidor não sabe enviar HTML'],
+    correta: 0,
+    explicacao: 'Mandar só os dados é leve, e o front-end atualiza uma parte da tela, sem recarregar tudo.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **API**: interface para programas conversarem, como um cardápio ou contrato (o que dá para pedir e o formato da resposta).
+- **JSON**: texto leve com seis tipos (objeto, lista, texto, número, booleano, nulo). Regras rígidas: aspas duplas, sem comentários, sem vírgula sobrando.
+- **REST**: o endereço identifica a coisa (recurso) e o método HTTP diz a ação. Os pedidos são sem estado.
+- **Códigos de status** (200, 201, 404...) acompanham cada resposta.
+- **Mudar a API** pode quebrar quem a usa: acrescentar costuma ser seguro, renomear não.
+- **Documentação** é parte da API, e é difícil de manter em dia.
+
+**Um pouco de história.** Wilkes e Wheeler organizaram uma biblioteca de sub-rotinas para o EDSAC nos anos 1940. A expressão "application program interface" apareceu em 1968. Roy Fielding descreveu o REST em 2000, a primeira mensagem JSON foi enviada em abril de 2001, o ECMA-404 saiu em 2013 e a RFC 8259 em 2017.
+
+</Resumo>
+
+Agora você sabe como o salão e a cozinha conversam. Na próxima cápsula, vamos abrir a **despensa**: os **bancos de dados**.
+
+<Conexoes />
+
+</Etapa>
