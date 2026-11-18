@@ -32,7 +32,7 @@ export default function Infografico() {
       <text x={52} y={296} style={t12}>equilátero: 3 lados iguais</text>
       <text x={52} y={314} style={t12}>isósceles: 2 lados iguais</text>
       <text x={52} y={332} style={t12}>escaleno: 3 diferentes</text>
-      <text x={52} y={356} style={t12}>fecha se o maior &lt; soma dos outros</text>
+      <text x={52} y={356} style={t12}>fecha: maior &lt; soma dos outros</text>
       <rect x={245} y={252} width={395} height={124} rx={8} fill={cores.amarelo.fill} stroke={cores.amarelo.stroke} />
       <text x={257} y={274} style={t14}>Quadriláteros (três pistas)</text>
       <text x={257} y={296} style={t12}>quadrado: 2 pares paralelos, 4 lados iguais, 4 ângulos retos</text>

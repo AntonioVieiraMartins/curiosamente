@@ -14,8 +14,10 @@ export default function EixosDeSimetria() {
   const [i, setI] = useState(1)
   const f = formas[i]
   const R = 70
+  // Polígonos com número par de lados ficam "em pé" (lados na horizontal e vertical)
+  const off = f.n > 0 && f.n % 2 === 0 ? Math.PI / f.n : 0
   const pts = f.n > 0 ? Array.from({ length: f.n }, (_, k) => {
-    const a = (k / f.n) * 2 * Math.PI - Math.PI / 2
+    const a = (k / f.n) * 2 * Math.PI - Math.PI / 2 + off
     return [100 + R * Math.cos(a), 100 + R * Math.sin(a)] as [number, number]
   }) : []
   const linhas = f.n > 0
@@ -24,7 +26,7 @@ export default function EixosDeSimetria() {
   // Polígonos pares precisam também dos eixos que passam pelos meios dos lados
   const extras = f.n > 0 && f.n % 2 === 0
     ? Array.from({ length: f.n / 2 }, (_, k) => {
-        const a = ((k + 0.5) / f.n) * 2 * Math.PI - Math.PI / 2
+        const a = ((k + 0.5) / f.n) * 2 * Math.PI - Math.PI / 2 + off
         const r = R * Math.cos(Math.PI / f.n)
         return [100 + r * Math.cos(a), 100 + r * Math.sin(a), 100 - r * Math.cos(a), 100 - r * Math.sin(a)]
       })
