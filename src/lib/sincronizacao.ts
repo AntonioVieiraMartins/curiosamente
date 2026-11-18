@@ -14,6 +14,8 @@ import {
   anunciarConquista, conquistasObtidas, guardarConquista, guardarMarco, limparConquistasLocal, marcosAlcancados,
 } from './conquistasLocal'
 import { conquistasMerecidas, RODADAS_DEZ_MIL } from './regrasConquistas'
+import { limparAnotacoesLocal } from './anotacoes'
+import './sincronizarAnotacoes' // liga o caderno à conta (só precisa ser carregado)
 
 type LinhaProgresso = {
   capsula_id: string
@@ -160,6 +162,7 @@ export async function sairDaConta() {
   limparProgressoLocal()
   limparXpLocal()
   limparConquistasLocal()
+  limparAnotacoesLocal()
 }
 
 // Liga tudo uma vez, quando o app abre

@@ -1,6 +1,7 @@
 import { Suspense, useRef } from 'react'
 import CabecalhoCapsula from './CabecalhoCapsula'
 import SumarioEtapas from './SumarioEtapas'
+import CadernoDaCapsula from './CadernoDaCapsula'
 import NavegacaoEtapas from './NavegacaoEtapas'
 import BarraNarracao from './BarraNarracao'
 import { ContextoCapsula } from './ContextoCapsula'
@@ -48,6 +49,7 @@ export default function CapsulaInterativa({ conteudo }: { conteudo: ConteudoCaps
         linha={linha}
         detalhes={`${meta.duracaoMin} min · ${meta.xp} XP · progresso salvo neste navegador`}
       />
+      <CadernoDaCapsula capsulaId={meta.id} />
 
       <div ref={topo} className="mt-8 grid scroll-mt-24 gap-6 lg:mt-10 lg:grid-cols-[200px_1fr] lg:gap-12">
         <aside className="lg:sticky lg:top-28 lg:self-start">

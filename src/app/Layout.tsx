@@ -6,6 +6,7 @@ import AvisoConquista from '../components/ui/AvisoConquista'
 const links = [
   { para: '/', rotulo: 'Início' },
   { para: '/mapa', rotulo: 'Mapa' },
+  { para: '/caderno', rotulo: 'Caderno' },
   { para: '/perfil', rotulo: 'Perfil' },
 ]
 
@@ -59,7 +60,7 @@ export default function Layout() {
       {/* No celular a navegação fica embaixo, ao alcance do polegar */}
       <nav
         aria-label="Principal (celular)"
-        className="fixed inset-x-0 bottom-0 z-20 grid grid-cols-3 border-t border-borda bg-superficie pb-[env(safe-area-inset-bottom)] sm:hidden"
+        className="fixed inset-x-0 bottom-0 z-20 grid grid-cols-4 border-t border-borda bg-superficie pb-[env(safe-area-inset-bottom)] sm:hidden"
       >
         {links.map((l) => (
           <NavLink
