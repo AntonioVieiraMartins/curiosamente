@@ -1,0 +1,370 @@
+import ConstroiPoligono from '../../../../components/simulacoes/ConstroiPoligono'
+import TrianguloPorLados from '../../../../components/simulacoes/TrianguloPorLados'
+import QuadrilateroDetetive from '../../../../components/simulacoes/QuadrilateroDetetive'
+import EixosDeSimetria from '../../../../components/simulacoes/EixosDeSimetria'
+import SolidosFacesArestas from '../../../../components/simulacoes/SolidosFacesArestas'
+import FormaDoObjeto from '../../../../components/simulacoes/FormaDoObjeto'
+
+{/* Fatos conferidos na Wikipedia em inglês (Polygon e Shape), listadas no meta.ts. A classificação dos triângulos e quadriláteros, os elementos do círculo, a simetria, a fórmula de Euler e a condição de existência do triângulo são conteúdo escolar geral da BNCC, conferidos por contagem. O significado da palavra geometria e o valor aproximado de pi são conhecimento geral, fora da fonte. */}
+
+<Etapa id="gancho">
+
+Olhe ao redor: a tela, a porta, a janela, a bola, a lata, o dado, o prato. **Tudo tem uma forma**. E essas formas se repetem: o rosto de um dado é um **quadrado**, o prato é um **círculo**, a lata é um **cilindro**. A geometria é a matemática de **descrever essas formas** com precisão.
+
+Uma pergunta que parece boba esconde uma ideia importante: **quantos lados tem um círculo?** Uns dizem "nenhum". Outros dizem "um só, bem curvo". Outros, "infinitos". Quem tem razão? Para responder, é preciso saber o que **conta** como "lado". E isso nos leva a distinguir o que é um **polígono** do que **não é**.
+
+<Palpite
+  chave="inicial"
+  pergunta="Um círculo é um polígono?"
+  opcoes={['Sim: é como um polígono com muitos lados', 'Não: polígonos só têm lados retos, e o círculo é curvo', 'Só se for grande']}
+/>
+
+Nesta cápsula você vai **construir polígonos**, descobrir quando três lados **fecham** um triângulo, ser **detetive de quadriláteros**, achar **eixos de simetria**, contar **faces, arestas e vértices** de sólidos e reconhecer formas no seu dia a dia.
+
+</Etapa>
+
+<Etapa id="historia">
+
+A palavra **geometria** vem do grego e quer dizer, mais ou menos, **"medir a terra"** (conhecimento geral, fora da fonte). Quando os rios inundavam e apagavam os limites dos terrenos, era preciso **refazer as medidas**, e a geometria nasceu dessa necessidade prática.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Antiguidade', texto: 'Egípcios e babilônios usam formas e medidas para terrenos, construções e tijolos (conhecimento geral, fora da fonte).' },
+  { ano: 'Séc. 7 a.C.', texto: 'Um pentagrama (a estrela de cinco pontas) aparece desenhado num vaso grego, o krater.' },
+  { ano: 'Antiguidade', texto: 'Os gregos conhecem os polígonos regulares e dão a eles nomes com prefixos gregos, como pentágono e hexágono.' },
+  { ano: 'c. 300 a.C.', texto: 'Euclides organiza a geometria nos Elementos (como você viu em Pitágoras e Múltiplos e divisores).' },
+  { ano: 'Séc. 14', texto: 'Thomas Bradwardine faz o primeiro estudo sistemático conhecido dos polígonos que não são convexos.' },
+]} />
+
+## Os nomes vêm do grego
+
+Segundo a fonte, os polígonos têm nome formado por um **prefixo grego** mais "-gono", que quer dizer **"ângulo"**: **penta**gono (5), **hexa**gono (6), **hepta**gono (7), **octo**gono (8). Há exceções: **triângulo** (3), **quadrilátero** (4) e nonágono (9) têm nomes de origem diferente. A fonte também mostra um truque curioso: se um polígono regular tem **1 milhão de lados** (o "megágono"), ele fica **tão parecido com um círculo** que o olho não vê a diferença.
+
+## Uma estrela num vaso
+
+A fonte conta que os polígonos regulares já eram conhecidos pelos **gregos**, e que um **pentagrama** aparece num vaso (um *krater*) do **século 7 a.C.** Já o primeiro estudo sistemático dos polígonos **não convexos** (os "amassados", com ângulos entrando para dentro) é do **século 14**, de **Thomas Bradwardine**.
+
+## Forma não é tamanho
+
+A fonte define **forma** como a **representação do contorno ou da superfície** de um objeto, sem contar a **cor**, a **textura** ou o **material**. E, na geometria, a forma **não depende** da posição, do tamanho ou da orientação: um quadrado pequeno e um quadrado grande têm **a mesma forma**; só mudam de **tamanho**.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Figuras planas e sólidos
+
+Há dois "mundos" de formas:
+
+- **Figuras planas** (de **duas dimensões**) ficam numa folha: círculo, quadrado, triângulo, retângulo, losango. Têm **comprimento e largura**.
+- **Sólidos geométricos** (de **três dimensões**) ocupam espaço: cubo, esfera, cone, cilindro. Têm também **altura**, e dá para pegar na mão.
+
+Segundo a fonte, exemplos de formas planas: círculo, quadrado, triângulo, retângulo, oval, estrela, losango e semicírculo. E de sólidos: cubos, esferas, cones, cilindros e poliedros (formas com faces planas).
+
+## 2. O que é um polígono
+
+Um **polígono** é uma **figura plana** formada por **segmentos de reta** que se ligam e **fecham um contorno**. Cada segmento é um **lado**, o ponto onde dois lados se encontram é um **vértice**, e dentro de cada vértice há um **ângulo**. Um polígono tem sempre **tantos lados quanto vértices e ângulos**.
+
+## 3. O círculo não é polígono
+
+O **círculo** (ou melhor, a **circunferência**, que é o contorno) é feito de uma **linha curva**, e não de segmentos de reta. Por isso **não é polígono**. Resposta à pergunta do começo: **um círculo não tem lados**, porque lado é um segmento de reta. (O megágono é um truque: com muitos lados bem pequenos ele **parece** um círculo, mas continua sendo um polígono.)
+
+## 4. Os nomes pelos lados
+
+**3 lados:** triângulo. **4:** quadrilátero. **5:** pentágono. **6:** hexágono. **7:** heptágono. **8:** octógono. Para os outros, a fonte diz que se usa o prefixo grego com "-gono": decágono (10), dodecágono (12).
+
+<ExemploResolvido titulo="Quantos vértices tem um hexágono? E quantos ângulos?">
+  <Passo>Hexá quer dizer 6: o hexágono tem **6 lados**.</Passo>
+  <Passo>Um polígono tem tantos vértices quanto lados: **6 vértices**.</Passo>
+  <Passo>E tem tantos ângulos quanto vértices: **6 ângulos**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos lados tem um octógono? (número)" resposta="8" dica="Octo quer dizer oito." resolucao="Octógono tem 8 lados." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Um círculo é um polígono?"
+  opcoes={['Sim: é como um polígono com muitos lados', 'Não: polígonos só têm lados retos, e o círculo é curvo', 'Só se for grande']}
+  correta={1}
+  explicacao="Um polígono é feito só de segmentos de reta. O círculo tem uma linha curva, então não é polígono e não tem lados. Com muitos lados pequenos, um polígono se parece com um círculo, mas continua sendo um polígono."
+>
+
+Mude o número de lados e veja o polígono mudar de nome. Com muitos lados, ele começa a parecer um círculo.
+
+<ConstroiPoligono />
+
+Agora veja **quando três lados fecham um triângulo**.
+
+<TrianguloPorLados />
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Sim: é como um polígono com muitos lados', 'Não: polígonos só têm lados retos, e o círculo é curvo', 'Só se for grande']}
+  correta={1}
+  seAcertou="E o palpite do começo? Isso: o círculo é curvo e polígonos só têm lados retos."
+  seErrou="E o palpite do começo? Polígonos são feitos só de segmentos de reta. O círculo é curvo, então não é polígono e não tem lados. Com muitos lados, um polígono só se parece com ele."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Elementos e nomes dos polígonos
+
+Pense numa figura plana fechada. Se **todos** os lados forem retos, é polígono. Cada vértice tem um ângulo, e o **perímetro** é a soma dos lados (como você viu em Medidas). Um polígono é **regular** quando tem **todos os lados iguais** e **todos os ângulos iguais**. O **quadrado** é o quadrilátero regular, e o **triângulo equilátero**, o triângulo regular.
+
+<ExemploResolvido titulo="Perímetro de um pentágono regular de lado 4 cm">
+  <Passo>Um pentágono tem 5 lados.</Passo>
+  <Passo>Como é regular, todos medem 4 cm.</Passo>
+  <Passo>Perímetro: 5 × 4 = **20 cm**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é o perímetro de um hexágono regular de lado 7 cm? (em cm)" resposta="42" dica="6 × 7." resolucao="6 × 7 = 42 cm." />
+
+<Exercicio enunciado="Qual é o perímetro de um triângulo equilátero de lado 9 cm? (em cm)" resposta="27" dica="3 × 9." resolucao="3 × 9 = 27 cm." />
+
+<Aprofundar titulo="Convexo e côncavo">
+Segundo a fonte, num polígono **convexo** qualquer reta que o atravesse encosta no contorno **exatamente duas vezes**, e todos os ângulos internos são **menores que 180°**. Num polígono **côncavo**, pelo menos um ângulo interno é **maior que 180°**, como numa seta ou numa estrela de pontas fundas. É o polígono "amassado", com uma dobra para dentro. A fonte conta que o primeiro estudo sistemático desses polígonos é do século 14, com Thomas Bradwardine. Na escola, quase sempre falamos de polígonos convexos.
+</Aprofundar>
+
+## Triângulos
+
+O **triângulo** tem **3 lados**, 3 vértices e 3 ângulos. Podemos classificá-lo **pelos lados**:
+
+- **Equilátero:** os **3 lados iguais**.
+- **Isósceles:** **2 lados iguais**.
+- **Escaleno:** os **3 lados diferentes**.
+
+Há uma regra curiosa: três pedaços de lado só **fecham** um triângulo se o **maior** for **menor que a soma dos outros dois**. Com lados 2, 3 e 9, os dois menores (2 + 3 = 5) não alcançam o maior (9): as pontas não se encontram.
+
+<ExemploResolvido titulo="Os lados 3, 4 e 5 formam um triângulo? E 2, 3 e 9?">
+  <Passo>3, 4 e 5: o maior é 5, e 3 + 4 = 7. Como 5 é menor que 7, **forma**. Os três são diferentes: é **escaleno**.</Passo>
+  <Passo>2, 3 e 9: o maior é 9, e 2 + 3 = 5. Como 9 não é menor que 5, **não forma**.</Passo>
+  <Passo>Você já viu o 3-4-5 em Pitágoras: ele é, ainda por cima, um triângulo com ângulo reto.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um triângulo tem lados 5, 5 e 8. Quantos lados iguais ele tem? (número)" resposta="2" dica="Dois lados valem 5." resolucao="Tem 2 lados iguais: é isósceles." />
+
+<Exercicio enunciado="Quantos lados iguais tem um triângulo equilátero? (número)" resposta="3" dica="Equi = igual." resolucao="Os 3 lados são iguais." />
+
+<Aprofundar titulo="A soma dos ângulos de um triângulo">
+Em qualquer triângulo, os três ângulos somam **180°** (você viu isso em Ângulos, no Fundamental). Uma forma de ver: rasgue os três cantos de um triângulo de papel e junte-os pelas pontas. Eles formam uma **linha reta**, que é 180°. A fonte generaliza: num polígono simples de **n lados**, a soma dos ângulos internos é **(n − 2) × 180°**, porque dá para cortar o polígono em **n − 2 triângulos**. Um quadrilátero (n = 4) soma 2 × 180° = **360°**, um pentágono (n = 5), 3 × 180° = **540°**.
+</Aprofundar>
+
+## Quadriláteros
+
+O **quadrilátero** tem **4 lados**. Os nomes dependem de **três pistas**: quantos pares de **lados paralelos** (que nunca se encontram), se os **4 lados são iguais** e se os **4 ângulos são retos**.
+
+- **Quadrado:** 2 pares de lados paralelos, 4 lados iguais e 4 ângulos retos.
+- **Retângulo:** 2 pares paralelos e 4 ângulos retos (lados vizinhos podem ser diferentes).
+- **Losango:** 2 pares paralelos e 4 lados iguais (ângulos podem não ser retos).
+- **Paralelogramo:** 2 pares paralelos.
+- **Trapézio:** só 1 par de lados paralelos.
+
+<QuadrilateroDetetive />
+
+<ExemploResolvido titulo="Quem é? 2 pares paralelos, 4 lados iguais, ângulos não retos">
+  <Passo>Dois pares de lados paralelos: é, no mínimo, um **paralelogramo**.</Passo>
+  <Passo>Os 4 lados iguais fazem dele um **losango**.</Passo>
+  <Passo>Os ângulos não são retos, então **não é quadrado**.</Passo>
+  <Passo>Resposta: **losango**. Se os ângulos fossem retos, seria um quadrado.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos pares de lados paralelos tem um retângulo? (número)" resposta="2" dica="Os lados opostos." resolucao="2 pares: os lados de cima e de baixo, e os dois laterais." />
+
+<Exercicio enunciado="Quantos lados iguais tem um quadrado? (número)" resposta="4" dica="Todos." resolucao="Os 4 lados são iguais." />
+
+<Aprofundar titulo="Todo quadrado é retângulo?">
+Sim! Um retângulo é um quadrilátero com **4 ângulos retos**, e o quadrado tem 4 ângulos retos, então **todo quadrado é retângulo** (um retângulo especial, com os 4 lados iguais). Do mesmo jeito, **todo quadrado é losango** (um losango com ângulos retos) e **todo retângulo é paralelogramo**. Mas o contrário não vale: nem todo retângulo é quadrado. Pense em "família": o quadrado é o membro que reúne todas as qualidades ao mesmo tempo.
+</Aprofundar>
+
+## O círculo e seus elementos
+
+O **círculo** é a região dentro de uma **circunferência**, que é o contorno. Tem um **centro** e todos os pontos da circunferência ficam à **mesma distância** dele. Essa distância é o **raio**. O **diâmetro** é um segmento que passa pelo centro e liga dois pontos da circunferência: **diâmetro = 2 × raio**.
+
+<ExemploResolvido titulo="Uma roda com raio de 30 cm: qual é o diâmetro?">
+  <Passo>O diâmetro é o dobro do raio.</Passo>
+  <Passo>2 × 30 = **60 cm**.</Passo>
+  <Passo>Uma moeda com diâmetro de 2,5 cm tem raio de 2,5 ÷ 2 = **1,25 cm**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um círculo tem raio de 8 cm. Qual é o diâmetro, em cm? (número)" resposta="16" dica="Dobro do raio." resolucao="2 × 8 = 16 cm." />
+
+<Exercicio enunciado="Um círculo tem diâmetro de 10 cm. Qual é o raio, em cm? (número)" resposta="5" dica="Metade do diâmetro." resolucao="10 ÷ 2 = 5 cm." />
+
+<Aprofundar titulo="Circunferência e o número pi">
+Se você medir a volta de uma circunferência e dividir pelo seu diâmetro, vai encontrar **sempre o mesmo número**, qualquer que seja o tamanho do círculo: cerca de **3,14**. Esse número se chama **pi** (π), e é um decimal que **nunca termina** (conhecimento geral, fora da fonte). Então a volta de uma roda de **diâmetro 1 m** é de cerca de **3,14 m**: cada volta da roda no chão avança 3,14 m. Você vai explorar o pi com calma no Fundamental. Aqui, o importante é saber que o círculo tem uma **medida de contorno** própria, e que ela é **um pouco mais que 3 diâmetros**.
+</Aprofundar>
+
+## Simetria: dobrar e encaixar
+
+Uma figura tem **simetria de reflexão** quando dá para traçar uma linha, o **eixo de simetria**, que a divide em **duas metades que se encaixam** como num espelho. Se você dobrar o papel no eixo, as metades coincidem. O **quadrado** tem **4 eixos**, o **triângulo equilátero**, 3, e o **círculo**, **infinitos**.
+
+<EixosDeSimetria />
+
+<ExemploResolvido titulo="Quantos eixos de simetria tem um retângulo (que não é quadrado)?">
+  <Passo>Dobre o retângulo ao meio na horizontal: as metades se encaixam. É 1 eixo.</Passo>
+  <Passo>Dobre ao meio na vertical: também se encaixam. É o 2º eixo.</Passo>
+  <Passo>Na diagonal, as metades não se encaixam (são triângulos "espelhados" mas não coincidem dobrando).</Passo>
+  <Passo>Resposta: **2 eixos**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos eixos de simetria tem um quadrado? (número)" resposta="4" dica="2 no meio e 2 nas diagonais." resolucao="4 eixos: 2 pelos meios dos lados e 2 pelas diagonais." />
+
+<Exercicio enunciado="Quantos eixos de simetria tem um triângulo equilátero? (número)" resposta="3" dica="Um por vértice." resolucao="3 eixos, um passando por cada vértice." />
+
+<Aprofundar titulo="Simetria na natureza e na arte">
+A simetria está **por toda parte**: nas asas das borboletas, nas folhas, no rosto das pessoas (quase simétrico), nos flocos de neve (com seis lados) e nos favos das abelhas, feitos de **hexágonos**. Em **bandeiras**, **construções** e **logos**, a simetria dá sensação de equilíbrio. Já a **assimetria** também é usada para chamar a atenção. Quando você aprender a **espelhar** pontos no plano cartesiano, vai ver a simetria virar conta: no Fundamental, refletir no eixo muda o sinal de uma das coordenadas.
+</Aprofundar>
+
+## Sólidos geométricos
+
+Um **sólido geométrico** ocupa espaço. Os que têm só **faces planas** são **poliedros**, e têm **faces** (as superfícies planas), **arestas** (onde duas faces se encontram, os "cantos" lineares) e **vértices** (os "pontinhos" onde as arestas se encontram). Os que têm superfície **curva** (cilindro, cone, esfera) **não são poliedros**.
+
+<SolidosFacesArestas />
+
+<ExemploResolvido titulo="Quantas faces, arestas e vértices tem um cubo?">
+  <Passo>Faces: 6 quadrados (como um dado).</Passo>
+  <Passo>Arestas: 4 em cima, 4 embaixo e 4 nas laterais = **12**.</Passo>
+  <Passo>Vértices: 4 em cima e 4 embaixo = **8**.</Passo>
+  <Passo>Confira a regra de Euler: V − A + F = 8 − 12 + 6 = **2**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas faces tem uma pirâmide de base quadrada? (número)" resposta="5" dica="1 base mais 4 triângulos." resolucao="1 base quadrada + 4 faces triangulares = 5 faces." />
+
+<Exercicio enunciado="Quantos vértices tem um cubo? (número)" resposta="8" dica="4 em cima e 4 embaixo." resolucao="8 vértices." />
+
+<Aprofundar titulo="A fórmula de Euler">
+Nos **poliedros** vale uma relação muito bonita: **V − A + F = 2** (vértices menos arestas mais faces é sempre 2). No cubo: 8 − 12 + 6 = 2. Na pirâmide de base quadrada: 5 − 8 + 5 = 2. No prisma triangular: 6 − 9 + 5 = 2. Ela vale para os poliedros "comuns" (sem buracos) e é atribuída ao matemático **Leonhard Euler**, o mesmo que usou pela primeira vez a notação f(x) (conhecimento geral, fora da fonte). Você pode usá-la para **conferir** se contou direito: se a conta não der 2, falta ou sobra uma aresta, um vértice ou uma face.
+</Aprofundar>
+
+## Formas no dia a dia
+
+<FormaDoObjeto />
+
+<ExemploResolvido titulo="Que sólido é uma lata de milho?">
+  <Passo>Ela tem duas pontas redondas e iguais (as bases) e uma lateral que se enrola.</Passo>
+  <Passo>Lateral curva significa que não é poliedro.</Passo>
+  <Passo>É um **cilindro**. Planificada, a lata vira 2 círculos e 1 retângulo (o rótulo).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas faces planas tem uma lata (cilindro)? (número)" resposta="2" dica="As duas bases." resolucao="2 faces planas (as bases circulares) e 1 superfície curva." />
+
+## Erros comuns (e como fugir deles)
+
+- **Chamar o círculo de polígono.** Círculo é curvo e não tem lados.
+- **Confundir "quadrado" com "retângulo":** todo quadrado é retângulo, mas nem todo retângulo é quadrado.
+- **Confundir figura plana com sólido:** quadrado é plano (2 dimensões) e cubo é sólido (3 dimensões).
+- **Contar vértices de um cone como se fossem 5:** o cone tem 1 vértice (a ponta).
+- **Esquecer que diâmetro é o dobro do raio.**
+
+<Exercicio enunciado="Quantas dimensões tem uma figura plana, como o quadrado? (número)" resposta="2" dica="Comprimento e largura." resolucao="2 dimensões. O cubo, sólido, tem 3." />
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Um círculo é um polígono?',
+    opcoes: ['Não: polígonos têm só lados retos', 'Sim, com muitos lados', 'Só se for pequeno'],
+    correta: 0,
+    explicacao: 'O círculo é curvo e não tem lados. Polígonos são feitos só de segmentos de reta.',
+  },
+  {
+    enunciado: 'Quantos lados tem um hexágono?',
+    opcoes: ['6', '5', '8'],
+    correta: 0,
+    explicacao: 'Hexa vem do grego e quer dizer 6.',
+  },
+  {
+    enunciado: 'O que é um polígono regular?',
+    opcoes: ['Todos os lados e todos os ângulos iguais', 'Só os lados iguais, e os ângulos quaisquer', 'Qualquer polígono'],
+    correta: 0,
+    explicacao: 'Regular significa lados iguais e ângulos iguais, como o quadrado.',
+  },
+  {
+    enunciado: 'Qual é o perímetro de um pentágono regular de lado 4 cm?',
+    opcoes: ['20 cm', '16 cm', '9 cm'],
+    correta: 0,
+    explicacao: '5 lados × 4 cm = 20 cm.',
+  },
+  {
+    enunciado: 'Um triângulo com lados 5, 5 e 8 é:',
+    opcoes: ['Isósceles', 'Equilátero', 'Escaleno'],
+    correta: 0,
+    explicacao: 'Tem 2 lados iguais (5 e 5): é isósceles.',
+  },
+  {
+    enunciado: 'Os lados 2, 3 e 9 formam um triângulo?',
+    opcoes: ['Não: 2 + 3 não passa de 9', 'Sim', 'Só se forem em cm'],
+    correta: 0,
+    explicacao: 'O maior lado precisa ser menor que a soma dos outros dois, e 9 não é menor que 5.',
+  },
+  {
+    enunciado: 'Qual quadrilátero tem 4 lados iguais e 4 ângulos retos?',
+    opcoes: ['Quadrado', 'Losango (qualquer)', 'Trapézio'],
+    correta: 0,
+    explicacao: 'O quadrado reúne todas as qualidades: 2 pares de lados paralelos, 4 lados iguais e 4 ângulos retos.',
+  },
+  {
+    enunciado: 'Todo quadrado é um retângulo?',
+    opcoes: ['Sim: tem 4 ângulos retos', 'Não', 'Só os pequenos'],
+    correta: 0,
+    explicacao: 'O quadrado é um retângulo especial, com os 4 lados iguais.',
+  },
+  {
+    enunciado: 'Um círculo tem diâmetro de 10 cm. Qual é o raio?',
+    opcoes: ['5 cm', '20 cm', '10 cm'],
+    correta: 0,
+    explicacao: 'O raio é a metade do diâmetro: 10 ÷ 2 = 5.',
+  },
+  {
+    enunciado: 'Quantos eixos de simetria tem um quadrado?',
+    opcoes: ['4', '2', '1'],
+    correta: 0,
+    explicacao: 'Dois pelos meios dos lados e dois pelas diagonais.',
+  },
+  {
+    enunciado: 'Quantos vértices, arestas e faces tem um cubo?',
+    opcoes: ['8 vértices, 12 arestas e 6 faces', '6 vértices, 8 arestas e 12 faces', '8 vértices, 6 arestas e 12 faces'],
+    correta: 0,
+    explicacao: 'Cubo: V = 8, A = 12, F = 6, e V − A + F = 2.',
+  },
+  {
+    enunciado: 'Qual dessas formas NÃO é um poliedro?',
+    opcoes: ['Cilindro', 'Cubo', 'Pirâmide de base quadrada'],
+    correta: 0,
+    explicacao: 'O cilindro tem superfície curva; poliedros só têm faces planas.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Figuras planas** têm 2 dimensões (quadrado, círculo, triângulo); **sólidos** têm 3 (cubo, esfera, cone, cilindro).
+- **Polígono:** figura plana fechada por **segmentos de reta**. Tem tantos lados quanto vértices e ângulos. O **círculo não é polígono** (é curvo).
+- **Nomes:** 3 triângulo, 4 quadrilátero, 5 pentágono, 6 hexágono, 7 heptágono, 8 octógono.
+- **Regular:** lados e ângulos todos iguais. A soma dos ângulos internos de um polígono de n lados é **(n − 2) × 180°**.
+- **Triângulo:** equilátero (3 lados iguais), isósceles (2) e escaleno (0). Os três lados só fecham se o maior for menor que a soma dos outros dois.
+- **Quadriláteros:** quadrado, retângulo, losango, paralelogramo e trapézio. **Todo quadrado é retângulo e losango.**
+- **Círculo:** centro, raio e diâmetro (o dobro do raio).
+- **Simetria:** eixo que divide a figura em duas metades que se encaixam.
+- **Poliedros:** faces, arestas e vértices, com V − A + F = 2.
+
+**Um pouco de história.** A palavra geometria vem do grego e quer dizer "medir a terra". Os gregos conheciam os polígonos regulares e deram a eles nomes com prefixos gregos, e um pentagrama aparece num vaso do século 7 a.C. Por volta de 300 a.C., Euclides organizou a geometria nos Elementos. No século 14, Thomas Bradwardine fez o primeiro estudo sistemático dos polígonos não convexos.
+
+</Resumo>
+
+Para fechar a Matemática Básica, vamos ver como **organizar e ler dados**: **tabelas e gráficos**. Ler um gráfico antes de acreditar nele é uma defesa e tanto contra enganos.
+
+<Conexoes />
+
+</Etapa>
