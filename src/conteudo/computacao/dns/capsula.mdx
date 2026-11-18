@@ -1,0 +1,404 @@
+import ListaTelefonica from '../../../components/simulacoes/ListaTelefonica'
+import ConsultaDnsPasso from '../../../components/simulacoes/ConsultaDnsPasso'
+import DominioDesmontado from '../../../components/simulacoes/DominioDesmontado'
+import CacheETtl from '../../../components/simulacoes/CacheETtl'
+import TiposDeRegistro from '../../../components/simulacoes/TiposDeRegistro'
+import NomeValido from '../../../components/simulacoes/NomeValido'
+
+{/* Fatos conferidos na Wikipedia em inglês (Domain Name System, Domain name), listadas no meta.ts. Endereços e nomes das simulações são exemplos. */}
+
+<Etapa id="gancho">
+
+Você digita **curiosamente-seven.vercel.app** e a página aparece. Mas, como você viu na cápsula anterior, os pacotes precisam de um **endereço IP**, um número como 203.0.113.10. Ninguém digita isso. Então, **quem traduz o nome em número**, e em quanto tempo?
+
+Quem faz esse trabalho é o **DNS**, uma espécie de lista telefônica gigante e distribuída. Ele roda por trás de **toda** página que você abre, geralmente em poucos milissegundos, e quase ninguém percebe.
+
+<Palpite
+  chave="inicial"
+  pergunta="O DNS é uma lista única, guardada num único computador no mundo?"
+  opcoes={['Sim, um computador central guarda tudo', 'Não, é um sistema distribuído e em hierarquia, com muitos servidores', 'Não existe lista: cada site guarda o nome dos outros']}
+/>
+
+Nesta cápsula você vai consultar a lista telefônica, acompanhar uma consulta de DNS passo a passo, ler um domínio da direita para a esquerda, ver o cache e o TTL em ação, conhecer os tipos de registro e testar nomes de domínio válidos e inválidos.
+
+</Etapa>
+
+<Etapa id="historia">
+
+No começo da rede, uma única pessoa mantinha uma lista com todos os computadores.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Antes de 1983', texto: 'Um arquivo único, o HOSTS.TXT, mantido no SRI, ligava cada nome ao endereço.' },
+  { ano: '1983', texto: 'Paul Mockapetris cria o DNS no Instituto de Ciências da Informação da USC. Em novembro saem as RFCs 882 e 883.' },
+  { ano: '1985', texto: 'Em 15 de março, symbolics.com é registrado: o primeiro domínio .com.' },
+  { ano: '1987', texto: 'As RFCs 1034 e 1035 substituem as primeiras e definem o DNS que usamos até hoje.' },
+]} />
+
+## O arquivo que não deu mais conta
+
+No início, havia um **arquivo de texto único**, o HOSTS.TXT, com todos os nomes e endereços. Cada computador baixava uma cópia atualizada. Enquanto a rede era pequena, funcionava. Mas, com centenas e depois milhares de máquinas entrando todos os dias, o arquivo ficou grande, difícil de manter e sempre desatualizado.
+
+## Mockapetris e a ideia de hierarquia
+
+Em 1983, **Paul Mockapetris** criou o **DNS**: em vez de uma lista central, uma **árvore de responsabilidades**. Cada parte do nome tem um dono, e cada dono cuida só da sua parte. Jon Postel participou do trabalho de manter os endereços. As primeiras especificações foram as RFCs 882 e 883, de novembro de 1983, substituídas pelas RFCs 1034 e 1035 em novembro de 1987.
+
+## O primeiro .com
+
+Em **15 de março de 1985**, a empresa Symbolics, de Massachusetts, registrou **symbolics.com**, o primeiro nome .com. Quase quarenta anos depois, existem centenas de milhões de domínios.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. A lista telefônica
+
+Antigamente, para ligar para alguém, você procurava o **nome** na lista telefônica e achava o **número**. O DNS faz o mesmo: o **nome** (como `www.exemplo.com`) é o que você lembra, o **número** (o IP) é o que as máquinas usam.
+
+<ListaTelefonica />
+
+Também dá para ir ao contrário: dado o número, achar o nome. Isso se chama **consulta reversa**.
+
+<ExemploResolvido titulo="Por que não usar só números?">
+  <Passo>Os números são difíceis de lembrar: 203.0.113.10 vs. exemplo.com.</Passo>
+  <Passo>Os números **mudam**: o serviço pode ir para outro servidor e ganhar outro IP.</Passo>
+  <Passo>O nome **fica o mesmo**: só atualiza-se a lista, e todo mundo continua entrando pelo mesmo nome.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O DNS traduz nomes em quê? (ip ou senha)" resposta="ip" dica="A cápsula anterior falou disso." resolucao="Em endereços IP." />
+
+## 2. Uma lista que ninguém guarda sozinho
+
+Nenhum computador sabe todos os nomes do mundo. O DNS funciona como uma **cadeia de especialistas**: cada servidor sabe só um pedaço e sabe indicar **quem pergunta a seguir**. É como perguntar a uma recepcionista: "Onde fica a sala 402?" Ela diz "bloco B", no bloco B outra pessoa indica "terceiro andar", e assim por diante, até chegar à porta.
+
+<ConsultaDnsPasso />
+
+Repare que ninguém tem a resposta completa até o final, mas todo mundo sabe indicar o próximo passo. Isso é o que torna o sistema **enorme e rápido** ao mesmo tempo.
+
+<Exercicio enunciado="Na consulta do exemplo, quantos passos tem a viagem completa (navegador, resolvedor, raiz, .com, servidor oficial, volta)?" resposta="6" dica="Conte os passos da simulação." resolucao="São 6 passos." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Você visita o mesmo site 3 vezes em 1 minuto. Quantas vezes o DNS faz a viagem completa (raiz, .com, servidor oficial)?"
+  opcoes={['3 vezes, uma por visita', 'Só na primeira; as outras vêm do cache', 'Nenhuma: o DNS nunca consulta nada']}
+  correta={1}
+  explicacao="Os resolvedores guardam a resposta no cache pelo tempo de validade (TTL) definido pelo dono do domínio. Dentro desse tempo, a resposta vem direto da memória, sem refazer a viagem."
+>
+
+Consulte o site, deixe o tempo passar e veja quando o cache vence:
+
+<CacheETtl />
+
+Repare: logo após a primeira consulta completa, as outras vêm do cache, quase instantâneas. Só depois que o **TTL** (tempo de vida) acaba é que a consulta completa acontece de novo.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Sim, um computador central guarda tudo', 'Não, é um sistema distribuído e em hierarquia, com muitos servidores', 'Não existe lista: cada site guarda o nome dos outros']}
+  correta={1}
+  seAcertou="E o palpite do começo? Isso: o DNS é distribuído e hierárquico."
+  seErrou="E o palpite do começo? O DNS é distribuído e hierárquico: muitos servidores, cada um responsável por uma parte, e nenhum guarda tudo."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Como ler um domínio
+
+Um **nome de domínio** é formado por partes separadas por pontos. Leia **da direita para a esquerda**: do mais geral ao mais específico.
+
+- A parte da direita é o **domínio de topo** (TLD): `.com`, `.org`, `.br`.
+- A parte à esquerda dele é o **domínio de segundo nível**: o nome que alguém registrou.
+- O que vier antes são **subdomínios**: `www`, `blog`, `loja`...
+
+Em `blog.loja.exemplo.com`, o `.com` é o TLD, `exemplo` é o nome registrado e `loja` e `blog` são subdomínios dele.
+
+<DominioDesmontado />
+
+<ExemploResolvido titulo="Desmontando um endereço">
+  <Passo>Endereço: `www.universidade.edu.br`.</Passo>
+  <Passo>Da direita para a esquerda: `br` (país: Brasil), `edu` (educação), `universidade` (o nome), `www` (o subdomínio).</Passo>
+  <Passo>O dono do nome `universidade` pode criar quantos subdomínios quiser, como `biblioteca.universidade.edu.br`.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Em blog.loja.exemplo.com, qual é o domínio de topo? (escreva só as letras, sem o ponto)" resposta="com" dica="É a parte mais à direita." resolucao="O domínio de topo é .com." />
+
+<Exercicio enunciado="Quantas partes (separadas por pontos) tem www.exemplo.com.br?" resposta="4" dica="www, exemplo, com, br." resolucao="São 4 partes." />
+
+<Exercicio enunciado="Em www.exemplo.com, qual parte é o subdomínio? (escreva só as letras)" resposta="www" dica="É a que fica antes do nome registrado." resolucao="www é o subdomínio." />
+
+<Aprofundar titulo="Tipos de TLD">
+
+Há dois grandes grupos. Os **TLDs de país** (ccTLDs) têm duas letras, baseadas nos códigos de países: `.br` (Brasil), `.pt` (Portugal), `.uk` (Reino Unido). Os **TLDs genéricos** (gTLDs) cobrem categorias, como `.com`, `.org`, `.net` e `.info`. A **ICANN** supervisiona o desenvolvimento dos domínios de topo e credencia os **registradores**, as empresas que vendem registro de domínios ao público.
+
+</Aprofundar>
+
+## Da árvore à consulta
+
+A hierarquia forma uma **árvore**, cujo topo é a **raiz**. Abaixo dela, os TLDs. Abaixo de cada TLD, os domínios registrados. E assim por diante. Cada nível tem **servidores oficiais** (autoritativos) responsáveis por ele.
+
+Quando o navegador precisa de um IP, um **resolvedor recursivo** (muitas vezes o do provedor de internet) faz o trabalho em seu nome: começa nos servidores raiz, que o indicam para os servidores do TLD, que o indicam para os servidores oficiais do domínio, que finalmente respondem com o IP. Existem **13 identidades de servidores raiz**, mas há muitas cópias espalhadas pelo mundo (usando uma técnica chamada anycast), então elas respondem rápido de perto de você.
+
+<ExemploResolvido titulo="Quem sabe o quê?">
+  <Passo>O **servidor raiz** não sabe o IP de `www.exemplo.com`, mas sabe quem cuida de tudo que termina em `.com`.</Passo>
+  <Passo>O **servidor do .com** não sabe o IP de `www`, mas sabe quem cuida de `exemplo.com`.</Passo>
+  <Passo>O **servidor oficial de exemplo.com** sabe o IP de `www.exemplo.com`: é a fonte de verdade.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas 'identidades' de servidores raiz existem?" resposta="13" dica="Há muitas cópias, mas só 13 identidades." resolucao="13 identidades, com muitas cópias espalhadas pelo mundo." />
+
+<Aprofundar titulo="Por que o DNS usa a porta 53">
+
+O DNS responde na **porta 53** (veja a cápsula de IP e portas). Pergunta e resposta normalmente cabem num único pacote pequeno, então o protocolo mais usado é o **UDP**, que é rápido e dispensa conversa prévia. Quando a resposta é grande demais, usa-se o **TCP**.
+
+</Aprofundar>
+
+## Cache e TTL
+
+Fazer a viagem completa toda vez seria desperdício. Por isso os resolvedores **guardam** (cache) cada resposta por um tempo, o **TTL** (*time to live*, "tempo de vida"), definido por quem administra o domínio. Enquanto o cache é válido, a resposta vem na hora. Depois que vence, o resolvedor consulta de novo.
+
+O TTL tem um efeito prático: se você muda o IP de um site, nem todo mundo vê a mudança ao mesmo tempo, porque alguns resolvedores ainda guardam a resposta antiga. Esse atraso se chama **propagação**.
+
+<ExemploResolvido titulo="Quanto demora a propagação?">
+  <Passo>O TTL do domínio é 3.600 s (1 hora).</Passo>
+  <Passo>No pior caso, um resolvedor guardou o IP antigo um instante antes de você mudar.</Passo>
+  <Passo>Ele só vai consultar de novo daqui a 1 hora. Então a mudança pode levar **até 1 hora** para aparecer para todos (um TTL menor deixa a troca mais rápida).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um domínio tem TTL de 600 segundos. Em quantos minutos o cache vence?" resposta="10" dica="600 ÷ 60." resolucao="600 ÷ 60 = 10 minutos." />
+
+<Exercicio enunciado="Com TTL de 1 hora, qual é o tempo máximo de propagação de uma mudança, em minutos?" resposta="60" dica="1 hora tem 60 minutos." resolucao="Até 60 minutos." />
+
+## Tipos de registro
+
+Um domínio não guarda só "nome → IP". A lista dele tem várias linhas chamadas **registros**, cada uma de um tipo:
+
+<TiposDeRegistro />
+
+Em resumo:
+
+- **A**: endereço IPv4.
+- **AAAA**: endereço IPv6 (o nome tem 4 As porque o IPv6 tem 4 vezes mais bits: 128 contra 32).
+- **CNAME**: apelido, um nome que aponta para outro nome.
+- **MX**: onde chega o e-mail do domínio.
+- **TXT**: texto livre, usado para provar a posse do domínio, entre outros usos.
+- **NS**: quais servidores são a fonte oficial do domínio.
+
+<ExemploResolvido titulo="Por que o e-mail funciona separado do site?">
+  <Passo>O site fica no servidor A, com o registro **A** apontando para ele.</Passo>
+  <Passo>O e-mail do mesmo domínio pode ficar em outro servidor, indicado pelo registro **MX**.</Passo>
+  <Passo>Assim, é possível mudar de hospedagem do site sem perder o e-mail, ou o contrário.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual tipo de registro diz onde chega o e-mail de um domínio? (duas letras)" resposta="mx" dica="Mail eXchanger." resolucao="O registro MX." />
+
+<Exercicio enunciado="Qual registro guarda o endereço IPv4 de um site? (uma letra)" resposta="a" dica="O mais simples de todos." resolucao="O registro A." />
+
+<Aprofundar titulo="CNAME: o apelido que aponta para outro nome">
+
+Imagine que você hospeda seu site numa plataforma que tem o nome `minha-conta.plataforma.app`. Você registra `www.meusite.com` como **CNAME** apontando para esse nome. Quando alguém pede `www.meusite.com`, o DNS responde: "ele é apelido de `minha-conta.plataforma.app`", e a consulta continua até achar o IP. Se a plataforma mudar de servidor, você não precisa mexer em nada.
+
+</Aprofundar>
+
+## Regras para um nome válido
+
+Nem todo texto serve como nome de domínio. As regras principais:
+
+- Cada parte (entre pontos) tem de **1 a 63** caracteres.
+- O nome inteiro tem no máximo **253** caracteres.
+- As partes usam **letras sem acento, números e hífen**, e o hífen não pode estar no começo nem no fim de uma parte.
+
+Teste:
+
+<NomeValido />
+
+<ExemploResolvido titulo="Esse nome é válido?">
+  <Passo>`meu-site.com.br`: partes `meu-site`, `com`, `br`. Letras e hífen no meio: **válido**.</Passo>
+  <Passo>`-erro.com`: a primeira parte começa com hífen. **Inválido**.</Passo>
+  <Passo>`café.com`: o "é" tem acento, que não faz parte do conjunto simples. Nomes com acento existem, mas passam por uma codificação especial, assunto avançado.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O nome 'meu-site.com' tem hífen no meio. É válido? (sim ou nao)" resposta="sim" dica="Hífen no começo ou no fim é que não pode." resolucao="Sim: hífen no meio é permitido." />
+
+<Exercicio enunciado="Uma parte de domínio tem no máximo quantos caracteres?" resposta="63" dica="Um número só um pouco abaixo de 64." resolucao="No máximo 63." />
+
+<Aprofundar titulo="Registrar não é comprar">
+
+Quando você 'compra' um domínio, na verdade **registra o direito de usar aquele nome por um período**, pagando a um **registrador**. Não é propriedade permanente: se você deixar de renovar, o nome fica livre de novo. Os dados de quem registrou ficam em um serviço público chamado WHOIS (hoje sucedido pelo RDAP), embora muitas informações pessoais sejam ocultadas por privacidade.
+
+</Aprofundar>
+
+## Passo a passo: colocar um domínio no ar
+
+Quando você tem um site hospedado em uma plataforma e quer usar o **seu** domínio, o caminho costuma ser:
+
+1. **Registrar** o nome numa empresa registradora (e pagar por um período).
+2. Descobrir quais **dados de DNS** a plataforma pede: normalmente um IP (registro A) ou um nome (registro CNAME).
+3. Entrar no painel do registrador e **criar o registro** com esses valores.
+4. **Esperar a propagação**: de alguns minutos até as horas definidas pelo TTL.
+5. Conferir abrindo o endereço. Se não abrir, o erro mais comum é digitar o valor do registro errado, ou ainda não ter propagado.
+
+Neste projeto, o site mora num endereço terminado em `.vercel.app`. Se um dia ele ganhar um domínio próprio, serão exatamente estes passos.
+
+<Exercicio enunciado="Você criou um registro DNS novo e o site ainda não abre. Além de ter digitado o valor errado, o outro motivo comum é faltar passar o tempo do cache (a propagação). Escreva a palavra que falta: o motivo é o ____ (tempo ou valor)." resposta="tempo" dica="O cache dura até o TTL." resolucao="O tempo: a propagação pode levar até o TTL do domínio." />
+
+## Quem escolhe o seu DNS
+
+Quando o seu computador precisa traduzir um nome, ele pergunta a um **resolvedor recursivo**. Quem define qual? Normalmente, o **provedor de internet**, que entrega essa informação junto com a conexão. Mas dá para **trocar** por outro resolvedor: algumas empresas oferecem resolvedores públicos gratuitos, e algumas pessoas os preferem por velocidade ou privacidade.
+
+Como o resolvedor vê **todos os nomes** que você consulta, ele sabe quais sites você visita (não o que você faz dentro deles, mas quais endereços procura). Por isso a escolha de resolvedor é uma decisão de privacidade, não só de velocidade.
+
+<ExemploResolvido titulo="Quem vê o quê?">
+  <Passo>Você abre `loja.exemplo.com`. Seu aparelho pergunta ao resolvedor: "qual o IP de loja.exemplo.com?".</Passo>
+  <Passo>O resolvedor **vê o nome** que você pediu, mesmo que a página depois use cadeado.</Passo>
+  <Passo>Já o conteúdo da página (suas mensagens, senhas) viaja pela conexão com o servidor, e é isso que o cadeado protege (assunto da próxima cápsula).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual serviço normalmente define qual resolvedor de DNS o seu aparelho usa, se você não mexer em nada: o provedor de internet ou o navegador? (provedor ou navegador)" resposta="provedor" dica="Ele entrega essa informação junto com a conexão." resolucao="O provedor de internet, na maioria dos casos." />
+
+## Nomes que parecem iguais: cuidado com golpes
+
+Como o DNS liga nomes a servidores, golpistas registram nomes **parecidos** com os de lojas e bancos: trocam uma letra, adicionam um hífen ou usam outro TLD (`banco-exemplo.com` no lugar de `bancoexemplo.com`). A página é uma cópia, mas o servidor é outro.
+
+Três hábitos simples protegem:
+
+- **Leia o domínio da direita para a esquerda**: o que vale é o nome registrado (antes do TLD), não o que aparece no começo. Em `banco.exemplo.com.golpe.net`, o dono real é `golpe.net`.
+- Desconfie de **links recebidos por mensagem**. Prefira digitar o endereço ou usar um favorito.
+- Confira o **cadeado** e o nome completo antes de digitar senhas.
+
+<ExemploResolvido titulo="Quem é o dono real do domínio?">
+  <Passo>Endereço: `login.banco.com.seguranca-urgente.net`.</Passo>
+  <Passo>Leia da direita para a esquerda: `net` (TLD), `seguranca-urgente` (o nome registrado), depois `com`, `banco` e `login` (subdomínios).</Passo>
+  <Passo>O dono do nome é **seguranca-urgente.net**, não o banco. O "banco.com" no meio é só enfeite para enganar.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="No endereço app.loja.exemplo.org.promocao.net, qual é o nome registrado pelo dono real? Escreva só a parte antes do TLD." resposta="promocao" dica="Leia da direita para a esquerda: net, depois o nome." resolucao="O TLD é net e o nome registrado é promocao (promocao.net). O resto são subdomínios." />
+
+<Aprofundar titulo="Domínios com acento e emojis">
+
+Existem nomes de domínio com letras acentuadas e até outros alfabetos, chamados de **domínios internacionalizados**. Por baixo, o sistema converte esses nomes numa forma que usa só as letras e números permitidos (o DNS clássico entende só caracteres simples). Isso abre espaço para golpes: letras de alfabetos diferentes podem parecer **idênticas** às latinas. É mais uma razão para desconfiar de links e conferir o endereço.
+
+</Aprofundar>
+
+## Quando o DNS dá problema
+
+O DNS é invisível quando funciona e muito confuso quando falha. Sintomas comuns:
+
+- **"Não foi possível encontrar o endereço do servidor"**: o nome não foi traduzido (erro de digitação, registro faltando ou DNS fora do ar).
+- **Site abre num aparelho e não em outro**: um deles ainda tem a resposta antiga no cache.
+- **Site abre pelo IP, mas não pelo nome**: o servidor está bem; o problema é o DNS.
+
+<ExemploResolvido titulo="Diagnóstico simples">
+  <Passo>O site não abre pelo nome. Você descobre o IP dele e tenta abrir o IP direto.</Passo>
+  <Passo>Se abrir pelo IP, o servidor está no ar: o problema é a **tradução do nome**, ou seja, o DNS.</Passo>
+  <Passo>Se não abrir nem pelo IP, o problema é do servidor ou da rede, não do DNS.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O site abre pelo IP mas não pelo nome. O problema provavelmente é do DNS? (sim ou nao)" resposta="sim" dica="O servidor responde, só a tradução falha." resolucao="Sim: se o IP funciona, o servidor está bom e a tradução do nome é que falha." />
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Para que serve o DNS?',
+    opcoes: ['Traduzir nomes em endereços IP', 'Guardar senhas', 'Aumentar a velocidade da internet'],
+    correta: 0,
+    explicacao: 'O DNS é a "lista telefônica": transforma nomes legíveis em endereços IP.',
+  },
+  {
+    enunciado: 'Quem criou o DNS, em 1983?',
+    opcoes: ['Paul Mockapetris', 'Tim Berners-Lee', 'Linus Torvalds'],
+    correta: 0,
+    explicacao: 'Paul Mockapetris, no Instituto de Ciências da Informação da USC. Berners-Lee criou a Web e Torvalds, o Linux.',
+  },
+  {
+    enunciado: 'O que existia antes do DNS?',
+    opcoes: ['Um arquivo único, o HOSTS.TXT', 'Nada: todo mundo decorava os IPs', 'Satélites'],
+    correta: 0,
+    explicacao: 'Um arquivo único, mantido no SRI, ligava cada nome ao endereço. Ele ficou grande demais.',
+  },
+  {
+    enunciado: 'Em www.exemplo.com, qual é o domínio de topo?',
+    opcoes: ['com', 'www', 'exemplo'],
+    correta: 0,
+    explicacao: 'Lê-se da direita para a esquerda: o TLD é o último, "com".',
+  },
+  {
+    enunciado: 'Quem vem primeiro numa consulta de DNS completa?',
+    opcoes: ['Os servidores raiz', 'O servidor oficial do domínio', 'O site'],
+    correta: 0,
+    explicacao: 'A consulta começa na raiz, que indica o servidor do TLD, que indica o servidor oficial.',
+  },
+  {
+    enunciado: 'Para que serve o cache do DNS?',
+    opcoes: ['Evitar repetir a consulta completa a cada visita', 'Bloquear sites', 'Trocar o IP do site'],
+    correta: 0,
+    explicacao: 'O resolvedor guarda a resposta e a reutiliza até o TTL vencer.',
+  },
+  {
+    enunciado: 'O que é o TTL?',
+    opcoes: ['O tempo de vida da resposta no cache', 'O tamanho do domínio', 'O tipo do servidor'],
+    correta: 0,
+    explicacao: 'TTL (time to live) é o tempo durante o qual a resposta pode ser reaproveitada.',
+  },
+  {
+    enunciado: 'Qual registro aponta o nome do site para um IPv6?',
+    opcoes: ['AAAA', 'MX', 'TXT'],
+    correta: 0,
+    explicacao: 'O AAAA guarda o endereço IPv6. O A é para IPv4, o MX para e-mail e o TXT para texto.',
+  },
+  {
+    enunciado: 'Qual registro diz para onde vai o e-mail do domínio?',
+    opcoes: ['MX', 'A', 'CNAME'],
+    correta: 0,
+    explicacao: 'O MX (mail exchanger) indica o servidor de e-mail.',
+  },
+  {
+    enunciado: 'Qual nome de domínio é inválido?',
+    opcoes: ['-erro.com', 'meu-site.com', 'site123.org'],
+    correta: 0,
+    explicacao: 'Uma parte do nome não pode começar com hífen.',
+  },
+  {
+    enunciado: 'Trocar o IP de um site leva um tempo para valer para todos. Por quê?',
+    opcoes: ['Cada resolvedor guarda a resposta antiga até o TTL vencer', 'O DNS só trabalha à noite', 'O IP novo precisa ser impresso'],
+    correta: 0,
+    explicacao: 'É a propagação: o cache antigo continua valendo até o fim do TTL.',
+  },
+  {
+    enunciado: 'Quando foi registrado o primeiro domínio .com, symbolics.com?',
+    opcoes: ['15 de março de 1985', '1 de janeiro de 1970', '30 de junho de 1945'],
+    correta: 0,
+    explicacao: 'Em 15 de março de 1985, pela empresa Symbolics, de Massachusetts.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **DNS** traduz nomes em endereços IP: é a lista telefônica da internet.
+- **É distribuído e hierárquico:** raiz → TLD (.com, .br) → domínio → subdomínios. Ninguém guarda a lista inteira.
+- **Leia o domínio da direita para a esquerda.**
+- **Resolvedor recursivo** faz a consulta por você; o **cache** guarda a resposta pelo **TTL**.
+- **Propagação:** mudanças demoram até o TTL para chegar a todos.
+- **Registros:** A (IPv4), AAAA (IPv6), CNAME (apelido), MX (e-mail), TXT (texto), NS (servidores oficiais).
+- **Registrar um domínio é alugar o direito de uso** por um período.
+
+**Um pouco de história.** Antes de 1983, um arquivo único (HOSTS.TXT) fazia o papel de lista de nomes. Paul Mockapetris criou o DNS em 1983 (RFCs 882 e 883, depois 1034 e 1035, em 1987). O primeiro domínio .com, symbolics.com, foi registrado em 15 de março de 1985.
+
+</Resumo>
+
+Falta o último elo da viagem: o que o navegador **pede** ao servidor, e como o cadeado protege a conversa. É o assunto de HTTP e HTTPS.
+
+<Conexoes />
+
+</Etapa>
