@@ -1,0 +1,413 @@
+import SomaRepetida from '../../../../components/simulacoes/SomaRepetida'
+import RetanguloDeBolinhas from '../../../../components/simulacoes/RetanguloDeBolinhas'
+import TabuadaColorida from '../../../../components/simulacoes/TabuadaColorida'
+import PadraoDoNove from '../../../../components/simulacoes/PadraoDoNove'
+import RetanguloEmPartes from '../../../../components/simulacoes/RetanguloEmPartes'
+import ContaArmadaMult from '../../../../components/simulacoes/ContaArmadaMult'
+
+{/* Fatos conferidos na Wikipedia em inglês (Multiplication e Multiplication table), listadas no meta.ts. Os truques da tabuada (do 9, do 5, do dobro) e o método armado são conteúdo escolar geral da BNCC; os padrões foram conferidos por cálculo. */}
+
+<Etapa id="gancho">
+
+Quantos quadradinhos tem uma barra de chocolate com 6 fileiras de 8? Você pode contar um por um: 1, 2, 3... Ou pode pensar: **6 fileiras, cada uma com 8**. Isso é 8 + 8 + 8 + 8 + 8 + 8, que é demorado. A **multiplicação** é a forma curta de escrever essa soma: **6 × 8 = 48**.
+
+Muita gente aprende a tabuada **decorando**, e esquece. Mas a tabuada tem **padrões escondidos**: se você os enxerga, quase não precisa decorar. E tem mais: a multiplicação faz **três coisas** ao mesmo tempo: soma parcelas iguais, conta objetos em um retângulo e calcula áreas.
+
+<Palpite
+  chave="inicial"
+  pergunta="Quanto é 7 × 6, e quanto é 6 × 7?"
+  opcoes={['São resultados diferentes, porque a ordem muda a conta', 'Os dois dão 42: a ordem dos fatores não muda o produto', 'Não dá para saber sem a calculadora']}
+/>
+
+Nesta cápsula você vai ver a multiplicação como grupos iguais e como retângulo, explorar a tabuada colorida, descobrir os truques do 9 e do dobro, multiplicar "em partes" e fazer a conta armada com o "vai".
+
+</Etapa>
+
+<Etapa id="historia">
+
+Multiplicar é uma necessidade antiga: contar rebanhos, áreas de terra, tijolos para uma construção.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Cerca de 2000 a.C.', texto: 'Os babilônios usam tabelas de multiplicação, em base 60, cerca de 4.000 anos atrás.' },
+  { ano: 'Egito antigo', texto: 'Os egípcios multiplicam por dobros sucessivos e soma (papiro de Rhind).' },
+  { ano: 'Cerca de 305 a.C.', texto: 'Tiras de bambu chinesas trazem a tabuada decimal mais antiga que se conhece.' },
+  { ano: '60 a 120', texto: 'Nicômaco de Gerasa inclui uma tabuada na sua obra de aritmética.' },
+  { ano: '493', texto: 'Vitório de Aquitânia escreve uma tabela com 98 colunas.' },
+  { ano: '1618', texto: 'Edward Wright usa pela primeira vez o sinal de cruz (×) para a multiplicação.' },
+]} />
+
+## Dobrar e somar: o jeito egípcio
+
+Os **egípcios** multiplicavam sem tabuada. Para fazer 13 × 5, eles **dobravam** o 5 várias vezes (5, 10, 20, 40) e somavam os dobros que formavam o 13 (1 + 4 + 8): 5 + 20 + 40 = 65. Segundo a fonte, o papiro de Rhind registra esse tipo de multiplicação por dobros sucessivos e soma. Funciona porque qualquer número é soma de potências de dois, uma ideia que vai reaparecer no binário.
+
+## A tabuada mais antiga
+
+Os **babilônios** já tinham tabuadas há cerca de **4.000 anos**, mas de base 60. A tabuada de base 10 mais antiga que se conhece são **tiras de bambu chinesas**, de por volta de **305 a.C.**. Muitos idiomas chamam a tabuada de **"Tábua de Pitágoras"**, porque ela é, às vezes, atribuída a Pitágoras. No século 1 ou 2 da nossa era, **Nicômaco** colocou uma tabuada na sua obra de aritmética, e em **493** **Vitório de Aquitânia** escreveu uma de 98 colunas.
+
+## O sinal de vezes
+
+O sinal **×** é relativamente novo. Segundo a fonte, **Edward Wright** foi o primeiro a usar o sinal de cruz para multiplicar, em **1618**. Antes, escrevia-se com palavras. Já o **método moderno** de multiplicar com algarismos indo-arábicos, o mesmo que você vai aprender aqui, foi descrito por **Brahmagupta**, o matemático indiano que você encontrou na cápsula de adição.
+
+## Decorar ou entender?
+
+Durante muito tempo, a tabuada foi ensinada por **memorização pura**. Segundo a fonte, muitos educadores consideram essencial conhecer os fatos até **9 × 9**. Houve também reformas educacionais que reduziram a ênfase na decoreba, e em 2024 a Califórnia retirou do seu guia curricular a recomendação de aprender a tabuada. O debate continua, mas o ponto desta cápsula é um meio-termo: **entender os padrões e depois treinar**.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Multiplicar é somar grupos iguais
+
+Em 3 × 4, os números se chamam **fatores**, e o resultado é o **produto**. Pense em **3 caixas com 4 lápis cada**: 4 + 4 + 4 = 12. Escrevemos **3 × 4 = 12** e lemos "três vezes quatro". Segundo a fonte, a multiplicação de números inteiros pode ser vista como **soma repetida**.
+
+## 2. Multiplicar é contar um retângulo
+
+Arrume lápis em **3 fileiras de 4**. O total é 3 × 4 = 12. Agora gire a cartela: são **4 fileiras de 3**: 4 × 3 = 12. O número de lápis **não muda**. É por isso que a multiplicação é **comutativa**: a ordem dos fatores não altera o produto. A fonte também mostra que o produto é a **área de um retângulo**.
+
+## 3. A tabuada é uma tabela simétrica
+
+Como 3 × 4 = 4 × 3, a tabela de multiplicar é **simétrica**: a casa de cima à direita é igual à casa de baixo à esquerda. A fonte observa que, por isso, só precisamos de **cerca da metade** das casas. Em vez de 100 fatos de 1 a 10, são menos de 60 de verdade diferentes.
+
+## 4. Dois números "especiais"
+
+- **Multiplicar por 1** não muda o número (é o **elemento neutro**): 7 × 1 = 7.
+- **Multiplicar por 0** dá zero: 7 × 0 = 0 (nenhum grupo, nada para contar).
+
+<ExemploResolvido titulo="Três jeitos de ver 4 × 6">
+  <Passo>**Soma repetida:** 6 + 6 + 6 + 6 = 24.</Passo>
+  <Passo>**Retângulo:** 4 fileiras de 6 bolinhas = 24 bolinhas.</Passo>
+  <Passo>**Giro:** 6 × 4 também dá 24: 4 + 4 + 4 + 4 + 4 + 4 = 24.</Passo>
+  <Passo>Três caminhos, um só produto: **24**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 4 × 6? (número)" resposta="24" dica="6 + 6 + 6 + 6." resolucao="4 grupos de 6: 6 + 6 + 6 + 6 = 24." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Uma cartela tem 7 linhas e 6 colunas. Se você girar a cartela (6 linhas e 7 colunas), o total de bolinhas muda?"
+  opcoes={['Aumenta, porque agora há mais linhas', 'Não muda: continua 42', 'Diminui']}
+  correta={1}
+  explicacao="Girar a cartela só muda como as bolinhas estão arrumadas, não quantas elas são. 7 × 6 = 6 × 7 = 42. É a propriedade comutativa."
+>
+
+Mude as linhas e as colunas e aperte “Girar o retângulo”.
+
+<RetanguloDeBolinhas />
+
+Agora veja a mesma conta como **grupos iguais**.
+
+<SomaRepetida />
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['São resultados diferentes, porque a ordem muda a conta', 'Os dois dão 42: a ordem dos fatores não muda o produto', 'Não dá para saber sem a calculadora']}
+  correta={1}
+  seAcertou="E o palpite do começo? Isso: 7 × 6 e 6 × 7 dão 42."
+  seErrou="E o palpite do começo? Os dois dão 42, porque girar o retângulo não muda a quantidade. Essa é a propriedade comutativa."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## A tabuada colorida
+
+Toque numa casa da tabela e veja a casa "gêmea" (ordem trocada) em amarelo. Na diagonal, em vermelho, ficam os **quadrados perfeitos**: 1, 4, 9, 16, 25... (um número vezes ele mesmo).
+
+<TabuadaColorida />
+
+<ExemploResolvido titulo="Aproveitando a simetria">
+  <Passo>Você não lembra 8 × 6, mas lembra 6 × 8 = 48.</Passo>
+  <Passo>Como a ordem não importa, 8 × 6 = **48**.</Passo>
+  <Passo>Isso corta quase pela metade o que precisa ser memorizado.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Se 6 × 7 = 42, quanto é 7 × 6? (número)" resposta="42" dica="A ordem não importa." resolucao="42: propriedade comutativa." />
+
+<Exercicio enunciado="Quanto é 8 × 8? (número)" resposta="64" dica="É um quadrado perfeito, na diagonal." resolucao="8 × 8 = 64." />
+
+## Os padrões das tabuadas
+
+Cada tabuada tem um jeito fácil. Veja:
+
+- **x1:** o número fica igual. **x0:** dá zero.
+- **x2:** é o **dobro** (soma o número com ele mesmo). 7 × 2 = 7 + 7 = 14.
+- **x10:** acrescente um zero. 7 × 10 = 70.
+- **x5:** é **metade do x10**. 7 × 5 = 70 ÷ 2 = 35 (e sempre termina em 0 ou 5).
+- **x4:** é o **dobro do dobro**. 7 × 4 = (7 × 2) × 2 = 14 × 2 = 28.
+- **x9:** é **x10 menos o número**. 7 × 9 = 70 - 7 = 63. E a soma dos algarismos do resultado dá 9 (6 + 3 = 9).
+- **x3:** é o dobro **mais** o número. 7 × 3 = 14 + 7 = 21.
+- **x6, x7, x8:** quase todos já foram vistos pelos outros. O que sobra de novo é só 6 × 7 = 42, 6 × 8 = 48 e 7 × 8 = 56.
+
+<PadraoDoNove />
+
+<ExemploResolvido titulo="Calculando 8 × 9 sem decorar">
+  <Passo>Faça 10 × 8 = 80.</Passo>
+  <Passo>Tire um 8: 80 - 8 = **72**.</Passo>
+  <Passo>Confira o truque: 7 + 2 = 9. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 9 × 7? (número)" resposta="63" dica="70 menos 7." resolucao="10 × 7 = 70 e 70 - 7 = 63." />
+
+<Exercicio enunciado="Quanto é 4 × 8, usando o dobro do dobro? (número)" resposta="32" dica="8 vira 16, que vira 32." resolucao="8 × 2 = 16 e 16 × 2 = 32." />
+
+<Exercicio enunciado="Quanto é 5 × 9? (número)" resposta="45" dica="Metade de 90." resolucao="9 × 10 = 90 e a metade é 45." />
+
+<Aprofundar titulo="O truque do 9 nos dedos">
+Abra as dez mãos, numeradas de 1 a 10 da esquerda para a direita. Para fazer 9 × 4, **dobre o quarto dedo**. Os dedos à esquerda do dobrado (3) são as **dezenas**, e os à direita (6) são as **unidades**: 36. Funciona porque 9 × n = 10 × n - n: o que está à esquerda do dedo dobrado conta n - 1 dezenas, e à direita sobram 10 - n unidades. Por exemplo, 9 × 4 tem 3 dezenas e 6 unidades. É o mesmo padrão da soma dos algarismos dar 9.
+</Aprofundar>
+
+## As propriedades da multiplicação
+
+Segundo a fonte, a multiplicação tem estas propriedades:
+
+- **Comutativa:** 4 × 9 = 9 × 4.
+- **Associativa:** (2 × 3) × 4 = 2 × (3 × 4). Dá para agrupar como quiser: 5 × 7 × 2 é mais fácil fazendo 5 × 2 = 10 primeiro, e depois 10 × 7 = 70.
+- **Distributiva em relação à soma:** 7 × (10 + 3) = 7 × 10 + 7 × 3. É a base das contas em partes e da conta armada.
+- **Elemento neutro:** o 1. **Zero:** qualquer número vezes 0 é 0.
+
+<ExemploResolvido titulo="Usando a associativa e a comutativa">
+  <Passo>Calcule 25 × 7 × 4.</Passo>
+  <Passo>Reorganize: 25 × 4 = 100. Depois 100 × 7 = **700**.</Passo>
+  <Passo>Sem reorganizar: 25 × 7 = 175 e 175 × 4 = 700. O mesmo resultado, mas bem mais trabalhoso.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 5 × 17 × 2? (número)" resposta="170" dica="5 × 2 = 10 primeiro." resolucao="5 × 2 = 10 e 10 × 17 = 170." />
+
+<Exercicio enunciado="Quanto é 123 × 0? (número)" resposta="0" dica="Nenhum grupo." resolucao="Qualquer número vezes zero é zero." />
+
+## Multiplicar por 10, 100 e 1.000
+
+Você viu no sistema decimal que cada casa vale 10 vezes a anterior. Por isso, **multiplicar por 10** faz cada algarismo andar uma casa para a esquerda: **acrescenta um zero**. Por 100, dois zeros; por 1.000, três zeros.
+
+<ExemploResolvido titulo="Multiplicando por potências de 10">
+  <Passo>35 × 10 = **350** (um zero).</Passo>
+  <Passo>35 × 100 = **3.500** (dois zeros).</Passo>
+  <Passo>35 × 1.000 = **35.000** (três zeros).</Passo>
+  <Passo>E 40 × 50? Faça 4 × 5 = 20 e acrescente os dois zeros: **2.000**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 36 × 100? (número)" resposta="3600" dica="Dois zeros." resolucao="36 × 100 = 3.600." />
+
+<Exercicio enunciado="Quanto é 40 × 50? (número)" resposta="2000" dica="4 × 5 = 20, mais dois zeros." resolucao="4 × 5 = 20, depois 2 zeros: 2.000." />
+
+## Multiplicar em partes (a propriedade distributiva)
+
+Como fazer 7 × 13 de cabeça? **Quebre o 13** em 10 + 3: 7 × 10 = 70, 7 × 3 = 21, e 70 + 21 = **91**. Isso é a propriedade distributiva. Num retângulo de 7 por 13, você corta o 13 em duas faixas.
+
+<RetanguloEmPartes />
+
+<ExemploResolvido titulo="Calculando 8 × 23 de cabeça">
+  <Passo>Quebre o 23 em 20 + 3.</Passo>
+  <Passo>8 × 20 = 160 e 8 × 3 = 24.</Passo>
+  <Passo>Some: 160 + 24 = **184**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 7 × 13? (número)" resposta="91" dica="7 × 10 e 7 × 3." resolucao="70 + 21 = 91." />
+
+<Exercicio enunciado="Quanto é 6 × 25? (número)" resposta="150" dica="6 × 20 e 6 × 5." resolucao="120 + 30 = 150." />
+
+<Aprofundar titulo="Por que a distributiva é tão importante">
+Ela aparece em quase tudo: na **conta armada**, na **álgebra** (a × (b + c) = a × b + a × c) e até na tabuada. Para saber 9 × 7, você pode pensar 9 × 7 = (10 - 1) × 7 = 70 - 7 = 63. A ideia de **quebrar um número em partes mais fáceis** é uma das técnicas mais úteis da matemática. No Fundamental II ela volta com os nomes de "fatorar" e "expandir".
+</Aprofundar>
+
+## A conta armada
+
+Para multiplicar números maiores, usamos a **conta armada**, que é a distributiva feita **casa por casa**, da direita para a esquerda, com o "vai".
+
+Por exemplo, 347 × 6. Unidades: 7 × 6 = 42, escreve 2, vai 4. Dezenas: 4 × 6 = 24, mais 4 = 28, escreve 8, vai 2. Centenas: 3 × 6 = 18, mais 2 = 20. Resultado: **2.082**.
+
+<ContaArmadaMult />
+
+<ExemploResolvido titulo="Multiplicando 236 × 4">
+  <Passo>Unidades: 6 × 4 = 24. Escreve 4, vai 2.</Passo>
+  <Passo>Dezenas: 3 × 4 = 12, mais 2 = 14. Escreve 4, vai 1.</Passo>
+  <Passo>Centenas: 2 × 4 = 8, mais 1 = 9.</Passo>
+  <Passo>Resultado: **944**. Conferindo por estimativa: 200 × 4 = 800 e 40 × 4 = 160, que juntam cerca de 960. Bate.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 347 × 6? (número)" resposta="2082" dica="7 × 6 = 42: escreve 2, vai 4." resolucao="2.082." />
+
+<Exercicio enunciado="Quanto é 236 × 4? (número)" resposta="944" dica="Vai 2, depois vai 1." resolucao="944." />
+
+## Multiplicar por números de dois algarismos
+
+Para 23 × 14, quebramos o 14 em 10 + 4: 23 × 10 = 230 e 23 × 4 = 92. Somando: 230 + 92 = **322**. Na conta armada, isso vira "duas linhas": a primeira (por 4) e a segunda (por 10, com um zero à direita, ou deslocada uma casa para a esquerda), que depois se somam.
+
+<ExemploResolvido titulo="Calculando 23 × 14">
+  <Passo>23 × 4 = 92 (primeira linha).</Passo>
+  <Passo>23 × 10 = 230 (segunda linha, com o zero nas unidades).</Passo>
+  <Passo>Soma: 92 + 230 = **322**.</Passo>
+  <Passo>Estimativa: 20 × 15 = 300, perto de 322. Faz sentido.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 23 × 14? (número)" resposta="322" dica="230 + 92." resolucao="23 × 10 = 230, 23 × 4 = 92 e a soma é 322." />
+
+<Exercicio enunciado="Quanto é 12 × 15? (número)" resposta="180" dica="12 × 10 e 12 × 5." resolucao="120 + 60 = 180." />
+
+## Problemas de multiplicar
+
+A multiplicação aparece em situações como:
+
+- **Grupos iguais:** 5 pacotes de 12 biscoitos.
+- **Retângulos:** 8 fileiras de 9 cadeiras.
+- **Combinações:** 3 camisas e 4 calças dão 3 × 4 = **12 jeitos** de se vestir.
+- **Comparações "vezes mais":** João tem 3 vezes o que Maria tem.
+
+<ExemploResolvido titulo="Quantas combinações?">
+  <Passo>Uma lanchonete tem 4 pães e 3 recheios.</Passo>
+  <Passo>Cada pão combina com os 3 recheios: 3 + 3 + 3 + 3.</Passo>
+  <Passo>É 4 × 3 = **12 lanches diferentes**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um auditório tem 15 fileiras com 20 cadeiras cada. Quantas cadeiras? (número)" resposta="300" dica="15 × 20." resolucao="15 × 20 = 300." />
+
+<Exercicio enunciado="Uma loja tem 3 camisas e 4 calças diferentes. Quantos conjuntos distintos é possível montar? (número)" resposta="12" dica="Cada camisa combina com cada calça." resolucao="3 × 4 = 12." />
+
+<Aprofundar titulo="Multiplicar não é sempre 'aumentar'">
+Com números naturais, multiplicar costuma aumentar: 5 × 3 = 15. Mas, com **frações e decimais**, multiplicar pode **diminuir**: metade de 10 é 1/2 × 10 = 5. E multiplicar por 0 dá 0. A ideia "multiplicar é somar parcelas iguais" é uma porta de entrada, mas o conceito cresce. Quando você chegar nas frações e na porcentagem, vai ver 50% de 80 como 0,5 × 80 = 40, e o resultado é **menor**.
+</Aprofundar>
+
+## Estimar antes de calcular
+
+Antes de fazer 48 × 52, arredonde: 50 × 50 = 2.500. O resultado exato é 2.496, bem pertinho. Se você encontrar 24.96 ou 249, sabe que deu erro. A estimativa é um **detector de erros**.
+
+<Exercicio enunciado="Estime 98 × 5 (arredonde 98 para 100). Qual é a estimativa? (número)" resposta="500" dica="100 × 5." resolucao="100 × 5 = 500. (O exato é 490.)" />
+
+## Multiplicar como os egípcios
+
+Lembra dos egípcios, que multiplicavam só dobrando e somando? Dá para fazer igual. Para 13 × 5, **dobre o 5** várias vezes e anote junto ao 1, 2, 4, 8: 1 → 5, 2 → 10, 4 → 20, 8 → 40. Agora ache quais números da primeira coluna **somam 13**: 1 + 4 + 8 = 13. Some os dobros correspondentes: 5 + 20 + 40 = **65**. Confira: 13 × 5 = 65. Funciona porque 13 = 1 + 4 + 8, e pela distributiva 13 × 5 = (1 + 4 + 8) × 5.
+
+<ExemploResolvido titulo="Multiplicando 11 × 6 do jeito egípcio">
+  <Passo>Dobre o 6: 1 → 6, 2 → 12, 4 → 24, 8 → 48.</Passo>
+  <Passo>Ache os números que somam 11: 1 + 2 + 8 = 11.</Passo>
+  <Passo>Some os dobros: 6 + 12 + 48 = **66**.</Passo>
+  <Passo>Confira: 11 × 6 = 66. Sem tabuada nenhuma, só dobrando e somando.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Pelo método egípcio, 11 × 6 usa os dobros 6, 12 e 48. Qual é o total? (número)" resposta="66" dica="6 + 12 + 48." resolucao="6 + 12 + 48 = 66." />
+
+## Mais problemas para treinar
+
+Quando um problema parece difícil, **desenhe** ou **separe em partes**. Por exemplo: "Uma padaria assa 24 pães por fornada e faz 6 fornadas. Quantos pães ao todo?" São 6 grupos de 24: 6 × 24 = 6 × 20 + 6 × 4 = 120 + 24 = **144**.
+
+<ExemploResolvido titulo="Preço de várias unidades">
+  <Passo>Um caderno custa R$ 12. Quanto custam 7?</Passo>
+  <Passo>7 × 12 = 7 × 10 + 7 × 2 = 70 + 14.</Passo>
+  <Passo>Total: **R$ 84**.</Passo>
+  <Passo>Estimativa para conferir: 7 × 10 = 70, e como o preço é um pouco maior, o resultado fica um pouco acima de 70. Faz sentido.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma padaria assa 24 pães por fornada e faz 6 fornadas. Quantos pães ao todo? (número)" resposta="144" dica="6 × 20 e 6 × 4." resolucao="120 + 24 = 144." />
+
+<Exercicio enunciado="Um caderno custa R$ 12. Quanto custam 7 cadernos, em reais? (número)" resposta="84" dica="7 × 10 e 7 × 2." resolucao="70 + 14 = 84." />
+
+<Exercicio enunciado="Um ônibus tem 40 lugares. Quantos lugares há em 25 ônibus iguais? (número)" resposta="1000" dica="4 × 25 = 100, depois um zero." resolucao="40 × 25 = 4 × 25 × 10 = 100 × 10 = 1.000." />
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Multiplicar 4 × 6 é o mesmo que...',
+    opcoes: ['6 + 6 + 6 + 6', '4 + 6', '6 + 4 + 4'],
+    correta: 0,
+    explicacao: 'Multiplicar é somar parcelas iguais: 4 grupos de 6.',
+  },
+  {
+    enunciado: 'Por que 7 × 6 e 6 × 7 dão o mesmo resultado?',
+    opcoes: ['A multiplicação é comutativa: a ordem dos fatores não muda o produto', 'Porque os dois números são pares', 'É coincidência'],
+    correta: 0,
+    explicacao: 'Girar o retângulo não muda a quantidade de bolinhas.',
+  },
+  {
+    enunciado: 'Como se chama o resultado de uma multiplicação?',
+    opcoes: ['Produto', 'Fator', 'Soma'],
+    correta: 0,
+    explicacao: 'Em 3 × 4 = 12, o 3 e o 4 são fatores e o 12 é o produto.',
+  },
+  {
+    enunciado: 'Quanto é qualquer número vezes zero?',
+    opcoes: ['Zero', 'O próprio número', 'Um'],
+    correta: 0,
+    explicacao: 'Nenhum grupo, nada para contar.',
+  },
+  {
+    enunciado: 'Qual é um jeito rápido de fazer 9 × 8?',
+    opcoes: ['10 × 8 - 8 = 72', '9 + 8 = 17', '9 × 9 - 8'],
+    correta: 0,
+    explicacao: '80 - 8 = 72. E 7 + 2 = 9, o padrão do nove.',
+  },
+  {
+    enunciado: 'Quanto é 35 × 100?',
+    opcoes: ['3.500', '350', '35.100'],
+    correta: 0,
+    explicacao: 'Multiplicar por 100 acrescenta dois zeros.',
+  },
+  {
+    enunciado: 'Como fazer 7 × 13 em partes?',
+    opcoes: ['7 × 10 + 7 × 3 = 91', '7 + 13 = 20', '7 × 3 = 21'],
+    correta: 0,
+    explicacao: 'A propriedade distributiva: quebre o 13 em 10 + 3.',
+  },
+  {
+    enunciado: 'Quanto é 347 × 6?',
+    opcoes: ['2.082', '2.042', '1.882'],
+    correta: 0,
+    explicacao: '7 × 6 = 42 (2, vai 4); 4 × 6 = 24 + 4 = 28 (8, vai 2); 3 × 6 = 18 + 2 = 20. Resultado: 2.082.',
+  },
+  {
+    enunciado: 'Quantos jeitos há de combinar 3 camisas e 4 calças?',
+    opcoes: ['12', '7', '34'],
+    correta: 0,
+    explicacao: 'Cada camisa combina com cada calça: 3 × 4 = 12.',
+  },
+  {
+    enunciado: 'Quem foi o primeiro a usar o sinal × para multiplicar, segundo a fonte?',
+    opcoes: ['Edward Wright, em 1618', 'Pitágoras, na Grécia', 'Pascal, em 1642'],
+    correta: 0,
+    explicacao: 'A fonte atribui a Edward Wright o primeiro uso do sinal de cruz, em 1618.',
+  },
+  {
+    enunciado: 'Qual a tabuada decimal mais antiga conhecida, segundo a fonte?',
+    opcoes: ['Tiras de bambu chinesas, de cerca de 305 a.C.', 'Um livro de 1618', 'A calculadora de Pascal'],
+    correta: 0,
+    explicacao: 'Os babilônios tinham tabuadas, mas de base 60. A de base 10 mais antiga conhecida é chinesa.',
+  },
+  {
+    enunciado: 'Por que a tabuada é simétrica?',
+    opcoes: ['Porque a ordem dos fatores não muda o produto, e isso corta quase pela metade o que precisamos aprender', 'Porque foi desenhada assim', 'Porque só tem números pares'],
+    correta: 0,
+    explicacao: '3 × 4 e 4 × 3 dão o mesmo resultado: as casas gêmeas se repetem.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Multiplicar** é somar parcelas iguais, contar um retângulo ou calcular uma área. Os números são **fatores** e o resultado é o **produto**.
+- É **comutativa** (a ordem não importa), **associativa**, **distributiva** em relação à soma; o **1** é neutro e o **0** zera tudo.
+- A tabuada é **simétrica**, e dá para entender por **padrões**: x2 é o dobro, x4 é o dobro do dobro, x5 é metade do x10, x9 é x10 menos o número.
+- Multiplicar por 10, 100 e 1.000 **acrescenta zeros**.
+- Para multiplicar em partes, **quebre um fator**: 7 × 13 = 7 × 10 + 7 × 3.
+- A **conta armada** é a distributiva casa por casa, com o "vai".
+- **Estime** antes: arredonde e confira se o resultado faz sentido.
+
+**Um pouco de história.** Os babilônios já usavam tabuadas há cerca de 4.000 anos, em base 60, e os chineses deixaram a tabuada decimal mais antiga conhecida, em tiras de bambu de cerca de 305 a.C. O sinal × só apareceu em 1618, com Edward Wright. Os egípcios multiplicavam só dobrando e somando, sem tabuada nenhuma.
+
+</Resumo>
+
+Se multiplicar é somar grupos iguais, **dividir** é o caminho de volta: repartir em grupos iguais. Na próxima cápsula, vamos ver a divisão, o resto e como a tabuada ajuda ao contrário.
+
+<Conexoes />
+
+</Etapa>
