@@ -1,9 +1,11 @@
-import { Suspense, useEffect, useRef, useState } from 'react'
+import { useEffect, useState, useSyncExternalStore } from 'react'
 import { buscarConteudo } from '../../conteudo/registro'
 import type { CartaoPronto } from '../../conteudo/tipos'
 import { useCartoes } from '../../hooks/useCartoes'
 import { guardarCartao } from '../../lib/cartoes'
+import { assinar, lerInfograficos, removerInfografico, salvarInfografico } from '../../lib/infograficos'
 import { useCapsula } from './ContextoCapsula'
+import InfograficoAmpliavel from './InfograficoAmpliavel'
 
 // Fim da cápsula: infográfico de uma página e baralho pronto para a revisão espaçada.
 // Só aparece nas cápsulas que têm Infografico.tsx e/ou cartoes.ts na pasta.
@@ -12,17 +14,7 @@ export default function RevisaoDaCapsula() {
   const conteudo = buscarConteudo(meta.id)
   const [baralho, setBaralho] = useState<CartaoPronto[] | null>(null)
   const guardados = useCartoes()
-  const [ampliado, setAmpliado] = useState(false)
-  const fechar = useRef<HTMLButtonElement>(null)
-
-  // Ao abrir, o foco vai para "Fechar"; Esc também fecha
-  useEffect(() => {
-    if (!ampliado) return
-    fechar.current?.focus()
-    const aoTeclar = (e: KeyboardEvent) => e.key === 'Escape' && setAmpliado(false)
-    window.addEventListener('keydown', aoTeclar)
-    return () => window.removeEventListener('keydown', aoTeclar)
-  }, [ampliado])
+  const salvos = useSyncExternalStore(assinar, lerInfograficos, lerInfograficos)
 
   useEffect(() => {
     let vivo = true
@@ -30,41 +22,37 @@ export default function RevisaoDaCapsula() {
     return () => { vivo = false }
   }, [conteudo])
 
-  const Infografico = conteudo?.Infografico
-  if (!Infografico && !baralho) return null
+  const temInfografico = !!conteudo?.Infografico
+  if (!temInfografico && !baralho) return null
 
   const idDe = (i: number) => `${meta.id}:d:${i}`
   const jaTem = baralho ? baralho.filter((_, i) => guardados.some((c) => c.id === idDe(i))).length : 0
   const todos = baralho !== null && jaTem === baralho.length
+  const infoSalvo = salvos.includes(meta.id)
 
+  // Adicionar o baralho também salva o infográfico na página Revisar
   function adicionar() {
     baralho?.forEach((c, i) => guardarCartao({ id: idDe(i), capsulaId: meta.id, frente: c.frente, verso: c.verso }))
+    if (temInfografico) salvarInfografico(meta.id)
   }
 
   return (
     <section aria-labelledby="revisao-titulo" className="space-y-6">
-      {Infografico && (
+      {temInfografico && (
         <div>
           <h3 id="revisao-titulo" className="font-semibold">Revisão em um olhar</h3>
-          <div className="mt-3 overflow-hidden rounded-[20px] bg-superficie p-3 shadow-cartao sm:p-5">
-            <Suspense fallback={<p className="p-6 text-suave">Carregando o infográfico…</p>}>
-              <Infografico />
-            </Suspense>
+          <div className="mt-3">
+            <InfograficoAmpliavel capsulaId={meta.id} />
           </div>
-          <button type="button" onClick={() => setAmpliado(true)} className="mt-2 min-h-11 rounded-full border border-borda px-5 text-[15px] font-semibold hover:border-texto/30">
-            Ampliar o infográfico
-          </button>
-          {ampliado && (
-            <div role="dialog" aria-modal="true" aria-label="Infográfico ampliado" className="fixed inset-0 z-50 flex flex-col bg-texto/60 p-3 sm:p-6">
-              <div className="mb-3 flex justify-end">
-                <button ref={fechar} type="button" onClick={() => setAmpliado(false)} className="min-h-11 rounded-full bg-superficie px-6 font-semibold">Fechar</button>
-              </div>
-              <div className="flex-1 overflow-auto rounded-2xl bg-superficie p-3">
-                <div className="min-w-[680px]">
-                  <Suspense fallback={null}><Infografico /></Suspense>
-                </div>
-              </div>
-            </div>
+          {infoSalvo ? (
+            <p className="mt-2 text-[15px] text-suave">
+              Salvo na página Revisar.{' '}
+              <button type="button" onClick={() => removerInfografico(meta.id)} className="min-h-11 font-semibold text-azul-texto underline">Remover</button>
+            </p>
+          ) : (
+            <button type="button" onClick={() => salvarInfografico(meta.id)} className="mt-2 min-h-11 rounded-full bg-verde px-6 font-semibold text-white hover:bg-verde-escuro">
+              Salvar na página Revisar
+            </button>
           )}
         </div>
       )}

@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import { useState, useSyncExternalStore } from 'react'
 import { Link } from 'react-router-dom'
+import InfograficoAmpliavel from '../../components/capsula/InfograficoAmpliavel'
+import { assinar as assinarInfos, lerInfograficos, removerInfografico } from '../../lib/infograficos'
 import Rotulo from '../../components/ui/Rotulo'
 import { botaoPrimario, cartao } from '../../components/ui/estilos'
 import { buscarCapsula } from '../../conteudo/indice'
@@ -20,6 +22,7 @@ const quando = (dias: number) => (dias === 0 ? 'hoje' : dias === 1 ? '1 dia' : `
 
 export default function Revisar() {
   const todos = useCartoes()
+  const infograficosSalvos = useSyncExternalStore(assinarInfos, lerInfograficos, lerInfograficos)
   const hoje = diaEmBrasilia()
   // A fila do dia é montada ao abrir a página; quem erra volta para o fim dela
   const [fila, setFila] = useState<string[]>(() => cartoesDeHoje(todos, hoje).map((c) => c.id))
@@ -113,6 +116,26 @@ export default function Revisar() {
           </p>
           <Link to="/mapa" className={`${botaoPrimario} mt-5`}>Continuar estudando</Link>
         </div>
+      )}
+
+      {infograficosSalvos.length > 0 && (
+        <section className="mt-10" aria-labelledby="infos-salvos">
+          <h2 id="infos-salvos" className="font-serif text-2xl font-medium">Infográficos salvos</h2>
+          <p className="mt-1 text-[15px] text-suave">Um resumo desenhado de cada cápsula, para rever sem abrir a cápsula.</p>
+          <div className="mt-3 space-y-3">
+            {infograficosSalvos.map((id) => (
+              <details key={id} className="rounded-2xl border border-borda bg-fundo p-3">
+                <summary className="min-h-11 cursor-pointer py-2.5 font-semibold">{buscarCapsula(id)?.titulo ?? id}</summary>
+                <div className="mt-2">
+                  <InfograficoAmpliavel capsulaId={id} />
+                  <button type="button" onClick={() => removerInfografico(id)} className="mt-2 min-h-11 rounded-full border border-borda px-4 text-[15px] font-semibold hover:border-coral hover:text-coral">
+                    Remover dos salvos
+                  </button>
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
       )}
 
       {todos.length > 0 && (

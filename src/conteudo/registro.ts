@@ -35,6 +35,10 @@ for (const [caminho, meta] of Object.entries(metas)) {
   }
 }
 
+export function idsComInfografico(): string[] {
+  return Object.values(conteudos).filter((c) => c.Infografico).map((c) => c.meta.id)
+}
+
 export function buscarConteudo(id: string | undefined): ConteudoCapsula | undefined {
   return id ? conteudos[id] : undefined
 }
