@@ -1,0 +1,353 @@
+import TabelaComoPlanilha from '../../../components/simulacoes/TabelaComoPlanilha'
+import ConsultaSql from '../../../components/simulacoes/ConsultaSql'
+import TabelasLigadas from '../../../components/simulacoes/TabelasLigadas'
+import TransacaoPix from '../../../components/simulacoes/TransacaoPix'
+import ComIndice from '../../../components/simulacoes/ComIndice'
+import ApagarSemWhere from '../../../components/simulacoes/ApagarSemWhere'
+
+{/* Fatos conferidos na Wikipedia em inglês (Database, Relational database, SQL), listadas no meta.ts. Os dados das tabelas e os saldos das simulações são de brinquedo. Nenhuma simulação toca em banco de dados de verdade. */}
+
+<Etapa id="gancho">
+
+Você abre um aplicativo de compras e ele **lembra de tudo**: seu nome, o endereço de entrega, o que você comprou mês passado, o que está no carrinho. Você fecha o aplicativo, troca de celular, entra de novo, e tudo continua lá.
+
+Onde essas informações ficam? Não é no seu celular (você trocou de aparelho), nem na tela (ela só mostra). Ficam num lugar organizado, de longe, que **não esquece**: o **banco de dados**. É a **despensa** do restaurante que você conheceu na cápsula de front-end e back-end.
+
+<Palpite
+  chave="inicial"
+  pergunta="Uma loja online tem 10 milhões de pedidos guardados. Como ela acha o pedido número 7.351.482 sem ler os outros 7 milhões antes?"
+  opcoes={['Lê um por um, mas muito rápido', 'Usa um índice, que funciona como o sumário de um livro', 'Pede para o cliente informar a posição do pedido']}
+/>
+
+Nesta cápsula você vai ver uma tabela como planilha, fazer consultas em **SQL**, ligar tabelas por números, entender por que uma transferência bancária é "tudo ou nada", ver o poder dos **índices** e descobrir por que esquecer uma palavra (o `WHERE`) pode apagar tudo.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Guardar dados de modo organizado é um problema que os computadores têm desde cedo. A solução de hoje nasceu de **um artigo** de 1970.
+
+<LinhaDoTempo marcos={[
+  { ano: '1966', texto: 'A IBM lança o IMS, um banco de dados hierárquico, de ligação por "ponteiros" entre registros.' },
+  { ano: '1970', texto: 'Edgar F. Codd, na IBM, propõe o modelo relacional: dados em tabelas, achados pelo conteúdo.' },
+  { ano: '1974', texto: 'A IBM começa o System R, um protótipo de banco relacional. Chamberlin e Boyce criam o SQL, no início dos anos 1970, para ele.' },
+  { ano: '1979', texto: 'A Relational Software (depois Oracle) lança o Oracle.' },
+  { ano: '1986', texto: 'O SQL vira padrão ANSI.' },
+  { ano: '1987', texto: 'O SQL vira padrão ISO.' },
+  { ano: 'Fim dos 2000', texto: 'No fim dos anos 2000, bancos "NoSQL" ganham popularidade.' },
+]} />
+
+## Antes das tabelas: seguir ponteiros
+
+Em meados dos anos 1960, os discos que permitiam acessar qualquer parte dos dados diretamente (em vez de fitas, que se leem do começo ao fim) se espalharam. Os primeiros bancos de dados eram **navegacionais**: para achar uma informação, o programa seguia **ponteiros** físicos de um registro para o próximo. O IMS da IBM (1966) era assim, e o padrão CODASYL (1971) também.
+
+O problema era que o programador precisava **conhecer o caminho** dentro dos dados. Mudou a organização, quebrou o programa.
+
+## 1970: Codd e as tabelas
+
+Em 1970, **Edgar F. Codd**, da IBM, publicou o artigo "Um modelo relacional de dados para grandes bancos de dados compartilhados". A ideia: guardar tudo em **tabelas** e achar os dados **pelo conteúdo** ("me dê os clientes de Recife"), sem seguir ponteiros. Quem consulta diz **o que quer**, e o sistema descobre **como achar**.
+
+Em 1974, a IBM começou o **System R**, um protótipo para provar a ideia. Dois pesquisadores da IBM, **Donald Chamberlin** e **Raymond Boyce**, conheceram o modelo de Codd e criaram uma linguagem para usá-lo. Uma tentativa anterior se chamava SQUARE e era difícil de usar. A nova ganhou o nome **SEQUEL** (*Structured English Query Language*, "linguagem estruturada de consulta em inglês"). O nome foi encurtado para **SQL** porque SEQUEL era marca registrada de uma empresa do Reino Unido.
+
+## O SQL se torna padrão
+
+Em junho de 1979, a Relational Software (depois chamada Oracle) lançou uma das primeiras versões comerciais do SQL. A IBM lançou seus próprios produtos (System/38, SQL/DS e Db2) em 1979, 1981 e 1983. O SQL foi adotado como padrão pela ANSI em **1986** e pela ISO em **1987**. No início dos anos 1990, os bancos relacionais dominavam o processamento de dados em grande escala. No fim dos anos 2000, bancos **NoSQL** (como os de chave e valor e os de documentos) ganharam popularidade, em parte por escalarem melhor em vários servidores.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. A tabela é uma planilha
+
+Um banco de dados é uma **coleção organizada de dados**, administrada por um programa chamado **SGBD** (sistema gerenciador de banco de dados). O banco guarda; o SGBD cuida de salvar, buscar e proteger.
+
+No modelo relacional, os dados vivem em **tabelas**. Pense numa planilha:
+
+- Cada **coluna** é um **campo** (um atributo): nome, cidade, preço.
+- Cada **linha** é um **registro**: um cliente completo, um produto, um pedido.
+- Normalmente, **uma tabela guarda uma coisa só**: clientes numa tabela, produtos em outra.
+- Cada linha tem uma **chave primária**: uma coluna (geralmente um número, o `id`) que a identifica de modo único.
+
+<TabelaComoPlanilha />
+
+<ExemploResolvido titulo="Lendo uma tabela">
+  <Passo>A tabela `clientes` tem as colunas `id`, `nome` e `cidade`: **3 colunas**.</Passo>
+  <Passo>Ela tem 3 linhas: Ana, Bruno e Carla. Cada linha é um **cliente**.</Passo>
+  <Passo>A chave primária é `id`: dois clientes nunca terão o mesmo `id`, mesmo que tenham o mesmo nome.</Passo>
+  <Passo>Para achar Bruno, o banco usa a chave: `id = 2`.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="A tabela clientes tem as colunas id, nome e cidade. Quantas colunas ela tem? (número)" resposta="3" dica="Conte os nomes das colunas." resolucao="São 3 colunas: id, nome e cidade." />
+
+<Exercicio enunciado="Qual coluna é a chave primária da tabela clientes? (id, nome ou cidade)" resposta="id" dica="É a que identifica cada linha de modo único." resolucao="O id: dois clientes podem ter o mesmo nome ou a mesma cidade, mas nunca o mesmo id." />
+
+## 2. Por que não usar uma planilha mesmo?
+
+Uma planilha serve para uma pessoa. Um banco de dados de verdade precisa: ser acessado por **milhares de pessoas ao mesmo tempo**, **não perder dados** se o computador desligar no meio de uma operação, **achar rápido** entre milhões de linhas, controlar **quem pode ver o quê** e **ligar** tabelas diferentes sem repetir informação. O resto desta cápsula mostra cada uma dessas ideias.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Na tabela de produtos (Tênis 100, Boné 40, Camiseta 60, Chinelo 30, Meia 10, Mochila 120), quantos produtos têm preço maior que 50?"
+  opcoes={['2', '3', '4']}
+  correta={1}
+  explicacao="Tênis (100), Camiseta (60) e Mochila (120) passam de 50. Boné (40), Chinelo (30) e Meia (10) não. São 3."
+>
+
+Monte consultas SQL e veja o resultado:
+
+<ConsultaSql />
+
+Repare como o SQL se lê quase como uma frase em inglês: **SELECT** (escolha) as colunas **FROM** (da) tabela **WHERE** (onde) a condição **ORDER BY** (ordenado por) uma coluna.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Lê um por um, mas muito rápido', 'Usa um índice, que funciona como o sumário de um livro', 'Pede para o cliente informar a posição do pedido']}
+  correta={1}
+  seAcertou="E o palpite do começo? Isso: o banco usa um índice, que evita ler todas as linhas. Você vai ver os números mais adiante."
+  seErrou="E o palpite do começo? O banco usa um índice, que funciona como o sumário de um livro: em vez de ler tudo, ele vai direto ao lugar certo."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## SQL: pedindo dados sem dizer como achá-los
+
+O **SQL** é uma linguagem **declarativa**: você diz **o que** quer, não **como** buscar. O próprio banco decide o melhor caminho. Os comandos principais:
+
+- **SELECT**: buscar (ler) dados.
+- **INSERT**: acrescentar uma linha nova.
+- **UPDATE**: mudar linhas existentes.
+- **DELETE**: apagar linhas.
+
+Cláusulas que refinam: **WHERE** (filtra), **ORDER BY** (ordena), **GROUP BY** (agrupa) e **JOIN** (junta tabelas). A fonte divide os comandos em famílias: consulta, definição da estrutura, controle de acesso e manipulação de dados.
+
+Compare com o que você já viu: **GET** lê, **POST** cria, **PUT** troca e **DELETE** apaga no HTTP. Em SQL: SELECT, INSERT, UPDATE e DELETE. É o mesmo ciclo de ideias, em outro lugar.
+
+<ExemploResolvido titulo="Escrevendo uma consulta">
+  <Passo>Pergunta: "Quais produtos de calçado existem?"</Passo>
+  <Passo>Tabela: `produtos`. Condição: `categoria = 'calçado'`.</Passo>
+  <Passo>Consulta: `SELECT * FROM produtos WHERE categoria = 'calçado';`.</Passo>
+  <Passo>Resultado: Tênis e Chinelo, ou seja, **2** linhas.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Na tabela de produtos da simulação, quantos têm categoria calçado? (número)" resposta="2" dica="Tênis e... qual outro?" resolucao="Tênis e Chinelo: 2 produtos." />
+
+<Exercicio enunciado="Com WHERE preco > 50 ORDER BY preco, qual o preço do primeiro item do resultado? (número)" resposta="60" dica="Os que passam de 50 são 60, 100 e 120. O primeiro é o menor." resolucao="Passam de 50: Camiseta (60), Tênis (100) e Mochila (120). Do menor ao maior, o primeiro é 60." />
+
+<Exercicio enunciado="Qual comando SQL serve para acrescentar uma linha nova? (select, insert, update ou delete)" resposta="insert" dica="É como o POST do HTTP." resolucao="INSERT acrescenta uma linha. SELECT lê, UPDATE muda e DELETE apaga." />
+
+<Aprofundar titulo="Declarativo: o que, não como">
+No SQL, você escreve "me dê os clientes de Recife, em ordem alfabética" e o banco resolve o resto. Dentro do SGBD, um **otimizador de consultas** escolhe o caminho mais eficiente para achar os dados (por exemplo, usar um índice ou ler a tabela toda). Isso é o contrário dos bancos "navegacionais" dos anos 1960, em que o programador seguia os ponteiros à mão. A fonte observa que o SQL também tem **extensões procedurais**, para quem precisa escrever passo a passo, mas a essência é declarativa.
+</Aprofundar>
+
+## Ligando tabelas: as chaves estrangeiras
+
+Imagine guardar cada pedido assim: "Ana, Recife, comprou um tênis". Se Ana comprar dez vezes, o nome e a cidade dela são repetidos dez vezes. E se ela mudar de cidade, é preciso mudar em dez lugares (e esquecer um dá **erro**).
+
+A solução é guardar **cada coisa num lugar só** e **ligar** as tabelas por um número. A tabela `pedidos` ganha uma coluna `cliente_id`, que guarda o **id** do cliente. Essa coluna se chama **chave estrangeira**: ela guarda a chave primária de **outra** tabela. Daí vem o nome "relacional": as tabelas se **relacionam**.
+
+<TabelasLigadas />
+
+A fonte lista os tipos de relação: **um para um**, **um para muitos** (um cliente tem muitos pedidos) e **muitos para muitos** (um produto está em muitos pedidos, e um pedido tem muitos produtos). Esta última costuma precisar de uma tabela intermediária.
+
+<ExemploResolvido titulo="Seguindo a chave estrangeira">
+  <Passo>Pedido 101: `cliente_id = 1`.</Passo>
+  <Passo>Procure na tabela `clientes` a linha com `id = 1`: é a Ana.</Passo>
+  <Passo>Pedido 103: também `cliente_id = 1`. Também é da Ana.</Passo>
+  <Passo>A Ana aparece **uma vez** em `clientes` e é referenciada por **2** pedidos.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Na simulação, os pedidos 101 e 103 têm cliente_id 1 e o 102 tem cliente_id 2. Quantos pedidos a Ana tem? (número)" resposta="2" dica="Conte os pedidos com cliente_id igual ao id da Ana (1)." resolucao="Ana (id 1) tem os pedidos 101 e 103: 2 pedidos." />
+
+<Aprofundar titulo="Normalização: cada fato num lugar só">
+**Normalização** é um conjunto de procedimentos para organizar as tabelas, **removendo repetições** e valores que juntam várias coisas numa célula só. A fonte explica que isso ajuda a evitar **anomalias** nos dados e perda de integridade. A regra prática é a que você viu: se uma informação aparece repetida em muitas linhas (o nome e a cidade da Ana em dez pedidos), ela provavelmente deveria morar na própria tabela, e as outras apontam para ela por uma chave estrangeira. Assim, corrigir um dado é mudar **um** lugar.
+</Aprofundar>
+
+## Transações: tudo ou nada
+
+Transferir R$ 50 da Ana para o Bruno é, para o banco de dados, **dois passos**: tirar R$ 50 da conta da Ana e pôr R$ 50 na conta do Bruno. E se o sistema cair **entre** os dois passos? O dinheiro sumiria.
+
+A solução é a **transação**: um grupo de operações tratado como **uma unidade só**. Ou **todas** acontecem, ou **nenhuma**. A fonte chama as propriedades ideais de uma transação de **ACID**.
+
+<TransacaoPix />
+
+<ExemploResolvido titulo="A transferência que falhou">
+  <Passo>Ana e Bruno têm R$ 100 cada: total R$ 200.</Passo>
+  <Passo>Sem transação: tira R$ 50 da Ana (agora R$ 50), e o sistema cai antes de pôr no Bruno.</Passo>
+  <Passo>Resultado: Ana R$ 50 e Bruno R$ 100. O total é **R$ 150**: R$ 50 sumiram.</Passo>
+  <Passo>Com transação: o banco **desfaz** o primeiro passo. Ana volta a ter R$ 100, e o total continua R$ 200.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Sem transação, o sistema cai depois de tirar R$ 50 da Ana e antes de pôr no Bruno. Qual é o total de dinheiro dos dois (começaram com R$ 100 cada)? (número)" resposta="150" dica="Ana ficou com 50, Bruno com 100." resolucao="Ana: 50 e Bruno: 100. Total: 150. Sumiram R$ 50." />
+
+<Exercicio enunciado="Com transação e a mesma falha, quanto a Ana tem no final? (número)" resposta="100" dica="A transação desfaz tudo." resolucao="A transação é desfeita: Ana volta a ter R$ 100." />
+
+<Aprofundar titulo="ACID: as quatro letras">
+**ACID** vem das iniciais, em inglês, de quatro propriedades: **atomicidade** (a transação acontece inteira ou não acontece, como um átomo que não se divide), **consistência** (os dados continuam obedecendo às regras do banco), **isolamento** (transações simultâneas não se atrapalham) e **durabilidade** (o que foi confirmado não se perde, mesmo se o sistema cair). Segundo a fonte, essas propriedades sustentam a tolerância a falhas e a integridade dos dados depois de uma queda.
+</Aprofundar>
+
+## Índices: achando rápido
+
+Lembra do sumário de um livro? Em vez de folhear as 500 páginas para achar um capítulo, você olha o sumário. O banco faz igual: o **índice** é uma estrutura extra, **ordenada**, que permite **ir direto** ao lugar certo. A fonte chama a indexação de técnica padrão para melhorar o desempenho das consultas.
+
+<ComIndice />
+
+A diferença é gigantesca. Em mil linhas, o índice acha em cerca de 10 passos. Em um milhão, cerca de 20. Em um bilhão, cerca de 30. Cada vez que o número de linhas **multiplica por mil**, o índice só precisa de **10 passos a mais**.
+
+<ExemploResolvido titulo="Jogo de adivinhar com índice">
+  <Passo>Pense num número de 1 a 1.000. Eu vou adivinhar perguntando "é maior que X?".</Passo>
+  <Passo>Cada pergunta, se eu escolher o meio, **descarta metade** dos candidatos: 1.000, 500, 250, 125, 63, 32, 16, 8, 4, 2, 1.</Passo>
+  <Passo>Isso dá cerca de **10** perguntas, muito menos que as 1.000 de olhar um por um.</Passo>
+  <Passo>É o que um índice ordenado faz com as linhas da tabela.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Com índice, quantos passos (aproximadamente) para achar uma linha entre 1.000 linhas? (número)" resposta="10" dica="Cada passo corta pela metade. 2 elevado a 10 é 1.024." resolucao="2^10 = 1.024, então cerca de 10 passos bastam para 1.000 linhas." />
+
+<Exercicio enunciado="E entre 1.000.000 de linhas, quantos passos (aproximadamente)? (número)" resposta="20" dica="2 elevado a 20 é cerca de 1 milhão." resolucao="2^20 = 1.048.576, então cerca de 20 passos." />
+
+<Aprofundar titulo="O preço do índice">
+O índice não é de graça: ele ocupa espaço e precisa ser **atualizado a cada INSERT, UPDATE ou DELETE**. Por isso não se cria índice em tudo: só nas colunas que mais se usam para buscar. A fonte lembra que o otimizador de consultas escolhe, para cada pedido, o caminho de acesso mais eficiente, usando o índice quando compensa.
+</Aprofundar>
+
+## Perigo: o comando sem WHERE
+
+O `WHERE` é o que limita um comando às linhas certas. Se você esquece, o `DELETE` e o `UPDATE` valem para **a tabela inteira**. Parece um erro bobo, mas já fez muita empresa perder dados.
+
+<ApagarSemWhere />
+
+Como se proteger? A fonte lista práticas de segurança dos bancos de dados: **backups** periódicos ou contínuos, que permitem voltar a um estado anterior se algo for corrompido ou apagado por engano. **Controle de acesso**, com permissões para pessoas, grupos ou papéis, de modo que cada um veja só o que precisa. **Registros (logs)** de mudanças e acessos, que ajudam a auditar. E **proteção dos dados**, física e por criptografia.
+
+<ExemploResolvido titulo="Antes de apagar, confira">
+  <Passo>A tabela `pedidos` tem 5 linhas e 2 estão `pendente`.</Passo>
+  <Passo>Você escreve `DELETE FROM pedidos WHERE status = 'pendente';`.</Passo>
+  <Passo>O banco apaga só as 2 linhas que casam com o filtro. Restam 3.</Passo>
+  <Passo>Sem o `WHERE`, apagaria as **5**. Um bom hábito: escrever primeiro um `SELECT` com o mesmo filtro e conferir as linhas antes de apagar.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Num DELETE sem WHERE, numa tabela com 5 linhas, quantas linhas são apagadas? (número)" resposta="5" dica="Sem filtro, vale para tudo." resolucao="Todas as 5 linhas." />
+
+<Aprofundar titulo="Nunca cole texto de usuário dentro de um comando SQL">
+Se o back-end monta o comando SQL **juntando texto digitado por quem usa o site**, uma pessoa mal-intencionada pode digitar pedaços de SQL no lugar do nome, e o banco os executa. Esse ataque se chama **injeção de SQL**. A defesa padrão é usar comandos com **parâmetros** (o banco trata o que o usuário digitou sempre como **dado**, nunca como comando). É a mesma regra de ouro da cápsula de front-end e back-end: o servidor **nunca confia** no que vem do navegador.
+</Aprofundar>
+
+## Há outros tipos de banco
+
+O modelo relacional (tabelas) domina desde os anos 1980, mas não é o único. A fonte descreve também: **bancos de documentos** (guardam documentos parecidos com JSON, como você viu na cápsula anterior), **chave-valor** (rapidíssimos, mapeiam uma chave a um valor) e **de grafos** (guardam nós e ligações, bons para dados cheios de relações, como redes sociais). Os mais usados (ranking de dezembro de 2024) incluem Oracle Database, MySQL, Microsoft SQL Server, PostgreSQL, Snowflake, IBM Db2 e SQLite. O app Curiosamente usa o **PostgreSQL**, por meio do Supabase.
+
+<Exercicio enunciado="Em que ano Edgar F. Codd propôs o modelo relacional? (número)" resposta="1970" dica="Foi na IBM." resolucao="Em 1970." />
+
+<Exercicio enunciado="Em que ano o SQL virou padrão ANSI? (número)" resposta="1986" dica="O ISO veio no ano seguinte." resolucao="Em 1986 (ANSI). O ISO adotou em 1987." />
+
+<Exercicio enunciado="Qual era o nome original do SQL, antes da mudança por causa da marca registrada? (uma palavra)" resposta="sequel" dica="Soa como 'sequência' em inglês." resolucao="SEQUEL (Structured English Query Language)." />
+
+<Aprofundar titulo="Quando usar cada tipo de banco">
+Não existe um "melhor banco": cada tipo resolve um problema. Dados com **estrutura clara e ligações** (clientes, pedidos, estoque) combinam com o **relacional**. Dados em **formato de documento** e que mudam de forma com frequência combinam com **documentos**. Respostas muito rápidas a partir de uma chave combinam com **chave-valor**. Redes de relações combinam com **grafos**. A fonte registra que bancos NoSQL ficaram populares no fim dos anos 2000, em parte por escalarem em vários servidores, e que sistemas **NewSQL** tentam manter o SQL e as garantias do modelo relacional com o desempenho dos NoSQL.
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Numa tabela de banco de dados, o que é cada linha?',
+    opcoes: ['Um registro (um cliente, um produto...)', 'Um campo', 'Um programa'],
+    correta: 0,
+    explicacao: 'As colunas são os campos e cada linha é um registro completo.',
+  },
+  {
+    enunciado: 'Para que serve a chave primária?',
+    opcoes: ['Identificar cada linha de modo único', 'Guardar a senha', 'Deixar a tabela bonita'],
+    correta: 0,
+    explicacao: 'Ela garante que duas linhas nunca se confundam, mesmo com nomes iguais.',
+  },
+  {
+    enunciado: 'O que é uma chave estrangeira?',
+    opcoes: ['Uma coluna que guarda a chave primária de outra tabela', 'Uma senha de outro país', 'Uma tabela repetida'],
+    correta: 0,
+    explicacao: 'Ela liga as tabelas, como cliente_id em pedidos.',
+  },
+  {
+    enunciado: 'Qual comando SQL lê dados sem mudar nada?',
+    opcoes: ['SELECT', 'DELETE', 'UPDATE'],
+    correta: 0,
+    explicacao: 'SELECT só consulta. DELETE apaga e UPDATE altera.',
+  },
+  {
+    enunciado: 'O que significa dizer que o SQL é declarativo?',
+    opcoes: ['Você diz o que quer, e o banco decide como achar', 'Você precisa seguir ponteiros à mão', 'Só funciona de manhã'],
+    correta: 0,
+    explicacao: 'O otimizador do banco escolhe o caminho mais eficiente.',
+  },
+  {
+    enunciado: 'Quem propôs o modelo relacional, em 1970?',
+    opcoes: ['Edgar F. Codd', 'Roy Fielding', 'Tim Berners-Lee'],
+    correta: 0,
+    explicacao: 'Codd, da IBM, propôs guardar os dados em tabelas e achá-los pelo conteúdo.',
+  },
+  {
+    enunciado: 'Por que o SEQUEL virou SQL?',
+    opcoes: ['SEQUEL era marca registrada de uma empresa do Reino Unido', 'Porque ficou mais bonito', 'Porque foi proibido'],
+    correta: 0,
+    explicacao: 'O nome foi encurtado, tirando as vogais.',
+  },
+  {
+    enunciado: 'Sem transação, uma queda entre "tirar da Ana" e "pôr no Bruno" causa:',
+    opcoes: ['Dinheiro que some', 'Nada', 'Dinheiro dobrado'],
+    correta: 0,
+    explicacao: 'O primeiro passo aconteceu e o segundo não. A transação evita isso, desfazendo tudo.',
+  },
+  {
+    enunciado: 'O que significa o "A" de ACID (atomicidade)?',
+    opcoes: ['A transação acontece inteira ou não acontece', 'A transação é anônima', 'A transação é automática'],
+    correta: 0,
+    explicacao: 'Como um átomo, a transação não se divide: é tudo ou nada.',
+  },
+  {
+    enunciado: 'Por que um índice acelera a busca?',
+    opcoes: ['Porque permite ir direto ao lugar certo, descartando metade a cada passo', 'Porque apaga linhas', 'Porque aumenta o computador'],
+    correta: 0,
+    explicacao: 'Com índice, mil linhas pedem cerca de 10 passos e um milhão pede cerca de 20.',
+  },
+  {
+    enunciado: 'O que acontece com um DELETE sem WHERE?',
+    opcoes: ['Apaga todas as linhas da tabela', 'Não faz nada', 'Apaga só a primeira'],
+    correta: 0,
+    explicacao: 'O WHERE é o que limita o comando. Sem ele, vale para tudo.',
+  },
+  {
+    enunciado: 'Qual destas práticas ajuda a recuperar dados apagados por engano?',
+    opcoes: ['Backup periódico', 'Desligar o computador', 'Usar senhas curtas'],
+    correta: 0,
+    explicacao: 'Backups permitem voltar a um estado anterior. Controle de acesso e logs também ajudam.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Banco de dados** é uma coleção organizada de dados, administrada por um **SGBD**. No modelo relacional, os dados ficam em **tabelas**: colunas são campos, linhas são registros.
+- **Chave primária** identifica cada linha. **Chave estrangeira** liga uma tabela a outra, para não repetir informação.
+- **SQL** é declarativo: SELECT lê, INSERT acrescenta, UPDATE muda, DELETE apaga. WHERE filtra e ORDER BY ordena.
+- **Transação** é "tudo ou nada" (ACID): evita dinheiro sumindo no meio de uma operação.
+- **Índice** é o sumário do banco: mil linhas pedem cerca de 10 passos, um milhão cerca de 20.
+- **Sem WHERE** o comando vale para a tabela toda. Backup, controle de acesso e logs protegem os dados.
+
+**Um pouco de história.** Nos anos 1960, os bancos seguiam ponteiros (o IMS, de 1966). Em 1970, Edgar F. Codd propôs as tabelas. A IBM começou o System R em 1974, e Chamberlin e Boyce criaram o SEQUEL, depois SQL. O Oracle saiu em 1979, o SQL virou padrão ANSI em 1986 e ISO em 1987. No fim dos anos 2000, os bancos NoSQL ficaram populares.
+
+</Resumo>
+
+Agora você conhece a despensa. Na próxima cápsula, vamos ver o que fazer com um dado muito especial: a **senha**. Por que ninguém deve guardá-la "pura"?
+
+<Conexoes />
+
+</Etapa>

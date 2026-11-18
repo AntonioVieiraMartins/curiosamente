@@ -127,7 +127,7 @@ export const capsulas: ResumoCapsula[] = [
   c('sistema-web', 'front-end-e-back-end', 'Front-end e back-end', 'O salão e a cozinha de todo site.', { estado: 'pronta', duracaoMin: 40, conexoes: ['http-https'] }),
   c('sistema-web', 'html-css-javascript', 'HTML, CSS e JavaScript', 'Esqueleto, roupa e movimento de toda página.', { estado: 'pronta', duracaoMin: 40, conexoes: ['front-end-e-back-end'] }),
   c('sistema-web', 'apis-e-json', 'APIs e JSON', 'O cardápio que um sistema oferece para outro.', { estado: 'pronta', duracaoMin: 40, conexoes: ['html-css-javascript'] }),
-  c('sistema-web', 'banco-de-dados', 'Banco de dados', 'Planilhas que conversam entre si.'),
+  c('sistema-web', 'banco-de-dados', 'Banco de dados', 'Planilhas que conversam entre si.', { estado: 'pronta', duracaoMin: 40, conexoes: ['apis-e-json'] }),
   c('sistema-web', 'senhas-e-hash', 'Usuários e login', 'Por que ninguém deveria guardar sua senha.', { conexoes: ['numeros-primos'] }),
   c('hospedagem', 'deploy', 'Deploy', 'Do seu computador para o mundo.'),
 ]
