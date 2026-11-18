@@ -1,0 +1,405 @@
+import EscadaDasUnidades from '../../../../components/simulacoes/EscadaDasUnidades'
+import CuboDeUmLitro from '../../../../components/simulacoes/CuboDeUmLitro'
+import EscolhaAUnidade from '../../../../components/simulacoes/EscolhaAUnidade'
+import ReguaDeEstimativa from '../../../../components/simulacoes/ReguaDeEstimativa'
+import PerimetroEArea from '../../../../components/simulacoes/PerimetroEArea'
+import CercaOuPiso from '../../../../components/simulacoes/CercaOuPiso'
+
+{/* Fatos conferidos na Wikipedia em inglês (Metric system e Litre), listadas no meta.ts. As conversões, as unidades de área e as fórmulas de perímetro e área são conteúdo escolar geral da BNCC, conferidas por cálculo. Polegada, pé e milha entram como conhecimento geral. */}
+
+<Etapa id="gancho">
+
+Você abre uma garrafa de **1 litro** de suco e uma caixinha de **1 quilo** de arroz. Parecem coisas bem diferentes: uma é líquido, a outra é grão. Mas há um segredo escondido: um recipiente em forma de **cubo, com 10 cm de cada lado**, guarda exatamente **1 litro**. E se esse cubo estiver cheio de água, ela pesa **cerca de 1 quilo**. Comprimento, volume e peso estão **ligados**.
+
+Essa ligação não é acaso. O sistema de medidas que usamos foi **projetado** para que tudo andasse de **10 em 10**, igual ao nosso sistema de numeração. Por isso converter 2,5 km em metros é só **andar com a vírgula**, sem decorar tabela nenhuma.
+
+<Palpite
+  chave="inicial"
+  pergunta="Um cubo de 10 cm de lado (10 cm de largura, de altura e de profundidade) cabe quantos mililitros de água?"
+  opcoes={['100 mL', '1.000 mL', '10.000 mL']}
+/>
+
+Nesta cápsula você vai subir e descer a **escada das unidades**, montar o cubo do litro, escolher a unidade certa para cada coisa, treinar a estimativa, calcular **perímetro** e **área** e descobrir quando um problema pede a cerca ou o piso.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Medir é uma das ideias mais antigas da humanidade. Mas ter **uma medida igual para todos** é uma conquista bem mais recente.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Fim dos anos 1780', texto: 'Antoine e Anne-Marie Lavoisier criam o primeiro sistema métrico, no fim do Antigo Regime francês.' },
+  { ano: '1790', texto: 'Talleyrand propõe o sistema à Assembleia Nacional da França.' },
+  { ano: '1791', texto: 'O metro é definido como a décima milionésima parte da distância do Equador ao Polo Norte, medida passando por Paris.' },
+  { ano: '1795', texto: 'O litro nasce como unidade republicana: um decímetro cúbico.' },
+  { ano: '1799', texto: 'O sistema métrico entra em vigor na França.' },
+  { ano: '1960', texto: 'A conferência internacional de pesos e medidas anuncia o Sistema Internacional de Unidades (SI).' },
+  { ano: '1964', texto: 'O litro volta a ser, exatamente, um decímetro cúbico.' },
+  { ano: '2019', texto: 'O quilograma passa a ser definido por uma constante da natureza, a constante de Planck.' },
+]} />
+
+## Antes do metro: cada terra com a sua medida
+
+Antes do sistema métrico, cada região tinha as suas medidas, muitas vezes baseadas no corpo: o **palmo**, o **pé**, a **polegada** (a largura de um polegar), o **passo**. O problema é óbvio: o pé do rei não é igual ao pé do vizinho. Comprar tecido ou terra de outro lugar virava confusão e, às vezes, enganação. O **pé** e a **polegada** ainda existem em países como os Estados Unidos, e a polegada vale hoje exatamente 2,54 cm (conhecimento geral, fora da fonte).
+
+## Uma medida tirada do planeta
+
+Os franceses queriam uma medida que **não pertencesse a ninguém**, e a tiraram da própria Terra. Segundo a fonte, em **1791** o **metro** foi definido como **um décimo de milionésimo** da distância do Equador ao Polo Norte, passando por Paris. Hoje o metro é definido de outro jeito, usando a **velocidade da luz**, mas o comprimento é praticamente o mesmo.
+
+## Tudo de 10 em 10
+
+A fonte conta que o primeiro sistema métrico foi pensado por **Antoine e Anne-Marie Lavoisier** no fim dos anos 1780. Em **1790**, **Talleyrand** o propôs à Assembleia Nacional, e ele entrou em vigor na França em **1799**. O grande truque: as unidades se relacionam por **potências de 10**. A fonte contrasta com o sistema de pés e milhas, em que 1 milha tem 5.280 pés, um número difícil de lembrar.
+
+## O litro e o quilograma
+
+Em **1795** nasceu o **litro**, definido como **um decímetro cúbico**, isto é, o volume de um cubo de 10 cm de lado. O **quilograma** foi pensado como a massa de **1 litro de água**. Por isso, segundo a fonte, um litro de água tem massa de quase exatamente 1 quilo. A relação não é mais exata depois das redefinições modernas, mas continua valendo para o dia a dia. O litro passou por pequenos ajustes (em 1901 foi redefinido pela água, em 1964 voltou a ser um decímetro cúbico exato), e em 1979 aceitou-se o **L maiúsculo** como símbolo, porque o "l" minúsculo se confunde com o número 1.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Medir é comparar
+
+**Medir** é **comparar** uma coisa com uma **unidade** e contar quantas vezes ela cabe. Medir o comprimento da mesa com o palmo é contar quantos palmos cabem nela. O problema é que o palmo muda de pessoa para pessoa. Por isso combinamos unidades **iguais para todos**: o **metro**, o **litro**, o **grama**.
+
+## 2. Três grandezas
+
+- **Comprimento:** o quanto algo se estende (a altura de uma porta). Unidade-base: o **metro (m)**.
+- **Massa:** a quantidade de matéria (o "peso" no dia a dia). Unidade-base: o **grama (g)**, e o **quilograma (kg)**.
+- **Capacidade:** quanto cabe num recipiente. Unidade-base: o **litro (L)**.
+
+## 3. Os prefixos andam de 10 em 10
+
+A fonte lista os prefixos do sistema métrico: **quilo** (1.000), **hecto** (100), **deca** (10), **deci** (0,1), **centi** (0,01) e **mili** (0,001). Eles são os mesmos para **qualquer** unidade. Um **quilômetro** são 1.000 metros, e um **quilograma** são 1.000 gramas. Um **centímetro** é um centésimo do metro, e um **centilitro** é um centésimo do litro.
+
+Dá para guardar com um jeito simples: **mili** é "milésimo" (bem pequeno), **centi** é "centésimo", **deci** é "décimo", e **quilo** é "mil vezes".
+
+## 4. Converter é andar com a vírgula
+
+Como cada degrau da escada vale **10 vezes** o vizinho, mudar de unidade é **deslizar a vírgula**: indo para uma unidade **menor**, o número **fica maior** (a vírgula anda para a **direita**), e para uma unidade **maior**, o número **fica menor** (a vírgula anda para a esquerda). Você já viu isso em Números decimais: multiplicar por 10 anda a vírgula uma casa.
+
+<ExemploResolvido titulo="Quantos metros são 2,5 km?">
+  <Passo>De km para m são 3 degraus: km, hm, dam, m.</Passo>
+  <Passo>Indo para uma unidade menor, o número fica maior: multiplique por 10 três vezes, ou seja, por 1.000.</Passo>
+  <Passo>2,5 × 1.000 = **2.500 m**. A vírgula andou 3 casas para a direita.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos metros são 2,5 km? (número)" resposta="2500" dica="1 km são 1.000 m." resolucao="2,5 × 1.000 = 2.500 m." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Um cubo de 10 cm de lado cabe quantos mililitros de água?"
+  opcoes={['100 mL', '1.000 mL', '10.000 mL']}
+  correta={1}
+  explicacao="O volume é 10 × 10 × 10 = 1.000 cm³. E 1 cm³ equivale a 1 mL. Então o cubo guarda 1.000 mL, ou seja, exatamente 1 litro."
+>
+
+Mude o lado do cubo e veja o volume. Em 10 cm, o cubo fica amarelo: é o **litro**.
+
+<CuboDeUmLitro />
+
+Agora ande pela **escada das unidades**: escolha a grandeza, digite um valor e veja a vírgula andar.
+
+<EscadaDasUnidades />
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['100 mL', '1.000 mL', '10.000 mL']}
+  correta={1}
+  seAcertou="E o palpite do começo? Isso: o cubo de 10 cm tem 1.000 cm³, que são 1.000 mL, ou 1 litro."
+  seErrou="E o palpite do começo? O cubo de 10 cm tem 10 × 10 × 10 = 1.000 cm³. Como 1 cm³ equivale a 1 mL, cabem 1.000 mL, ou seja, 1 litro."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Comprimento: o metro e os seus vizinhos
+
+A escada do comprimento tem sete degraus: **km, hm, dam, m, dm, cm, mm**. No dia a dia usamos mais quatro: o **quilômetro** (estradas), o **metro** (cômodos), o **centímetro** (livros, pessoas) e o **milímetro** (espessuras pequenas). Para guardar: **1 m = 100 cm = 1.000 mm** e **1 km = 1.000 m**.
+
+<EscolhaAUnidade />
+
+<ExemploResolvido titulo="Quantos centímetros são 3,2 m? E quantos metros são 450 cm?">
+  <Passo>De m para cm são 2 degraus, para uma unidade menor: multiplique por 100.</Passo>
+  <Passo>3,2 × 100 = **320 cm**.</Passo>
+  <Passo>De cm para m, o caminho volta: divida por 100. 450 ÷ 100 = **4,5 m**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos centímetros são 3,2 m? (número)" resposta="320" dica="Multiplique por 100." resolucao="3,2 × 100 = 320 cm." />
+
+<Exercicio enunciado="Quantos metros são 450 cm? (número, com vírgula se precisar)" resposta="4,5" dica="Divida por 100." resolucao="450 ÷ 100 = 4,5 m." />
+
+<Exercicio enunciado="Quantos milímetros são 7 cm? (número)" resposta="70" dica="1 cm são 10 mm." resolucao="7 × 10 = 70 mm." />
+
+<Aprofundar titulo="Por que o sistema métrico venceu">
+Segundo a fonte, o grande trunfo do sistema métrico é que as unidades se relacionam por **potências de 10**, então converter exige **só deslocar a vírgula**. A fonte compara com o sistema de pés e milhas: 1 milha tem 5.280 pés, e 1 pé tem 12 polegadas. Converter ali exige multiplicar e dividir por números sem padrão. Ao ligar o metro ao tamanho da Terra, os franceses também deram ao mundo uma medida que **ninguém podia reclamar como sua**. Hoje o sistema métrico é o oficial em quase todos os países, e os Estados Unidos são a exceção mais conhecida no uso diário.
+</Aprofundar>
+
+## Comparando e somando medidas
+
+Para **somar** ou **comparar** medidas, elas precisam estar na **mesma unidade**. Não dá para somar 2 m com 30 cm sem converter: ou tudo em cm (200 + 30 = 230 cm) ou tudo em m (2 + 0,3 = 2,3 m). É o mesmo cuidado de alinhar a vírgula nos decimais.
+
+<ExemploResolvido titulo="Uma fita de 1,2 m e outra de 35 cm: quanto medem juntas?">
+  <Passo>As unidades são diferentes (m e cm). Escolha uma: cm.</Passo>
+  <Passo>1,2 m = 120 cm.</Passo>
+  <Passo>120 + 35 = **155 cm**, ou 1,55 m.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma fita tem 1,2 m e outra tem 35 cm. Quantos centímetros elas medem juntas? (número)" resposta="155" dica="Passe 1,2 m para cm." resolucao="120 + 35 = 155 cm." />
+
+<Exercicio enunciado="Uma estrada tem 12,5 km. Já se andaram 8.000 m. Quantos metros faltam? (número)" resposta="4500" dica="12,5 km são 12.500 m." resolucao="12.500 − 8.000 = 4.500 m." />
+
+## Massa: do miligrama à tonelada
+
+A escada da massa é a mesma, com o **grama** no centro. No dia a dia: o **miligrama** (doses de remédio), o **grama** (um clipe pesa cerca de 1 g), o **quilograma** (um pacote de arroz) e a **tonelada**: **1 t = 1.000 kg**. Ou seja, **1 kg = 1.000 g** e **1 g = 1.000 mg**.
+
+<ExemploResolvido titulo="Uma receita pede 350 g de farinha. Quantos quilos são?">
+  <Passo>De g para kg, o número fica menor: divida por 1.000.</Passo>
+  <Passo>350 ÷ 1.000 = **0,35 kg**.</Passo>
+  <Passo>Com 1 kg de farinha, dá para fazer essa receita quase 3 vezes (1 ÷ 0,35 ≈ 2,9).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos gramas são 2,5 kg? (número)" resposta="2500" dica="Multiplique por 1.000." resolucao="2,5 × 1.000 = 2.500 g." />
+
+<Exercicio enunciado="Quantos quilogramas são 3 toneladas? (número)" resposta="3000" dica="1 t = 1.000 kg." resolucao="3 × 1.000 = 3.000 kg." />
+
+<Exercicio enunciado="Um comprimido tem 500 mg. Quantos gramas são? (número, com vírgula)" resposta="0,5" dica="1 g = 1.000 mg." resolucao="500 ÷ 1.000 = 0,5 g." />
+
+## Capacidade: o litro e o mililitro
+
+Na escada da capacidade, o **litro** é o centro. O **mililitro (mL)** é um milésimo do litro: **1 L = 1.000 mL**. E, como você viu no cubo, **1 mL = 1 cm³**. Uma colher de chá tem uns 5 mL, uma lata de refrigerante, uns 350 mL, uma garrafa grande, 2 L.
+
+<ExemploResolvido titulo="Uma garrafa de 2 L serve copos de 250 mL. Quantos copos?">
+  <Passo>Passe tudo para a mesma unidade: 2 L = 2.000 mL.</Passo>
+  <Passo>Divida: 2.000 ÷ 250 = **8 copos**.</Passo>
+  <Passo>Confira: 8 × 250 = 2.000 mL.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma garrafa tem 2 L e cada copo leva 250 mL. Quantos copos ela enche? (número)" resposta="8" dica="2 L são 2.000 mL." resolucao="2.000 ÷ 250 = 8 copos." />
+
+<Exercicio enunciado="Quantos mililitros são 0,75 L? (número)" resposta="750" dica="Multiplique por 1.000." resolucao="0,75 × 1.000 = 750 mL." />
+
+<Aprofundar titulo="O litro, o decímetro cúbico e o quilograma">
+Segundo a fonte, **um litro é um decímetro cúbico**, ou seja, 1.000 centímetros cúbicos ou 0,001 metro cúbico. O **mililitro** é um centímetro cúbico. O litro nasceu na França, em **1795**, e passou por pequenos ajustes: em **1901** foi definido como o volume de 1 kg de água pura na densidade máxima, o que o deixava um pouquinho maior (cerca de 1,000028 dm³), e em **1964** voltou a ser **exatamente** 1 dm³. A fonte também diz que a unidade de volume oficial do SI é o **metro cúbico**: o litro é só aceito para uso com o SI. E, como o quilograma foi criado a partir de 1 litro de água, **1 litro de água pesa quase exatamente 1 quilo**, o que é uma boa regra para o dia a dia (vale para água, e não para óleo ou mel).
+</Aprofundar>
+
+## Estimar antes de medir
+
+**Estimar** é dar um valor **aproximado** sem instrumento. É uma habilidade muito útil: antes de comprar tecido, você estima quantos metros precisa. Para estimar bem, use **referências do corpo e do dia a dia**: a largura de um dedo é cerca de 1 cm, um passo de adulto, cerca de 70 a 80 cm, uma porta tem cerca de 2 m de altura.
+
+<ReguaDeEstimativa />
+
+<ExemploResolvido titulo="Quanto mede a sala? Use o passo">
+  <Passo>Você caminha pela sala e conta 9 passos de cerca de 0,7 m cada.</Passo>
+  <Passo>9 × 0,7 = 6,3 m.</Passo>
+  <Passo>A sala deve ter **cerca de 6 m**. Se a fita métrica disser 6,2 m, a estimativa foi ótima.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Se um passo mede 0,7 m, quantos metros são 10 passos? (número, com vírgula se precisar)" resposta="7" dica="10 × 0,7." resolucao="10 × 0,7 = 7 m." />
+
+## Perímetro: a volta da figura
+
+O **perímetro** é a **medida do contorno** de uma figura: a **soma de todos os lados**. Para cercar um terreno, rodear uma toalha ou contornar uma sala com rodapé, você usa o perímetro. Ele é medido em unidades de **comprimento** (m, cm, km).
+
+Num **retângulo**, os lados opostos são iguais, então: **perímetro = 2 × (largura + altura)**. Num **quadrado** de lado L: **4 × L**.
+
+<ExemploResolvido titulo="Perímetro de um terreno de 12 m por 8 m">
+  <Passo>Os lados são 12, 8, 12 e 8.</Passo>
+  <Passo>Somando: 12 + 8 + 12 + 8 = 40.</Passo>
+  <Passo>Pela fórmula: 2 × (12 + 8) = 2 × 20 = **40 m** de cerca.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é o perímetro de um terreno de 12 m por 8 m? (em metros)" resposta="40" dica="2 × (12 + 8)." resolucao="2 × 20 = 40 m." />
+
+<Exercicio enunciado="Qual é o perímetro de um quadrado de lado 9 cm? (em cm)" resposta="36" dica="4 × 9." resolucao="4 × 9 = 36 cm." />
+
+## Área: o chão que a figura cobre
+
+A **área** é **quanto de superfície** uma figura cobre. Medimos contando **quadradinhos de 1 unidade de lado**: um quadradinho de 1 m por 1 m tem **1 metro quadrado (1 m²)**. Num retângulo, as fileiras e colunas de quadradinhos dão: **área = largura × altura**. Num quadrado, **L × L**.
+
+<PerimetroEArea />
+
+<ExemploResolvido titulo="Quantos azulejos de 1 m² cobrem um piso de 6 m por 3 m?">
+  <Passo>O piso tem 6 colunas de quadradinhos e 3 fileiras.</Passo>
+  <Passo>6 × 3 = **18**.</Passo>
+  <Passo>Então são 18 m² de área: 18 quadradinhos de 1 m².</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é a área de um retângulo de 6 m por 3 m? (em m²)" resposta="18" dica="Largura vezes altura." resolucao="6 × 3 = 18 m²." />
+
+<Exercicio enunciado="Qual é a área de um quadrado de lado 7 cm? (em cm²)" resposta="49" dica="7 × 7." resolucao="7 × 7 = 49 cm²." />
+
+<Aprofundar titulo="Mesmo perímetro, áreas diferentes">
+Um retângulo de 1 m por 9 m e um de 5 m por 5 m têm o **mesmo perímetro** (2 × 10 = 20 m), mas **áreas muito diferentes**: 1 × 9 = **9 m²** contra 5 × 5 = **25 m²**. Com a mesma cerca, o **quadrado** cobre mais chão. É por isso que perímetro e área **não são a mesma coisa**, e um problema que pede um não se resolve com o outro. Mova os controles da simulação e veja: com o mesmo contorno, o formato muda tudo.
+</Aprofundar>
+
+## Perímetro ou área? Leia o problema
+
+Muita gente se atrapalha na hora de decidir. Dica: o que se **estende em linha** (cerca, rodapé, borda, fita) é **perímetro**. O que **cobre uma superfície** (piso, tinta, grama, tecido) é **área**.
+
+<CercaOuPiso />
+
+<ExemploResolvido titulo="Uma sala de 5 m por 4 m: rodapé e piso">
+  <Passo>O rodapé contorna a sala: perímetro = 2 × (5 + 4) = **18 m**.</Passo>
+  <Passo>O piso cobre o chão: área = 5 × 4 = **20 m²**.</Passo>
+  <Passo>Dois números diferentes, com unidades diferentes (m e m²), para duas necessidades diferentes.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma sala mede 5 m por 4 m. Quantos metros de rodapé são necessários (sem descontar a porta)? (número)" resposta="18" dica="É a volta: perímetro." resolucao="2 × (5 + 4) = 18 m." />
+
+<Exercicio enunciado="A mesma sala, de 5 m por 4 m, vai receber piso. Quantos m² de piso? (número)" resposta="20" dica="É a superfície: área." resolucao="5 × 4 = 20 m²." />
+
+## Metros quadrados em centímetros quadrados
+
+Atenção: a conversão de **áreas** não é de 10 em 10. Um quadrado de **1 m de lado** tem 100 cm de lado, então a sua área é 100 × 100 = **10.000 cm²**. Ou seja, **1 m² = 10.000 cm²**. Cada degrau da escada de áreas vale **100 vezes** o vizinho. E para **volumes**, cada degrau vale **1.000 vezes** (1 m³ = 1.000 L).
+
+<ExemploResolvido titulo="Quantos cm² tem uma tampa de 30 cm por 20 cm? E quantos m²?">
+  <Passo>Área em cm²: 30 × 20 = **600 cm²**.</Passo>
+  <Passo>Em m²: divida por 10.000. 600 ÷ 10.000 = **0,06 m²**.</Passo>
+  <Passo>Cuidado: dividir por 100, como no comprimento, daria 6 m², um valor absurdo para uma tampa.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos cm² tem 1 m²? (número)" resposta="10000" dica="100 cm × 100 cm." resolucao="100 × 100 = 10.000 cm²." />
+
+<Exercicio enunciado="Uma tampa mede 30 cm por 20 cm. Qual é a área em cm²? (número)" resposta="600" dica="Largura vezes altura." resolucao="30 × 20 = 600 cm²." />
+
+<Aprofundar titulo="Por que a área anda de 100 em 100">
+Imagine um quadrado de **1 m de lado**. Cada lado tem **100 cm**. Para cobrir o quadrado com quadradinhos de 1 cm, você precisa de **100 fileiras** com **100 quadradinhos** cada: 100 × 100 = **10.000**. A regra geral: ao mudar de unidade, a **medida do lado** muda por um fator k, e a **área** muda por **k × k**. Por isso, de m para cm o lado é 100 vezes maior, e a área é 100 × 100 = 10.000 vezes maior. O mesmo vale para o volume, que multiplica três vezes: de dm para cm, o lado é 10 vezes maior e o volume é 10 × 10 × 10 = **1.000** vezes maior, e é por isso que **1 dm³ = 1.000 cm³**, como no litro. Você verá essa ideia crescer no Fundamental, em potências e escalas.
+</Aprofundar>
+
+## Medidas no dia a dia
+
+- **Cozinha:** receitas misturam gramas, mililitros e colheres. Passar tudo para a mesma unidade evita erro.
+- **Compras:** o preço por quilo ou por litro ajuda a comparar embalagens de tamanhos diferentes (é uma taxa, como em Razão e proporção).
+- **Obras:** metro e metro quadrado: piso, tinta, rodapé.
+- **Viagens:** quilômetros na estrada. Em países que usam milhas, 1 milha vale cerca de 1,6 km (conhecimento geral).
+
+<ExemploResolvido titulo="Qual embalagem compensa: 500 g por R$ 6 ou 2 kg por R$ 20?">
+  <Passo>Passe tudo para kg: 500 g = 0,5 kg.</Passo>
+  <Passo>Preço por kg: 6 ÷ 0,5 = R$ 12 por kg. E 20 ÷ 2 = R$ 10 por kg.</Passo>
+  <Passo>A de 2 kg compensa mais: **R$ 10 por kg** contra R$ 12.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um pacote de 500 g custa R$ 6. Quanto custa o quilo, em reais? (número)" resposta="12" dica="1 kg são 2 pacotes de 500 g." resolucao="2 × 6 = R$ 12 por kg." />
+
+<Exercicio enunciado="Uma estrada tem 3,6 km e uma pessoa caminha 90 m por minuto. Quantos minutos leva? (número)" resposta="40" dica="3,6 km = 3.600 m." resolucao="3.600 ÷ 90 = 40 minutos." />
+
+## Erros comuns (e como fugir deles)
+
+- **Somar unidades diferentes sem converter:** 2 m + 30 cm não é 32 nada.
+- **Andar a vírgula para o lado errado:** para uma unidade menor, o número cresce. Teste com o bom senso: 2,5 km em metros precisa ser um número grande.
+- **Confundir perímetro com área:** uma é a volta (m), a outra é a superfície (m²).
+- **Converter área como se fosse comprimento:** de m² para cm² são 10.000, e não 100.
+- **Confundir g e kg, ou mL e L,** por um zero a mais. Um número absurdo é sinal de erro.
+
+<Exercicio enunciado="Um recipiente tem 1,5 L de suco. Quantos mL são? (número)" resposta="1500" dica="Multiplique por 1.000." resolucao="1,5 × 1.000 = 1.500 mL." />
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Quantos metros são 2,5 km?',
+    opcoes: ['2.500 m', '250 m', '25 m'],
+    correta: 0,
+    explicacao: '1 km = 1.000 m, então 2,5 × 1.000 = 2.500 m.',
+  },
+  {
+    enunciado: 'Quantos mililitros cabem num cubo de 10 cm de lado?',
+    opcoes: ['1.000 mL, ou 1 litro', '100 mL', '10 mL'],
+    correta: 0,
+    explicacao: '10 × 10 × 10 = 1.000 cm³ e 1 cm³ equivale a 1 mL.',
+  },
+  {
+    enunciado: 'Qual é a unidade mais adequada para medir a distância entre duas cidades?',
+    opcoes: ['Quilômetro', 'Milímetro', 'Centímetro'],
+    correta: 0,
+    explicacao: 'Distâncias longas ficam em quilômetros; em milímetros seriam números enormes.',
+  },
+  {
+    enunciado: 'Qual prefixo representa 1.000 vezes a unidade?',
+    opcoes: ['Quilo', 'Centi', 'Mili'],
+    correta: 0,
+    explicacao: 'Quilo é mil vezes. Centi é um centésimo e mili é um milésimo.',
+  },
+  {
+    enunciado: 'Quantos gramas são 3,4 kg?',
+    opcoes: ['3.400 g', '340 g', '34 g'],
+    correta: 0,
+    explicacao: '3,4 × 1.000 = 3.400 g.',
+  },
+  {
+    enunciado: 'Uma fita de 1,2 m é somada a outra de 35 cm. O total é:',
+    opcoes: ['155 cm', '47 cm', '1,55 cm'],
+    correta: 0,
+    explicacao: '1,2 m = 120 cm; 120 + 35 = 155 cm.',
+  },
+  {
+    enunciado: 'O perímetro de um retângulo de 12 m por 8 m é:',
+    opcoes: ['40 m', '96 m', '20 m'],
+    correta: 0,
+    explicacao: '2 × (12 + 8) = 40 m. Os 96 seriam a área (e em m²).',
+  },
+  {
+    enunciado: 'A área de um retângulo de 12 m por 8 m é:',
+    opcoes: ['96 m²', '40 m', '20 m²'],
+    correta: 0,
+    explicacao: '12 × 8 = 96 m². A área usa unidades quadradas.',
+  },
+  {
+    enunciado: 'Para comprar piso para uma sala, o que você calcula?',
+    opcoes: ['A área, em metros quadrados', 'O perímetro, em metros', 'O volume, em litros'],
+    correta: 0,
+    explicacao: 'O piso cobre a superfície da sala: é área.',
+  },
+  {
+    enunciado: 'Quantos cm² tem 1 m²?',
+    opcoes: ['10.000', '100', '1.000'],
+    correta: 0,
+    explicacao: '1 m = 100 cm, então 1 m² = 100 × 100 = 10.000 cm².',
+  },
+  {
+    enunciado: 'Uma garrafa de 2 L enche copos de 250 mL. Quantos copos?',
+    opcoes: ['8 copos', '4 copos', '80 copos'],
+    correta: 0,
+    explicacao: '2 L = 2.000 mL e 2.000 ÷ 250 = 8.',
+  },
+  {
+    enunciado: 'Em 1791, o metro foi definido a partir de quê?',
+    opcoes: ['Do tamanho da Terra: um décimo de milionésimo da distância do Equador ao Polo Norte', 'Do pé do rei', 'Da velocidade do som'],
+    correta: 0,
+    explicacao: 'Os franceses tiraram a medida do próprio planeta, para não pertencer a ninguém.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Medir** é comparar com uma **unidade** combinada. As grandezas: **comprimento** (metro), **massa** (grama) e **capacidade** (litro).
+- Os **prefixos** andam de 10 em 10 e valem para todas as unidades: **quilo** (1.000), **hecto**, **deca**, **deci**, **centi** (0,01), **mili** (0,001).
+- **Converter** é andar com a vírgula: para uma unidade menor o número cresce.
+- **1 litro** é um cubo de 10 cm de lado (1.000 cm³ = 1.000 mL), e 1 litro de água pesa cerca de 1 quilo.
+- **Perímetro** é a volta (soma dos lados, em m). **Área** é a superfície coberta (em m²).
+- **Retângulo:** perímetro 2 × (largura + altura), área largura × altura.
+- **1 m² = 10.000 cm²**: área anda de 100 em 100; volume, de 1.000 em 1.000.
+- **Estimar** antes de medir evita erros absurdos.
+
+**Um pouco de história.** Antes do sistema métrico, cada região tinha as suas medidas, baseadas no corpo. Os Lavoisier criaram o primeiro sistema métrico no fim dos anos 1780, Talleyrand o propôs em 1790 e, em 1791, o metro foi definido a partir do tamanho da Terra. O litro nasceu em 1795, o sistema entrou em vigor na França em 1799, e em 1960 a conferência internacional de pesos e medidas anunciou o SI.
+
+</Resumo>
+
+Agora que você mede e converte, o próximo passo é medir o **tempo**, a única grandeza que não anda de 10 em 10. Por que a hora tem 60 minutos? Isso fica para a próxima cápsula.
+
+<Conexoes />
+
+</Etapa>

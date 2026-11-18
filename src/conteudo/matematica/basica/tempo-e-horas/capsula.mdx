@@ -1,0 +1,375 @@
+import RelogioDosPonteiros from '../../../../components/simulacoes/RelogioDosPonteiros'
+import ConverteTempo from '../../../../components/simulacoes/ConverteTempo'
+import SomaDeTempos from '../../../../components/simulacoes/SomaDeTempos'
+import DuracaoNaReta from '../../../../components/simulacoes/DuracaoNaReta'
+import RelogioDe24Horas from '../../../../components/simulacoes/RelogioDe24Horas'
+import FusoHorario from '../../../../components/simulacoes/FusoHorario'
+
+{/* Fatos conferidos na Wikipedia em inglês (Hour e Time zone), listadas no meta.ts. A conta de duração, as conversões, o calendário e a regra do ano bissexto são conteúdo escolar geral da BNCC, conferidos por cálculo. A regra do ano bissexto, a Lua e a Terra no calendário são conhecimento geral, fora da fonte. */}
+
+<Etapa id="gancho">
+
+O filme começa às **14h50** e dura **2 horas e 30 minutos**. A que horas ele termina? Se você tentou somar 14,50 + 2,30, vai chegar em 17,80, uma hora que **não existe**. A resposta certa é **17h20**.
+
+O tempo é uma grandeza **esquisita**. Metros, gramas e litros andam de 10 em 10, mas o tempo anda de **60 em 60** (minutos e segundos) e de **24 em 24** (horas do dia). Quando os minutos passam de 59, "vai uma hora", e esse "vai um" vale 60, e não 10. Entender por quê (e como contar) evita muito erro.
+
+<Palpite
+  chave="inicial"
+  pergunta="Quanto é 1 hora e 45 minutos mais 2 horas e 35 minutos?"
+  opcoes={['3 h e 80 min', '4 h e 20 min', '3 h e 20 min']}
+/>
+
+Nesta cápsula você vai ler o **relógio de ponteiros**, passar de segundos para horas, **somar tempos**, calcular a **duração** de um evento, trocar entre 12 e 24 horas e descobrir **que horas são** em outro lugar do mundo.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Hoje ninguém estranha dividir a hora em 60 minutos. Mas nem sempre foi assim: **a hora já teve tamanhos diferentes** ao longo do ano.
+
+<LinhaDoTempo marcos={[
+  { ano: 'c. 2150 a.C.', texto: 'Diagramas egípcios de "relógios de estrelas" mostram a noite dividida em 12 partes.' },
+  { ano: 'Antiguidade', texto: 'Relógios de sol passam a dividir o dia em 12 horas. Eram as horas sazonais: o tamanho mudava com a estação.' },
+  { ano: 'Antiguidade', texto: 'O astrônomo Hiparco de Niceia provavelmente foi o primeiro a dividir dia e noite em 24 horas.' },
+  { ano: 'Séc. I a.C.', texto: 'A Torre dos Ventos, em Atenas, mede o dia de 24 horas com relógios de sol e indicadores mecânicos.' },
+  { ano: 'Idade Média', texto: 'Astrônomos como al-Biruni e Sacrobosco dividem a hora em 60 minutos de 60 segundos.' },
+  { ano: 'Depois dos relógios mecânicos', texto: 'As horas passam a ter sempre o mesmo tamanho, as horas "iguais".' },
+  { ano: 'Hoje', texto: 'A hora é definida em segundos físicos: 3.600 segundos.' },
+]} />
+
+## A noite dividida em 12
+
+Segundo a fonte, os **egípcios** dividiram a **noite em 12 partes**, observando o aparecimento de certas estrelas e as cheias do Nilo. Diagramas de "relógios de estrelas" de cerca de **2150 a.C.** mostram essas 12 divisões. Mais tarde, os **relógios de sol** dividiram também o **dia** em 12 horas.
+
+## Uma hora que muda de tamanho
+
+Esse jeito antigo gerou a **hora sazonal**: um **doze avos do dia** (ou da noite). Só que, no verão, o dia é longo, e a hora de dia era **mais comprida**; no inverno, mais curta. O tamanho da hora variava com a **estação** e com a **latitude**, e era assim até aparecerem os **relógios mecânicos**, que batem sempre no mesmo ritmo e criaram a hora de **tamanho fixo** que usamos hoje.
+
+## 24 horas e 60 minutos
+
+A fonte diz que a divisão do dia e da noite em **24 horas** foi **provavelmente** feita pela primeira vez por **Hiparco de Niceia**, um astrônomo grego. Já a divisão da hora em **60 minutos** e do minuto em **60 segundos** aparece em astrônomos medievais, como **al-Biruni** e **Sacrobosco**, e a fonte liga essa ideia à **astronomia babilônica**. Os babilônios contavam em **base 60** (como você viu no Sistema decimal). É por isso que a hora tem 60 minutos (a volta de 360 graus também pode ter ligação com isso, mas ninguém sabe ao certo). A base 60 tem uma vantagem: o 60 tem **muitos divisores** (1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30 e 60), então dá para dividir a hora em meias, terços, quartos e quintos sem frações quebradas.
+
+## Segundos que não dependem da Terra
+
+Durante séculos, a hora foi definida pela rotação da Terra. Segundo a fonte, hoje ela foi **separada da rotação** e é definida a partir do **segundo físico** (atômico): **1 hora tem 3.600 segundos**.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O tempo tem três degraus
+
+Uma **hora** tem **60 minutos**, e um **minuto** tem **60 segundos**. Então **1 hora = 60 × 60 = 3.600 segundos**. Um **dia** tem **24 horas** (1.440 minutos, ou 86.400 segundos). Esses números não são de 10 em 10, e é por isso que a conta de cabeça pede atenção.
+
+## 2. O relógio de ponteiros é um círculo
+
+O ponteiro dos **minutos** dá uma volta completa (360°) em **60 minutos**: então anda **6° por minuto**. O ponteiro das **horas** dá uma volta em **12 horas**: anda **30° por hora**. Quando os minutos passam, o ponteiro das horas também **anda um pouquinho** (0,5° por minuto). Você viu os ângulos em Ângulos, no Fundamental. Aqui você os usa de verdade.
+
+## 3. Ler as horas
+
+Cada **traço grande** do relógio é uma **hora**; entre dois traços grandes, o ponteiro dos minutos passa por **5 minutos** (por isso o 3 é "15 minutos" e o 6 é "30 minutos"). "**Meia hora**" são 30 minutos, "**um quarto de hora**", 15.
+
+## 4. Somar tempo é somar na base 60
+
+Em 1 h 45 min + 2 h 35 min: 45 + 35 = **80 minutos**. Mas 80 minutos passa de 59: é **1 hora e 20 minutos**. O "vai um" vale **60**. Então: 1 h + 2 h + 1 h = 4 h, e sobram 20 min. A resposta é **4 h 20 min**.
+
+<ExemploResolvido titulo="Quanto é 1 h 45 min + 2 h 35 min?">
+  <Passo>Some os minutos: 45 + 35 = 80.</Passo>
+  <Passo>80 min = 60 + 20 = 1 hora e 20 minutos. Escreva 20 e "vai 1 hora".</Passo>
+  <Passo>Some as horas, com a que veio: 1 + 2 + 1 = 4.</Passo>
+  <Passo>Resultado: **4 h 20 min**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos minutos são 80 min, em horas e minutos? Responda só os minutos que sobram depois de tirar a hora. (número)" resposta="20" dica="80 − 60." resolucao="80 min = 1 h e 20 min. Sobram 20 min." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Quanto é 1 hora e 45 minutos mais 2 horas e 35 minutos?"
+  opcoes={['3 h e 80 min', '4 h e 20 min', '3 h e 20 min']}
+  correta={1}
+  explicacao="45 + 35 = 80 minutos, que é 1 h e 20 min. Somando as horas: 1 + 2 + 1 = 4. Resposta: 4 h 20 min. '3 h e 80 min' não está errada em valor, mas ninguém escreve 80 minutos: passa de 59 e vira hora."
+>
+
+Mude as horas e os minutos e veja o "vai uma hora" acontecer quando os minutos passam de 59.
+
+<SomaDeTempos />
+
+Agora veja o **relógio de ponteiros**: mexa na hora e nos minutos e observe os ângulos.
+
+<RelogioDosPonteiros />
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['3 h e 80 min', '4 h e 20 min', '3 h e 20 min']}
+  correta={1}
+  seAcertou="E o palpite do começo? Isso: 45 + 35 = 80 min = 1 h 20 min, e o total é 4 h 20 min."
+  seErrou="E o palpite do começo? 45 + 35 dá 80 minutos, mas 80 passa de 59: é 1 hora e 20 minutos. O total é 1 + 2 + 1 = 4 horas e 20 minutos."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Convertendo: horas, minutos e segundos
+
+Para ir de uma unidade **maior** para uma **menor**, **multiplique**: 2 h = 2 × 60 = 120 min. Para ir de uma **menor** para uma **maior**, **divida**: 300 s ÷ 60 = 5 min. Os fatores são **60** (hora para minuto, minuto para segundo) e **24** (dia para hora).
+
+<ConverteTempo />
+
+<ExemploResolvido titulo="Quantos minutos são 2 h 15 min?">
+  <Passo>2 h = 2 × 60 = 120 min.</Passo>
+  <Passo>Some os 15 minutos que já estavam soltos: 120 + 15.</Passo>
+  <Passo>Resposta: **135 min**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos minutos são 2 h 15 min? (número)" resposta="135" dica="2 × 60 + 15." resolucao="120 + 15 = 135 min." />
+
+<Exercicio enunciado="Quantos segundos tem 1 hora? (número)" resposta="3600" dica="60 minutos de 60 segundos." resolucao="60 × 60 = 3.600 s." />
+
+<Exercicio enunciado="Quantos minutos tem 1 dia? (número)" resposta="1440" dica="24 horas de 60 minutos." resolucao="24 × 60 = 1.440 min." />
+
+<ExemploResolvido titulo="Transformando 5.000 segundos em horas, minutos e segundos">
+  <Passo>5.000 ÷ 60 = 83, e sobram 20 segundos (83 × 60 = 4.980).</Passo>
+  <Passo>83 min ÷ 60 = 1 hora, e sobram 23 minutos.</Passo>
+  <Passo>Resultado: **1 h 23 min 20 s**.</Passo>
+  <Passo>Conferindo: 3.600 + 23 × 60 + 20 = 3.600 + 1.380 + 20 = 5.000. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos minutos são 7.200 segundos? (número)" resposta="120" dica="Divida por 60." resolucao="7.200 ÷ 60 = 120 min (2 horas)." />
+
+<Aprofundar titulo="Por que 60? Por que tantos divisores">
+O **60** é um número muito prático: tem **12 divisores** (1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30 e 60). Você viu isso em Múltiplos e divisores. Por isso, a metade da hora é 30 min, um terço é 20, um quarto é 15, um quinto é 12 e um sexto é 10: **todos números inteiros**. Se a hora tivesse 100 minutos, um terço de hora seria 33,33... minutos, uma dízima que nunca termina (veja Números decimais). A fonte liga a divisão em 60 à **astronomia babilônica**, que contava em base 60, e o hábito atravessou milênios até o seu relógio.
+</Aprofundar>
+
+## Somando e subtraindo tempos
+
+Para **somar**, some os minutos, passe o excesso (acima de 59) para as horas, e some as horas. Para **subtrair**, quando faltar minuto, **empreste uma hora** (que vale **60 minutos**), do mesmo jeito que o empréstimo na subtração, só que com 60 no lugar de 10.
+
+<ExemploResolvido titulo="Quanto é 5 h 20 min − 2 h 45 min?">
+  <Passo>Minutos: 20 − 45 não dá. Empreste 1 hora (= 60 min) das 5 horas: ficam 4 h e 20 + 60 = 80 min.</Passo>
+  <Passo>Minutos: 80 − 45 = 35.</Passo>
+  <Passo>Horas: 4 − 2 = 2.</Passo>
+  <Passo>Resultado: **2 h 35 min**. Conferindo: 2 h 35 + 2 h 45 = 4 h 80 = 5 h 20. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 3 h 50 min + 1 h 30 min? Responda em minutos totais. (número)" resposta="320" dica="5 h 20 min." resolucao="3 h 50 + 1 h 30 = 4 h 80 = 5 h 20 min = 320 min." />
+
+<Exercicio enunciado="Quanto é 5 h 20 min − 2 h 45 min? Responda em minutos totais. (número)" resposta="155" dica="Empreste 1 hora." resolucao="2 h 35 min = 155 min." />
+
+## Quanto tempo passou? Conte para a frente
+
+Para calcular a **duração** entre duas horas, **conte para a frente** a partir do início, como no troco: primeiro até a **hora cheia**, depois as horas inteiras, depois os minutos finais. De **14h50** até **17h20**: de 14h50 até 15h são **10 min**; de 15h até 17h são **2 horas**; de 17h até 17h20 são **20 min**. Total: **2 h 30 min**.
+
+<DuracaoNaReta />
+
+<ExemploResolvido titulo="Uma aula começa às 7h40 e termina às 11h15. Quanto dura?">
+  <Passo>De 7h40 até 8h: 20 min.</Passo>
+  <Passo>De 8h até 11h: 3 h.</Passo>
+  <Passo>De 11h até 11h15: 15 min.</Passo>
+  <Passo>Total: 3 h + 20 min + 15 min = **3 h 35 min**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um filme começa às 14h50 e dura 2 h 30 min. Que horas termina? Responda só os minutos da hora final (ex.: 17h20 → 20). (número)" resposta="20" dica="14h50 + 2 h = 16h50; mais 30 min." resolucao="14h50 + 2 h 30 min = 17h20." />
+
+<Exercicio enunciado="Uma aula começa às 7h40 e termina às 11h15. Quantos minutos dura? (número)" resposta="215" dica="3 h 35 min." resolucao="3 × 60 + 35 = 215 min." />
+
+<Aprofundar titulo="Duração como subtração de números na base 60">
+Calcular a duração é **subtrair**: fim − início. Em 11h15 − 7h40, os minutos (15 − 40) não dão, então emprestamos uma hora: 10h75 − 7h40 = 3h35. O resultado é o mesmo que contar para a frente. A diferença é que a conta armada exige o **empréstimo de 60**. Já contar para a frente evita o empréstimo, por isso é o método dos caixas e dos motoristas de aplicativo. Para tempos que **cruzam a meia-noite**, some 24 horas ao fim: das 22h às 3h são (3 + 24) − 22 = **5 horas**.
+</Aprofundar>
+
+## 12 horas e 24 horas
+
+O dia tem 24 horas, mas no dia a dia muitos relógios mostram só 12, e dizemos "da manhã", "da tarde" ou "da noite". O relógio de **24 horas** numera as horas de **0 a 23**, a partir da meia-noite, e não repete números. Para passar do de 24 para o de 12 horas, **subtraia 12** quando passar do meio-dia: **15h = 3 da tarde**, **20h = 8 da noite**. A fonte descreve exatamente essa convenção: as horas são numeradas de 0 a 23.
+
+<RelogioDe24Horas />
+
+<ExemploResolvido titulo="Que horas são 21h30 no relógio de 12 horas?">
+  <Passo>21 passa de 12, então subtraia 12: 21 − 12 = 9.</Passo>
+  <Passo>É **9h30 da noite**.</Passo>
+  <Passo>E 9h30 da manhã no relógio de 24 horas é 09h30, sem somar nada.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Que hora do relógio de 24 horas é 8 da noite? (número)" resposta="20" dica="8 + 12." resolucao="8 + 12 = 20h." />
+
+<Exercicio enunciado="Quanto é 15h no relógio de 12 horas? (número, a hora)" resposta="3" dica="15 − 12." resolucao="15 − 12 = 3 (da tarde)." />
+
+## Dias, semanas, meses e anos
+
+- 1 **semana** = 7 dias.
+- 1 **mês** tem 28, 29, 30 ou 31 dias.
+- 1 **ano** tem 12 meses: 365 dias, ou **366** no ano **bissexto**.
+- 1 **década** = 10 anos. 1 **século** = 100 anos. 1 **milênio** = 1.000 anos.
+
+O ano bissexto existe porque a Terra leva um pouco **mais de 365 dias** para dar a volta no Sol (cerca de 365,25). Por isso, a cada 4 anos, acrescenta-se 1 dia, o 29 de fevereiro (regra geral, conhecimento geral, fora da fonte; há exceções em anos de século que não são múltiplos de 400, como 1900). Para contar os dias de um mês de cabeça, use os **nós dos dedos**: os que ficam nos "morros" têm 31 dias.
+
+<ExemploResolvido titulo="Quantos dias há em 3 semanas e 2 dias?">
+  <Passo>3 semanas = 3 × 7 = 21 dias.</Passo>
+  <Passo>Mais 2 dias: 21 + 2 = **23 dias**.</Passo>
+  <Passo>Se hoje é segunda-feira, daqui a 23 dias será quarta-feira: 23 = 3 × 7 + 2, e 2 dias depois de segunda é quarta.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos dias há em 4 semanas e 3 dias? (número)" resposta="31" dica="4 × 7 + 3." resolucao="28 + 3 = 31 dias." />
+
+<Exercicio enunciado="Quantos anos tem 1 século? (número)" resposta="100" dica="Século é 100 anos." resolucao="100 anos." />
+
+<Aprofundar titulo="O dia da semana depois de muitos dias">
+Como a semana tem 7 dias, depois de **7 dias** você volta ao **mesmo dia da semana**. Por isso, para saber o dia daqui a muitos dias, só importa o **resto da divisão por 7**. Daqui a 100 dias: 100 ÷ 7 = 14, com resto 2. Então será **2 dias depois** do dia de hoje. É o resto da cápsula de Divisão, funcionando como um **relógio** que dá voltas. Se hoje é sábado, daqui a 100 dias será segunda-feira.
+</Aprofundar>
+
+## Que horas são lá? Os fusos horários
+
+A Terra gira, então **não é meio-dia ao mesmo tempo em todo lugar**. Para organizar, o mundo é dividido em **fusos horários**: segundo a fonte, um fuso é uma **área que adota um mesmo horário padrão**. Cada fuso é descrito por uma diferença para o **UTC**, o horário de referência mundial, de **UTC−12** até **UTC+14**. A maior parte do **Brasil** está em **UTC−3** (o horário de Brasília), mas o **Amazonas** (a maior parte) está em **UTC−4**, e o **Acre** (e o sudoeste do Amazonas), em **UTC−5**.
+
+Quase todos os fusos diferem do UTC por horas inteiras, mas há exceções: segundo a fonte, a **Índia** e o **Nepal** usam **30 ou 45 minutos a mais**. A Índia está em UTC+5:30.
+
+<FusoHorario />
+
+<ExemploResolvido titulo="Em Brasília são 12h. Que horas são em Manaus e em Tóquio?">
+  <Passo>Brasília é UTC−3 e Manaus é UTC−4. A diferença é −4 − (−3) = −1: uma hora a **menos**.</Passo>
+  <Passo>Manaus: 12h − 1 h = **11h**.</Passo>
+  <Passo>Tóquio é UTC+9: 9 − (−3) = 12 horas a **mais**. 12h + 12 h = 24h, que é **0h do dia seguinte**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Em Brasília são 15h. Que horas são em Rio Branco (Acre, UTC−5)? (número, a hora)" resposta="13" dica="Duas horas a menos." resolucao="−5 − (−3) = −2: 15h − 2 h = 13h." />
+
+<Exercicio enunciado="Em Brasília são 20h. Quantas horas de diferença há para Tóquio (UTC+9)? (número)" resposta="12" dica="9 − (−3)." resolucao="9 − (−3) = 12 horas à frente (8h da manhã do dia seguinte)." />
+
+<Aprofundar titulo="Horário de verão e outros detalhes">
+A fonte conta que algumas regiões usam o **horário de verão**: adiantam os relógios em **1 hora** na primavera e no verão. A ilha Lord Howe, na Austrália, adianta só **30 minutos**. Os fusos também **não seguem linhas retas de longitude**: eles seguem as fronteiras de países e estados, porque lugares que se comunicam muito ganham por usar o mesmo horário. Por isso, ao agendar uma reunião entre países, vale sempre conferir o **UTC** de cada lugar, e não só a hora.
+</Aprofundar>
+
+## O tempo no dia a dia
+
+- **Cronometrar:** minutos e segundos em esportes e em tarefas.
+- **Agenda:** somar e comparar durações de compromissos.
+- **Velocidade:** quilômetros por hora (km/h) liga distância e tempo.
+- **Idade e datas:** contar anos, meses e dias entre duas datas.
+
+<ExemploResolvido titulo="Uma viagem de 180 km a 60 km/h: quanto tempo leva?">
+  <Passo>Velocidade de 60 km/h quer dizer 60 km em cada hora.</Passo>
+  <Passo>Divida a distância pela velocidade: 180 ÷ 60 = 3.</Passo>
+  <Passo>Levam **3 horas**. Se saem às 8h20, chegam às **11h20**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas horas leva uma viagem de 180 km a 60 km/h? (número)" resposta="3" dica="Distância ÷ velocidade." resolucao="180 ÷ 60 = 3 h." />
+
+<Exercicio enunciado="Uma tarefa leva 45 min e outra 50 min. Juntas, quantos minutos? (número)" resposta="95" dica="45 + 50." resolucao="45 + 50 = 95 min (1 h 35 min)." />
+
+## Erros comuns (e como fugir deles)
+
+- **Somar horas como se fossem decimais:** 2,30 h não é 2 h 30 min! 2,5 h é 2 h 30 min (meia hora é 0,5, e não 0,30).
+- **Esquecer que o "vai um" vale 60:** 45 + 35 = 80 min não é "80", é 1 h 20 min.
+- **Confundir 12 e 24 horas:** 7h da noite é 19h.
+- **Errar a duração por contar só os minutos:** conte até a hora cheia primeiro.
+- **Ignorar o fuso:** uma reunião "às 15h" precisa dizer de qual cidade.
+
+<Exercicio enunciado="Quantos minutos são 2,5 horas? (número)" resposta="150" dica="Meia hora é 30 min." resolucao="2 h = 120 min mais 30 min = 150 min." />
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Quantos minutos tem 1 hora e meia?',
+    opcoes: ['90 minutos', '150 minutos', '130 minutos'],
+    correta: 0,
+    explicacao: '1 hora são 60 minutos e meia hora são 30: 60 + 30 = 90.',
+  },
+  {
+    enunciado: 'Quanto é 1 h 45 min + 2 h 35 min?',
+    opcoes: ['4 h 20 min', '3 h 80 min', '3 h 20 min'],
+    correta: 0,
+    explicacao: '45 + 35 = 80 min = 1 h 20 min, e 1 + 2 + 1 = 4 h.',
+  },
+  {
+    enunciado: 'Quantos segundos tem 1 hora?',
+    opcoes: ['3.600', '360', '6.000'],
+    correta: 0,
+    explicacao: '60 minutos × 60 segundos = 3.600 segundos.',
+  },
+  {
+    enunciado: 'Quanto vale o "vai um" quando os minutos passam de 59?',
+    opcoes: ['Uma hora, que vale 60 minutos', 'Uma hora, que vale 10 minutos', 'Um dia'],
+    correta: 0,
+    explicacao: 'O tempo anda na base 60: 60 minutos formam 1 hora.',
+  },
+  {
+    enunciado: 'Um filme começa às 14h50 e dura 2 h 30 min. Ele termina às:',
+    opcoes: ['17h20', '16h80', '17h80'],
+    correta: 0,
+    explicacao: '14h50 + 2 h = 16h50 e mais 30 min = 17h20. Não existe 16h80.',
+  },
+  {
+    enunciado: 'Quanto tempo dura uma aula das 7h40 às 11h15?',
+    opcoes: ['3 h 35 min', '4 h 25 min', '3 h 25 min'],
+    correta: 0,
+    explicacao: 'De 7h40 a 8h são 20 min; de 8h a 11h são 3 h; de 11h a 11h15 são 15 min: 3 h 35 min.',
+  },
+  {
+    enunciado: 'Que hora do relógio de 24 horas corresponde a 8 da noite?',
+    opcoes: ['20h', '8h', '18h'],
+    correta: 0,
+    explicacao: 'Depois do meio-dia soma-se 12: 8 + 12 = 20.',
+  },
+  {
+    enunciado: 'Quantos graus o ponteiro dos minutos anda em 1 minuto?',
+    opcoes: ['6 graus', '30 graus', '12 graus'],
+    correta: 0,
+    explicacao: 'Uma volta (360°) em 60 minutos: 360 ÷ 60 = 6° por minuto.',
+  },
+  {
+    enunciado: 'Quanto é 2,5 horas em horas e minutos?',
+    opcoes: ['2 h 30 min', '2 h 50 min', '2 h 5 min'],
+    correta: 0,
+    explicacao: '0,5 hora é meia hora, 30 minutos. O decimal da hora não é o número de minutos.',
+  },
+  {
+    enunciado: 'Em Brasília são 12h. Que horas são em Manaus (UTC−4)?',
+    opcoes: ['11h', '13h', '16h'],
+    correta: 0,
+    explicacao: 'Manaus (UTC−4) está 1 hora atrás de Brasília (UTC−3).',
+  },
+  {
+    enunciado: 'Por que a hora tem 60 minutos, e não 100?',
+    opcoes: ['O 60 tem muitos divisores (e a base 60 vem da astronomia babilônica)', 'Porque foi sorteado', 'Porque o mês tem 30 dias'],
+    correta: 0,
+    explicacao: 'O 60 divide bem por 2, 3, 4, 5, 6, 10, 12, 15, 20 e 30. A base 60 vem dos babilônios.',
+  },
+  {
+    enunciado: 'Quantos dias há em 3 semanas?',
+    opcoes: ['21 dias', '14 dias', '30 dias'],
+    correta: 0,
+    explicacao: '3 × 7 = 21 dias.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **O tempo anda na base 60**: 1 hora = 60 min, 1 min = 60 s, então 1 hora = 3.600 s. O dia tem 24 horas (1.440 minutos).
+- **Somar tempo:** minutos acima de 59 viram horas (o "vai um" vale 60). **Subtrair:** empreste 1 hora (= 60 min).
+- **Duração:** conte para a frente, até a hora cheia, depois as horas, depois os minutos finais.
+- **No relógio de ponteiros:** 6° por minuto e 30° por hora (e o ponteiro das horas anda enquanto os minutos passam).
+- **12 e 24 horas:** depois do meio-dia, subtraia 12 (15h = 3 da tarde).
+- **Calendário:** semana 7 dias, ano 365 dias (366 no bissexto), década 10 anos, século 100 anos.
+- **Fusos:** a diferença para o UTC dá a hora de cada lugar; Brasília é UTC−3.
+- **2,5 h** é 2 h 30 min: meia hora é 0,5, e não 0,30.
+
+**Um pouco de história.** Os egípcios dividiram a noite em 12 partes, por volta de 2150 a.C., e os relógios de sol dividiram o dia também em 12. Essas horas mudavam de tamanho com as estações. Hiparco provavelmente foi o primeiro a dividir dia e noite em 24 horas. Na Idade Média, astrônomos como al-Biruni e Sacrobosco dividiram a hora em 60 minutos de 60 segundos, herança da base 60 dos babilônios. Os relógios mecânicos fixaram o tamanho da hora, e hoje ela vale 3.600 segundos físicos.
+
+</Resumo>
+
+Agora que você domina as horas, vamos mexer com o **dinheiro**: como conferir o troco de cabeça, sem errar, usando o mesmo truque de contar para a frente.
+
+<Conexoes />
+
+</Etapa>
