@@ -130,7 +130,7 @@ export const capsulas: ResumoCapsula[] = [
   c('sistema-web', 'banco-de-dados', 'Banco de dados', 'Planilhas que conversam entre si.', { estado: 'pronta', duracaoMin: 40, conexoes: ['apis-e-json'] }),
   c('sistema-web', 'senhas-e-hash', 'Usuários e login', 'Por que ninguém deveria guardar sua senha.', { estado: 'pronta', duracaoMin: 40, conexoes: ['banco-de-dados', 'numeros-primos'] }),
   c('hospedagem', 'git-e-github', 'Git e GitHub', 'Salvar o jogo do código e voltar no tempo.', { estado: 'pronta', duracaoMin: 40, conexoes: ['terminal'] }),
-  c('hospedagem', 'deploy', 'Deploy', 'Do seu computador para o mundo.'),
+  c('hospedagem', 'deploy', 'Deploy', 'Do seu computador para o mundo.', { estado: 'pronta', duracaoMin: 40, conexoes: ['dns'] }),
 ]
 
 export function linhaDaCapsula(cap: { area: Area; trilha: string }) {

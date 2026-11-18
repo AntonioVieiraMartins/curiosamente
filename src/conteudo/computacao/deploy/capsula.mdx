@@ -1,0 +1,367 @@
+import CaminhoDoDeploy from '../../../components/simulacoes/CaminhoDoDeploy'
+import TresAmbientes from '../../../components/simulacoes/TresAmbientes'
+import ManualOuAutomatico from '../../../components/simulacoes/ManualOuAutomatico'
+import AzulEVerde from '../../../components/simulacoes/AzulEVerde'
+import LancamentoGradual from '../../../components/simulacoes/LancamentoGradual'
+import OrdemDoDeploy from '../../../components/simulacoes/OrdemDoDeploy'
+
+{/* Fatos conferidos na Wikipedia em inglês (Software deployment, Continuous delivery, Vercel), listadas no meta.ts. Os tempos e números das simulações são de exemplo, e o passo a passo do deploy na Vercel é descrito de forma geral (a página da Wikipedia não detalha botões ou telas). */}
+
+<Etapa id="gancho">
+
+Você escreveu o site. Ele funciona no seu computador, em `localhost`. Só que **ninguém mais consegue ver**: quando você desliga o computador, o site some. Falta o último passo, o que transforma "funciona na minha máquina" em "qualquer pessoa do mundo abre no celular".
+
+Esse passo se chama **deploy**. É a palavra que dá nome a todas as atividades que **tornam um sistema disponível para uso**. E a pergunta que importa é: quando você aperta "publicar", **o que exatamente acontece** nos bastidores?
+
+<Palpite
+  chave="inicial"
+  pergunta="Você corrigiu um erro de digitação no site e quer publicar. Qual é o jeito mais comum hoje, em plataformas como a Vercel?"
+  opcoes={['Copiar os arquivos à mão para o servidor, um por um', 'Enviar a mudança para o GitHub e deixar a plataforma montar e publicar sozinha', 'Reiniciar o computador onde o site foi feito']}
+/>
+
+Nesta cápsula você vai acompanhar um deploy etapa por etapa (e ver um teste quebrado travar tudo), entender os três ambientes, comparar deploy manual e automático, trocar de versão com **azul e verde**, lançar uma novidade só para uma fatia dos usuários e montar a ordem certa de um deploy.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Publicar software nem sempre foi "apertar um botão".
+
+<LinhaDoTempo marcos={[
+  { ano: '1956', texto: 'O modelo em fases do Lincoln Labs é criado para o sistema de defesa aérea SAGE: um dos primeiros processos organizados de produção de software.' },
+  { ano: '1969', texto: 'A IBM passa a cobrar o software e os serviços separadamente do equipamento.' },
+  { ano: '1990', texto: 'Anos 1990: os instaladores com assistente ("Avançar, avançar, concluir") se tornam comuns. Kent Beck desenvolve a integração contínua dentro da Programação Extrema.' },
+  { ano: '2000', texto: 'Anos 2000: computação em nuvem e software como serviço permitem publicar para muitos clientes em minutos.' },
+  { ano: '2010', texto: 'O livro de Jez Humble e David Farley populariza o termo entrega contínua (continuous delivery).' },
+  { ano: '2015', texto: 'Guillermo Rauch funda a ZEIT, que em abril de 2020 passa a se chamar Vercel.' },
+]} />
+
+## Quando publicar era instalar
+
+Antes da internet banda larga, "publicar" um programa era colocá-lo em **disquetes e CDs**, e quem comprava precisava **instalar** no próprio computador. Segundo a fonte, os instaladores com assistente, como o InstallShield, ficaram populares nos anos 1990. Ali, o deploy era **responsabilidade de quem usava**: se a versão nova chegasse, a pessoa tinha que instalar de novo.
+
+## A nuvem muda o jogo
+
+Nos anos 2000, a **computação em nuvem** e o **software como serviço** (SaaS) mudaram quem controla a publicação. Segundo a fonte, passou a ser possível implantar para muitos clientes **em minutos**, e o calendário de lançamentos passou das mãos do usuário para as do **fornecedor**. Em um site, a pessoa só abre o endereço e já vê a última versão.
+
+## Publicar sem medo
+
+Em paralelo, nasceu a ideia de **integração contínua**: Kent Beck a desenvolveu nos anos 1990, como prática da Programação Extrema. Em 2010, Jez Humble e David Farley escreveram o livro que popularizou a **entrega contínua**: produzir software em ciclos curtos, de modo que ele possa ser liberado **a qualquer momento**, com mais velocidade e menos risco. A ideia é que publicar deixe de ser um evento assustador, feito uma vez por trimestre, e vire algo **rotineiro**.
+
+## As plataformas que fazem tudo isso por você
+
+A **Vercel**, que hospeda este app, foi fundada em **2015 por Guillermo Rauch** com o nome **ZEIT**, e adotou o nome atual em **abril de 2020**. Segundo a fonte, os deploys ali são feitos a partir de repositórios Git (GitHub, GitLab e Bitbucket) e cada deploy recebe automaticamente um endereço `vercel.app`, com a opção de usar um domínio próprio.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Deploy é abrir a loja
+
+Imagine que você montou uma loja. Você arrumou as prateleiras, testou o caixa e colocou a placa. **Abrir as portas para o público** é o deploy. Antes disso a loja existe, mas só você entra.
+
+No mundo do software, o deploy reúne todas as atividades que tornam o sistema **disponível para uso**. A fonte lista, entre elas: **liberar** a versão (preparar o pacote), **instalar** e **ativar** (ligar pela primeira vez), **desativar** e **atualizar**. Para um site, quase tudo isso acontece em segundos, e sem que você mexa em nada além do código.
+
+## 2. Três ambientes: ensaio, ensaio geral e estreia
+
+Teatros fazem **ensaios** antes da estreia. Com software é igual. Segundo a fonte, existem o ambiente de **produção** (onde os usuários usam a cópia principal) e ambientes de **teste** (pré-produção) e **desenvolvimento**.
+
+- **Desenvolvimento**: o seu computador, onde você pode errar à vontade.
+- **Teste** (também chamado *staging*): uma cópia parecida com a real, para conferir antes.
+- **Produção**: a versão que o público vê. Um erro aqui aparece para todo mundo.
+
+## 3. O deploy é uma esteira
+
+Uma fábrica tem uma **esteira**: o produto passa por estações, e se uma estação reprova, ele **não segue**. O deploy moderno funciona assim, e se chama **pipeline** (do inglês "tubulação"): commit, envio, montagem (*build*), testes, publicação. Se um teste falha, **nada chega à produção**, e os visitantes continuam vendo a versão boa.
+
+## 4. Trocar de versão sem fechar a loja
+
+Se o deploy exigisse **desligar o site**, a cada atualização os visitantes veriam uma página de erro. Existem truques para evitar isso, como manter **duas cópias** do sistema e trocar entre elas (você verá na prática), ou entregar a novidade **a poucas pessoas primeiro**.
+
+<ExemploResolvido titulo="O caminho de uma correção de erro de digitação">
+  <Passo>Você corrige a palavra errada no seu computador (ambiente de **desenvolvimento**).</Passo>
+  <Passo>Faz o **commit** e o **push** para o GitHub.</Passo>
+  <Passo>A plataforma percebe a mudança e faz o **build**: monta a versão nova do site.</Passo>
+  <Passo>Os testes passam. A versão nova vira a que os visitantes veem, em **produção**.</Passo>
+  <Passo>Tudo isso, sem você copiar um único arquivo à mão.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Como se chama o ambiente em que os usuários de verdade usam o sistema? (uma palavra)" resposta="producao" dica="Começa com P." resolucao="Produção: é a cópia principal, a que o público vê." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Um teste automático falha no meio do deploy. O que acontece com o site que os visitantes estão vendo?"
+  opcoes={['Ele fica fora do ar até alguém consertar', 'Continua a versão antiga, que funciona, e o deploy novo é parado', 'Entra no ar a versão nova mesmo assim']}
+  correta={1}
+  explicacao="O pipeline é uma esteira: se uma estação reprova, o produto não segue. A versão antiga continua no ar, e a equipe é avisada para corrigir."
+>
+
+Rode o deploy uma vez com tudo certo e outra com o teste quebrado.
+
+<CaminhoDoDeploy />
+
+Em um deploy moderno, as etapas rodam **em sequência**, e cada uma só começa se a anterior passou. É isso que permite publicar com confiança: o que chega à produção **já foi verificado**. A mesma ideia explica por que equipes publicam várias vezes por dia sem medo.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Copiar os arquivos à mão para o servidor, um por um', 'Enviar a mudança para o GitHub e deixar a plataforma montar e publicar sozinha', 'Reiniciar o computador onde o site foi feito']}
+  correta={1}
+  seAcertou="E o palpite do começo? Isso: você envia ao GitHub e a plataforma cuida do resto."
+  seErrou="E o palpite do começo? Hoje o mais comum é enviar a mudança ao GitHub e deixar a plataforma montar e publicar sozinha. Copiar à mão ainda existe, mas é lento e sujeito a esquecimentos."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## O que é deploy, de verdade
+
+Segundo a fonte, o deploy é um processo **geral**, que precisa ser adaptado a cada sistema. Ele pode envolver quem produz o software, quem usa, ou os dois. Entre as atividades típicas:
+
+- **Release (liberação):** preparar o sistema para ser montado e enviado aos servidores de produção.
+- **Instalação e ativação:** instalar configura o programa (comando, atalho, serviço), e ativar é executá-lo pela primeira vez.
+- **Desativação:** desligar o que está rodando, muitas vezes necessário antes de uma atualização.
+- **Atualização:** em geral, desativar e instalar de novo.
+- **Desinstalação:** remover o que não é mais necessário.
+
+<ExemploResolvido titulo="Classificando as atividades">
+  <Passo>Situação: a equipe desliga a versão 3, instala a versão 4 e liga de novo.</Passo>
+  <Passo>Desligar a antiga é **desativação**.</Passo>
+  <Passo>Colocar a versão 4 no lugar é **instalação**.</Passo>
+  <Passo>Ligar a 4 pela primeira vez é **ativação**. O conjunto todo é uma **atualização**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Executar um programa pela primeira vez depois de instalado se chama ativação ou desativação? (ativacao ou desativacao)" resposta="ativacao" dica="É ligar, não desligar." resolucao="Ativação: iniciar o executável pela primeira vez. Desativação é desligar o que está rodando." />
+
+<Aprofundar titulo="Deploy não é só site">
+O deploy vale para qualquer software: um aplicativo de celular, um programa de computador, um servidor de jogos. O que muda é **quem faz a parte da instalação**. Em um aplicativo de celular, a loja de aplicativos entrega a versão nova. Em um site, o próprio servidor passa a servir os arquivos novos, e **todo mundo** que abre a página já vê a versão atual, sem instalar nada.
+</Aprofundar>
+
+## Os três ambientes na prática
+
+Cada ambiente existe por um motivo. O **desenvolvimento** é o seu computador: ali você testa ideias e erra sem consequência. O **teste** (*staging*) é uma cópia parecida com a produção, onde a equipe confere se a mudança funciona **num cenário realista**. A **produção** é a versão real.
+
+Plataformas modernas ajudam a montar esse caminho. Ao enviar uma mudança, elas costumam construir uma **cópia de teste** com endereço próprio, para ser conferida antes de ir ao ar. (Isso vale como descrição geral: os detalhes mudam de plataforma para plataforma.)
+
+<TresAmbientes />
+
+<ExemploResolvido titulo="Onde testar o quê">
+  <Passo>Você criou um botão novo de "comprar".</Passo>
+  <Passo>No **desenvolvimento**, você confere se o botão aparece e responde ao clique.</Passo>
+  <Passo>No **teste**, a equipe faz uma compra de mentira e vê se o pedido chega ao banco.</Passo>
+  <Passo>Só então vai para a **produção**, onde clientes reais vão comprar.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O ambiente parecido com o real, usado para conferir antes de publicar, tem o nome em inglês de...? (uma palavra, como aparece no texto)" resposta="staging" dica="Termo em inglês entre parênteses no texto." resolucao="Staging (teste ou pré-produção): a cópia usada para ensaiar antes da produção." />
+
+<Exercicio enunciado="Um erro no ambiente de desenvolvimento afeta os usuários reais? (sim ou nao)" resposta="nao" dica="Só você usa esse ambiente." resolucao="Não: é o seu computador. Por isso é o lugar de errar e aprender." />
+
+<Aprofundar titulo="Por que não testar direto na produção">
+Quem testa na produção usa os usuários como cobaias. Um defeito pode **derrubar vendas**, **apagar dados** ou **expor informações**. Os ambientes de teste custam um pouco de trabalho e dinheiro, mas **barateiam muito os erros**: um bug descoberto no ensaio custa minutos, um bug descoberto na estreia custa reputação.
+</Aprofundar>
+
+## Deploy manual e deploy automático
+
+No **deploy manual**, uma pessoa segue uma lista: gerar o pacote, copiar para o servidor, reiniciar, conferir. Cada passo é uma chance de **esquecer algo** ou fazer errado. No **deploy automático**, essa lista vira um programa: toda mudança enviada ao repositório dispara a mesma sequência, **sempre igual**.
+
+A fonte sobre entrega contínua distingue dois níveis. Na **entrega contínua** (*continuous delivery*), o software está sempre pronto para ser liberado, e uma pessoa ainda decide apertar o botão. Na **implantação contínua** (*continuous deployment*), a última etapa também é automática: sem o "clique" manual, o que passa nos testes vai direto para a produção.
+
+<ManualOuAutomatico />
+
+<ExemploResolvido titulo="A conta do tempo">
+  <Passo>Um deploy manual leva 25 minutos (valor de exemplo). Um automático, 1 minuto.</Passo>
+  <Passo>Com 6 deploys por semana: manual, 6 x 25 = 150 minutos.</Passo>
+  <Passo>Automático: 6 x 1 = 6 minutos.</Passo>
+  <Passo>A diferença é de 144 minutos por semana, quase 2 horas e meia. E o automático ainda **nunca esquece** um passo.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um deploy manual leva 20 minutos e você faz 3 por semana. Quantos minutos por semana? (número)" resposta="60" dica="3 vezes 20." resolucao="3 x 20 = 60 minutos." />
+
+<Exercicio enunciado="Na implantação contínua, a última etapa (publicar) é manual ou automática? (manual ou automatica)" resposta="automatica" dica="Não há um clique humano no final." resolucao="Automática: se passou nos testes, vai direto para a produção. Na entrega contínua, ainda há o clique manual." />
+
+<Aprofundar titulo="Benefícios que a fonte lista">
+Segundo a fonte, a entrega contínua traz **menos tempo até o produto chegar ao mercado**, **opiniões dos usuários mais cedo**, **mais produtividade** (a automação tira trabalho repetitivo), **lançamentos mais confiáveis**, **melhor qualidade** e **mais satisfação** de quem usa. A fonte cita também as **chaves de funcionalidade** (*feature toggles*): um truque para enviar código ainda inacabado já "desligado", de modo que ele não apareça para os usuários até estar pronto.
+</Aprofundar>
+
+## O pipeline em detalhes
+
+Um pipeline tem etapas encadeadas. Na prática:
+
+1. **Commit e push:** a mudança chega ao repositório (o que você viu na cápsula de Git e GitHub).
+2. **Build:** o código é compilado e empacotado, isto é, transformado nos arquivos finais do site.
+3. **Testes automáticos:** programas conferem se o que existia antes continua funcionando.
+4. **Publicação:** a versão aprovada vira a versão ativa.
+
+Segundo a fonte, esse conjunto de validações pelas quais o software passa antes de ser liberado é o **pipeline de implantação**, e ele dá **visibilidade** (todo mundo vê em que etapa a mudança está) e **retorno rápido** (se algo falha, você descobre logo).
+
+<ExemploResolvido titulo="Lendo um pipeline que parou">
+  <Passo>O pipeline mostra: commit ✓, push ✓, build ✓, testes ✗.</Passo>
+  <Passo>Os testes falharam, então a etapa de **publicar não rodou**.</Passo>
+  <Passo>O site no ar continua sendo a **versão anterior**, que funciona.</Passo>
+  <Passo>Você lê a mensagem do teste que falhou, corrige o código e envia de novo.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O build roda antes ou depois dos testes no exemplo do texto? (antes ou depois)" resposta="antes" dica="Primeiro se monta, depois se testa." resolucao="Antes: é preciso montar o sistema para poder testá-lo." />
+
+<OrdemDoDeploy />
+
+<Exercicio enunciado="Quantas etapas tem o pipeline listado no texto (commit e push contam como uma só)? (número)" resposta="4" dica="Conte a lista numerada." resolucao="4 etapas: commit e push, build, testes e publicação." />
+
+## Trocar de versão sem derrubar o site
+
+O que acontece com quem está navegando **no instante** em que a versão nova entra? Se o servidor precisasse ser desligado e religado, haveria uma janela de erro. Há técnicas para evitar isso. Uma delas, citada na fonte, é o **deploy azul e verde** (*blue-green*): o sistema tem **dois grupos de servidores**. Um (o "azul") atende os visitantes. O outro (o "verde") recebe a versão nova, é testado e fica **escondido**, ainda sem tráfego real. Quando está tudo certo, o **tráfego é trocado** para o verde. E, se algo der errado, **voltar** é só trocar de novo.
+
+<AzulEVerde />
+
+Voltar para a versão anterior depois de um problema se chama, em geral, **rollback** (reversão). A fonte principal não detalha o termo, mas a ideia aparece naturalmente no azul e verde: como a versão antiga continua pronta, a volta é rápida.
+
+<ExemploResolvido titulo="Uma troca com plano de volta">
+  <Passo>A versão 1 (azul) atende 100% dos visitantes.</Passo>
+  <Passo>Você coloca a versão 2 no grupo verde e testa lá.</Passo>
+  <Passo>Troca o tráfego: o verde passa a atender.</Passo>
+  <Passo>Aparece um defeito. Você **troca de volta** para o azul, que continua intacto.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="No azul e verde, qual grupo recebe os visitantes enquanto a versão nova ainda está sendo preparada? (azul ou verde)" resposta="azul" dica="O verde fica escondido." resolucao="O azul: ele segue atendendo enquanto o verde é preparado e testado." />
+
+<Exercicio enunciado="Voltar para a versão anterior depois de um problema se chama...? (uma palavra em inglês, sem hífen)" resposta="rollback" dica="Roll = rolar, back = para trás." resolucao="Rollback: a reversão para a versão anterior." />
+
+<Aprofundar titulo="Lançamento gradual (canary) e A/B">
+A fonte também descreve a liberação **gradual** para grupos de clientes, com a opção de **cancelar** o deploy no meio, e cita o uso do Twitter para **testes A/B** (mostrar versões diferentes a grupos diferentes). Em um *canary release*, a versão nova vai primeiro para uma **pequena fatia** dos usuários, como o canário que os mineiros levavam para a mina: se algo vai mal, o estrago é pequeno. Se tudo corre bem, a fatia cresce até chegar a 100%. (A fonte cita o nome "canary", mas não descreve a mecânica; a explicação aqui é a ideia geral da técnica.)
+</Aprofundar>
+
+<LancamentoGradual />
+
+<Exercicio enunciado="Uma versão com defeito é entregue a 10% de 2000 usuários. Quantos usuários sentem o problema? (número)" resposta="200" dica="10% de 2000." resolucao="10% de 2000 = 200 usuários." />
+
+## Endereço e domínio
+
+Depois do deploy, o site precisa de um **endereço**. Segundo a fonte, as plataformas como a Vercel dão a cada deploy um endereço automático (um subdomínio `vercel.app`), e permitem usar um **domínio próprio**. Para apontar um domínio seu para o site, você usa o que viu na cápsula de **DNS**: um registro que liga o nome ao servidor. E, por **HTTPS** (cápsula anterior), o cadeado protege a conversa entre o visitante e o site.
+
+<ExemploResolvido titulo="Do código ao endereço">
+  <Passo>Você envia o código ao GitHub.</Passo>
+  <Passo>A plataforma faz o deploy e entrega um endereço automático, como `meu-site.vercel.app`.</Passo>
+  <Passo>Você compra um domínio e cria um registro **DNS** apontando para a plataforma.</Passo>
+  <Passo>O visitante digita o seu domínio, o DNS traduz, e o site abre.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual serviço traduz o nome do domínio no endereço do servidor? (sigla de 3 letras)" resposta="dns" dica="Foi uma cápsula anterior." resolucao="DNS: a lista telefônica da internet." />
+
+<Aprofundar titulo="O que acontece quando o deploy dá errado">
+Mesmo com testes, às vezes um defeito passa. O que separa uma equipe preparada de uma desprevenida é o **plano de volta**: poder reverter em minutos, saber **quem foi avisado** e ter **registros** (logs) para descobrir a causa. Por isso, equipes maduras tratam o deploy como algo **rotineiro e reversível**, e não como um salto no escuro.
+</Aprofundar>
+
+## Deploy deste app, como exemplo
+
+O app **Curiosamente** segue esse mesmo caminho: você faz o commit, executa `git push origin main`, o GitHub recebe e a Vercel, ligada ao repositório, faz o build e publica. É uma **implantação contínua** simples: cada push na branch principal vai ao ar. Para um projeto pequeno e estudado, isso é ótimo. Em um sistema de banco, por exemplo, a equipe poderia exigir **mais uma etapa** de aprovação antes da produção.
+
+<Exercicio enunciado="Um push na branch principal publica o site sozinho. Isso é um exemplo de deploy manual ou automático? (manual ou automatico)" resposta="automatico" dica="Ninguém copia arquivos." resolucao="Automático: o push dispara a plataforma." />
+
+<Exercicio enunciado="Um site tem 2 versões em produção ao mesmo tempo (azul e verde), mas só uma atende. Quantas versões recebem visitantes? (número)" resposta="1" dica="A outra fica escondida." resolucao="1: só a que está no ar. A outra espera, pronta." />
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'O que é deploy?',
+    opcoes: ['O conjunto de atividades que tornam um sistema disponível para uso', 'Um tipo de linguagem de programação', 'Um jeito de apagar o histórico'],
+    correta: 0,
+    explicacao: 'Deploy (implantação) reúne liberação, instalação, ativação, atualização e outras atividades.',
+  },
+  {
+    enunciado: 'Qual ambiente é o que os usuários reais usam?',
+    opcoes: ['Produção', 'Desenvolvimento', 'Rascunho'],
+    correta: 0,
+    explicacao: 'Produção é a cópia principal. Erros ali afetam todo mundo.',
+  },
+  {
+    enunciado: 'Para que serve um ambiente de teste (staging)?',
+    opcoes: ['Conferir a mudança numa cópia parecida com a real antes de publicar', 'Guardar senhas', 'Substituir o GitHub'],
+    correta: 0,
+    explicacao: 'É o ensaio geral antes da estreia.',
+  },
+  {
+    enunciado: 'Num pipeline, o que acontece se um teste falha?',
+    opcoes: ['A publicação não acontece e a versão antiga continua no ar', 'O site cai', 'A versão nova entra no ar mesmo assim'],
+    correta: 0,
+    explicacao: 'Cada etapa só roda se a anterior passou.',
+  },
+  {
+    enunciado: 'Qual é a diferença entre entrega contínua e implantação contínua?',
+    opcoes: ['Na implantação contínua a última etapa também é automática, sem clique manual', 'Não há diferença nenhuma', 'A entrega contínua nunca usa testes'],
+    correta: 0,
+    explicacao: 'Na entrega contínua o software está sempre pronto e uma pessoa decide publicar; na implantação, a publicação também é automática.',
+  },
+  {
+    enunciado: 'Quem popularizou o termo "entrega contínua", em 2010, com um livro?',
+    opcoes: ['Jez Humble e David Farley', 'Linus Torvalds', 'Guillermo Rauch'],
+    correta: 0,
+    explicacao: 'O livro de Humble e Farley, de 2010, popularizou o termo.',
+  },
+  {
+    enunciado: 'Qual era o nome original da Vercel?',
+    opcoes: ['ZEIT', 'GitHub', 'Netlify'],
+    correta: 0,
+    explicacao: 'Fundada em 2015 como ZEIT, passou a se chamar Vercel em abril de 2020.',
+  },
+  {
+    enunciado: 'No deploy azul e verde, o que acontece no momento da troca?',
+    opcoes: ['O tráfego passa do grupo atual para o grupo que recebeu a versão nova', 'O site é desligado por uma hora', 'As duas versões são apagadas'],
+    correta: 0,
+    explicacao: 'A versão nova é preparada escondida e o tráfego é trocado. Voltar é trocar de novo.',
+  },
+  {
+    enunciado: 'Como se chama voltar para a versão anterior depois de um problema?',
+    opcoes: ['Rollback', 'Commit', 'Build'],
+    correta: 0,
+    explicacao: 'Rollback é a reversão para uma versão anterior que funcionava.',
+  },
+  {
+    enunciado: 'Por que lançar a novidade primeiro para uma pequena fatia dos usuários ajuda?',
+    opcoes: ['Se houver defeito, poucos são afetados e dá para voltar atrás', 'Porque deixa o site mais bonito', 'Porque evita o uso de testes'],
+    correta: 0,
+    explicacao: 'É a ideia do lançamento gradual (canary): limitar o estrago.',
+  },
+  {
+    enunciado: 'Qual é a vantagem do deploy automático sobre o manual?',
+    opcoes: ['Sempre repete a mesma sequência, sem esquecer passos e gastando menos tempo', 'Ele dispensa o repositório Git', 'Ele elimina a necessidade de testes'],
+    correta: 0,
+    explicacao: 'Automação tira trabalho repetitivo e reduz esquecimentos.',
+  },
+  {
+    enunciado: 'Quando você faz git push na branch principal de um projeto ligado à Vercel, o que costuma acontecer?',
+    opcoes: ['A plataforma monta e publica a versão nova automaticamente', 'Nada, é preciso copiar os arquivos à mão', 'O repositório é apagado'],
+    correta: 0,
+    explicacao: 'A plataforma é ligada ao repositório e faz o deploy a partir dele.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Deploy** é tudo o que torna um sistema **disponível para uso**: liberar, instalar, ativar, atualizar.
+- Existem os ambientes de **desenvolvimento**, **teste** (*staging*) e **produção**. A mudança sobe do mais seguro para o mais exposto.
+- O **pipeline** é uma esteira: commit, build, testes e publicação. Se um teste falha, **nada chega à produção**.
+- **Entrega contínua**: sempre pronto para liberar, com clique humano. **Implantação contínua**: a publicação também é automática.
+- **Azul e verde** e o **lançamento gradual** permitem trocar de versão sem derrubar o site, e **rollback** é a volta rápida.
+- Plataformas como a Vercel ligam-se ao Git, fazem o deploy a cada push e dão um endereço `vercel.app`, além de aceitarem domínio próprio.
+
+**Um pouco de história.** Nos anos 1990, publicar software era entregar um instalador. Com a nuvem, nos anos 2000, tornou-se possível atualizar milhões de pessoas em minutos. Em 2010, Humble e Farley popularizaram a entrega contínua, e em 2015 nascia a ZEIT, hoje Vercel, tornando o deploy tão simples quanto um push.
+
+</Resumo>
+
+Agora seu site está no ar. Falta um cuidado essencial: as **senhas e chaves** que ele usa não podem ir junto com o código. É o assunto das variáveis de ambiente.
+
+<Conexoes />
+
+</Etapa>
