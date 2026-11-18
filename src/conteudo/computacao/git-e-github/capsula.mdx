@@ -1,0 +1,361 @@
+import HistoricoDeCommits from '../../../components/simulacoes/HistoricoDeCommits'
+import TresAreasDoGit from '../../../components/simulacoes/TresAreasDoGit'
+import RamosEConflito from '../../../components/simulacoes/RamosEConflito'
+import LocalEGithub from '../../../components/simulacoes/LocalEGithub'
+import CorrenteDeCommits from '../../../components/simulacoes/CorrenteDeCommits'
+import QualComandoGit from '../../../components/simulacoes/QualComandoGit'
+
+{/* Fatos conferidos na Wikipedia em inglês (Git, GitHub, Version control), listadas no meta.ts. As simulações são de brinquedo: nenhuma toca em repositório de verdade, e o hash dos commits é o de brinquedo de 8 dígitos. */}
+
+<Etapa id="gancho">
+
+Já aconteceu com você: um trabalho com versões chamadas "final", "final2", "final-agora-vai" e "final-mesmo-DE-VERDADE". E o pior: você apagou um parágrafo, salvou, e só depois percebeu que era o melhor.
+
+Programadores têm esse problema **todo dia**, só que com milhares de arquivos e dezenas de pessoas mexendo ao mesmo tempo. A solução é uma ferramenta que funciona como um **"salvar o jogo"** do código: ela guarda cada versão, diz quem mudou o quê, e deixa **voltar no tempo**. O **Git** é essa ferramenta, e o **GitHub** é o lugar onde se guarda e se compartilha o que o Git registra.
+
+<Palpite
+  chave="inicial"
+  pergunta="Duas pessoas editam o mesmo projeto ao mesmo tempo, em computadores diferentes, e depois juntam o trabalho. O que costuma acontecer?"
+  opcoes={['Quem salvar por último apaga o trabalho da outra pessoa', 'A ferramenta junta as mudanças sozinha e só avisa se as duas mexeram no mesmo trecho', 'É impossível juntar: só uma pessoa pode mexer por vez']}
+/>
+
+Nesta cápsula você vai ver um histórico de commits, usar as três áreas do Git, juntar dois ramos (com e sem conflito), enviar e trazer commits entre o seu computador e o GitHub, descobrir por que adulterar um commit antigo deixa rastro e treinar os comandos principais.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Controlar versões é uma ideia mais antiga que a internet.
+
+<LinhaDoTempo marcos={[
+  { ano: '1972', texto: 'Começa o desenvolvimento do SCCS (Source Code Control System), considerado o primeiro sistema de controle de revisões feito de propósito.' },
+  { ano: '1982', texto: 'O RCS (Revision Control System) é lançado.' },
+  { ano: '2000', texto: 'O Subversion se torna um dos sucessores do CVS. O BitKeeper, um sistema distribuído, também surge.' },
+  { ano: '2005', texto: 'Linus Torvalds começa o Git em 3 de abril. O Mercurial surge no mesmo ano.' },
+  { ano: '2008', texto: 'O GitHub abre ao público, em 10 de abril.' },
+  { ano: '2018', texto: 'A Microsoft anuncia a compra do GitHub por 7,5 bilhões de dólares (junho).' },
+  { ano: '2025', texto: 'O GitHub passa de um bilhão de repositórios (junho).' },
+]} />
+
+## As primeiras ferramentas
+
+O **SCCS** começou em 1972 (o manual é de dezembro de 1975). O **RCS** veio em 1982. O **CVS** acrescentou a esses sistemas a capacidade de várias pessoas trabalharem ao mesmo tempo, em rede. O **Subversion** (2000) virou o sucessor do CVS. Todos eram **centralizados**: havia um único repositório "oficial" num servidor, e quem queria mexer pegava os arquivos de lá.
+
+## O estalo de Linus Torvalds
+
+Desde 2002, o desenvolvimento do **núcleo do Linux** usava o BitKeeper, um programa proprietário. Em 2005, a licença gratuita do BitKeeper foi revogada. **Linus Torvalds**, criador do Linux, não achou nenhum sistema livre que servisse, então escreveu o seu. Começou em **3 de abril de 2005**, anunciou em 6 de abril e, **no dia seguinte**, o Git já guardava o próprio código-fonte. Em 16 de junho de 2005, o Git gerenciou o lançamento do Linux 2.6.12. Torvalds passou a manutenção a Junio Hamano em 26 de julho, e a versão 1.0 saiu em 21 de dezembro de 2005.
+
+O nome? Torvalds brincou que dá nome aos projetos a partir de si mesmo: "primeiro Linux, agora git". A palavra também é uma gíria britânica para uma pessoa desagradável. O manual do programa o chama de "o estúpido rastreador de conteúdo".
+
+## O GitHub: um lugar para o Git
+
+Desenvolver o Git era uma coisa. Colaborar com ele era outra: era preciso um servidor, contas, permissões. Em 19 de outubro de 2007 começou o desenvolvimento do **GitHub**, fundado por Tom Preston-Werner, Chris Wanstrath, P. J. Hyett e Scott Chacon. O site abriu em **10 de abril de 2008**. Em 2009 tinha cerca de 100 mil usuários. Em janeiro de 2023, mais de 100 milhões de pessoas desenvolvedoras e mais de 420 milhões de repositórios. Em **4 de junho de 2018**, a Microsoft anunciou a compra do GitHub por **7,5 bilhões de dólares** (negócio fechado em 26 de outubro de 2018).
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Git é "salvar o jogo"
+
+Num videogame, você salva o jogo em vários pontos. Se der errado, volta a um ponto anterior. O Git faz o mesmo com um **projeto inteiro**:
+
+- Cada **commit** é um ponto de salvamento: uma "foto" de todos os arquivos naquele momento, com **autor**, **data** e uma **mensagem** que explica o que mudou e por quê.
+- O conjunto de commits é o **histórico**. Com ele, dá para ver versões antigas, comparar e **voltar**.
+- A pasta com o projeto e todo o seu histórico se chama **repositório**.
+
+A fonte ainda cita outros benefícios do controle de versões: **responsabilidade** (registros de quem mudou o quê, quando e por quê), **depuração** (testar versões antigas para achar quando um defeito entrou) e **colaboração** (mensagens de commit melhoram a comunicação).
+
+<HistoricoDeCommits />
+
+<ExemploResolvido titulo="Recuperando o açúcar">
+  <Passo>A receita começa com Farinha e Ovos (commit 1).</Passo>
+  <Passo>No commit 2, você adiciona Açúcar.</Passo>
+  <Passo>No commit 3, apaga o açúcar sem querer.</Passo>
+  <Passo>Como o commit 2 continua no histórico, é possível **voltar a olhar** (e recuperar) o açúcar. Sem controle de versão, estaria perdido.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Cada 'ponto de salvamento' no Git se chama...? (uma palavra)" resposta="commit" dica="Você viu o nome nesta página." resolucao="Commit: uma foto do projeto naquele momento, com autor, data e mensagem." />
+
+## 2. Git guarda fotos, não só diferenças
+
+Segundo a fonte, o Git armazena **instantâneos** (*snapshots*) de toda a árvore de arquivos, e não apenas a lista de mudanças de cada arquivo. Um commit registra uma árvore, um horário, uma mensagem e o(s) commit(s) **pai(s)**: aquele que veio antes. Por isso o histórico é uma **corrente**: cada commit aponta para o anterior.
+
+## 3. Distribuído: todo mundo tem uma cópia completa
+
+Os sistemas antigos eram **centralizados**: um servidor, e todo mundo dependia dele. O Git é **distribuído**: cada pessoa tem **o repositório inteiro**, com todo o histórico, no próprio computador. Segundo a fonte, isso significa que o trabalho **não exige rede nem servidor central**, que fazer commits, ver o histórico e voltar atrás é rápido, e que cada cópia funciona também como **backup**. Equipes costumam usar um servidor central (como o GitHub) como cópia compartilhada, por conveniência.
+
+<Exercicio enunciado="No Git, cada pessoa tem uma cópia do repositório completo, com todo o histórico? (sim ou nao)" resposta="sim" dica="É por isso que ele é chamado de distribuído." resolucao="Sim: cada cópia tem o histórico inteiro, e também serve de backup." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Ana mudou a linha do rodapé do arquivo, e Bruno mudou a linha do título. Cada um num ramo diferente. Ao juntar os dois ramos, o que acontece?"
+  opcoes={['O Git junta sozinho as duas mudanças', 'Dá conflito e alguém precisa escolher', 'Uma das mudanças é apagada']}
+  correta={0}
+  explicacao="Como foram linhas diferentes, o Git consegue combinar as duas mudanças automaticamente. O conflito só aparece quando as duas pessoas mexem no mesmo trecho."
+>
+
+Teste os dois casos: mude para a mesma linha e junte de novo.
+
+<RamosEConflito />
+
+Um **ramo** (*branch*) é uma linha de desenvolvimento separada: dá para experimentar uma ideia nova sem estragar a versão principal. Segundo a fonte, os ramos no Git são **referências leves** a um commit. **Juntar** (*merge*) combina o trabalho de dois ramos. Se as duas pessoas mexeram no **mesmo trecho** e o sistema não consegue decidir, acontece um **conflito de mesclagem**, e uma pessoa precisa resolvê-lo, combinando as mudanças ou escolhendo uma.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Quem salvar por último apaga o trabalho da outra pessoa', 'A ferramenta junta as mudanças sozinha e só avisa se as duas mexeram no mesmo trecho', 'É impossível juntar: só uma pessoa pode mexer por vez']}
+  correta={1}
+  seAcertou="E o palpite do começo? Isso: o Git junta o que dá e só pede ajuda quando há conflito."
+  seErrou="E o palpite do começo? O Git junta as mudanças sozinho quando mexeram em lugares diferentes e só pede ajuda quando há conflito (o mesmo trecho mudou de jeitos diferentes)."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## As três áreas: mesa, bandeja e histórico
+
+O Git não salva tudo automaticamente. Você **escolhe** o que entra em cada commit. Para isso, existem três áreas:
+
+- A **mesa de trabalho** (diretório de trabalho): onde você edita os arquivos.
+- A **bandeja** (o *index*, ou área de preparação, em inglês *staging area*): o que você **separou** para o próximo commit. A fonte descreve o index como a área entre o diretório de trabalho e o banco de objetos, que guarda as mudanças na fila do próximo commit.
+- O **histórico**: os commits já feitos.
+
+Os comandos que levam de uma área à outra (da fonte):
+
+- `git init`: cria um repositório novo.
+- `git add [arquivo]`: coloca a mudança na bandeja.
+- `git commit -m [mensagem]`: salva a bandeja como um novo commit.
+- `git clone [endereço]`: cria uma cópia de um repositório que já existe em outro lugar.
+
+<TresAreasDoGit />
+
+<ExemploResolvido titulo="Um dia de trabalho">
+  <Passo>Você edita 2 arquivos. Eles ficam na **mesa**.</Passo>
+  <Passo>Você escolhe só 1 deles: `git add arquivo1`. Ele vai para a **bandeja**.</Passo>
+  <Passo>`git commit -m "corrige o botão"`: o arquivo 1 vira um **commit** no histórico.</Passo>
+  <Passo>O arquivo 2 continua só na mesa, modificado, mas **sem commit**. Você decide depois.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual comando coloca uma mudança na bandeja (área de preparação)? (add ou commit)" resposta="add" dica="Ainda não salva no histórico." resolucao="git add prepara a mudança. Só o git commit a salva no histórico." />
+
+<Exercicio enunciado="Você editou um arquivo, fez add e commit, editou de novo e fez add (sem commit). Quantos commits novos existem no histórico a partir de agora (contando só os que você fez)? (número)" resposta="1" dica="O segundo add ainda não virou commit." resolucao="Só 1 commit: o do primeiro ciclo. A segunda mudança está na bandeja, esperando o commit." />
+
+<Aprofundar titulo="Por que existe a bandeja">
+Parece um passo a mais, mas a bandeja deixa **montar commits com sentido**. Suponha que você mexeu no botão e também, sem querer, numa configuração de teste. Com a bandeja, você faz `add` só do botão e dá um commit com a mensagem "corrige o botão". A configuração fica de fora, para ser tratada à parte. Um bom commit conta **uma história só**, e a mensagem explica o **porquê** da mudança, como a fonte ressalta ao falar de mensagens de commit.
+</Aprofundar>
+
+## O código de cada commit
+
+Cada objeto do Git é identificado por um **código** calculado a partir do conteúdo, um **hash** (como o que você conheceu na cápsula de senhas). Segundo a fonte, esses códigos eram calculados com o **SHA-1**. Como o código de cada commit depende do conteúdo **e do commit anterior**, mudar algo no passado muda o código dele e de **todos os que vieram depois**. Por isso adulterações antigas ficam **detectáveis**.
+
+<CorrenteDeCommits />
+
+<ExemploResolvido titulo="Uma corrente de códigos">
+  <Passo>O código do commit 1 depende do conteúdo dele.</Passo>
+  <Passo>O código do commit 2 depende do conteúdo dele **e do código do commit 1**.</Passo>
+  <Passo>Se alguém muda o commit 1, o código dele muda; logo, o do commit 2 também, e o do 3, e o do 4.</Passo>
+  <Passo>Quem comparar os códigos com uma cópia boa vê na hora que **algo foi adulterado**.</Passo>
+</ExemploResolvido>
+
+<Aprofundar titulo="SHA-1 e a mudança de hash">
+Em 2017, o Google mostrou um ataque prático ao SHA-1 (você viu isso na cápsula de senhas). Segundo a fonte, depois dessa demonstração o Git passou a usar uma **variante do SHA-1 resistente àquele ataque**, e desde 2020 existe um **plano de transição de hash** em andamento. O Git foi projetado com salvaguardas fortes contra corrupção acidental ou maliciosa, e a ideia de que o histórico "se prova sozinho" é uma das razões da confiança nele.
+</Aprofundar>
+
+<Exercicio enunciado="Em que ano o Google mostrou uma colisão prática do SHA-1, levando o Git a mudar? (número)" resposta="2017" dica="Foi em fevereiro." resolucao="Em fevereiro de 2017." />
+
+## Ramos: experimentar sem medo
+
+Imagine um jogo em que você quer testar uma estratégia arriscada. Em vez de arriscar o seu único salvamento, você **copia** a situação e experimenta nessa cópia. Se der certo, você junta. Se der errado, joga fora.
+
+Isso é um **ramo** (*branch*). Equipes usam ramos para tudo: uma funcionalidade nova, uma correção, uma experiência. Cada pessoa trabalha no seu ramo, e o trabalho é **juntado** (*merge*) no ramo principal quando está pronto. A fonte lembra que o histórico forma, na prática, um grafo de commits; "uma árvore com junções" é uma boa aproximação.
+
+<ExemploResolvido titulo="Quando há conflito">
+  <Passo>O arquivo tem 3 linhas: título, introdução e rodapé.</Passo>
+  <Passo>No ramo principal, Bruno muda o **título** para "Novidades".</Passo>
+  <Passo>No ramo `nova-ideia`, Ana também muda o **título**, para "Em breve".</Passo>
+  <Passo>Ao juntar, o Git vê **dois textos diferentes na mesma linha** e não sabe qual vale. É um **conflito**: alguém escolhe um dos textos ou combina os dois, e então faz o commit da solução.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Duas pessoas mudam a MESMA linha de jeitos diferentes. Ao juntar, há conflito? (sim ou nao)" resposta="sim" dica="O Git não sabe qual escolher." resolucao="Sim: o Git não decide sozinho entre duas versões diferentes da mesma linha." />
+
+<Exercicio enunciado="Duas pessoas mudam linhas DIFERENTES do arquivo. Ao juntar, há conflito? (sim ou nao)" resposta="nao" dica="Dá para combinar sem escolher." resolucao="Não: o Git junta sozinho as duas mudanças." />
+
+<Aprofundar titulo="Por que conflitos são normais">
+A fonte conta que juntar (*merge*) é uma das partes **mais complexas** do controle de versões, especialmente para arquivos que não são texto. O merge automático funciona melhor com texto simples. Alguns sistemas antigos evitavam conflitos **trancando** o arquivo (só uma pessoa edita por vez), mas as trancas podem ser esquecidas e dar pressão para driblar o sistema. A abordagem do Git é deixar todo mundo trabalhar livremente e **resolver os conflitos depois**, porque, na prática, eles são raros e pequenos quando as mudanças são feitas em pedaços pequenos e juntadas com frequência.
+</Aprofundar>
+
+## GitHub: onde o Git encontra a equipe
+
+**Git** e **GitHub** não são a mesma coisa. O **Git** é o programa que **controla as versões**, escrito por Torvalds, e funciona no seu computador, até sem internet. O **GitHub** é um **site** construído sobre o Git: ele guarda uma cópia do repositório na internet e acrescenta o que falta para trabalhar em equipe: **controle de acesso**, **acompanhamento de defeitos** (as *issues*), **gestão de tarefas** e outras ferramentas.
+
+Outros serviços fazem o mesmo papel: **GitLab**, **Bitbucket** e **SourceForge**. Depois da compra pela Microsoft, esses serviços relataram aumento de usuários que migravam projetos do GitHub.
+
+Dois conceitos do GitHub:
+
+- **Fork:** uma **cópia pessoal** de um repositório de outra pessoa, para você mexer à vontade.
+- **Pull request:** um **pedido** para juntar as suas mudanças ao projeto original. Quem mantém o projeto vê as diferenças, comenta e aprova.
+
+Para levar o seu trabalho até lá e de lá:
+
+- `git push`: **envia** os seus commits para o GitHub.
+- `git pull`: **traz** os commits novos que outras pessoas enviaram.
+
+<LocalEGithub />
+
+<ExemploResolvido titulo="Push recusado">
+  <Passo>Você faz 2 commits no seu computador.</Passo>
+  <Passo>Enquanto isso, uma colega envia 1 commit ao GitHub.</Passo>
+  <Passo>Você tenta `git push`. O GitHub **recusa**: ele tem um commit que você não tem.</Passo>
+  <Passo>Você faz `git pull` (traz o da colega, juntando com os seus) e depois `git push`. Agora funciona.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O GitHub tem commits novos que você ainda não trouxe. Se você der git push, ele é aceito? (sim ou nao)" resposta="nao" dica="Primeiro é preciso trazer os novos com git pull." resolucao="Não: o GitHub recusa até você trazer (pull) o que falta e juntar com o seu trabalho." />
+
+<Exercicio enunciado="Git e GitHub são a mesma coisa? (sim ou nao)" resposta="nao" dica="Um é o programa, o outro é um site." resolucao="Não: o Git é o programa de controle de versões e o GitHub é um serviço na internet construído sobre ele." />
+
+<Aprofundar titulo="Este app também usa Git e GitHub">
+O próprio código do Curiosamente vive num repositório do **GitHub** (privado). Cada vez que o código novo é enviado com `git push` para o ramo principal, um serviço de hospedagem (a Vercel) percebe a mudança e **publica o site sozinho**. Essa ligação entre o "salvar o jogo" do código e o "colocar no ar" é o tema das próximas cápsulas, e é um exemplo de **entrega contínua**: o GitHub também oferece uma ferramenta própria para automatizar esses passos, o **GitHub Actions**, anunciado em outubro de 2018 e lançado oficialmente em 13 de novembro de 2019.
+</Aprofundar>
+
+## Os comandos, em ordem
+
+Um fluxo típico, do começo ao fim:
+
+- `git clone [endereço]`: traz uma cópia do projeto.
+- (você edita arquivos)
+- `git add [arquivo]`: separa o que vai no commit.
+- `git commit -m "mensagem"`: salva o ponto.
+- `git push`: envia ao GitHub.
+- `git pull`: traz o que a equipe enviou, de tempos em tempos.
+
+Para começar um projeto **do zero**, o primeiro passo é `git init`. Por tradição, o ramo inicial se chamava `master`, segundo a fonte, e hoje muitos projetos (como este) usam o nome `main`.
+
+<QualComandoGit />
+
+<Aprofundar titulo="Commits enviados não são sobrescritos, e sim revertidos">
+A fonte lembra que, no Git, commits que já foram **enviados** a outras pessoas normalmente não se apagam: eles são **revertidos**, ou seja, cria-se um **novo commit** que desfaz o efeito do antigo. Isso mantém o histórico honesto e evita bagunçar o trabalho de quem já baixou aquela versão. A ferramenta `git bisect`, também citada na fonte, usa **busca binária** (dividir pela metade) no histórico para achar **qual commit introduziu um defeito**: com 1.000 commits, bastam cerca de 10 testes, a mesma lógica dos índices de banco de dados.
+</Aprofundar>
+
+## Boas práticas de quem usa Git
+
+- **Commits pequenos e frequentes**, com mensagens que explicam o **porquê**.
+- **Nunca** coloque senhas, chaves ou segredos no repositório: **o que entra no histórico fica no histórico**, mesmo que você apague depois. Este projeto, por exemplo, mantém o arquivo `.env.local` fora do Git.
+- Use **ramos** para experimentar e **pull requests** para revisar.
+- **Puxe** (`git pull`) antes de começar o dia, para evitar conflitos grandes.
+- Dê `git push` com frequência: a cópia no GitHub também é um **backup**.
+
+<Exercicio enunciado="Em que ano Linus Torvalds começou a escrever o Git? (número)" resposta="2005" dica="Foi em abril." resolucao="Em 3 de abril de 2005." />
+
+<Exercicio enunciado="Em que ano o GitHub abriu ao público? (número)" resposta="2008" dica="Foi em abril." resolucao="Em 10 de abril de 2008." />
+
+<Exercicio enunciado="Em que ano a Microsoft anunciou a compra do GitHub? (número)" resposta="2018" dica="Foi em junho." resolucao="Em 4 de junho de 2018." />
+
+<Exercicio enunciado="Em que ano começou o desenvolvimento do SCCS, o primeiro sistema de controle de revisões feito de propósito? (número)" resposta="1972" dica="É o mais antigo da linha do tempo." resolucao="Em 1972." />
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'O que é um commit?',
+    opcoes: ['Uma foto do projeto num momento, com autor, data e mensagem', 'Um tipo de arquivo', 'Uma senha'],
+    correta: 0,
+    explicacao: 'O commit é o ponto de salvamento do Git.',
+  },
+  {
+    enunciado: 'Qual comando prepara uma mudança para o próximo commit?',
+    opcoes: ['git add', 'git push', 'git clone'],
+    correta: 0,
+    explicacao: 'O add coloca a mudança na bandeja (área de preparação).',
+  },
+  {
+    enunciado: 'O que significa dizer que o Git é distribuído?',
+    opcoes: ['Cada pessoa tem uma cópia completa do repositório, com todo o histórico', 'Ele só funciona na nuvem', 'Ele distribui senhas'],
+    correta: 0,
+    explicacao: 'Por isso o trabalho local não exige rede, e cada cópia serve de backup.',
+  },
+  {
+    enunciado: 'Por que Linus Torvalds criou o Git em 2005?',
+    opcoes: ['A licença gratuita do BitKeeper foi revogada e ele não achou outra ferramenta livre boa', 'Para ganhar dinheiro', 'Para jogar'],
+    correta: 0,
+    explicacao: 'O Linux usava o BitKeeper desde 2002. Quando a licença acabou, Torvalds escreveu o Git.',
+  },
+  {
+    enunciado: 'O que é um ramo (branch)?',
+    opcoes: ['Uma linha de desenvolvimento separada, para experimentar sem estragar a versão principal', 'Um tipo de árvore', 'Um erro'],
+    correta: 0,
+    explicacao: 'No Git, os ramos são referências leves a um commit.',
+  },
+  {
+    enunciado: 'Quando acontece um conflito de merge?',
+    opcoes: ['Quando as duas pessoas mexeram no mesmo trecho de jeitos diferentes', 'Sempre que alguém faz commit', 'Nunca'],
+    correta: 0,
+    explicacao: 'Se as mudanças foram em trechos diferentes, o Git junta sozinho.',
+  },
+  {
+    enunciado: 'Por que mudar um commit antigo deixa rastro?',
+    opcoes: ['O código de cada commit depende do anterior, então muda o dele e o de todos os seguintes', 'Porque o computador esquece', 'Porque o GitHub reclama'],
+    correta: 0,
+    explicacao: 'Essa corrente de códigos torna as adulterações detectáveis.',
+  },
+  {
+    enunciado: 'Qual é a diferença entre Git e GitHub?',
+    opcoes: ['Git é o programa de controle de versões; GitHub é um serviço na internet construído sobre ele', 'São o mesmo', 'GitHub é mais antigo'],
+    correta: 0,
+    explicacao: 'O GitHub acrescenta acesso, issues, pull requests e outras ferramentas de equipe.',
+  },
+  {
+    enunciado: 'O que é um pull request?',
+    opcoes: ['Um pedido para juntar as suas mudanças ao projeto, que a equipe pode revisar', 'Um tipo de commit', 'Um comando que apaga'],
+    correta: 0,
+    explicacao: 'Quem mantém o projeto vê as diferenças, comenta e aprova.',
+  },
+  {
+    enunciado: 'Por que um git push pode ser recusado?',
+    opcoes: ['O GitHub tem commits novos que você ainda não trouxe', 'Porque é sábado', 'Porque o commit é pequeno'],
+    correta: 0,
+    explicacao: 'Primeiro faça git pull, junte, e então envie.',
+  },
+  {
+    enunciado: 'Qual regra vale para segredos como senhas e chaves?',
+    opcoes: ['Nunca colocá-los no repositório, pois o histórico guarda tudo', 'Colocar em todos os commits', 'Escrever na mensagem do commit'],
+    correta: 0,
+    explicacao: 'Mesmo apagando depois, o segredo continua no histórico e pode ser lido.',
+  },
+  {
+    enunciado: 'Como o Git guarda o projeto, segundo a fonte?',
+    opcoes: ['Como instantâneos (snapshots) da árvore de arquivos', 'Só uma lista de letras trocadas', 'Em planilhas'],
+    correta: 0,
+    explicacao: 'Cada commit é uma foto, e aponta para o commit anterior.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Git** é "salvar o jogo" do código: cada **commit** é uma foto do projeto, com autor, data e mensagem.
+- O Git é **distribuído**: cada pessoa tem o histórico completo, e o trabalho local não exige rede.
+- Três áreas: **mesa** (edita), **bandeja** (`git add`) e **histórico** (`git commit`).
+- **Ramos** permitem experimentar; **merge** junta. O conflito só acontece no **mesmo trecho**.
+- O código de cada commit depende do anterior, então adulterações ficam **detectáveis**.
+- **GitHub** é um serviço sobre o Git: guarda a cópia na internet, com forks, pull requests e issues. `git push` envia e `git pull` traz.
+- **Nunca** coloque segredos no repositório.
+
+**Um pouco de história.** O SCCS (1972) e o RCS (1982) abriram o caminho do controle de versões, e o CVS e o Subversion (2000) usavam um servidor central. Em abril de 2005, depois do fim da licença gratuita do BitKeeper, Linus Torvalds começou o Git, que em poucos dias já guardava o próprio código. O GitHub abriu em abril de 2008 e foi comprado pela Microsoft em 2018, por 7,5 bilhões de dólares.
+
+</Resumo>
+
+Agora seu código tem memória e mora na internet. Na próxima cápsula, vamos ver **onde hospedar** um sistema para que qualquer pessoa o acesse.
+
+<Conexoes />
+
+</Etapa>
