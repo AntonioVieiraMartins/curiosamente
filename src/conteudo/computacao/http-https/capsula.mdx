@@ -1,0 +1,398 @@
+import PedidoEResposta from '../../../components/simulacoes/PedidoEResposta'
+import FamiliasDeStatus from '../../../components/simulacoes/FamiliasDeStatus'
+import MetodosHttp from '../../../components/simulacoes/MetodosHttp'
+import EspiaNoCafe from '../../../components/simulacoes/EspiaNoCafe'
+import ConferirCertificado from '../../../components/simulacoes/ConferirCertificado'
+import SegredoEmPublico from '../../../components/simulacoes/SegredoEmPublico'
+
+{/* Fatos conferidos na Wikipedia em inglês (HTTP, HTTPS, Public key certificate), listadas no meta.ts. O "embaralhamento" da simulação é de brinquedo e a troca de segredo usa números pequenos. */}
+
+<Etapa id="gancho">
+
+Cada página que você abre é uma **conversa** entre o seu navegador e um servidor. Ela tem sempre o mesmo formato: o navegador **pergunta**, o servidor **responde**. E, quando a barra de endereço mostra um **cadeado**, essa conversa passa a ser protegida.
+
+Mas o que o cadeado garante, de verdade? Que o site é seguro? Que ele é honesto? A resposta é mais específica (e mais interessante) do que a maioria das pessoas imagina.
+
+<Palpite
+  chave="inicial"
+  pergunta="Um site tem cadeado no navegador. O que isso garante?"
+  opcoes={['Que o site é confiável e não é golpe', 'Que a conversa com o site está protegida contra espiões e adulteração', 'Que o site nunca vai pedir seus dados']}
+/>
+
+Nesta cápsula você vai ler pedidos e respostas reais, aprender os códigos de status (200, 404, 500...), usar os métodos GET, POST, PUT e DELETE, ver o que um espião enxerga com e sem cadeado, conferir um certificado e entender como dois lados combinam um segredo à vista de todos.
+
+</Etapa>
+
+<Etapa id="historia">
+
+A Web nasceu simples, e a segurança chegou depois, quando as pessoas começaram a comprar e a entrar em contas online.
+
+<LinhaDoTempo marcos={[
+  { ano: '1989', texto: 'Tim Berners-Lee, no CERN, começa a desenvolver o HTTP.' },
+  { ano: '1991', texto: 'O HTTP/0.9 é documentado. Só tinha o método GET.' },
+  { ano: '1994', texto: 'A Netscape cria o HTTPS para o navegador Netscape Navigator.' },
+  { ano: '1996', texto: 'O HTTP/1.0 é publicado (RFC 1945), em maio.' },
+  { ano: '1997', texto: 'O HTTP/1.1 sai (RFC 2068), em janeiro.' },
+  { ano: '2000', texto: 'O HTTPS é especificado formalmente pela RFC 2818, em maio.' },
+  { ano: '2015', texto: 'O HTTP/2 é publicado, em maio.' },
+  { ano: '2016', texto: 'O Let\'s Encrypt é lançado, em abril, oferecendo certificados básicos gratuitos.' },
+  { ano: '2022', texto: 'O HTTP/3 é padronizado, em junho.' },
+]} />
+
+## Um protocolo que só sabia buscar
+
+O desenvolvimento do HTTP começou em 1989 com Tim Berners-Lee, no CERN. A primeira versão documentada, a **0.9** (1991), era minúscula: só tinha o método **GET**, para buscar uma página. Em 1996 veio o 1.0, em 1997 o 1.1 (que dominou por muito tempo), em 2015 o HTTP/2 e em 2022 o HTTP/3.
+
+## O cadeado nasce da necessidade de comprar online
+
+Em **1994**, a Netscape criou o **HTTPS** para o seu navegador. Faltava segurança para enviar dados sensíveis, como número de cartão. O HTTPS é o HTTP rodando dentro de uma conexão criptografada, chamada **TLS** (antes chamada de SSL). Foi formalizado na RFC 2818, em 2000.
+
+## O cadeado se populariza
+
+Por muito tempo, conseguir um certificado custava dinheiro e trabalho, e muitos sites ficaram sem. Em abril de 2016 o **Let's Encrypt** passou a oferecer certificados básicos de graça. Hoje, a maior parte dos sites mais populares usa HTTPS: uma medição de junho de 2025 apontou 71,2% dos 150 mil sites mais populares com HTTPS bem configurado, contra 58,4% em dezembro de 2022.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Garçom e cozinha
+
+Lembre da cápsula de redes: o seu navegador é o **cliente** e o computador que guarda o site é o **servidor**. Pense num restaurante: você (cliente) faz o **pedido** ao garçom, a cozinha (servidor) prepara e o garçom traz a **resposta**. O **HTTP** é o idioma desse pedido e dessa resposta.
+
+Uma regra importante: o servidor **não lembra de você** de um pedido para o outro. Cada pedido é uma conversa nova. (Para saber quem você é, os sites usam outro mecanismo, os **cookies**.) Isso se chama ser **sem estado** (*stateless*).
+
+<ExemploResolvido titulo="Uma visita a uma página, em palavras">
+  <Passo>Seu navegador abre uma conexão com o servidor (usando o IP, achado pelo DNS, e a porta 80 ou 443).</Passo>
+  <Passo>Ele manda o **pedido**: "Quero a página /mapa."</Passo>
+  <Passo>O servidor devolve a **resposta**: um código de status ("200, tudo certo") e o conteúdo da página.</Passo>
+  <Passo>O navegador lê a página, descobre que precisa de imagens e estilos e faz **novos pedidos** para cada um.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quem faz o pedido no HTTP: o cliente ou o servidor? (cliente ou servidor)" resposta="cliente" dica="O navegador." resolucao="O cliente (o navegador) pede, o servidor responde." />
+
+## 2. Como o pedido e a resposta parecem por dentro
+
+Tanto o pedido quanto a resposta são **texto simples**. O pedido diz o **método** (o que fazer), o **caminho** (o que pedir) e a versão. Linhas extras, os **cabeçalhos**, trazem informações: quem pergunta, o tipo de conteúdo que aceita, e assim por diante. A resposta começa com o **código de status** e traz o conteúdo.
+
+<PedidoEResposta />
+
+Mude de cenário e observe: o pedido muda pouco, mas a **resposta** muda muito, conforme o que aconteceu.
+
+<Exercicio enunciado="No pedido 'GET /mapa HTTP/1.1', qual é o método? (uma palavra)" resposta="get" dica="É a primeira palavra." resolucao="O método é GET." />
+
+<Exercicio enunciado="O que são os cabeçalhos: informações extras (metadados) sobre a mensagem? (sim ou nao)" resposta="sim" dica="Carregam coisas como o tipo do conteúdo ou dados do cliente." resolucao="Sim: carregam metadados sobre a mensagem." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Você digita um endereço que não existe num site que está funcionando normalmente. Qual código de status o servidor devolve?"
+  opcoes={['200 (OK)', '404 (Not Found)', '500 (erro interno)']}
+  correta={1}
+  explicacao="O servidor está bem, então não é 500; o pedido foi entendido, mas o endereço não existe. É o 404 Not Found, da família 4xx: o 'erro' está no pedido, não no servidor."
+>
+
+Teste o seu olho nos códigos:
+
+<FamiliasDeStatus />
+
+Uma regra para decorar: o **primeiro dígito** diz tudo. **2** é sucesso, **3** é "vá para outro lugar", **4** é "o erro é seu (do pedido)" e **5** é "o erro é do servidor".
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Que o site é confiável e não é golpe', 'Que a conversa com o site está protegida contra espiões e adulteração', 'Que o site nunca vai pedir seus dados']}
+  correta={1}
+  seAcertou="E o palpite do começo? Isso: o cadeado garante a proteção da conversa, não a honestidade do site."
+  seErrou="E o palpite do começo? O cadeado protege a conversa (criptografa e impede adulteração) e confirma com quem você está falando. Mas um site golpista também pode ter cadeado."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Os métodos: o verbo do pedido
+
+O **método** é o verbo do pedido: diz o que você quer fazer com o recurso.
+
+- **GET**: buscar (ler) um recurso. Abrir uma página usa GET.
+- **POST**: enviar dados para o servidor processar (enviar um formulário, criar uma conta).
+- **PUT**: criar ou **trocar** um recurso num endereço específico.
+- **DELETE**: apagar um recurso.
+
+<MetodosHttp />
+
+<ExemploResolvido titulo="Qual método usar?">
+  <Passo>Ver a lista de tarefas: você só quer **ler**. Método: **GET**.</Passo>
+  <Passo>Adicionar uma tarefa nova: você **envia dados** para criar. Método: **POST**.</Passo>
+  <Passo>Mudar o texto de uma tarefa existente: **PUT**.</Passo>
+  <Passo>Apagar a tarefa: **DELETE**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual método serve para apenas ler (buscar) uma página?" resposta="get" dica="O primeiro de todos, o único do HTTP/0.9." resolucao="GET." />
+
+<Exercicio enunciado="Qual método serve para apagar um recurso?" resposta="delete" dica="O nome já diz." resolucao="DELETE." />
+
+<Aprofundar titulo="GET e POST: onde vão os dados?">
+
+No **GET**, os dados costumam ir **no endereço** (depois de um `?`), por isso ficam visíveis e viram parte do histórico e dos favoritos. No **POST**, vão **no corpo da mensagem**, e não aparecem no endereço. Por isso formulários com dados pessoais usam POST. Mas atenção: sem HTTPS, o corpo também pode ser lido por quem espia a rede. Esconder do endereço não é proteger.
+
+</Aprofundar>
+
+## Os códigos de status
+
+Toda resposta traz um **código de três dígitos**. Eles se dividem em cinco famílias:
+
+- **1xx**: informação (o servidor ainda está processando).
+- **2xx**: **sucesso**. O mais famoso é **200 OK**.
+- **3xx**: **redirecionamento**. "O que você quer está em outro lugar." (301 é "mudou de lugar para sempre").
+- **4xx**: **erro do cliente**. O pedido tem um problema. (400 Bad Request, 404 Not Found.)
+- **5xx**: **erro do servidor**. O pedido estava certo, mas o servidor falhou. (500 Internal Server Error.)
+
+<ExemploResolvido titulo="Quem deve consertar?">
+  <Passo>Você vê **404**. Começa com 4: o problema está no pedido (endereço errado). Você corrige a digitação.</Passo>
+  <Passo>Você vê **500**. Começa com 5: o problema é do servidor. Não adianta mudar o pedido: quem precisa consertar é quem cuida do site.</Passo>
+  <Passo>Você vê **301**. Começa com 3: o navegador segue para o novo endereço sozinho.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas famílias de códigos de status existem (1xx a 5xx)?" resposta="5" dica="Conte do 1 ao 5." resolucao="São 5 famílias." />
+
+<Exercicio enunciado="Um código começa com 5. De quem é o problema: do cliente ou do servidor? (cliente ou servidor)" resposta="servidor" dica="5xx = erro do servidor." resolucao="Do servidor." />
+
+<Exercicio enunciado="Um código começa com 4. De quem é o problema: do cliente ou do servidor? (cliente ou servidor)" resposta="cliente" dica="4xx = erro do cliente (do pedido)." resolucao="Do cliente: o pedido tem problema." />
+
+## O problema: o HTTP puro é uma carta aberta
+
+Por si só, o HTTP manda tudo em **texto simples**. Quem estiver no caminho (a pessoa que controla o Wi-Fi do café, por exemplo) consegue **ler** e até **alterar** o que passa. Senhas e mensagens viajariam como cartão-postal.
+
+<EspiaNoCafe />
+
+Isso explica para que serve o **HTTPS**: ele é o **mesmo HTTP, mas dentro de uma conexão criptografada** (o **TLS**). Com ele, o espião continua vendo que há uma conversa, mas não entende o conteúdo, e não consegue alterá-lo sem ser percebido.
+
+<ExemploResolvido titulo="Três proteções do HTTPS">
+  <Passo>**Sigilo**: o conteúdo é embaralhado de modo que só as duas pontas entendem.</Passo>
+  <Passo>**Integridade**: se alguém alterar um pedaço no caminho, isso é detectado.</Passo>
+  <Passo>**Autenticidade**: o navegador confere com **quem** está falando (por meio do certificado do site).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é a porta padrão do HTTPS? (veja a cápsula de IP e portas)" resposta="443" dica="A do HTTP é a 80." resolucao="443." />
+
+<Exercicio enunciado="O HTTP puro envia o conteúdo em texto simples? (sim ou nao)" resposta="sim" dica="Por isso o espião lê tudo." resolucao="Sim: por isso é uma 'carta aberta'." />
+
+<Aprofundar titulo="O que o HTTPS esconde (e o que não esconde)">
+
+O HTTPS criptografa a mensagem inteira: o caminho da página, os parâmetros, os cabeçalhos e os cookies. Mas **o nome do site, o endereço IP e a porta continuam visíveis** para quem observa a rede, assim como a quantidade de dados e a duração da conversa. Um observador sabe **qual site** você visitou, mas não **o que você fez** lá dentro. Por isso o HTTPS melhora muito a privacidade, sem torná-la total.
+
+</Aprofundar>
+
+## Como as duas pontas combinam um segredo (sem ninguém ouvir)
+
+Há um problema curioso: para criptografar, as duas pontas precisam compartilhar uma **chave secreta**. Mas como combinar um segredo **em público**, com um espião ouvindo tudo? O HTTPS usa chaves públicas e privadas para criar uma **chave de sessão** de curta duração, usada só naquela conversa.
+
+Uma forma de entender a ideia é um método clássico com **contas de resto** (a operação "mod" é o resto de uma divisão). Cada lado tem um número secreto; os dois trocam resultados parciais **em público**, e ainda assim chegam ao **mesmo** segredo final:
+
+<SegredoEmPublico />
+
+O espião vê os números públicos, mas, com números **muito grandes**, voltar para os segredos é impraticável. Aqui usamos números pequenos só para você conseguir conferir as contas.
+
+<ExemploResolvido titulo="Conferindo as contas na mão">
+  <Passo>Base 5, módulo 23. Ana escolhe o segredo 6 e Bruno, o 15.</Passo>
+  <Passo>Ana publica 5⁶ mod 23. 5⁶ = 15.625, e o resto de 15.625 ÷ 23 é **8**.</Passo>
+  <Passo>Bruno publica 5¹⁵ mod 23, que dá **19**.</Passo>
+  <Passo>Ana calcula 19⁶ mod 23 e Bruno calcula 8¹⁵ mod 23. Os dois chegam ao mesmo número: **2**. É o segredo compartilhado.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é o resto da divisão de 17 por 5? (é o que o 'mod' calcula: 17 mod 5)" resposta="2" dica="5 × 3 = 15, sobra 2." resolucao="17 ÷ 5 = 3 e sobra 2." />
+
+<Exercicio enunciado="Quanto é 10 mod 4?" resposta="2" dica="4 × 2 = 8, sobra 2." resolucao="10 ÷ 4 = 2 e sobra 2." />
+
+<Aprofundar titulo="Chaves pública e privada">
+
+Em outro tipo de criptografia, cada pessoa tem **duas chaves ligadas**: uma **pública** (que pode ser distribuída) e uma **privada** (que fica só com o dono). O que se tranca com uma só se destranca com a outra. É esse tipo de mecanismo que permite ao navegador conferir quem é o site e, junto com a troca de segredos, estabelecer a chave de sessão. A ideia de chave de sessão de curta duração também traz uma vantagem: se alguém roubar a chave de longo prazo depois, as conversas passadas gravadas continuam protegidas (o que se chama sigilo futuro).
+
+</Aprofundar>
+
+## O certificado: a identidade do site
+
+Criptografar não basta: e se você estiver falando, de forma criptografada, **com o golpista**? Para evitar isso, o servidor apresenta um **certificado**, uma espécie de **documento de identidade digital**. Ele contém:
+
+- **Para quem foi emitido** (o nome do site).
+- **Quem o emitiu e assinou** (a autoridade certificadora).
+- **A chave pública** do site.
+- **O prazo de validade** (data de início e data de fim).
+
+Uma **autoridade certificadora** (CA) é uma entidade de confiança que **confere** quem pede o certificado e o **assina**. Os navegadores já vêm com uma lista de autoridades em que confiam.
+
+<ConferirCertificado />
+
+<ExemploResolvido titulo="Por que a assinatura importa?">
+  <Passo>Qualquer pessoa pode **fabricar** um certificado dizendo ser o seu banco.</Passo>
+  <Passo>Mas só uma autoridade confiável tem a assinatura que o navegador reconhece.</Passo>
+  <Passo>Sem essa assinatura reconhecida, o navegador mostra um **aviso** antes de entrar. É o seu sinal de alerta.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos itens verifica o navegador na simulação do certificado (nome, validade e quem assinou)?" resposta="3" dica="Conte a lista." resolucao="Três: nome, validade e emissor." />
+
+<Exercicio enunciado="Um certificado venceu. O navegador vai considerá-lo válido? (sim ou nao)" resposta="nao" dica="Existe uma data de fim." resolucao="Não: passou da data de validade." />
+
+<Aprofundar titulo="A cadeia de confiança">
+
+Em geral, o certificado de um site foi assinado por uma autoridade **intermediária**, que por sua vez foi assinada por uma **raiz**, cujo certificado já vem instalado no navegador (a "âncora de confiança"). O navegador sobe a corrente de assinatura, passo a passo, até chegar a uma raiz que ele conhece. Se a corrente não fechar, aparece o aviso. É por isso que a segurança depende de poucas organizações muito bem protegidas.
+
+</Aprofundar>
+
+## O que o cadeado NÃO garante
+
+Aqui está a lição mais importante:
+
+- O cadeado **não** diz que o site é honesto. Um site de golpe também pode ter certificado e cadeado. O certificado prova **com quem você está falando** e protege a **conversa**, mas não avalia as **intenções** dele.
+- O cadeado **não** esconde **qual site** você visita.
+- O cadeado **não** protege seu **aparelho** de vírus nem a sua **senha** se você a digitar numa página falsa.
+
+Por isso, o hábito certo é: **conferir o endereço inteiro** (lembra do DNS: leia da direita para a esquerda) **e** ver o cadeado. Muita gente acha que cadeado significa "seguro", e isso é um erro comum. Nos navegadores, o desenho do cadeado já mudou em algumas versões, justamente para reduzir essa confusão.
+
+<ExemploResolvido titulo="Cadeado e golpe">
+  <Passo>Você recebe um link para `banco-seguro-login.exemplo.net`, com cadeado. O cadeado só diz que a conversa com **esse endereço** é criptografada.</Passo>
+  <Passo>O dono do endereço é `exemplo.net`, que não é o seu banco. A conversa é protegida... com o golpista.</Passo>
+  <Passo>Conclusão: confira o **nome**, não só o cadeado.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um site com cadeado pode ser golpe? (sim ou nao)" resposta="sim" dica="O cadeado confere a conversa, não a honestidade." resolucao="Sim: o cadeado não avalia as intenções do site." />
+
+## Como "carregar uma página" vira muitos pedidos
+
+Uma página não vem inteira de uma vez. A primeira resposta traz o **texto** da página (o HTML). Lendo-o, o navegador descobre que precisa de **imagens, estilos e programas**, e faz **um pedido novo para cada arquivo**. Uma página simples pode gerar dezenas de pedidos, cada um com sua própria resposta e seu código de status.
+
+Por isso existem as **ferramentas de desenvolvedor** dos navegadores (geralmente a tecla F12): na aba "Rede", você vê cada pedido, o método, o código de status e quanto tempo levou. Se uma imagem não aparece, dá para olhar lá e descobrir que ela devolveu um **404**.
+
+<ExemploResolvido titulo="Uma imagem que sumiu">
+  <Passo>Você abre uma página e uma imagem não aparece.</Passo>
+  <Passo>Na aba "Rede", você vê o pedido da imagem com o código **404**.</Passo>
+  <Passo>Começa com 4: o endereço da imagem está errado, ou o arquivo foi apagado. O problema não é do servidor em si.</Passo>
+  <Passo>A correção é arrumar o endereço da imagem no código da página.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma página usa 1 arquivo de texto, 4 imagens e 2 arquivos de estilo. No mínimo, quantos pedidos o navegador faz para montá-la?" resposta="7" dica="1 + 4 + 2." resolucao="1 + 4 + 2 = 7 pedidos, cada um com sua resposta." />
+
+## As versões do HTTP
+
+O HTTP mudou ao longo do tempo para ficar mais rápido:
+
+- **HTTP/1.1** (1997): por muito tempo o padrão, com um pedido de cada vez por conexão.
+- **HTTP/2** (2015): vários pedidos ao mesmo tempo na mesma conexão, o que acelera páginas com muitos arquivos.
+- **HTTP/3** (2022): muda o transporte por baixo para reduzir esperas.
+
+Para quem usa o navegador, tudo continua igual: o pedido e a resposta, com os mesmos métodos e códigos.
+
+<Exercicio enunciado="Em que ano foi padronizado o HTTP/2?" resposta="2015" dica="Foi publicado em maio." resolucao="Em 2015." />
+
+<Aprofundar titulo="Cookies: como o servidor 'lembra' de você">
+
+Como o HTTP é sem estado, o servidor esquece quem você é entre um pedido e outro. Para lembrar, ele manda um pequeno texto chamado **cookie**, que o navegador guarda e **devolve em todo pedido seguinte** para aquele site. É assim que você continua "logado" ao navegar por várias páginas. Como o cookie funciona quase como um crachá, ele deve viajar só em conexões HTTPS: caso contrário, um espião poderia copiá-lo.
+
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'O que é o HTTP?',
+    opcoes: ['O idioma de pedido e resposta entre navegador e servidor', 'Um tipo de disco', 'Um navegador'],
+    correta: 0,
+    explicacao: 'O HTTP define como o cliente pede e como o servidor responde.',
+  },
+  {
+    enunciado: 'Qual código significa "tudo certo"?',
+    opcoes: ['200', '404', '500'],
+    correta: 0,
+    explicacao: '200 OK é o sucesso. 404 é não encontrado e 500 é erro do servidor.',
+  },
+  {
+    enunciado: 'O que significa o 404?',
+    opcoes: ['A página pedida não foi encontrada', 'O servidor quebrou', 'O site mudou de lugar'],
+    correta: 0,
+    explicacao: '404 Not Found é um erro do cliente: o endereço pedido não existe.',
+  },
+  {
+    enunciado: 'Um código que começa com 5 indica...',
+    opcoes: ['Erro do servidor', 'Erro do cliente', 'Sucesso'],
+    correta: 0,
+    explicacao: 'A família 5xx é erro do servidor, como 500.',
+  },
+  {
+    enunciado: 'Qual método serve para enviar um formulário?',
+    opcoes: ['POST', 'GET', 'DELETE'],
+    correta: 0,
+    explicacao: 'POST envia dados para o servidor processar.',
+  },
+  {
+    enunciado: 'O HTTP sem estado (stateless) significa que...',
+    opcoes: ['O servidor não lembra de você entre os pedidos', 'O site nunca muda', 'A conexão é criptografada'],
+    correta: 0,
+    explicacao: 'Cada pedido é independente. Para lembrar de você, os sites usam cookies.',
+  },
+  {
+    enunciado: 'O que o HTTPS acrescenta ao HTTP?',
+    opcoes: ['Conexão criptografada (TLS)', 'Mais velocidade', 'Mais páginas'],
+    correta: 0,
+    explicacao: 'HTTPS é HTTP dentro de uma conexão TLS criptografada.',
+  },
+  {
+    enunciado: 'Qual é a porta padrão do HTTPS?',
+    opcoes: ['443', '80', '22'],
+    correta: 0,
+    explicacao: 'A 443. A porta 80 é do HTTP e a 22 do SSH.',
+  },
+  {
+    enunciado: 'O que uma autoridade certificadora faz?',
+    opcoes: ['Confere quem pede o certificado e o assina', 'Hospeda os sites', 'Cria domínios'],
+    correta: 0,
+    explicacao: 'A CA é o terceiro de confiança que verifica e assina os certificados.',
+  },
+  {
+    enunciado: 'O cadeado garante que o site é honesto?',
+    opcoes: ['Não: só protege a conversa e confirma com quem você fala', 'Sim, sempre', 'Só se for verde'],
+    correta: 0,
+    explicacao: 'Sites de golpe também podem ter certificado. Confira o endereço inteiro.',
+  },
+  {
+    enunciado: 'O que um espião no Wi-Fi ainda consegue ver numa conexão HTTPS?',
+    opcoes: ['O nome do site visitado (e o IP)', 'A sua senha digitada', 'O conteúdo da página'],
+    correta: 0,
+    explicacao: 'O domínio e o IP continuam visíveis, mas o conteúdo e a senha não.',
+  },
+  {
+    enunciado: 'Quem criou o HTTPS, em 1994?',
+    opcoes: ['A Netscape', 'O Google', 'A IBM'],
+    correta: 0,
+    explicacao: 'A Netscape criou o HTTPS para o Netscape Navigator, em 1994.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **HTTP** é o idioma de pedido (cliente) e resposta (servidor). É **sem estado**: cada pedido é novo.
+- **Métodos:** GET (ler), POST (enviar), PUT (trocar) e DELETE (apagar).
+- **Códigos:** 2xx sucesso, 3xx redirecionamento, 4xx erro do cliente (404), 5xx erro do servidor (500).
+- **HTTP puro é texto aberto.** **HTTPS** é HTTP dentro de uma conexão criptografada (TLS), na porta 443.
+- **HTTPS dá** sigilo, integridade e autenticidade (por certificado).
+- **Certificado:** documento de identidade digital com nome, chave pública, emissor e validade, assinado por uma autoridade de confiança.
+- **O cadeado não garante honestidade**, e o nome do site continua visível para quem observa a rede.
+
+**Um pouco de história.** Tim Berners-Lee começou o HTTP em 1989, e o HTTP/0.9 (1991) só tinha o método GET. A Netscape criou o HTTPS em 1994 e a RFC 2818 o formalizou em 2000. O Let's Encrypt (abril de 2016) popularizou certificados gratuitos, o HTTP/2 chegou em 2015 e o HTTP/3, em 2022.
+
+</Resumo>
+
+Com isso, você já sabe o caminho inteiro de uma visita a um site: o DNS acha o endereço, os pacotes viajam, o servidor responde e o HTTPS protege a conversa. No próximo módulo, vamos ver **como um sistema web é feito**.
+
+<Conexoes />
+
+</Etapa>
