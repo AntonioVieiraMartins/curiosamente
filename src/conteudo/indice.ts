@@ -56,7 +56,7 @@ export const capsulas: ResumoCapsula[] = [
   m('basica', 'numeros-decimais', 'Números decimais', 'R$ 2,50 + R$ 1,75 sem calculadora.', { grupo: 'Números e contas', estado: 'pronta', duracaoMin: 40, conexoes: ['porcentagem'] }),
   m('basica', 'medidas', 'Medidas', 'Por que 1 litro cabe num cubo de 10 cm?', { grupo: 'Medidas', estado: 'pronta', duracaoMin: 40, conexoes: ['potencias'] }),
   m('basica', 'tempo-e-horas', 'Tempo e horas', 'Por que a hora tem 60 minutos, e não 100?', { grupo: 'Medidas', estado: 'pronta', duracaoMin: 40, conexoes: ['angulos'] }),
-  m('basica', 'dinheiro-e-troco', 'Dinheiro e troco', 'Conferir o troco de cabeça, sem errar.', { grupo: 'Medidas' }),
+  m('basica', 'dinheiro-e-troco', 'Dinheiro e troco', 'Conferir o troco de cabeça, sem errar.', { grupo: 'Medidas', estado: 'pronta', duracaoMin: 40, conexoes: ['porcentagem'] }),
   m('basica', 'formas-geometricas', 'Formas geométricas', 'Quantos lados tem um círculo?', { grupo: 'Formas e dados' }),
   m('basica', 'tabelas-e-graficos', 'Tabelas e gráficos', 'Ler um gráfico antes de acreditar nele.', { grupo: 'Formas e dados' }),
 

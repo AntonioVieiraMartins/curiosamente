@@ -1,0 +1,372 @@
+import NotasEMoedas from '../../../../components/simulacoes/NotasEMoedas'
+import TrocoPasso from '../../../../components/simulacoes/TrocoPasso'
+import ConfereOTroco from '../../../../components/simulacoes/ConfereOTroco'
+import CarrinhoDeCompras from '../../../../components/simulacoes/CarrinhoDeCompras'
+import PrecoPorUnidade from '../../../../components/simulacoes/PrecoPorUnidade'
+import ParceladoOuAVista from '../../../../components/simulacoes/ParceladoOuAVista'
+
+{/* Fatos conferidos na Wikipedia em inglês (Money e Brazilian real), listadas no meta.ts. O método do troco por contagem, o preço por unidade, o parcelamento e o orçamento são conteúdo escolar geral da BNCC (educação financeira), conferidos por cálculo. Os exemplos de preços são inventados, para a conta. */}
+
+<Etapa id="gancho">
+
+Você compra um lanche de **R$ 37,40** e paga com uma nota de **R$ 50**. O caixa devolve **R$ 12,60** sem digitar nada. Como ele sabe? Ele não faz a conta armada: ele **conta para a frente** a partir do preço (37,40... 37,50... 38... 40... 50) e pronto.
+
+Dinheiro está em **todo lugar**: no mercado, no ônibus, na padaria, na internet. Saber lidar com ele é uma das matemáticas mais úteis da vida: **conferir o troco**, **comparar preços**, **dividir uma conta**, **saber se vale parcelar**. E tudo isso usa o que você já viu: números **decimais**, soma e subtração, multiplicação e divisão.
+
+<Palpite
+  chave="inicial"
+  pergunta="Você paga uma compra de R$ 37,40 com uma nota de R$ 50. Qual é o troco?"
+  opcoes={['R$ 12,60', 'R$ 13,40', 'R$ 12,40']}
+/>
+
+Nesta cápsula você vai montar valores com **notas e moedas**, conferir o troco contando para a frente, somar um **carrinho de compras**, comparar o **preço por quilo** e decidir entre **parcelar ou pagar à vista**.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Antes de existir dinheiro, as pessoas **trocavam coisas**. E isso é mais complicado do que parece.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Pré-história', texto: 'Trocas de objetos entre grupos, muito antes de qualquer moeda.' },
+  { ano: 'c. 650 a 600 a.C.', texto: 'Aparecem as primeiras moedas cunhadas, atribuídas aos lídios, na região da atual Turquia.' },
+  { ano: 'Séc. 7 a 13', texto: 'Na China, o papel-moeda nasce aos poucos, começando como recibos de comerciantes.' },
+  { ano: 'Séc. 10', texto: 'Autoridades da dinastia Song começam a fazer circular notas.' },
+  { ano: 'Meados do séc. 13', texto: 'Surge na China o papel-moeda padrão de governo, para todo o país.' },
+  { ano: '1º jul. 1994', texto: 'Entra em circulação o Real, no Plano Real: cada R$ 1 vale 2.750 cruzeiros reais.' },
+  { ano: '2 set. 2020', texto: 'A nota de 200 reais é lançada.' },
+]} />
+
+## O problema do escambo
+
+O **escambo** é a troca direta: "eu te dou três galinhas e você me dá um saco de milho". Segundo a fonte, trocas assim podem existir há mais de 100 mil anos, mas **nenhuma sociedade conhecida viveu principalmente de escambo**. O grande problema se chama **coincidência de desejos**: para a troca dar certo, cada um precisa ter **o que o outro quer**. Se você tem galinhas e quer sapatos, mas o sapateiro quer milho, ninguém troca nada. O dinheiro resolve isso: com ele, você vende as galinhas a quem quiser e compra os sapatos de quem tiver.
+
+## Para que serve o dinheiro
+
+A fonte lista **três funções**: ser **meio de troca** (para pagar), **unidade de conta** (uma medida comum para os preços: tudo "vale" um número) e **reserva de valor** (guardar para gastar depois). Antes das moedas, o **dinheiro-mercadoria** valia pelo material de que era feito: ouro, prata, **sal**, **conchas**.
+
+## Da moeda ao papel
+
+Segundo a fonte, o historiador Heródoto atribui aos **lídios** as primeiras moedas de ouro e prata, e os pesquisadores datam as primeiras moedas **cunhadas** de cerca de **650 a 600 a.C.** Já o **papel-moeda** nasceu na **China**, entre o fim da dinastia **Tang** (618 a 907) e a dinastia **Song** (960 a 1279). Começou como **recibos e promessas de pagamento** de comerciantes, válidos só em regiões pequenas. No século 10, autoridades Song começaram a fazer circular notas, e por volta do século 13 havia papel-moeda de governo para o país todo.
+
+## Por que uma nota de papel vale algo?
+
+O dinheiro de hoje é, em grande parte, **dinheiro por decreto** (em inglês, *fiat money*): a nota **não vale pelo papel**, e sim porque o governo declara que ela **tem de ser aceita** como pagamento (é o "curso legal") e porque todos **confiam** nela. A confiança é o segredo: se ninguém confiasse, a nota valeria só o papel.
+
+## O Real
+
+No Brasil, o **Real** entrou em circulação em **1º de julho de 1994**, no **Plano Real**, no governo do presidente Itamar Franco. Segundo a fonte, ele substituiu o **cruzeiro real**, e **R$ 1 valia 2.750 cruzeiros reais**. O real se divide em **100 centavos** (daí o nome: centavo é um centésimo, como você viu em Números decimais), e o símbolo é **R$**. As notas atuais são de 2, 5, 10, 20, 50, 100 e 200 reais.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O dinheiro é um número com vírgula
+
+Um valor como **R$ 37,40** tem **duas casas depois da vírgula**: são **centésimos**, ou seja, **centavos**. Então R$ 37,40 são 37 reais e 40 centavos, ou **3.740 centavos**. Os centavos vão de 0 a 99: quando passam de 99, "vai um" real. É exatamente a troca de 10 em 10 que você já conhece.
+
+## 2. Notas e moedas
+
+As **notas** do real são de 2, 5, 10, 20, 50, 100 e 200 reais. As **moedas** são de centavos (5, 10, 25 e 50) e de 1 real. Para pagar um valor, **começamos pelas peças maiores** e completamos com as menores. É o mesmo que decompor um número (como 3.482 = 3.000 + 400 + 80 + 2).
+
+## 3. Troco: o que falta para chegar lá
+
+**Troco** é o dinheiro que sobra quando você paga **mais** do que o preço: **troco = valor pago − preço**. Existem dois jeitos de calcular:
+
+- **Subtrair** (a conta armada): 50,00 − 37,40.
+- **Contar para a frente** (o jeito do caixa): do preço até o valor pago, "completando".
+
+O segundo evita o empréstimo e é mais rápido de cabeça. Você já usou essa ideia em **Adição e subtração**.
+
+## 4. Conferindo: somar de volta
+
+Como somar e subtrair são operações **inversas**, dá para **conferir** o troco: **preço + troco = valor pago**. Se 37,40 + 12,60 = 50,00, o troco está certo.
+
+<ExemploResolvido titulo="Troco de R$ 50 numa compra de R$ 37,40">
+  <Passo>De R$ 37,40 até R$ 38,00: faltam 60 centavos.</Passo>
+  <Passo>De R$ 38,00 até R$ 40,00: mais R$ 2,00.</Passo>
+  <Passo>De R$ 40,00 até R$ 50,00: mais R$ 10,00.</Passo>
+  <Passo>Soma: 0,60 + 2,00 + 10,00 = **R$ 12,60**. Conferindo: 37,40 + 12,60 = 50,00. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é o troco, em reais, de uma compra de R$ 37,40 paga com R$ 50,00? (com vírgula)" resposta="12,6" dica="Conte para a frente: 0,60 + 2 + 10." resolucao="0,60 + 2,00 + 10,00 = R$ 12,60." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Você paga uma compra de R$ 37,40 com uma nota de R$ 50. Qual é o troco?"
+  opcoes={['R$ 12,60', 'R$ 13,40', 'R$ 12,40']}
+  correta={0}
+  explicacao="De 37,40 até 38,00 faltam 60 centavos; de 38 até 40 são 2 reais; de 40 até 50 são 10 reais. Total: 12,60. Conferindo: 37,40 + 12,60 = 50,00. As outras respostas vêm de erros nos centavos (por exemplo, esquecer o empréstimo)."
+>
+
+Escolha o preço e o valor pago e veja o troco ser contado **para a frente**, em paradas fáceis.
+
+<TrocoPasso />
+
+Agora **treine**: calcule o troco de cabeça e confira.
+
+<ConfereOTroco />
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['R$ 12,60', 'R$ 13,40', 'R$ 12,40']}
+  correta={0}
+  seAcertou="E o palpite do começo? Isso: 0,60 + 2,00 + 10,00 = R$ 12,60."
+  seErrou="E o palpite do começo? De 37,40 até 38 são 60 centavos, até 40 são 2 reais e até 50 são 10 reais: 0,60 + 2 + 10 = R$ 12,60."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Notas e moedas: formando valores
+
+Para formar um valor, comece pela **maior peça que cabe** e vá completando. R$ 37,90: uma nota de 20, uma de 10, uma de 5, uma de 2 (total 37) e uma moeda de 50 centavos mais uma de 25 mais uma de 10 mais uma de 5 (0,90). Dá para formar com **muitas combinações**, mas a que usa **menos peças** é a mais prática.
+
+<NotasEMoedas />
+
+<ExemploResolvido titulo="Formando R$ 85,25 com poucas peças">
+  <Passo>Nota de 50: restam 35,25.</Passo>
+  <Passo>Nota de 20: restam 15,25. Nota de 10: restam 5,25. Nota de 5: restam 0,25.</Passo>
+  <Passo>Moeda de 25 centavos: restam 0.</Passo>
+  <Passo>Total: **5 peças** (50 + 20 + 10 + 5 + 0,25).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas notas de R$ 20 são necessárias para formar R$ 100? (número)" resposta="5" dica="100 ÷ 20." resolucao="100 ÷ 20 = 5 notas." />
+
+<Exercicio enunciado="Quantas moedas de 25 centavos formam R$ 3,00? (número)" resposta="12" dica="R$ 1 tem 4 moedas de 25 centavos." resolucao="3 × 4 = 12 moedas." />
+
+<Exercicio enunciado="Quantas moedas de 10 centavos formam R$ 2,50? (número)" resposta="25" dica="R$ 1,00 são 10 moedas de 10 centavos." resolucao="2,50 ÷ 0,10 = 25 moedas." />
+
+<Aprofundar titulo="O dinheiro por decreto">
+O dinheiro moderno é em boa parte **dinheiro por decreto** (em inglês, *fiat money*). Segundo a fonte, o valor dele **não vem de um material** como o ouro, mas de uma **declaração do governo** e de uma **convenção social**: as pessoas aceitam porque todos aceitam. Os governos o tornam **moeda de curso legal**, ou seja, ele precisa ser aceito para pagar dívidas. Isso não é o mesmo que o **dinheiro-mercadoria** (sal, conchas, ouro), cujo valor vem do próprio material. Por isso, a **confiança** na moeda é tão importante: é ela que mantém o valor de uma nota de papel.
+</Aprofundar>
+
+## Lendo e comparando preços
+
+Para **comparar preços** com vírgula, use o que você viu em Números decimais: **iguale as casas** com zeros à direita. R$ 4,5 e R$ 4,45: 4,50 contra 4,45, então 4,50 é maior. E atenção a preços "quase redondos": **R$ 9,99** é só **1 centavo** menos que R$ 10,00, mas parece bem mais barato. Esse é um truque conhecido do comércio.
+
+<ExemploResolvido titulo="Em ordem do mais barato ao mais caro: R$ 4,5; R$ 4,05; R$ 4,45">
+  <Passo>Iguale as casas: 4,50; 4,05; 4,45.</Passo>
+  <Passo>Compare os centavos: 05, 45, 50.</Passo>
+  <Passo>Do mais barato ao mais caro: **R$ 4,05; R$ 4,45; R$ 4,50**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é o mais barato: R$ 9,9 ou R$ 9,09? (escreva o valor, com vírgula)" resposta="9,09" dica="9,90 contra 9,09." resolucao="9,09 é menor que 9,90." />
+
+## Somando as compras: o carrinho
+
+Para saber o **total** de uma compra, **multiplique o preço pela quantidade** de cada item e **some** tudo. Depois, o troco: **valor pago − total**.
+
+<CarrinhoDeCompras />
+
+<ExemploResolvido titulo="6 pães a R$ 0,80, 1 leite de R$ 5,20 e 1 dúzia de ovos de R$ 10,90">
+  <Passo>Pães: 6 × 0,80 = R$ 4,80.</Passo>
+  <Passo>Soma de tudo: 4,80 + 5,20 + 10,90 = **R$ 20,90**.</Passo>
+  <Passo>Pagando com R$ 50: de 20,90 até 21 são 10 centavos, de 21 até 50 são 29 reais: troco **R$ 29,10**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto custam 6 pães a R$ 0,80 cada, em reais? (com vírgula)" resposta="4,8" dica="6 × 0,80." resolucao="6 × 0,80 = R$ 4,80." />
+
+<Exercicio enunciado="Uma compra deu R$ 20,90 e foi paga com R$ 50. Qual é o troco, em reais? (com vírgula)" resposta="29,1" dica="Conte para a frente." resolucao="0,10 + 29,00 = R$ 29,10." />
+
+## Dividindo uma conta
+
+Quando várias pessoas dividem uma conta, é uma **divisão**: **valor total ÷ número de pessoas**. Se o resultado tiver mais casas decimais do que os centavos, **arredonde para o centavo** (e, às vezes, alguém paga 1 centavo a mais).
+
+<ExemploResolvido titulo="Uma pizza de R$ 63 dividida entre 4 amigos">
+  <Passo>63 ÷ 4 = 15,75.</Passo>
+  <Passo>Cada um paga **R$ 15,75**.</Passo>
+  <Passo>Conferindo: 4 × 15,75 = 63,00. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma conta de R$ 90 é dividida entre 4 pessoas. Quanto cada uma paga, em reais? (com vírgula)" resposta="22,5" dica="90 ÷ 4." resolucao="90 ÷ 4 = 22,50." />
+
+<Exercicio enunciado="Uma conta de R$ 100 é dividida entre 8 pessoas. Quanto cada uma paga, em reais? (com vírgula)" resposta="12,5" dica="100 ÷ 8." resolucao="100 ÷ 8 = 12,50." />
+
+## Preço por unidade: qual embalagem compensa?
+
+A embalagem **maior** nem sempre é a mais barata. Para comparar, calcule o **preço de 1 unidade** (1 quilo, 1 litro): **preço ÷ quantidade**. Você viu isso em Razão e proporção, nas taxas. Compare sempre **na mesma unidade**.
+
+<PrecoPorUnidade />
+
+<ExemploResolvido titulo="500 g por R$ 6 ou 2 kg por R$ 20?">
+  <Passo>Passe tudo para kg: 500 g = 0,5 kg.</Passo>
+  <Passo>A: 6 ÷ 0,5 = R$ 12 por kg. B: 20 ÷ 2 = R$ 10 por kg.</Passo>
+  <Passo>**A de 2 kg compensa mais**: custa R$ 2 a menos por quilo. Mas só se você realmente for usar tudo!</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um pacote de 250 g custa R$ 4. Quanto custa o quilo, em reais? (número)" resposta="16" dica="1 kg são 4 pacotes de 250 g." resolucao="4 × 4 = R$ 16 por kg." />
+
+<Aprofundar titulo="Quando a embalagem maior não compensa">
+Mesmo quando o **preço por quilo** é menor, a embalagem grande pode **sair mais cara no fim**: se parte do produto **estraga** ou **sobra**, você paga por algo que não usou. Um pacote de 5 kg de pão, que dura 2 dias, é um péssimo negócio se 4 kg vão para o lixo. Por isso, o preço por unidade é um **primeiro filtro**, e a pergunta seguinte é: **vou usar tudo?** O mesmo vale para promoções "leve 3, pague 2": só vale a pena se você ia usar os 3.
+</Aprofundar>
+
+## Descontos de cabeça
+
+Você já viu a porcentagem no Fundamental, mas dá para dar um **gostinho** aqui. **Metade** do preço é um desconto de 50%. **10%** é achar um décimo do valor, ou seja, andar a vírgula uma casa para a esquerda: 10% de R$ 85 = R$ 8,50. Um desconto de 10% é, então, **pagar 90%**.
+
+<ExemploResolvido titulo="Um tênis de R$ 120 com desconto de metade e outro de R$ 85 com 10%">
+  <Passo>Metade de 120 é 60: o tênis sai por **R$ 60**.</Passo>
+  <Passo>10% de 85 é 8,50. O desconto tira 8,50: 85 − 8,50 = **R$ 76,50**.</Passo>
+  <Passo>O primeiro tênis ficou R$ 60 e o segundo R$ 76,50.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um produto de R$ 80 está com 25% de desconto (um quarto). Quanto você paga, em reais? (número)" resposta="60" dica="Um quarto de 80 é 20." resolucao="80 − 20 = R$ 60." />
+
+## À vista ou parcelado?
+
+Pagar **à vista** é pagar tudo de uma vez. **Parcelado** é dividir em **parcelas**. O total pago no parcelado é **valor da parcela × número de parcelas**. Se o parcelado custar **mais** que o à vista, a diferença são os **juros**, o "aluguel" do dinheiro. "Sem juros" quer dizer que o total parcelado é igual ao à vista.
+
+<ParceladoOuAVista />
+
+<ExemploResolvido titulo="Uma geladeira: R$ 600 à vista ou 6 parcelas de R$ 110">
+  <Passo>Total parcelado: 6 × 110 = R$ 660.</Passo>
+  <Passo>A diferença: 660 − 600 = **R$ 60** a mais.</Passo>
+  <Passo>Em relação ao preço à vista, são 60 ÷ 600 = 0,10, ou **10% a mais**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma geladeira custa R$ 600 à vista ou 6 parcelas de R$ 110. Quanto sai a mais no parcelado, em reais? (número)" resposta="60" dica="6 × 110 − 600." resolucao="660 − 600 = R$ 60." />
+
+<Exercicio enunciado="Um celular de R$ 1.200 é pago em 10 parcelas sem juros. Quanto é cada parcela, em reais? (número)" resposta="120" dica="1.200 ÷ 10." resolucao="1.200 ÷ 10 = R$ 120." />
+
+<Aprofundar titulo="Juros: o preço de usar o dinheiro dos outros">
+Quando você parcela **com juros**, está usando o dinheiro do vendedor (ou do banco) **antes de pagar**, e isso tem um **preço**. Em **Porcentagem** você vai ver que os juros costumam ser **compostos**: cada mês, a porcentagem incide sobre o que já cresceu, uma "bola de neve". Por isso, uma dívida parcelada longa, com juros altos, pode custar **muito mais** que o preço inicial. Uma regra simples: antes de parcelar, **compare o total das parcelas com o preço à vista** e pergunte: vale pagar essa diferença para ter o produto agora?
+</Aprofundar>
+
+## Planejando: receita, despesa e poupança
+
+Um **orçamento** é um plano com o que **entra** (a **receita**, como mesada ou salário) e o que **sai** (as **despesas**). A diferença é o que sobra: **receita − despesas = o que dá para guardar** (a **poupança**). Se der **negativo**, você está gastando mais do que ganha, e precisa cortar gastos ou ganhar mais.
+
+<ExemploResolvido titulo="Um orçamento mensal simples">
+  <Passo>Entradas: mesada de R$ 100 mais R$ 40 de um trabalhinho = R$ 140.</Passo>
+  <Passo>Saídas: lanches R$ 50 e jogos R$ 30 = R$ 80.</Passo>
+  <Passo>Sobra: 140 − 80 = **R$ 60**. Guardando 60 por mês, em 5 meses são **R$ 300**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma pessoa guarda R$ 60 por mês. Quanto terá guardado em 5 meses, em reais? (número)" resposta="300" dica="5 × 60." resolucao="5 × 60 = R$ 300." />
+
+<Exercicio enunciado="Quem recebe R$ 140 e gasta R$ 80 guarda quanto, em reais? (número)" resposta="60" dica="140 − 80." resolucao="140 − 80 = R$ 60." />
+
+<Aprofundar titulo="Querer e precisar">
+Uma boa pergunta antes de comprar é: **eu preciso disso ou só quero?** Precisar é o essencial (comida, transporte, material de estudo). Querer é o que dá prazer, mas pode esperar. Separar os dois ajuda a guardar dinheiro para um **objetivo**, como uma bicicleta, sem se perder em pequenos gastos que somados pesam. Mil compras de R$ 5 por impulso são R$ 5.000!
+</Aprofundar>
+
+## Erros comuns (e como fugir deles)
+
+- **Errar a vírgula:** R$ 4,5 não é R$ 4,05. Iguale as casas antes de comparar.
+- **Esquecer os centavos** no troco: 50 − 37,40 não é 13, é 12,60.
+- **Achar que a embalagem maior sempre compensa:** calcule o preço por quilo.
+- **Comparar parcela com preço à vista:** compare o **total** das parcelas.
+- **Contar uma moeda de 25 como 2,5:** 25 centavos são 0,25.
+
+<Exercicio enunciado="Quanto é R$ 50,00 − R$ 37,40, em reais? (com vírgula)" resposta="12,6" dica="Não é 13,40: cuidado com os centavos." resolucao="R$ 12,60." />
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Qual é o troco de uma compra de R$ 37,40 paga com R$ 50?',
+    opcoes: ['R$ 12,60', 'R$ 13,40', 'R$ 12,40'],
+    correta: 0,
+    explicacao: '0,60 + 2,00 + 10,00 = 12,60. Conferindo: 37,40 + 12,60 = 50.',
+  },
+  {
+    enunciado: 'Como se confere um troco?',
+    opcoes: ['Preço + troco tem de dar o valor pago', 'Preço − troco tem de dar o valor pago', 'Não se confere'],
+    correta: 0,
+    explicacao: 'Somar e subtrair são inversas: preço + troco = valor pago.',
+  },
+  {
+    enunciado: 'R$ 37,40 são quantos centavos?',
+    opcoes: ['3.740', '374', '37.400'],
+    correta: 0,
+    explicacao: '37 reais = 3.700 centavos, mais 40 = 3.740.',
+  },
+  {
+    enunciado: 'Quantas moedas de 25 centavos formam R$ 3?',
+    opcoes: ['12', '3', '75'],
+    correta: 0,
+    explicacao: 'Em R$ 1 cabem 4 moedas de 25 centavos: 3 × 4 = 12.',
+  },
+  {
+    enunciado: 'Qual é o menor preço: R$ 9,9 ou R$ 9,09?',
+    opcoes: ['R$ 9,09', 'R$ 9,9', 'São iguais'],
+    correta: 0,
+    explicacao: 'Igualando as casas: 9,90 contra 9,09. O menor é 9,09.',
+  },
+  {
+    enunciado: 'Qual compensa mais: 500 g por R$ 6 ou 2 kg por R$ 20?',
+    opcoes: ['2 kg por R$ 20 (R$ 10 por kg)', '500 g por R$ 6 (R$ 12 por kg)', 'São iguais'],
+    correta: 0,
+    explicacao: 'R$ 6 ÷ 0,5 kg = R$ 12 por kg; R$ 20 ÷ 2 kg = R$ 10 por kg.',
+  },
+  {
+    enunciado: 'Uma conta de R$ 90 é dividida por 4 pessoas. Cada uma paga:',
+    opcoes: ['R$ 22,50', 'R$ 20,50', 'R$ 25'],
+    correta: 0,
+    explicacao: '90 ÷ 4 = 22,50.',
+  },
+  {
+    enunciado: 'Uma geladeira custa R$ 600 à vista ou 6 parcelas de R$ 110. O parcelado sai:',
+    opcoes: ['R$ 60 mais caro', 'R$ 60 mais barato', 'Igual'],
+    correta: 0,
+    explicacao: '6 × 110 = 660, e 660 − 600 = 60 a mais (os juros).',
+  },
+  {
+    enunciado: 'Um produto de R$ 80 com 25% de desconto custa:',
+    opcoes: ['R$ 60', 'R$ 55', 'R$ 20'],
+    correta: 0,
+    explicacao: '25% de 80 é 20 (um quarto). 80 − 20 = 60.',
+  },
+  {
+    enunciado: 'Quem recebe R$ 140 e gasta R$ 80 por mês guarda, em 5 meses:',
+    opcoes: ['R$ 300', 'R$ 60', 'R$ 700'],
+    correta: 0,
+    explicacao: 'Sobram 60 por mês, e 5 × 60 = 300.',
+  },
+  {
+    enunciado: 'Qual é o principal problema do escambo, que o dinheiro resolve?',
+    opcoes: ['A coincidência de desejos: cada um precisa ter o que o outro quer', 'As moedas são pesadas', 'O governo proíbe a troca'],
+    correta: 0,
+    explicacao: 'Com dinheiro, você vende para quem quiser e compra de quem tiver o que você quer.',
+  },
+  {
+    enunciado: 'Quando e em que governo o Real entrou em circulação?',
+    opcoes: ['1º de julho de 1994, no Plano Real', '1º de janeiro de 2000', '7 de setembro de 1822'],
+    correta: 0,
+    explicacao: 'O Real substituiu o cruzeiro real em 1º de julho de 1994: R$ 1 valia 2.750 cruzeiros reais.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Valores em reais** têm duas casas depois da vírgula (centavos). R$ 37,40 são 3.740 centavos.
+- **Troco = valor pago − preço.** O jeito do caixa é contar **para a frente**, e a conferência é **preço + troco = valor pago**.
+- **Carrinho:** multiplique preço por quantidade e some tudo.
+- **Dividir uma conta:** total ÷ pessoas.
+- **Preço por unidade** (por kg, por litro) mostra qual embalagem compensa, mas só se você for usar tudo.
+- **Parcelado:** parcela × número de parcelas. A diferença para o à vista são os **juros**.
+- **Orçamento:** receita − despesas = o que se pode guardar.
+- **Dinheiro por decreto:** a nota vale pela confiança e pelo curso legal, e não pelo papel.
+
+**Um pouco de história.** O escambo sofria da coincidência de desejos, e o dinheiro nasceu para resolvê-la. As primeiras moedas cunhadas são de cerca de 650 a 600 a.C., atribuídas aos lídios, e o papel-moeda surgiu na China, entre as dinastias Tang e Song. No Brasil, o Real entrou em circulação em 1º de julho de 1994, no Plano Real, valendo 2.750 cruzeiros reais.
+
+</Resumo>
+
+Para fechar o grupo de medidas, vamos olhar as **formas**: quantos lados tem um círculo? Isso fica para a próxima cápsula.
+
+<Conexoes />
+
+</Etapa>
