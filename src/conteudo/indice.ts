@@ -58,7 +58,7 @@ export const capsulas: ResumoCapsula[] = [
   m('basica', 'tempo-e-horas', 'Tempo e horas', 'Por que a hora tem 60 minutos, e não 100?', { grupo: 'Medidas', estado: 'pronta', duracaoMin: 40, conexoes: ['angulos'] }),
   m('basica', 'dinheiro-e-troco', 'Dinheiro e troco', 'Conferir o troco de cabeça, sem errar.', { grupo: 'Medidas', estado: 'pronta', duracaoMin: 40, conexoes: ['porcentagem'] }),
   m('basica', 'formas-geometricas', 'Formas geométricas', 'Quantos lados tem um círculo?', { grupo: 'Formas e dados', estado: 'pronta', duracaoMin: 40, conexoes: ['angulos'] }),
-  m('basica', 'tabelas-e-graficos', 'Tabelas e gráficos', 'Ler um gráfico antes de acreditar nele.', { grupo: 'Formas e dados' }),
+  m('basica', 'tabelas-e-graficos', 'Tabelas e gráficos', 'Ler um gráfico antes de acreditar nele.', { grupo: 'Formas e dados', estado: 'pronta', duracaoMin: 40, conexoes: ['porcentagem'] }),
 
   // Fundamental (6º ao 9º ano), agrupado pelo ano em que a BNCC põe cada assunto
   m('fundamental', 'fracoes', 'Frações', 'Qual pedaço é maior: 1/3 ou 1/4 da pizza?', { grupo: '6º ano', estado: 'pronta', duracaoMin: 40 }),

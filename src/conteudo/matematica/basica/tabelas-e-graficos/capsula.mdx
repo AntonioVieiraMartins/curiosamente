@@ -1,0 +1,384 @@
+import ContaVotos from '../../../../components/simulacoes/ContaVotos'
+import LeituraDeGrafico from '../../../../components/simulacoes/LeituraDeGrafico'
+import GraficoDeLinha from '../../../../components/simulacoes/GraficoDeLinha'
+import GraficoDePizza from '../../../../components/simulacoes/GraficoDePizza'
+import EixoQueEnganta from '../../../../components/simulacoes/EixoQueEnganta'
+import MediaModaMediana from '../../../../components/simulacoes/MediaModaMediana'
+
+{/* Fatos conferidos na Wikipedia em inglês (Bar chart e Misleading graph), listadas no meta.ts. A tabela de frequência, o gráfico de linhas e de setores e a média, a mediana e a moda são conteúdo escolar geral da BNCC, conferidos por cálculo. Os dados dos exemplos são inventados, para a conta. */}
+
+<Etapa id="gancho">
+
+Duas lojas anunciam: "**95% dos clientes satisfeitos**" e "**92% dos clientes satisfeitos**". Um gráfico mostra a loja B com uma barra **mais que o dobro** da loja A. Parece uma vitória gigante! Mas são **95 contra 92**: só **3 pontos** de diferença. O que aconteceu? O gráfico **não começava no zero**.
+
+Gráficos e tabelas estão em todo lugar: no jornal, no celular, na escola, nas redes sociais. Eles são ótimos para **entender dados**, mas também podem **enganar**, sem que ninguém precise mentir nos números. Aprender a **ler** um gráfico, olhando título, eixos e escala, é uma defesa muito útil.
+
+<Palpite
+  chave="inicial"
+  pergunta="Um gráfico de barras mostra a loja B com uma barra mais que o dobro da loja A, mas os números são 95 e 92. Por que isso acontece?"
+  opcoes={['O gráfico está errado nos números', 'O eixo vertical não começa no zero, e isso exagera a diferença', 'Barras sempre mostram o dobro']}
+/>
+
+Nesta cápsula você vai **contar votos** e montar uma tabela e um gráfico, **ler** um gráfico de barras, acompanhar uma **linha** no tempo, repartir uma **pizza** de 100%, ver o **eixo que engana** e descobrir a diferença entre **média**, **mediana** e **moda**.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Contar e organizar coisas em tabelas é antiquíssimo. Já **desenhar os números** como barras é uma ideia bem mais recente.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Séc. 14', texto: 'Diagramas do livro "A Latitude das Formas", atribuído a Jacobus de Sancto Martino ou a Nicole Oresme, são "quase gráficos de barras".' },
+  { ano: 'Fim do séc. 18', texto: 'William Playfair, em "O Atlas Comercial e Político", mostra as exportações e importações da Escócia num gráfico de barras.' },
+  { ano: '1954', texto: 'Darrell Huff publica "Como mentir com estatística", o trabalho mais antigo citado sobre gráficos enganosos.' },
+  { ano: '2001', texto: 'Um gráfico de vendas de casas usa casas desenhadas em 3D e parece mostrar um crescimento de oito vezes, quando as vendas apenas dobraram.' },
+]} />
+
+## Os primeiros "quase gráficos"
+
+Segundo a fonte, diagramas do livro *A Latitude das Formas*, atribuído a **Jacobus de Sancto Martino** ou possivelmente a **Nicole Oresme**, são descritos como **"proto gráficos de barras"**, cerca de **300 anos antes** do trabalho de Playfair. Nicole Oresme é o mesmo que você encontrou na história do plano cartesiano: ele já desenhava como as coisas variam.
+
+## William Playfair
+
+A fonte credita ao escocês **William Playfair** (1759 a 1824) a invenção do **gráfico de barras**. O primeiro apareceu em *O Atlas Comercial e Político* e mostrava as **exportações e importações da Escócia**. A ideia foi simples e poderosa: em vez de uma lista de números, desenhar **barras** em que a **altura** (ou o comprimento) é **proporcional ao valor**. O olho compara barras muito mais rápido do que lê números.
+
+## Barras em pé ou deitadas
+
+Segundo a fonte, as barras podem ser **verticais** (também chamadas de **colunas**) ou **horizontais**. Os gráficos de barras servem para **comparar categorias** (frutas, dias da semana, cidades). Já o **histograma**, que parece parecido, é usado para **dados contínuos** (como alturas de pessoas agrupadas em faixas).
+
+## Como mentir sem mentir
+
+Em **1954**, **Darrell Huff** publicou *How to Lie with Statistics* ("Como mentir com estatística"), e a fonte o cita como o trabalho mais antigo sobre o assunto. A mensagem do livro é que **números verdadeiros podem enganar** se forem **mostrados** de um jeito esperto. Você vai ver os truques mais comuns nesta cápsula.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Dados: o que é coletar
+
+**Dados** são informações que reunimos: quantos alunos preferem cada fruta, qual foi a temperatura a cada hora, quanto cada pessoa gasta. **Coletar** é reunir os dados (perguntando, medindo ou contando). Para entender dados soltos, a gente os **organiza**.
+
+## 2. Tabela: números em linhas e colunas
+
+A **tabela** organiza os dados em **linhas e colunas**. A tabela mais simples é a de **frequência**: para cada **categoria**, o **número de vezes** que ela apareceu. Veja a turma de 22 alunos que votou na fruta preferida:
+
+- Banana: 5 votos.
+- Maçã: 8 votos.
+- Uva: 3 votos.
+- Laranja: 6 votos.
+
+O **total** de votos é a soma: 5 + 8 + 3 + 6 = **22**. Conferir o total é uma boa forma de ver se contou tudo.
+
+## 3. Gráfico: números que dá para enxergar
+
+O **gráfico** transforma a tabela num **desenho**, e o olho compara a olho nu. Cada tipo tem um uso:
+
+- **Barras:** comparar **categorias**.
+- **Linhas:** ver como um valor **muda no tempo**.
+- **Setores (pizza):** mostrar **partes de um todo** de 100%.
+
+## 4. As partes de um gráfico
+
+Antes de acreditar em qualquer gráfico, procure: o **título** (do que se trata?), os **eixos** (o que cada um mede, e em que unidade?), a **escala** (de quanto em quanto? começa onde?) e a **fonte** dos dados (quem mediu?).
+
+<ExemploResolvido titulo="Lendo a tabela da fruta preferida">
+  <Passo>A fruta mais votada é a maçã, com 8 votos.</Passo>
+  <Passo>A menos votada é a uva, com 3.</Passo>
+  <Passo>A diferença entre a primeira e a última: 8 − 3 = **5 votos**.</Passo>
+  <Passo>A maçã teve 8 de 22 votos: um pouco mais de um terço da turma.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Na turma, 5 alunos votaram em banana, 8 em maçã, 3 em uva e 6 em laranja. Quantos alunos votaram, no total? (número)" resposta="22" dica="Some todos os votos." resolucao="5 + 8 + 3 + 6 = 22 alunos." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Um gráfico de barras mostra a loja B com uma barra mais que o dobro da loja A, mas os números são 95 e 92. Por que isso acontece?"
+  opcoes={['O gráfico está errado nos números', 'O eixo vertical não começa no zero, e isso exagera a diferença', 'Barras sempre mostram o dobro']}
+  correta={1}
+  explicacao="Quando o eixo começa em 90 em vez de 0, a barra da A (92) parece ter altura 2 e a da B (95) altura 5: mais que o dobro. Mas os números são 92 e 95, só 3 pontos de diferença. Em gráfico de barras, a base honesta é o zero."
+>
+
+Veja os **mesmos números** com o eixo começando em 0 e em 90.
+
+<EixoQueEnganta />
+
+Agora **conte votos** e veja a tabela virar barras.
+
+<ContaVotos />
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['O gráfico está errado nos números', 'O eixo vertical não começa no zero, e isso exagera a diferença', 'Barras sempre mostram o dobro']}
+  correta={1}
+  seAcertou="E o palpite do começo? Isso: o eixo cortado exagera a diferença entre 92 e 95."
+  seErrou="E o palpite do começo? Os números estão certos, mas o eixo começava em 90 e não em 0, e isso fez 92 e 95 parecerem muito diferentes."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Lendo uma tabela
+
+Para ler uma tabela, encontre a **linha** e a **coluna** que você quer: o dado fica no **cruzamento**. Depois use as contas que já conhece: somar para achar totais, subtrair para achar diferenças.
+
+<ExemploResolvido titulo="Vendas de uma padaria na semana (em pães): seg 120, ter 90, qua 100, qui 130, sex 160">
+  <Passo>Total da semana: 120 + 90 + 100 + 130 + 160 = **600 pães**.</Passo>
+  <Passo>Dia de maior venda: sexta, com 160. Dia de menor venda: terça, com 90.</Passo>
+  <Passo>Diferença: 160 − 90 = **70 pães** a mais na sexta.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma padaria vendeu 120, 90, 100, 130 e 160 pães de segunda a sexta. Quantos pães no total? (número)" resposta="600" dica="Some os cinco números." resolucao="120 + 90 + 100 + 130 + 160 = 600 pães." />
+
+<Exercicio enunciado="Na mesma padaria, quantos pães a mais foram vendidos na sexta (160) do que na terça (90)? (número)" resposta="70" dica="160 − 90." resolucao="160 − 90 = 70 pães." />
+
+## Tabela de frequência
+
+Para contar dados, faça um **risquinho** (|) para cada resposta e, de cinco em cinco, faça um **traço cortando** os quatro. Depois transforme os risquinhos em **números**. O total confere se você contou tudo.
+
+<ExemploResolvido titulo="Na lista de cores preferidas: azul, verde, azul, azul, vermelho, verde, azul, vermelho">
+  <Passo>Azul: aparece 4 vezes. Verde: 2 vezes. Vermelho: 2 vezes.</Passo>
+  <Passo>Total: 4 + 2 + 2 = **8**, que são as 8 respostas da lista. ✓</Passo>
+  <Passo>A cor **mais frequente** é o **azul**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Em azul, verde, azul, azul, vermelho, verde, azul, vermelho, quantas vezes aparece o azul? (número)" resposta="4" dica="Conte com risquinhos." resolucao="O azul aparece 4 vezes." />
+
+## Gráfico de barras: como ler
+
+Em um gráfico de barras, a **altura** (ou o comprimento) de cada barra é **proporcional ao valor**. Para ler, siga a ponta da barra até o **eixo** com os números. Cuidado com a **escala**: cada risco pode valer 1, 5 ou 10.
+
+<LeituraDeGrafico />
+
+<ExemploResolvido titulo="Visitas à biblioteca: seg 40, ter 25, qua 30, qui 55, sex 50">
+  <Passo>Mais visitas: quinta, com 55. Menos: terça, com 25.</Passo>
+  <Passo>Total: 40 + 25 + 30 + 55 + 50 = **200 visitas**.</Passo>
+  <Passo>Quinta teve 55 − 30 = **25 visitas a mais** que quarta.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas visitas a mais houve na quinta (55) do que na quarta (30)? (número)" resposta="25" dica="55 − 30." resolucao="55 − 30 = 25." />
+
+<Exercicio enunciado="Uma barra mede 6 quadradinhos e cada quadradinho vale 5 alunos. Quantos alunos a barra representa? (número)" resposta="30" dica="6 × 5." resolucao="6 × 5 = 30 alunos." />
+
+<Aprofundar titulo="Barras e histogramas">
+Segundo a fonte, o **histograma** é parecido com o gráfico de barras, mas é usado para **dados contínuos**, como alturas ou tempos, agrupados em **faixas** (de 150 a 160 cm, de 160 a 170 cm...). No histograma, as barras ficam **coladas**, porque uma faixa começa onde a outra termina. No gráfico de barras de **categorias** (frutas, dias, cidades), as barras ficam **separadas**, porque as categorias são independentes. Quando você precisar contar "quantas pessoas existem em cada faixa", é histograma; quando precisar comparar "frutas diferentes", é barras.
+</Aprofundar>
+
+## Gráfico de linhas: mudanças no tempo
+
+O **gráfico de linhas** liga pontos com segmentos e mostra **como algo muda** com o passar do tempo: temperatura, preço, altura de uma planta. Quando a linha **sobe**, o valor **aumenta**; quando **desce**, **diminui**; quando fica **reta e plana**, **não muda**. Quanto mais **inclinada**, mais **rápida** a mudança.
+
+<GraficoDeLinha />
+
+<ExemploResolvido titulo="Temperatura: 6h 16 °C, 8h 19 °C, 10h 24 °C, 12h 28 °C, 14h 30 °C, 16h 27 °C">
+  <Passo>De 6h a 14h a linha sobe: de 16 a 30 °C, são 14 °C a mais.</Passo>
+  <Passo>De 14h a 16h a linha desce: 30 − 27 = 3 °C a menos.</Passo>
+  <Passo>O ponto mais alto é às 14h, com **30 °C**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="A temperatura foi de 16 °C às 6h a 30 °C às 14h. Quantos graus ela subiu? (número)" resposta="14" dica="30 − 16." resolucao="30 − 16 = 14 °C." />
+
+<Exercicio enunciado="Se a linha de um gráfico fica reta e plana entre duas horas, o valor nesse tempo aumentou, diminuiu ou ficou igual? (uma palavra: aumentou, diminuiu ou igual)" resposta="igual" dica="Sem subir nem descer." resolucao="Ficou igual: a linha não sobe nem desce." />
+
+## Gráfico de setores: a pizza de 100%
+
+No **gráfico de setores** (a "pizza"), o círculo inteiro é o **todo** (100%) e cada **fatia** é uma **parte**. Quanto **maior o ângulo** da fatia, **maior** a parte. As porcentagens das fatias **somam 100%**. Metade da pizza é 50%, um quarto é 25%.
+
+<GraficoDePizza />
+
+<ExemploResolvido titulo="Gastos do mês: casa 40%, comida 30%, lazer 20%. Quanto sobra para o resto?">
+  <Passo>Some as fatias conhecidas: 40 + 30 + 20 = 90%.</Passo>
+  <Passo>O todo é 100%, então sobram 100 − 90 = **10%** para Outros.</Passo>
+  <Passo>Se o mês tem R$ 500, os 10% são R$ 50 (a vírgula anda uma casa).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Num gráfico de pizza, 40%, 30% e 20% são de três fatias. Quanto por cento sobra para a quarta fatia? (número)" resposta="10" dica="100 − 90." resolucao="100 − 90 = 10%." />
+
+<Exercicio enunciado="Se o todo é R$ 500, quanto vale uma fatia de 20%, em reais? (número)" resposta="100" dica="20% é um quinto." resolucao="500 ÷ 5 = R$ 100." />
+
+<Aprofundar titulo="Por que não usar pizza em 3D">
+Segundo a fonte, gráficos de pizza **em 3D** enganam: com a **perspectiva**, as fatias da **frente** parecem **maiores** do que as de **trás**, mesmo valendo o mesmo. A fonte também cita a opinião do estatístico **Edward Tufte** de que gráficos de pizza costumam ser **piores que uma tabela simples**, porque o olho compara **barras** com muito mais precisão do que **ângulos**. Por isso, quando há **muitas fatias** parecidas, um gráfico de barras costuma ser mais claro. A pizza é boa quando há **poucas partes** e o interesse é ver "que parte do todo" cada uma é.
+</Aprofundar>
+
+## O eixo que engana (e outras armadilhas)
+
+Segundo a fonte, o **truque mais comum** é o **eixo cortado**: o eixo vertical **não começa no zero**, e pequenas diferenças parecem enormes. A fonte cita que, mesmo avisadas de que o eixo estava cortado, as pessoas **ainda superestimam** a diferença. Outras armadilhas, também citadas:
+
+- **Dados omitidos:** deixar de fora alguns pontos ou categorias para a tendência parecer mais suave ou mais favorável.
+- **Escalas diferentes no mesmo gráfico:** dar a uma série o seu próprio eixo faz parecer que ela "ultrapassou" a outra.
+- **Escala ausente:** sem números nos eixos, qualquer diferença pode ser manipulada.
+- **Pictogramas** (desenhos no lugar de barras): se o desenho cresce em **duas dimensões**, a diferença **parece ao quadrado**; em **três**, ao **cubo**. A fonte cita um gráfico de 2001, de vendas de casas, que parecia mostrar um crescimento **oito vezes** maior quando as vendas apenas **dobraram** (2 × 2 × 2 = 8).
+- **Escala logarítmica sem aviso:** valores muito diferentes parecem próximos.
+
+<ExemploResolvido titulo="Como se proteger de um gráfico enganoso">
+  <Passo>Leia o **título** e os **eixos**: o que mede, em que unidade?</Passo>
+  <Passo>Olhe **onde o eixo começa**. Em barras, o 0 é a base honesta.</Passo>
+  <Passo>Leia os **números**, e não só a altura das barras.</Passo>
+  <Passo>Pergunte: **faltou algum dado?** Quem fez o gráfico, e por quê?</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Num gráfico de barras, o eixo começa em 90 e as barras valem 92 e 95. A diferença real entre os valores é de quantos pontos? (número)" resposta="3" dica="95 − 92." resolucao="95 − 92 = 3 pontos." />
+
+<Aprofundar titulo="O desenho que cresce ao quadrado">
+Imagine um desenho de casa que representa 1.000 vendas, e outro, para 2.000 vendas, **com o dobro da altura**. Se o desenho também fica **duas vezes mais largo**, a área dele fica **2 × 2 = 4 vezes maior**, e o olho vê "quatro vezes mais". Se ainda ganha **profundidade** (3D), o volume vai a 2 × 2 × 2 = **8 vezes**. Foi exatamente esse efeito que a fonte descreve no gráfico de 2001. A regra para gráficos honestos: representar o valor com **um só comprimento** (como a altura de uma barra), e não com o tamanho total de um desenho. Você viu essa mesma ideia em Medidas: quando o lado dobra, a área quadruplica.
+</Aprofundar>
+
+## Média, moda e mediana
+
+Às vezes queremos **resumir** vários números com **um só**. Há três jeitos:
+
+- **Média:** some tudo e divida pela quantidade. Mostra o "valor típico" se os dados forem parecidos.
+- **Mediana:** o valor do **meio**, com os dados em ordem. Metade dos valores fica abaixo e metade acima.
+- **Moda:** o valor que **mais se repete**.
+
+<MediaModaMediana />
+
+<ExemploResolvido titulo="Salários: R$ 1.200, 1.300, 1.300, 1.500 e 1.800">
+  <Passo>Média: (1.200 + 1.300 + 1.300 + 1.500 + 1.800) ÷ 5 = 7.100 ÷ 5 = **R$ 1.420**.</Passo>
+  <Passo>Mediana: em ordem, o do meio (3º de 5) é **R$ 1.300**.</Passo>
+  <Passo>Moda: o que mais se repete é **R$ 1.300**.</Passo>
+  <Passo>Se o último salário fosse R$ 20.000, a média iria a R$ 5.060, mas a mediana continuaria R$ 1.300. Por isso, a média **sozinha** pode enganar.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é a média de 4, 6 e 8? (número)" resposta="6" dica="Some e divida por 3." resolucao="(4 + 6 + 8) ÷ 3 = 18 ÷ 3 = 6." />
+
+<Exercicio enunciado="Qual é a mediana de 3, 9, 5, 7 e 1? (número, a do meio depois de ordenar)" resposta="5" dica="Ordene: 1, 3, 5, 7, 9." resolucao="Em ordem: 1, 3, 5, 7, 9. A do meio é 5." />
+
+<Exercicio enunciado="Qual é a moda de 2, 3, 3, 5, 3, 7? (número)" resposta="3" dica="Quem mais se repete?" resolucao="O 3 aparece 3 vezes: é a moda." />
+
+<Aprofundar titulo="Por que a média engana nos salários">
+A média é muito **sensível** a valores extremos. Numa empresa em que quatro pessoas ganham cerca de R$ 1.300 e o dono ganha R$ 20.000, a **média** vai a mais de R$ 5.000, e um anúncio "a média dos salários aqui é de mais de 5 mil!" é **verdade**, mas **engana**: ninguém, a não ser o dono, ganha perto disso. A **mediana** (R$ 1.300) descreve melhor o que a maioria ganha. Por isso, em salários, preços de imóveis e rendas, os estatísticos costumam olhar para a **mediana**. A lição do livro de Huff, de 1954, vale aqui também: **mais de um número conta a história inteira**.
+</Aprofundar>
+
+## Perguntar, coletar, organizar e contar
+
+Uma pequena **pesquisa** tem quatro passos: **1) perguntar** algo claro ("qual é sua fruta preferida?"), **2) coletar** as respostas, **3) organizar** numa tabela, **4) mostrar** num gráfico e **tirar conclusões**. Uma boa pergunta tem **opções claras** e, se possível, que não se misturem. Também importa **quem** foi perguntado: uma pesquisa feita só na porta de uma sorveteria não diz o que **toda a cidade** pensa.
+
+<ExemploResolvido titulo="Faça sua mini-pesquisa: transporte para a escola">
+  <Passo>Pergunta: "Como você vem para a escola?" Opções: a pé, de ônibus, de carro, de bicicleta.</Passo>
+  <Passo>Respostas de 20 alunos: a pé 6, ônibus 8, carro 4, bicicleta 2.</Passo>
+  <Passo>Total: 6 + 8 + 4 + 2 = **20**. ✓ O ônibus é a opção mais usada: 8 de 20, que são **40%**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Entre 20 alunos, 8 vêm de ônibus. Quanto por cento são? (número)" resposta="40" dica="8 ÷ 20." resolucao="8 ÷ 20 = 0,4 = 40%." />
+
+<Exercicio enunciado="Entre 20 alunos, 6 vêm a pé. Quanto por cento são? (número)" resposta="30" dica="6 ÷ 20." resolucao="6 ÷ 20 = 0,3 = 30%." />
+
+## Erros comuns (e como fugir deles)
+
+- **Olhar só a altura das barras** sem ler onde o eixo começa.
+- **Ler a escala errada:** se cada risco vale 5, uma barra em 3 riscos é 15, e não 3.
+- **Achar que "mais alto" sempre significa "muito mais"** quando as barras têm eixo cortado.
+- **Somar porcentagens que não são do mesmo todo.**
+- **Esquecer a fonte:** de onde vêm os dados? Quem perguntou, e a quem?
+
+<Exercicio enunciado="Em um gráfico, cada risco do eixo vale 5 e a barra chega ao 4º risco. Quanto vale a barra? (número)" resposta="20" dica="4 × 5." resolucao="4 × 5 = 20." />
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Por que um eixo que não começa no zero engana num gráfico de barras?',
+    opcoes: ['Porque exagera as diferenças entre as barras', 'Porque apaga as barras', 'Porque troca os números'],
+    correta: 0,
+    explicacao: 'Com o eixo cortado, valores parecidos (92 e 95) parecem muito diferentes.',
+  },
+  {
+    enunciado: 'Qual gráfico é o melhor para ver como um valor muda ao longo do tempo?',
+    opcoes: ['Gráfico de linhas', 'Gráfico de setores (pizza)', 'Tabela sem números'],
+    correta: 0,
+    explicacao: 'A linha sobe, desce ou fica plana, mostrando a mudança no tempo.',
+  },
+  {
+    enunciado: 'No gráfico de pizza, a soma de todas as fatias é:',
+    opcoes: ['100%', '50%', '10%'],
+    correta: 0,
+    explicacao: 'A pizza é o todo, e as fatias são as partes do todo: somam 100%.',
+  },
+  {
+    enunciado: 'Votos: banana 5, maçã 8, uva 3 e laranja 6. Quantos votos ao todo?',
+    opcoes: ['22', '21', '16'],
+    correta: 0,
+    explicacao: '5 + 8 + 3 + 6 = 22.',
+  },
+  {
+    enunciado: 'Qual é a média de 4, 6 e 8?',
+    opcoes: ['6', '8', '18'],
+    correta: 0,
+    explicacao: '(4 + 6 + 8) ÷ 3 = 6.',
+  },
+  {
+    enunciado: 'Qual é a mediana de 1, 3, 5, 7 e 9?',
+    opcoes: ['5', '25', '3'],
+    correta: 0,
+    explicacao: 'Em ordem, o valor do meio é 5.',
+  },
+  {
+    enunciado: 'Qual é a moda de 2, 3, 3, 5, 3, 7?',
+    opcoes: ['3', '5', '7'],
+    correta: 0,
+    explicacao: 'O 3 aparece 3 vezes, mais do que qualquer outro.',
+  },
+  {
+    enunciado: 'Quando a média engana mais?',
+    opcoes: ['Quando há um valor extremo muito alto ou muito baixo', 'Quando todos os valores são iguais', 'Nunca'],
+    correta: 0,
+    explicacao: 'Um valor muito alto (como o salário do dono) puxa a média para cima.',
+  },
+  {
+    enunciado: 'Cada risco do eixo vale 5 e a barra chega ao 4º risco. Quanto vale?',
+    opcoes: ['20', '4', '9'],
+    correta: 0,
+    explicacao: '4 riscos × 5 = 20.',
+  },
+  {
+    enunciado: 'Entre 20 alunos, 8 vêm de ônibus. Quanto por cento são?',
+    opcoes: ['40%', '8%', '20%'],
+    correta: 0,
+    explicacao: '8 ÷ 20 = 0,4 = 40%.',
+  },
+  {
+    enunciado: 'Por que desenhos (pictogramas) que crescem em duas dimensões enganam?',
+    opcoes: ['A área cresce ao quadrado, e a diferença parece maior', 'Eles ficam apagados', 'Porque não têm cor'],
+    correta: 0,
+    explicacao: 'Dobrando altura e largura, a área vira 4 vezes. Em 3D, 8 vezes.',
+  },
+  {
+    enunciado: 'Quem é considerado o inventor do gráfico de barras?',
+    opcoes: ['William Playfair', 'Euclides', 'Darrell Huff'],
+    correta: 0,
+    explicacao: 'Muitas fontes creditam a Playfair o gráfico de barras, em O Atlas Comercial e Político.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Tabela** organiza os dados em linhas e colunas. A de **frequência** conta quantas vezes cada coisa aparece, e o **total** confere se contou tudo.
+- **Barras** comparam categorias; **linhas** mostram mudanças no tempo; **pizza** mostra partes de um todo de 100%.
+- Antes de acreditar num gráfico, leia o **título**, os **eixos**, a **escala** e a **fonte**.
+- Em gráfico de barras, o **eixo deve começar no zero**: o eixo cortado exagera as diferenças.
+- Outras armadilhas: dados omitidos, escalas diferentes, pizza em 3D, desenhos que crescem ao quadrado ou ao cubo.
+- **Média** (soma ÷ quantidade), **mediana** (o valor do meio) e **moda** (o que mais se repete).
+- A média **engana** com valores extremos; olhe também a mediana.
+- Uma **pesquisa** tem quatro passos: perguntar, coletar, organizar e mostrar.
+
+**Um pouco de história.** Diagramas do século 14 já eram "quase gráficos de barras". Cerca de 300 anos depois, William Playfair é creditado como o inventor do gráfico de barras, com as exportações e importações da Escócia no *Atlas Comercial e Político*. Em 1954, Darrell Huff publicou *Como mentir com estatística*, o trabalho mais antigo citado sobre gráficos enganosos.
+
+</Resumo>
+
+Com isso, você completou a **Matemática Básica**: sistema decimal, as quatro operações, expressões, decimais, medidas, tempo, dinheiro, formas e gráficos. Agora você está pronto para o **Ensino Fundamental**, onde tudo isso vira ferramenta de verdade.
+
+<Conexoes />
+
+</Etapa>
