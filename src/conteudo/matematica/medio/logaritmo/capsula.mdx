@@ -1,0 +1,380 @@
+import QuantasDobras from '../../../../components/simulacoes/QuantasDobras'
+import LogEExponencialEspelhados from '../../../../components/simulacoes/LogEExponencialEspelhados'
+import ProdutoViraSoma from '../../../../components/simulacoes/ProdutoViraSoma'
+import EscalaLinearOuLog from '../../../../components/simulacoes/EscalaLinearOuLog'
+import Decibeis from '../../../../components/simulacoes/Decibeis'
+import QuantoTempoParaChegar from '../../../../components/simulacoes/QuantoTempoParaChegar'
+
+{/* Fatos conferidos na Wikipedia em inglês (Logarithm), listada no meta.ts. As fórmulas de decibel (10 log) e de pH (menos log da concentração) e a regra "cada ponto da escala Richter é 10 vezes a amplitude" são conteúdo geral de ciências (a fonte só cita que as escalas existem); os valores de log₁₀ 2 e log₁₀ 3 foram conferidos por cálculo. */}
+
+<Etapa id="gancho">
+
+Na cápsula anterior, você viu que dobrar uma folha 10 vezes dá 1.024 camadas. Agora inverta a pergunta: **quantas vezes eu preciso dobrar para chegar a 1.024?** A resposta é **10**. E se for para chegar a 1.048.576? **20**. Essa pergunta ("a que expoente devo elevar a base para obter este número?") é o que o **logaritmo** responde.
+
+A palavra assusta, mas a ideia é simples: o logaritmo é **o expoente**. Ele aparece quando você mede o **barulho** em decibéis, a **força de um terremoto**, a **acidez** de um líquido, a **altura** de um som musical, e quando um programador diz que "buscar entre um milhão de itens leva só 20 passos". E tem uma história curiosa: foi inventado para **facilitar multiplicações gigantes**.
+
+<Palpite
+  chave="inicial"
+  pergunta="Uma lista ordenada tem 1.000.000 de nomes. Procurando um nome por 'divisão ao meio' (abrir no meio e descartar metade), qual é o número máximo de passos?"
+  opcoes={['Cerca de 20 passos', 'Cerca de 1.000 passos', 'Cerca de 500.000 passos']}
+/>
+
+Nesta cápsula você vai **contar dobras**, ver o logaritmo como o **espelho** da exponencial, descobrir como o logaritmo **transforma multiplicação em soma**, entender as **escalas logarítmicas** (decibel, pH, Richter) e resolver um problema de **tempo de investimento**.
+
+</Etapa>
+
+<Etapa id="historia">
+
+O logaritmo foi inventado para resolver um problema muito prático: fazer contas gigantes **sem erros e sem calculadora**.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Cerca de 1600', texto: 'Jost Bürgi desenvolve técnicas relacionadas aos logaritmos.' },
+  { ano: '1614', texto: 'John Napier publica os logaritmos, com o objetivo de simplificar cálculos.' },
+  { ano: '1617', texto: 'Henry Briggs compila a primeira tabela de logaritmos comuns, de base 10.' },
+  { ano: 'Século 18', texto: 'Leonhard Euler liga os logaritmos à função exponencial e introduz a letra e.' },
+  { ano: 'Até os anos 1970', texto: 'A régua de cálculo, baseada em escalas logarítmicas, é amplamente usada por engenheiros e cientistas.' },
+]} />
+
+## Astrônomos afogados em contas
+
+No fim do século 16, astrônomos e navegadores faziam **multiplicações e divisões com muitos algarismos**: calcular uma órbita ou uma rota podia levar semanas, e um erro estragava tudo. Faltava um atalho. A ideia de transformar **multiplicação em soma**, que é muito mais fácil, estava no ar.
+
+## Napier e Bürgi
+
+Segundo a fonte, **John Napier** publicou os logaritmos em **1614**, justamente para simplificar cálculos. O suíço **Jost Bürgi** havia desenvolvido técnicas relacionadas por volta de **1600**. Em **1617**, **Henry Briggs** compilou a **primeira tabela de logaritmos comuns**, usando a base **10**: uma lista em que, ao lado de cada número, vinha o seu logaritmo. Com ela, em vez de multiplicar dois números enormes, o calculista **somava dois logaritmos** da tabela e buscava o resultado.
+
+## "Um artifício admirável"
+
+A fonte lembra que o matemático **Laplace** descreveu os logaritmos como um **"artifício admirável"** para reduzir longos cálculos. E funcionou: por mais de três séculos, tabelas de logaritmos foram ferramentas de trabalho de astrônomos, engenheiros e navegadores.
+
+## A régua de cálculo e o e
+
+A **régua de cálculo**, um instrumento com escalas logarítmicas deslizantes, foi usada, segundo a fonte, por engenheiros e cientistas **até os anos 1970**, quando as calculadoras eletrônicas a substituíram. Ela tinha menos precisão que as tabelas. No século 18, **Leonhard Euler** ligou os logaritmos à **função exponencial** e introduziu a letra **e**, a base do logaritmo natural.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O logaritmo é o expoente
+
+Na cápsula anterior, você calculou 2⁵ = 32. O **logaritmo** faz o caminho de volta: **a que expoente devo elevar 2 para obter 32?** A resposta é 5. Escrevemos: **log₂ 32 = 5**, e lemos "logaritmo de 32 na base 2 é 5".
+
+Segundo a fonte, para uma base **b** positiva e diferente de 1, **log_b x = y** significa que **bʸ = x**. Os exemplos da fonte: **log₂ 16 = 4**, porque 2⁴ = 16; e **log₁₀ 1.000 = 3**, porque 10³ = 1.000.
+
+## 2. "Quantas vezes eu dobrei?"
+
+Se a base é 2, o logaritmo conta **dobras**: de 1 a 1.024 foram 10 dobras, então log₂ 1.024 = 10. Se a base é 10, o logaritmo conta **quantas vezes multiplicamos por 10**: de 1 a 1.000.000, foram 6, então log₁₀ 1.000.000 = 6. O logaritmo **conta passos**.
+
+## 3. A inversa da exponencial
+
+O logaritmo é a **função inversa** da exponencial: uma **desfaz** a outra. Segundo a fonte, o logaritmo é a inversa da exponenciação de base b. Por isso, se você aplica "elevar 2 a" e depois "log₂", volta ao ponto de partida: log₂(2ˣ) = x. E nos gráficos, as duas curvas são **espelhos** uma da outra em relação à reta y = x.
+
+## 4. Por que só números positivos
+
+Não existe expoente que faça 2ʸ ser **zero** ou **negativo**: 2 elevado a qualquer expoente real dá sempre um número **positivo**. Por isso o logaritmo só existe para **números positivos**. E a base precisa ser positiva e diferente de 1 (com base 1, 1 elevado a qualquer coisa seria sempre 1, e a "pergunta" não teria resposta única).
+
+<ExemploResolvido titulo="Traduzindo entre expoente e logaritmo">
+  <Passo>2⁵ = 32 se traduz como **log₂ 32 = 5**.</Passo>
+  <Passo>10³ = 1.000 se traduz como **log₁₀ 1.000 = 3**.</Passo>
+  <Passo>3⁴ = 81 se traduz como **log₃ 81 = 4**.</Passo>
+  <Passo>E, ao contrário, log₂ 8 = 3 significa 2³ = 8. É sempre a mesma informação escrita de dois jeitos.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto vale log₂ 8? (número)" resposta="3" dica="2 elevado a quanto dá 8?" resolucao="2³ = 8, então log₂ 8 = 3." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Quantas vezes é preciso dobrar o número 1 para chegar a 1.024?"
+  opcoes={['10 vezes', '512 vezes', '1.023 vezes']}
+  correta={0}
+  explicacao="1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1.024: são 10 dobras, porque 2¹⁰ = 1.024. Esse número 10 é exatamente o log₂ 1.024. O logaritmo conta passos de multiplicação."
+>
+
+Dobre até chegar ao alvo e conte as dobras.
+
+<QuantasDobras />
+
+Veja como o logaritmo é o **espelho** da exponencial.
+
+<LogEExponencialEspelhados />
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Cerca de 20 passos', 'Cerca de 1.000 passos', 'Cerca de 500.000 passos']}
+  correta={0}
+  seAcertou="E o palpite do começo? Isso: a cada passo, metade das opções é descartada, e 2²⁰ ≈ 1 milhão. São no máximo 20 passos: é o log₂ de 1.000.000."
+  seErrou="E o palpite do começo? Cada passo descarta metade da lista. Quantas vezes dá para cortar 1.000.000 ao meio até sobrar 1? Cerca de 20 (2²⁰ ≈ 1.048.576). É o log₂ de um milhão."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Calculando logaritmos de cabeça
+
+Para achar **log_b x**, pergunte: **b elevado a quanto dá x?** Alguns logaritmos saem de cabeça:
+
+- log₂ 1.024 = **10** (porque 2¹⁰ = 1.024).
+- log₁₀ 100.000 = **5**.
+- log₃ 81 = **4** (3 · 3 · 3 · 3 = 81).
+- log_b 1 = **0** (porque b⁰ = 1) e log_b b = **1** (porque b¹ = b).
+- Para números menores que 1, o log é **negativo**: log₂(1/8) = **-3**, porque 2⁻³ = 1/8.
+
+<ExemploResolvido titulo="Calculando log₂ 64">
+  <Passo>Pergunta: 2 elevado a quanto dá 64?</Passo>
+  <Passo>Teste: 2¹ = 2, 2² = 4, 2³ = 8, 2⁴ = 16, 2⁵ = 32, 2⁶ = 64.</Passo>
+  <Passo>O expoente é **6**.</Passo>
+  <Passo>Então log₂ 64 = **6**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto vale log₂ 1.024? (número)" resposta="10" dica="2¹⁰ = 1.024." resolucao="10." />
+
+<Exercicio enunciado="Quanto vale log₁₀ 1.000? (número)" resposta="3" dica="10 · 10 · 10." resolucao="3: é o exemplo da fonte." />
+
+<Exercicio enunciado="Quanto vale log₃ 81? (número)" resposta="4" dica="3⁴." resolucao="4." />
+
+<Exercicio enunciado="Quanto vale log₁₀ 0,01? (número)" resposta="-2" dica="0,01 = 10⁻²." resolucao="-2." />
+
+<Exercicio enunciado="Quanto vale log₇ 1, para qualquer base? (número)" resposta="0" dica="Qualquer número elevado a 0 dá 1." resolucao="0." />
+
+## As propriedades do logaritmo
+
+Segundo a fonte, os logaritmos têm três propriedades que explicam por que foram tão úteis:
+
+1. **Produto:** log(x · y) = log x + log y. O logaritmo de um **produto** é a **soma** dos logaritmos.
+2. **Quociente:** log(x / y) = log x - log y. O logaritmo de um **quociente** é a **diferença**.
+3. **Potência:** log(xᵏ) = k · log x. O logaritmo de uma **potência** é o expoente vezes o logaritmo da base.
+
+A propriedade do **produto** é a que transformou a astronomia: **multiplicar vira somar**.
+
+<ProdutoViraSoma />
+
+<ExemploResolvido titulo="Multiplicando 8 × 16 pelos logaritmos (base 2)">
+  <Passo>log₂ 8 = 3 e log₂ 16 = 4.</Passo>
+  <Passo>Some: 3 + 4 = 7.</Passo>
+  <Passo>O resultado do produto é 2⁷ = **128**.</Passo>
+  <Passo>Conferindo: 8 × 16 = 128. ✓ Somamos expoentes em vez de multiplicar números.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é log₂ 4 + log₂ 8? (número)" resposta="5" dica="2 + 3." resolucao="2 + 3 = 5, que é log₂ 32." />
+
+<Exercicio enunciado="Quanto é log₂ 32 - log₂ 4? (número)" resposta="3" dica="5 - 2." resolucao="3, que é log₂ 8 (32 ÷ 4 = 8)." />
+
+<Exercicio enunciado="Quanto é log₂ de 2⁷? Use a propriedade da potência. (número)" resposta="7" dica="7 · log₂ 2 = 7 · 1." resolucao="7." />
+
+<Aprofundar titulo="Por que o produto vira soma">
+Veja o porquê com potências de 2. Se x = 2ᵐ e y = 2ⁿ, então x · y = 2ᵐ · 2ⁿ = 2ᵐ⁺ⁿ, pois ao multiplicar potências de mesma base **somam-se os expoentes**. Pegando o logaritmo de base 2: log₂(x · y) = m + n = log₂ x + log₂ y. A propriedade do quociente segue de modo parecido (subtraem-se os expoentes), e a da potência também: (2ᵐ)ᵏ = 2ᵐᵏ. Tudo isso vale em qualquer base, e com expoentes que não são inteiros. Esse fato, "o logaritmo transforma a operação de multiplicar na operação de somar", é a essência do artifício de Napier.
+</Aprofundar>
+
+## Como usavam as tabelas
+
+Imagine multiplicar 2.000 por 3.000 sem calculadora (e muito pior, números com 8 algarismos). Com uma tabela de **log₁₀**: log 2.000 ≈ 3,301 e log 3.000 ≈ 3,477. Some: **6,778**. Agora procure, na tabela, qual número tem logaritmo 6,778: é **6.000.000**. Pronto, a multiplicação virou uma soma e duas consultas. A **régua de cálculo** fazia isso **mecanicamente**: deslizava escalas logarítmicas para somar comprimentos.
+
+<ExemploResolvido titulo="Multiplicando 20 × 30 com log₁₀">
+  <Passo>Valores conhecidos (aprox.): log 2 ≈ 0,301 e log 3 ≈ 0,477.</Passo>
+  <Passo>log 20 = log 2 + log 10 ≈ 0,301 + 1 = 1,301. log 30 ≈ 0,477 + 1 = 1,477.</Passo>
+  <Passo>Soma: 1,301 + 1,477 = **2,778**.</Passo>
+  <Passo>O número com logaritmo 2,778 é cerca de **600** (log 600 ≈ 2,778). Conferindo: 20 × 30 = 600 ✓.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Se log 2 ≈ 0,3, quanto vale log 20 (aprox., use log 10 = 1)? (decimal, com vírgula)" resposta="1,3" dica="log 2 + log 10." resolucao="0,3 + 1 = 1,3." />
+
+<Aprofundar titulo="Por que a régua de cálculo funciona">
+Uma régua de cálculo tem escalas em que a **distância** de um ponto até o início é proporcional ao **logaritmo** do número marcado. Para multiplicar a por b, você **soma dois comprimentos**: o de log a e o de log b. O comprimento total corresponde a log(a · b), e a marca onde você chega mostra o produto. A fonte diz que o instrumento foi muito usado até os anos 1970, mas tinha **menos precisão** que as tabelas: o limite era o tamanho e a leitura das marcas.
+</Aprofundar>
+
+## Bases: 10, e e 2
+
+A base do logaritmo importa, e a fonte destaca três bases comuns:
+
+- **Base 10** (logaritmo **decimal**): mede "quantas casas decimais" tem um número. Briggs a escolheu para as tabelas.
+- **Base e** (logaritmo **natural**, ln): a base ligada ao crescimento contínuo; Euler a introduziu como e ≈ 2,718.
+- **Base 2** (logaritmo **binário**): conta dobras; é a base da computação.
+
+Para trocar de base, existe uma fórmula: **log_b x = log_k x / log_k b**. Assim, dá para calcular qualquer log com uma calculadora que só tenha log₁₀ ou ln. Por exemplo, log₂ 1.000 = log₁₀ 1.000 / log₁₀ 2 = 3 / 0,301 ≈ **9,97**.
+
+<ExemploResolvido titulo="Mudando de base: log₂ 1.000">
+  <Passo>A calculadora tem log₁₀ (e ln). Use a fórmula: log₂ 1.000 = log₁₀ 1.000 / log₁₀ 2.</Passo>
+  <Passo>log₁₀ 1.000 = 3. log₁₀ 2 ≈ 0,301.</Passo>
+  <Passo>3 / 0,301 ≈ **9,97**.</Passo>
+  <Passo>Confira: 2¹⁰ = 1.024, pouco mais que 1.000. Então log₂ 1.000 é pouco menos que 10. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Aproximadamente, quanto é log₂ 1.000 (arredonde para inteiro)? (número)" resposta="10" dica="2¹⁰ = 1.024." resolucao="Cerca de 10 (9,97)." />
+
+## Escalas logarítmicas
+
+Alguns fenômenos variam por fatores **enormes**: o som mais fraco audível e o de um avião de perto diferem por **trilhões de vezes**. Para lidar com isso, usamos uma **escala logarítmica**: cada **passo** da escala **multiplica** por um fator. Segundo a fonte, escalas logarítmicas são usadas para o **som** (decibéis), a **força de terremotos** (escala Richter) e a **acidez** (pH).
+
+<EscalaLinearOuLog />
+
+<ExemploResolvido titulo="Por que a escala log é conveniente">
+  <Passo>Na régua linear, 1, 10, 100 e 1.000 ficam todos "colados" perto do zero, perdidos ao lado de 1.000.000.</Passo>
+  <Passo>Na régua logarítmica, cada multiplicação por 10 é um **passo igual**.</Passo>
+  <Passo>Assim, 1, 10, 100, 1.000 ... 1.000.000 ocupam **7 marcas igualmente espaçadas**.</Passo>
+  <Passo>É a escala certa para quantidades que variam por potências de 10.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Numa escala log de base 10, quantos passos vão de 1 a 1.000.000? (número)" resposta="6" dica="log₁₀ 1.000.000." resolucao="6 passos." />
+
+## Decibéis
+
+O nível sonoro em **decibéis (dB)** é um logaritmo: **dB = 10 · log₁₀(I / I₀)**, em que I é a intensidade do som e I₀ é uma intensidade de referência. Cada **10 dB** a mais significam **10 vezes** mais intensidade; **20 dB**, 100 vezes; **60 dB**, 1 milhão de vezes. É por isso que a escala vai de 0 a uns 120 dB e cobre uma variação de **um trilhão** de vezes.
+
+<Decibeis />
+
+<ExemploResolvido titulo="Quantas vezes mais intenso é um som de 60 dB que um de 30 dB?">
+  <Passo>A diferença é de 30 dB.</Passo>
+  <Passo>Cada 10 dB multiplica a intensidade por 10. Então 30 dB = 3 passos de 10.</Passo>
+  <Passo>10 · 10 · 10 = **1.000 vezes** mais intenso.</Passo>
+  <Passo>(Para a sensação do ouvido, a diferença parece bem menor: o ouvido também "comprime" os volumes.)</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas vezes mais intenso é um som de 40 dB que um de 20 dB? (número)" resposta="100" dica="20 dB = 2 passos de 10 dB." resolucao="10 · 10 = 100." />
+
+<Aprofundar titulo="pH e Richter também são logs">
+O **pH**, medida de acidez, é o **menos logaritmo** da concentração de íons de hidrogênio: **pH = -log₁₀[H⁺]**. Cada unidade de pH muda a concentração por um fator de **10**: um líquido de pH 3 é 10 vezes mais ácido (em concentração de H⁺) que um de pH 4. Na **escala Richter**, de terremotos, cada ponto a mais corresponde a uma amplitude de onda **10 vezes** maior. (Tanto a fórmula do pH quanto esse fator da Richter são conteúdo geral de ciências; a fonte consultada apenas cita que essas escalas são logarítmicas.) O fio condutor é o mesmo: **logaritmo comprime** números gigantes numa faixa fácil de ler.
+</Aprofundar>
+
+## Logaritmo e computação
+
+A fonte lista a **computação** entre as áreas em que logaritmos aparecem, como na análise de **busca binária** e de algoritmos de **ordenação**. Na **busca binária**, você abre uma lista ordenada no meio e descarta metade a cada passo. Com 1.000.000 de itens, bastam **log₂ 1.000.000 ≈ 20** passos. Com 1 bilhão, apenas cerca de 30. O logaritmo explica por que algoritmos que "dividem ao meio" são tão rápidos.
+
+<ExemploResolvido titulo="Quantos bits para 1.000 opções?">
+  <Passo>Cada bit tem 2 valores. Com n bits, há 2ⁿ combinações.</Passo>
+  <Passo>Precisamos de 2ⁿ maior ou igual a 1.000.</Passo>
+  <Passo>2⁹ = 512 (pouco), 2¹⁰ = 1.024 (suficiente).</Passo>
+  <Passo>Então são necessários **10 bits**: é o log₂ 1.000 arredondado para cima.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos bits são necessários para distinguir 1.000 opções? (número)" resposta="10" dica="2¹⁰ = 1.024." resolucao="10 bits." />
+
+## Em quanto tempo chego lá?
+
+O logaritmo resolve equações em que **a incógnita é o expoente**. Se R$ 1.000 crescem **10% por período**, em quanto tempo chegam a R$ 2.000? Precisamos de 1.000 · 1,1ᵗ = 2.000, ou seja, 1,1ᵗ = 2. O expoente é **t = log 2 / log 1,1 ≈ 7,3 períodos**. É o tempo de dobrar que a **regra do 70** estimou (70 ÷ 10 = 7).
+
+<QuantoTempoParaChegar />
+
+<ExemploResolvido titulo="Resolvendo 2ˣ = 100">
+  <Passo>A incógnita está no expoente: use o logaritmo.</Passo>
+  <Passo>x = log₂ 100 = log₁₀ 100 / log₁₀ 2 = 2 / 0,301.</Passo>
+  <Passo>x ≈ **6,64**.</Passo>
+  <Passo>Confira: 2⁶ = 64 e 2⁷ = 128. O 100 está entre eles, e 6,64 faz sentido.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Se 2ˣ = 64, quanto vale x? (número)" resposta="6" dica="2⁶." resolucao="6." />
+
+<Exercicio enunciado="Aproximadamente quantos períodos (arredonde para inteiro) levam R$ 1.000 a virar R$ 2.000 a 10% por período? (número)" resposta="7" dica="Regra do 70." resolucao="Cerca de 7 (7,3)." />
+
+<Aprofundar titulo="O logaritmo natural e o número e">
+O número **e** ≈ 2,71828 aparece quando o crescimento é **contínuo**: o valor cresce a cada instante, não só no fim de cada período. A fonte diz que **Euler** ligou o logaritmo natural (ln) à função exponencial no século 18 e introduziu a letra e. O ln é o logaritmo na base e; ele tem propriedades especiais no **cálculo**: a "taxa de variação" de ln x é 1/x. Por isso, ln é o logaritmo preferido em matemática avançada e física, mesmo que, no dia a dia, o log₁₀ seja o mais intuitivo.
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'O que significa log₂ 32 = 5?',
+    opcoes: ['2 elevado a 5 é 32', '5 elevado a 2 é 32', '2 vezes 5 é 32'],
+    correta: 0,
+    explicacao: 'O logaritmo é o expoente: 2⁵ = 32.',
+  },
+  {
+    enunciado: 'Segundo a fonte, quanto vale log₁₀ 1.000?',
+    opcoes: ['3', '10', '1.000'],
+    correta: 0,
+    explicacao: '10³ = 1.000.',
+  },
+  {
+    enunciado: 'O logaritmo é a operação inversa de...',
+    opcoes: ['Exponenciação (elevar a uma potência)', 'Soma', 'Raiz quadrada apenas'],
+    correta: 0,
+    explicacao: 'O log desfaz o expoente (e vice-versa).',
+  },
+  {
+    enunciado: 'Quanto vale log_b 1, para qualquer base?',
+    opcoes: ['0', '1', 'b'],
+    correta: 0,
+    explicacao: 'b⁰ = 1.',
+  },
+  {
+    enunciado: 'Qual propriedade transforma uma multiplicação numa soma?',
+    opcoes: ['log(x · y) = log x + log y', 'log(x + y) = log x · log y', 'log(x · y) = log x · log y'],
+    correta: 0,
+    explicacao: 'O logaritmo de um produto é a soma dos logaritmos.',
+  },
+  {
+    enunciado: 'Quanto vale log₂ 4 + log₂ 8?',
+    opcoes: ['5', '12', '32'],
+    correta: 0,
+    explicacao: '2 + 3 = 5, que é log₂ 32.',
+  },
+  {
+    enunciado: 'Quem publicou os logaritmos em 1614, para simplificar cálculos?',
+    opcoes: ['John Napier', 'Euler', 'Briggs'],
+    correta: 0,
+    explicacao: 'Napier publicou em 1614. Briggs compilou a primeira tabela de base 10, em 1617.',
+  },
+  {
+    enunciado: 'Quando uma régua de cálculo foi substituída, segundo a fonte?',
+    opcoes: ['Pelas calculadoras, a partir dos anos 1970', 'Pelos computadores em 1800', 'Nunca foi usada'],
+    correta: 0,
+    explicacao: 'A régua de cálculo foi muito usada até os anos 1970.',
+  },
+  {
+    enunciado: 'Por que o logaritmo só existe para números positivos?',
+    opcoes: ['Nenhum expoente real faz uma base positiva dar zero ou negativo', 'Por convenção apenas, sem motivo', 'Porque negativos não existem'],
+    correta: 0,
+    explicacao: '2 elevado a qualquer expoente real é sempre positivo.',
+  },
+  {
+    enunciado: 'Um som de 60 dB é quantas vezes mais intenso que um de 30 dB?',
+    opcoes: ['1.000 vezes', '2 vezes', '30 vezes'],
+    correta: 0,
+    explicacao: '30 dB a mais = 3 passos de 10 dB, e cada passo multiplica por 10: 10³ = 1.000.',
+  },
+  {
+    enunciado: 'Cerca de quantos passos a busca binária faz numa lista ordenada de 1.000.000 de itens?',
+    opcoes: ['Cerca de 20', 'Cerca de 1.000', 'Cerca de 500.000'],
+    correta: 0,
+    explicacao: 'log₂ 1.000.000 ≈ 20, porque 2²⁰ ≈ 1.048.576.',
+  },
+  {
+    enunciado: 'Pela regra do 70, em cerca de quantos períodos R$ 1.000 a 10% por período chegam a R$ 2.000?',
+    opcoes: ['7', '70', '10'],
+    correta: 0,
+    explicacao: '70 ÷ 10 = 7. O logaritmo dá 7,3.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- O **logaritmo** é o **expoente**: log_b x = y significa bʸ = x. Exemplos: log₂ 16 = 4 e log₁₀ 1.000 = 3.
+- É a **inversa da exponencial**: uma desfaz a outra, e os gráficos são espelhos em relação a y = x.
+- log_b 1 = 0 e log_b b = 1. O logaritmo só existe para números **positivos**.
+- **Propriedades:** o log de um produto é a soma dos logs; do quociente, a diferença; da potência, o expoente vezes o log.
+- Bases comuns: **10** (decimal), **e** (natural, ln) e **2** (binário). Mudança de base: log_b x = log_k x / log_k b.
+- **Escalas logarítmicas** (decibel, Richter, pH) comprimem números enormes: cada passo multiplica por um fator.
+- O logaritmo resolve equações com a **incógnita no expoente**, como o tempo para um valor dobrar.
+- Na computação, explica por que a **busca binária** é tão rápida: cerca de 20 passos para 1 milhão de itens.
+
+**Um pouco de história.** Em 1614, John Napier publicou os logaritmos para simplificar contas; em 1617, Henry Briggs compilou a primeira tabela de base 10. Laplace chamou a invenção de um artifício admirável, e a régua de cálculo, baseada nela, ajudou engenheiros e cientistas até os anos 1970. No século 18, Euler ligou os logaritmos à exponencial e introduziu a letra e.
+
+</Resumo>
+
+Você completou a primeira família de funções do Ensino Médio: **afim**, **quadrática**, **exponencial** e **logaritmo**. Na sequência, as **progressões** vão mostrar a mesma ideia de **somar** e de **multiplicar** passo a passo, agora com sequências de números.
+
+<Conexoes />
+
+</Etapa>
