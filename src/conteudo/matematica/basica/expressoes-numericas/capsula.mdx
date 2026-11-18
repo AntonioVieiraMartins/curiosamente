@@ -1,0 +1,373 @@
+import PassoAPassoExpressao from '../../../../components/simulacoes/PassoAPassoExpressao'
+import CalculadoraSimples from '../../../../components/simulacoes/CalculadoraSimples'
+import ParentesesMudam from '../../../../components/simulacoes/ParentesesMudam'
+import PrimeiroPasso from '../../../../components/simulacoes/PrimeiroPasso'
+import MesmoNivel from '../../../../components/simulacoes/MesmoNivel'
+import TraduzOProblema from '../../../../components/simulacoes/TraduzOProblema'
+
+{/* Fatos conferidos na Wikipedia em inglês (Order of operations e Bracket), listadas no meta.ts. A sequência escolar de símbolos ( ), [ ] e { } e as regras da escola brasileira são conteúdo geral da BNCC; a fonte cita o uso de parênteses por dentro e colchetes por fora como uma das convenções. */}
+
+<Etapa id="gancho">
+
+Duas pessoas resolvem a mesma conta: **2 + 3 × 4**. A primeira diz: "2 + 3 = 5, e 5 × 4 = **20**". A segunda diz: "3 × 4 = 12, e 2 + 12 = **14**". Quem está certo?
+
+Quando você digita essa conta numa calculadora simples, ela pode dar uma resposta, e numa calculadora científica, outra. A fonte mostra isso: numas calculadoras mais básicas, a conta 1 + 2 × 3 dá 9; numa mais sofisticada, dá 7. Para o mundo inteiro entender a mesma conta do mesmo jeito, existe uma **convenção**: a **ordem das operações**. Esta cápsula ensina a regra, **por que ela existe** e como os **parênteses** servem para mandar em tudo.
+
+<Palpite
+  chave="inicial"
+  pergunta="Quanto é 2 + 3 × 4?"
+  opcoes={['20, porque a gente faz da esquerda para a direita', '14, porque a multiplicação vem antes da soma', 'Nenhum dos dois: a conta é ambígua']}
+/>
+
+Você vai resolver expressões uma operação por vez, ver o que muda com os parênteses, comparar duas calculadoras, treinar o "o que vem primeiro?" e transformar historinhas em expressões.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Pode parecer que a ordem das operações sempre existiu. Mas foi **combinada** ao longo de séculos.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Século 16 e 17', texto: 'Os expoentes aparecem e passam a ter prioridade na notação algébrica.' },
+  { ano: 'Século 17', texto: 'Na notação algébrica, a multiplicação passa a ter precedência sobre a adição.' },
+  { ano: 'Fim do século 19 e início do 20', texto: 'O termo "ordem das operações" e as siglas como PEMDAS e BEDMAS se formalizam.' },
+  { ano: '1920', texto: 'Florian Cajori documenta que ainda havia desacordo sobre se a multiplicação deveria vir antes da divisão ou se as duas tinham o mesmo nível.' },
+]} />
+
+## Uma convenção, não uma verdade da natureza
+
+A ordem das operações **não é uma descoberta**: é um **acordo** para que todos leiam a mesma conta do mesmo jeito. Segundo a fonte, a multiplicação passou a ter precedência sobre a adição na escrita algébrica no **século 17**, e os **expoentes**, introduzidos nos séculos 16 e 17, também ganharam prioridade.
+
+## O desacordo de Cajori
+
+O historiador da matemática **Florian Cajori**, em **1920**, mostrou que nem todo mundo concordava em tudo: havia discussão sobre se a multiplicação devia vir antes da divisão ou se as duas deviam ter o **mesmo nível**. Hoje, a regra mais usada é a segunda: multiplicação e divisão têm o mesmo nível, e se resolvem **da esquerda para a direita**.
+
+## Siglas pelo mundo
+
+Cada lugar criou um jeito de lembrar. Segundo a fonte, nos Estados Unidos e na França se usa **PEMDAS**; no Reino Unido e em outros países da Commonwealth, **BODMAS**; no Canadá e na Nova Zelândia, **BEDMAS**. Na Alemanha ensina-se "**Punktrechnung vor Strichrechnung**", que quer dizer "conta de ponto antes de conta de traço": o ponto (·) da multiplicação e os dois pontos da divisão vêm antes do traço do mais e do menos. A fonte alerta que essas siglas podem enganar: se alguém ler "soma antes da subtração", pode calcular errado uma conta como 10 - 4 + 3, em que as duas operações têm **o mesmo nível**.
+
+## As contas "virais"
+
+De tempos em tempos, circula na internet uma conta como **8 ÷ 2(2 + 2)**, que gera brigas: para uns dá 1, para outros 16. A fonte cita o matemático Steven Strogatz e o educador Hung-Hsi Wu, que chamam esse tipo de conta de **artificial**: Wu diz que "nunca se encontra um cálculo assim na vida real". Quando uma expressão é escrita de forma ambígua, a solução não é discutir, é **escrever com mais parênteses**.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Uma expressão é uma "frase" de contas
+
+Uma **expressão numérica** é uma conta com várias operações juntas, como 20 - 6 ÷ 2 + 1. Para resolvê-la, precisamos decidir **qual conta fazer primeiro**. Se cada um escolhesse do seu jeito, o resultado mudaria. Por isso existe uma regra comum.
+
+## 2. A regra das prioridades
+
+Segundo a fonte, a ordem padrão é:
+
+1. **Parênteses**, de dentro para fora.
+2. **Expoentes** (potências).
+3. **Multiplicação e divisão**, da esquerda para a direita.
+4. **Adição e subtração**, da esquerda para a direita.
+
+Pense em **dois degraus**: as contas "fortes" (× e ÷) são resolvidas antes das "fracas" (+ e -). Os **parênteses** são como uma caixa fechada: o que está dentro resolve primeiro.
+
+## 3. Por que × vem antes de +?
+
+A regra é uma convenção, mas tem uma razão **prática**. Se você compra um boné de R$ 10 e 3 camisas de R$ 25, a história se escreve **10 + 3 × 25**. Lendo da esquerda para a direita, daria 10 + 3 = 13 e 13 × 25 = 325, um preço absurdo. Mas a multiplicação é uma **soma repetida** (3 × 25 = 25 + 25 + 25): ela já "empacota" as 3 camisas num valor só (75), e depois esse pacote se junta ao boné: 10 + 75 = 85. Por isso as contas de × e ÷ vêm antes.
+
+## 4. O mesmo nível: da esquerda para a direita
+
+Em 20 - 5 + 3, a subtração e a soma estão no mesmo nível. Resolvemos **da esquerda para a direita**: 20 - 5 = 15, e 15 + 3 = 18. Se alguém fizesse 5 + 3 primeiro, daria 20 - 8 = 12: errado.
+
+<ExemploResolvido titulo="Resolvendo 2 + 3 × 4">
+  <Passo>Veja se há parênteses: não há.</Passo>
+  <Passo>Veja × e ÷: há 3 × 4 = 12. Resolva primeiro.</Passo>
+  <Passo>Agora a expressão é 2 + 12.</Passo>
+  <Passo>Só falta a soma: 2 + 12 = **14**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 2 + 3 × 4? (número)" resposta="14" dica="Multiplicação primeiro." resolucao="3 × 4 = 12 e 2 + 12 = 14." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Numa calculadora simples (que resolve na ordem em que as teclas são apertadas), o que aparece ao digitar 1 + 2 × 3?"
+  opcoes={['7, igual à resposta da matemática', '9, porque ela faz 1 + 2 = 3 e depois 3 × 3', '6']}
+  correta={1}
+  explicacao="Calculadoras simples resolvem na ordem das teclas: 1 + 2 = 3 e 3 × 3 = 9. Pela regra da matemática, 2 × 3 = 6 vem primeiro e o resultado é 1 + 6 = 7. A fonte cita exatamente esse caso."
+>
+
+Compare as duas calculadoras em quatro contas.
+
+<CalculadoraSimples />
+
+Agora resolva uma expressão passo a passo, na ordem das regras.
+
+<PassoAPassoExpressao />
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['20, porque a gente faz da esquerda para a direita', '14, porque a multiplicação vem antes da soma', 'Nenhum dos dois: a conta é ambígua']}
+  correta={1}
+  seAcertou="E o palpite do começo? Isso: 2 + 3 × 4 = 2 + 12 = 14."
+  seErrou="E o palpite do começo? A resposta é 14: a multiplicação vem antes da soma, então 3 × 4 = 12 e 2 + 12 = 14. A conta não é ambígua, desde que se siga a regra."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## As prioridades na prática
+
+Lembre: **parênteses**, depois **× e ÷** (esquerda para a direita), depois **+ e -** (esquerda para a direita). Para cada conta, faça um **mini-roteiro**: tem parênteses? Tem × ou ÷? Só então somar e subtrair.
+
+<ExemploResolvido titulo="Resolvendo 20 - 6 ÷ 2 + 1">
+  <Passo>Não há parênteses.</Passo>
+  <Passo>Há uma divisão: 6 ÷ 2 = 3. A expressão vira 20 - 3 + 1.</Passo>
+  <Passo>Agora só + e -, da esquerda para a direita: 20 - 3 = 17.</Passo>
+  <Passo>Depois 17 + 1 = **18**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 10 + 20 ÷ 5? (número)" resposta="14" dica="Divisão primeiro." resolucao="20 ÷ 5 = 4 e 10 + 4 = 14." />
+
+<Exercicio enunciado="Quanto é 15 - 3 × 4 + 2? (número)" resposta="5" dica="Multiplicação primeiro; depois esquerda para a direita." resolucao="3 × 4 = 12; 15 - 12 = 3; 3 + 2 = 5." />
+
+<Exercicio enunciado="Quanto é 2 × 3 + 4 × 5? (número)" resposta="26" dica="As duas multiplicações vêm antes da soma." resolucao="6 + 20 = 26." />
+
+<Aprofundar titulo="Por que 'conta de ponto' antes de 'conta de traço'">
+O jeito alemão de lembrar da regra, citado na fonte, é "conta de ponto antes de conta de traço": o **ponto** (·) da multiplicação e os **dois pontos** da divisão são "contas de ponto", e o **traço** do + e do - são "contas de traço". Uma pista visual: as contas de ponto são as mais "fortes" e ganham a corrida. Mas lembre: dentro de cada nível, quem manda é a **ordem da esquerda para a direita**.
+</Aprofundar>
+
+## Parênteses: quem manda é você
+
+Os **parênteses** servem para **mudar a ordem**. Segundo a fonte, eles são usados em matemática para indicar agrupamento, muitas vezes mudando a ordem das operações. O exemplo dela: 4 × (3 + 2) = 20, porque os parênteses mandam fazer a soma antes.
+
+<ParentesesMudam />
+
+<ExemploResolvido titulo="(2 + 3) × 4 contra 2 + 3 × 4">
+  <Passo>Com parênteses: (2 + 3) × 4. A soma vem primeiro: 5 × 4 = **20**.</Passo>
+  <Passo>Sem parênteses: 2 + 3 × 4. A multiplicação vem primeiro: 2 + 12 = **14**.</Passo>
+  <Passo>Os mesmos números, a mesma ordem de escrita, e dois resultados. Os parênteses mudam tudo.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é (2 + 3) × 4? (número)" resposta="20" dica="Parênteses primeiro." resolucao="2 + 3 = 5 e 5 × 4 = 20." />
+
+<Exercicio enunciado="Quanto é 100 ÷ (2 + 3)? (número)" resposta="20" dica="Some primeiro." resolucao="2 + 3 = 5 e 100 ÷ 5 = 20." />
+
+<Exercicio enunciado="Quanto é (8 + 2) × (5 - 3)? (número)" resposta="20" dica="Resolva os dois parênteses." resolucao="10 × 2 = 20." />
+
+## Parênteses, colchetes e chaves
+
+Quando há **parênteses dentro de parênteses**, usamos símbolos diferentes para não nos perdermos. Segundo a fonte, uma convenção é usar **parênteses por dentro** e **colchetes** [ ] por fora. Na escola, costuma-se seguir a ordem: **( )**, depois **[ ]**, depois **{ }**, sempre **de dentro para fora**. Todos significam a mesma coisa: "resolva isto primeiro".
+
+<ExemploResolvido titulo="Resolvendo 5 × [ 2 + (10 - 4) ÷ 3 ]">
+  <Passo>De dentro para fora. Os parênteses primeiro: 10 - 4 = 6.</Passo>
+  <Passo>Agora dentro do colchete: 2 + 6 ÷ 3. A divisão vem antes: 6 ÷ 3 = 2, e 2 + 2 = 4.</Passo>
+  <Passo>Por fim, 5 × 4 = **20**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 5 × [ 2 + (10 - 4) ÷ 3 ]? (número)" resposta="20" dica="De dentro para fora." resolucao="10 - 4 = 6; 6 ÷ 3 = 2; 2 + 2 = 4; 5 × 4 = 20." />
+
+<Aprofundar titulo="Colchetes e chaves em outros assuntos">
+A fonte lembra que os colchetes e as chaves **têm outros usos** na matemática: [0, 5] representa o intervalo de 0 até 5, e { } é usado em **conjuntos**, como {1, 2, 3}. Nas expressões numéricas do Fundamental, eles servem só para **agrupar**, como parênteses maiores. O contexto diz qual é o uso.
+</Aprofundar>
+
+## O que se resolve primeiro?
+
+Treine o olhar: antes de calcular, descubra **qual operação vem primeiro**.
+
+<PrimeiroPasso />
+
+<ExemploResolvido titulo="Quem vem primeiro em 4 × (9 - 3) + 1?">
+  <Passo>Há parênteses: 9 - 3 vem primeiro (= 6).</Passo>
+  <Passo>A expressão vira 4 × 6 + 1.</Passo>
+  <Passo>Agora a multiplicação: 4 × 6 = 24.</Passo>
+  <Passo>Por último, a soma: 24 + 1 = **25**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 4 × (9 - 3) + 1? (número)" resposta="25" dica="Parênteses, depois ×, depois +." resolucao="6; 24; 25." />
+
+## Operações do mesmo nível
+
+Quando há só × e ÷ (ou só + e -), a ordem é **da esquerda para a direita**. A divisão **não é associativa** (você viu na cápsula anterior), então agrupar do outro lado dá outro resultado.
+
+<MesmoNivel />
+
+<ExemploResolvido titulo="48 ÷ 6 × 2">
+  <Passo>× e ÷ estão no mesmo nível: da esquerda para a direita.</Passo>
+  <Passo>48 ÷ 6 = 8.</Passo>
+  <Passo>Depois 8 × 2 = **16**.</Passo>
+  <Passo>Se alguém fizesse 6 × 2 = 12 primeiro e depois 48 ÷ 12 = 4, estaria errado.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 48 ÷ 6 × 2? (número)" resposta="16" dica="Da esquerda para a direita." resolucao="8 × 2 = 16." />
+
+<Exercicio enunciado="Quanto é 36 ÷ 6 ÷ 3? (número)" resposta="2" dica="Da esquerda para a direita." resolucao="36 ÷ 6 = 6 e 6 ÷ 3 = 2." />
+
+<Exercicio enunciado="Quanto é 50 - 10 + 5? (número)" resposta="45" dica="Da esquerda para a direita." resolucao="50 - 10 = 40 e 40 + 5 = 45." />
+
+<Aprofundar titulo="O erro mais comum das siglas">
+A fonte avisa que as siglas (PEMDAS, BODMAS) **enganam** se forem lidas ao pé da letra, porque parecem dizer que a soma vem antes da subtração, ou a multiplicação antes da divisão. Não é assim: **multiplicação e divisão têm o mesmo nível**, assim como **adição e subtração**. Na dúvida, lembre dos **dois degraus**, e resolva da esquerda para a direita dentro de cada degrau.
+</Aprofundar>
+
+## Potências na ordem (uma prévia)
+
+Segundo a fonte, os **expoentes** vêm antes da multiplicação e da divisão. Uma **potência** é uma multiplicação repetida: 2³ = 2 × 2 × 2 = 8. Na expressão 3 + 2² × 5, primeiro a potência (2² = 4), depois a multiplicação (4 × 5 = 20) e por fim a soma: 3 + 20 = **23**. Você vai estudar potências com calma no Fundamental.
+
+<ExemploResolvido titulo="Resolvendo 3 + 2² × 5">
+  <Passo>A potência vem primeiro: 2² = 2 × 2 = 4.</Passo>
+  <Passo>A expressão vira 3 + 4 × 5.</Passo>
+  <Passo>Multiplicação: 4 × 5 = 20.</Passo>
+  <Passo>Soma: 3 + 20 = **23**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 3 + 2² × 5? (dica: 2² = 4) (número)" resposta="23" dica="Potência, ×, +." resolucao="4; 20; 23." />
+
+## Da historinha para a expressão
+
+Um **problema** pode ser escrito como expressão. Leia a história e pense: o que se **soma** e o que se **multiplica** antes? Precisa de **parênteses**?
+
+<TraduzOProblema />
+
+<ExemploResolvido titulo="Quanto gastei?">
+  <Passo>Comprei 3 camisas de R$ 25 cada e 1 boné de R$ 10.</Passo>
+  <Passo>As camisas: 3 × 25. O boné: 10. Total: 3 × 25 + 10.</Passo>
+  <Passo>Multiplicação primeiro: 75 + 10 = **R$ 85**.</Passo>
+  <Passo>Não precisamos de parênteses, porque a ordem natural já é a que queremos.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Comprei 3 camisas de R$ 25 e 1 boné de R$ 10. Quanto gastei, em reais? (número)" resposta="85" dica="3 × 25 + 10." resolucao="75 + 10 = 85." />
+
+<Exercicio enunciado="Tenho R$ 100 e gasto R$ 20 em cada um de 3 lanches. Quanto sobra, em reais? (número)" resposta="40" dica="100 - 20 × 3." resolucao="20 × 3 = 60 e 100 - 60 = 40." />
+
+<Exercicio enunciado="Quanto é 9 + 6 ÷ 3 × 2? (número)" resposta="13" dica="Primeiro ÷ e × da esquerda para a direita." resolucao="6 ÷ 3 = 2; 2 × 2 = 4; 9 + 4 = 13." />
+
+## Erros comuns (e como fugir deles)
+
+Quase todo erro em expressões vem de **três tropeços**:
+
+- **Resolver da esquerda para a direita sem pensar:** em 2 + 3 × 4, fazer 2 + 3 primeiro.
+- **Esquecer o nível:** em 20 - 5 + 3, fazer 5 + 3 antes porque "soma vem antes".
+- **Pular um parêntese:** em 10 - (4 + 1), esquecer que o sinal de menos vale para o **grupo todo**: 10 - 5 = 5, e não 10 - 4 + 1 = 7.
+
+Um bom hábito é **reescrever a expressão a cada passo**, riscando só a operação resolvida e copiando o resto. Assim não se perde nada no caminho. E sempre dá para **conferir** de cabeça com uma estimativa: 98 + 2 × 51 fica perto de 100 + 2 × 50 = 200. Se der algo como 2.000, tem erro.
+
+<ExemploResolvido titulo="O menos que vale para o grupo todo">
+  <Passo>Expressão: 10 - (4 + 1).</Passo>
+  <Passo>Parênteses primeiro: 4 + 1 = 5.</Passo>
+  <Passo>Agora 10 - 5 = **5**.</Passo>
+  <Passo>Quem ignorou os parênteses e fez 10 - 4 + 1 chegou em 7: errado.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto é 10 - (4 + 1)? (número)" resposta="5" dica="Resolva o parêntese primeiro." resolucao="4 + 1 = 5 e 10 - 5 = 5." />
+
+<Exercicio enunciado="Quanto é 24 ÷ (8 - 2)? (número)" resposta="4" dica="8 - 2 primeiro." resolucao="8 - 2 = 6 e 24 ÷ 6 = 4." />
+
+<Aprofundar titulo="Ambiguidade e como evitá-la">
+A conta viral 8 ÷ 2(2 + 2), citada na fonte, dá 16 para quem lê "8 ÷ 2" primeiro (da esquerda para a direita) e 1 para quem entende que "2(2 + 2)" é um bloco só. Para Hung-Hsi Wu, ela é artificial: contas assim não aparecem de verdade. A lição é de **boa escrita**: se existe risco de confusão, **coloque parênteses**. Em computação, programadores fazem isso o tempo todo para deixar claro o que querem.
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Quanto é 2 + 3 × 4?',
+    opcoes: ['14', '20', '24'],
+    correta: 0,
+    explicacao: 'A multiplicação vem antes: 3 × 4 = 12, e 2 + 12 = 14.',
+  },
+  {
+    enunciado: 'Qual é a ordem padrão das operações?',
+    opcoes: ['Parênteses, expoentes, × e ÷, depois + e -', 'Sempre da esquerda para a direita, sem exceção', 'Primeiro + e -, depois × e ÷'],
+    correta: 0,
+    explicacao: 'Parênteses, depois expoentes, depois multiplicação e divisão, e por último adição e subtração.',
+  },
+  {
+    enunciado: 'Quanto é (2 + 3) × 4?',
+    opcoes: ['20', '14', '24'],
+    correta: 0,
+    explicacao: 'Os parênteses mandam fazer 2 + 3 = 5 primeiro. Depois 5 × 4 = 20.',
+  },
+  {
+    enunciado: 'Quanto é 20 - 5 + 3?',
+    opcoes: ['18', '12', '22'],
+    correta: 0,
+    explicacao: 'Mesmo nível, da esquerda para a direita: 20 - 5 = 15, e 15 + 3 = 18.',
+  },
+  {
+    enunciado: 'Quanto é 48 ÷ 6 × 2?',
+    opcoes: ['16', '4', '12'],
+    correta: 0,
+    explicacao: '× e ÷ são do mesmo nível: 48 ÷ 6 = 8 e 8 × 2 = 16.',
+  },
+  {
+    enunciado: 'Quanto é 5 + 2 × (10 - 4)?',
+    opcoes: ['17', '42', '11'],
+    correta: 0,
+    explicacao: 'Parênteses: 10 - 4 = 6. Depois 2 × 6 = 12 e 5 + 12 = 17.',
+  },
+  {
+    enunciado: 'Segundo a fonte, numa calculadora simples a conta 1 + 2 × 3 dá...',
+    opcoes: ['9, porque resolve na ordem das teclas', '7, sempre', '6'],
+    correta: 0,
+    explicacao: 'Calculadoras mais simples fazem 1 + 2 = 3 e 3 × 3 = 9. A regra da matemática dá 7.',
+  },
+  {
+    enunciado: 'Na expressão 3 + 2² × 5, o que se resolve primeiro?',
+    opcoes: ['A potência 2²', 'A soma 3 + 2', 'A multiplicação 2 × 5'],
+    correta: 0,
+    explicacao: 'Expoentes vêm antes de × e ÷. 2² = 4; depois 4 × 5 = 20; por fim 3 + 20 = 23.',
+  },
+  {
+    enunciado: 'Qual das opções representa "3 camisas de R$ 25 e 1 boné de R$ 10"?',
+    opcoes: ['3 × 25 + 10', '(3 + 25) × 10', '3 + 25 + 10'],
+    correta: 0,
+    explicacao: 'As camisas são 3 × 25 = 75, e somamos o boné: 75 + 10 = 85.',
+  },
+  {
+    enunciado: 'Por que a ordem das operações existe?',
+    opcoes: ['É um acordo (convenção) para todos lerem a mesma conta do mesmo jeito', 'Porque a natureza obriga', 'Para dificultar as contas'],
+    correta: 0,
+    explicacao: 'Não é uma descoberta, é um acordo. Sem ele, a mesma conta teria resultados diferentes.',
+  },
+  {
+    enunciado: 'Em 5 × [ 2 + (10 - 4) ÷ 3 ], o que se faz primeiro?',
+    opcoes: ['10 - 4, dentro dos parênteses', '2 + 10', '5 × 2'],
+    correta: 0,
+    explicacao: 'Sempre de dentro para fora: parênteses, depois colchetes.',
+  },
+  {
+    enunciado: 'Para evitar ambiguidade numa conta como 8 ÷ 2(2 + 2), o melhor é...',
+    opcoes: ['Escrever com parênteses claros', 'Discutir qual é o resultado', 'Apagar a conta'],
+    correta: 0,
+    explicacao: 'Se há risco de dupla leitura, escreva de forma que não haja dúvida.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- Uma **expressão numérica** junta várias operações. Para todos chegarem ao mesmo resultado, existe a **ordem das operações**.
+- Ordem padrão: **parênteses** (de dentro para fora), **expoentes**, **× e ÷** (esquerda para a direita), **+ e -** (esquerda para a direita).
+- **Dois degraus:** as contas "fortes" (× e ÷) vêm antes das "fracas" (+ e -).
+- Os **parênteses** mandam resolver aquela parte primeiro e podem mudar o resultado: 2 + 3 × 4 = 14, mas (2 + 3) × 4 = 20.
+- Parênteses dentro de parênteses: usam-se **( )**, depois **[ ]**, depois **{ }**.
+- **Calculadoras simples** resolvem na ordem das teclas e podem dar outro resultado (1 + 2 × 3 dá 9 nelas, e 7 pela regra).
+- Para as contas do dia a dia, **escreva a expressão da história** e resolva com a regra.
+
+**Um pouco de história.** A ordem das operações foi sendo combinada ao longo dos séculos: no século 17, a multiplicação ganhou precedência sobre a adição na escrita algébrica, e os expoentes já tinham prioridade. Em 1920, Florian Cajori ainda registrava discussões sobre se multiplicação e divisão tinham o mesmo nível. As siglas PEMDAS e BEDMAS foram formalizadas no fim do século 19 e início do 20.
+
+</Resumo>
+
+Até aqui só usamos números inteiros. Na próxima cápsula, vamos ver o que fazer com o que fica **entre** os inteiros: os **números decimais**, a vírgula e o dinheiro.
+
+<Conexoes />
+
+</Etapa>

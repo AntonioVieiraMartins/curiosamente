@@ -52,7 +52,7 @@ export const capsulas: ResumoCapsula[] = [
   m('basica', 'adicao-e-subtracao', 'Adição e subtração', 'O "vai um" explicado com palitos e caixinhas.', { grupo: 'Números e contas', estado: 'pronta', duracaoMin: 40 }),
   m('basica', 'multiplicacao', 'Multiplicação e tabuada', 'Dá para entender a tabuada em vez de decorar.', { grupo: 'Números e contas', estado: 'pronta', duracaoMin: 40, conexoes: ['potencias'] }),
   m('basica', 'divisao', 'Divisão', 'Dividir 23 balas entre 4 amigos: e o resto?', { grupo: 'Números e contas', estado: 'pronta', duracaoMin: 40 }),
-  m('basica', 'expressoes-numericas', 'Expressões numéricas', '2 + 3 × 4 dá 20 ou 14?', { grupo: 'Números e contas' }),
+  m('basica', 'expressoes-numericas', 'Expressões numéricas', '2 + 3 × 4 dá 20 ou 14?', { grupo: 'Números e contas', estado: 'pronta', duracaoMin: 40 }),
   m('basica', 'numeros-decimais', 'Números decimais', 'R$ 2,50 + R$ 1,75 sem calculadora.', { grupo: 'Números e contas', conexoes: ['porcentagem'] }),
   m('basica', 'medidas', 'Medidas', 'Por que 1 litro cabe num cubo de 10 cm?', { grupo: 'Medidas' }),
   m('basica', 'tempo-e-horas', 'Tempo e horas', 'Por que a hora tem 60 minutos, e não 100?', { grupo: 'Medidas' }),
