@@ -16,6 +16,8 @@ import {
 import { conquistasMerecidas, RODADAS_DEZ_MIL } from './regrasConquistas'
 import { limparAnotacoesLocal } from './anotacoes'
 import './sincronizarAnotacoes' // liga o caderno à conta (só precisa ser carregado)
+import { limparCartoesLocal } from './cartoes'
+import './sincronizarCartoes' // liga os cartões de revisão à conta
 
 type LinhaProgresso = {
   capsula_id: string
@@ -163,6 +165,7 @@ export async function sairDaConta() {
   limparXpLocal()
   limparConquistasLocal()
   limparAnotacoesLocal()
+  limparCartoesLocal()
 }
 
 // Liga tudo uma vez, quando o app abre

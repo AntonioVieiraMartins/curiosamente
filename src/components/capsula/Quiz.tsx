@@ -1,14 +1,26 @@
 import { useState } from 'react'
 import { useCapsula } from './ContextoCapsula'
+import BotaoGuardarCartao from './BotaoGuardarCartao'
+import { codigoDe, guardarCartao } from '../../lib/cartoes'
 
 type Pergunta = { enunciado: string; opcoes: string[]; correta: number; explicacao: string }
 
 // Desafio do fim da cápsula: resposta na hora e sempre com o porquê. Errar não tira pontos.
 export default function Quiz({ perguntas }: { perguntas: Pergunta[] }) {
-  const { registrarPontuacao } = useCapsula()
+  const { registrarPontuacao, meta } = useCapsula()
   const [respostas, setRespostas] = useState<(number | null)[]>(() => perguntas.map(() => null))
 
+  // O cartão leva a pergunta e a resposta certa com o porquê, para a revisão não depender da cápsula
+  const cartaoDe = (p: Pergunta) => ({
+    id: `${meta.id}:q:${codigoDe(p.enunciado)}`,
+    capsulaId: meta.id,
+    frente: p.enunciado,
+    verso: `${p.opcoes[p.correta]}. ${p.explicacao}`,
+  })
+
   function responder(indicePergunta: number, opcao: number) {
+    // Errou? A pergunta vira cartão de revisão sozinha
+    if (opcao !== perguntas[indicePergunta].correta) guardarCartao(cartaoDe(perguntas[indicePergunta]))
     const novas = respostas.map((r, i) => (i === indicePergunta ? opcao : r))
     setRespostas(novas)
     if (novas.every((r) => r !== null)) {
@@ -55,12 +67,15 @@ export default function Quiz({ perguntas }: { perguntas: Pergunta[] }) {
               })}
             </div>
             {resposta !== null && (
-              <p aria-live="polite" className="mt-3 text-[16px]">
-                <strong className={resposta === p.correta ? 'text-verde' : 'text-coral'}>
-                  {resposta === p.correta ? 'Isso! ' : 'Quase. '}
-                </strong>
-                {p.explicacao}
-              </p>
+              <>
+                <p aria-live="polite" className="mt-3 text-[16px]">
+                  <strong className={resposta === p.correta ? 'text-verde' : 'text-coral'}>
+                    {resposta === p.correta ? 'Isso! ' : 'Quase. '}
+                  </strong>
+                  {p.explicacao}
+                </p>
+                <BotaoGuardarCartao {...cartaoDe(p)} className="mt-1" />
+              </>
             )}
           </fieldset>
         )

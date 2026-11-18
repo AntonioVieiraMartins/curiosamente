@@ -1,5 +1,8 @@
 import { useId, useState, type FormEvent } from 'react'
 import { lerNumero, mesmoNumero } from '../../lib/numeros'
+import { codigoDe } from '../../lib/cartoes'
+import { useCapsula } from './ContextoCapsula'
+import BotaoGuardarCartao from './BotaoGuardarCartao'
 
 type Props = {
   enunciado: string
@@ -18,6 +21,7 @@ export default function Exercicio({ enunciado, resposta, dica, resolucao, unidad
   const [verResolucao, setVerResolucao] = useState(false)
   const [naoEntendi, setNaoEntendi] = useState(false)
   const id = useId()
+  const { meta } = useCapsula()
   const certa = lerNumero(resposta)
 
   function conferir(e: FormEvent) {
@@ -70,6 +74,14 @@ export default function Exercicio({ enunciado, resposta, dica, resolucao, unidad
           </button>
         )}
         {mostrarResolucao && <p className="rounded-xl bg-fundo p-3 text-[15px]">{resolucao}</p>}
+        {mostrarResolucao && (
+          <BotaoGuardarCartao
+            id={`${meta.id}:e:${codigoDe(enunciado)}`}
+            capsulaId={meta.id}
+            frente={enunciado}
+            verso={`Resposta: ${resposta}${unidade ? ` ${unidade}` : ''}. ${resolucao}`}
+          />
+        )}
       </div>
     </div>
   )

@@ -1,5 +1,7 @@
 import { useId, useState } from 'react'
 import { apagarAnotacao, editarAnotacao, LIMITE_ANOTACAO, type Anotacao } from '../../lib/anotacoes'
+import BotaoGuardarCartao from '../capsula/BotaoGuardarCartao'
+import { buscarCapsula } from '../../conteudo/indice'
 
 const botaoPequeno = 'min-h-11 rounded-full border border-borda px-4 text-[15px] font-semibold text-texto hover:border-texto/30'
 
@@ -56,6 +58,12 @@ export default function NotaItem({ nota }: { nota: Anotacao }) {
         ) : (
           <button type="button" onClick={() => setConfirmando(true)} className={botaoPequeno}>Apagar</button>
         )}
+        <BotaoGuardarCartao
+          id={`${nota.capsulaId}:n:${nota.id.slice(0, 12)}`}
+          capsulaId={nota.capsulaId}
+          frente={`O que você anotou sobre "${buscarCapsula(nota.capsulaId)?.titulo ?? 'este assunto'}"?`}
+          verso={nota.texto}
+        />
       </div>
     </li>
   )

@@ -7,6 +7,7 @@ import Perfil from './paginas/Perfil'
 import NaoEncontrada from './paginas/NaoEncontrada'
 import Entrar from './paginas/Entrar'
 import Caderno from './paginas/Caderno'
+import Revisar from './paginas/Revisar'
 
 const rotas = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const rotas = createBrowserRouter([
       { path: '/mapa', element: <Mapa /> },
       { path: '/capsula/:id', element: <Capsula /> },
       { path: '/caderno', element: <Caderno /> },
+      { path: '/revisar', element: <Revisar /> },
       { path: '/perfil', element: <Perfil /> },
       { path: '/entrar', element: <Entrar /> },
       { path: '*', element: <NaoEncontrada /> },

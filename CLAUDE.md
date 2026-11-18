@@ -325,9 +325,9 @@ VITE_SUPABASE_ANON_KEY=...
 - [x] 5. Supabase: login, perfis, progresso, XP e histórico (login com Google ainda não ativado)
 - [x] 6. Perfil, conquistas e sequência de dias
 - [x] 7. Matemática do fundamental (primeiras 5 cápsulas: Frações, Porcentagem, Números negativos, Razão e proporção, Potências)
-- [ ] 8. Computação, módulo 1 e 2 (primeiras 5 cápsulas)
+- [x] 8. Computação, módulos 1 a 3 e início do 4 (Git e GitHub)
 - [ ] 9. Matemática do médio
-- [ ] 10. Caderno pessoal e revisão espaçada
+- [x] 10. Caderno pessoal e revisão espaçada (rodar as migrações 20261118000000 e 20261118010000 no Supabase para sincronizar com a conta)
 - [ ] 11. Restante da computação, conexões entre as duas áreas, modo escuro, publicação
 - [ ] Futuro (só quando o dono pedir): Ciência de Dados, Biologia
 

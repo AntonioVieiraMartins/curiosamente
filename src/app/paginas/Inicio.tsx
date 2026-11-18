@@ -5,6 +5,7 @@ import Ficha from '../../components/ui/Ficha'
 import { botaoPrimario, botaoSecundario, cartao } from '../../components/ui/estilos'
 import { buscarCapsula, numeroDaCapsula } from '../../conteudo/indice'
 import { etapas } from '../../conteudo/etapas'
+import { useCartoesDeHoje } from '../../hooks/useCartoes'
 
 const paraComecar = ['monty-hall', 'porcentagem', 'como-a-internet-funciona'].map((id) => buscarCapsula(id)!)
 
@@ -15,8 +16,19 @@ const combinado = [
 ]
 
 export default function Inicio() {
+  const pendentes = useCartoesDeHoje().length
   return (
     <>
+      {pendentes > 0 && (
+        <section className="mx-auto max-w-3xl px-4 pt-6">
+          <div className={`${cartao} flex flex-wrap items-center justify-between gap-3 p-4 sm:p-5`}>
+            <p className="font-semibold">
+              Você tem {pendentes} {pendentes === 1 ? 'cartão' : 'cartões'} para revisar hoje.
+            </p>
+            <Link to="/revisar" className={botaoPrimario}>Revisar agora</Link>
+          </div>
+        </section>
+      )}
       <section className="mx-auto max-w-3xl px-4 pt-12 text-center sm:pt-20">
         <Rotulo>Cápsula nº {numeroDaCapsula('monty-hall')} · Probabilidade</Rotulo>
         <h1 className="mt-4 font-serif text-[2.7rem] font-medium leading-[1.06] tracking-tight sm:text-[4rem]">

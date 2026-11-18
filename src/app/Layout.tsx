@@ -2,15 +2,29 @@ import { Link, NavLink, Outlet, ScrollRestoration } from 'react-router-dom'
 import Marca from '../components/ui/Marca'
 import ChipConta from '../components/ui/ChipConta'
 import AvisoConquista from '../components/ui/AvisoConquista'
+import { useCartoesDeHoje } from '../hooks/useCartoes'
 
 const links = [
   { para: '/', rotulo: 'Início' },
   { para: '/mapa', rotulo: 'Mapa' },
   { para: '/caderno', rotulo: 'Caderno' },
+  { para: '/revisar', rotulo: 'Revisar' },
   { para: '/perfil', rotulo: 'Perfil' },
 ]
 
+// Bolinha com quantos cartões esperam revisão hoje
+function Pendentes({ n }: { n: number }) {
+  if (n === 0) return null
+  return (
+    <span className="ml-1.5 inline-grid min-w-5 place-items-center rounded-full bg-coral px-1.5 text-xs font-bold text-white">
+      <span className="sr-only">{n} para revisar hoje: </span>
+      <span aria-hidden="true">{n}</span>
+    </span>
+  )
+}
+
 export default function Layout() {
+  const pendentes = useCartoesDeHoje().length
   return (
     <div className="flex min-h-dvh flex-col">
       <a
@@ -39,6 +53,7 @@ export default function Layout() {
                 }
               >
                 {l.rotulo}
+                {l.para === '/revisar' && <Pendentes n={pendentes} />}
               </NavLink>
             ))}
             <ChipConta />
@@ -60,7 +75,7 @@ export default function Layout() {
       {/* No celular a navegação fica embaixo, ao alcance do polegar */}
       <nav
         aria-label="Principal (celular)"
-        className="fixed inset-x-0 bottom-0 z-20 grid grid-cols-4 border-t border-borda bg-superficie pb-[env(safe-area-inset-bottom)] sm:hidden"
+        className="fixed inset-x-0 bottom-0 z-20 grid grid-cols-5 border-t border-borda bg-superficie pb-[env(safe-area-inset-bottom)] sm:hidden"
       >
         {links.map((l) => (
           <NavLink
@@ -74,7 +89,7 @@ export default function Layout() {
             {({ isActive }) => (
               <>
                 <span aria-hidden="true" className={`size-1.5 rounded-full ${isActive ? 'bg-azul' : 'bg-transparent'}`} />
-                {l.rotulo}
+                <span>{l.rotulo}{l.para === '/revisar' && <Pendentes n={pendentes} />}</span>
               </>
             )}
           </NavLink>
