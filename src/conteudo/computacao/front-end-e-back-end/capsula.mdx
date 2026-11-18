@@ -1,0 +1,385 @@
+import SalaoECozinha from '../../../components/simulacoes/SalaoECozinha'
+import ClassificaLado from '../../../components/simulacoes/ClassificaLado'
+import CliqueEmEtapas from '../../../components/simulacoes/CliqueEmEtapas'
+import ValidacaoDuasVezes from '../../../components/simulacoes/ValidacaoDuasVezes'
+import PrecoNoNavegador from '../../../components/simulacoes/PrecoNoNavegador'
+import FilaDaCozinha from '../../../components/simulacoes/FilaDaCozinha'
+
+{/* Fatos conferidos na Wikipedia em inglês (Frontend and backend, Client–server model, Web application), listadas no meta.ts. Os números das simulações (preço, pedidos por minuto) são de brinquedo. */}
+
+<Etapa id="gancho">
+
+Quando você abre um aplicativo de banco, vê o seu saldo, os botões e as cores. Mas o número do saldo **não mora no seu celular**: ele mora num computador distante, protegido, que você nunca vê. O que aparece na tela é só a **vitrine**.
+
+Todo site e todo aplicativo é feito de **duas metades**: a parte que você enxerga e toca, e a parte escondida que guarda os dados e toma as decisões. Elas têm nomes: **front-end** e **back-end**.
+
+<Palpite
+  chave="inicial"
+  pergunta="Você aperta o botão de modo escuro num site. Quem faz a tela escurecer?"
+  opcoes={['O navegador, na própria tela', 'Um servidor distante, que desenha a tela escura e manda pronta', 'O banco de dados do site']}
+/>
+
+Nesta cápsula você vai usar a imagem de um **restaurante** (salão, cozinha e despensa), classificar tarefas de cada lado, seguir um clique de "Comprar" do começo ao fim, descobrir por que o servidor **nunca** deve confiar no navegador e ver o que acontece quando chegam mais pedidos do que a cozinha aguenta.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Para entender os dois lados, vale saber como surgiu a ideia de **dividir o trabalho** entre quem pede e quem atende.
+
+<LinhaDoTempo marcos={[
+  { ano: '1964', texto: 'O sistema OS/360 já tinha uma forma antiga de cliente e servidor: a "entrada remota de tarefas".' },
+  { ano: '1969', texto: 'Pesquisadores da ARPANET usam os termos "server-host" e "user-host" nas RFCs 4 e 5.' },
+  { ano: '1978', texto: 'Pesquisadores da Xerox PARC usam a palavra "client" (cliente) num artigo antigo.' },
+  { ano: '1995', texto: 'A Netscape lança o JavaScript, que deixa o navegador executar pequenos programas.' },
+  { ano: '1999', texto: 'O termo "aplicação web" aparece pela primeira vez, na especificação de Servlets 2.2 do Java.' },
+  { ano: '2004', texto: 'O Gmail (2004) e, em 2005, o Google Maps mostram páginas muito interativas.' },
+  { ano: '2005', texto: 'Essa técnica ganha o nome de Ajax: a página troca dados com o servidor sem recarregar inteira.' },
+  { ano: '2015', texto: 'Surge o termo "aplicativos web progressivos", que funcionam até sem internet.' },
+]} />
+
+## Os primeiros "clientes" e "servidores"
+
+Nos anos 1960 os computadores eram enormes e caros, e muita gente precisava usar o mesmo. A solução foi **separar**: uma máquina forte guardava os dados e fazia as contas pesadas, e quem queria algo mandava um **pedido** de longe. Em 1964, no sistema OS/360, um pedido rodava uma tarefa e a resposta era o resultado dela.
+
+Em 1969, quem construía a ARPANET (a avó da internet) escreveu nos documentos chamados RFCs 4 e 5 as expressões "server-host" e "user-host". Em 1978, pesquisadores da Xerox PARC usaram a palavra **cliente** num artigo. Em 1992 a palavra "servidor" já era de uso comum.
+
+## Do computador de mesa à Web
+
+Nas décadas de 1980 e 1990, os microcomputadores passaram trabalho dos grandes computadores para os "clientes ricos", programas instalados em cada máquina. O problema: se o servidor mudava, **todos** os clientes precisavam ser atualizados.
+
+A Web resolveu isso. Em 1995, a Netscape introduziu o **JavaScript**, e o navegador passou a rodar pequenos programas na própria página. Em 1999, a palavra "aplicação web" apareceu pela primeira vez. Entre 2003 e 2005, Myspace, Gmail, Digg e Google Maps mostraram sites que se comportavam quase como programas instalados. Em 2005, essa técnica ganhou o nome de **Ajax**. Em 2015, o termo "aplicativos web progressivos" foi criado.
+
+A fonte que usamos não diz quando as palavras "front-end" e "back-end" apareceram, então não vamos inventar uma data. O que sabemos é a ideia por trás: **quem apresenta** e **quem processa**.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O restaurante
+
+Pense num restaurante. Você senta no **salão**: vê o cardápio, a decoração e conversa com o garçom. Mas a comida não é feita ali. Ela vem da **cozinha**, onde ficam as panelas, as receitas e as regras. E a cozinha pega os ingredientes na **despensa**.
+
+- O **salão** é o **front-end**: tudo que você vê e toca. No site, é o seu navegador mostrando botões, textos e imagens.
+- A **cozinha** é o **back-end**: onde as decisões são tomadas e as contas são feitas. No site, é um servidor.
+- A **despensa** é o **banco de dados**: onde as informações ficam guardadas.
+- O **garçom** é a ligação entre salão e cozinha. Na internet, é o pedido HTTP, e a "conversa" organizada se chama **API** (veremos adiante).
+
+Você nunca entra na cozinha. Mas tudo que importa (o seu saldo, o seu pedido, a sua senha) está lá.
+
+<ExemploResolvido titulo="Quem faz o quê numa compra?">
+  <Passo>Você escolhe um tênis e toca em "Comprar". Quem recebe o toque? O **salão** (o front-end).</Passo>
+  <Passo>O salão manda o pedido para a **cozinha** (o back-end).</Passo>
+  <Passo>A cozinha confere o estoque e o preço, buscando na **despensa** (o banco de dados).</Passo>
+  <Passo>A cozinha devolve "pedido aceito". O salão mostra a mensagem na tela.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O front-end roda no navegador ou no servidor? (navegador ou servidor)" resposta="navegador" dica="O front-end é o que aparece para você." resolucao="O front-end é a parte que o navegador mostra e executa. O servidor roda o back-end." />
+
+## 2. Duas metades, dois trabalhos
+
+O **front-end** cuida da **apresentação**: layout, cores, botões, animações, formulários. É a camada com a qual a pessoa conversa. Pelo modelo cliente-servidor, o cliente geralmente é o front-end.
+
+O **back-end** cuida de **dados e regras**: guardar, buscar, calcular, conferir quem pode fazer o quê. Pelo mesmo modelo, o servidor geralmente é o back-end.
+
+Quando uma pessoa cuida das duas metades, ela é chamada de **full stack** (algo como "a pilha inteira").
+
+<Exercicio enunciado="Quem trabalha com as duas metades, front e back, é chamado de full ... (uma palavra, em inglês)" resposta="stack" dica="É a 'pilha' inteira." resolucao="Full stack: front-end e back-end juntos." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Você aperta o botão de modo escuro num site simples. Esse clique precisa viajar até o servidor para a tela escurecer?"
+  opcoes={['Sim, o servidor desenha a tela escura e manda pronta', 'Não, o próprio navegador muda as cores', 'Sim, e o banco de dados também precisa ser consultado']}
+  correta={1}
+  explicacao="Trocar cores é só apresentação: o front-end muda as cores na hora, sem falar com a cozinha. (Alguns sites também gravam a sua preferência no servidor para lembrar depois, mas a mudança na tela em si é do navegador.)"
+>
+
+Toque em cada ação e veja por quais partes do restaurante ela passa:
+
+<SalaoECozinha />
+
+Note o padrão: o que é **só aparência** fica no salão. O que precisa de **dado guardado** ou de uma **decisão confiável** passa pela cozinha, e muitas vezes pela despensa.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['O navegador, na própria tela', 'Um servidor distante, que desenha a tela escura e manda pronta', 'O banco de dados do site']}
+  correta={0}
+  seAcertou="E o palpite do começo? Isso: mudar cores é trabalho do front-end, no navegador."
+  seErrou="E o palpite do começo? Trocar cores é só aparência: o navegador faz sozinho, sem ir até o servidor."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## O que fica em cada lado
+
+Uma boa pergunta para decidir onde algo mora é: **"isso é só para aparecer, ou é uma regra que precisa ser confiável?"** Só aparecer é front-end. Regra que precisa ser confiável e dado compartilhado são back-end.
+
+Exemplos que a fonte dá:
+
+- **Site de compras:** o front-end mostra as páginas dos produtos e a busca. O back-end processa os pagamentos e atualiza o estoque.
+- **Aplicativo de banco:** o front-end mostra os saldos. O back-end cuida das transações e dos registros.
+- **Rede social:** o front-end mostra o feed. O back-end guarda as postagens e gerencia as notificações.
+
+Veja se você acerta onde mora cada tarefa:
+
+<ClassificaLado />
+
+<ExemploResolvido titulo="Onde mora o cálculo do frete?">
+  <Passo>O frete depende do CEP, do peso e da tabela de preços da loja. A tabela muda e **é da loja**.</Passo>
+  <Passo>Se a regra morasse no navegador, qualquer pessoa poderia mexer nela.</Passo>
+  <Passo>Então o cálculo mora no **back-end**. O front-end só mostra o valor que veio.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Conferir se a senha digitada está certa é trabalho do salão ou da cozinha? (salao ou cozinha)" resposta="cozinha" dica="A senha guardada fica longe do navegador." resolucao="É a cozinha (back-end) que confere, comparando com o que está guardado. O navegador não pode ser quem decide." />
+
+## O front-end por dentro (só a ideia)
+
+O front-end é feito de três ingredientes, que vamos conhecer melhor na próxima cápsula: **HTML** (a estrutura, o "esqueleto"), **CSS** (a aparência, a "roupa") e **JavaScript** (o comportamento, o "movimento"). Há também bibliotecas e frameworks, como React, Angular e Vue.js, que ajudam a organizar telas grandes. (Este app que você está usando é feito com React.)
+
+O ponto mais importante: **todo o código do front-end vai para o navegador de quem visita**. Ele é baixado e executado na máquina da pessoa. Por isso, ela pode olhar e até alterar esse código.
+
+<Aprofundar titulo="Por que o código do navegador não é confiável">
+O navegador roda no computador **do visitante**. Quem usa o site pode abrir as ferramentas do desenvolvedor, ler o código do front-end, mudar valores e até montar pedidos à mão, sem usar a tela do site. Do ponto de vista do servidor, um pedido que chegou pode ter vindo do botão certo, ou de alguém que escreveu o pedido por conta própria.
+
+Daí vem a regra de ouro do back-end: **nunca confiar no que vem do navegador**. Tudo que importa (preço, permissões, quantidade, identidade) precisa ser conferido no servidor. O front-end pode ajudar a pessoa a acertar (avisando um campo vazio), mas quem protege o sistema é o back-end.
+</Aprofundar>
+
+## O back-end por dentro (só a ideia)
+
+O back-end é um programa que **fica rodando num servidor**, esperando pedidos. Ele lê o pedido, decide o que fazer, fala com o banco de dados, e devolve uma resposta. A fonte cita linguagens como PHP, Python, Ruby, Perl e Node.js (que é JavaScript fora do navegador), e também C#, Java e Go. Não existe uma "linguagem certa": o que importa é o papel.
+
+Além de escrever a lógica, quem cuida do back-end se preocupa com administrar o banco de dados, com **escalabilidade** (aguentar muita gente ao mesmo tempo) e com **segurança**.
+
+<Exercicio enunciado="O banco de dados, na imagem do restaurante, é a ... (despensa, salao ou cozinha)" resposta="despensa" dica="É onde os ingredientes ficam guardados." resolucao="A despensa guarda os ingredientes (os dados). A cozinha usa o que está lá." />
+
+## A conversa entre as duas metades
+
+Salão e cozinha precisam falar uma língua em comum. No site, essa conversa é feita por **pedidos HTTP** (a cápsula anterior), organizados numa **API**. A fonte explica que o front-end conversa com o back-end por uma API, e que no mundo web ela costuma ser baseada em HTTP, em estilos como **REST** ou **GraphQL**. Uma API é como o **cardápio** da cozinha: lista o que dá para pedir e como pedir. Veremos isso com calma na cápsula de APIs e JSON.
+
+<Aprofundar titulo="API: o cardápio da cozinha">
+Uma **API** (interface de programação de aplicações) é um conjunto de pedidos que o back-end aceita, cada um com um endereço e um formato. Por exemplo, o pedido "me dê o meu saldo" usa o método GET num endereço combinado; "criar um pedido" usa POST. O front-end não precisa saber **como** a cozinha prepara: só como pedir e como entender a resposta.
+
+Essa separação traz uma vantagem: a mesma cozinha pode atender salões diferentes (o site, o aplicativo de celular, outro sistema). A fonte menciona um padrão chamado **Back end For Front end (BFF)**, em que cada tipo de salão tem seu próprio serviço intermediário, o que pode diminuir o trabalho de processamento do front-end.
+</Aprofundar>
+
+## Um clique, do começo ao fim
+
+Vamos seguir um clique em "Comprar". Passe pelos seis passos:
+
+<CliqueEmEtapas />
+
+<ExemploResolvido titulo="Contando as idas ao banco">
+  <Passo>Passo 1: o salão monta o pedido. Banco de dados? **Não**.</Passo>
+  <Passo>Passo 2: o pedido viaja. Banco? **Não**.</Passo>
+  <Passo>Passo 3: a cozinha confere quem é você e se o pedido faz sentido. O lugar do passo é a cozinha, não a despensa.</Passo>
+  <Passo>Passo 4: o servidor grava o pedido e baixa o estoque. Lugar do passo: o **banco de dados**. É o único passo em que a despensa aparece.</Passo>
+  <Passo>Passos 5 e 6: resposta e tela. Banco? **Não**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="No clique de Comprar com 6 passos, em quantos deles o banco de dados é o lugar do passo? (número)" resposta="1" dica="Só um passo é na despensa." resolucao="Apenas o passo 4 (gravar o pedido e baixar o estoque) acontece no banco de dados." />
+
+<Exercicio enunciado="No clique de Comprar, quantos passos são do salão (navegador)? (número)" resposta="2" dica="O primeiro e o último." resolucao="O passo 1 (montar o pedido) e o passo 6 (mostrar o resultado) são do salão: 2 passos." />
+
+## Nunca confie no navegador
+
+Imagine um formulário de cadastro com o campo "idade". O front-end pode avisar na hora: "Digite um número de 1 a 120". Isso ajuda a pessoa e **economiza uma viagem** até o servidor. Mas esse aviso mora no navegador, e o navegador pode ser driblado. Então a cozinha **confere de novo**. As duas conferências têm objetivos diferentes: a do salão é **conforto**; a da cozinha é **proteção**.
+
+<ValidacaoDuasVezes />
+
+<ExemploResolvido titulo="Por que conferir duas vezes?">
+  <Passo>A pessoa digita "150" na idade. O salão avisa na hora, e o pedido nem sai. Rápido e simpático.</Passo>
+  <Passo>Agora alguém ignora o salão e manda "150" direto ao servidor.</Passo>
+  <Passo>Se a cozinha **não** conferisse, um dado impossível entraria na despensa.</Passo>
+  <Passo>Como a cozinha confere de novo, recusa. A regra vale **não importa quem mandou**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O campo de idade aceita de 1 a 120. O valor 0 é válido? (sim ou nao)" resposta="nao" dica="Compare com o mínimo permitido." resolucao="0 é menor que 1, então não é válido. Tanto o salão quanto a cozinha devem recusar." />
+
+<Aprofundar titulo="O mesmo problema, com preço">
+Um caso clássico: a loja põe o preço do produto no pedido que o navegador envia. Se o servidor **acredita** nesse número, qualquer pessoa pode editar o pedido e pagar R$ 1 num tênis de R$ 100. A solução é o servidor ignorar o preço que veio e **buscar o preço no banco de dados**. O pedido só deve dizer **qual** produto e **quantos**. Preço, desconto, permissão e identidade são decisões da cozinha.
+</Aprofundar>
+
+Veja o estrago, e a correção:
+
+<PrecoNoNavegador />
+
+<ExemploResolvido titulo="O tênis de R$ 1">
+  <Passo>O banco diz que o tênis custa R$ 100.</Passo>
+  <Passo>O pedido editado chega com "preço: R$ 1". O servidor desconfiado ignora esse número.</Passo>
+  <Passo>Ele busca o preço **no banco**: R$ 100.</Passo>
+  <Passo>O cliente é cobrado R$ 100. O pedido editado não adiantou nada.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O pedido chega dizendo preço R$ 1, mas o banco diz R$ 100, e o servidor usa o do banco. Quanto é cobrado? (número)" resposta="100" dica="Vale o que está no banco." resolucao="O servidor ignora o preço do pedido e usa o do banco de dados: R$ 100." />
+
+## A fila da cozinha
+
+Há outra razão para dividir o trabalho. O **front-end** roda **um por pessoa**: cada visitante usa o próprio computador, então mais visitantes não pesam no site. O **back-end** é **compartilhado**: todos os visitantes pedem à mesma cozinha. Se chegam mais pedidos do que ela aguenta, forma-se uma **fila**, e o site fica lento.
+
+<FilaDaCozinha />
+
+Para aguentar mais gente, o back-end precisa **escalar**: mais servidores (mais cozinheiros), ou servidores mais rápidos. A fonte menciona que servidores lidam com muitos clientes ao mesmo tempo, usando agendamento e balanceamento de carga, e que enviar muitos pedidos para sobrecarregar um servidor é a base dos ataques de negação de serviço.
+
+<ExemploResolvido titulo="Quantos cozinheiros?">
+  <Passo>Chegam 30 pedidos por minuto. Cada cozinheiro faz 5 por minuto.</Passo>
+  <Passo>Precisamos de capacidade de, no mínimo, 30 por minuto.</Passo>
+  <Passo>30 ÷ 5 = **6** cozinheiros.</Passo>
+  <Passo>Com 5 cozinheiros, a capacidade seria 25: sobrariam 5 por minuto na fila.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Chegam 30 pedidos por minuto e cada cozinheiro faz 5 por minuto. Quantos cozinheiros no mínimo? (número)" resposta="6" dica="Divida 30 por 5." resolucao="30 ÷ 5 = 6 cozinheiros." />
+
+<Exercicio enunciado="Chegam 12 pedidos por minuto e há 2 cozinheiros, de 5 por minuto cada. Quantos pedidos esperando depois de 10 minutos? (número)" resposta="20" dica="Capacidade = 2 × 5. Sobra = 12 − capacidade." resolucao="Capacidade: 2 × 5 = 10 por minuto. Sobram 12 − 10 = 2 por minuto. Em 10 minutos: 2 × 10 = 20 pedidos esperando." />
+
+<Exercicio enunciado="Com 3 cozinheiros de 5 por minuto e 21 pedidos chegando por minuto, quantos esperando após 10 minutos? (número)" resposta="60" dica="Capacidade 15. Sobra 6 por minuto." resolucao="Capacidade: 3 × 5 = 15. Sobram 21 − 15 = 6 por minuto. Em 10 minutos: 60 pedidos." />
+
+<Exercicio enunciado="Ao dobrar de 3 para 6 cozinheiros, a capacidade (de 5 por minuto cada) passa a quantos pedidos por minuto? (número)" resposta="30" dica="6 × 5." resolucao="6 × 5 = 30 pedidos por minuto, o dobro dos 15 de antes." />
+
+<Aprofundar titulo="Três camadas: apresentação, lógica e dados">
+Um site de verdade costuma ter **três camadas**: a de **apresentação** (o navegador), a de **aplicação** (o servidor, com a lógica, usando tecnologias como PHP, Node.js, Python ou Ruby on Rails) e a de **armazenamento** (o banco de dados). O navegador faz pedidos ao servidor, que consulta ou altera o banco e monta a resposta. Em sistemas grandes pode haver ainda mais camadas, o que se chama de arquitetura **n-camadas**.
+
+Dividir em camadas permite trocar uma sem mexer nas outras: dá para redesenhar a tela sem mexer no banco, ou trocar de banco sem mexer na tela.
+</Aprofundar>
+
+## Por que a Web fez tanto sucesso
+
+Antes da Web, para usar um sistema era preciso **instalar** um programa cliente em cada computador. Se o servidor mudava, era preciso atualizar todos os clientes. Na Web, o front-end é **baixado na hora**, então toda visita pega a versão mais nova.
+
+A fonte lista outras vantagens das aplicações web: não é preciso instalar nada, cada aba do navegador funciona "numa caixinha" que restringe o acesso ao seu computador, o mesmo site atende sistemas e aparelhos diferentes, e quem desenvolve pode cobrar pelo uso. Ela também avisa que aplicações web têm **riscos de segurança** importantes que precisam ser tratados.
+
+<Exercicio enunciado="Em que ano a Netscape introduziu o JavaScript? (número)" resposta="1995" dica="Está na linha do tempo." resolucao="Em 1995, a Netscape introduziu o JavaScript." />
+
+<Exercicio enunciado="Em que ano o termo 'aplicação web' apareceu pela primeira vez, na especificação de Servlets 2.2 do Java? (número)" resposta="1999" dica="Quatro anos depois do JavaScript." resolucao="Foi em 1999." />
+
+<Exercicio enunciado="Em que ano o Gmail mostrou como um site podia ser interativo? (número)" resposta="2004" dica="Um ano antes do nome Ajax." resolucao="O Gmail surgiu em 2004. O nome Ajax veio em 2005." />
+
+<Exercicio enunciado="Quantas camadas tem a arquitetura básica de um site (apresentação, lógica e dados)? (número)" resposta="3" dica="Conte os três nomes." resolucao="São 3 camadas: apresentação, aplicação (lógica) e armazenamento (dados)." />
+
+<Aprofundar titulo="Cliente-servidor ou ponto a ponto?">
+No modelo **cliente-servidor**, um servidor central atende muitos clientes, então seus recursos precisam crescer junto com o número de pedidos. No modelo **ponto a ponto** (P2P), todos são nós iguais, que se comunicam diretamente e dividem o trabalho; se um cai, os outros ainda podem oferecer o que ele tinha.
+
+O cliente-servidor tem uma vantagem: o servidor **controla** os dados e as regras num lugar só, o que facilita confiar neles e protegê-los. Por isso a maior parte dos sistemas web, como bancos e lojas, usa esse modelo.
+</Aprofundar>
+
+## Um site dinâmico e um site estático
+
+Um site **estático** entrega sempre os mesmos arquivos prontos: o servidor só devolve o que está guardado. Uma **aplicação web** é **dinâmica**: o servidor monta uma resposta diferente para cada pedido (a sua página de perfil é só sua). Sites estáticos podem existir só com front-end; sistemas com login, compras e dados pessoais precisam de back-end.
+
+<Aprofundar titulo="Quem monta a página: o servidor ou o navegador?">
+Há duas formas de montar uma página dinâmica. Na primeira, o **servidor** monta o HTML pronto e o navegador só mostra. Na segunda, o servidor manda arquivos e **dados** crus (muitas vezes em JSON) e o **navegador** monta a tela, e é o que fazem os chamados *aplicativos de página única* (SPAs), que dão a sensação de um aplicativo instalado. Cada escolha tem vantagens e custos (velocidade da primeira tela, trabalho no servidor, trabalho no celular do visitante), e muitos sistemas misturam as duas.
+</Aprofundar>
+
+## Juntando tudo
+
+Pela fonte, "front-end" e "back-end" também são usados fora da Web: num sistema de gerenciamento de conteúdo (a parte do visitante e a do administrador), em compiladores, em placas de rede e até em projetos de processadores. A ideia é sempre a mesma: **uma parte conversa com quem usa, outra faz o trabalho de verdade**.
+
+Resumindo o que você aprendeu: o salão mostra e interage; a cozinha decide e guarda; a despensa lembra. O salão é rápido e conveniente, mas **não é confiável**; a cozinha é o **guardião**. E, como a cozinha atende todo mundo, ela precisa ser capaz de **escalar**.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Na imagem do restaurante, o front-end é...',
+    opcoes: ['O salão, que o cliente vê e toca', 'A cozinha', 'A despensa'],
+    correta: 0,
+    explicacao: 'O front-end é a apresentação: o que o visitante vê e usa.',
+  },
+  {
+    enunciado: 'Onde o back-end costuma rodar?',
+    opcoes: ['No navegador do visitante', 'Num servidor', 'Dentro do mouse'],
+    correta: 1,
+    explicacao: 'Pelo modelo cliente-servidor, o servidor (back-end) fica do outro lado da internet.',
+  },
+  {
+    enunciado: 'Trocar o tema do site de claro para escuro, só visualmente, é trabalho de...',
+    opcoes: ['Front-end', 'Back-end', 'Banco de dados'],
+    correta: 0,
+    explicacao: 'Mudança de aparência acontece no navegador, sem precisar do servidor.',
+  },
+  {
+    enunciado: 'Quem deve decidir se a senha digitada está certa?',
+    opcoes: ['O navegador', 'O servidor (back-end)', 'O teclado'],
+    correta: 1,
+    explicacao: 'A decisão precisa ser de quem é confiável e guarda os dados: o back-end.',
+  },
+  {
+    enunciado: 'O que é "full stack"?',
+    opcoes: ['Quem trabalha com front-end e back-end', 'Um tipo de servidor', 'Um navegador completo'],
+    correta: 0,
+    explicacao: 'Full stack é a "pilha inteira": as duas metades.',
+  },
+  {
+    enunciado: 'Por que o servidor não deve confiar no preço enviado pelo navegador?',
+    opcoes: ['Porque o navegador é lento', 'Porque quem usa o navegador pode editar o pedido antes de enviar', 'Porque o preço é segredo'],
+    correta: 1,
+    explicacao: 'O navegador roda na máquina do visitante, então o pedido pode ser alterado. O servidor deve usar o preço do banco.',
+  },
+  {
+    enunciado: 'Por que conferir a idade no navegador e também no servidor?',
+    opcoes: ['Porque o navegador ajuda a pessoa rápido e o servidor protege contra pedidos driblados', 'Por bobagem: um dos dois bastaria', 'Porque o servidor não sabe contar'],
+    correta: 0,
+    explicacao: 'A checagem do navegador é conforto; a do servidor é proteção, e vale mesmo se alguém driblar o navegador.',
+  },
+  {
+    enunciado: 'Chegam 12 pedidos por minuto e há 2 cozinheiros de 5 por minuto. O que acontece?',
+    opcoes: ['A cozinha acompanha', 'A fila cresce 2 pedidos por minuto', 'A fila cresce 12 por minuto'],
+    correta: 1,
+    explicacao: 'Capacidade: 10 por minuto. Sobram 12 − 10 = 2 por minuto na fila.',
+  },
+  {
+    enunciado: 'Qual é o ano em que o JavaScript foi introduzido pela Netscape?',
+    opcoes: ['1969', '1995', '2015'],
+    correta: 1,
+    explicacao: 'Foi em 1995, e deixou o navegador executar pequenos programas.',
+  },
+  {
+    enunciado: 'O que é uma API, em uma frase?',
+    opcoes: ['O cardápio de pedidos que o back-end aceita', 'Um tipo de tela', 'Um navegador novo'],
+    correta: 0,
+    explicacao: 'A API organiza a conversa entre front-end e back-end: o que dá para pedir e como.',
+  },
+  {
+    enunciado: 'Qual destas é uma vantagem das aplicações web sobre programas instalados?',
+    opcoes: ['Não precisam ser instaladas e atualizam para todos de uma vez', 'Nunca têm problemas de segurança', 'Funcionam sem nenhum servidor'],
+    correta: 0,
+    explicacao: 'Sem instalação, toda visita já pega a versão atual. Mas aplicações web têm riscos de segurança que precisam ser tratados.',
+  },
+  {
+    enunciado: 'Um site de compras: quem atualiza o estoque depois de uma venda?',
+    opcoes: ['O front-end', 'O back-end', 'A cor do botão'],
+    correta: 1,
+    explicacao: 'Estoque é dado compartilhado, e só o back-end mexe nele.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Front-end** é o que a pessoa vê e toca (apresentação). **Back-end** cuida de dados, regras e decisões.
+- Pelo modelo cliente-servidor, o cliente é geralmente o front-end e o servidor, o back-end.
+- Imagem: **salão** (front-end), **cozinha** (back-end), **despensa** (banco de dados), **garçom** (pedido HTTP e API).
+- **Nunca confie no navegador:** preço, permissão e identidade são conferidos no servidor. O front-end ajuda; o back-end protege.
+- O back-end é **compartilhado** e precisa **escalar** quando chegam muitos pedidos.
+- Sistemas web costumam ter **três camadas**: apresentação, aplicação e dados.
+
+**Um pouco de história.** Nos anos 1960, o sistema OS/360 já separava quem pede de quem executa. Em 1969 a ARPANET usou "server-host" e "user-host", e em 1978 a Xerox PARC usou "client". A Netscape lançou o JavaScript em 1995, a palavra "aplicação web" surgiu em 1999 e o Ajax ganhou nome em 2005, depois do Gmail (2004) e do Google Maps (2005).
+
+</Resumo>
+
+Agora você sabe o mapa geral. Na próxima cápsula, vamos abrir o salão: o **HTML, o CSS e o JavaScript** que formam o front-end.
+
+<Conexoes />
+
+</Etapa>

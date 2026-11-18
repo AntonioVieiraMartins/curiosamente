@@ -124,6 +124,7 @@ export const capsulas: ResumoCapsula[] = [
   c('redes-e-internet', 'ip-e-portas', 'IP e portas', 'O que significa localhost:5173?', { estado: 'pronta', duracaoMin: 40, conexoes: ['como-a-internet-funciona'] }),
   c('redes-e-internet', 'dns', 'DNS e domínios', 'A lista telefônica da internet.', { estado: 'pronta', duracaoMin: 40, conexoes: ['ip-e-portas'] }),
   c('redes-e-internet', 'http-https', 'HTTP e HTTPS', 'O que o cadeado do navegador garante?', { estado: 'pronta', duracaoMin: 40, conexoes: ['dns'] }),
+  c('sistema-web', 'front-end-e-back-end', 'Front-end e back-end', 'O salão e a cozinha de todo site.', { estado: 'pronta', duracaoMin: 40, conexoes: ['http-https'] }),
   c('sistema-web', 'banco-de-dados', 'Banco de dados', 'Planilhas que conversam entre si.'),
   c('sistema-web', 'senhas-e-hash', 'Usuários e login', 'Por que ninguém deveria guardar sua senha.', { conexoes: ['numeros-primos'] }),
   c('hospedagem', 'deploy', 'Deploy', 'Do seu computador para o mundo.'),
