@@ -73,6 +73,26 @@ O logaritmo é a **função inversa** da exponencial: uma **desfaz** a outra. O 
 
 Não existe expoente que faça 2ʸ ser **zero** ou **negativo**: 2 elevado a qualquer expoente real dá sempre um número **positivo**. Por isso o logaritmo só existe para **números positivos**. E a base precisa ser positiva e diferente de 1 (com base 1, 1 elevado a qualquer coisa seria sempre 1, e a "pergunta" não teria resposta única).
 
+<Brincando titulo="O logaritmo é a pergunta ao contrário">
+
+Na exponencial, você escolhe o expoente e descobre o resultado: 2⁶ = 64. O logaritmo **inverte a pergunta**: "o resultado é 64, **quantas vezes** preciso dobrar para chegar lá?". A resposta é 6, e escrevemos log₂ 64 = 6.
+
+É como um jogo de adivinhar. Alguém diz o resultado, e você descobre **o expoente**. A base é o número que se multiplica (o 2), e o logaritmo é o **número de vezes**.
+
+Por isso toda conta de logaritmo tem uma tradução: "log₂ 64 = 6" e "2⁶ = 64" dizem a **mesma coisa**, de dois ângulos.
+
+</Brincando>
+
+<Brincando titulo="Por que só números positivos: o que a exponencial nunca produz">
+
+Quando você dobra algo várias vezes, o resultado **nunca chega a zero** e **nunca fica negativo**. 2¹ = 2, 2⁰ = 1, 2⁻¹ = 1/2, 2⁻² = 1/4: fica cada vez menor, mas **sempre positivo**.
+
+Então perguntar "quantas vezes preciso dobrar para chegar a **0**" ou a **−4** não tem resposta: nenhuma quantidade de dobras leva até lá. Por isso o logaritmo só existe para números **maiores que zero**.
+
+Não é uma regra inventada: é só que a exponencial, que o logaritmo desfaz, nunca produz esses números.
+
+</Brincando>
+
 <ExemploResolvido titulo="Traduzindo entre expoente e logaritmo">
   <Passo>2⁵ = 32 se traduz como **log₂ 32 = 5**.</Passo>
   <Passo>10³ = 1.000 se traduz como **log₁₀ 1.000 = 3**.</Passo>
@@ -167,6 +187,16 @@ A propriedade do **produto** é a que transformou a astronomia: **multiplicar vi
 
 <Exercicio enunciado="Quanto é log₂ de 2⁷? Use a propriedade da potência. (número)" resposta="7" dica="7 · log₂ 2 = 7 · 1." resolucao="7." />
 
+<Brincando titulo="Produto vira soma: juntar filas de dobras">
+
+Um papel dobrado **3 vezes** fica com 8 camadas. Outro dobrado **4 vezes** fica com 16. Se você **empilhar** os dois, o total de camadas multiplica: 8 × 16 = 128, e isso equivale a um papel dobrado **3 + 4 = 7 vezes**.
+
+O logaritmo conta **as dobras**. Multiplicar os tamanhos é juntar as dobras, e juntar é **somar**. Por isso log₂ (8 × 16) = log₂ 8 + log₂ 16 = 3 + 4 = 7.
+
+É o truque das tabelas antigas: transformar uma multiplicação difícil numa soma fácil.
+
+</Brincando>
+
 <Aprofundar titulo="Por que o produto vira soma">
 Veja o porquê com potências de 2. Se x = 2ᵐ e y = 2ⁿ, então x · y = 2ᵐ · 2ⁿ = 2ᵐ⁺ⁿ, pois ao multiplicar potências de mesma base **somam-se os expoentes**. Pegando o logaritmo de base 2: log₂(x · y) = m + n = log₂ x + log₂ y. A propriedade do quociente segue de modo parecido (subtraem-se os expoentes), e a da potência também: (2ᵐ)ᵏ = 2ᵐᵏ. Tudo isso vale em qualquer base, e com expoentes que não são inteiros. Esse fato, "o logaritmo transforma a operação de multiplicar na operação de somar", é a essência do artifício de Napier.
 </Aprofundar>
@@ -213,6 +243,16 @@ Alguns fenômenos variam por fatores **enormes**: o som mais fraco audível e o 
 
 <EscalaLinearOuLog />
 
+<Brincando titulo="Escala logarítmica: uma régua que anda de dez em dez">
+
+Numa régua comum, cada passo **soma** a mesma quantidade: 1, 2, 3, 4. Numa **escala logarítmica**, cada passo **multiplica** por um mesmo fator: 1, 10, 100, 1.000.
+
+Isso é útil quando os valores variam **muito**, de minúsculos a gigantes. Numa régua comum, o 1 e o 1.000 ficariam tão apertados que ninguém veria diferença. Na escala log, ficam **igualmente espaçados** e cabe tudo no mesmo desenho.
+
+Cada degrau da escala representa "mais uma vez o fator", e não "mais uma unidade".
+
+</Brincando>
+
 <ExemploResolvido titulo="Por que a escala log é conveniente">
   <Passo>Na régua linear, 1, 10, 100 e 1.000 ficam todos "colados" perto do zero, perdidos ao lado de 1.000.000.</Passo>
   <Passo>Na régua logarítmica, cada multiplicação por 10 é um **passo igual**.</Passo>
@@ -227,6 +267,16 @@ Alguns fenômenos variam por fatores **enormes**: o som mais fraco audível e o 
 O nível sonoro em **decibéis (dB)** é um logaritmo: **dB = 10 · log₁₀(I / I₀)**, em que I é a intensidade do som e I₀ é uma intensidade de referência. Cada **10 dB** a mais significam **10 vezes** mais intensidade; **20 dB**, 100 vezes; **60 dB**, 1 milhão de vezes. É por isso que a escala vai de 0 a uns 120 dB e cobre uma variação de **um trilhão** de vezes.
 
 <Decibeis />
+
+<Brincando titulo="Decibéis: cada 10 é uma multiplicação por 10">
+
+A escala de decibéis é logarítmica, então **somar** decibéis significa **multiplicar** a intensidade do som. A cada **10 dB**, a intensidade fica **10 vezes maior**.
+
+De 30 dB para 60 dB são 30 dB a mais, ou 3 grupos de 10. Cada grupo multiplica por 10: 10 × 10 × 10 = **1.000 vezes** mais intenso.
+
+Parece só "dobrar o número", mas o som é **mil vezes** mais forte. É por isso que o ouvido aguenta uma faixa enorme de intensidades sem se confundir.
+
+</Brincando>
 
 <ExemploResolvido titulo="Quantas vezes mais intenso é um som de 60 dB que um de 30 dB?">
   <Passo>A diferença é de 30 dB.</Passo>
@@ -245,6 +295,16 @@ O **pH**, medida de acidez, é o **menos logaritmo** da concentração de íons 
 
 A **computação** está entre as áreas em que logaritmos aparecem, como na análise de **busca binária** e de algoritmos de **ordenação**. Na **busca binária**, você abre uma lista ordenada no meio e descarta metade a cada passo. Com 1.000.000 de itens, bastam **log₂ 1.000.000 ≈ 20** passos. Com 1 bilhão, apenas cerca de 30. O logaritmo explica por que algoritmos que "dividem ao meio" são tão rápidos.
 
+<Brincando titulo="Bits: o jogo das vinte perguntas">
+
+No jogo de adivinhar um número, cada pergunta de **sim ou não** corta as possibilidades **pela metade**. Com 1 pergunta, você distingue 2 opções. Com 2, são 4. Com 10, são 2¹⁰ = 1.024.
+
+Então, para 1.000 opções, bastam **10 perguntas** (10 bits), porque 1.024 já passa de 1.000. O número de bits é o **logaritmo na base 2** da quantidade de opções, arredondado para cima.
+
+Cada bit a mais **dobra** quantas opções você consegue distinguir.
+
+</Brincando>
+
 <ExemploResolvido titulo="Quantos bits para 1.000 opções?">
   <Passo>Cada bit tem 2 valores. Com n bits, há 2ⁿ combinações.</Passo>
   <Passo>Precisamos de 2ⁿ maior ou igual a 1.000.</Passo>
@@ -259,6 +319,16 @@ A **computação** está entre as áreas em que logaritmos aparecem, como na an�
 O logaritmo resolve equações em que **a incógnita é o expoente**. Se R$ 1.000 crescem **10% por período**, em quanto tempo chegam a R$ 2.000? Precisamos de 1.000 · 1,1ᵗ = 2.000, ou seja, 1,1ᵗ = 2. O expoente é **t = log 2 / log 1,1 ≈ 7,3 períodos**. É o tempo de dobrar que a **regra do 70** estimou (70 ÷ 10 = 7).
 
 <QuantoTempoParaChegar />
+
+<Brincando titulo="Em quanto tempo chego lá? Quantas dobras até 100">
+
+Quantas vezes é preciso dobrar o 1 para chegar a 100? Dobrando: 1, 2, 4, 8, 16, 32, 64, 128. Com **6 dobras** são 64, ainda pouco. Com **7 dobras** são 128, já passou de 100.
+
+Então a resposta fica **entre 6 e 7**, um pouco mais de 6,6. O logaritmo dá o número exato, que não é inteiro: log₂ 100 ≈ 6,64.
+
+Isso responde perguntas como "em quanto tempo meu dinheiro chega a tal valor?": é só contar **quantas multiplicações** faltam, e o logaritmo conta para você.
+
+</Brincando>
 
 <ExemploResolvido titulo="Resolvendo 2ˣ = 100">
   <Passo>A incógnita está no expoente: use o logaritmo.</Passo>

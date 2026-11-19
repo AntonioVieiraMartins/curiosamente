@@ -115,6 +115,16 @@ Agora compare **somar** (+10 por dia) com **dobrar** (x2 por dia).
 
 A **função exponencial** tem a variável **no expoente**: **f(x) = bˣ**, com b > 0 e b diferente de 1. Não confunda com a quadrática (x²), em que a variável é a **base**. Em 2ˣ, a base é fixa (2) e o expoente é que varia.
 
+<Brincando titulo="Expoente é a quantidade de rodadas: a corrente de mensagens">
+
+Uma pessoa manda uma mensagem para **2 amigos**, e cada amigo repassa para outros 2, e assim por diante. Na rodada 1 são 2 mensagens, na rodada 2 são 4, na 3 são 8. A cada rodada, o número **dobra**.
+
+O **x** em 2ˣ conta as rodadas, e o **2** é o fator que multiplica a cada rodada. Por isso o x fica no alto, como expoente: ele diz **quantas vezes** o 2 foi multiplicado.
+
+Na função afim, o x **multiplica** um número fixo (soma o mesmo tanto a cada passo). Na exponencial, o x **conta** quantas multiplicações aconteceram.
+
+</Brincando>
+
 <ExemploResolvido titulo="Valores de f(x) = 2ˣ">
   <Passo>f(0) = 2⁰ = **1** (qualquer número não nulo elevado a 0 dá 1).</Passo>
   <Passo>f(1) = 2, f(2) = 4, f(3) = 8, f(4) = 16, f(10) = 1.024.</Passo>
@@ -160,6 +170,16 @@ Para modelar situações reais, use **x(t) = x₀ · bᵗ**: x₀ é o **valor i
 
 <Exercicio enunciado="Qual é o fator de crescimento de 20% por período? (decimal, com vírgula)" resposta="1,2" dica="1 + 20/100." resolucao="1,2." />
 
+<Brincando titulo="Expoente zero: descer a escada de volta ao começo">
+
+Pense numa escada onde cada degrau para **cima** multiplica por 2: 1, 2, 4, 8... O degrau 0 é o **começo**, antes de qualquer multiplicação. E o que você tem antes de multiplicar algo? Exatamente o valor inicial, que é 1.
+
+Outro jeito: descendo a escada, cada degrau **divide por 2**: 8, 4, 2, **1**. O degrau do zero cai em 1 porque 2 ÷ 2 = 1.
+
+É por isso que f(0) = 1 para qualquer base: no instante zero, nada foi multiplicado ainda.
+
+</Brincando>
+
 <Aprofundar titulo="Por que f(0) é sempre 1">
 Em bˣ, f(0) = b⁰ = 1 para qualquer base b não nula. Isso não é uma convenção arbitrária: vem da regra de que, ao multiplicar potências de mesma base, **somam-se os expoentes**: b³ · b⁰ = b³⁺⁰ = b³. Para isso funcionar, b⁰ tem que ser 1, o "elemento neutro" da multiplicação. Em x(t) = x₀ · bᵗ, isso significa: em t = 0, o valor é exatamente o **inicial** x₀. Perfeito para um modelo.
 </Aprofundar>
@@ -179,6 +199,16 @@ A diferença entre **linear** e **exponencial** é a diferença entre **somar** 
 
 <Exercicio enunciado="Em quantos dias o plano B (dobra, começando em 1) passa do plano A (+10 por dia)? (número)" resposta="6" dica="64 contra 60." resolucao="No dia 6: 2⁶ = 64 e A = 60." />
 
+<Brincando titulo="Somar contra dobrar: a corrida da lebre e do dobrador">
+
+Dois corredores largam juntos. A **lebre** soma 10 metros por minuto. O **dobrador** anda 1 metro no primeiro minuto, 2 no segundo, 4 no terceiro e assim por diante.
+
+No começo a lebre ganha de longe: 10, 20, 30, enquanto o dobrador faz 1, 2, 4. Mas o dobrador **nunca para de dobrar**. No minuto 6, ele anda 32 metros, e a lebre só 10. Os passos dele crescem a cada minuto, enquanto os da lebre ficam parados.
+
+Por isso a exponencial sempre vence no fim: qualquer ritmo que **só soma** é alcançado e ultrapassado por quem **multiplica**.
+
+</Brincando>
+
 <Aprofundar titulo="Por que o exponencial sempre vence no fim">
 No longo prazo, o crescimento exponencial **ultrapassa** o linear e o polinomial. Intuição: no linear, o que você soma é **fixo**; no exponencial, o que você soma é uma **parte do que já tem**, e esse "já tem" não para de crescer. Dá para ver numa tabela de razão: no exponencial, y(t+1)/y(t) = b é **constante**; no linear (10, 20, 30, 40...), a razão y(t+1)/y(t) **diminui** com o tempo (20/10 = 2, 30/20 = 1,5, 40/30 ≈ 1,33...). Quando a razão constante é maior que 1, o exponencial vence todo mundo. Existem crescimentos **ainda mais rápidos** que o exponencial, como o fatorial.
 </Aprofundar>
@@ -188,6 +218,16 @@ No longo prazo, o crescimento exponencial **ultrapassa** o linear e o polinomial
 Uma pergunta útil: **em quanto tempo o valor dobra?** Existe a **regra do 70**: o **tempo de dobrar** é aproximadamente **70 dividido pela taxa percentual** por período. Se uma dívida cresce **5% ao mês**, ela dobra em cerca de 70/5 = **14 meses**. Com 10%, em cerca de 7 períodos. É um atalho para a conta exata, que usa logaritmos.
 
 <TempoParaDobrar />
+
+<Brincando titulo="Regra do 70: o atalho de bolso">
+
+Quanto tempo o dinheiro leva para dobrar? A conta exata pede logaritmo, mas existe um **atalho de bolso**: divida **70** pela taxa em porcentagem.
+
+A 7% ao ano: 70 ÷ 7 = **10 anos**. Teste: multiplicando 1 por 1,07 dez vezes, o resultado fica perto de 1,97, quase 2. A 10% ao ano: 70 ÷ 10 = 7 anos.
+
+O atalho é só uma aproximação, que funciona bem para taxas pequenas. A ideia por trás é que o tempo de dobrar é inversamente proporcional à taxa: **quanto maior o crescimento, menos tempo para dobrar**.
+
+</Brincando>
 
 <ExemploResolvido titulo="Quando dobra o dinheiro a 7% ao ano?">
   <Passo>Regra do 70: 70 ÷ 7 = **10 anos**.</Passo>

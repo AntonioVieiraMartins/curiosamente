@@ -62,6 +62,14 @@ Imagine uma **máquina** com uma entrada e uma saída. Você coloca um número, 
 
 A palavra-chave da definição é **exatamente**. Uma função de um conjunto X em um conjunto Y **associa a cada elemento de X exatamente um elemento de Y**. Se a mesma entrada pudesse dar duas saídas, a máquina seria "indecisa", e **não** seria uma função. Já **duas entradas diferentes com a mesma saída** é perfeitamente permitido: duas pessoas podem ter a mesma idade.
 
+<Brincando titulo="Exatamente uma saída: a máquina de refrigerante">
+
+Numa máquina de refrigerante, você aperta o botão **A3** e sai uma lata. Se hoje sai uma cola, a máquina precisa dar sempre cola ao apertar A3. Se desse cola numa hora e suco na outra, ela estaria **quebrada**.
+
+Uma função é assim: para **cada entrada**, uma **única saída**. Entradas diferentes podem dar a mesma saída, como dois botões que servem o mesmo refrigerante. O que não pode é a **mesma entrada** dar duas saídas diferentes.
+
+</Brincando>
+
 ## 3. Os nomes: domínio, contradomínio, imagem
 
 - O conjunto das **entradas** possíveis é o **domínio**.
@@ -69,6 +77,14 @@ A palavra-chave da definição é **exatamente**. Uma função de um conjunto X 
 - O conjunto das saídas que **de fato aparecem** é a **imagem** (atenção: "range", em inglês, às vezes significa o contradomínio).
 
 Em f(x) = x², com x real, o domínio é todos os reais, o contradomínio pode ser todos os reais, mas a **imagem** só tem os números **maiores ou iguais a 0**, porque um quadrado nunca é negativo.
+
+<Brincando titulo="Domínio, contradomínio e imagem: a máquina e o cardápio">
+
+Na mesma máquina, o **domínio** são os botões que existem para apertar (o que pode **entrar**). O **contradomínio** é o cardápio inteiro de produtos que a máquina poderia ter, e a **imagem** é só o que ela **realmente serve**.
+
+Pode haver produto no cardápio que nunca sai, mas a imagem só conta os que saem. Então a imagem é sempre uma parte do contradomínio, ou ele inteiro.
+
+</Brincando>
 
 ## 4. f(x) é só um nome
 
@@ -161,6 +177,16 @@ Quando a tabela tem só alguns valores de x (como 1, 2, 3), o gráfico são **po
 
 Dá para saber se um **gráfico** representa uma função olhando para ele. Existe o **teste da reta vertical**: se **qualquer** reta vertical cruza o gráfico em **exatamente um ponto**, o gráfico é de uma função. Se alguma reta vertical encosta em **dois** pontos, uma entrada (x) tem **duas saídas** (y): não é função.
 
+<Brincando titulo="Teste da reta vertical: o pedágio">
+
+Imagine que, em cada valor de x, há um **pedágio** numa estrada vertical, e ele só aceita **um** carro por vez. Passe uma reta vertical pelo gráfico: ela é o pedágio daquele x.
+
+Se a reta toca o gráfico em **um** ponto só, a máquina deu uma resposta única, e está tudo certo. Se toca em **dois pontos**, a máquina deu duas respostas para a mesma entrada, e então não é função.
+
+É o caso do círculo: quase todo x da reta toca o círculo duas vezes, em cima e embaixo.
+
+</Brincando>
+
 <ExemploResolvido titulo="O círculo não é função">
   <Passo>Considere o círculo de raio 1 centrado na origem.</Passo>
   <Passo>A reta vertical x = 0 cruza o círculo em dois pontos: (0, 1) e (0, -1).</Passo>
@@ -177,6 +203,16 @@ Dá para saber se um **gráfico** representa uma função olhando para ele. Exis
 Nem toda regra funciona para **qualquer** número. Em f(x) = **1/x**, não dá para usar x = 0 (não se divide por zero). Em f(x) = **√x**, não existe raiz quadrada real de número negativo. O conjunto de valores de x para os quais a regra **faz sentido** é o **domínio** da função.
 
 <DominioDaFuncao />
+
+<Brincando titulo="Domínio: onde a máquina trava">
+
+Toda máquina tem **entradas que ela não aguenta**. A calculadora mostra "erro" quando você pede para dividir por zero, porque a conta não tem resposta.
+
+Na função 1/x, o único valor proibido é o **zero**: aí a máquina trava. Todos os outros números entram e saem sem problema.
+
+O **domínio** é o conjunto das entradas que a máquina aceita. Para achá-lo, é só procurar o que **quebra a conta**: divisão por zero e, mais adiante, raiz de número negativo.
+
+</Brincando>
 
 <ExemploResolvido titulo="O domínio de f(x) = 1/x">
   <Passo>Teste x = 2: f(2) = 1/2 = 0,5. Funciona.</Passo>
@@ -217,6 +253,16 @@ Num gráfico, **x** está no eixo horizontal e **y** no vertical. Para achar f(2
 E se a saída de uma máquina **entrar em outra**? Isso é **compor** funções. A composição (g∘f)(x) = g(f(x)) é associativa, mas **não é comutativa**: trocar a ordem das máquinas muda o resultado.
 
 <ComporMaquinas />
+
+<Brincando titulo="Compor funções: duas máquinas na mesma fábrica">
+
+Numa fábrica, uma máquina **lava** a peça e a seguinte **embala**. A peça entra na primeira, e **a saída dela vira a entrada da segunda**. É isso que significa compor funções: g(f(x)) quer dizer "primeiro f, depois g".
+
+A **ordem importa**. Lavar e depois embalar não é o mesmo que embalar e depois lavar, porque a embalagem ia ficar molhada. Por isso g(f(2)) e f(g(2)) podem dar resultados diferentes.
+
+Para calcular, comece pelo que está **mais dentro dos parênteses** e vá saindo.
+
+</Brincando>
 
 <ExemploResolvido titulo="g(f(2)) e f(g(2))">
   <Passo>Seja f(x) = 2x e g(x) = x + 3.</Passo>
