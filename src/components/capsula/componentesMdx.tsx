@@ -11,6 +11,7 @@ import Resumo from './Resumo'
 import Exercicio from './Exercicio'
 import ExemploResolvido, { Passo } from './ExemploResolvido'
 import Aprofundar from './Aprofundar'
+import Brincando from './Brincando'
 
 // Componentes que todo capsula.mdx pode usar sem precisar de "import",
 // e o visual dos elementos comuns do Markdown (parágrafo, lista, código...)
@@ -31,6 +32,7 @@ export const componentesMdx: MDXComponents = {
   ExemploResolvido,
   Passo,
   Aprofundar,
+  Brincando,
   p: (props) => <p className="max-w-[65ch] text-[17px] leading-[1.7]" {...props} />,
   h2: (props) => <h2 className="pt-2 font-serif text-2xl font-medium" {...props} />,
   h3: (props) => <h3 className="pt-2 font-semibold" {...props} />,

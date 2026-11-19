@@ -146,6 +146,16 @@ Por isso, é possível calcular o limite de coisas complicadas **por partes**. O
 
 <Exercicio enunciado="Limite de x² · (x + 1) quando x tende a 2? (número)" resposta="12" dica="O produto dos limites: 4 e 3." resolucao="2² · (2 + 1) = 4 · 3 = 12." />
 
+<Brincando titulo="Por que dá para calcular por partes? A lanchonete">
+
+Imagine uma lanchonete em que o **lanche** está custando quase R$ 10 e a **bebida** quase R$ 4, porque os preços estão sendo ajustados aos poucos. Quanto você espera pagar pelo combo? **Quase R$ 14**. Se cada preço chega perto de um valor, a soma chega perto da soma dos valores. É isso que a regra da soma diz. Com a diferença e o produto, o raciocínio é o mesmo.
+
+Já a divisão pede cuidado. Dividir uma pizza entre 4 pessoas dá fatias grandes. Entre 2 pessoas, fatias maiores ainda. Entre **quase ninguém** (denominador chegando perto de zero), a fatia fica **gigante**. Por isso o limite do denominador **não pode ser zero**: a conta começa a sair do controle.
+
+E o **0 ÷ 0**? Pense na pergunta "quantas vezes o 0 cabe no 0?". Qualquer resposta serve, porque 0 × 5 = 0, 0 × 100 = 0, e assim por diante. Sozinha, a conta **não escolhe um valor**, e por isso se chama indeterminada. Para descobrir o valor, é preciso olhar **como** o numerador e o denominador chegam a zero, e é isso que a fatoração faz.
+
+</Brincando>
+
 <Aprofundar titulo="As leis dos limites e as formas indeterminadas">
 
 Se os limites de f e g em um ponto existem e são **finitos**, então o limite de f + g, de f − g e de f · g é a soma, a diferença e o produto dos limites. No **quociente** f ÷ g, vale a mesma ideia, desde que o limite de g **não seja zero**.
@@ -167,6 +177,18 @@ Quando a substituição dá **0 ÷ 0**, o limite ainda pode existir. O truque qu
 </ExemploResolvido>
 
 Cancelar é permitido porque o limite **nunca usa o ponto em si**, só os valores bem ao redor.
+
+<Brincando titulo="Por que posso cancelar? A rua com a casa faltando">
+
+Pense numa rua com casas numeradas. A casa **número 3** foi demolida, e o terreno ficou vazio. A rua continua a mesma, e quem anda por ela vai passando pelos números 2,9, 2,99, 2,999... e depois 3,001, 3,01, 3,1...
+
+O limite é a pergunta: **"para onde a rua leva quem anda por ela?"** Não importa se a casa 3 existe. O que importa é onde estão as casas ao redor.
+
+Na fração (x − 3)(x + 3) ÷ (x − 3), o fator x − 3 só é **zero na casa 3**, a casa que não conta. Em **todas as outras casas** (2,99 ou 3,01, por exemplo), x − 3 é um número comum, diferente de zero, e cancelar é permitido. Cancelando, a rua vira "x + 3", uma rua sem buracos que chega ao número **6**.
+
+Resumindo: a fração e "x + 3" são **iguais em todas as casas, menos na casa 3**. Como o limite ignora a casa 3, os dois têm o mesmo limite.
+
+</Brincando>
 
 <Exercicio enunciado="Limite de (x² − 4) ÷ (x − 2) quando x tende a 2? (número)" resposta="4" dica="x² − 4 = (x − 2)(x + 2)." resolucao="Sobra x + 2, que perto de 2 vale 4." />
 
@@ -212,6 +234,20 @@ Há três tipos. O **buraco** (removível): o limite existe, mas f(a) falta ou e
 
 São contínuas as funções **constantes**, a função **identidade** f(x) = x, todos os **polinômios**, as **racionais** onde estão definidas, e também sen x, cos x, eˣ e o logaritmo natural (para x positivo).
 
+<Brincando titulo="As três condições: a ponte que precisa fechar">
+
+Imagine uma ponte sobre um rio. Duas equipes constroem, uma de cada margem, e a ponte só funciona se **três coisas** derem certo.
+
+**1. Existe um pilar no ponto de encontro** (f de a existe). Se falta o pilar, há um buraco no meio.
+
+**2. As duas equipes chegam ao mesmo ponto** (o limite existe). Se uma equipe termina num lugar e a outra bem mais acima, há um degrau: é o salto.
+
+**3. O pilar está na altura em que as duas equipes chegaram** (limite igual a f de a). Se as duas equipes se encontram na altura 5 mas o pilar está na altura 8, ninguém atravessa.
+
+Quando as três coisas dão certo, dá para atravessar sem pular nem tirar o pé do chão. É isso que o "lápis sem sair do papel" quer dizer. Falhou uma, a ponte tem defeito, e o **tipo de defeito** (buraco, salto ou abismo) diz qual condição falhou.
+
+</Brincando>
+
 <Exercicio enunciado="A função (x² − 1) ÷ (x − 1) é contínua em x = 1? (sim ou nao)" resposta="nao" dica="Ela está definida em x = 1?" resolucao="Não: f(1) não existe (0 ÷ 0). É um buraco, e o limite (2) existe." />
 
 <Exercicio enunciado="A função x + 1 é contínua em x = 1? (sim ou nao)" resposta="sim" dica="É um polinômio." resolucao="Sim: f(1) = 2 e o limite também é 2." />
@@ -240,6 +276,20 @@ Um amigo diz: "aceito que f(x) erre por **no máximo ε** em relação ao limite
 
 Na função 2x + 1 perto de 3, o erro de f é **o dobro** do erro de x. Por isso serve **δ = ε ÷ 2**. Quanto mais exigente a tolerância, menor o δ.
 
+<Brincando titulo="O jogo do épsilon e do delta: o marceneiro e o cliente">
+
+Um cliente encomenda uma peça de madeira e diz: "o comprimento certo é **7 cm**, e eu aceito errar por **no máximo 0,2 cm**". Esse 0,2 é o **ε (épsilon)**: a **tolerância** do cliente.
+
+Só que o marceneiro não corta a madeira com régua perfeita. A peça sai com o **dobro** do erro do corte, porque a máquina trabalha com a conta 2x + 1. A pergunta do marceneiro é: **"com que precisão preciso cortar?"** Essa precisão é o **δ (delta)**.
+
+Se o corte errar 0,1, a peça erra 0,2, que o cliente aceita. Então **δ = 0,1** (metade do ε), e o marceneiro faz o corte com cuidado até esse limite.
+
+Agora o cliente fica exigente: "agora aceito só 0,02". O marceneiro responde: "então preciso cortar com erro de até 0,01". **Para qualquer tolerância que o cliente invente, por menor que seja, existe uma precisão de corte que dá conta.** Quando o marceneiro sempre tem resposta, dizemos que o limite é verdadeiro.
+
+Resumindo as letras: **ε é o pedido do cliente** (quanto erro da peça é aceito) e **δ é a resposta do marceneiro** (quanto erro no corte é aceito). A definição formal só escreve esse jogo em símbolos.
+
+</Brincando>
+
 <Exercicio enunciado="Em f(x) = 2x + 1 perto de x = 3, qual é o maior δ que serve para ε = 0,2? (número)" resposta="0,1" dica="O erro de f é 2 vezes o erro de x: δ = ε ÷ 2." resolucao="δ = 0,2 ÷ 2 = 0,1." />
 
 ## Passo 7: limites no infinito
@@ -249,6 +299,18 @@ O limite também pergunta: o que acontece quando **x cresce sem parar**? Exemplo
 A ideia: um número dividido por algo **enorme** vira **quase zero**. Por isso, o limite de **1 ÷ x** quando x tende ao infinito é **0**. Escrevemos lim (x → ∞) 1/x = 0.
 
 <LimiteNoInfinito />
+
+<Brincando titulo="Por que 1 ÷ x vira zero? A pizza e a multidão">
+
+Uma pizza é dividida igualmente entre **x pessoas**. Cada uma recebe 1 ÷ x da pizza.
+
+Com 2 pessoas, cada fatia é **metade**. Com 10, é **um décimo**. Com 1.000, é **um milésimo**: uma lasca. Com 1 milhão de pessoas, a fatia é tão fina que quase não dá para ver.
+
+Quanto mais gente na fila, **menor** a fatia, e ela vai ficando tão perto de "nada" quanto você quiser, bastando chamar mais gente. A fatia nunca vira **exatamente** zero (ainda é um pedaço de pizza), mas **chega tão perto de zero quanto se pedir**. Isso é um limite igual a 0.
+
+Esse raciocínio resolve a conta (3x + 5) ÷ x. Ela é o mesmo que **3 + 5 ÷ x**: três pizzas inteiras por pessoa mais uma fatia fina que vai sumindo. No fim, só sobram as **3 pizzas**.
+
+</Brincando>
 
 <ExemploResolvido titulo="Limite no infinito de uma fração">
   <Passo>Calcule o limite de (3x + 5) ÷ x quando x tende ao infinito.</Passo>
@@ -268,6 +330,18 @@ Se uma função é **contínua** num intervalo e muda de negativa para positiva,
 Essa ideia ajuda a **achar raízes** de equações difíceis. Divida o intervalo ao meio, olhe o sinal no meio e fique com a metade em que o sinal muda. Cada corte **encurrala** a raiz.
 
 <BisseccaoDaRaiz />
+
+<Brincando titulo="O teorema do valor intermediário: a escada e o elevador">
+
+Você está no **subsolo** de um prédio, a 3 metros abaixo do chão (altura −3). Depois, aparece no **2º andar**, a 2 metros acima (altura +2). Entre um momento e outro, você passou **pelo térreo** (altura 0)?
+
+Se foi **de escada**, sim, obrigatoriamente: você pisou em cada altura no caminho. Se alguém **teletransportou** você, talvez não. A **continuidade** é a regra de que **não há teletransporte**: o gráfico não pula.
+
+O teorema diz só isso: **sem pular, quem sai de baixo do zero e chega acima do zero passa pelo zero**. A raiz de uma equação é o ponto em que o gráfico cruza a altura zero.
+
+A bissecção usa isso como um jogo de adivinhar: "a raiz está na metade da esquerda ou da direita?". Olhando o **sinal no meio**, você descarta metade a cada rodada, como no jogo de "acertar o número de 1 a 100" perguntando "é maior ou menor?". Em poucas rodadas a raiz fica encurralada.
+
+</Brincando>
 
 <Exercicio enunciado="Uma função contínua tem f(0) = −3 e f(4) = 2. Existe raiz entre 0 e 4? (sim ou nao)" resposta="sim" dica="O sinal muda de negativo para positivo." resolucao="Sim: sendo contínua, precisa passar por zero." />
 
