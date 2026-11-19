@@ -95,7 +95,7 @@ Componentes disponíveis sem precisar de `import` (ficam em `src/components/caps
 | `<LembrarPalpite chave="inicial" opcoes correta seAcertou seErrou />` | Mais adiante, lembra o palpite e compara |
 | `<Resumo>…lista…</Resumo>` | Caixa "Para levar" com as ideias principais (vai em Conexões). Termina com um parágrafo **"Um pouco de história."** do assunto |
 | `<Aprofundar titulo="…">…</Aprofundar>` | Caixa escondida (prova, fórmula, variações) dentro do Conteúdo, colocada logo depois do tópico que aprofunda. Abrir a primeira rende o XP de Aprofundar |
-| `<Brincando titulo="…">…</Brincando>` | Caixa azul escondida "Explicando brincando": a mesma ideia de uma fórmula ou regra difícil, contada com uma brincadeira ou cena do dia a dia. Sem XP. Vai perto do trecho que explica (começou em Limites e continuidade) |
+| `<Brincando titulo="…">…</Brincando>` | Caixa azul escondida "Explicação lúdica": a mesma ideia de uma fórmula ou regra difícil, contada com uma brincadeira ou cena do dia a dia. Sem XP. Vai perto do trecho que explica (começou em Limites e continuidade) |
 | `<ExemploResolvido titulo="…"><Passo>…</Passo>…</ExemploResolvido>` | Conta resolvida, um passo revelado por vez |
 | `<Exercicio enunciado="…" resposta="3/8" dica="…" resolucao="…" />` | Exercício com resposta digitada (aceita 3/8, 0,375 ou 1 1/2) |
 

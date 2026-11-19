@@ -11,7 +11,7 @@ export default function Brincando({ titulo, children }: { titulo: string; childr
       <button type="button" onClick={() => setAberto(!aberto)} aria-expanded={aberto}
         className="flex min-h-14 w-full items-center justify-between gap-3 rounded-2xl px-4 py-3 text-left sm:px-5">
         <span>
-          <span className="block text-xs font-semibold uppercase tracking-[0.12em] text-azul-texto">Explicando brincando</span>
+          <span className="block text-xs font-semibold uppercase tracking-[0.12em] text-azul-texto">Explicação lúdica</span>
           <span className="block font-semibold leading-snug">{titulo}</span>
         </span>
         <span aria-hidden="true" className="grid size-8 shrink-0 place-items-center rounded-full bg-superficie text-xl font-semibold">{aberto ? '−' : '+'}</span>
