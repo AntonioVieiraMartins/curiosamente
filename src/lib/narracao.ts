@@ -114,6 +114,7 @@ const simbolos: Record<string, string> = {
   '×': ' vezes ', '÷': ' dividido por ', '→': ' ', '←': ' ', '≈': ' aproximadamente ', '√': ' raiz de ',
   '₁': '1', '₂': '2', '₃': '3', '|': ' sabendo que ', '=': ' igual a ',
   '−': ' menos ', '²': ' ao quadrado ', '³': ' ao cubo ', '≠': ' diferente de ',
+  '≤': ' menor ou igual a ', '≥': ' maior ou igual a ', '<': ' menor que ', '>': ' maior que ',
 }
 
 export function prepararParaFala(texto: string) {

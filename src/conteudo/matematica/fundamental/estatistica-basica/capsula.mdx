@@ -1,0 +1,386 @@
+import MediaModaMediana from '../../../../components/simulacoes/MediaModaMediana'
+import ArrumarEAcharOMeio from '../../../../components/simulacoes/ArrumarEAcharOMeio'
+import MesmaMediaOutraTurma from '../../../../components/simulacoes/MesmaMediaOutraTurma'
+import MediaPonderada from '../../../../components/simulacoes/MediaPonderada'
+import TabelaDeFrequencia from '../../../../components/simulacoes/TabelaDeFrequencia'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Median, Mode, Adolphe Quetelet), listadas no meta.ts. Os dados dos exemplos são inventados, para a conta. */}
+
+<Etapa id="gancho">
+
+Uma loja tem 5 funcionários. Quatro ganham R$ 2.000 por mês, e o dono ganha R$ 12.000. Somando tudo e dividindo por 5, a **média** dá R$ 4.000.
+
+Um anúncio diz: "Aqui o salário médio é de R$ 4.000!". Parece ótimo. Mas olhe para os cinco salários: **ninguém** ganha perto de 4.000. A média existe, mas não descreve ninguém. Isso é a estatística: resumir muitos números em poucos, **sem se enganar**.
+
+<Palpite
+  chave="inicial"
+  pergunta="Quatro funcionários ganham R$ 2.000 e o dono ganha R$ 12.000 (média de R$ 4.000). A média descreve bem o salário típico?"
+  opcoes={['Sim, é uma boa descrição do salário típico', 'Não, quase ninguém ganha perto disso', 'Só descreve se o dono sair']}
+/>
+
+Nesta cápsula você vai conhecer três jeitos de resumir dados (média, mediana e moda), ver quando cada um funciona, aprender a média com pesos e a tabela de frequência, e descobrir por que **a mesma média pode esconder grupos muito diferentes**.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Resumir muita informação num número é uma ideia antiga. Mas os nomes e o uso científico vieram aos poucos.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Antiguidade', texto: 'Astrônomos e navegadores já tiravam a média de várias medidas para diminuir o erro de cada uma.' },
+  { ano: '1835', texto: 'O belga Adolphe Quetelet publica a ideia do "homem médio": estudar uma população por seus valores médios.' },
+  { ano: '1881', texto: 'Francis Galton usa o termo "mediana" em inglês (median) para o valor do meio.' },
+  { ano: '1895', texto: 'Karl Pearson dá o nome de moda (mode) ao valor que mais se repete.' },
+]} />
+
+## Medir várias vezes e tirar a média
+
+Quando alguém mede a mesma coisa várias vezes (a altura de uma estrela, o tamanho de um terreno), os resultados diferem um pouco. Tirar a **média** das medidas ajuda a diminuir o erro. Esse hábito é antigo e está por trás de boa parte da ciência.
+
+## O homem médio de Quetelet
+
+No século XIX, **Adolphe Quetelet** estudou dados de populações (altura, peso, nascimentos, crimes) e propôs a ideia do "homem médio": uma pessoa imaginária formada pelos valores médios do grupo. A ideia foi influente e também criticada, porque **ninguém** é exatamente "o médio". É o mesmo aviso do gancho: a média descreve o grupo, não cada pessoa.
+
+## Os nomes da mediana e da moda
+
+O valor do meio já era usado há tempos, mas o nome em inglês *median* é associado a **Francis Galton**, que o usou em 1881. A **moda** (do inglês *mode*, "o que está na moda") foi batizada por **Karl Pearson**, em 1895. Hoje os três (média, mediana e moda) são os primeiros números que se calcula ao olhar para qualquer conjunto de dados.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Dados: o que vamos resumir
+
+**Dados** são os números que coletamos: alturas dos alunos, notas de uma prova, salários, preços. Quando são muitos, ninguém consegue guardar todos de cabeça. Então resumimos com um valor que diga **onde está o centro** dos dados. Existem três jeitos principais.
+
+## 2. Média: repartir igualzinho
+
+A <Termo cor="azul">média</Termo> (ou média aritmética) é a soma de todos os valores dividida pela quantidade de valores.
+
+**média = soma ÷ quantidade**
+
+Três amigos têm 2, 4 e 9 balas. A soma é 15, e 15 ÷ 3 = **5**. A média é 5 balas por pessoa.
+
+<Brincando titulo="Média: juntar tudo e repartir igualzinho">
+
+Imagine que os três amigos **juntam todas as balas** num pote (2 + 4 + 9 = 15) e depois **repartem igualmente**. Cada um fica com 5.
+
+A média é o valor que cada um teria se **todo mundo tivesse a mesma quantidade**. Por isso ela é como um "nivelamento": quem tinha muito cede para quem tinha pouco, até ficar tudo parelho.
+
+É também por isso que um valor muito alto (o dono de R$ 12.000) **puxa** a média para cima: no pote, entra muito dinheiro, e a repartição igual sobe, mesmo que ninguém mais tenha recebido mais.
+
+</Brincando>
+
+## 3. Mediana: o do meio da fila
+
+A <Termo cor="verde">mediana</Termo> é o valor que fica **no meio** dos dados quando os colocamos **em ordem crescente**. Metade dos valores fica abaixo dela e metade fica acima.
+
+- Se a quantidade é **ímpar**, é o do meio mesmo.
+- Se é **par**, há dois no meio, e a mediana é a **média dos dois**.
+
+<Brincando titulo="Mediana: a fila por altura">
+
+Coloque todos os alunos de uma sala **em fila, do mais baixo ao mais alto**. A pessoa que ficar **bem no meio da fila** é a mediana: tem tanta gente mais baixa quanto mais alta.
+
+Não importa **quão** alto é o último da fila: se ele tem 1,80 m ou 2,30 m, o do meio continua sendo o mesmo. Por isso a mediana **não se assusta** com valores extremos, e a média sim.
+
+</Brincando>
+
+<ArrumarEAcharOMeio />
+
+## 4. Moda: o campeão de votos
+
+A <Termo cor="coral">moda</Termo> é o valor que **mais aparece**. Se os tamanhos de sapato de sete pessoas são 36, 37, 37, 38, 37, 39 e 40, a moda é **37** (aparece três vezes).
+
+Pode haver **mais de uma moda** (se dois valores empatam como os mais frequentes) e pode **não haver moda** (se ninguém se repete).
+
+<Brincando titulo="Moda: o mais votado">
+
+Pense numa eleição de **sabor de sorvete** da turma: chocolate 8 votos, morango 5, baunilha 3. A moda é **chocolate**, o mais votado.
+
+Aqui não dá para fazer média: "o sabor médio entre chocolate e baunilha" não existe. A moda é a única das três que funciona com **categorias** (cores, sabores, marcas), e não só com números.
+
+</Brincando>
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Se chegar uma pessoa com salário altíssimo num grupo, o que muda mais: a média ou a mediana?"
+  opcoes={['A média muda muito, a mediana muda pouco', 'A mediana muda muito, a média muda pouco', 'As duas mudam o mesmo tanto']}
+  correta={0}
+  explicacao="A média soma todos os valores, então um valor enorme a puxa para cima. A mediana só olha para a posição do meio, então quase não se mexe."
+>
+
+Deslize o salário do chefe e compare:
+
+<MediaModaMediana />
+
+Repare que, a partir de certo ponto, a média sobe sem parar, mas a mediana fica quase parada.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Sim, é uma boa descrição do salário típico', 'Não, quase ninguém ganha perto disso', 'Só descreve se o dono sair']}
+  correta={1}
+  seAcertou="E o palpite do começo? Certo: a média de R$ 4.000 foi puxada pelo salário do dono. Quatro dos cinco ganham R$ 2.000, e a mediana (R$ 2.000) descreve melhor o típico."
+  seErrou="E o palpite do começo? A média de R$ 4.000 engana: quatro dos cinco ganham R$ 2.000, e só o dono puxa a média para cima. A mediana, R$ 2.000, descreve melhor o salário típico."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Calcular a média
+
+Some todos os valores e divida pela quantidade. Quanto maior o valor, mais ele pesa na soma.
+
+<ExemploResolvido titulo="Média de 12, 15, 18 e 15">
+  <Passo>Some os valores: 12 + 15 + 18 + 15 = 60.</Passo>
+  <Passo>Conte quantos são: 4 valores.</Passo>
+  <Passo>Divida: 60 ÷ 4 = **15**.</Passo>
+  <Passo>Confira: se cada um tivesse 15, a soma seria 4 × 15 = 60, igual à soma original. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é a média de 4, 8 e 6?" resposta="6" dica="Some e divida por 3." resolucao="4 + 8 + 6 = 18 e 18 ÷ 3 = 6." />
+
+<Exercicio enunciado="Qual é a média de 2, 4 e 9?" resposta="5" dica="Soma 15, dividida por 3." resolucao="2 + 4 + 9 = 15 e 15 ÷ 3 = 5." />
+
+<Exercicio enunciado="A média de 5 números é 8. Quanto vale a soma deles?" resposta="40" dica="Média × quantidade = soma." resolucao="média = soma ÷ quantidade, então soma = 8 × 5 = 40." />
+
+<Aprofundar titulo="Por que a média é o ponto de equilíbrio">
+
+Imagine os valores como pesos iguais numa gangorra, cada um no lugar do número dele na régua. A média é o ponto onde a gangorra **fica em equilíbrio**. A soma das distâncias dos valores que estão abaixo da média é igual à soma das distâncias dos que estão acima. Em 2, 4 e 9, com média 5: abaixo ficam 3 e 1 de distância (soma 4); acima fica 4. Os dois lados dão 4. Isso explica por que um valor muito distante arrasta a média: ele precisa de muita distância do outro lado para equilibrar.
+
+</Aprofundar>
+
+## Média com pesos (ponderada)
+
+Nem todo valor vale o mesmo. Na escola, a prova costuma valer mais que a participação. Então se usa a <Termo cor="amarelo">média ponderada</Termo>: cada valor é multiplicado pelo seu **peso**, e a soma é dividida pela **soma dos pesos**.
+
+<Brincando titulo="Peso: votos que valem mais">
+
+Numa votação em que o voto da diretora **vale 3** e o de cada aluno **vale 1**, a diretora não é uma pessoa a mais: é como se ela fosse **três pessoas** votando junto.
+
+Na média ponderada é igual: uma nota com peso 5 conta como se aparecesse **5 vezes** na lista. A conta (nota × peso) é só um atalho para não escrever a mesma nota cinco vezes.
+
+</Brincando>
+
+<MediaPonderada />
+
+<ExemploResolvido titulo="Notas 6 (peso 2), 9 (peso 3) e 8 (peso 5): qual a média ponderada?">
+  <Passo>Multiplique cada nota pelo peso: 6 × 2 = 12, 9 × 3 = 27 e 8 × 5 = 40.</Passo>
+  <Passo>Some: 12 + 27 + 40 = 79.</Passo>
+  <Passo>Some os pesos: 2 + 3 + 5 = 10.</Passo>
+  <Passo>Divida: 79 ÷ 10 = **7,9**. (A média simples seria 7,67: a nota 8, de peso maior, puxou o resultado para cima.)</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Notas 6 (peso 2), 9 (peso 3) e 8 (peso 5). Qual a média ponderada?" resposta="7,9" dica="(6×2 + 9×3 + 8×5) ÷ 10." resolucao="(12 + 27 + 40) ÷ 10 = 79 ÷ 10 = 7,9." />
+
+<Exercicio enunciado="Três provas têm média 6. Que nota é preciso tirar na quarta prova para a média das quatro ser 7?" resposta="10" dica="Soma desejada: 4 × 7. Soma já feita: 3 × 6." resolucao="Soma desejada: 4 × 7 = 28. Soma atual: 3 × 6 = 18. Falta 28 − 18 = 10." />
+
+## Calcular a mediana
+
+Os passos: (1) coloque em ordem crescente, (2) ache o meio. Com quantidade ímpar, é o do meio; com par, é a média dos dois do meio.
+
+<ExemploResolvido titulo="Mediana de 7, 3, 9, 1 e 5, e de 8, 2, 6 e 4">
+  <Passo>Primeiro conjunto, em ordem: 1, 3, 5, 7, 9. São 5 valores, o do meio é o 3º: **5**.</Passo>
+  <Passo>Segundo conjunto, em ordem: 2, 4, 6, 8. São 4 valores, então há dois no meio: 4 e 6.</Passo>
+  <Passo>A mediana é a média dos dois: (4 + 6) ÷ 2 = **5**.</Passo>
+  <Passo>Cuidado: esquecer de colocar em ordem é o erro mais comum. No primeiro conjunto, o do meio na ordem em que estão (7, 3, **9**, 1, 5) seria 9, e está errado.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é a mediana de 7, 3, 9, 1 e 5?" resposta="5" dica="Coloque em ordem primeiro." resolucao="Em ordem: 1, 3, 5, 7, 9. O do meio é 5." />
+
+<Exercicio enunciado="Qual é a mediana de 8, 2, 6 e 4?" resposta="5" dica="São quatro valores: tire a média dos dois do meio." resolucao="Em ordem: 2, 4, 6, 8. Os do meio são 4 e 6, e (4 + 6) ÷ 2 = 5." />
+
+## Calcular a moda
+
+Conte quantas vezes cada valor aparece. A moda é o que aparece mais.
+
+<Exercicio enunciado="Qual é a moda de 3, 5, 5, 6, 5, 7 e 3?" resposta="5" dica="Conte: o 3 aparece 2 vezes, o 5 aparece..." resolucao="O 5 aparece 3 vezes, o 3 aparece 2 vezes e os outros 1 vez. A moda é 5." />
+
+## Amplitude: o quanto os dados se espalham
+
+Média, mediana e moda dizem **onde** está o centro. Mas dois grupos podem ter o mesmo centro e serem muito diferentes. A <Termo cor="coral">amplitude</Termo> diz o **tamanho da espalhada**:
+
+**amplitude = maior valor − menor valor**
+
+<MesmaMediaOutraTurma />
+
+<Brincando titulo="Amplitude: a largura do rio">
+
+Duas pessoas atravessam rios diferentes. Em ambos, a **profundidade média é 1 metro**. No primeiro rio, o fundo tem sempre uns 1 metro: dá para atravessar a pé. No segundo, há trechos rasos de 10 cm e buracos de 3 metros: muito perigoso, apesar da mesma média.
+
+A **amplitude** é como perguntar "do trecho mais raso ao mais fundo, quanto varia?". A média diz o centro. A amplitude avisa se o centro **esconde** perigo.
+
+</Brincando>
+
+<Exercicio enunciado="Qual é a amplitude de 12, 5, 20 e 9?" resposta="15" dica="Maior menos menor." resolucao="O maior é 20 e o menor é 5: 20 − 5 = 15." />
+
+## Tabela de frequência
+
+Quando há muitos dados, é prático contar quantas vezes cada valor aparece e anotar numa tabela. O número de vezes se chama <Termo cor="azul">frequência</Termo>.
+
+Perguntamos a 20 alunos quantos irmãos eles têm. A tabela:
+
+- 0 irmãos: 4 alunos
+- 1 irmão: 8 alunos
+- 2 irmãos: 5 alunos
+- 3 irmãos: 2 alunos
+- 4 irmãos: 1 aluno
+
+<TabelaDeFrequencia />
+
+Da tabela saem os três números:
+
+- **Moda:** o valor com maior frequência, que é **1 irmão** (8 alunos).
+- **Média:** some "valor × frequência" e divida pelo total: (0×4 + 1×8 + 2×5 + 3×2 + 4×1) ÷ 20 = 28 ÷ 20 = **1,4 irmãos**. É uma média ponderada, em que a frequência é o peso.
+- **Mediana:** são 20 alunos, então a mediana é a média do 10º e do 11º. Contando em ordem, os 4 primeiros têm 0 e os 8 seguintes (do 5º ao 12º) têm 1. Então o 10º e o 11º têm 1, e a mediana é **1**.
+
+<Exercicio enunciado="Na tabela dos irmãos, qual é a média de irmãos por aluno?" resposta="1,4" dica="Some valor × frequência: 0 + 8 + 10 + 6 + 4." resolucao="(0×4 + 1×8 + 2×5 + 3×2 + 4×1) = 28. Dividindo por 20 alunos: 1,4." />
+
+<Exercicio enunciado="Na mesma tabela, qual é a mediana?" resposta="1" dica="Com 20 alunos, olhe o 10º e o 11º." resolucao="Em ordem: 4 alunos com 0, depois 8 com 1 (do 5º ao 12º). O 10º e o 11º têm 1, então a mediana é 1." />
+
+## Quando usar cada uma
+
+- **Média:** quando os valores são parecidos e sem extremos (notas de uma turma). Usa toda a informação, mas é sensível a valores exagerados.
+- **Mediana:** quando há valores muito altos ou muito baixos (salários, preços de casas). Descreve melhor o típico.
+- **Moda:** quando se quer o mais comum (o tamanho de sapato que mais sai, a cor mais votada) ou quando os dados são categorias.
+
+<ExemploResolvido titulo="Cinco salários: R$ 1.000, 1.000, 1.000, 1.000 e 6.000. Qual a média e qual a mediana?">
+  <Passo>Média: soma 10.000, dividido por 5: **R$ 2.000**.</Passo>
+  <Passo>Mediana: em ordem 1.000, 1.000, 1.000, 1.000, 6.000, o do meio é **R$ 1.000**.</Passo>
+  <Passo>Moda: R$ 1.000 (aparece 4 vezes).</Passo>
+  <Passo>A média (2.000) é o dobro do que quase todo mundo ganha. A mediana e a moda (1.000) retratam melhor o grupo. Nesse caso, quem fala em "salário médio" está iludindo.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Os números 10, 20, 30, 40 e 100 têm média 40. Qual é a diferença entre a média e a mediana?" resposta="10" dica="A mediana é o 3º valor em ordem." resolucao="A mediana é 30. A média é 200 ÷ 5 = 40. A diferença é 40 − 30 = 10: o 100 puxou a média." />
+
+<Exercicio enunciado="Quatro pessoas têm idade média de 20 anos. Chega uma pessoa de 30 anos. Qual é a nova média?" resposta="22" dica="Soma antiga: 4 × 20 = 80." resolucao="Soma antiga: 80. Nova soma: 110, dividida por 5 pessoas: 22." />
+
+<Aprofundar titulo="Por que a mediana resiste a valores extremos">
+
+A mediana só depende da **posição** na fila ordenada, não do tamanho dos números. Trocar o maior valor por outro ainda maior não muda quem está no meio. Já a média usa **todos** os valores na soma, então cada um pode puxá-la. Estatísticos chamam isso de ser **robusta**: a mediana é robusta a valores extremos (os "outliers"), a média não.
+
+</Aprofundar>
+
+<Aprofundar titulo="Não existe 'família média'">
+
+Quetelet gostava da ideia do "homem médio", mas a média pode descrever alguém que não existe. Se metade das famílias tem 1 filho e a outra metade tem 3, a média é 2 filhos, e **nenhuma** família tem esse número. A média é uma conta sobre o grupo, e não um retrato de cada um. Por isso é bom olhar também a mediana, a moda e a amplitude.
+
+</Aprofundar>
+
+## Como a média pode enganar
+
+- **Valores extremos:** um bilionário num bar faz a "renda média" do bar disparar.
+- **Média de médias:** a média das médias de duas turmas só vale se elas tiverem o mesmo tamanho.
+- **Esconder a espalhada:** a mesma média pode vir de notas todas parecidas ou de notas muito diferentes (turma A e B da simulação acima).
+- **Média de categorias:** não dá para tirar média de cores ou de sabores. Para isso, use a moda.
+
+A defesa é perguntar sempre: "e os valores individuais? Há algum extremo? Qual é a amplitude?"
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Como se calcula a média de um conjunto de números?',
+    opcoes: ['Somar tudo e dividir pela quantidade', 'Pegar o número do meio', 'Pegar o que mais se repete'],
+    correta: 0,
+    explicacao: 'Média é soma dividida pela quantidade. O "do meio" é a mediana, e o "que mais se repete" é a moda.',
+  },
+  {
+    enunciado: 'Qual é a média de 2, 4 e 9?',
+    opcoes: ['5', '4', '15'],
+    correta: 0,
+    explicacao: '2 + 4 + 9 = 15, e 15 ÷ 3 = 5. (O 15 é só a soma.)',
+  },
+  {
+    enunciado: 'Qual é a mediana de 7, 3, 9, 1 e 5?',
+    opcoes: ['9', '5', '25'],
+    correta: 1,
+    explicacao: 'Em ordem: 1, 3, 5, 7, 9. O do meio é 5. Esquecer de ordenar leva ao erro de pegar o 9.',
+  },
+  {
+    enunciado: 'Qual é a mediana de 8, 2, 6 e 4?',
+    opcoes: ['5', '4', '6'],
+    correta: 0,
+    explicacao: 'Em ordem: 2, 4, 6, 8. Com quantidade par, tira-se a média dos dois do meio: (4 + 6) ÷ 2 = 5.',
+  },
+  {
+    enunciado: 'Qual é a moda de 3, 5, 5, 6, 5, 7 e 3?',
+    opcoes: ['3', '5', '6'],
+    correta: 1,
+    explicacao: 'O 5 aparece 3 vezes, mais que qualquer outro. A moda é o valor que mais se repete.',
+  },
+  {
+    enunciado: 'Num grupo, chega um valor muito mais alto que os outros. O que acontece?',
+    opcoes: ['A média sobe bastante e a mediana quase não muda', 'A mediana sobe bastante e a média quase não muda', 'Nenhuma das duas muda'],
+    correta: 0,
+    explicacao: 'A média usa todos os valores, então um valor alto a puxa. A mediana só olha o meio da fila ordenada.',
+  },
+  {
+    enunciado: 'Qual medida é melhor para descrever o "salário típico" quando há um salário altíssimo?',
+    opcoes: ['A média', 'A mediana', 'A amplitude'],
+    correta: 1,
+    explicacao: 'A mediana não é puxada pelo valor extremo e descreve melhor o que a maioria ganha.',
+  },
+  {
+    enunciado: 'Qual é a amplitude de 12, 5, 20 e 9?',
+    opcoes: ['15', '20', '11,5'],
+    correta: 0,
+    explicacao: 'Amplitude = maior − menor = 20 − 5 = 15. O 11,5 é a média.',
+  },
+  {
+    enunciado: 'Notas 6 (peso 2), 9 (peso 3) e 8 (peso 5). Qual é a média ponderada?',
+    opcoes: ['7,67', '7,9', '23'],
+    correta: 1,
+    explicacao: '(6×2 + 9×3 + 8×5) ÷ (2 + 3 + 5) = 79 ÷ 10 = 7,9. A média simples (7,67) ignora os pesos.',
+  },
+  {
+    enunciado: 'Qual medida funciona com dados que são categorias, como sabores de sorvete?',
+    opcoes: ['Média', 'Mediana', 'Moda'],
+    correta: 2,
+    explicacao: 'Não dá para somar sabores nem ordená-los, mas dá para contar qual aparece mais: a moda.',
+  },
+  {
+    enunciado: 'Duas turmas têm média 7. A turma A tem notas entre 6 e 8; a turma B, entre 2 e 10. O que dá para afirmar?',
+    opcoes: ['As turmas são idênticas', 'A turma B tem as notas mais espalhadas (maior amplitude)', 'A turma A é melhor'],
+    correta: 1,
+    explicacao: 'A mesma média esconde espalhamentos diferentes. A amplitude de A é 2, a de B é 8.',
+  },
+  {
+    enunciado: 'Quatro pessoas têm idade média de 20 anos. Chega uma de 30. Qual é a nova média?',
+    opcoes: ['25', '22', '20'],
+    correta: 1,
+    explicacao: 'Soma antiga: 80. Nova soma: 110. Dividindo por 5: 22. Não é a média de 20 e 30 (25), porque o grupo antigo tem 4 pessoas.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Média** = soma ÷ quantidade. É o valor que cada um teria se todos tivessem o mesmo. É sensível a valores extremos.
+- **Mediana** = o valor do meio com os dados em ordem (com quantidade par, a média dos dois do meio). Não se assusta com extremos.
+- **Moda** = o valor que mais se repete. Pode haver mais de uma, ou nenhuma, e vale também para categorias.
+- **Média ponderada:** cada valor multiplicado pelo seu peso, dividido pela soma dos pesos.
+- **Amplitude** = maior − menor. Mostra se o centro esconde um grupo muito espalhado.
+- **Tabela de frequência** conta quantas vezes cada valor aparece; dela saem média, mediana e moda.
+- **A média pode enganar:** olhe também a mediana, a moda e a amplitude.
+
+**Um pouco de história.** Quetelet falou do "homem médio" em 1835, Galton usou o termo mediana em 1881 e Pearson batizou a moda em 1895. Os três nomes juntos são o primeiro kit de qualquer estatístico.
+
+</Resumo>
+
+A estatística ensina a desconfiar de um número só. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

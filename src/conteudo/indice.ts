@@ -72,15 +72,15 @@ export const capsulas: ResumoCapsula[] = [
 
   m('fundamental', 'numeros-negativos', 'Números negativos', 'Como algo pode valer menos que nada?', { grupo: '7º ano', estado: 'pronta', duracaoMin: 40 }),
   m('fundamental', 'razao-e-proporcao', 'Razão e proporção', 'A receita é para 3. A festa é para 30.', { grupo: '7º ano', estado: 'pronta', duracaoMin: 40, conexoes: ['funcao-afim'] }),
-  m('fundamental', 'expressoes-algebricas', 'Letras na matemática', 'Por que trocar números por letras?', { grupo: '7º ano' }),
+  m('fundamental', 'expressoes-algebricas', 'Letras na matemática', 'Por que trocar números por letras?', { grupo: '7º ano', estado: 'pronta', duracaoMin: 40 }),
   m('fundamental', 'equacoes-1-grau', 'Equações do 1º grau', 'Uma balança que precisa ficar equilibrada.', { grupo: '7º ano', estado: 'pronta', duracaoMin: 40, conexoes: ['razao-e-proporcao', 'sistemas-de-equacoes'] }),
-  m('fundamental', 'inequacoes', 'Inequações', 'Quantas pizzas posso pedir sem passar de R$ 100?', { grupo: '7º ano', conexoes: ['equacoes-1-grau'] }),
+  m('fundamental', 'inequacoes', 'Inequações', 'Quantas pizzas posso pedir sem passar de R$ 100?', { grupo: '7º ano', estado: 'pronta', duracaoMin: 40, conexoes: ['equacoes-1-grau'] }),
   m('fundamental', 'educacao-financeira', 'Educação financeira', 'Para onde vai o seu dinheiro no fim do mês?', { grupo: '7º ano', conexoes: ['matematica-financeira'] }),
   m('fundamental', 'poligonos', 'Triângulos e polígonos', 'Por que as abelhas usam hexágonos?', { grupo: '7º ano' }),
   m('fundamental', 'circunferencia-e-pi', 'Circunferência e Pi', 'Toda roda esconde o mesmo número.', { grupo: '7º ano' }),
   m('fundamental', 'simetria', 'Simetria e transformações', 'Espelhar, girar e deslizar figuras.', { grupo: '7º ano', conexoes: ['matrizes'] }),
   m('fundamental', 'probabilidade-simples', 'Probabilidade simples', 'Jogue uma moeda mil vezes. O que acontece?', { grupo: '7º ano', conexoes: ['monty-hall'] }),
-  m('fundamental', 'estatistica-basica', 'Média, mediana e moda', 'Quando a média engana.', { grupo: '7º ano' }),
+  m('fundamental', 'estatistica-basica', 'Média, mediana e moda', 'Quando a média engana.', { grupo: '7º ano', estado: 'pronta', duracaoMin: 40 }),
 
   m('fundamental', 'raizes', 'Raízes', 'Qual número vezes ele mesmo dá 2?', { grupo: '8º ano' }),
   m('fundamental', 'notacao-cientifica', 'Notação científica', 'Do átomo à galáxia em potências de 10.', { grupo: '8º ano' }),

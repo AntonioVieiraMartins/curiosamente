@@ -1,0 +1,466 @@
+import TruqueDoNumero from '../../../../components/simulacoes/TruqueDoNumero'
+import ValorDaExpressao from '../../../../components/simulacoes/ValorDaExpressao'
+import EquivalentesOuNao from '../../../../components/simulacoes/EquivalentesOuNao'
+import JuntarTermos from '../../../../components/simulacoes/JuntarTermos'
+import RetanguloDaDistributiva from '../../../../components/simulacoes/RetanguloDaDistributiva'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Variable, History of algebra), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Pense num número. Dobre. Some 6. Divida por 2. Agora **tire o número que você pensou**. Deu 3, certo? E deu 3 para qualquer número que você escolheu.
+
+Como dá para ter certeza de um resultado **sem saber** qual número você pensou? Existe uma ferramenta para isso: uma **letra** que fica no lugar de "qualquer número". Com ela, uma única frase vale para todos os números ao mesmo tempo.
+
+<Palpite
+  chave="inicial"
+  pergunta="Em matemática, 3n quer dizer 3 vezes n. Se n vale 4, quanto vale 3n + 2?"
+  opcoes={['14', '34', '9']}
+/>
+
+Nesta cápsula você vai trocar letras por números, escrever frases como contas, juntar termos, ver por que 2(n + 3) é igual a 2n + 6 e descobrir uma regra que serve para qualquer fila de palitos.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Durante milhares de anos, a matemática foi escrita **só com palavras**. Quem queria dizer "um número e mais um quarto dele dá 15" escrevia exatamente isso, em frases longas. As letras chegaram devagar.
+
+<LinhaDoTempo marcos={[
+  { ano: 'c. 250 d.C.', texto: 'Diofanto, em Alexandria, usa abreviações e um símbolo para o número desconhecido, um passo no caminho das letras.' },
+  { ano: '825', texto: 'Al-Khwarizmi escreve o livro que dá nome à álgebra, ainda quase todo em palavras.' },
+  { ano: '1591', texto: 'François Viète usa letras para valores conhecidos e desconhecidos, uma ideia que muda a álgebra.' },
+  { ano: '1637', texto: 'René Descartes publica La Géométrie e fixa o costume: as últimas letras (x, y, z) para o que não se sabe, as primeiras (a, b, c) para o que se sabe.' },
+]} />
+
+## Problemas sem letras
+
+Os egípcios, os babilônios e os gregos já resolviam problemas de "descobrir um número". Mas cada problema vinha em palavras, e cada autor tinha o seu jeito. Era como se, em vez de escrever "5 + 3", você escrevesse "a soma de cinco e três" **toda vez**. Dava para fazer, mas era lento e difícil de comparar.
+
+## Diofanto e as abreviações
+
+Diofanto de Alexandria (por volta do ano 250) é lembrado por usar abreviações e um símbolo para o desconhecido. Foi um começo: textos mais curtos. Mesmo assim, as ideias ainda ficavam presas a cada problema, e não havia um jeito de falar de "qualquer número".
+
+## A grande ideia de Viète
+
+No fim do século XVI, o francês **François Viète** deu um passo enorme: usar letras para os valores **conhecidos** e também para os **desconhecidos**. Com isso, dava para escrever uma regra que servia para uma família inteira de problemas, e não só para um caso. Por isso ele é chamado, muitas vezes, de pai da álgebra moderna.
+
+## Descartes arruma a casa
+
+Em 1637, **René Descartes** consolidou o hábito que usamos até hoje: as letras do **fim** do alfabeto (x, y, z) para o que **não sabemos** e as do **começo** (a, b, c) para os valores que já são dados. Você vai encontrar essa regra de ouro por toda a matemática.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Uma regra para todos os números
+
+Quanto vale o perímetro de um quadrado? Se o lado mede 3 cm, são 3 + 3 + 3 + 3 = 12 cm, ou 4 × 3. Se o lado mede 5 cm, são 4 × 5 = 20 cm. Se mede 10 cm, 4 × 10 = 40 cm.
+
+Você percebeu o padrão: **sempre** quatro vezes o lado. Em vez de repetir isso para cada medida, a matemática põe uma **letra** no lugar do lado:
+
+**P = 4 × l**
+
+Essa frase curta diz tudo. A letra **l** é uma "caixa vazia" onde cabe qualquer medida de lado. Uma letra assim, que pode mudar de valor, se chama <Termo cor="azul">variável</Termo>.
+
+<Brincando titulo="Letra: a caixa com etiqueta">
+
+Imagine uma **caixa com uma etiqueta** escrita n. Você não sabe quantas bolinhas há dentro, mas sabe que **toda caixa com essa etiqueta tem a mesma quantidade**.
+
+Se uma amiga diz "tenho 3 caixas n e mais 2 bolinhas soltas", você já consegue falar sobre o total sem abrir nada: é 3n + 2. Quando alguém abrir a caixa e disser "tem 4 bolinhas dentro", aí você troca o n por 4 e faz a conta: 3 × 4 + 2 = 14.
+
+A letra não é mistério. É só uma **caixa esperando um número**.
+
+</Brincando>
+
+## 2. Expressão algébrica
+
+Uma <Termo cor="verde">expressão algébrica</Termo> é uma conta que tem pelo menos uma letra. Exemplos: n + 5, 3n, 2n + 1, 4l. Cada pedaço separado por mais ou menos se chama **termo**. Em 2n + 1, os termos são 2n e 1.
+
+O número que fica colado na letra (o 2 de 2n) é o **coeficiente**: ele diz **quantas vezes** a letra aparece. E o 1, que não tem letra, é o termo **constante**.
+
+## 3. Como ler e escrever
+
+A matemática economiza o sinal de vezes. Por isso:
+
+- **3n** quer dizer **3 × n** (e não "30 mais n").
+- **ab** quer dizer **a × b**.
+- **n × n** se escreve **n²** (n ao quadrado).
+- **n + n** é **2n** (duas caixas n).
+- **1n** se escreve só **n**.
+
+Cuidado: **3n não é 3 e n lado a lado como num número**. Se n = 4, então 3n = 3 × 4 = 12, e **não** 34. Só os números usam o "lado a lado" para formar dezenas e centenas; letras significam multiplicação.
+
+<Brincando titulo="3n: três caixas de lápis">
+
+Pense em **3 caixas**, cada uma com n lápis. O total de lápis é 3 vezes n, ou seja, 3n.
+
+Se cada caixa tem 4 lápis, são 4 + 4 + 4 = 12 lápis. Isso é 3 × 4, e não 34. Por isso, a letra encostada num número é uma **conta de vezes escondida**: "3 caixas de n".
+
+Já n + 3 é outra história: uma caixa n **e mais** 3 lápis soltos. Com n = 4, são 7.
+
+</Brincando>
+
+## 4. Trocar a letra por um número
+
+Para saber quanto uma expressão vale, você **troca a letra pelo número** e faz a conta, respeitando a ordem das operações (primeiro vezes, depois mais). Isso se chama calcular o <Termo cor="coral">valor numérico</Termo>.
+
+<ValorDaExpressao />
+
+Repare que a mesma receita dá resultados diferentes para n diferentes, e que a expressão 2n + 1 sempre dá números ímpares.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="2(n + 3) e 2n + 3 são a mesma expressão? Ou seja: dão sempre o mesmo valor, qualquer que seja o n?"
+  opcoes={['Sim, sempre dão o mesmo valor', 'Não, só coincidem em alguns valores de n', 'Nunca coincidem']}
+  correta={1}
+  explicacao="Com n = 2, 2(2 + 3) = 10 e 2 × 2 + 3 = 7: diferentes. Elas só seriam iguais se 2n + 6 fosse igual a 2n + 3, o que nunca acontece (6 não é 3). A que é igual a 2(n + 3) é 2n + 6."
+>
+
+Compare os dois pares de expressões e deslize o n. Observe o que acontece quando elas são mesmo equivalentes e quando uma coincidência engana:
+
+<EquivalentesOuNao />
+
+Dica: escolha n × n e 2n e deixe n = 2. Dá o mesmo valor (4 e 4), mas é coincidência: mude o n e elas se separam.
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['14', '34', '9']}
+  correta={0}
+  seAcertou="E o palpite do começo? Certo: com n = 4, 3n + 2 = 3 × 4 + 2 = 14."
+  seErrou="E o palpite do começo? O valor é 14: 3n é 3 vezes n (12) e depois soma 2. O 34 vem de colar 3 e 4, como se fosse um número só, o que não vale para letras."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Valor numérico: trocar e calcular
+
+O passo é sempre o mesmo: **escreva a expressão, troque cada letra pelo seu valor (com parênteses) e calcule** na ordem certa.
+
+<ExemploResolvido titulo="Quanto vale 3n + 2 quando n = 4?">
+  <Passo>Expressão: 3n + 2. Lembre-se de que 3n quer dizer 3 × n.</Passo>
+  <Passo>Troque n por 4: 3 × 4 + 2.</Passo>
+  <Passo>Faça primeiro a multiplicação: 12 + 2.</Passo>
+  <Passo>Resultado: **14**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto vale 5n quando n = 7?" resposta="35" dica="5n quer dizer 5 × n." resolucao="5 × 7 = 35." />
+
+<Exercicio enunciado="Quanto vale 3n + 2 quando n = 10?" resposta="32" dica="Primeiro 3 × 10, depois some 2." resolucao="3 × 10 = 30 e 30 + 2 = 32." />
+
+<Exercicio enunciado="Quanto vale n × n quando n = 9?" resposta="81" dica="n × n também se escreve n ao quadrado." resolucao="9 × 9 = 81." />
+
+## Duas ou mais letras
+
+Uma expressão pode ter mais de uma letra, como 2a + 3b. Cada letra recebe o seu valor, e você troca todas de uma vez.
+
+<ExemploResolvido titulo="Quanto vale 2a + 3b quando a = 5 e b = 2?">
+  <Passo>Expressão: 2a + 3b, ou seja, 2 × a + 3 × b.</Passo>
+  <Passo>Troque: 2 × 5 + 3 × 2.</Passo>
+  <Passo>Multiplicações primeiro: 10 + 6.</Passo>
+  <Passo>Resultado: **16**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto vale 4a + b quando a = 3 e b = 5?" resposta="17" dica="4 × 3 + 5." resolucao="4 × 3 = 12 e 12 + 5 = 17." />
+
+<Exercicio enunciado="Quanto vale ab + 1 quando a = 6 e b = 4?" resposta="25" dica="ab quer dizer a × b." resolucao="6 × 4 = 24 e 24 + 1 = 25." />
+
+## Traduzir palavras em expressões
+
+Boa parte da álgebra é **traduzir** do português para a matemática. Algumas palavras que aparecem muito (n é o número):
+
+- **o dobro de n**: 2n
+- **o triplo de n**: 3n
+- **a metade de n**: n ÷ 2
+- **o sucessor de n** (o próximo): n + 1
+- **o antecessor de n** (o anterior): n − 1
+- **o quadrado de n**: n × n
+- **n a mais, n a menos**: some ou subtraia
+
+<Brincando titulo="Traduzir: de frase para conta">
+
+Traduzir é como **trocar de idioma**. A frase "o dobro de um número, mais 7" tem duas partes: "o dobro de um número" (2n) e "mais 7" (+ 7). Junte as duas: **2n + 7**.
+
+Faça o caminho de volta para conferir: 2n + 7 em português é "dobre o número e some 7". As palavras que mandam fazer coisas (dobre, some, tire) viram os sinais da conta.
+
+</Brincando>
+
+<ExemploResolvido titulo="O triplo de um número, menos 4. Quanto dá para n = 5?">
+  <Passo>"O triplo de um número": 3n.</Passo>
+  <Passo>"Menos 4": subtraia 4. A expressão é 3n − 4.</Passo>
+  <Passo>Troque n por 5: 3 × 5 − 4.</Passo>
+  <Passo>15 − 4 = **11**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O dobro de um número, mais 7. Quanto dá para n = 6?" resposta="19" dica="A expressão é 2n + 7." resolucao="2 × 6 + 7 = 12 + 7 = 19." />
+
+<Exercicio enunciado="A metade de um número, mais 3. Quanto dá para n = 20?" resposta="13" dica="Metade é dividir por 2." resolucao="20 ÷ 2 + 3 = 10 + 3 = 13." />
+
+## Fórmulas: expressões que guardam uma regra
+
+Uma **fórmula** é uma expressão com letras que descreve uma regra do mundo real. Você já conhece algumas:
+
+- **Perímetro do quadrado:** P = 4l.
+- **Área do retângulo:** A = b × h (base vezes altura).
+- **Preço de uma corrida de táxi:** p = 6 + 2,5k (6 de bandeirada, mais 2,5 por quilômetro k).
+- **Celsius para Fahrenheit:** F = 1,8C + 32.
+
+Cada letra é uma "entrada". Você troca pelos valores que tem e **sai** o resultado.
+
+<Brincando titulo="Fórmula: a receita de bolo">
+
+Uma fórmula é uma **receita**. A receita "2 ovos para cada xícara de farinha" vira **ovos = 2 × farinha**. Se você usar 3 xícaras, precisa de 6 ovos; se usar 10, precisa de 20.
+
+A receita não muda, só a quantidade que você coloca. É por isso que uma fórmula vale para qualquer tamanho de bolo, e a mesma fórmula do perímetro vale para qualquer quadrado.
+
+</Brincando>
+
+<ExemploResolvido titulo="Em Celsius são 25 graus. Quantos graus são em Fahrenheit?">
+  <Passo>Fórmula: F = 1,8 × C + 32.</Passo>
+  <Passo>Troque C por 25: F = 1,8 × 25 + 32.</Passo>
+  <Passo>Multiplicação primeiro: 1,8 × 25 = 45. Agora some: 45 + 32.</Passo>
+  <Passo>**F = 77** graus Fahrenheit.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O lado de um quadrado mede 12 cm. Quanto vale o perímetro P = 4l, em cm?" resposta="48" dica="4 × 12." resolucao="4 × 12 = 48." unidade="cm" />
+
+<Exercicio enunciado="Plano de celular: custo = 30 + 2g, em reais, com g gigas usados. Quanto custa com g = 15?" resposta="60" dica="2 × 15, depois some 30." resolucao="2 × 15 = 30 e 30 + 30 = 60." unidade="reais" />
+
+<Exercicio enunciado="Com a fórmula F = 1,8C + 32, quantos graus Fahrenheit são 100 graus Celsius?" resposta="212" dica="1,8 × 100 = 180." resolucao="1,8 × 100 + 32 = 180 + 32 = 212 (a água ferve a 212 graus F)." />
+
+## Termos semelhantes: juntar o que combina
+
+Termos semelhantes são os que têm **a mesma parte de letras**: 3x e 4x são semelhantes, 3x e 4y não. Termos semelhantes podem ser **somados** ou **subtraídos** juntando os coeficientes. Isso simplifica a expressão.
+
+- 3x + 4x = **7x**
+- 5a + 2b + 3a − b = **8a + b**
+- 6y − 6y + 2 = **2**
+
+<JuntarTermos />
+
+<Brincando titulo="Maçã com maçã, banana com banana">
+
+Se você tem **3 maçãs** e ganha **4 maçãs**, fica com **7 maçãs**. Só somou os números porque a fruta é a mesma.
+
+Agora, 3 maçãs e 4 bananas **não viram 7 de nada**: continuam sendo "3 maçãs e 4 bananas". É igual com letras: 3x + 4x = 7x, mas 3x + 4y fica **3x + 4y**, sem poder juntar.
+
+Pense em cada letra como uma fruta diferente. Só se junta o que é da **mesma fruta**.
+
+</Brincando>
+
+<ExemploResolvido titulo="Simplifique 5a + 2b + 3a − b">
+  <Passo>Separe os termos por letra: os **a** são 5a e 3a; os **b** são 2b e −b.</Passo>
+  <Passo>Junte os a: 5a + 3a = 8a.</Passo>
+  <Passo>Junte os b: 2b − b = 1b = b.</Passo>
+  <Passo>Resultado: **8a + b**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Simplifique 5x + 3x − 2x e calcule o valor para x = 3." resposta="18" dica="5 + 3 − 2 = 6, então a expressão é 6x." resolucao="5x + 3x − 2x = 6x. Com x = 3, 6 × 3 = 18." />
+
+<Exercicio enunciado="Simplifique 7x + 2y + x e calcule o valor para x = 2 e y = 3." resposta="22" dica="7x + x = 8x. O 2y não se junta ao x." resolucao="7x + x = 8x, então a expressão é 8x + 2y. Com x = 2 e y = 3: 16 + 6 = 22." />
+
+<Aprofundar titulo="Por que dá para juntar 3x e 4x">
+
+A multiplicação "espalha" sobre a soma: 3x + 4x = (3 + 4) × x = 7x. É a mesma ideia de "3 caixas e mais 4 caixas são 7 caixas". Já 3x + 4y não tem um fator comum, então não dá para juntar. Essa propriedade tem nome: **distributiva**, e vem logo a seguir.
+
+</Aprofundar>
+
+## A propriedade distributiva
+
+Quando um número multiplica uma soma entre parênteses, ele multiplica **cada parte**:
+
+**2(n + 3) = 2n + 6**
+
+Por que isso funciona? Pense numa **área**. Um retângulo com altura 2 e largura n + 3 tem área 2 × (n + 3). Se você cortá-lo em dois pedaços, um de largura n e outro de largura 3, as áreas são 2n e 6. A área total é a soma das duas.
+
+<RetanguloDaDistributiva />
+
+<Brincando titulo="Distributiva: entregar para todos">
+
+Um cinema tem **2 fileiras**. Em cada fileira há **n cadeiras azuis e 3 vermelhas**, ou seja, n + 3 cadeiras.
+
+Há dois jeitos de contar tudo. Um: contar uma fileira inteira (n + 3) e **dobrar**, 2 × (n + 3). Outro: contar as azuis das 2 fileiras (2n), as vermelhas das 2 fileiras (6) e **somar**, 2n + 6. O total tem de ser o mesmo, pois são as mesmas cadeiras contadas de duas maneiras.
+
+</Brincando>
+
+<ExemploResolvido titulo="Desenvolva 4(2n − 1) e calcule para n = 3">
+  <Passo>O 4 multiplica **cada termo** de dentro dos parênteses: 4 × 2n e 4 × (−1).</Passo>
+  <Passo>4 × 2n = 8n e 4 × (−1) = −4.</Passo>
+  <Passo>A expressão desenvolvida é **8n − 4**.</Passo>
+  <Passo>Confira com n = 3: 4 × (2 × 3 − 1) = 4 × 5 = 20, e 8 × 3 − 4 = 24 − 4 = 20. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto vale 2(n + 3) quando n = 5?" resposta="16" dica="Some dentro dos parênteses primeiro: 5 + 3." resolucao="2 × (5 + 3) = 2 × 8 = 16. Pela distributiva: 2n + 6 = 10 + 6 = 16." />
+
+<Exercicio enunciado="Quanto vale 4(2n − 1) quando n = 3?" resposta="20" dica="Dentro dos parênteses: 2 × 3 − 1 = 5." resolucao="4 × 5 = 20." />
+
+<Aprofundar titulo="O erro mais comum na distributiva">
+
+Quem esquece de multiplicar **todos** os termos escreve 2(n + 3) = 2n + 3. Está errado: o 2 também multiplica o 3. O jeito de pegar o erro é **testar um valor**: com n = 1, 2(1 + 3) = 8, mas 2 × 1 + 3 = 5. Valores diferentes mostram que as duas expressões **não** são equivalentes.
+
+</Aprofundar>
+
+## Expressões equivalentes
+
+Duas expressões são <Termo cor="amarelo">equivalentes</Termo> quando dão o **mesmo valor para qualquer** valor da letra. 2(n + 3) e 2n + 6 são equivalentes. n + n e 2n também. Já n × n e 2n **não são**: coincidem em n = 2 (4 e 4), mas em n = 5 dão 25 e 10.
+
+Para **provar** que duas expressões não são equivalentes, basta **um** valor que as separe. Para provar que são, é preciso um argumento que valha para todos (como a figura do retângulo ou juntar termos).
+
+<Aprofundar titulo="Por que o truque do número sempre dá 3">
+
+Pense num número n. Dobre: 2n. Some 6: 2n + 6. Divida por 2: n + 3. Tire o número que pensou: n + 3 − n = 3. A letra **n some** na última conta, e sobra só o 3. Por isso o resultado é o mesmo para qualquer número. Escreva o passo a passo com a letra e o truque se explica sozinho.
+
+</Aprofundar>
+
+<TruqueDoNumero />
+
+## Uma regra para qualquer tamanho: os palitos
+
+Montamos quadrados em fila com palitos de fósforo. Um quadrado usa 4 palitos. Dois quadrados lado a lado compartilham um palito do meio e usam **7**. Três usam **10**. Quantos palitos para **n** quadrados?
+
+Cada quadrado novo acrescenta **3** palitos (o que não é compartilhado). Então:
+
+**palitos = 3n + 1**
+
+O "+ 1" é o palito inicial que fecha o primeiro quadrado, e o "3n" são os palitos que cada quadrado traz. Confira: n = 1 dá 3 + 1 = 4; n = 2 dá 7; n = 3 dá 10.
+
+<Brincando titulo="Palitos: o primeiro paga a entrada">
+
+Imagine construir a fila de quadrados **um de cada vez**. O primeiro quadrado precisa de 4 palitos. Os próximos só precisam de 3 palitos cada, porque **já têm um lado pronto** (o palito do vizinho).
+
+Então a conta é: 1 palito de "entrada" mais 3 para cada quadrado. Em fórmula, **1 + 3n**. É como um clube em que o primeiro paga uma taxa de inscrição e todo mundo paga a mensalidade.
+
+</Brincando>
+
+<Exercicio enunciado="Com a regra palitos = 3n + 1, quantos palitos precisa uma fila de 10 quadrados?" resposta="31" dica="3 × 10 + 1." resolucao="3 × 10 + 1 = 31 palitos." unidade="palitos" />
+
+<Exercicio enunciado="Com a mesma regra, quantos quadrados dá para montar com exatamente 40 palitos?" resposta="13" dica="3n + 1 = 40, então 3n = 39." resolucao="3n + 1 = 40, então 3n = 39 e n = 13. Confira: 3 × 13 + 1 = 40." unidade="quadrados" />
+
+Repare que a segunda pergunta virou uma **equação** (3n + 1 = 40). Expressões e equações andam juntas: a expressão dá a regra, e a equação procura o n que faz a regra dar um valor desejado.
+
+<Aprofundar titulo="Variável, incógnita e parâmetro: três papéis da letra">
+
+A mesma letra pode ter papéis diferentes. Em P = 4l, o l é uma **variável**: pode ser qualquer lado. Em 3n + 1 = 40, o n é uma **incógnita**: um valor específico que você quer descobrir. E em y = ax + b, as letras a e b são **parâmetros**: ficam fixos numa situação, mas mudam de um problema para outro. Descartes sugeriu usar as primeiras letras (a, b, c) para os valores dados e as últimas (x, y, z) para os desconhecidos.
+
+</Aprofundar>
+
+## Erros que todo mundo comete
+
+- **Colar números:** achar que 3n com n = 4 vale 34. Vale 12.
+- **Juntar o que não combina:** escrever 3x + 4y = 7xy. Não dá: x e y são frutas diferentes.
+- **Esquecer a ordem das operações:** em 3n + 2 com n = 4, fazer 3 × (4 + 2). A multiplicação vem antes da soma.
+- **Distribuir só um termo:** 2(n + 3) = 2n + 3.
+- **Confundir n + n com n × n:** n + n = 2n, mas n × n = n². Com n = 5: 10 contra 25.
+
+A defesa de sempre é **testar com um número fácil**. Se as duas expressões dão resultados diferentes, o erro está pego.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Para que servem as letras na matemática?',
+    opcoes: ['Para falar de qualquer número de uma vez e escrever regras gerais', 'Só para enfeitar as contas', 'Para esconder as respostas'],
+    correta: 0,
+    explicacao: 'Uma letra representa um valor que pode variar. Assim, uma única frase vale para todos os números, como P = 4l vale para qualquer quadrado.',
+  },
+  {
+    enunciado: 'O que significa 3n?',
+    opcoes: ['3 + n', '3 × n', 'O número trinta e n'],
+    correta: 1,
+    explicacao: 'Um número colado numa letra é uma multiplicação escondida: 3n é 3 vezes n.',
+  },
+  {
+    enunciado: 'Quanto vale 3n + 2 quando n = 4?',
+    opcoes: ['34', '14', '9'],
+    correta: 1,
+    explicacao: 'Troque n por 4: 3 × 4 + 2 = 12 + 2 = 14. A multiplicação vem antes da soma.',
+  },
+  {
+    enunciado: 'Qual expressão representa "o dobro de um número, menos 5"?',
+    opcoes: ['2n − 5', '2 − 5n', 'n − 10'],
+    correta: 0,
+    explicacao: 'O dobro de n é 2n, e "menos 5" subtrai 5: 2n − 5.',
+  },
+  {
+    enunciado: 'Simplifique: 4x + 3x',
+    opcoes: ['7x', '12x', '7x²'],
+    correta: 0,
+    explicacao: 'São termos semelhantes (os dois têm x): some os coeficientes, 4 + 3 = 7, e fica 7x.',
+  },
+  {
+    enunciado: 'Qual expressão é equivalente a 2(n + 3)?',
+    opcoes: ['2n + 3', '2n + 6', 'n + 6'],
+    correta: 1,
+    explicacao: 'O 2 multiplica os dois termos: 2 × n = 2n e 2 × 3 = 6. Resulta em 2n + 6.',
+  },
+  {
+    enunciado: 'Como se escreve n × n?',
+    opcoes: ['2n', 'n²', 'n + n'],
+    correta: 1,
+    explicacao: 'n × n é n ao quadrado, n². Já 2n é n + n. Com n = 5: n² = 25 e 2n = 10.',
+  },
+  {
+    enunciado: 'Quanto é 2n + 3n?',
+    opcoes: ['5n', '5n²', '6n'],
+    correta: 0,
+    explicacao: 'Termos semelhantes: 2 + 3 = 5, então 5n. Somar não cria expoente nem multiplica os números.',
+  },
+  {
+    enunciado: 'Qual par de expressões é equivalente?',
+    opcoes: ['n + n e n × n', 'n + n e 2n', '3n e n + 3'],
+    correta: 1,
+    explicacao: 'n + n é duas caixas n, igual a 2n, para qualquer n. Já n + n e n × n só coincidem em n = 2.',
+  },
+  {
+    enunciado: 'Na regra dos palitos (palitos = 3n + 1), quantos palitos precisa uma fila de 6 quadrados?',
+    opcoes: ['18', '19', '24'],
+    correta: 1,
+    explicacao: '3 × 6 + 1 = 18 + 1 = 19.',
+  },
+  {
+    enunciado: 'Simplifique: 5a + 2b + 3a − b',
+    opcoes: ['8a + b', '8ab', '9a + 3b'],
+    correta: 0,
+    explicacao: 'Junte os a (5a + 3a = 8a) e os b (2b − b = b). Letras diferentes não se misturam: 8a + b.',
+  },
+  {
+    enunciado: 'Simplificando 3x + 4y, o que se obtém?',
+    opcoes: ['7xy', '7x', 'Nada muda: 3x + 4y já está simplificada'],
+    correta: 2,
+    explicacao: 'x e y são letras diferentes: não são termos semelhantes e não podem ser juntados. 3x + 4y já está na forma mais simples.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Variável** é uma letra no lugar de qualquer número. Ela permite escrever regras gerais, como P = 4l.
+- **Expressão algébrica** é uma conta com letras. Os pedaços são **termos**; o número colado na letra é o **coeficiente**.
+- **3n** é 3 × n, e **não** 30 + n. **n × n = n²** e **n + n = 2n**.
+- **Valor numérico:** troque a letra pelo número e calcule, com a multiplicação antes da soma.
+- **Termos semelhantes** (mesma letra) podem ser juntados: 3x + 4x = 7x. Letras diferentes não se misturam.
+- **Distributiva:** 2(n + 3) = 2n + 6. O número de fora multiplica cada termo de dentro.
+- **Equivalentes:** dão o mesmo valor para qualquer n. Um valor que separa as duas basta para provar que não são.
+- **Para achar erros, teste com um número fácil.**
+
+**Um pouco de história.** Por séculos a matemática foi escrita só com palavras. Diofanto (por volta do ano 250) usou abreviações, Viète (1591) passou a usar letras para valores conhecidos e desconhecidos, e Descartes (1637) fixou o costume das últimas letras (x, y, z) para o desconhecido.
+
+</Resumo>
+
+As letras abrem a porta da álgebra. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

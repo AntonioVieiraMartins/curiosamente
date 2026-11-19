@@ -1,0 +1,398 @@
+import RetaDaInequacao from '../../../../components/simulacoes/RetaDaInequacao'
+import InverterOSinal from '../../../../components/simulacoes/InverterOSinal'
+import OperarNosDoisLados from '../../../../components/simulacoes/OperarNosDoisLados'
+import OrcamentoLimite from '../../../../components/simulacoes/OrcamentoLimite'
+import IntervaloDuplo from '../../../../components/simulacoes/IntervaloDuplo'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Inequality, Thomas Harriot), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Você tem R$ 100 no bolso e quer pedir pizzas. Cada uma custa R$ 28. Dá para pedir 3? Sim: custam R$ 84. Dá para pedir 4? Não: custam R$ 112, e você só tem 100.
+
+Repare que a resposta não é **um** número só. Pedir 0, 1, 2 ou 3 pizzas serve. O que importa é ficar **dentro do limite**. Quando a pergunta é "até onde posso ir?", a ferramenta não é a equação, e sim a **inequação**.
+
+<Palpite
+  chave="inicial"
+  pergunta="Cada pizza custa R$ 28 e você tem R$ 100. Qual é o número máximo de pizzas que dá para pedir?"
+  opcoes={['3', '4', '3,57']}
+/>
+
+Nesta cápsula você vai aprender os símbolos de maior e menor, resolver inequações como se fossem equações (com um cuidado especial), desenhar a solução na reta e resolver problemas de limite, como o das pizzas.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Comparar quantidades (quem tem mais, quem tem menos) é tão antigo quanto contar. Mas os **símbolos** de maior e menor são relativamente jovens.
+
+<LinhaDoTempo marcos={[
+  { ano: '1557', texto: 'Robert Recorde inventa o sinal de igual (=), mas ainda não existem símbolos para maior e menor.' },
+  { ano: '1631', texto: 'Sai, depois da morte de Thomas Harriot, o livro Artis Analyticae Praxis, com os sinais < e > que usamos hoje.' },
+  { ano: '1734', texto: 'Pierre Bouguer propõe os sinais com a linha embaixo, as origens de ≤ e ≥ (menor ou igual, maior ou igual).' },
+]} />
+
+## Antes dos símbolos
+
+Antes de 1600, quem queria escrever "a é maior que b" usava palavras ("a excede b", "a é maior do que b"). Isso funcionava, mas ocupava espaço e dava trabalho em contas longas. Faltava um sinal curto, como o de igual.
+
+## Harriot e o bico aberto
+
+O inglês **Thomas Harriot** foi um dos grandes matemáticos e astrônomos do seu tempo (ele desenhou mapas da Lua pouco antes de Galileu). Seus escritos de álgebra só foram publicados em 1631, depois da sua morte, no livro **Artis Analyticae Praxis**. Foi ali que apareceram os símbolos **&lt;** e **>**.
+
+## Os símbolos ganham a linha
+
+Mais de cem anos depois, em 1734, o francês **Pierre Bouguer** usou uma linha **embaixo** do sinal para dizer "ou igual". Daí vieram o **≤** e o **≥**, que hoje são essenciais para escrever limites ("no máximo", "pelo menos").
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Os quatro símbolos
+
+Usamos quatro sinais para comparar dois valores:
+
+- **&lt;** menor que (3 &lt; 7)
+- **>** maior que (7 > 3)
+- **≤** menor ou igual a (x ≤ 5 vale para 5 e para todos os menores)
+- **≥** maior ou igual a (x ≥ 2 vale para 2 e para todos os maiores)
+
+<Brincando titulo="O jacaré sempre come o maior">
+
+Imagine que o sinal é a **boca de um jacaré** com muita fome. Ele sempre abre a boca para o lado do número **maior**, porque quer comer o maior prato.
+
+Em 7 > 3, a boca abre para o 7. Em 3 &lt; 7, a boca continua abrindo para o 7 (só mudou a ordem em que lemos). A ponta do sinal aponta sempre para o **menor**.
+
+Quando há uma linha embaixo (≤ ou ≥), o jacaré aceita também empate: "menor **ou igual**".
+
+</Brincando>
+
+## 2. Equação diz "é". Inequação diz "pode ser".
+
+Uma **equação** como x + 3 = 8 tem uma resposta só: x = 5. Uma <Termo cor="azul">inequação</Termo> como x + 3 < 8 tem **muitas** respostas: 4, 3, 2, 1, 0, −1... e até 4,9. Qualquer número menor que 5 funciona.
+
+Por isso, a solução de uma inequação costuma ser uma **região da reta numérica**: um pedaço inteiro, e não uma bolinha só.
+
+<Brincando titulo="Altura mínima na montanha-russa">
+
+Na entrada do brinquedo há uma placa: **altura mínima 1,20 m**. A regra não diz "só pode quem tem exatamente 1,20 m". Diz que pode **quem tem 1,20 m ou mais**: 1,20, 1,30, 1,45, 1,80...
+
+Em matemática, a placa é a inequação **x ≥ 1,2**. A solução é uma região (todas as alturas da linha de corte para cima), e a linha de corte (1,20) **também entra**, por isso o "ou igual".
+
+</Brincando>
+
+## 3. A bolinha cheia e a bolinha vazia
+
+Na reta numérica, a solução é pintada. Na borda, desenhamos uma bolinha:
+
+- **Bolinha cheia** (●): o número da borda **entra**. Isso acontece com ≤ e ≥.
+- **Bolinha vazia** (○): o número da borda **não entra**. Isso acontece com &lt; e >.
+
+<RetaDaInequacao />
+
+Experimente: com **x > 3**, o 3 **não** serve (3 > 3 é falso), mas 3,1 serve. Com **x ≤ 2**, o 2 serve (2 ≤ 2 é verdadeiro).
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Em −2x < 6, você divide os dois lados por −2. O que acontece com o sinal de menor (<)?"
+  opcoes={['Continua <', 'Vira >', 'Vira =']}
+  correta={1}
+  explicacao="Dividir (ou multiplicar) por um número NEGATIVO inverte a ordem dos números, então o sinal vira: −2x < 6 fica x > −3. Com um número positivo o sinal ficaria como está."
+>
+
+Antes de ver a regra, teste com números. Vá passeando o x e compare o que diz a inequação original com cada resposta possível:
+
+<InverterOSinal />
+
+Agora veja por que isso acontece: faça a mesma conta nos dois lados de 3 &lt; 7, uma operação por vez. Preste atenção no sinal quando o número é negativo.
+
+<OperarNosDoisLados />
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['3', '4', '3,57']}
+  correta={0}
+  seAcertou="E o palpite do começo? Certo: 28p ≤ 100 dá p ≤ 3,57..., e como não existe 0,57 de pizza, o máximo é 3."
+  seErrou="E o palpite do começo? O máximo é 3 pizzas: 28 × 3 = 84 cabe, mas 28 × 4 = 112 passa de 100. O 3,57 é a solução da conta, mas pizza só vem inteira, então vale o inteiro mais próximo para baixo."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Resolver como uma equação (a balança que pende)
+
+Resolver uma inequação é quase igual a resolver uma equação. A balança só deixa de estar equilibrada: um prato fica **mais pesado**. E a regra continua: **o que você faz de um lado, faz do outro**.
+
+Somar ou subtrair o mesmo número dos dois lados **nunca** muda o sinal.
+
+<Brincando titulo="A balança inclinada">
+
+Imagine uma balança em que o prato da esquerda está **mais leve** (x + 3 &lt; 8). Se você tirar 3 pesinhos **dos dois pratos**, o lado esquerdo continua mais leve que o direito.
+
+Tirar ou pôr a **mesma coisa** nos dois lados não vira a balança. Por isso x + 3 &lt; 8 vira x &lt; 5, sem mudar o sinal. A balança só vira se você **trocar de lado** os pratos ou fizer algo que inverta a ordem, e é isso que acontece com os números negativos.
+
+</Brincando>
+
+<ExemploResolvido titulo="Resolva x + 3 &lt; 8">
+  <Passo>Queremos o x sozinho. Tire 3 dos dois lados: x + 3 − 3 &lt; 8 − 3.</Passo>
+  <Passo>Sobra: **x &lt; 5**.</Passo>
+  <Passo>Em palavras: qualquer número menor que 5 serve. O 5 não entra (bolinha vazia).</Passo>
+  <Passo>Confira com um número da região, por exemplo 4: 4 + 3 = 7, e 7 &lt; 8. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Resolva x + 3 < 8. Qual é o maior número inteiro que serve?" resposta="4" dica="A solução é x < 5. O 5 não entra." resolucao="x < 5, então o maior inteiro é 4." />
+
+<Exercicio enunciado="Quantos números inteiros positivos satisfazem x < 6?" resposta="5" dica="Os positivos menores que 6: 1, 2, 3... (o zero não é positivo)." resolucao="1, 2, 3, 4 e 5: são 5 números." />
+
+## Multiplicar e dividir: o cuidado dos negativos
+
+Ao multiplicar ou dividir os dois lados por um número **positivo**, o sinal fica igual. Mas, por um número **negativo**, o sinal **vira**: &lt; vira >, ≥ vira ≤, e assim por diante.
+
+Por quê? Porque a reta numérica é espelhada quando multiplicamos por um negativo: o que estava à direita vai para a esquerda. Veja com números: 3 &lt; 7. Multiplicando por −1: −3 e −7, e agora **−3 > −7**.
+
+<Brincando titulo="O espelho que troca os lados">
+
+Imagine que a reta numérica é um **corredor** e o zero está no meio. Multiplicar por −1 é colocar um **espelho** no zero: o que estava à direita aparece à esquerda, e vice-versa.
+
+O 3 estava **antes** do 7 (3 &lt; 7). Depois do espelho, o 3 vira −3 e o 7 vira −7, e agora o −7 está **antes** do −3. A ordem se inverteu, e por isso o sinal da desigualdade precisa **virar** também.
+
+Outra imagem: **dívida**. Dever R$ 7 é pior que dever R$ 3, ainda que 7 seja maior que 3. Os negativos pensam "ao contrário".
+
+</Brincando>
+
+<ExemploResolvido titulo="Resolva −2x &lt; 6">
+  <Passo>Queremos o x sozinho: divida os dois lados por −2.</Passo>
+  <Passo>Como −2 é **negativo**, o sinal vira: de &lt; para >.</Passo>
+  <Passo>Fica **x > −3**.</Passo>
+  <Passo>Confira com x = 0 (que está na solução): −2 × 0 = 0, e 0 &lt; 6. ✓ Confira também com x = −5 (fora da solução): −2 × (−5) = 10, e 10 &lt; 6 é falso, como esperado.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Resolva −2x < 6. Qual é o menor número inteiro que serve?" resposta="-2" dica="A solução é x > −3, e o −3 não entra." resolucao="x > −3, então os inteiros que servem são −2, −1, 0, 1... O menor é −2." />
+
+<Exercicio enunciado="Resolva −x > 4. Qual é o maior número inteiro que serve?" resposta="-5" dica="Multiplique os dois lados por −1 e vire o sinal." resolucao="−x > 4 vira x < −4. O maior inteiro menor que −4 é −5." />
+
+<Aprofundar titulo="Prova de que o sinal vira">
+
+Suponha a &lt; b. Isso quer dizer que b − a é **positivo**. Multiplique por um c negativo: c × b − c × a = c × (b − a), que é negativo × positivo = **negativo**. Então c × b − c × a é negativo, isto é, c × b &lt; c × a. Trocando de lado: **c × a > c × b**. Ou seja, depois de multiplicar por um número negativo, o sinal virou. Com c positivo o resultado c × (b − a) seria positivo, e o sinal ficaria como estava.
+
+</Aprofundar>
+
+## Os passos para resolver qualquer inequação do 1º grau
+
+1. Junte os termos com x de um lado e os números do outro (somando ou subtraindo dos dois lados).
+2. Isole o x dividindo (ou multiplicando) os dois lados.
+3. **Se o número for negativo, vire o sinal.**
+4. Escreva a solução (x > número, x ≤ número...) e, se quiser, desenhe na reta.
+5. Teste um número da solução para conferir.
+
+<ExemploResolvido titulo="Resolva 2x + 1 &lt; 9">
+  <Passo>Tire 1 dos dois lados: 2x &lt; 8.</Passo>
+  <Passo>Divida por 2 (positivo, o sinal fica): x &lt; 4.</Passo>
+  <Passo>Os números que servem são todos menores que 4. O 4 não entra.</Passo>
+  <Passo>Confira com 3: 2 × 3 + 1 = 7 &lt; 9. ✓ Confira com 4 (na borda): 2 × 4 + 1 = 9, e 9 &lt; 9 é falso, então o 4 realmente não entra.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Resolva 2x + 1 < 9. Qual é o maior número inteiro que serve?" resposta="3" dica="Tire 1 e depois divida por 2." resolucao="2x < 8, então x < 4 e o maior inteiro é 3." />
+
+<Exercicio enunciado="Resolva 3x − 2 ≥ 4. Qual é o menor número inteiro que serve?" resposta="2" dica="Some 2, depois divida por 3. Agora o 'ou igual' faz a borda entrar." resolucao="3x ≥ 6, então x ≥ 2 e o menor inteiro é 2 (que entra, por causa do ≥)." />
+
+<Exercicio enunciado="Resolva x/2 − 1 ≥ 3. Qual é o menor número inteiro que serve?" resposta="8" dica="Some 1: x/2 ≥ 4. Depois multiplique por 2." resolucao="x/2 ≥ 4, então x ≥ 8. O menor inteiro é 8." />
+
+<Exercicio enunciado="Resolva 4 − 3x < 10. Qual é o menor número inteiro que serve?" resposta="-1" dica="Tire 4: −3x < 6. Divida por −3 e vire o sinal." resolucao="−3x < 6 vira x > −2. O menor inteiro é −1." />
+
+## O x nos dois lados
+
+Quando o x aparece dos dois lados, junte-os de um lado só, como nas equações.
+
+<ExemploResolvido titulo="Resolva 5x − 3 > 2x + 9">
+  <Passo>Tire 2x dos dois lados: 3x − 3 > 9.</Passo>
+  <Passo>Some 3 dos dois lados: 3x > 12.</Passo>
+  <Passo>Divida por 3 (positivo): **x > 4**.</Passo>
+  <Passo>Confira com 5: 5 × 5 − 3 = 22 e 2 × 5 + 9 = 19, e 22 > 19. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Resolva 5x − 3 > 2x + 9. Qual é o menor número inteiro que serve?" resposta="5" dica="A solução é x > 4, e o 4 não entra." resolucao="x > 4, então o menor inteiro é 5." />
+
+<Exercicio enunciado="Resolva 7x − 5 < 3x + 11. Qual é o maior número inteiro que serve?" resposta="3" dica="Tire 3x e some 5: 4x < 16." resolucao="4x < 16, então x < 4 e o maior inteiro é 3." />
+
+## Problemas de limite
+
+A maior parte dos problemas do dia a dia com inequação fala de **limites**: "no máximo", "pelo menos", "não pode passar de", "precisa ter mais que". Aprenda a traduzir:
+
+- **no máximo**, **até**, **não mais que**: ≤
+- **pelo menos**, **no mínimo**: ≥
+- **menos que**, **abaixo de**: &lt;
+- **mais que**, **acima de**: >
+
+<OrcamentoLimite />
+
+<ExemploResolvido titulo="Cada pizza custa R$ 28. Com R$ 100, quantas pizzas, no máximo?">
+  <Passo>Seja p o número de pizzas. O gasto é 28p, e não pode passar de 100: **28p ≤ 100**.</Passo>
+  <Passo>Divida por 28 (positivo): p ≤ 100 ÷ 28 = 3,57...</Passo>
+  <Passo>Pizza vem inteira. O maior inteiro que cabe em p ≤ 3,57 é **3**.</Passo>
+  <Passo>Confira: 3 pizzas custam 84 (cabem) e 4 custam 112 (passam). ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um plano custa R$ 40 fixos mais R$ 5 por giga e você pode gastar no máximo R$ 90. Quantos gigas, no máximo?" resposta="10" dica="Monte 40 + 5g ≤ 90." resolucao="5g ≤ 50, então g ≤ 10. O máximo é 10 gigas." unidade="gigas" />
+
+<Exercicio enunciado="Um elevador aguenta no máximo 400 kg. Uma pessoa de 70 kg entra com caixas de 20 kg cada. Quantas caixas, no máximo?" resposta="16" dica="Monte 70 + 20c ≤ 400." resolucao="20c ≤ 330, então c ≤ 16,5. Caixa só vem inteira: 16." unidade="caixas" />
+
+<Aprofundar titulo="Por que a resposta de problema pode virar inteiro">
+
+A solução matemática de 28p ≤ 100 é p ≤ 3,57..., que inclui frações. Mas a **história** do problema decide o que vale: pizza e caixa só existem inteiras, então **arredondamos para baixo** (em "no máximo"). Já num "pelo menos" (como o mínimo de ônibus para levar 50 pessoas, com 12 por ônibus), arredonda-se **para cima**. Sempre volte ao enunciado e confira se a resposta faz sentido.
+
+</Aprofundar>
+
+## Duas condições juntas
+
+Às vezes o número tem de ficar **entre** dois valores: "maior que 2 e menor ou igual a 5". Escrevemos de uma vez só: **2 &lt; x ≤ 5**. O número precisa satisfazer as duas condições ao mesmo tempo.
+
+<IntervaloDuplo />
+
+<Brincando titulo="Entrar na festa: duas regras ao mesmo tempo">
+
+Pense na **idade para entrar numa festa**: "maiores de 12 anos e até 17". Só entra quem passa na primeira regra (mais que 12) **e** na segunda (até 17). Quem tem 12 não entra (não é *mais* que 12) e quem tem 17 entra (é "até 17").
+
+Escrito em matemática: **12 &lt; idade ≤ 17**. As duas bordas podem entrar ou não, e o que decide é o **sinal** em cada ponta.
+
+</Brincando>
+
+<ExemploResolvido titulo="Quantos números inteiros satisfazem 2 &lt; x ≤ 5?">
+  <Passo>O x é maior que 2 (o 2 não entra) e menor ou igual a 5 (o 5 entra).</Passo>
+  <Passo>Os inteiros maiores que 2: 3, 4, 5, 6...</Passo>
+  <Passo>Entre esses, os que são menores ou iguais a 5: 3, 4 e 5.</Passo>
+  <Passo>São **3** números.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos números inteiros satisfazem 2 < x ≤ 5?" resposta="3" dica="Liste os inteiros: 3, 4, 5." resolucao="O 2 não entra, o 5 entra. Servem 3, 4 e 5: são 3 números." />
+
+<Exercicio enunciado="Quantos números inteiros satisfazem 1 ≤ x < 5?" resposta="4" dica="Agora o 1 entra e o 5 não entra." resolucao="Servem 1, 2, 3 e 4: são 4 números." />
+
+## Quando não há solução, ou todo número serve
+
+Algumas inequações são especiais. Em **x + 1 &lt; x**, tirando x dos dois lados sobra 1 &lt; 0, que é **falso**: nenhum número serve. Em **x + 1 > x**, sobra 1 > 0, que é **sempre verdadeiro**: todo número serve. É como nas equações: se o x some, olhe se o que sobrou é verdadeiro ou falso.
+
+<Aprofundar titulo="Intervalos e a notação de colchetes">
+
+Matemáticos escrevem a solução como **intervalo**. A solução x > 4 é o intervalo (4, +∞), com parêntese porque o 4 não entra. A solução x ≥ 2 é [2, +∞), com colchete porque o 2 entra. O símbolo ∞ (infinito) sempre fica com parêntese, porque nunca se chega nele. Em 2 &lt; x ≤ 5, o intervalo é (2, 5]. Você vai ver essa notação no ensino médio.
+
+</Aprofundar>
+
+## Erros que todo mundo comete
+
+- **Não virar o sinal** ao dividir ou multiplicar por negativo. Em −2x < 6, a resposta certa é x > −3, e não x < −3.
+- **Esquecer o "ou igual"** na bolinha: com ≤ ou ≥ a borda entra.
+- **Responder só com a borda** (x = 5) em vez da região (x &lt; 5).
+- **Dar uma resposta impossível na história**, como 3,57 pizzas.
+
+A defesa é sempre **testar um número**: escolha um da região da resposta e ponha na inequação original. Se ficar falso, algo deu errado.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Qual símbolo significa "maior ou igual a"?',
+    opcoes: ['>', '≥', '≤'],
+    correta: 1,
+    explicacao: 'O ≥ junta o "maior" (>) com o "igual" (a linha embaixo). Ele inclui o próprio número da borda.',
+  },
+  {
+    enunciado: 'Resolva: x + 3 < 8',
+    opcoes: ['x < 5', 'x > 5', 'x < 11'],
+    correta: 0,
+    explicacao: 'Tire 3 dos dois lados: x < 5. Somar ou subtrair não muda o sinal.',
+  },
+  {
+    enunciado: 'Na reta, a solução de x ≥ 2 tem a bolinha...',
+    opcoes: ['Vazia em 2, porque o 2 não entra', 'Cheia em 2, porque o 2 entra', 'Nenhuma bolinha'],
+    correta: 1,
+    explicacao: 'Com ≥ (ou ≤) a borda entra, então a bolinha é cheia. Com > ou < a bolinha é vazia.',
+  },
+  {
+    enunciado: 'Resolva: −2x < 6',
+    opcoes: ['x < −3', 'x > −3', 'x > 3'],
+    correta: 1,
+    explicacao: 'Dividindo por −2 (negativo), o sinal vira: x > −3.',
+  },
+  {
+    enunciado: 'Quantas soluções tem x > 3?',
+    opcoes: ['Uma só', 'Duas', 'Infinitas'],
+    correta: 2,
+    explicacao: 'Qualquer número maior que 3 serve: 3,001, 4, 100... Por isso a solução é uma região da reta.',
+  },
+  {
+    enunciado: 'Resolva 2x + 1 < 9. Qual é o maior inteiro que serve?',
+    opcoes: ['3', '4', '8'],
+    correta: 0,
+    explicacao: '2x < 8 dá x < 4. O 4 não entra, então o maior inteiro é 3.',
+  },
+  {
+    enunciado: 'Quando o sinal da desigualdade precisa virar?',
+    opcoes: ['Ao somar um número', 'Ao multiplicar ou dividir por um número negativo', 'Sempre que há um x'],
+    correta: 1,
+    explicacao: 'Só quando multiplicamos ou dividimos os dois lados por um número negativo, porque isso inverte a ordem na reta.',
+  },
+  {
+    enunciado: 'Cada caderno custa R$ 12 e você tem R$ 80. Quantos cadernos, no máximo?',
+    opcoes: ['6', '7', '8'],
+    correta: 0,
+    explicacao: '12c ≤ 80 dá c ≤ 6,66... O máximo inteiro é 6 (6 cadernos custam 72; 7 custam 84 e passam).',
+  },
+  {
+    enunciado: 'Sabendo que 3 < 7, qual vale depois de multiplicar os dois lados por −1?',
+    opcoes: ['−3 < −7', '−3 > −7', '3 > 7'],
+    correta: 1,
+    explicacao: 'O espelho do zero inverte a ordem: −3 fica à direita de −7, então −3 > −7.',
+  },
+  {
+    enunciado: 'Resolva 5x − 3 > 2x + 9',
+    opcoes: ['x > 4', 'x < 4', 'x > 2'],
+    correta: 0,
+    explicacao: '3x > 12 dá x > 4. A divisão foi por 3 (positivo), então o sinal fica.',
+  },
+  {
+    enunciado: 'Quantas soluções tem x + 1 < x?',
+    opcoes: ['Nenhuma', 'Uma', 'Todas'],
+    correta: 0,
+    explicacao: 'Tirando x dos dois lados sobra 1 < 0, que é falso: nenhum número serve.',
+  },
+  {
+    enunciado: 'Quantos números inteiros satisfazem 1 ≤ x < 5?',
+    opcoes: ['3', '4', '5'],
+    correta: 1,
+    explicacao: 'O 1 entra e o 5 não entra: servem 1, 2, 3 e 4, ou seja, 4 números.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Símbolos:** &lt; menor, > maior, ≤ menor ou igual, ≥ maior ou igual.
+- **Inequação** compara dois lados e tem **muitas soluções**: uma região da reta, e não um ponto só.
+- **Bolinha cheia** (≤, ≥) quando a borda entra; **bolinha vazia** (&lt;, >) quando não entra.
+- Resolva como uma equação: o que se faz de um lado, faz-se do outro.
+- **Somar ou subtrair** não muda o sinal. **Multiplicar ou dividir por número negativo vira o sinal.**
+- **Problemas de limite:** "no máximo" é ≤ e "pelo menos" é ≥; depois, confira se a resposta faz sentido na história (pizza é inteira).
+- **Entre dois valores:** 2 &lt; x ≤ 5.
+- **Sempre teste** um número da solução na inequação original.
+
+**Um pouco de história.** O sinal de igual é de 1557 (Recorde), mas os símbolos &lt; e > só apareceram em 1631, no livro de Thomas Harriot publicado depois da sua morte. Os sinais com a linha embaixo (≤ e ≥) foram propostos por Pierre Bouguer em 1734.
+
+</Resumo>
+
+As inequações mostram que nem tudo na matemática é "uma resposta só". Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>
