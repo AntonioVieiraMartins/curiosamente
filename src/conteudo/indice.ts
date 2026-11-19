@@ -131,6 +131,12 @@ export const capsulas: ResumoCapsula[] = [
   m('medio', 'pensamento-computacional', 'Pensamento computacional', 'Ensinar um robô a achar o caminho: algoritmos e fluxogramas.', { grupo: 'Álgebra', conexoes: ['binario'] }),
 
   // Avançada: depois do Médio (cálculo, álgebra linear, estatística inferencial)
+  m('avancada', 'logica-e-proposicoes', 'Lógica e proposições', 'Se chove, a rua molha. A rua molhou: choveu?', { grupo: 'Lógica e fundamentos', conexoes: ['binario'] }),
+  m('avancada', 'conjuntos', 'Conjuntos', 'O que "todos" e "alguns" querem dizer de verdade.', { grupo: 'Lógica e fundamentos' }),
+  m('avancada', 'demonstracao', 'Demonstração', 'Como ter certeza de que algo vale para infinitos números.', { grupo: 'Lógica e fundamentos' }),
+  m('avancada', 'inducao-matematica', 'Indução matemática', 'Derrubar infinitos dominós provando só dois fatos.', { grupo: 'Lógica e fundamentos', conexoes: ['progressoes'] }),
+  m('avancada', 'axiomas-e-sistemas', 'Axiomas e sistemas', 'Do que a matemática parte, e por que Euclides fez isso.', { grupo: 'Lógica e fundamentos' }),
+  m('avancada', 'paradoxos-e-limites-da-logica', 'Paradoxos e limites da lógica', 'O mentiroso e o que Gödel descobriu.', { grupo: 'Lógica e fundamentos' }),
   m('avancada', 'limites', 'Limites e continuidade', 'Chegar cada vez mais perto sem nunca tocar.', { grupo: 'Cálculo', estado: 'pronta', duracaoMin: 45, conexoes: ['funcoes', 'progressoes'] }),
   m('avancada', 'derivadas', 'Derivadas', 'A velocidade de um carro num único instante.', { grupo: 'Cálculo' }),
   m('avancada', 'aplicacoes-derivadas', 'Aplicações das derivadas', 'Achar o máximo lucro e o mínimo custo.', { grupo: 'Cálculo', conexoes: ['funcao-quadratica'] }),
