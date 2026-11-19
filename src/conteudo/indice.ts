@@ -78,8 +78,8 @@ export const capsulas: ResumoCapsula[] = [
   m('fundamental', 'educacao-financeira', 'Educação financeira', 'Para onde vai o seu dinheiro no fim do mês?', { grupo: '7º ano', estado: 'pronta', duracaoMin: 40, conexoes: ['matematica-financeira'] }),
   m('fundamental', 'poligonos', 'Triângulos e polígonos', 'Por que as abelhas usam hexágonos?', { grupo: '7º ano', estado: 'pronta', duracaoMin: 40 }),
   m('fundamental', 'circunferencia-e-pi', 'Circunferência e Pi', 'Toda roda esconde o mesmo número.', { grupo: '7º ano', estado: 'pronta', duracaoMin: 40 }),
-  m('fundamental', 'simetria', 'Simetria e transformações', 'Espelhar, girar e deslizar figuras.', { grupo: '7º ano', conexoes: ['matrizes'] }),
-  m('fundamental', 'probabilidade-simples', 'Probabilidade simples', 'Jogue uma moeda mil vezes. O que acontece?', { grupo: '7º ano', conexoes: ['monty-hall'] }),
+  m('fundamental', 'simetria', 'Simetria e transformações', 'Espelhar, girar e deslizar figuras.', { grupo: '7º ano', estado: 'pronta', duracaoMin: 40, conexoes: ['matrizes'] }),
+  m('fundamental', 'probabilidade-simples', 'Probabilidade simples', 'Jogue uma moeda mil vezes. O que acontece?', { grupo: '7º ano', estado: 'pronta', duracaoMin: 40, conexoes: ['monty-hall'] }),
   m('fundamental', 'estatistica-basica', 'Média, mediana e moda', 'Quando a média engana.', { grupo: '7º ano', estado: 'pronta', duracaoMin: 40 }),
 
   m('fundamental', 'raizes', 'Raízes', 'Qual número vezes ele mesmo dá 2?', { grupo: '8º ano' }),

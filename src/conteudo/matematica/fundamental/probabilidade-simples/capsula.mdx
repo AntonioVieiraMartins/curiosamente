@@ -1,0 +1,410 @@
+import ReguaDaChance from '../../../../components/simulacoes/ReguaDaChance'
+import MoedaMilVezes from '../../../../components/simulacoes/MoedaMilVezes'
+import SomaDeDoisDados from '../../../../components/simulacoes/SomaDeDoisDados'
+import TabelaDeDoisDados from '../../../../components/simulacoes/TabelaDeDoisDados'
+import SacoDeBolinhas from '../../../../components/simulacoes/SacoDeBolinhas'
+import ArvoreDeMoedas from '../../../../components/simulacoes/ArvoreDeMoedas'
+import JogoJusto from '../../../../components/simulacoes/JogoJusto'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Probability, History of probability, Problem of points, Law of large numbers), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Você joga uma moeda e sai **cara**. Joga de novo: **cara**. De novo: **cara**. Cinco vezes seguidas, só cara! Seu amigo diz: "Agora a próxima tem que ser coroa, está na hora de equilibrar."
+
+Será que ele tem razão? A moeda "lembra" o que saiu antes? E se ninguém pode prever uma jogada, como é que a matemática consegue dizer algo útil sobre o **acaso**? Essa é a ideia da **probabilidade**: medir a chance de as coisas acontecerem.
+
+<Palpite
+  chave="inicial"
+  pergunta="Uma moeda honesta deu cara 5 vezes seguidas. No próximo lançamento, o que é mais provável?"
+  opcoes={['Coroa, para equilibrar', 'As duas têm a mesma chance', 'Cara, porque está em sequência']}
+/>
+
+Nesta cápsula você vai aprender a calcular chances, a ver o acaso se organizar quando repetimos um experimento muitas vezes e a descobrir se um jogo é justo.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Os jogos de azar são mais antigos que a matemática da chance. Nas escavações antigas aparecem dados e ossinhos de animais (os astrágalos) usados em jogos, mas por muito tempo ninguém sabia **calcular** as chances. Foram necessários séculos e algumas cartas famosas.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Século 16', texto: 'Gerolamo Cardano, médico e matemático italiano, escreve sobre as chances nos jogos de dados.' },
+  { ano: '1654', texto: 'Pascal e Fermat trocam cartas sobre como dividir o prêmio de um jogo interrompido e criam a base da teoria da probabilidade.' },
+  { ano: '1657', texto: 'Christiaan Huygens publica o primeiro livro sobre o cálculo de chances em jogos.' },
+  { ano: '1713', texto: 'Sai o livro de Jacob Bernoulli, Ars Conjectandi, com a primeira prova da lei dos grandes números.' },
+  { ano: '1812', texto: 'Laplace publica sua teoria das probabilidades e define a chance como casos favoráveis dividido por casos possíveis.' },
+  { ano: '1933', texto: 'Kolmogorov dá à probabilidade uma base com axiomas, como o resto da matemática.' },
+]} />
+
+## O problema do jogo interrompido
+
+Em 1654, um jogador francês procurou o matemático **Blaise Pascal** com uma dúvida: dois jogadores apostam e combinam que ganha quem fizer 3 pontos primeiro, mas o jogo é interrompido antes do fim. Como dividir o prêmio com justiça? Pascal escreveu sobre isso para **Pierre de Fermat**, e a troca de cartas entre os dois é considerada o nascimento da probabilidade.
+
+## O que mudou
+
+A resposta dos dois foi olhar para o **futuro**: dividir o prêmio de acordo com as chances que cada um ainda teria de ganhar. Em vez de olhar só para o que já aconteceu, passou-se a medir o que poderia acontecer.
+
+## O acaso tem regras
+
+Em 1713, o livro de **Jacob Bernoulli** mostrou que, repetindo um experimento muitas e muitas vezes, a porcentagem de sucessos se aproxima da chance calculada. É a **lei dos grandes números**, que você vai testar aqui. Já **Laplace** definiu em 1812 a chance clássica como casos favoráveis ÷ casos possíveis, que é a regra que vamos usar. Em 1933, **Kolmogorov** deu à teoria uma base lógica, e a probabilidade virou uma parte respeitada da matemática.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Experimento aleatório
+
+Um <Termo cor="azul">experimento aleatório</Termo> é uma situação em que não dá para prever o resultado de uma vez só, mesmo sabendo tudo o que vai acontecer: lançar uma moeda, rolar um dado, tirar uma bolinha de um saco. Mas dá para listar **tudo o que pode acontecer**.
+
+A lista de todos os resultados possíveis se chama <Termo cor="verde">espaço amostral</Termo>. Na moeda: {'{'}cara, coroa{'}'}. No dado: {'{'}1, 2, 3, 4, 5, 6{'}'}. Cada pedaço dessa lista que nos interessa é um <Termo cor="coral">evento</Termo>: "sair par" é o evento {'{'}2, 4, 6{'}'}.
+
+## 2. A chance como fração
+
+Quando todos os resultados têm a **mesma chance** (chamamos de equiprováveis), a probabilidade de um evento é:
+
+**chance = casos favoráveis ÷ casos possíveis**
+
+No dado, a chance de sair par é 3 ÷ 6 = 1/2, porque há 3 resultados favoráveis (2, 4 e 6) entre 6 possíveis.
+
+<Brincando titulo="Chance: fatias de pizza sorteadas">
+
+Imagine uma pizza cortada em 6 fatias iguais, e você fecha os olhos e aponta uma. Se 2 fatias têm pimentão, a chance de apontar uma de pimentão é "2 de 6", ou seja, 2/6 = 1/3. As fatias são os **casos possíveis**; as de pimentão, os **casos favoráveis**.
+
+Mais fatias favoráveis, mais chance. Se todas fossem de pimentão, a chance seria 6/6 = 1 (certeza). Se nenhuma fosse, seria 0/6 = 0 (impossível).
+
+</Brincando>
+
+## 3. Uma régua de 0 a 1
+
+A probabilidade nunca é negativa e nunca passa de 1. O valor **0** é o impossível (sair 7 num dado comum), o valor **1** é o certo (sair um número menor que 7). Tudo o mais fica no meio, e podemos escrever como fração, decimal ou porcentagem: 1/2 = 0,5 = 50%.
+
+<ReguaDaChance />
+
+## 4. Cada lançamento começa do zero
+
+A moeda não tem memória. Depois de 5 caras seguidas, a próxima jogada continua com **50% de cara e 50% de coroa**. Achar que "agora tem que dar coroa" é um erro tão comum que tem nome: a **falácia do apostador**.
+
+<Brincando titulo="Sem memória: o dado que não anota">
+
+Pense num dado como alguém que joga sem nunca olhar a placar: não sabe o que saiu antes. Cada vez que você o rola, ele sorteia um número de novo, sem consultar a rodada anterior.
+
+Então, se saiu 6 três vezes seguidas, o dado não "se cansou" de 6 nem "quer compensar". Na quarta jogada a chance do 6 continua sendo 1/6.
+
+</Brincando>
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Você vai lançar uma moeda honesta 1.000 vezes. O que é mais provável sobre a porcentagem de caras?"
+  opcoes={['Vai dar exatamente 500 caras', 'Vai ficar perto de 50%, mas dificilmente exatamente 500 caras', 'Pode dar qualquer porcentagem, sem padrão']}
+  correta={1}
+  explicacao="Com muitos lançamentos, a porcentagem de caras se aproxima de 50%, mas raramente é cravada. Sair exatamente 500 é um caso entre muitos resultados parecidos. Essa tendência é a lei dos grandes números."
+>
+
+Lance a moeda em lotes cada vez maiores e observe o gráfico:
+
+<MoedaMilVezes />
+
+No começo, a linha balança muito: com 10 lançamentos, 7 caras (70%) não é nada estranho. Mas conforme os lançamentos aumentam, a linha **se firma perto de 50%**. Essa é a <Termo cor="azul">lei dos grandes números</Termo>: quanto mais repetições, mais a porcentagem observada se aproxima da chance calculada.
+
+Agora, voltando ao palpite do começo:
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Coroa, para equilibrar', 'As duas têm a mesma chance', 'Cara, porque está em sequência']}
+  correta={1}
+  seAcertou="Certo: a moeda não tem memória. Cada lançamento tem 50% de cara e 50% de coroa, não importa o que saiu antes."
+  seErrou="O certo é: as duas têm a mesma chance. A moeda não tem memória, e o equilíbrio só aparece em muitos lançamentos, sem 'compensar' o passado."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Calculando a chance de um evento
+
+Para calcular, siga sempre três passos: **liste** os casos possíveis, **conte** os favoráveis e **divida**.
+
+<ExemploResolvido titulo="Qual a chance de sair um número maior que 4 num dado?">
+  <Passo>Casos possíveis: 1, 2, 3, 4, 5 e 6. São **6**.</Passo>
+  <Passo>Casos favoráveis (maiores que 4): 5 e 6. São **2**.</Passo>
+  <Passo>Chance = 2/6 = **1/3**, cerca de 33,3%.</Passo>
+  <Passo>Confira: a chance está entre 0 e 1. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Num dado comum, qual a chance de sair um número par? (escreva como fração)" resposta="1/2" dica="Pares: 2, 4 e 6." resolucao="3 favoráveis em 6 possíveis: 3/6 = 1/2." />
+
+<Exercicio enunciado="Num dado comum, qual a chance de sair um número maior que 4? (fração)" resposta="1/3" dica="Os números maiores que 4 são 5 e 6." resolucao="2/6 = 1/3." />
+
+<Exercicio enunciado="Qual é a chance, em porcentagem, de sair cara numa moeda honesta? (só o número)" resposta="50" dica="1 favorável em 2 possíveis." resolucao="1/2 = 0,5 = 50%." />
+
+## Saco de bolinhas: a chance depende das quantidades
+
+Num saco com bolinhas de cores diferentes, a chance de tirar uma cor é a fração da cor no total. Mexa nas quantidades e veja a chance mudar:
+
+<SacoDeBolinhas />
+
+<Brincando titulo="Saco: a loteria do bairro">
+
+Numa rifa de bairro, vendem 100 números. Se você comprou 5, sua chance de ganhar é "5 de 100", ou seja, 5/100 = 5%. Se comprar 10, dobra para 10%. Cada número a mais é um caso favorável a mais, mas o total de números **não muda**.
+
+Já na urna de bolinhas é o mesmo: mais bolinhas da sua cor, mais chance.
+
+</Brincando>
+
+<ExemploResolvido titulo="Um saco tem 3 bolinhas vermelhas, 2 azuis e 5 verdes. Qual a chance de tirar uma azul?">
+  <Passo>Total de bolinhas (casos possíveis): 3 + 2 + 5 = **10**.</Passo>
+  <Passo>Bolinhas azuis (casos favoráveis): **2**.</Passo>
+  <Passo>Chance = 2/10 = **1/5** = 20%.</Passo>
+  <Passo>Confira: as três chances somam 3/10 + 2/10 + 5/10 = 10/10 = 1. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um saco tem 3 bolinhas vermelhas, 2 azuis e 5 verdes. Qual a chance de tirar uma azul? (fração simplificada)" resposta="1/5" dica="Total: 10 bolinhas." resolucao="2/10 = 1/5." />
+
+<Exercicio enunciado="Um saco tem 20 bolinhas, das quais 4 são vermelhas. Qual a chance, em porcentagem, de tirar uma vermelha? (só o número)" resposta="20" dica="4 ÷ 20 = 0,2." resolucao="4/20 = 0,2 = 20%." />
+
+## O evento complementar: "não acontecer"
+
+A chance de um evento **não** acontecer é o que falta para chegar a 1. Se a chance de chuva é 30%, a de não chover é 100% − 30% = **70%**.
+
+**chance(não acontecer) = 1 − chance(acontecer)**
+
+<Brincando titulo="Complementar: o que sobra da barra">
+
+Pense numa barra de chocolate inteira. Se você já comeu 3/10, sobraram 7/10. A chance de "acontecer" e a de "não acontecer" são pedaços da mesma barra: juntos, formam o **inteiro** (1 ou 100%).
+
+Por isso, às vezes é mais fácil calcular o que **não** queremos e subtrair de 1.
+
+</Brincando>
+
+<Exercicio enunciado="A previsão diz 30% de chance de chuva. Qual a chance, em porcentagem, de NÃO chover? (só o número)" resposta="70" dica="100% menos 30%." resolucao="100 − 30 = 70%." />
+
+<Exercicio enunciado="Num dado comum, qual a chance de NÃO sair o 6? (fração)" resposta="5/6" dica="1 − 1/6." resolucao="1 − 1/6 = 5/6." />
+
+## Dois dados: as 36 combinações
+
+Quando jogamos **dois dados**, a soma não é uma escolha uniforme: há 6 × 6 = **36 combinações**, todas com a mesma chance, mas sobre elas as somas aparecem em quantidades diferentes. A soma 7 pode sair de 6 maneiras (1+6, 2+5, 3+4, 4+3, 5+2, 6+1), enquanto a soma 2 só sai de uma (1+1).
+
+<TabelaDeDoisDados />
+
+<Brincando titulo="Dois dados: as combinações são cartas diferentes">
+
+Imagine que um dado é vermelho e o outro, azul. Sair "vermelho 1, azul 6" é diferente de "vermelho 6, azul 1", mesmo que a soma seja 7 nas duas. Por isso a soma 7 tem tantas formas e a soma 2 tem uma só.
+
+É como ter 36 cartas na mesa, todas com a mesma chance de serem viradas. A chance de uma soma é o número de cartas dessa soma dividido por 36.
+
+</Brincando>
+
+<ExemploResolvido titulo="Qual a chance de a soma de dois dados ser 8?">
+  <Passo>Casos possíveis: 6 × 6 = **36** combinações.</Passo>
+  <Passo>Formas de somar 8: 2+6, 3+5, 4+4, 5+3 e 6+2. São **5**.</Passo>
+  <Passo>Chance = 5/36, cerca de **13,9%**.</Passo>
+  <Passo>Confira na tabela: a soma 8 aparece 5 vezes. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Em dois dados, qual a chance de a soma ser 7? (fração simplificada)" resposta="1/6" dica="Há 6 maneiras de sair 7, entre 36." resolucao="6/36 = 1/6." />
+
+<Exercicio enunciado="Em dois dados, a soma 12 sai de quantas maneiras entre as 36 combinações? (só o número)" resposta="1" dica="Só 6 + 6." resolucao="Só 6 + 6: 1 maneira, chance 1/36." />
+
+Agora veja a lei dos grandes números em ação com dois dados. As barras azuis devem se aproximar dos traços vermelhos, que são a previsão da conta:
+
+<SomaDeDoisDados />
+
+## Duas ou mais moedas: a árvore de possibilidades
+
+Para contar casos com várias moedas, liste **todas as sequências**. Com 2 moedas há 4: CC, CK, KC e KK (C = cara, K = coroa). Com 3 moedas há 8. A cada moeda nova, o número de sequências **dobra**.
+
+<ArvoreDeMoedas />
+
+<ExemploResolvido titulo="Qual a chance de sair exatamente 2 caras em 3 lançamentos?">
+  <Passo>Sequências possíveis: 2 × 2 × 2 = **8** (CCC, CCK, CKC, CKK, KCC, KCK, KKC, KKK).</Passo>
+  <Passo>Com exatamente 2 caras: CCK, CKC e KCC. São **3**.</Passo>
+  <Passo>Chance = **3/8** = 37,5%.</Passo>
+  <Passo>Confira: 3 + 1 + 3 + 1 = 8 (0, 1, 2 ou 3 caras: 1, 3, 3, 1). ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Ao lançar duas moedas, qual a chance de saírem duas caras? (fração)" resposta="1/4" dica="Só CC entre 4 sequências." resolucao="1/4." />
+
+<Exercicio enunciado="Ao lançar três moedas, qual a chance de sair exatamente 2 caras? (fração)" resposta="3/8" dica="Liste as 8 sequências." resolucao="CCK, CKC e KCC: 3/8." />
+
+<ExemploResolvido titulo="Qual a chance de sair pelo menos uma cara em 3 lançamentos?">
+  <Passo>"Pelo menos uma cara" tem muitos casos. Mais fácil: calcular o contrário, **nenhuma cara** (KKK).</Passo>
+  <Passo>Chance de KKK = **1/8**.</Passo>
+  <Passo>Chance de pelo menos uma cara = 1 − 1/8 = **7/8** = 87,5%.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Ao lançar duas moedas, qual a chance de sair pelo menos uma cara? (fração)" resposta="3/4" dica="Use o contrário: nenhuma cara é KK." resolucao="1 − 1/4 = 3/4." />
+
+## Eventos que acontecem juntos
+
+Quando dois eventos **não influenciam** um ao outro (como uma moeda e um dado), a chance de **os dois** acontecerem é a **multiplicação** das chances. Cara na moeda (1/2) e 6 no dado (1/6): 1/2 × 1/6 = 1/12.
+
+<Exercicio enunciado="Você joga uma moeda e um dado. Qual a chance de sair cara e o número 6? (fração)" resposta="1/12" dica="Multiplique 1/2 por 1/6." resolucao="1/2 × 1/6 = 1/12." />
+
+## Frequência e chance
+
+A <Termo cor="coral">frequência</Termo> é o que **de fato aconteceu** num experimento. A <Termo cor="azul">chance</Termo> é o que **esperamos** que aconteça. Se lançamos uma moeda 200 vezes e saem 108 caras, a frequência de caras é 108/200 = 54%, perto dos 50% esperados.
+
+<Exercicio enunciado="Numa moeda lançada 200 vezes, saíram 108 caras. Qual foi a frequência de caras, em porcentagem? (só o número)" resposta="54" dica="108 ÷ 200." resolucao="108/200 = 0,54 = 54%." />
+
+<Exercicio enunciado="Um dado honesto é rolado 600 vezes. Quantas vezes se espera que saia o 6? (só o número)" resposta="100" dica="Chance 1/6 de 600." resolucao="600 × 1/6 = 100 vezes (valor esperado; na prática fica perto disso)." />
+
+## O jogo é justo?
+
+Um jogo é **justo** quando os jogadores têm a mesma chance de ganhar. Muitas vezes um jogo parece justo e não é. Escolha uma regra, jogue milhares de rodadas e compare com a conta.
+
+<JogoJusto />
+
+<Brincando titulo="Justo: a gangorra">
+
+Um jogo justo é uma gangorra equilibrada: os dois lados têm o mesmo "peso" (as mesmas chances). Se um lado pesa mais, a gangorra tomba, e esse jogador ganha mais vezes no longo prazo.
+
+Com poucas rodadas, o lado mais fraco pode até ganhar por sorte. Mas com mil rodadas, a gangorra mostra para onde pende.
+
+</Brincando>
+
+## Probabilidade no dia a dia
+
+Você já usa probabilidade sem perceber. "Hoje tem 70% de chance de chuva" não quer dizer que vai chover 70% do dia: quer dizer que, em dias parecidos com hoje, chove cerca de 7 vezes em cada 10. A previsão não garante nada, mas ajuda a decidir se vale levar o guarda-chuva.
+
+Um cuidado importante: chance **alta** não é certeza, e chance **baixa** não é impossível. Uma chance de 5% acontece, em média, uma vez em cada 20 tentativas. Quem joga muitas vezes acaba vendo o evento raro acontecer.
+
+<Brincando titulo="Chance e cotidiano: o guarda-chuva">
+
+Pense em 10 dias iguais ao de hoje, com 70% de chance de chuva. Em cerca de 7 deles chove e em 3 faz sol. Você não sabe em qual dos 10 você está, mas sabe que levar o guarda-chuva é uma boa aposta.
+
+Já numa rifa de 100 números com 1 prêmio, a chance de ganhar é só 1%: em média, 1 pessoa em cada 100 ganha. A pessoa pode ter sorte, mas a conta mostra que **ganhar é raro**.
+
+</Brincando>
+
+<Exercicio enunciado="Uma rifa tem 50 números e você comprou 5. Qual a sua chance de ganhar, em porcentagem? (só o número)" resposta="10" dica="Favoráveis ÷ possíveis: 5 ÷ 50." resolucao="5/50 = 0,1 = 10%." />
+
+<Exercicio enunciado="A chance de um evento é 0,25. Em 200 tentativas, quantas vezes se espera que ele aconteça? (só o número)" resposta="50" dica="Multiplique a chance pelo número de tentativas." resolucao="0,25 × 200 = 50 vezes, em média." />
+
+<Aprofundar titulo="O problema do jogo interrompido (Pascal e Fermat, 1654)">
+
+Dois jogadores, A e B, combinam que quem fizer 3 pontos primeiro leva o prêmio. A está com 2 pontos e B com 1 quando o jogo é interrompido. Como dividir?
+
+A precisa de **1** ponto e B de **2**. Em mais duas rodadas, as sequências possíveis são AA, AB, BA e BB, todas com a mesma chance. B só ganha se vencer as duas (BB): chance **1/4**. A ganha nos outros 3 casos: chance **3/4**. A divisão justa é 3 partes para A e 1 para B. Foi esse raciocínio, olhar para o que ainda poderia acontecer, que deu origem à probabilidade.
+
+</Aprofundar>
+
+<Aprofundar titulo="O acaso engana: coincidências e aniversários">
+
+Numa sala com apenas 23 pessoas, a chance de duas fazerem aniversário no mesmo dia é um pouco maior que 50%. Parece impossível, mas o que importa é o número de **pares** de pessoas (253 pares), e não só de pessoas. O acaso produz muitas coincidências, e a nossa intuição costuma subestimar isso.
+
+O mesmo vale para "sequências estranhas": 5 caras seguidas parece raro, mas é um evento de chance 1/32 em cada grupo de 5 lançamentos. Em muitos lançamentos, ele acaba aparecendo.
+
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Uma moeda honesta deu cara 4 vezes seguidas. Qual a chance de dar cara de novo?',
+    opcoes: ['Menos que 1/2', 'Exatamente 1/2', 'Mais que 1/2'],
+    correta: 1,
+    explicacao: 'A moeda não tem memória: cada lançamento tem 1/2 de chance de cara.',
+  },
+  {
+    enunciado: 'Qual valor NÃO pode ser uma probabilidade?',
+    opcoes: ['0', '1,2', '0,75'],
+    correta: 1,
+    explicacao: 'A probabilidade fica sempre entre 0 e 1. O valor 1,2 passaria de 100%.',
+  },
+  {
+    enunciado: 'Num dado comum, qual a chance de sair um número ímpar?',
+    opcoes: ['1/6', '1/3', '1/2'],
+    correta: 2,
+    explicacao: 'Ímpares: 1, 3 e 5, ou seja 3 em 6 = 1/2.',
+  },
+  {
+    enunciado: 'Um saco tem 2 bolinhas vermelhas e 6 azuis. Qual a chance de tirar uma vermelha?',
+    opcoes: ['1/4', '1/3', '2/6'],
+    correta: 0,
+    explicacao: 'Total de 8 bolinhas, 2 vermelhas: 2/8 = 1/4.',
+  },
+  {
+    enunciado: 'A chance de acertar uma questão por chute em 4 alternativas é...',
+    opcoes: ['25%', '40%', '50%'],
+    correta: 0,
+    explicacao: '1 certa entre 4: 1/4 = 25%.',
+  },
+  {
+    enunciado: 'Se a chance de um time ganhar é 0,35, qual a chance de ele NÃO ganhar?',
+    opcoes: ['0,35', '0,65', '0,5'],
+    correta: 1,
+    explicacao: '1 − 0,35 = 0,65.',
+  },
+  {
+    enunciado: 'Em dois dados, qual soma é a mais provável?',
+    opcoes: ['2', '7', '12'],
+    correta: 1,
+    explicacao: 'A soma 7 sai de 6 maneiras entre 36, mais que qualquer outra.',
+  },
+  {
+    enunciado: 'Quantas sequências diferentes existem ao lançar 3 moedas?',
+    opcoes: ['6', '8', '9'],
+    correta: 1,
+    explicacao: '2 × 2 × 2 = 8.',
+  },
+  {
+    enunciado: 'Qual a chance de sair pelo menos uma cara em 2 lançamentos?',
+    opcoes: ['1/2', '3/4', '1/4'],
+    correta: 1,
+    explicacao: 'Só KK não serve: 1 − 1/4 = 3/4.',
+  },
+  {
+    enunciado: 'A lei dos grandes números diz que...',
+    opcoes: [
+      'Depois de muitas caras, tem que sair coroa',
+      'Com muitas repetições, a frequência se aproxima da chance calculada',
+      'A moeda lembra os lançamentos antigos',
+    ],
+    correta: 1,
+    explicacao: 'Com muitas repetições a porcentagem se firma perto da chance. Ela não obriga o próximo lançamento a "compensar".',
+  },
+  {
+    enunciado: 'Ana ganha se a soma de dois dados for 7. Bia ganha se for 6 ou 8. O jogo é justo?',
+    opcoes: ['Sim, as duas têm a mesma chance', 'Não, Ana tem mais chance', 'Não, Bia tem mais chance'],
+    correta: 2,
+    explicacao: 'Ana: 6/36. Bia: 5/36 + 5/36 = 10/36. Bia tem mais chance.',
+  },
+  {
+    enunciado: 'Você joga uma moeda e um dado. Qual a chance de sair coroa e um número par?',
+    opcoes: ['1/4', '1/2', '1/12'],
+    correta: 0,
+    explicacao: '1/2 × 1/2 = 1/4.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Probabilidade** mede a chance de um evento, de 0 (impossível) a 1 (certo). Pode ser fração, decimal ou porcentagem.
+- Com resultados equiprováveis: **chance = casos favoráveis ÷ casos possíveis**.
+- **Complementar:** chance(não acontecer) = 1 − chance(acontecer).
+- Com vários lançamentos, liste ou conte **todas** as possibilidades. Dois dados têm 36 combinações; três moedas, 8.
+- Eventos independentes que acontecem juntos: **multiplique** as chances.
+- **Lei dos grandes números:** com muitas repetições, a frequência se aproxima da chance. A moeda **não tem memória**.
+- Um jogo é **justo** quando os jogadores têm a mesma chance de ganhar.
+
+**Um pouco de história.** No século 16 Cardano já escrevia sobre dados. Em 1654, Pascal e Fermat trocaram cartas sobre um jogo interrompido e fundaram a probabilidade. Huygens publicou o primeiro livro em 1657, Bernoulli provou a lei dos grandes números em 1713, Laplace definiu a chance clássica em 1812 e Kolmogorov deu a base lógica em 1933.
+
+</Resumo>
+
+A probabilidade está por trás de previsões do tempo, seguros e pesquisas. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

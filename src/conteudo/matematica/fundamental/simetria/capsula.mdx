@@ -1,0 +1,404 @@
+import EspelhoDeFiguras from '../../../../components/simulacoes/EspelhoDeFiguras'
+import SimetriaDosPoligonos from '../../../../components/simulacoes/SimetriaDosPoligonos'
+import GiroDaFigura from '../../../../components/simulacoes/GiroDaFigura'
+import DeslizarFigura from '../../../../components/simulacoes/DeslizarFigura'
+import MandalaDeGiros from '../../../../components/simulacoes/MandalaDeGiros'
+import LeveOFAteAlvo from '../../../../components/simulacoes/LeveOFAteAlvo'
+import ReflexoEMovimento from '../../../../components/simulacoes/ReflexoEMovimento'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Symmetry, Wallpaper group, M. C. Escher, Alhambra, Erlangen program, Noether's theorem), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Pegue uma folha de papel quadrada e dobre ao meio, de modo que as duas metades fiquem **exatamente uma em cima da outra**. Dá certo! Agora tente de outro jeito: dobrando na outra direção, e depois na diagonal. Quantas dobras diferentes funcionam?
+
+Essa pergunta parece de brincadeira, mas é a porta de entrada para uma das ideias mais poderosas da matemática: a **simetria**. Ela aparece nas asas da borboleta, nos flocos de neve, nas letras do alfabeto, nos azulejos de um palácio e até nas leis da física.
+
+<Palpite
+  chave="inicial"
+  pergunta="Quantas dobras diferentes, passando pelo meio de um quadrado de papel, deixam as duas metades coincidindo?"
+  opcoes={['2 dobras', '4 dobras', '8 dobras']}
+/>
+
+Nesta cápsula você vai aprender a reconhecer a simetria, a contar os seus eixos e a **transformar figuras**: espelhar, girar e deslizar. No fim, vai usar os números do plano cartesiano para fazer isso com contas.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Os humanos enxergam simetria desde sempre: no rosto de outra pessoa, nas asas de uma borboleta, na folha de uma árvore. A palavra vem do grego *symmetria*, algo como **"medida em comum"**: as partes combinam entre si. Mas a história da simetria na matemática é a história de como esse olhar virou uma ciência.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Antiguidade', texto: 'Pisos, tecidos e cerâmicas de muitas culturas repetem padrões com espelhos, giros e deslizamentos, bem antes de existir a palavra simetria na matemática.' },
+  { ano: 'Séculos 13 e 14', texto: 'O palácio da Alhambra, em Granada (Espanha), recebe azulejos com padrões geométricos que cobrem paredes inteiras sem falhas.' },
+  { ano: '1872', texto: 'Felix Klein propõe o Programa de Erlangen: estudar cada geometria pelas transformações que ela deixa intactas.' },
+  { ano: '1891', texto: 'Evgraf Fedorov mostra que existem exatamente 17 tipos de padrões que se repetem em todas as direções do plano.' },
+  { ano: '1918', texto: 'Emmy Noether prova um teorema que liga simetrias da natureza a leis de conservação, como a da energia.' },
+]} />
+
+## Os padrões que cobrem o chão
+
+Imagine decorar um chão enorme sem deixar buracos e sem sobrepor peças. Povos de muitas épocas resolveram isso com ladrilhos, e o jeito de repetir o desenho é sempre o mesmo: **espelhar**, **girar** e **deslizar** a peça. O palácio da **Alhambra**, em Granada, tem um dos exemplos mais famosos desses padrões.
+
+## O artista que virou matemático sem querer
+
+O artista holandês **M. C. Escher** (1898 a 1972) ficou fascinado pelos padrões da Alhambra. Ele passou a criar desenhos em que lagartos, pássaros e cavaleiros se encaixam sem sobrar espaço, repetidos por giros, espelhos e deslizamentos. Muitos matemáticos estudam suas obras até hoje.
+
+## Quantos padrões existem?
+
+Em 1891, o russo **Evgraf Fedorov** provou que, por mais variados que pareçam os papéis de parede do mundo, só existem **17 jeitos** diferentes de repetir um desenho em todas as direções do plano. O matemático George Pólya chegou ao mesmo resultado de forma independente em 1924.
+
+## A simetria vira ferramenta
+
+**Felix Klein**, em 1872, teve a ideia de definir uma geometria pelas transformações que não mudam suas figuras. Depois, em 1918, **Emmy Noether** mostrou que cada simetria das leis da física corresponde a algo que se conserva, como a energia. A simetria deixou de ser só beleza e virou um jeito de descobrir como o mundo funciona.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O que é simetria?
+
+Uma figura tem <Termo cor="azul">simetria</Termo> quando dá para fazer algo com ela (dobrar, girar, espelhar) e ela **continua igual**. Se você tira uma foto da figura, faz a operação e tira outra foto, as duas fotos são idênticas.
+
+Pense numa borboleta: dobre-a ao longo do corpo e uma asa cobre a outra. Pense numa estrela do mar: gire um quinto de volta e ela fica igual. As duas têm simetria, mas de **tipos diferentes**.
+
+## 2. Simetria de reflexão (o espelho)
+
+Se você consegue traçar uma linha que divide a figura em duas metades que são **reflexos** uma da outra, ela tem simetria de reflexão. Essa linha se chama <Termo cor="coral">eixo de simetria</Termo>. Cada ponto de um lado tem um parceiro do outro lado, **à mesma distância do eixo**, e a linha que liga os dois é perpendicular ao eixo.
+
+<Brincando titulo="Espelho: a tinta que dobra">
+
+Pingue tinta no meio de uma folha e dobre a folha. Ao abrir, aparecem duas manchas parecidas, uma de cada lado da dobra. Cada pingo de um lado tem um "irmão gêmeo" do outro, e a dobra fica **no meio** entre os dois.
+
+Esse é o segredo do espelho: o reflexo está sempre **à mesma distância** do espelho, só que do outro lado. Quem está a 2 passos do espelho vê a imagem a "2 passos para dentro". Por isso, no desenho abaixo, o quadradinho a 3 casas do eixo vai parar a 3 casas do outro lado.
+
+</Brincando>
+
+<EspelhoDeFiguras />
+
+## 3. Simetria de rotação (o giro)
+
+Uma figura tem <Termo cor="verde">simetria de rotação</Termo> quando, ao girá-la em torno de um ponto (o **centro**) por um ângulo menor que uma volta inteira, ela se encaixa de novo sobre si mesma. Um cata-vento de quatro pás se encaixa a cada **quarto de volta** (90°).
+
+Repare numa coisa curiosa: o cata-vento tem simetria de rotação, mas **não tem** eixo de espelho. Se você o espelhar, ele passa a girar para o outro lado. Então os dois tipos de simetria são independentes: uma figura pode ter um, o outro, os dois ou nenhum.
+
+<Brincando titulo="Giro: a roda de bicicleta">
+
+Gire a roda de uma bicicleta lentamente. Se ela tem 8 raios iguais, a cada 1/8 de volta a roda parece a mesma que era antes. Se você fechar os olhos durante o giro e abrir depois, não consegue saber se ela girou ou não.
+
+Esse "1/8 de volta" é o menor giro que encaixa a figura nela mesma. Como uma volta tem 360°, o menor giro é 360° ÷ 8 = **45°**. Repetindo esse giro vamos obtendo 90°, 135° e assim por diante, até fechar a volta.
+
+</Brincando>
+
+## 4. Translação (o deslize)
+
+Há uma terceira operação: <Termo cor="amarelo">deslizar</Termo> a figura sem girar nem virar. É a **translação**. Uma figura não tem "simetria de deslize" sozinha, porque ela seria deslocada. Mas um padrão que se estende para sempre (um friso, um papel de parede) é igual a si mesmo depois de deslizar.
+
+Espelhar, girar e deslizar têm uma coisa em comum: **não mudam o tamanho nem a forma** da figura. Por isso se chamam transformações que preservam as medidas.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Uma mandala tem 6 pétalas iguais, espalhadas em volta do centro. De quantos em quantos graus você precisa girá-la para ela se encaixar de novo em si mesma?"
+  opcoes={['30°', '60°', '90°']}
+  correta={1}
+  explicacao="Uma volta tem 360°. Com 6 pétalas iguais, o menor giro que encaixa é 360° ÷ 6 = 60°. Girando 60°, cada pétala ocupa o lugar da próxima."
+>
+
+Mexa no número de pétalas e confira como o menor giro muda:
+
+<MandalaDeGiros />
+
+Ligue as linhas de espelho: cada pétala tem um eixo que passa pelo meio dela. Com **n** pétalas iguais há **n giros** que encaixam e **n eixos** de espelho. Um padrão que junta os dois tipos de simetria é típico de flores, flocos de neve e rosáceas de catedrais.
+
+Agora volte ao palpite do começo. Quantas dobras servem num quadrado?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['2 dobras', '4 dobras', '8 dobras']}
+  correta={1}
+  seAcertou="Certo: duas dobras no meio (vertical e horizontal) e duas nas diagonais, quatro no total. O quadrado tem 4 eixos de simetria."
+  seErrou="São 4: a dobra vertical, a horizontal e as duas diagonais. O quadrado tem 4 eixos de simetria."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Contando eixos de simetria
+
+Para achar os eixos de uma figura, imagine um espelho em pé sobre ela. Se o espelho mostra a figura inteira de novo, achou um eixo. Veja alguns casos:
+
+- **Triângulo equilátero:** 3 eixos (um por vértice, passando pelo meio do lado oposto).
+- **Quadrado:** 4 eixos (2 pelos meios dos lados e 2 pelas diagonais).
+- **Retângulo que não é quadrado:** só 2 eixos (os dois que passam pelos meios dos lados). As diagonais **não** são eixos.
+- **Losango que não é quadrado:** 2 eixos, que são as próprias diagonais.
+- **Paralelogramo comum:** nenhum eixo (mas tem simetria de rotação de meia volta).
+- **Trapézio isósceles:** 1 eixo.
+- **Círculo:** infinitos eixos, qualquer diâmetro serve.
+
+O padrão mais bonito é o dos **polígonos regulares**: um polígono regular com **n lados** tem exatamente **n eixos de simetria** e **n posições de giro** (a cada 360° ÷ n).
+
+<SimetriaDosPoligonos />
+
+<Brincando titulo="Eixos: dobrando o papel de todos os jeitos">
+
+Recorte um triângulo equilátero de papel. Dobre-o de um vértice até o meio do lado oposto: as metades coincidem. Faça o mesmo a partir dos outros dois vértices. São 3 dobras e acabou: nenhuma outra dobra funciona.
+
+Agora um quadrado de papel: vertical, horizontal e as duas diagonais, são 4 dobras. A regra se repete: o número de dobras que funcionam é igual ao número de lados.
+
+</Brincando>
+
+<Exercicio enunciado="Quantos eixos de simetria tem um quadrado?" resposta="4" dica="Dobre pelas duas medianas e pelas duas diagonais." resolucao="O quadrado tem 4 eixos: 2 passando pelos meios dos lados e 2 pelas diagonais." />
+
+<Exercicio enunciado="Quantos eixos de simetria tem um retângulo que não é quadrado?" resposta="2" dica="As diagonais do retângulo não são eixos. Pense só nas dobras pelos meios dos lados." resolucao="Só 2 eixos: o que liga os meios dos lados maiores e o que liga os meios dos lados menores." />
+
+<Exercicio enunciado="Quantos eixos de simetria tem um hexágono regular?" resposta="6" dica="Polígono regular de n lados tem n eixos." resolucao="Um hexágono regular tem 6 lados e, portanto, 6 eixos de simetria." />
+
+<Exercicio enunciado="Na palavra MATE, quantas letras têm um eixo de simetria vertical (dobrando ao meio de cima a baixo)?" resposta="3" dica="Examine uma letra de cada vez. A letra E só se dobra na horizontal." resolucao="M, A e T têm eixo vertical. A letra E tem eixo horizontal, não vertical. Total: 3 letras." />
+
+## Letras e simetria
+
+Algumas letras maiúsculas têm eixo **vertical** (A, H, I, M, O, T, U, V, W, X, Y). Outras têm eixo **horizontal** (B, C, D, E, H, I, K, O, X). Algumas têm simetria de **meia volta** (H, I, N, O, S, X, Z): viradas de cabeça para baixo, ficam iguais. A letra **S** não tem nenhum eixo de espelho, mas gira 180° e se encaixa em si mesma, igual ao cata-vento.
+
+## Girando: o centro e o ângulo
+
+Um giro precisa de duas informações: o **centro** (o ponto que fica parado) e o **ângulo** (quanto girar e para que lado). Por convenção, o giro **anti-horário** é o positivo. A figura gira inteira, sem mudar de tamanho nem de forma.
+
+<GiroDaFigura />
+
+<Brincando titulo="Giro: o ponteiro do relógio">
+
+O ponteiro dos minutos gira em torno do centro do relógio. Em 15 minutos ele gira um quarto de volta (90°) no sentido horário. Em 30 minutos, meia volta (180°). Todo ponto do ponteiro gira junto, cada um percorrendo um arco, e **o centro é o único que não sai do lugar**.
+
+Para saber para onde vai um ponto, pense num "ponteiro" ligando o centro a ele e gire o ponteiro. O comprimento do ponteiro não muda, só a direção.
+
+</Brincando>
+
+<ExemploResolvido titulo="Qual é o menor giro que encaixa um octógono regular?">
+  <Passo>Um octógono regular tem **8** lados iguais e vértices espalhados igualmente em torno do centro.</Passo>
+  <Passo>Uma volta inteira tem 360°. Dividindo em 8 partes iguais: 360° ÷ 8 = **45°**.</Passo>
+  <Passo>Girando 45°, cada vértice ocupa o lugar do vizinho. Os giros que encaixam são 45°, 90°, 135°, 180°, ... até 360°, num total de 8 posições.</Passo>
+  <Passo>Confira: 8 × 45° = 360°. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é o menor giro, em graus, que encaixa um triângulo equilátero sobre si mesmo?" resposta="120" dica="Divida 360° por 3." resolucao="360° ÷ 3 = 120°." />
+
+<Exercicio enunciado="Qual é o menor giro, em graus, que encaixa um hexágono regular sobre si mesmo?" resposta="60" dica="Divida 360° pelo número de lados." resolucao="360° ÷ 6 = 60°." />
+
+<Exercicio enunciado="Um ladrilho em forma de estrela de 5 pontas iguais se encaixa em si mesmo a cada quantos graus?" resposta="72" dica="Há 5 pontas iguais em volta do centro." resolucao="360° ÷ 5 = 72°." />
+
+## Deslizando: o vetor da translação
+
+Na <Termo cor="amarelo">translação</Termo>, todos os pontos andam o **mesmo tanto na mesma direção**. Descrevemos isso com dois números: quanto vai para o lado e quanto vai para cima ou para baixo. É o **vetor** de deslocamento, escrito, por exemplo, (3, −1): 3 para a direita e 1 para baixo.
+
+<DeslizarFigura />
+
+<Brincando titulo="Translação: o elevador e a esteira">
+
+Uma pessoa parada numa esteira de aeroporto não gira nem vira: ela só **desliza** para a frente. Todo mundo na esteira anda junto, na mesma direção e na mesma velocidade, e a distância entre as pessoas não muda.
+
+Num elevador é igual, só que na vertical. Em ambos os casos, nada na "figura" dos passageiros é espelhado ou girado: só a posição muda.
+
+</Brincando>
+
+<Exercicio enunciado="O ponto A tem coordenadas (2, 3). Ele desliza pelo vetor (4, −5). Qual é o novo valor de x?" resposta="6" dica="Some o primeiro número do vetor ao x." resolucao="x = 2 + 4 = 6." />
+
+<Exercicio enunciado="O ponto A tem coordenadas (2, 3). Ele desliza pelo vetor (4, −5). Qual é o novo valor de y?" resposta="-2" dica="Some o segundo número do vetor ao y." resolucao="y = 3 + (−5) = −2. O ponto vai para (6, −2)." />
+
+## As transformações com coordenadas
+
+No plano cartesiano, cada transformação vira uma pequena regra com os números do ponto (x, y). Vamos ver as principais:
+
+- **Translação por (a, b):** (x, y) vira (x + a, y + b).
+- **Reflexão no eixo x** (espelho horizontal): (x, y) vira (x, −y). O ponto cai para o outro lado do eixo x.
+- **Reflexão no eixo y** (espelho vertical): (x, y) vira (−x, y).
+- **Giro de 180° em torno da origem:** (x, y) vira (−x, −y).
+- **Giro de 90° anti-horário em torno da origem:** (x, y) vira (−y, x).
+- **Giro de 90° horário em torno da origem:** (x, y) vira (y, −x).
+
+<Brincando titulo="Coordenadas: o espelho troca o sinal">
+
+O eixo y é como um espelho em pé, bem no meio do plano. O ponto (3, 2) está 3 casas à direita do espelho. A imagem fica 3 casas à **esquerda**, na mesma altura: (−3, 2). Só o sinal do x mudou, porque o y (a altura) continua o mesmo.
+
+No espelho "deitado", o eixo x, é a altura que vira o oposto: (3, 2) vira (3, −2).
+
+</Brincando>
+
+<ReflexoEMovimento />
+
+<ExemploResolvido titulo="O triângulo ABC com A(1, 1), B(4, 1) e C(2, 3) é refletido no eixo y">
+  <Passo>A regra da reflexão no eixo y é (x, y) → (−x, y). A altura fica igual e o x troca de sinal.</Passo>
+  <Passo>A(1, 1) vira **A′(−1, 1)**. B(4, 1) vira **B′(−4, 1)**. C(2, 3) vira **C′(−2, 3)**.</Passo>
+  <Passo>Confira as distâncias ao eixo y: A estava a 1 casa e A′ está a 1 casa do outro lado. B a 4 e B′ a 4. ✓</Passo>
+  <Passo>A figura refletida tem o mesmo tamanho e o mesmo formato, mas está "virada do avesso", como a imagem num espelho.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O ponto (3, 2) é refletido no eixo y. Qual é o novo valor de x?" resposta="-3" dica="Na reflexão no eixo y, o x troca de sinal." resolucao="(3, 2) vira (−3, 2). Novo x = −3." />
+
+<Exercicio enunciado="O ponto (4, −5) é refletido no eixo x. Qual é o novo valor de y?" resposta="5" dica="Na reflexão no eixo x, o y troca de sinal." resolucao="(4, −5) vira (4, 5). Novo y = 5." />
+
+<Exercicio enunciado="O ponto (3, 1) é girado 180° em torno da origem. Qual é o novo valor de x?" resposta="-3" dica="No giro de 180° os dois sinais trocam." resolucao="(3, 1) vira (−3, −1). Novo x = −3." />
+
+<Exercicio enunciado="O ponto (2, 5) é girado 90° no sentido anti-horário em torno da origem. Qual é o novo valor de x? (regra: (x, y) vira (−y, x))" resposta="-5" dica="O novo x é o oposto do antigo y." resolucao="(2, 5) vira (−5, 2). Novo x = −5." />
+
+## Espelhos que não são os eixos
+
+Um espelho pode estar em qualquer lugar. Para espelhar um ponto numa linha vertical x = k, a distância até a linha precisa ser a mesma do outro lado. O novo x é **2k − x**, e o y não muda.
+
+<ExemploResolvido titulo="Espelhar o ponto (1, 2) na linha vertical x = 3">
+  <Passo>O ponto está a 3 − 1 = **2 casas** à esquerda da linha.</Passo>
+  <Passo>A imagem deve ficar 2 casas à direita da linha: x = 3 + 2 = **5**.</Passo>
+  <Passo>A altura não muda: y = 2. A imagem é **(5, 2)**.</Passo>
+  <Passo>Pela fórmula: 2k − x = 2 × 3 − 1 = 5. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O ponto (1, 2) é espelhado na linha vertical x = 3. Qual é o novo valor de x?" resposta="5" dica="A imagem fica à mesma distância da linha, do outro lado. Use 2 × 3 − 1." resolucao="Distância até a linha: 2. A imagem está em x = 3 + 2 = 5." />
+
+<Exercicio enunciado="Um ponto está 4 casas à esquerda de um espelho. Quantas casas separam o ponto de sua imagem?" resposta="8" dica="Ponto e imagem ficam à mesma distância do espelho, em lados opostos." resolucao="4 casas de um lado mais 4 do outro: 8 casas." />
+
+## Combinando transformações
+
+Dá para fazer uma transformação depois da outra. A **ordem importa**: espelhar e depois deslizar pode dar um resultado diferente de deslizar e depois espelhar.
+
+<ExemploResolvido titulo="Espelhar no eixo y e depois deslizar por (1, 1): o ponto (3, 2)">
+  <Passo>Primeiro a reflexão no eixo y: (3, 2) vira **(−3, 2)**.</Passo>
+  <Passo>Depois a translação por (1, 1): somamos 1 ao x e 1 ao y. (−3 + 1, 2 + 1) = **(−2, 3)**.</Passo>
+  <Passo>Se fizéssemos na ordem contrária: (3, 2) desliza para (4, 3) e depois reflete em (−4, 3). Resultado diferente. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O ponto (3, 2) é refletido no eixo y e depois deslizado por (1, 1). Qual é o valor final de x?" resposta="-2" dica="Primeiro troque o sinal do x. Depois some 1." resolucao="Reflexão: (−3, 2). Translação: (−3 + 1, 2 + 1) = (−2, 3). x = −2." />
+
+Agora é a sua vez. Use deslizar, girar e espelhar para encaixar o F na sombra. Há mais de um caminho: o interessante é descobrir qual é o mais curto.
+
+<LeveOFAteAlvo />
+
+<Aprofundar titulo="Dois espelhos fazem um giro ou um deslize">
+
+Espelhe uma figura num espelho e depois espelhe o resultado num segundo espelho. O que sai disso é um movimento **sem virar do avesso**. Se os dois espelhos são **paralelos**, o resultado é um deslize (translação) com o **dobro da distância** entre os espelhos. Se os espelhos se **cruzam**, o resultado é um giro em torno do ponto de encontro, com o **dobro do ângulo** entre os espelhos.
+
+Por isso, em certo sentido, o espelho é a transformação mais básica: giros e deslizes podem ser construídos com dois espelhos. É a ideia por trás dos caleidoscópios, que usam espelhos em ângulo para criar mandalas.
+
+</Aprofundar>
+
+<Aprofundar titulo="Os 17 papéis de parede e a Alhambra">
+
+Um padrão que se repete em todas as direções do plano combina translações com giros e espelhos. Evgraf Fedorov provou em 1891 que só existem **17 combinações possíveis**. Qualquer papel de parede, azulejo ou tecido estampado do mundo tem a simetria de exatamente um desses 17 tipos.
+
+Os padrões da Alhambra e as obras de Escher são exemplos famosos: cada peça (um lagarto, um pássaro, uma estrela) é repetida usando giros e espelhos, até cobrir o plano todo sem buracos. Aprender a ver qual dos 17 tipos um padrão usa é um bom jogo de detetive.
+
+</Aprofundar>
+
+<Aprofundar titulo="Simetria na natureza e na física">
+
+Nos seres vivos, a simetria mais comum é a de **espelho**, chamada bilateral: borboletas, peixes e pessoas têm um lado que reflete o outro (mesmo que por dentro haja diferenças). Estrelas do mar e flores costumam ter simetria de **rotação**. Os flocos de neve têm seis braços, por causa da forma como as moléculas de água se encaixam no gelo.
+
+Na física, a ideia vai ainda mais longe. Se as leis físicas não dependem do lugar onde o experimento é feito, a **quantidade de movimento** se conserva. Se não dependem da hora, a **energia** se conserva. Essa ligação foi demonstrada por Emmy Noether em 1918.
+
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Quantos eixos de simetria tem um triângulo equilátero?',
+    opcoes: ['1', '3', '6'],
+    correta: 1,
+    explicacao: 'Um eixo por vértice, passando pelo meio do lado oposto: 3 eixos.',
+  },
+  {
+    enunciado: 'Um retângulo (que não é quadrado) tem quantos eixos de simetria?',
+    opcoes: ['2', '4', 'Nenhum'],
+    correta: 0,
+    explicacao: 'Só os dois que passam pelos meios dos lados. As diagonais não servem.',
+  },
+  {
+    enunciado: 'Qual figura tem simetria de rotação mas não tem nenhum eixo de espelho?',
+    opcoes: ['Quadrado', 'Cata-vento de 4 pás tortas', 'Círculo'],
+    correta: 1,
+    explicacao: 'O cata-vento se encaixa a cada quarto de volta, mas o espelho o faria girar para o outro lado.',
+  },
+  {
+    enunciado: 'Qual é o menor giro que encaixa um pentágono regular sobre si mesmo?',
+    opcoes: ['36°', '72°', '108°'],
+    correta: 1,
+    explicacao: '360° ÷ 5 = 72°.',
+  },
+  {
+    enunciado: 'No espelho, a imagem de um ponto fica...',
+    opcoes: ['À mesma distância do espelho, do outro lado', 'Ao dobro da distância', 'Sobre o espelho'],
+    correta: 0,
+    explicacao: 'Ponto e imagem ficam à mesma distância do eixo, em lados opostos.',
+  },
+  {
+    enunciado: 'Qual dessas transformações muda o tamanho da figura?',
+    opcoes: ['Espelhar', 'Girar', 'Nenhuma delas'],
+    correta: 2,
+    explicacao: 'Reflexão, rotação e translação preservam o tamanho e a forma.',
+  },
+  {
+    enunciado: 'O ponto (5, −2) é refletido no eixo y. Onde ele fica?',
+    opcoes: ['(−5, −2)', '(5, 2)', '(−5, 2)'],
+    correta: 0,
+    explicacao: 'No eixo y o x troca de sinal e o y continua igual: (−5, −2).',
+  },
+  {
+    enunciado: 'O ponto (5, −2) é refletido no eixo x. Onde ele fica?',
+    opcoes: ['(−5, −2)', '(5, 2)', '(−5, 2)'],
+    correta: 1,
+    explicacao: 'No eixo x o y troca de sinal e o x continua igual: (5, 2).',
+  },
+  {
+    enunciado: 'Qual é a regra da translação por (3, −4) aplicada ao ponto (x, y)?',
+    opcoes: ['(x − 3, y + 4)', '(x + 3, y − 4)', '(3x, −4y)'],
+    correta: 1,
+    explicacao: 'Somamos 3 ao x e −4 ao y: (x + 3, y − 4).',
+  },
+  {
+    enunciado: 'O ponto (4, 1) é girado 180° em torno da origem. Onde ele fica?',
+    opcoes: ['(−4, −1)', '(−4, 1)', '(1, 4)'],
+    correta: 0,
+    explicacao: 'No giro de 180° os dois sinais trocam: (−4, −1).',
+  },
+  {
+    enunciado: 'A ordem das transformações importa? Espelhar e depois deslizar dá sempre o mesmo que deslizar e depois espelhar?',
+    opcoes: ['Sim, sempre', 'Não, pode dar resultados diferentes', 'Só no círculo'],
+    correta: 1,
+    explicacao: 'Em geral a ordem importa. Por exemplo, o ponto (3, 2) espelhado no eixo y e deslizado por (1, 1) vai para (−2, 3), mas na ordem contrária vai para (−4, 3).',
+  },
+  {
+    enunciado: 'Qual é a conclusão certa para um polígono regular de n lados?',
+    opcoes: ['n eixos de simetria e menor giro 360° ÷ n', '2 eixos e menor giro 180°', 'n² eixos de simetria'],
+    correta: 0,
+    explicacao: 'Todo polígono regular de n lados tem n eixos e se encaixa a cada 360° ÷ n.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Simetria:** uma operação que deixa a figura igual a ela mesma.
+- **Reflexão (espelho):** o eixo de simetria divide a figura em duas metades-espelho; cada ponto e sua imagem ficam à mesma distância do eixo.
+- **Rotação (giro):** em torno de um centro, por um ângulo. Polígono regular de n lados se encaixa a cada 360° ÷ n e tem n eixos.
+- **Translação (deslize):** todos os pontos andam o mesmo vetor (a, b): (x, y) vira (x + a, y + b).
+- **No plano cartesiano:** eixo y troca o sinal do x; eixo x troca o sinal do y; giro de 180° troca os dois; giro de 90° anti-horário leva (x, y) a (−y, x).
+- Reflexão, rotação e translação **não mudam o tamanho nem a forma**. A **ordem** em que se combinam importa.
+
+**Um pouco de história.** Ladrilhos e azulejos de muitas culturas usaram espelhos, giros e deslizes por séculos, como na Alhambra, em Granada. Escher transformou esses padrões em arte. Em 1872 Klein usou as transformações para definir geometrias, em 1891 Fedorov provou que há só 17 tipos de padrões no plano, e em 1918 Noether ligou simetrias a leis de conservação da física.
+
+</Resumo>
+
+As transformações do plano voltam nas matrizes, que as descrevem com tabelas de números. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>
