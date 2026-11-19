@@ -71,6 +71,16 @@ Pense num liquidificador: você consegue transformar uma banana em vitamina, mas
 
 <MoedorDeHash />
 
+<Brincando titulo="Hash: a máquina de moer, sem volta">
+
+Coloque uma **laranja** num liquidificador: sai suco. Agora tente **voltar** do suco para a laranja inteira: impossível. A máquina só anda em uma direção.
+
+A função de **hash** faz isso com textos: qualquer coisa que entra, uma senha, um livro, vira um "suco" de **tamanho fixo**. A mesma entrada dá **sempre o mesmo suco**, mas do suco não se recupera a entrada.
+
+Por isso o site guarda o suco, e não a senha: quando você digita de novo, ele mói de novo e **compara os sucos**.
+
+</Brincando>
+
 <ExemploResolvido titulo="Resumo de tamanho fixo">
   <Passo>Você mói "oi" e sai um resumo de 8 dígitos (no nosso brinquedo).</Passo>
   <Passo>Você mói um texto de 1.000 palavras: sai um resumo **também de 8 dígitos**.</Passo>
@@ -140,6 +150,16 @@ Três pessoas usam a mesma senha, 123456. Veja o que o site guarda, sem sal e co
 
 <SalNaSenha />
 
+<Brincando titulo="Sal: o tempero que só você tem">
+
+Duas pessoas escolheram a **mesma senha**, e o site moeu as duas do mesmo jeito. Os "sucos" saíram **idênticos**, e quem rouba a lista percebe que elas têm a mesma senha.
+
+O **sal** é um tempero aleatório **diferente para cada pessoa**, misturado à senha antes de moer. Agora as duas senhas iguais viram sucos **completamente diferentes**.
+
+O ladrão não consegue mais comparar os sucos entre si nem usar uma tabela pronta de senhas comuns.
+
+</Brincando>
+
 <ExemploResolvido titulo="Com sal e sem sal">
   <Passo>Sem sal: Ana, Bruno e Carla usam "123456", e os três hashes são **iguais**.</Passo>
   <Passo>O ladrão calcula o hash de "123456" uma vez e acha as **três** contas de uma vez.</Passo>
@@ -159,6 +179,16 @@ Cada **caractere a mais** na senha multiplica o número de possibilidades. Uma s
 
 <TempoParaQuebrar />
 
+<Brincando titulo="Combinações: o cadeado de números">
+
+Um cadeado de **3 dígitos** tem 10 × 10 × 10 = **1.000** combinações, e dá para abrir tentando uma por uma. Com **4 dígitos**, são 10.000, dez vezes mais trabalho. Cada dígito a mais **multiplica** o esforço.
+
+Com senhas é a mesma ideia, mas cada posição pode ser uma letra, um número ou um símbolo, então são muitas opções **por posição**. Cada caractere a mais multiplica as combinações possíveis.
+
+Por isso uma senha **longa** é muito mais difícil de adivinhar do que uma curta.
+
+</Brincando>
+
 <ExemploResolvido titulo="Contando combinações">
   <Passo>Um PIN de 4 dígitos usa o alfabeto de 10 números.</Passo>
   <Passo>Combinações: 10 × 10 × 10 × 10 = **10.000**.</Passo>
@@ -173,6 +203,16 @@ Cada **caractere a mais** na senha multiplica o número de possibilidades. Uma s
 <Exercicio enunciado="Um atacante testa 1.000 senhas por segundo contra 10.000 combinações. Quantos segundos para testar todas? (número)" resposta="10" dica="10.000 dividido por 1.000." resolucao="10.000 ÷ 1.000 = 10 segundos." />
 
 Duas lições aparecem: **tamanho importa mais que enfeite** (um caractere a mais multiplica o trabalho) e **a velocidade do hash também importa**. Hashes rápidos permitem testar muito rápido espaços pequenos de senhas, e que as placas de vídeo (GPUs) e circuitos dedicados (ASICs) agravam isso. Por isso se usam funções **lentas de propósito**.
+
+<Brincando titulo="Lento de propósito: a porta com muitas fechaduras">
+
+Imagine uma porta com **cinco fechaduras**. Para **você**, que entra uma vez por dia, abrir as cinco leva uns segundos e quase não pesa. Mas para um ladrão que precisa **tentar milhões de chaves**, cada tentativa é cinco vezes mais lenta, e o total vira uma eternidade.
+
+O *key stretching* faz o hash ser lento **de propósito**: o login normal demora uma fração de segundo, mas quem tenta chutar milhões de senhas gasta muito mais tempo e dinheiro.
+
+Aqui, a lentidão deixa de ser defeito e vira proteção.
+
+</Brincando>
 
 <Aprofundar titulo="Key stretching: deixar o hash lento de propósito">
 Para senhas, o hash ideal é **lento**. O truque se chama **alongamento de chave** (*key stretching*): repetir o cálculo muitas vezes. Isso não atrapalha quem entra (um login com 0,1 segundo a mais passa batido), mas multiplica o custo para quem testa **bilhões** de chutes. O NIST recomenda **pelo menos 10.000 iterações**, e que o limite prático é o que as pessoas toleram esperar. Funções feitas para isso: **PBKDF2**, **bcrypt**, **scrypt** e **Argon2**.

@@ -73,6 +73,16 @@ E um canal só fica ocupado enquanto um pacote passa por ele. Logo depois, outro
 
 Mexa nos controles: as letras viram pacotes numerados. Repare que os pacotes podem **chegar fora de ordem**. Não é problema: o número de cada um permite remontar tudo no destino.
 
+<Brincando titulo="Pacotes: um livro enviado em cartas numeradas">
+
+Imagine enviar um **livro inteiro** pelo correio. Em vez de mandar tudo num pacote gigante, você manda **uma carta por capítulo**, cada uma com o **número** do capítulo escrito por fora.
+
+As cartas podem seguir por caminhos diferentes e chegar fora de ordem. Mas, como estão **numeradas**, o destinatário as coloca na ordem certa. Se alguma se perder, ele pede só aquela de novo.
+
+É assim que a internet manda uma foto ou um vídeo: dividido em muitos **pacotes pequenos**, remontados no destino.
+
+</Brincando>
+
 <ExemploResolvido titulo="Quantos pacotes tem a mensagem?">
   <Passo>A mensagem "Oi, tudo bem com você?" tem 22 caracteres (contando espaços e pontuação).</Passo>
   <Passo>Se cada pacote leva 5 caracteres, dividimos: 22 ÷ 5 = 4,4.</Passo>
@@ -132,6 +142,16 @@ A palavra **internet** vem de *internetwork*: "rede entre redes". Ela não é um
 
 Para tantas redes diferentes conversarem, todos precisam seguir as **mesmas regras**: o **TCP/IP**. Ele é uma família de protocolos (combinados) que define como endereçar, dividir, enviar e remontar os pacotes. Se alguém usasse regras diferentes, os pacotes não seriam entendidos.
 
+<Brincando titulo="Protocolo: o idioma comum do aeroporto">
+
+Num aeroporto, pilotos de países diferentes falam **inglês** com a torre de controle, mesmo que o idioma de cada um seja outro. Com um idioma comum, ninguém se perde.
+
+Na internet, computadores de marcas e países diferentes precisam de um **acordo** sobre como escrever o endereço, dividir a mensagem e confirmar o recebimento. Esse acordo é o **protocolo**.
+
+Se cada rede usasse regras próprias, um pacote que sai de um lugar não seria entendido no outro.
+
+</Brincando>
+
 <ExemploResolvido titulo="Por que as regras precisam ser as mesmas?">
   <Passo>Imagine que o computador A manda pacotes com o endereço escrito no início, mas o B espera o endereço no fim.</Passo>
   <Passo>O roteador leria um pedaço da mensagem como se fosse o endereço. O pacote iria parar em lugar nenhum.</Passo>
@@ -179,6 +199,16 @@ Satélites são úteis onde cabos não chegam, mas a luz precisa subir e descer 
 Quando você contrata "100 Mega", isso significa **100 megabits por segundo** (Mbps). Um *bit* é um dígito binário, e **1 byte tem 8 bits** (como na cápsula de Binário). Já os arquivos costumam aparecer em **megabytes** (MB). Por isso, o download "demora mais do que você achava" se você não converter:
 
 <TempoDeDownload />
+
+<Brincando titulo="Mbps e MB: a letra minúscula muda tudo">
+
+O "b" minúsculo é de **bit**, e o "B" maiúsculo é de **byte**. Um byte tem **8 bits**. A internet é vendida em **bits** por segundo (Mbps), e os arquivos são medidos em **bytes** (MB).
+
+Pense em comprar água em **copinhos** e medir o balde em **garrafas**: para comparar, você precisa converter. Para passar de Mbps para MB por segundo, **divida por 8**.
+
+Se esquecer isso, a conta de tempo de download fica **8 vezes errada**.
+
+</Brincando>
 
 <ExemploResolvido titulo="Quanto demora para baixar um arquivo de 500 MB a 100 Mbps?">
   <Passo>Converta o arquivo em bits: 500 MB × 8 = **4.000 megabits**.</Passo>

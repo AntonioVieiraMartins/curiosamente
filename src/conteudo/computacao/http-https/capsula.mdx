@@ -124,6 +124,16 @@ O **método** é o verbo do pedido: diz o que você quer fazer com o recurso.
 
 <MetodosHttp />
 
+<Brincando titulo="Métodos: os verbos do pedido">
+
+Num restaurante, você pode **olhar o cardápio**, **fazer um pedido novo**, **trocar** um prato já pedido ou **cancelar** um. São ações diferentes, e o garçom precisa saber qual é a sua.
+
+Os **métodos** do HTTP são esses verbos. **GET** olha, **POST** envia algo novo, **PUT** e **PATCH** trocam, **DELETE** cancela.
+
+Escolher o método certo é dizer ao servidor, junto com o endereço, **o que você quer fazer** com aquilo.
+
+</Brincando>
+
 <ExemploResolvido titulo="Qual método usar?">
   <Passo>Ver a lista de tarefas: você só quer **ler**. Método: **GET**.</Passo>
   <Passo>Adicionar uma tarefa nova: você **envia dados** para criar. Método: **POST**.</Passo>
@@ -150,6 +160,16 @@ Toda resposta traz um **código de três dígitos**. Eles se dividem em cinco fa
 - **3xx**: **redirecionamento**. "O que você quer está em outro lugar." (301 é "mudou de lugar para sempre").
 - **4xx**: **erro do cliente**. O pedido tem um problema. (400 Bad Request, 404 Not Found.)
 - **5xx**: **erro do servidor**. O pedido estava certo, mas o servidor falhou. (500 Internal Server Error.)
+
+<Brincando titulo="Códigos de status: o recibo do garçom">
+
+Depois do pedido, o garçom volta com um recado. Se disser "**está pronto**", deu certo (começa com 2). Se disser "**esse prato não existe no cardápio**", o erro foi do cliente (começa com 4). Se disser "**a cozinha pegou fogo**", o erro foi do restaurante (começa com 5).
+
+Os códigos do HTTP seguem essa lógica: 200 é sucesso, 404 é "não achei o que você pediu" e 500 é "tive um problema aqui dentro".
+
+Olhar o **primeiro número** do código já diz **quem precisa consertar**.
+
+</Brincando>
 
 <ExemploResolvido titulo="Quem deve consertar?">
   <Passo>Você vê **404**. Começa com 4: o problema está no pedido (endereço errado). Você corrige a digitação.</Passo>
@@ -197,6 +217,16 @@ Uma forma de entender a ideia é um método clássico com **contas de resto** (a
 
 O espião vê os números públicos, mas, com números **muito grandes**, voltar para os segredos é impraticável. Aqui usamos números pequenos só para você conseguir conferir as contas.
 
+<Brincando titulo="Combinar um segredo: a mistura de tintas">
+
+Duas pessoas querem combinar uma cor secreta, **sem nunca dizer a cor em voz alta**, com todos ouvindo. Cada uma tem uma tinta secreta e as duas têm uma tinta **pública** igual.
+
+Cada uma mistura a sua tinta secreta com a pública e **troca a mistura** com a outra. Depois, cada uma mistura a **sua tinta secreta** na mistura recebida. As duas chegam à **mesma cor final**, e quem só viu as misturas no meio do caminho não consegue desfazer o resultado.
+
+O computador faz isso com contas matemáticas em vez de tintas: o segredo final nasce nas duas pontas, mas nunca viaja.
+
+</Brincando>
+
 <ExemploResolvido titulo="Conferindo as contas na mão">
   <Passo>Base 5, módulo 23. Ana escolhe o segredo 6 e Bruno, o 15.</Passo>
   <Passo>Ana publica 5⁶ mod 23. 5⁶ = 15.625, e o resto de 15.625 ÷ 23 é **8**.</Passo>
@@ -207,6 +237,16 @@ O espião vê os números públicos, mas, com números **muito grandes**, voltar
 <Exercicio enunciado="Qual é o resto da divisão de 17 por 5? (é o que o 'mod' calcula: 17 mod 5)" resposta="2" dica="5 × 3 = 15, sobra 2." resolucao="17 ÷ 5 = 3 e sobra 2." />
 
 <Exercicio enunciado="Quanto é 10 mod 4?" resposta="2" dica="4 × 2 = 8, sobra 2." resolucao="10 ÷ 4 = 2 e sobra 2." />
+
+<Brincando titulo="Chave pública e privada: a caixa de correio">
+
+A **caixa de correio** da rua tem uma abertura onde **qualquer pessoa** pode deixar uma carta. Mas só **o dono**, com a chave, consegue abrir a caixa e ler.
+
+A **chave pública** é essa abertura: todos podem ter, e serve para **trancar** mensagens. A **chave privada** é a chave do dono, que fica guardada e serve para **destrancar**.
+
+Assim, qualquer um manda um segredo pelo site, e só o site consegue ler.
+
+</Brincando>
 
 <Aprofundar titulo="Chaves pública e privada">
 
@@ -226,6 +266,16 @@ Criptografar não basta: e se você estiver falando, de forma criptografada, **c
 Uma **autoridade certificadora** (CA) é uma entidade de confiança que **confere** quem pede o certificado e o **assina**. Os navegadores já vêm com uma lista de autoridades em que confiam.
 
 <ConferirCertificado />
+
+<Brincando titulo="Certificado: o documento com carimbo de cartório">
+
+Qualquer pessoa pode escrever num papel "eu sou o dono desta loja". Mas ninguém acredita só no papel. Se o papel tem o **carimbo de um cartório** em que todos confiam, ele vale.
+
+O **certificado** de um site é esse documento, e a **autoridade certificadora** é o cartório. Ela confere quem é o dono do endereço e **assina** o certificado.
+
+O navegador reconhece os cartórios confiáveis, e por isso o cadeado só aparece quando a assinatura é válida.
+
+</Brincando>
 
 <ExemploResolvido titulo="Por que a assinatura importa?">
   <Passo>Qualquer pessoa pode **fabricar** um certificado dizendo ser o seu banco.</Passo>

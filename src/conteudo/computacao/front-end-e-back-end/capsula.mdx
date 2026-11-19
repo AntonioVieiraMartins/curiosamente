@@ -193,6 +193,16 @@ Imagine um formulário de cadastro com o campo "idade". O front-end pode avisar 
 
 <ValidacaoDuasVezes />
 
+<Brincando titulo="Conferir duas vezes: o segurança da porta e o do caixa">
+
+Numa loja, um **segurança na porta** avisa "não entre com comida". Isso é cortesia para o cliente, mas qualquer um pode ignorar. A verdadeira conferência é no **caixa**, que só entrega o produto depois de ver o pagamento.
+
+O front-end é o segurança da porta: avisa o erro na hora, sem esperar, mas **não é confiável**, porque está no navegador, e o usuário pode mexer nele. O back-end é o caixa: **confere tudo de novo** antes de aceitar.
+
+A conferência do front-end é por conforto. A do back-end é por segurança.
+
+</Brincando>
+
 <ExemploResolvido titulo="Por que conferir duas vezes?">
   <Passo>A pessoa digita "150" na idade. O salão avisa na hora, e o pedido nem sai. Rápido e simpático.</Passo>
   <Passo>Agora alguém ignora o salão e manda "150" direto ao servidor.</Passo>
@@ -227,6 +237,16 @@ Há outra razão para dividir o trabalho. O **front-end** roda **um por pessoa**
 
 Para aguentar mais gente, o back-end precisa **escalar**: mais servidores (mais cozinheiros), ou servidores mais rápidos. Servidores lidam com muitos clientes ao mesmo tempo, usando agendamento e balanceamento de carga, e que enviar muitos pedidos para sobrecarregar um servidor é a base dos ataques de negação de serviço.
 
+<Brincando titulo="A fila da cozinha: muitos pedidos, poucos cozinheiros">
+
+Num restaurante, os pedidos chegam de uma vez, mas cada cozinheiro faz **um prato por vez**. Com poucos cozinheiros, os pedidos formam **fila**, e quem pediu por último espera mais.
+
+Num servidor é igual: ele atende vários pedidos ao mesmo tempo, mas tem um **limite**. Quando chegam mais pedidos do que ele aguenta, a resposta **demora**.
+
+Para dar conta, o restaurante contrata mais cozinheiros e o sistema ganha mais servidores.
+
+</Brincando>
+
 <ExemploResolvido titulo="Quantos cozinheiros?">
   <Passo>Chegam 30 pedidos por minuto. Cada cozinheiro faz 5 por minuto.</Passo>
   <Passo>Precisamos de capacidade de, no mínimo, 30 por minuto.</Passo>
@@ -241,6 +261,16 @@ Para aguentar mais gente, o back-end precisa **escalar**: mais servidores (mais 
 <Exercicio enunciado="Com 3 cozinheiros de 5 por minuto e 21 pedidos chegando por minuto, quantos esperando após 10 minutos? (número)" resposta="60" dica="Capacidade 15. Sobra 6 por minuto." resolucao="Capacidade: 3 × 5 = 15. Sobram 21 − 15 = 6 por minuto. Em 10 minutos: 60 pedidos." />
 
 <Exercicio enunciado="Ao dobrar de 3 para 6 cozinheiros, a capacidade (de 5 por minuto cada) passa a quantos pedidos por minuto? (número)" resposta="30" dica="6 × 5." resolucao="6 × 5 = 30 pedidos por minuto, o dobro dos 15 de antes." />
+
+<Brincando titulo="Três camadas: a vitrine, o caixa e o estoque">
+
+Numa loja, o cliente vê a **vitrine** (apresentação), o **caixa** calcula preços e descontos (lógica) e o **estoque** guarda as mercadorias (dados). Cada área tem seu trabalho.
+
+Separar assim ajuda: dá para **mudar a vitrine** sem mexer no estoque, ou trocar o estoque por um maior sem redecorar a loja.
+
+Num sistema, a **interface** é a vitrine, o **código de regras** é o caixa e o **banco de dados** é o estoque.
+
+</Brincando>
 
 <Aprofundar titulo="Três camadas: apresentação, lógica e dados">
 Um site de verdade costuma ter **três camadas**: a de **apresentação** (o navegador), a de **aplicação** (o servidor, com a lógica, usando tecnologias como PHP, Node.js, Python ou Ruby on Rails) e a de **armazenamento** (o banco de dados). O navegador faz pedidos ao servidor, que consulta ou altera o banco e monta a resposta. Em sistemas grandes pode haver ainda mais camadas, o que se chama de arquitetura **n-camadas**.
@@ -271,6 +301,16 @@ O cliente-servidor tem uma vantagem: o servidor **controla** os dados e as regra
 ## Um site dinâmico e um site estático
 
 Um site **estático** entrega sempre os mesmos arquivos prontos: o servidor só devolve o que está guardado. Uma **aplicação web** é **dinâmica**: o servidor monta uma resposta diferente para cada pedido (a sua página de perfil é só sua). Sites estáticos podem existir só com front-end; sistemas com login, compras e dados pessoais precisam de back-end.
+
+<Brincando titulo="Quem monta o prato: a cozinha ou você na mesa">
+
+Existem dois jeitos de servir um lanche. No primeiro, a **cozinha monta tudo** e entrega o prato pronto. No segundo, ela entrega os **ingredientes separados** e você monta na mesa.
+
+Quando o **servidor** monta a página, o navegador recebe tudo pronto e só mostra. Quando o **navegador** monta, recebe o kit com os dados e o código, e monta a página no seu computador.
+
+Cada jeito tem vantagens: o primeiro mostra a página mais rápido no começo, e o segundo deixa a página mais interativa depois.
+
+</Brincando>
 
 <Aprofundar titulo="Quem monta a página: o servidor ou o navegador?">
 Há duas formas de montar uma página dinâmica. Na primeira, o **servidor** monta o HTML pronto e o navegador só mostra. Na segunda, o servidor manda arquivos e **dados** crus (muitas vezes em JSON) e o **navegador** monta a tela, e é o que fazem os chamados *aplicativos de página única* (SPAs), que dão a sensação de um aplicativo instalado. Cada escolha tem vantagens e custos (velocidade da primeira tela, trabalho no servidor, trabalho no celular do visitante), e muitos sistemas misturam as duas.

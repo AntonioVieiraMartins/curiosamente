@@ -142,6 +142,16 @@ O jeito mais fácil é perguntar "**sobra resto ao dividir por 2?**" repetidas v
 
 <ConversorBinario />
 
+<Brincando titulo="Decimal para binário: o troco com notas de 8, 4, 2 e 1">
+
+Imagine uma caixa registradora que só tem **notas de 8, 4, 2 e 1**, e você precisa pagar 13 usando cada nota **no máximo uma vez**. Comece pela maior que cabe: uma nota de 8 (faltam 5). Cabe uma de 4 (falta 1). A de 2 não cabe. Cabe a de 1.
+
+Marque **1** nas notas usadas e **0** nas não usadas: 8, 4, 2, 1 viram **1, 1, 0, 1**. Então 13 em binário é **1101**.
+
+Cada lâmpada acesa é uma nota usada, e cada lâmpada apagada é uma nota que ficou na caixa.
+
+</Brincando>
+
 <ExemploResolvido titulo="Escreva 13 em binário.">
   <Passo>13 ÷ 2 = 6, resto **1**.</Passo>
   <Passo>6 ÷ 2 = 3, resto **0**.</Passo>
@@ -196,6 +206,16 @@ Para medir arquivos usamos múltiplos do byte. Em memória e em arquivos, muita 
 
 <Exercicio enunciado="Quantos bits há em 1 KiB (1.024 bytes)? Pode digitar 8192." resposta="8192" dica="Cada byte tem 8 bits: 1.024 × 8." resolucao="1.024 × 8 = 8.192 bits." />
 
+<Brincando titulo="Estouro: o hodômetro que volta a zero">
+
+Num hodômetro de carro com **5 dígitos**, o maior número é 99999. Se o carro andar mais um quilômetro, o painel **volta para 00000**, porque não existe um sexto dígito.
+
+Com os bits é igual. Se um espaço tem só **8 lâmpadas**, o maior valor é 255. Somar 1 faz tudo "virar" e **volta ao zero**: o número não coube e o excesso se perdeu.
+
+Por isso o tamanho do espaço (quantos bits) importa tanto: ele define o maior número que cabe.
+
+</Brincando>
+
 <Aprofundar titulo="Quando o número não cabe: estouro">
 
 Com 8 bits, o maior número é 255. O que acontece se você somar 1? O resultado verdadeiro, 256, precisaria de 9 bits. Se só existem 8 lâmpadas, o 1 que "vai um" para a nona casa se perde, e o valor volta a **00000000**. É como o odômetro de um carro que passa de 999.999 e volta para 000.000.
@@ -244,6 +264,16 @@ Mexa nos controles. O vermelho todo aceso e as outras luzes apagadas é (255, 0,
 
 <Exercicio enunciado="Quantos níveis de intensidade pode ter cada uma das três luzes de um pixel (de 0 a 255)?" resposta="256" dica="É o número de valores de um byte." resolucao="Um byte tem 256 valores, de 0 a 255." />
 
+<Brincando titulo="Hexadecimal: um dígito para cada grupo de quatro lâmpadas">
+
+Ler uma sequência longa de zeros e uns cansa a vista. O truque é **agrupar de 4 em 4 lâmpadas**. Cada grupo de 4 bits tem 16 combinações possíveis, de 0000 até 1111.
+
+Para dar um nome curto a cada uma das 16, usamos 16 símbolos: os dígitos de 0 a 9 e as letras **A a F**. É o hexadecimal. Assim, 1111 vira **F**, e o byte 11111111 vira **FF**.
+
+É só uma forma de **escrever mais curto** o mesmo número binário, como abreviar um nome comprido.
+
+</Brincando>
+
 <Aprofundar titulo="Hexadecimal: o binário em versão compacta">
 
 Escrever 24 zeros e uns é cansativo. Os programadores usam o **hexadecimal** (base 16), em que cada algarismo vale de 0 a 15. Como só temos dez algarismos, usamos letras: A = 10, B = 11, C = 12, D = 13, E = 14 e F = 15.
@@ -271,6 +301,16 @@ Um bit é uma resposta de sim ou não. Quantas perguntas de sim ou não você pr
 <Exercicio enunciado="Quantas perguntas de sim ou não bastam, no mínimo, para descobrir um número entre 1 e 128?" resposta="7" dica="Cada pergunta corta as possibilidades pela metade. 128 → 64 → ..." resolucao="128, 64, 32, 16, 8, 4, 2, 1: sete cortes ao meio. 2⁷ = 128." />
 
 <Exercicio enunciado="E entre 1 e 1.000? Quantas perguntas bastam, no mínimo?" resposta="10" dica="2¹⁰ = 1.024, que é maior que 1.000." resolucao="Com 9 perguntas só dá para separar 2⁹ = 512 números. Com 10, 2¹⁰ = 1.024 já cobre os 1.000. Resposta: 10." />
+
+<Brincando titulo="0,1 não cabe em binário: como o 1/3 em decimal">
+
+Em decimal, **1/3** vira 0,3333... sem parar. Não existe jeito de escrever 1/3 **exatamente** com um número finito de casas. Você corta em algum ponto, e fica um errinho minúsculo.
+
+Em binário acontece o mesmo com o **0,1**: ele vira uma sequência infinita que se repete, e o computador precisa **cortar** em algum lugar.
+
+Por isso, quando você soma 0,1 + 0,2, os dois já estão levemente cortados, e a soma carrega esses errinhos, que aparecem lá nas últimas casas.
+
+</Brincando>
 
 <Aprofundar titulo="Por que 0,1 + 0,2 pode dar 0,30000000000000004">
 

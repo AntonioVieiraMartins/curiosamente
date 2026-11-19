@@ -142,6 +142,16 @@ Compare com o que você já viu: **GET** lê, **POST** cria, **PUT** troca e **D
 
 <Exercicio enunciado="Qual comando SQL serve para acrescentar uma linha nova? (select, insert, update ou delete)" resposta="insert" dica="É como o POST do HTTP." resolucao="INSERT acrescenta uma linha. SELECT lê, UPDATE muda e DELETE apaga." />
 
+<Brincando titulo="SQL: pedir sem dizer como fazer">
+
+Num restaurante, você diz ao garçom **"um suco de laranja sem gelo"**. Você não explica como espremer a laranja nem onde está a geladeira. O pedido diz **o que você quer**, e a cozinha decide como fazer.
+
+O SQL funciona assim: você escreve "me dê os clientes de São Paulo", e o banco escolhe o melhor caminho para achá-los. Isso se chama **declarativo**.
+
+A vantagem é que seu pedido continua valendo mesmo se a cozinha trocar de método, ficar mais rápida ou ganhar mais funcionários.
+
+</Brincando>
+
 <Aprofundar titulo="Declarativo: o que, não como">
 No SQL, você escreve "me dê os clientes de Recife, em ordem alfabética" e o banco resolve o resto. Dentro do SGBD, um **otimizador de consultas** escolhe o caminho mais eficiente para achar os dados (por exemplo, usar um índice ou ler a tabela toda). Isso é o contrário dos bancos "navegacionais" dos anos 1960, em que o programador seguia os ponteiros à mão. O SQL também tem **extensões procedurais**, para quem precisa escrever passo a passo, mas a essência é declarativa.
 </Aprofundar>
@@ -155,6 +165,16 @@ A solução é guardar **cada coisa num lugar só** e **ligar** as tabelas por u
 <TabelasLigadas />
 
 Os tipos de relação são: **um para um**, **um para muitos** (um cliente tem muitos pedidos) e **muitos para muitos** (um produto está em muitos pedidos, e um pedido tem muitos produtos). Esta última costuma precisar de uma tabela intermediária.
+
+<Brincando titulo="Chave estrangeira: o número no lugar do nome inteiro">
+
+Numa lanchonete, a comanda não repete o nome e o endereço do cliente a cada pedido. Ela só anota o **número do cliente**, e a ficha completa fica guardada num lugar só.
+
+A chave estrangeira é esse número: uma tabela guarda o **código** de uma linha de outra tabela, e quem quiser os detalhes **segue o código** até a ficha.
+
+Assim, se o cliente mudar de endereço, a mudança é feita **uma vez**, na ficha, e todos os pedidos já enxergam o novo endereço.
+
+</Brincando>
 
 <ExemploResolvido titulo="Seguindo a chave estrangeira">
   <Passo>Pedido 101: `cliente_id = 1`.</Passo>
@@ -176,6 +196,16 @@ Transferir R$ 50 da Ana para o Bruno é, para o banco de dados, **dois passos**:
 A solução é a **transação**: um grupo de operações tratado como **uma unidade só**. Ou **todas** acontecem, ou **nenhuma**. As propriedades ideais de uma transação são chamadas de **ACID**.
 
 <TransacaoPix />
+
+<Brincando titulo="Transação: ou faz tudo ou não faz nada">
+
+Você faz um **Pix**: o dinheiro sai da sua conta e entra na da outra pessoa. E se o sistema caísse bem no meio, **depois de tirar** o dinheiro da sua conta e **antes de colocar** na outra? O dinheiro sumiria.
+
+A **transação** impede isso. Ela agrupa os passos num pacote: se todos derem certo, o banco confirma. Se **um falhar**, desfaz todos, e tudo volta como estava.
+
+É a regra do "tudo ou nada", como uma mudança de casa que só termina quando o último móvel chega.
+
+</Brincando>
 
 <ExemploResolvido titulo="A transferência que falhou">
   <Passo>Ana e Bruno têm R$ 100 cada: total R$ 200.</Passo>
@@ -200,6 +230,16 @@ Lembra do sumário de um livro? Em vez de folhear as 500 páginas para achar um 
 
 A diferença é gigantesca. Em mil linhas, o índice acha em cerca de 10 passos. Em um milhão, cerca de 20. Em um bilhão, cerca de 30. Cada vez que o número de linhas **multiplica por mil**, o índice só precisa de **10 passos a mais**.
 
+<Brincando titulo="Índice: o índice remissivo do livro">
+
+Para achar um assunto num livro grosso, você não lê página por página. Você vai ao **índice no final**, procura o assunto e vê a página certa.
+
+O índice do banco é igual: uma lista **organizada** que diz onde cada dado está. Sem ele, o banco lê **todas as linhas** até achar. Com ele, vai direto ao ponto.
+
+O custo é que o índice também ocupa espaço e precisa ser **atualizado** quando o dado muda, como o índice de um livro que ganha capítulos novos.
+
+</Brincando>
+
 <ExemploResolvido titulo="Jogo de adivinhar com índice">
   <Passo>Pense num número de 1 a 1.000. Eu vou adivinhar perguntando "é maior que X?".</Passo>
   <Passo>Cada pergunta, se eu escolher o meio, **descarta metade** dos candidatos: 1.000, 500, 250, 125, 63, 32, 16, 8, 4, 2, 1.</Passo>
@@ -222,6 +262,16 @@ O `WHERE` é o que limita um comando às linhas certas. Se você esquece, o `DEL
 <ApagarSemWhere />
 
 Como se proteger? Práticas de segurança dos bancos de dados: **backups** periódicos ou contínuos, que permitem voltar a um estado anterior se algo for corrompido ou apagado por engano. **Controle de acesso**, com permissões para pessoas, grupos ou papéis, de modo que cada um veja só o que precisa. **Registros (logs)** de mudanças e acessos, que ajudam a auditar. E **proteção dos dados**, física e por criptografia.
+
+<Brincando titulo="O filtro WHERE: apagar uma linha ou a tabela toda">
+
+Imagine dizer ao ajudante: **"jogue fora os papéis"**. Quais papéis? Todos? Só os da mesa? Sem uma indicação, ele pode jogar fora o arquivo inteiro.
+
+O **WHERE** é a indicação: "apague os papéis **que estão na mesa 5**". Sem ele, o comando vale para **todas as linhas** da tabela.
+
+Por isso, antes de apagar ou alterar, vale **olhar primeiro** quais linhas seriam afetadas com um SELECT usando o mesmo filtro.
+
+</Brincando>
 
 <ExemploResolvido titulo="Antes de apagar, confira">
   <Passo>A tabela `pedidos` tem 5 linhas e 2 estão `pendente`.</Passo>

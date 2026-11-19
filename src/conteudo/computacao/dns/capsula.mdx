@@ -119,6 +119,16 @@ Em `blog.loja.exemplo.com`, o `.com` é o TLD, `exemplo` é o nome registrado e 
 
 <DominioDesmontado />
 
+<Brincando titulo="Ler o endereço de trás para a frente: como uma carta">
+
+Numa carta, você escreve país, cidade, rua e número, do **maior para o menor**. Um endereço de site funciona ao contrário na escrita, mas **a leitura certa** também vai do maior para o menor.
+
+Em "www.exemplo.com.br", leia **de trás para a frente**: primeiro **br** (o país), depois **com** (o tipo), depois **exemplo** (o nome do site) e por último **www** (um serviço dentro dele).
+
+Quem resolve o endereço segue esse caminho: começa na parte mais ampla e vai afunilando até o lugar exato.
+
+</Brincando>
+
 <ExemploResolvido titulo="Desmontando um endereço">
   <Passo>Endereço: `www.universidade.edu.br`.</Passo>
   <Passo>Da direita para a esquerda: `br` (país: Brasil), `edu` (educação), `universidade` (o nome), `www` (o subdomínio).</Passo>
@@ -143,6 +153,16 @@ A hierarquia forma uma **árvore**, cujo topo é a **raiz**. Abaixo dela, os TLD
 
 Quando o navegador precisa de um IP, um **resolvedor recursivo** (muitas vezes o do provedor de internet) faz o trabalho em seu nome: começa nos servidores raiz, que o indicam para os servidores do TLD, que o indicam para os servidores oficiais do domínio, que finalmente respondem com o IP. Existem **13 identidades de servidores raiz**, mas há muitas cópias espalhadas pelo mundo (usando uma técnica chamada anycast), então elas respondem rápido de perto de você.
 
+<Brincando titulo="A consulta: ninguém sabe tudo, todo mundo sabe quem indicar">
+
+Você chega a um prédio enorme e pergunta ao porteiro: "onde mora o Zé?". Ele não sabe, mas diz: "pergunte ao síndico do **bloco B**". O síndico não sabe o apartamento, mas diz: "o andar 3 tem a lista". No andar 3, enfim, alguém aponta a porta.
+
+O DNS funciona igual: nenhum servidor sabe **todos** os endereços. Cada um sabe **quem pode ajudar** no próximo passo, até chegar a quem tem a resposta final.
+
+É uma cadeia de indicações, e é isso que permite a internet ter bilhões de nomes sem uma lista gigante em um lugar só.
+
+</Brincando>
+
 <ExemploResolvido titulo="Quem sabe o quê?">
   <Passo>O **servidor raiz** não sabe o IP de `www.exemplo.com`, mas sabe quem cuida de tudo que termina em `.com`.</Passo>
   <Passo>O **servidor do .com** não sabe o IP de `www`, mas sabe quem cuida de `exemplo.com`.</Passo>
@@ -162,6 +182,16 @@ O DNS responde na **porta 53** (veja a cápsula de IP e portas). Pergunta e resp
 Fazer a viagem completa toda vez seria desperdício. Por isso os resolvedores **guardam** (cache) cada resposta por um tempo, o **TTL** (*time to live*, "tempo de vida"), definido por quem administra o domínio. Enquanto o cache é válido, a resposta vem na hora. Depois que vence, o resolvedor consulta de novo.
 
 O TTL tem um efeito prático: se você muda o IP de um site, nem todo mundo vê a mudança ao mesmo tempo, porque alguns resolvedores ainda guardam a resposta antiga. Esse atraso se chama **propagação**.
+
+<Brincando titulo="Cache e TTL: o prazo de validade da anotação">
+
+Você anota o telefone de um amigo no caderno e **confia nessa anotação** por um tempo, sem perguntar de novo toda vez. Mas, se ele mudar de número, seu caderno ficará **desatualizado**.
+
+O DNS faz isso: guarda a resposta por um tempo, o **TTL**, como um prazo de validade. Enquanto o prazo não vence, a resposta é reaproveitada, o que torna tudo mais rápido.
+
+Quando você muda um endereço, os cadernos espalhados pelo mundo só se atualizam quando **vencer o prazo de cada um**. Essa espera é a "propagação".
+
+</Brincando>
 
 <ExemploResolvido titulo="Quanto demora a propagação?">
   <Passo>O TTL do domínio é 3.600 s (1 hora).</Passo>
@@ -197,6 +227,16 @@ Em resumo:
 <Exercicio enunciado="Qual tipo de registro diz onde chega o e-mail de um domínio? (duas letras)" resposta="mx" dica="Mail eXchanger." resolucao="O registro MX." />
 
 <Exercicio enunciado="Qual registro guarda o endereço IPv4 de um site? (uma letra)" resposta="a" dica="O mais simples de todos." resolucao="O registro A." />
+
+<Brincando titulo="CNAME: o apelido">
+
+Seu amigo se chama **José**, mas todo mundo o chama de **Zé**. Se alguém perguntar "onde está o Zé?", a resposta é a mesma de "onde está o José?": é a mesma pessoa com dois nomes.
+
+O CNAME é um **apelido** de endereço: ele não aponta para um número, mas para **outro nome**. Quem consulta o apelido é mandado a procurar o nome verdadeiro e usa a resposta dele.
+
+Isso ajuda quando o endereço verdadeiro muda: você troca só o nome verdadeiro, e todos os apelidos acompanham.
+
+</Brincando>
 
 <Aprofundar titulo="CNAME: o apelido que aponta para outro nome">
 

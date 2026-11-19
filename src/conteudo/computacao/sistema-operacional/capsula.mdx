@@ -171,6 +171,16 @@ O **escalonador** (scheduler) é a parte do sistema que decide quem roda, por qu
 
 Por que isso é importante? Imagine um programa com um erro que fica em um laço infinito. Num sistema sem preempção, a CPU ficaria presa nele para sempre e o computador congelaria. Com preempção, o sistema simplesmente tira a CPU dele no fim da fatia e segue a vida.
 
+<Brincando titulo="Escalonamento: o rodízio da pizzaria">
+
+Numa pizzaria de rodízio, há **um pizzaiolo** e **várias mesas**. Ele serve uma fatia a cada mesa, por turnos, e volta para a primeira. Ninguém fica esperando muito, e todo mundo come ao mesmo tempo, na impressão de cada um.
+
+O sistema operacional faz isso com os programas: a **CPU** é o pizzaiolo, e cada programa é uma mesa. Ela dá a cada um um **pedacinho de tempo** e passa para o próximo, tão rápido que parece que tudo roda junto.
+
+Esse revezamento rápido se chama **escalonamento**.
+
+</Brincando>
+
 <ExemploResolvido titulo="Quantas voltas de rodízio para terminar?">
   <Passo>Cada um dos 3 processos precisa de 6 fatias para terminar.</Passo>
   <Passo>Em cada volta, cada processo recebe 1 fatia. Então, são 6 voltas.</Passo>
@@ -193,6 +203,16 @@ A RAM é um recurso compartilhado. O sistema precisa **reservar** uma parte para
 
 O isolamento da memória é um dos principais motivos de um programa travar sozinho sem derrubar os outros. Se um processo tenta acessar um endereço que não é dele, o sistema o **encerra** antes que ele estrague o resto.
 
+<Brincando titulo="Memória: um hotel com quartos reservados">
+
+O sistema operacional é o gerente de um **hotel**, e a memória são os quartos. Cada programa que abre recebe **um bloco de quartos** só para ele, e não pode entrar nos quartos dos outros.
+
+Quando o programa fecha, os quartos ficam **livres** para o próximo hóspede. Se acabam os quartos, o gerente não aceita mais ninguém, e o computador começa a travar.
+
+Por isso fechar programas que você não usa libera espaço para quem precisa.
+
+</Brincando>
+
 <ExemploResolvido titulo="Quantos blocos sobram?">
   <Passo>A memória tem 16 blocos. Abrimos o Navegador (5) e o Jogo (6).</Passo>
   <Passo>Usados: 5 + 6 = 11 blocos.</Passo>
@@ -202,6 +222,16 @@ O isolamento da memória é um dos principais motivos de um programa travar sozi
 <Exercicio enunciado="Com 16 blocos, abrimos programas de 5, 6 e 2 blocos. Quantos blocos ainda estão livres?" resposta="3" dica="16 − (5 + 6 + 2)." resolucao="5 + 6 + 2 = 13 usados; 16 − 13 = 3 livres." />
 
 <Exercicio enunciado="Dois programas ocupam 7 e 8 blocos de 16. Cabe um programa de 2 blocos? (sim ou nao)" resposta="sim" dica="7 + 8 = 15." resolucao="Sobra 1 bloco apenas: 16 − 15 = 1. Um programa de 2 blocos não cabe." />
+
+<Brincando titulo="Memória virtual: a mesa pequena e o armário">
+
+Você estuda numa **mesa pequena** (a RAM). Quando ela enche, guarda os livros que **não está usando agora** no **armário** (o disco) e traz de volta quando precisar.
+
+Com esse truque, parece que a mesa é maior do que é. O preço é a **espera**: ir ao armário é mais lento do que pegar na mesa.
+
+Se você precisa ficar buscando livros no armário o tempo todo, o estudo fica lento. Por isso um computador com pouca RAM "engasga".
+
+</Brincando>
 
 <Aprofundar titulo="Memória virtual: mais memória do que RAM">
 

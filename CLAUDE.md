@@ -65,7 +65,7 @@ até o dono pedir. A estrutura do app precisa permitir adicionar áreas novas se
      - Fica **logo abaixo do texto do assunto que explica**, antes do `<ExemploResolvido>` e dos `<Exercicio>`. Nunca depois de exercícios.
      - É um **acréscimo**: não tire a fórmula nem o texto técnico, nem o `<Aprofundar>`. A caixa conta a mesma ideia com uma brincadeira, história ou cena do dia a dia (ladrilhos, GPS, pizza, ponte, marceneiro...).
      - Título no formato "tema: a cena" (ex.: "Dois lados: dois escavadores num túnel"). Textos curtos, e a cena precisa ser **fiel à matemática** (confira a conta).
-     - Sem XP, não é obrigatória. Todas as cápsulas novas devem ter; as antigas ganham aos poucos (já têm: Limites e toda a linha Fundamental e todo o Médio; a Básica não precisa, a pedido do dono).
+     - Sem XP, não é obrigatória. Todas as cápsulas novas devem ter; as antigas ganham aos poucos (já têm: Limites e toda a linha Fundamental , todo o Médio e toda a Computação; a Básica não precisa, a pedido do dono).
    - **Sempre bastante conteúdo** (pedido do dono, repetido): nunca entregue uma cápsula "básica" ou "por cima". Se a contagem ficar abaixo da régua, complete antes de mostrar. Vale para toda cápsula nova, de qualquer linha (Básica, Fundamental, Médio e Computação).
 
 ## Estrutura de uma cápsula

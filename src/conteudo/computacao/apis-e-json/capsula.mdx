@@ -122,6 +122,16 @@ Os **tipos de dados** do JSON são só seis:
 
 <TiposDeJson />
 
+<Brincando titulo="JSON: uma ficha de cadastro">
+
+Pense numa **ficha de cadastro** de papel, com campos e respostas: "nome: Ana", "idade: 30", "estuda: sim". O JSON é essa ficha escrita em texto, para que dois programas se entendam.
+
+Cada linha tem um **rótulo** (a chave, como "nome") e uma **resposta** (o valor, como "Ana"). Uma ficha dentro de outra, como o endereço dentro do cadastro, vira um JSON dentro de outro. E uma **lista** de fichas vira uma lista de JSONs.
+
+Ler um JSON é só ler a ficha: procurar o rótulo e olhar a resposta ao lado.
+
+</Brincando>
+
 <ExemploResolvido titulo="Lendo um JSON">
   <Passo>Veja `{ "nome": "Ana", "idade": 30, "notas": [4, 8, 15] }`.</Passo>
   <Passo>É um **objeto** (entre chaves) com 3 pares: `nome`, `idade` e `notas`.</Passo>
@@ -136,6 +146,16 @@ Os **tipos de dados** do JSON são só seis:
 <Exercicio enunciado="No objeto com a, b e c valendo 1, 2 e 3, quantos pares nome-valor há? (número)" resposta="3" dica="Conte os nomes." resolucao="São 3 pares: a, b e c." />
 
 <Exercicio enunciado="Na lista [4, 8, 15], qual valor está na posição 2, contando a partir de 0? (número)" resposta="15" dica="Posição 0 é o 4, posição 1 é o 8." resolucao="As posições começam em 0: 4 está na 0, 8 na 1 e 15 na 2." />
+
+<Brincando titulo="Posição zero: a régua começa no zero">
+
+Olhe uma **régua**: a primeira marca é o **0**, e não o 1. O número da marca diz **quanto você andou** desde o começo, e no começo você andou zero.
+
+Numa lista, a posição também conta **quantos passos** o item está do início. O primeiro item está a zero passos, o segundo a um passo, e assim por diante.
+
+Por isso o "item de posição 0" é o primeiro. Parece estranho, mas é só trocar "ordem" por "distância".
+
+</Brincando>
 
 <Aprofundar titulo="Por que as posições começam em 0">
 Em muitas linguagens, a posição de um item numa lista é a **distância** a partir do começo. O primeiro item está a **0** passos do começo, o segundo a **1** passo, e assim por diante. É por isso que, numa lista de 3 itens, as posições são 0, 1 e 2, e não 1, 2 e 3. Parece estranho no início, mas é a convenção da maioria das linguagens de programação, e vale também no JavaScript, onde o JSON nasceu.
@@ -197,6 +217,16 @@ As **restrições** do estilo REST. As principais:
 
 Os recursos são identificados por endereços (URIs). Eles são conceitualmente separados das **representações** que o cliente recebe, que podem ser HTML, XML ou JSON. Um alerta: a associação dos métodos HTTP (GET, POST...) com REST é considerada uma boa prática, mas **não faz parte** do REST como Fielding o formulou originalmente.
 
+<Brincando titulo="REST: o endereço é a coisa, o método é o verbo">
+
+Pense numa **biblioteca**. O endereço diz **qual coisa**: "a estante de livros", "o livro número 5". O método diz **o que fazer** com ela.
+
+Com **GET**, você só olha o livro. Com **POST**, você coloca um livro novo na estante. Com **PUT** ou **PATCH**, você troca ou corrige um livro. Com **DELETE**, você tira o livro.
+
+Assim, "GET /livros/5" lê como uma frase: "pegue o livro 5". O mesmo endereço com outro verbo faz outra coisa.
+
+</Brincando>
+
 <ExemploResolvido titulo="Lendo pedidos REST">
   <Passo>`GET /produtos`: o verbo é **buscar**, a coisa é a **coleção** de produtos. Resposta: a lista.</Passo>
   <Passo>`GET /produtos/2`: **buscar** o produto de número 2.</Passo>
@@ -211,6 +241,16 @@ Os recursos são identificados por endereços (URIs). Eles são conceitualmente 
 <Exercicio enunciado="Em que ano Roy Fielding descreveu o REST na sua tese? (número)" resposta="2000" dica="Está na linha do tempo." resolucao="Em 2000." />
 
 <Exercicio enunciado="Uma resposta 404 pertence a qual família de códigos (2, 3, 4 ou 5)? (número)" resposta="4" dica="O primeiro dígito." resolucao="404 é da família 4xx: o erro está no pedido (o endereço não existe)." />
+
+<Brincando titulo="Sem estado: o garçom que esquece tudo">
+
+Imagine um garçom com **amnésia**: a cada visita à mesa, ele esquece o que aconteceu antes. Então, em cada pedido, você precisa dizer **tudo de novo**: seu nome, a mesa e o que quer.
+
+Uma API sem estado funciona assim: cada pedido leva **todas as informações** de que o servidor precisa, e o servidor não guarda a conversa anterior.
+
+Parece trabalhoso, mas tem uma vantagem: qualquer garçom (ou servidor) da casa pode atender qualquer pedido, porque não depende de uma lembrança guardada.
+
+</Brincando>
 
 <Aprofundar titulo="O que significa ser sem estado">
 Numa API sem estado, o servidor **não guarda memória** do cliente entre dois pedidos. Cada pedido precisa trazer tudo o que o servidor precisa para responder (por exemplo, quem é você, quando for o caso). Isso parece trabalhoso, mas traz uma vantagem enorme: qualquer servidor de uma fileira de servidores iguais pode atender qualquer pedido, porque nenhum deles depende de lembrar do último. É assim que um site consegue crescer, adicionando servidores à fila.

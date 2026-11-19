@@ -155,6 +155,16 @@ Cada objeto do Git é identificado por um **código** calculado a partir do cont
 
 <CorrenteDeCommits />
 
+<Brincando titulo="O código do commit: uma corrente de lacres">
+
+Imagine uma **corrente de lacres**: cada lacre tem uma impressão que depende **do lacre anterior**. Se alguém trocar um elo no meio, a impressão dele muda, e todas as seguintes deixam de bater.
+
+No Git, cada commit tem um código que depende do conteúdo **e do commit anterior**. Isso garante que o histórico não foi alterado escondido: se qualquer coisa mudar, os códigos seguintes mudam também.
+
+Por isso o código do commit funciona como uma **impressão digital** do histórico até ali.
+
+</Brincando>
+
 <ExemploResolvido titulo="Uma corrente de códigos">
   <Passo>O código do commit 1 depende do conteúdo dele.</Passo>
   <Passo>O código do commit 2 depende do conteúdo dele **e do código do commit 1**.</Passo>
@@ -173,6 +183,26 @@ Em 2017, o Google mostrou um ataque prático ao SHA-1 (você viu isso na cápsul
 Imagine um jogo em que você quer testar uma estratégia arriscada. Em vez de arriscar o seu único salvamento, você **copia** a situação e experimenta nessa cópia. Se der certo, você junta. Se der errado, joga fora.
 
 Isso é um **ramo** (*branch*). Equipes usam ramos para tudo: uma funcionalidade nova, uma correção, uma experiência. Cada pessoa trabalha no seu ramo, e o trabalho é **juntado** (*merge*) no ramo principal quando está pronto. O histórico forma, na prática, um grafo de commits; "uma árvore com junções" é uma boa aproximação.
+
+<Brincando titulo="Ramos: cada pessoa trabalha na sua cópia">
+
+Dois colegas precisam editar o mesmo trabalho. Em vez de brigar pelo mesmo caderno, cada um tira uma **cópia** e escreve na sua. Depois eles **juntam** as duas.
+
+Um **ramo** do Git é essa cópia: dá para experimentar à vontade, sem risco de estragar o caderno principal. Se der certo, junta-se ao principal. Se não, joga-se a cópia fora.
+
+Por isso o Git incentiva criar ramos: experimentar não custa nada.
+
+</Brincando>
+
+<Brincando titulo="Conflito: duas pessoas mexeram na mesma frase">
+
+Dois colegas, cada um na sua cópia, reescreveram **a mesma frase** do trabalho de jeitos diferentes. Na hora de juntar, o Git não sabe qual versão manter, e pergunta.
+
+Isso é o **conflito**. O Git marca os dois trechos, e quem junta **escolhe**: fica com uma, com a outra ou combina as duas.
+
+Se eles tivessem mexido em frases **diferentes**, o Git juntaria sozinho. Só há conflito quando dá para duvidar.
+
+</Brincando>
 
 <ExemploResolvido titulo="Quando há conflito">
   <Passo>O arquivo tem 3 linhas: título, introdução e rodapé.</Passo>
@@ -206,6 +236,16 @@ Para levar o seu trabalho até lá e de lá:
 - `git pull`: **traz** os commits novos que outras pessoas enviaram.
 
 <LocalEGithub />
+
+<Brincando titulo="Push recusado: o colega salvou antes de você">
+
+Você e um colega baixaram o trabalho às 9h. Ele terminou primeiro e **enviou** as mudanças dele. Quando você tenta enviar as suas, o GitHub recusa: "tem coisa nova aí que você não viu".
+
+Se ele aceitasse, as mudanças do colega seriam **perdidas** por cima. Por isso a regra é: **primeiro baixe** o que há de novo (pull), junte com o seu trabalho e só depois envie.
+
+A recusa não é erro seu, é uma proteção para ninguém apagar o trabalho de ninguém.
+
+</Brincando>
 
 <ExemploResolvido titulo="Push recusado">
   <Passo>Você faz 2 commits no seu computador.</Passo>

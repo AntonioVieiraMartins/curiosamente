@@ -124,6 +124,16 @@ O HTML é feito de **elementos**, marcados por **etiquetas** (*tags*) entre sina
 
 Um **atributo** acrescenta informação à etiqueta, no formato `nome="valor"`. Atributos comuns: `id`, `class`, `lang` e `title`. Num link, o atributo `href` diz para onde ele leva.
 
+<Brincando titulo="HTML: etiquetas são caixas com rótulo">
+
+Pense numa **caixa de mudança** com um **rótulo** por fora: "cozinha" ou "livros". O rótulo diz **o que há** dentro, mas não diz como a caixa vai parecer.
+
+No HTML, uma **etiqueta** é esse rótulo. Ela **abre** a caixa, o conteúdo fica dentro, e outra etiqueta **fecha**. A etiqueta de título diz "isto é um título", a de parágrafo diz "isto é um parágrafo".
+
+O HTML só diz **o que cada coisa é**, e a aparência fica por conta do CSS.
+
+</Brincando>
+
 <ExemploResolvido titulo="Lendo uma etiqueta">
   <Passo>Veja: `<a href="https://exemplo.com">Visite</a>`.</Passo>
   <Passo>A abertura é `<a ...>` e o fechamento é `</a>`.</Passo>
@@ -168,6 +178,16 @@ Os principais seletores:
 
 <SeletorCss />
 
+<Brincando titulo="Seletor: chamar pessoas numa sala">
+
+Imagine um professor numa sala. Ele pode dizer "**todos** peguem o caderno" (um tipo de elemento inteiro), "**quem usa camiseta azul**, levante a mão" (um grupo marcado) ou "**João**, venha aqui" (um só).
+
+O **seletor** do CSS é essa chamada: ele escolhe **quem** vai receber o estilo. Pode ser todos os parágrafos, só os de uma classe ou um elemento com nome único.
+
+A regra de estilo fica atrás do seletor, e só vale para quem foi chamado.
+
+</Brincando>
+
 <ExemploResolvido titulo="O que o seletor pega?">
   <Passo>A página tem 2 parágrafos (`p`): um deles tem a classe `aviso`.</Passo>
   <Passo>O seletor `p` pega **os 2**.</Passo>
@@ -184,6 +204,16 @@ Os principais seletores:
 Várias regras podem tentar mudar a **mesma coisa**. Quem ganha? O "C" de CSS vem de *Cascading* (em cascata): existe uma ordem de prioridade. O que importa é a **especificidade**: quanto mais específico o seletor, mais forte. A força cresce nesta ordem: **elemento** (mais fraco), **classe**, **id** e, por último, o estilo escrito **na própria etiqueta** (o mais forte).
 
 <CascataCss />
+
+<Brincando titulo="Cascata: quando duas regras brigam">
+
+Um chefe diz "**todos** vistam uniforme azul". Depois outro diz "**João**, hoje use camisa verde". Quem vence para o João? A ordem **mais específica** ganha, porque fala direto dele.
+
+No CSS é igual: quando duas regras mandam em cores diferentes, vence a que escolhe **de modo mais específico** (um elemento único ganha de uma classe, que ganha de um tipo). Se forem igualmente específicas, vale a **última** escrita.
+
+É por isso que o estilo "cai em cascata": as regras gerais valem para todos, e as específicas abrem exceções.
+
+</Brincando>
 
 <ExemploResolvido titulo="Quem vence?">
   <Passo>O texto é `<p id="topo" class="aviso">`.</Passo>
@@ -219,6 +249,16 @@ Ele conversa com a página por meio do **DOM** (*Document Object Model*), uma re
 O truque central é o **evento**. Um evento é "algo que aconteceu": um clique, um toque, uma tecla apertada. O programador registra um **ouvinte**: "quando este botão for clicado, execute esta função".
 
 <OuvinteDeCliques />
+
+<Brincando titulo="JavaScript: a campainha e o que ela faz">
+
+Pense na **campainha** de uma casa. Quando alguém **aperta** (o evento), alguma coisa acontece: toca o som, o morador vai até a porta. A campainha **espera** alguém apertar.
+
+No JavaScript, você diz ao navegador: "**quando** alguém clicar neste botão, **faça** isto". O clique é o evento, e o "isto" é um bloco de código.
+
+No contador de curtidas, cada clique **soma 1** e atualiza o número na tela. Sem JavaScript, o botão aparece, mas não acontece nada.
+
+</Brincando>
 
 <ExemploResolvido titulo="O contador de curtidas">
   <Passo>O HTML tem um botão e um número na tela (começa em 0).</Passo>

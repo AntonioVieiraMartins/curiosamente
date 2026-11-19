@@ -199,6 +199,16 @@ Um pipeline tem etapas encadeadas. Na prática:
 
 Esse conjunto de validações pelas quais o software passa antes de ser liberado é o **pipeline de implantação**, e ele dá **visibilidade** (todo mundo vê em que etapa a mudança está) e **retorno rápido** (se algo falha, você descobre logo).
 
+<Brincando titulo="Pipeline: a esteira com um fiscal em cada estação">
+
+Numa fábrica, a peça passa por uma **esteira** com várias estações: montar, testar, embalar. Em cada estação há um **fiscal**, e se ele encontrar defeito, **para a esteira**.
+
+O pipeline de deploy funciona assim: o código passa por etapas como instalar, testar e construir. Se **um teste falha**, a esteira para ali, e o código com defeito **não chega** aos usuários.
+
+Quando o pipeline para, não é o problema: é o sistema funcionando. Basta ler **em qual estação** parou para saber o que consertar.
+
+</Brincando>
+
 <ExemploResolvido titulo="Lendo um pipeline que parou">
   <Passo>O pipeline mostra: commit ✓, push ✓, build ✓, testes ✗.</Passo>
   <Passo>Os testes falharam, então a etapa de **publicar não rodou**.</Passo>
@@ -220,6 +230,16 @@ O que acontece com quem está navegando **no instante** em que a versão nova en
 
 Voltar para a versão anterior depois de um problema se chama, em geral, **rollback** (reversão). A ideia aparece naturalmente no azul e verde: como a versão antiga continua pronta, a volta é rápida.
 
+<Brincando titulo="Trocar sem fechar: duas cozinhas lado a lado">
+
+Um restaurante quer testar uma cozinha nova **sem fechar** para os clientes. Mantém a **cozinha antiga** funcionando e monta a nova ao lado, pronta e testada.
+
+Quando tudo está certo, o restaurante **passa os pedidos** para a cozinha nova. Se algo der errado, basta **passar de volta** para a antiga, que continua ligada.
+
+É isso que significa um "plano de volta": a versão anterior fica de pé até você ter certeza de que a nova funciona.
+
+</Brincando>
+
 <ExemploResolvido titulo="Uma troca com plano de volta">
   <Passo>A versão 1 (azul) atende 100% dos visitantes.</Passo>
   <Passo>Você coloca a versão 2 no grupo verde e testa lá.</Passo>
@@ -230,6 +250,16 @@ Voltar para a versão anterior depois de um problema se chama, em geral, **rollb
 <Exercicio enunciado="No azul e verde, qual grupo recebe os visitantes enquanto a versão nova ainda está sendo preparada? (azul ou verde)" resposta="azul" dica="O verde fica escondido." resolucao="O azul: ele segue atendendo enquanto o verde é preparado e testado." />
 
 <Exercicio enunciado="Voltar para a versão anterior depois de um problema se chama...? (uma palavra em inglês, sem hífen)" resposta="rollback" dica="Roll = rolar, back = para trás." resolucao="Rollback: a reversão para a versão anterior." />
+
+<Brincando titulo="Lançamento gradual: o canário na mina">
+
+Antigamente, mineiros levavam um **canário** para dentro da mina: se houvesse gás perigoso, o passarinho sentia **antes** das pessoas e avisava o perigo.
+
+No lançamento gradual, a versão nova chega primeiro a um **grupo pequeno** de usuários, como o canário. Se algo der errado, só poucas pessoas sentem, e a equipe volta atrás.
+
+Se tudo correr bem, a versão vai chegando a mais gente, até todo mundo. É mais seguro do que soltar a novidade para todos de uma vez.
+
+</Brincando>
 
 <Aprofundar titulo="Lançamento gradual (canary) e A/B">
 Existe também a liberação **gradual** para grupos de clientes, com a opção de **cancelar** o deploy no meio, e cita o uso do Twitter para **testes A/B** (mostrar versões diferentes a grupos diferentes). Em um *canary release*, a versão nova vai primeiro para uma **pequena fatia** dos usuários, como o canário que os mineiros levavam para a mina: se algo vai mal, o estrago é pequeno. Se tudo corre bem, a fatia cresce até chegar a 100%. (A explicação aqui é a ideia geral da técnica.)

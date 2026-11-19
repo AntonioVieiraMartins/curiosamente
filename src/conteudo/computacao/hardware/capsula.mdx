@@ -147,6 +147,16 @@ A velocidade de uma CPU é medida pelo **clock**: quantos "tiques" por segundo. 
 
 Mas clock alto não é tudo. Duas CPUs com o mesmo clock podem fazer trabalhos diferentes, porque uma pode fazer mais coisa por ciclo.
 
+<Brincando titulo="GHz: as batidas do metrônomo">
+
+Pense num **metrônomo** que marca o ritmo de uma música. Cada batida é um compasso em que o músico faz uma ação. Quanto mais rápido o metrônomo, mais ações por segundo.
+
+A CPU tem um metrônomo interno, o **relógio**. O **hertz** conta as batidas por segundo, e **1 GHz** é um bilhão de batidas por segundo. Uma CPU de 3 GHz bate 3 bilhões de vezes por segundo.
+
+Em cada batida, ela consegue fazer um pedacinho de uma instrução. Por isso GHz maior costuma significar trabalho mais rápido, embora não seja a única medida.
+
+</Brincando>
+
 <ExemploResolvido titulo="Quantos ciclos acontecem em 1 milissegundo numa CPU de 3 GHz?">
   <Passo>3 GHz = 3 bilhões de ciclos por segundo = 3.000.000.000.</Passo>
   <Passo>1 milissegundo é 1 milésimo de segundo: divida por 1.000.</Passo>
@@ -162,6 +172,16 @@ Mas clock alto não é tudo. Duas CPUs com o mesmo clock podem fazer trabalhos d
 Um **núcleo** (core) é um cozinheiro completo. Os chips modernos têm vários núcleos no mesmo chip e podem fazer várias tarefas ao mesmo tempo. A história disso começou com várias CPUs em placas separadas e terminou com tudo no mesmo chip, chamado de **processador multi-núcleo**.
 
 Mas mais núcleos não adiantam tudo: se a tarefa é uma fila que cada passo depende do anterior, só um cozinheiro trabalha. Já somar milhões de números independentes dá para dividir entre vários.
+
+<Brincando titulo="Gargalo: a porta estreita da cozinha">
+
+Imagine um cozinheiro **muito rápido** e uma despensa com tudo, mas a ligação entre eles é uma **porta estreita**, por onde passa uma pessoa por vez. Não importa quão rápido o cozinheiro seja: ele fica esperando os ingredientes.
+
+No computador, a CPU é o cozinheiro rápido, e o caminho até a memória é a porta estreita. Esse limite se chama **gargalo**, como o gargalo de uma garrafa: por mais água que tenha dentro, sai pouca de cada vez.
+
+É por isso que as memórias mais rápidas ficam **perto** da CPU: para encurtar a porta.
+
+</Brincando>
 
 <Aprofundar titulo="Arquitetura de von Neumann e o gargalo">
 
@@ -237,6 +257,16 @@ As memórias formam uma **pirâmide**. Em cima, o mais rápido e menor; embaixo,
 4. **SSD ou HD**: centenas de gigabytes ou terabytes, bem mais lentos.
 
 O truque do computador é **guardar o que você usou há pouco nas camadas de cima**, porque provavelmente você vai usar de novo.
+
+<Brincando titulo="Hierarquia: o que você usa agora fica na mão">
+
+Pense numa **cozinha**. O sal que você usa o tempo todo fica **na mão**, rápido de pegar mas com pouco espaço. Os ingredientes do prato do dia ficam **na bancada**. O resto do estoque fica na **despensa**, e o que falta vem do **mercado**.
+
+Quanto mais perto, **mais rápido** e **menor** o espaço. Quanto mais longe, mais lento e maior.
+
+O computador usa essa mesma ideia: coloca perto da CPU o que ela usou **há pouco**, porque tem grande chance de precisar de novo. É o que chamamos de cache.
+
+</Brincando>
 
 <ExemploResolvido titulo="Em qual camada fica?">
   <Passo>O número que a CPU está somando agora: está num **registrador**.</Passo>

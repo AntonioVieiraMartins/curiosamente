@@ -63,6 +63,16 @@ Veja como as pastas formam uma **árvore**. Toque nos itens e repare no endereç
 
 Esse endereço completo se chama **caminho** (em inglês, *path*). Ele é um texto que identifica, sem dúvida, um item na hierarquia do disco: nomes de pastas separados por um símbolo.
 
+<Brincando titulo="Caminho: pastas dentro de pastas, como bonecas russas">
+
+Numa **boneca russa**, uma boneca está dentro de outra, que está dentro de outra. Para chegar à menor, você abre as maiores em ordem.
+
+Um **caminho** de arquivo é isso: a pasta grande contém uma menor, que contém outra, até chegar ao arquivo. O caminho lista essa sequência, **separada por barras**, como um endereço: país, cidade, rua, número.
+
+Ler o caminho é seguir o endereço **da pasta mais ampla até o arquivo**.
+
+</Brincando>
+
 <ExemploResolvido titulo="Lendo um caminho">
   <Passo>O caminho é `C:\Users\voce\Fotos\praia.jpg`. Leia da esquerda para a direita, passo a passo.</Passo>
   <Passo>`C:` é o **disco** (a raiz do Windows para aquele disco).</Passo>
@@ -133,6 +143,16 @@ Escolha um exemplo e toque em cada parte:
 
 <AnatomiaDoComando />
 
+<Brincando titulo="Comando: uma frase com verbo e complementos">
+
+Em português, você diz "**copie** a foto **para** a pasta de viagens". Tem um **verbo** (copie), **o que** fazer (a foto) e **onde** (a pasta).
+
+Um comando do terminal tem a mesma estrutura: o **nome do comando** é o verbo, os **argumentos** dizem sobre o quê agir, e as **opções** (como pedaços que começam com um traço) mudam o jeito de fazer.
+
+Ler um comando é como ler uma frase curta: primeiro o verbo, depois os complementos.
+
+</Brincando>
+
 <ExemploResolvido titulo="Desmontando um comando">
   <Passo>O comando é `mkdir Projetos`.</Passo>
   <Passo>`mkdir` quer dizer *make directory*: criar uma pasta. É o **comando**.</Passo>
@@ -187,6 +207,16 @@ Escolha duas pastas e veja o caminho relativo que leva de uma até a outra:
 <CaminhoRelativo />
 
 Para ir a uma pasta "irmã" (que está ao lado), você primeiro **sobe** (`..`) e depois **desce**. Exemplo: de `Documentos` para `Fotos`, o caminho é `..\Fotos`.
+
+<Brincando titulo="Absoluto e relativo: o endereço completo e a esquina">
+
+Para alguém em outra cidade, você diz o **endereço completo**: rua, número, bairro, cidade. Isso funciona de qualquer lugar. É o caminho **absoluto**.
+
+Para alguém que está **na mesma esquina**, basta dizer "vire na segunda rua à direita". É mais curto, mas só funciona de onde a pessoa está agora. É o caminho **relativo**.
+
+No terminal, o relativo é prático para ficar dentro da mesma região, e o absoluto é seguro quando você não sabe onde está.
+
+</Brincando>
 
 <ExemploResolvido titulo="Do Documentos ao Fotos">
   <Passo>Você está em `C:\Users\voce\Documentos`. O destino é `C:\Users\voce\Fotos`.</Passo>

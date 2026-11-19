@@ -84,6 +84,16 @@ Um endereço IPv4 são **quatro números de 0 a 255**, separados por pontos, com
 
 Com 32 bits há 2³² combinações, ou **4.294.967.296** endereços possíveis. Cada bit a mais dobra o total. Mas repare: esse total parece muito, e a humanidade mais os aparelhos já precisam de bem mais.
 
+<Brincando titulo="Por que cada parte do IP vai de 0 a 255: oito lâmpadas">
+
+Um endereço IP (versão 4) tem **quatro partes**, e cada parte é guardada em **8 bits**, ou seja, 8 lâmpadas que acendem ou apagam.
+
+Com 8 lâmpadas, existem 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 = **256** combinações. Contando a partir do zero, os números vão de **0 até 255**.
+
+Por isso nunca se vê um IP como "300.1.1.1": o 300 não cabe em 8 lâmpadas.
+
+</Brincando>
+
 <ExemploResolvido titulo="Quantos valores cabem em uma parte do IP?">
   <Passo>Cada parte tem 8 bits.</Passo>
   <Passo>Com 8 bits há 2⁸ = 256 combinações.</Passo>
@@ -181,6 +191,16 @@ Nem todo endereço IP serve para a internet toda. Há grupos reservados:
 
 <Exercicio enunciado="O endereço 8.8.8.8 é privado? (sim ou nao)" resposta="nao" dica="Não começa por 10, 172.16-31 nem 192.168." resolucao="Não: é um endereço público." />
 
+<Brincando titulo="localhost: mandar uma carta para si mesmo">
+
+Imagine escrever uma carta e colocar **o seu próprio endereço** como destino. O correio nem precisa sair da sua casa: ela volta direto para você.
+
+O **localhost** é esse endereço de si mesmo. Quando você abre "localhost:5180", o navegador **não vai à internet**: ele fala com um programa **que está no seu próprio computador**.
+
+É útil para testar um site em construção sem publicar, e sem que ninguém mais consiga ver.
+
+</Brincando>
+
 <Aprofundar titulo="Por que o localhost é útil">
 
 Como o endereço de loopback só enxerga o próprio computador, ele permite **testar programas sem rede**. Quem cria um site abre o servidor de teste em localhost e vê o resultado no navegador, sem ninguém de fora acessar. Os pacotes de loopback "não devem aparecer fora do computador", e nem chegam a passar pela placa de rede.
@@ -196,6 +216,16 @@ Pelo **NAT** (tradução de endereços). Cada aparelho tem um IP **privado** den
 <NatDaCasa />
 
 Uma imagem: o roteador é o **porteiro de um prédio** que só tem um telefone para o mundo. Quando alguém de dentro liga, o porteiro anota o ramal. Quando a resposta chega, ele consulta o caderninho para saber a quem transferir.
+
+<Brincando titulo="NAT: o porteiro que recebe tudo pelo prédio">
+
+Num prédio, só há **um endereço** na rua, mas moram dezenas de pessoas. Quando chega uma encomenda, o **porteiro** anota quem pediu o quê e entrega ao morador certo.
+
+O **roteador** da sua casa faz isso: todos os aparelhos saem para a internet com **o mesmo IP público**. O roteador anota qual aparelho fez cada pedido e, quando a resposta volta, entrega ao aparelho certo.
+
+Esse truque se chama **NAT** e é um dos motivos de os endereços IPv4 ainda não terem acabado de vez.
+
+</Brincando>
 
 <ExemploResolvido titulo="Quem recebe a resposta?">
   <Passo>O celular (192.168.0.10) e a TV (192.168.0.12) pedem coisas ao mesmo tempo.</Passo>
@@ -270,6 +300,16 @@ Por que isso importa? Cada porta aberta é uma **entrada** para o computador. Po
 </ExemploResolvido>
 
 <Exercicio enunciado="Se um servidor tem 3 portas abertas e você fecha 1, quantas ficam abertas?" resposta="2" dica="3 − 1." resolucao="2 portas abertas." />
+
+<Brincando titulo="TCP e UDP: carta registrada e cartão-postal">
+
+A **carta registrada** é confirmada: o carteiro pede assinatura, e se não chegar, você sabe e manda de novo. É segura, mas leva mais trabalho. O **cartão-postal** só vai: ninguém confirma, e se perder, perdeu.
+
+O **TCP** é a carta registrada: confere se tudo chegou e reenvia o que se perdeu. Serve para páginas, e-mails e downloads, onde falta de um pedaço estraga tudo.
+
+O **UDP** é o cartão-postal: rápido e sem conferência. Serve para chamada de vídeo e jogos, onde perder um pedacinho é melhor do que esperar.
+
+</Brincando>
 
 <Aprofundar titulo="TCP e UDP: dois jeitos de usar a mesma porta">
 
