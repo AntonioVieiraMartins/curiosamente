@@ -67,3 +67,15 @@
     *, *::before, *::after { transition: none !important; animation: none !important; }
   }
 }
+
+/* Carrossel do início: o slide entra suave e a barra mostra quanto falta para o próximo */
+@keyframes slide-entra {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes barra-enche {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.slide-entra { animation: slide-entra 0.45s ease-out; }
+.barra-enche { transform-origin: left; animation: barra-enche linear forwards; }
