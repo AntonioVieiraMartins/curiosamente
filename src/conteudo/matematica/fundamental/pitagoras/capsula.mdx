@@ -83,6 +83,16 @@ em que **a** e **b** são os catetos e **c** é a hipotenusa.
 
 <Exercicio enunciado="Catetos 5 e 12. Quanto mede a hipotenusa?" resposta="13" dica="25 + 144 = 169." resolucao="5² + 12² = 25 + 144 = 169 = 13², então c = 13." />
 
+<Brincando titulo="Por que o quadrado? O piso de ladrilhos">
+
+Imagine três quartos quadrados, um colado em cada lado do triângulo, e você vai **cobrir o piso com ladrilhos**. O quarto do cateto de 3 m precisa de 9 ladrilhos de 1 m². O quarto do cateto de 4 m precisa de 16 ladrilhos. O quarto da hipotenusa, de 5 m, precisa de 25.
+
+Agora a surpresa: 9 + 16 = 25. Os ladrilhos dos dois quartos menores **bastam exatamente** para cobrir o quarto grande, sem sobrar nem faltar. É isso que a fórmula a² + b² = c² diz, só que com letras no lugar dos números.
+
+O "ao quadrado" não é mistério: é só a **área de um quadrado** de lado a, ou seja, quantos ladrilhos cabem. O teorema não fala de somar comprimentos (3 + 4 não é 5), e sim de somar **áreas**.
+
+</Brincando>
+
 ## 2. Por que funciona: uma prova com quadrados
 
 Dá para **ver** a prova arrastando peças. Pegue 4 cópias do mesmo triângulo retângulo (catetos a e b, hipotenusa c) e um quadrado grande de lado **a + b**. Arrume os triângulos de dois jeitos dentro dele:
@@ -93,6 +103,16 @@ Dá para **ver** a prova arrastando peças. Pegue 4 cópias do mesmo triângulo 
 <ProvaPorRearranjo />
 
 Nos dois casos o quadrado grande é o mesmo e os triângulos são os mesmos. Então o que **sobra** tem de ter a mesma área: **c² = a² + b²**. Sem fórmula decorada, só peças.
+
+<Brincando titulo="A prova como um jogo de quebra-cabeça">
+
+Pense numa **moldura quadrada** de madeira e **quatro peças triangulares** iguais. Sua tarefa é encaixar as quatro peças dentro da moldura, de dois jeitos diferentes.
+
+No primeiro jeito, as peças ficam girando pelos cantos e **sobra um buraco torto** no meio, que é um quadrado inclinado de lado c. No segundo jeito, você junta as peças em dois retângulos e **sobram dois buracos menores**, um quadrado de lado a e outro de lado b.
+
+Agora o raciocínio: a moldura é a mesma e as peças são as mesmas nos dois jeitos. Então o **espaço vazio** também tem de ser o mesmo! Um buraco grande de área c² tem de ser igual aos dois buracos pequenos juntos, a² + b². Ninguém precisou decorar nada: foi só olhar para o que sobrou.
+
+</Brincando>
 
 <ExemploResolvido titulo="A prova em palavras">
   <Passo>O quadrado grande tem lado a + b e área (a + b)².</Passo>
@@ -144,6 +164,16 @@ Quando você conhece os dois catetos, **some os quadrados** e tire a **raiz quad
   <Linha>c = √(a² + b²)</Linha>
 </Formula>
 
+<Brincando titulo="A raiz quadrada é o caminho de volta">
+
+Você tem um piso com **25 ladrilhos**, formando um quadrado perfeito. Quantos ladrilhos tem **cada lado** desse quadrado? 5, porque 5 × 5 = 25. A raiz quadrada responde exatamente a essa pergunta: **"qual é o lado de um quadrado com essa área?"**
+
+Por isso a conta do teorema tem duas partes. Primeiro, você **junta as áreas** (a² + b²) e descobre quantos ladrilhos tem o quarto grande. Depois, você **volta para o lado** com a raiz, porque a hipotenusa é um comprimento, e não uma área.
+
+É como pagar com dinheiro e depois pedir o troco: elevar ao quadrado e tirar a raiz são operações que **desfazem uma à outra**.
+
+</Brincando>
+
 <ExemploResolvido titulo="A diagonal de um retângulo">
   <Passo>Um retângulo de 9 cm por 12 cm. A diagonal o corta em dois triângulos retângulos, com catetos 9 e 12.</Passo>
   <Passo>c² = 9² + 12² = 81 + 144 = 225.</Passo>
@@ -159,6 +189,16 @@ Quando você conhece os dois catetos, **some os quadrados** e tire a **raiz quad
 ## Achando um cateto
 
 Se você conhece a **hipotenusa** e **um cateto**, a conta é a mesma, só que **subtraindo**: a² = c² − b².
+
+<Brincando titulo="Por que subtrair? Tirando um quarto do piso">
+
+Você já sabe que o quarto da hipotenusa tem **25 ladrilhos** e que ele é feito dos dois quartos menores juntos. Se um dos quartos menores tem **9 ladrilhos**, quantos tem o outro? Basta **tirar** do total: 25 − 9 = 16.
+
+É a mesma ideia de uma conta de compras: se o total foi R$ 25 e você sabe que uma parte custou R$ 9, a outra parte custou 25 − 9. A fórmula a² + b² = c² é uma soma, e a soma pode ser desfeita com uma subtração.
+
+Depois da subtração, falta ainda a raiz: 16 ladrilhos formam um quadrado de lado 4. Por isso a altura da escada é 4 m.
+
+</Brincando>
 
 <ExemploResolvido titulo="Voltando à escada">
   <Passo>A escada (hipotenusa) mede 5 m e o pé fica a 3 m da parede (cateto).</Passo>
@@ -201,6 +241,16 @@ O teorema também **funciona ao contrário**. Se três lados satisfazem a² + b�
 <EsquadroDeTresLados />
 
 Além disso: se a soma dos quadrados dos dois lados menores for **maior** que o quadrado do maior, o triângulo é **acutângulo** (todos os ângulos menores que 90°). Se for **menor**, é **obtusângulo** (um ângulo maior que 90°).
+
+<Brincando titulo="O inverso: o teste do pedreiro">
+
+Um pedreiro quer saber se o canto de uma parede está **bem esquadrado**, com 90° exatos. Ele não tem transferidor, mas tem uma fita métrica. Marca 3 m numa parede, 4 m na outra e mede a distância entre as duas marcas.
+
+Se der **exatamente 5 m**, a conta 9 + 16 = 25 fecha, e o canto é reto. Se der menos, o canto está **fechado demais**. Se der mais, está **aberto demais**.
+
+Isso é o teorema de trás para frente: em vez de usar o ângulo reto para achar a distância, usamos a distância para **descobrir** o ângulo. A regra é só comparar: a soma dos quadrados dos dois lados menores **é igual** ao quadrado do maior? Se for, é retângulo.
+
+</Brincando>
 
 <ExemploResolvido titulo="Este triângulo é retângulo?">
   <Passo>Lados 7, 24 e 25. O maior é 25.</Passo>
@@ -253,6 +303,16 @@ A "polegada" de uma TV é o comprimento da **diagonal da tela**. Como a tela é 
 ## Distância entre dois pontos no plano
 
 No plano cartesiano, para ir do ponto A = (1, 2) ao ponto B = (4, 6), você anda 3 para a direita e 4 para cima. Esses dois passos são os **catetos**, e a linha reta de A a B é a **hipotenusa**!
+
+<Brincando titulo="O atalho pelo quarteirão">
+
+Você está na esquina A e quer chegar à esquina B. Pelas ruas, precisa andar **3 quarteirões para a direita e 4 para cima**: são 7 quarteirões no total. Mas imagine que dá para cortar caminho por um terreno livre, **em linha reta**. Esse atalho é a hipotenusa do triângulo formado pelo caminho das ruas.
+
+Quanto mede o atalho? Os dois trechos das ruas são os catetos, 3 e 4, então o atalho vale 5. Você anda **5 em vez de 7**.
+
+A distância entre dois pontos é sempre esse atalho. Para calcular, você só precisa saber **quanto andou de lado** e **quanto andou para cima**, e aplicar o mesmo teorema de sempre.
+
+</Brincando>
 
 <ExemploResolvido titulo="Distância entre (1, 2) e (4, 6)">
   <Passo>Diferença nas colunas: 4 − 1 = 3. Diferença nas linhas: 6 − 2 = 4.</Passo>
