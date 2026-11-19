@@ -131,7 +131,7 @@ export const capsulas: ResumoCapsula[] = [
   m('medio', 'pensamento-computacional', 'Pensamento computacional', 'Ensinar um robô a achar o caminho: algoritmos e fluxogramas.', { grupo: 'Álgebra', conexoes: ['binario'] }),
 
   // Avançada: depois do Médio (cálculo, álgebra linear, estatística inferencial)
-  m('avancada', 'limites', 'Limites e continuidade', 'Chegar cada vez mais perto sem nunca tocar.', { grupo: 'Cálculo', conexoes: ['funcoes'] }),
+  m('avancada', 'limites', 'Limites e continuidade', 'Chegar cada vez mais perto sem nunca tocar.', { grupo: 'Cálculo', estado: 'pronta', duracaoMin: 45, conexoes: ['funcoes', 'progressoes'] }),
   m('avancada', 'derivadas', 'Derivadas', 'A velocidade de um carro num único instante.', { grupo: 'Cálculo' }),
   m('avancada', 'aplicacoes-derivadas', 'Aplicações das derivadas', 'Achar o máximo lucro e o mínimo custo.', { grupo: 'Cálculo', conexoes: ['funcao-quadratica'] }),
   m('avancada', 'integrais', 'Integrais', 'Somar infinitas fatias finas para achar uma área.', { grupo: 'Cálculo' }),

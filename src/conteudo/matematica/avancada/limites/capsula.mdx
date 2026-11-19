@@ -1,0 +1,394 @@
+import ChegandoPerto from '../../../../components/simulacoes/ChegandoPerto'
+import AquilesETartaruga from '../../../../components/simulacoes/AquilesETartaruga'
+import TipoDeDescontinuidade from '../../../../components/simulacoes/TipoDeDescontinuidade'
+import EpsilonEDelta from '../../../../components/simulacoes/EpsilonEDelta'
+import LimiteNoInfinito from '../../../../components/simulacoes/LimiteNoInfinito'
+import BisseccaoDaRaiz from '../../../../components/simulacoes/BisseccaoDaRaiz'
+
+{/* Fatos conferidos na Wikipedia em inglês (Limit of a function, Continuous function e Zeno's paradoxes), listadas no meta.ts: Zenão de Eleia (cerca de 490 a 430 a.C.), Bolzano em 1817, Cauchy em 1821 (Cours d'analyse), Weierstrass em 1861 (definição épsilon-delta atual), Hardy em 1908 (seta sob o símbolo lim), a definição de continuidade em três condições, os tipos de descontinuidade, o teorema do valor intermediário e o limite de sen(x)/x igual a 1. As contas dos exemplos e exercícios foram conferidas por cálculo; os preços e situações do dia a dia são de exemplo. */}
+
+<Etapa id="gancho">
+
+Um corredor precisa atravessar uma praça. Primeiro ele anda **metade** do caminho. Depois, metade do que **sobrou**. Depois, metade do que sobrou de novo, e assim por diante, sem parar. Os pedaços ficam cada vez menores: 1/2, 1/4, 1/8, 1/16...
+
+Existem **infinitos** pedaços. Será que ele chega ao outro lado? A pergunta parece boba, mas ficou sem resposta convincente por mais de dois mil anos. A ferramenta que a resolve se chama **limite**, e ela é a porta de entrada do **Cálculo**.
+
+<Palpite
+  chave="inicial"
+  pergunta="Somando 1/2 + 1/4 + 1/8 + 1/16 + ... sem nunca parar, o que acontece com o total?"
+  opcoes={['Passa de 1, porque são infinitos pedaços', 'Se aproxima de 1 e não passa dele', 'Cresce sem parar']}
+/>
+
+Um **limite** responde a uma pergunta delicada: **para onde algo está indo**, mesmo que nunca chegue lá? Ele aparece quando você calcula a **velocidade num instante** do carro, quando um banco calcula o que acontece com uma dívida ao longo do tempo e quando um programa gráfico desenha uma curva suave.
+
+Nesta cápsula você vai **chegar perto** de um ponto pelos dois lados, perseguir uma tartaruga com Aquiles, descobrir os **tipos de buraco e de salto** de uma função, jogar o **jogo do épsilon e do delta**, olhar para o **infinito** e usar a continuidade para **encurralar uma raiz**.
+
+</Etapa>
+
+<Etapa id="historia">
+
+A história dos limites começa com um filósofo que **provocou** os matemáticos e termina com a regra que usamos hoje, mais de dois mil anos depois.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Cerca de 490 a 430 a.C.', texto: 'Zenão de Eleia propõe paradoxos sobre o movimento e o infinito.' },
+  { ano: '1817', texto: 'Bernard Bolzano usa a técnica de épsilon e delta para definir funções contínuas.' },
+  { ano: '1821', texto: 'Augustin-Louis Cauchy trata de limites e quantidades variáveis no livro Cours d’analyse.' },
+  { ano: '1861', texto: 'Karl Weierstrass apresenta a definição de épsilon e delta quase como a usamos hoje.' },
+  { ano: '1908', texto: 'G. H. Hardy introduz a notação moderna, com a seta sob o símbolo de limite.' },
+]} />
+
+## O filósofo que provocou
+
+**Zenão de Eleia** viveu na Grécia, entre cerca de **490 e 430 a.C.**, e era aluno de Parmenides. Parmenides defendia que a realidade é uma só e **não muda**. Para apoiar essa ideia, Zenão criou histórias que "provavam" que o movimento é impossível. Os textos dele se perderam, e conhecemos os paradoxos por Aristóteles, Platão e outros comentaristas.
+
+## Aquiles e a tartaruga
+
+No mais famoso, **Aquiles**, o herói mais veloz da Grécia, corre contra uma **tartaruga** que sai na frente. Quando Aquiles chega ao ponto onde a tartaruga estava, ela já andou um pouquinho. Quando ele cobre esse pedacinho, ela andou outro pouquinho. Sempre sobra uma distância, e Zenão concluiu que Aquiles precisaria de **infinitos passos** para alcançá-la. No outro paradoxo, a **dicotomia**, o corredor precisa cumprir metade do caminho, depois metade do que falta, e o movimento nem poderia começar.
+
+## Dois mil anos depois
+
+Todo mundo sabia que Aquiles ultrapassa a tartaruga. O difícil era **explicar com rigor** por que uma soma de infinitos pedaços pode dar um total finito. A resposta veio com o rigor do século 19. **Bolzano**, em **1817**, deu o primeiro passo com a técnica de épsilon e delta. **Cauchy**, em **1821**, falou de limites em seu livro *Cours d’analyse*. E **Weierstrass**, em **1861**, escreveu a definição de épsilon e delta quase como a usamos hoje. Em **1908**, **Hardy** introduziu a notação moderna, com a seta embaixo da palavra lim.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O que é chegar perto
+
+Pense num elevador subindo até o 5º andar. Quanto mais ele sobe, mais **perto** do 5º andar ele fica. O **limite** é essa ideia: o valor para o qual a função **se aproxima** quando o x chega perto de um ponto.
+
+Escrevemos **lim (x → a) f(x) = L**, e lemos "o limite de f(x) quando x tende a a é L". Isso quer dizer: **quanto mais perto de a estiver o x, mais perto de L estará f(x)**.
+
+## 2. O limite não liga para o ponto em si
+
+Aqui está a grande surpresa. O limite olha só para os valores **ao redor** de a, **não para o que acontece em a**. A função pode até **nem existir** exatamente em a, e mesmo assim ter limite lá.
+
+Exemplo: f(x) = (x² − 1) ÷ (x − 1). Em x = 1, a conta dá 0 ÷ 0, e não existe resposta. Mas, perto de 1, os valores se aproximam de **2**. Dizemos que o limite é 2, sem que f(1) exista.
+
+## 3. Dois lados
+
+Para chegar a um ponto, dá para vir **pela esquerda** (com x menor que a) ou **pela direita** (com x maior que a). São os **limites laterais**. Para o limite existir, os dois lados precisam **chegar ao mesmo valor**. Se os dois discordam, o limite **não existe**.
+
+## 4. Quando a função é contínua
+
+Uma função é **contínua** num ponto quando dá para traçar o gráfico ali **sem tirar o lápis do papel**. A definição tem três condições: a função está **definida** no ponto, o **limite existe** e o limite é **igual ao valor** da função.
+
+<ExemploResolvido titulo="Lendo uma tabela de aproximação">
+  <Passo>Seja f(x) = x + 1 e queremos o limite quando x tende a 3.</Passo>
+  <Passo>Pela esquerda: f(2,9) = 3,9, f(2,99) = 3,99 e f(2,999) = 3,999.</Passo>
+  <Passo>Pela direita: f(3,1) = 4,1, f(3,01) = 4,01 e f(3,001) = 4,001.</Passo>
+  <Passo>Os dois lados se aproximam de **4**. Então o limite é **4**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto vale o limite de 3x + 1 quando x tende a 2? (número)" resposta="7" dica="Perto de 2, a função se comporta como 3 · 2 + 1." resolucao="3 · 2 + 1 = 7. Como a função é suave, o limite é o próprio valor." />
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Em x = 1, a função f(x) = (x² − 1) ÷ (x − 1) vira 0 ÷ 0 e não existe. O que os valores de f fazem quando x chega perto de 1?"
+  opcoes={['Se aproximam de 2', 'Explodem para o infinito', 'Se aproximam de 0']}
+  correta={0}
+  explicacao="Veja: f(0,9) = 1,9, f(0,99) = 1,99 e f(1,01) = 2,01. Como x² − 1 = (x − 1)(x + 1), dá para cancelar o x − 1 e sobra x + 1, que perto de 1 vale quase 2. O limite é 2, mesmo sem f(1)."
+>
+
+Chegue cada vez mais perto de 1, pelos dois lados, e olhe os valores de f.
+
+<ChegandoPerto />
+
+Agora o paradoxo do começo: Aquiles corre 10 vezes mais rápido que a tartaruga, que sai 100 m na frente.
+
+<AquilesETartaruga />
+
+E aqui estão quatro funções diferentes perto do mesmo ponto: uma contínua e três "defeituosas" de jeitos diferentes.
+
+<TipoDeDescontinuidade />
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Passa de 1, porque são infinitos pedaços', 'Se aproxima de 1 e não passa dele', 'Cresce sem parar']}
+  correta={1}
+  seAcertou="E o palpite do começo? Isso: 1/2 + 1/4 + 1/8 + ... fica cada vez mais perto de 1, e nunca passa. Infinitos pedaços podem dar um total finito, e o limite dessa soma é 1."
+  seErrou="E o palpite do começo? Os pedaços diminuem tão depressa que a soma não passa de 1: 1/2 + 1/4 = 3/4, depois 7/8, 15/16... Falta sempre o último pedacinho para chegar a 1. O limite da soma é 1."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Passo 1: calcular limites por substituição
+
+Quando a função é "bem comportada" (um polinômio, por exemplo), o limite em um ponto é **só trocar o x pelo número**. Funciona porque polinômios são **contínuos**: não têm buracos nem saltos.
+
+- Limite de x² + 5 quando x tende a 0 é **5**.
+- Limite de 2x − 3 quando x tende a 4 é **5**.
+- Limite de uma constante, como 7, é sempre **7**.
+
+<ExemploResolvido titulo="Limite de um polinômio">
+  <Passo>Calcule o limite de x² + 3x quando x tende a 2.</Passo>
+  <Passo>A função é um polinômio, então basta substituir x por 2.</Passo>
+  <Passo>2² + 3 · 2 = 4 + 6 = 10.</Passo>
+  <Passo>O limite é **10**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Limite de x² + 5 quando x tende a 0? (número)" resposta="5" dica="Substitua o x por 0." resolucao="0² + 5 = 5." />
+
+<Exercicio enunciado="Limite de 2x − 3 quando x tende a 4? (número)" resposta="5" dica="2 · 4 − 3." resolucao="8 − 3 = 5." />
+
+## Passo 2: as regras dos limites
+
+Quando os limites de duas funções **existem**, o limite da **soma** é a soma dos limites, e o mesmo vale para a **diferença** e o **produto**. No **quociente**, vale também, mas o limite do **denominador não pode ser zero**.
+
+Por isso, é possível calcular o limite de coisas complicadas **por partes**. O limite de x² · (x + 1) quando x tende a 2 é (limite de x²) vezes (limite de x + 1), ou seja, 4 · 3 = **12**.
+
+<Exercicio enunciado="Limite de x² · (x + 1) quando x tende a 2? (número)" resposta="12" dica="O produto dos limites: 4 e 3." resolucao="2² · (2 + 1) = 4 · 3 = 12." />
+
+<Aprofundar titulo="As leis dos limites e as formas indeterminadas">
+
+Se os limites de f e g em um ponto existem e são **finitos**, então o limite de f + g, de f − g e de f · g é a soma, a diferença e o produto dos limites. No **quociente** f ÷ g, vale a mesma ideia, desde que o limite de g **não seja zero**.
+
+Quando o denominador tem limite zero **e** o numerador também, aparece a **forma 0/0**. Ela é chamada **indeterminada**: não dá para dizer o valor só olhando, e é preciso **trabalhar mais**, por exemplo fatorando. A forma infinito sobre infinito também é indeterminada. Existe uma técnica avançada chamada **regra de L'Hôpital** para esses casos, que você verá mais adiante no Cálculo.
+
+</Aprofundar>
+
+## Passo 3: o truque do 0/0
+
+Quando a substituição dá **0 ÷ 0**, o limite ainda pode existir. O truque quase sempre é **fatorar e cancelar** o fator que zera. Lembre da diferença de quadrados: **x² − a² = (x − a)(x + a)**.
+
+<ExemploResolvido titulo="Limite de (x² − 9) ÷ (x − 3) quando x tende a 3">
+  <Passo>Substituindo, dá 0 ÷ 0: é uma forma indeterminada.</Passo>
+  <Passo>Fatore o numerador: x² − 9 = (x − 3)(x + 3).</Passo>
+  <Passo>A fração vira (x − 3)(x + 3) ÷ (x − 3). Como x só **chega perto** de 3 (e não é igual a 3), pode cancelar o x − 3.</Passo>
+  <Passo>Sobra x + 3, e perto de 3 isso vale **6**.</Passo>
+  <Passo>O limite é **6**.</Passo>
+</ExemploResolvido>
+
+Cancelar é permitido porque o limite **nunca usa o ponto em si**, só os valores bem ao redor.
+
+<Exercicio enunciado="Limite de (x² − 4) ÷ (x − 2) quando x tende a 2? (número)" resposta="4" dica="x² − 4 = (x − 2)(x + 2)." resolucao="Sobra x + 2, que perto de 2 vale 4." />
+
+<Exercicio enunciado="Limite de (x² − 16) ÷ (x − 4) quando x tende a 4? (número)" resposta="8" dica="x² − 16 = (x − 4)(x + 4)." resolucao="Sobra x + 4, que perto de 4 vale 8." />
+
+<Exercicio enunciado="Limite de (x² − 25) ÷ (x − 5) quando x tende a 5? (número)" resposta="10" dica="Diferença de quadrados." resolucao="Sobra x + 5, que perto de 5 vale 10." />
+
+<Exercicio enunciado="Limite de (2x² − 2) ÷ (x − 1) quando x tende a 1? (número)" resposta="4" dica="Coloque o 2 em evidência: 2(x² − 1)." resolucao="2(x − 1)(x + 1) ÷ (x − 1) = 2(x + 1), que perto de 1 vale 4." />
+
+<Exercicio enunciado="Limite de (x² + 3x) ÷ x quando x tende a 0? (número)" resposta="3" dica="Coloque o x em evidência no numerador: x(x + 3)." resolucao="x(x + 3) ÷ x = x + 3, que perto de 0 vale 3." />
+
+<ExemploResolvido titulo="Fatorando um trinômio">
+  <Passo>Calcule o limite de (x² + x − 6) ÷ (x − 2) quando x tende a 2.</Passo>
+  <Passo>Substituir dá (4 + 2 − 6) ÷ 0 = 0 ÷ 0, indeterminado.</Passo>
+  <Passo>Fatore: x² + x − 6 = (x + 3)(x − 2).</Passo>
+  <Passo>Cancele o x − 2: sobra x + 3.</Passo>
+  <Passo>Perto de 2, x + 3 vale **5**. O limite é **5**.</Passo>
+</ExemploResolvido>
+
+<Aprofundar titulo="Quando o limite não existe">
+
+Há três jeitos principais de o limite **não existir**. O primeiro é o **salto**: os limites laterais existem, mas são **diferentes**. O segundo é a **explosão**: os valores crescem (ou decrescem) sem parar, como em 1 ÷ x perto de 0. O terceiro é a **oscilação**: a função fica balançando e nunca se acalma, como sen(1/x) perto de 0.
+
+No caso da oscilação, a função sen(1/x) passa por todos os valores entre −1 e 1 infinitas vezes quando x chega perto de 0. Por isso a descontinuidade em 0 **não é removível**: não há valor que se possa colocar ali para "consertar" a função. Já x · sen(1/x) é domada, e o limite em 0 é 0.
+
+</Aprofundar>
+
+## Passo 4: os limites laterais
+
+Imagine uma tarifa de estacionamento: R$ 5 até a primeira hora, e R$ 8 a partir daí. Perto de **1 hora**, quem chega **um pouquinho antes** paga 5, e quem passa **um pouquinho** paga 8. Os dois lados **discordam**.
+
+Chamamos de **limite lateral à esquerda** o valor para onde f vai quando x se aproxima **por valores menores**, e de **limite lateral à direita** quando se aproxima **por valores maiores**. O limite "comum" só existe se os dois forem **iguais**.
+
+<Exercicio enunciado="Seja f(x) = 1 para x menor que 2 e f(x) = 4 para x maior ou igual a 2. Qual é o limite pela direita em x = 2? (número)" resposta="4" dica="Pela direita, x é maior que 2." resolucao="Pela direita f vale 4." />
+
+<Exercicio enunciado="Na mesma função, o limite em x = 2 existe? (sim ou nao)" resposta="nao" dica="Compare o limite pela esquerda (1) com o limite pela direita (4)." resolucao="Não: os lados discordam (1 e 4), então o limite não existe." />
+
+## Passo 5: continuidade, a regra dos três
+
+Uma função é **contínua em a** quando **três coisas** acontecem ao mesmo tempo: f(a) **existe**, o limite de f em a **existe**, e os dois são **iguais**. Se uma falha, há uma **descontinuidade**.
+
+Há três tipos. O **buraco** (removível): o limite existe, mas f(a) falta ou está no lugar errado. O **salto**: os limites laterais existem, mas são diferentes. O **infinito**: a função explode perto do ponto.
+
+São contínuas as funções **constantes**, a função **identidade** f(x) = x, todos os **polinômios**, as **racionais** onde estão definidas, e também sen x, cos x, eˣ e o logaritmo natural (para x positivo).
+
+<Exercicio enunciado="A função (x² − 1) ÷ (x − 1) é contínua em x = 1? (sim ou nao)" resposta="nao" dica="Ela está definida em x = 1?" resolucao="Não: f(1) não existe (0 ÷ 0). É um buraco, e o limite (2) existe." />
+
+<Exercicio enunciado="A função x + 1 é contínua em x = 1? (sim ou nao)" resposta="sim" dica="É um polinômio." resolucao="Sim: f(1) = 2 e o limite também é 2." />
+
+<ExemploResolvido titulo="Fazendo uma função ficar contínua">
+  <Passo>Seja f(x) = x + 2 para x menor que 1 e f(x) = k · x para x maior ou igual a 1. Qual k deixa f contínua em x = 1?</Passo>
+  <Passo>Pela esquerda, o limite é 1 + 2 = 3.</Passo>
+  <Passo>Pela direita (e no próprio 1), o valor é k · 1 = k.</Passo>
+  <Passo>Para os dois lados concordarem, k = 3.</Passo>
+  <Passo>Com **k = 3**, a função é contínua: não tem salto.</Passo>
+</ExemploResolvido>
+
+<Aprofundar titulo="A definição formal de épsilon e delta">
+
+A frase "f(x) chega perto de L" é vaga. Weierstrass a transformou numa **regra de jogo**. Dizemos que o limite de f(x) quando x tende a p é L se, **para todo ε maior que zero**, existe um **δ maior que zero** tal que, se a distância |x − p| é **maior que 0 e menor que δ**, então a distância |f(x) − L| é **menor que ε**.
+
+Em palavras: não importa **quão apertada** seja a tolerância ε que alguém peça, dá para achar uma distância δ tal que, ficando a menos de δ de p (sem ser o próprio p), f fica a menos de ε de L. Exemplo: o limite de 4x + 1 quando x tende a 2 é 9, e serve **δ = ε ÷ 4**, porque |(4x + 1) − 9| = 4|x − 2|.
+
+</Aprofundar>
+
+## Passo 6: o jogo do épsilon e do delta
+
+Um amigo diz: "aceito que f(x) erre por **no máximo ε** em relação ao limite". Sua tarefa é responder: "então fique a **menos de δ** de a, e f vai respeitar". Se você **sempre** consegue responder, para **qualquer** ε que ele pedir, o limite está provado.
+
+<EpsilonEDelta />
+
+Na função 2x + 1 perto de 3, o erro de f é **o dobro** do erro de x. Por isso serve **δ = ε ÷ 2**. Quanto mais exigente a tolerância, menor o δ.
+
+<Exercicio enunciado="Em f(x) = 2x + 1 perto de x = 3, qual é o maior δ que serve para ε = 0,2? (número)" resposta="0,1" dica="O erro de f é 2 vezes o erro de x: δ = ε ÷ 2." resolucao="δ = 0,2 ÷ 2 = 0,1." />
+
+## Passo 7: limites no infinito
+
+O limite também pergunta: o que acontece quando **x cresce sem parar**? Exemplo: o preço médio por foto numa assinatura de R$ 2 por foto mais uma taxa fixa de R$ 1. Para poucas fotos, a taxa pesa. Para muitas fotos, o preço médio se aproxima de R$ 2, e a taxa quase some.
+
+A ideia: um número dividido por algo **enorme** vira **quase zero**. Por isso, o limite de **1 ÷ x** quando x tende ao infinito é **0**. Escrevemos lim (x → ∞) 1/x = 0.
+
+<LimiteNoInfinito />
+
+<ExemploResolvido titulo="Limite no infinito de uma fração">
+  <Passo>Calcule o limite de (3x + 5) ÷ x quando x tende ao infinito.</Passo>
+  <Passo>Separe a fração: (3x + 5) ÷ x = 3 + 5 ÷ x.</Passo>
+  <Passo>Quando x cresce, 5 ÷ x vai para 0.</Passo>
+  <Passo>Sobra só o 3. O limite é **3**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Limite de (3x + 2) ÷ x quando x tende ao infinito? (número)" resposta="3" dica="Separe: 3 + 2 ÷ x." resolucao="2 ÷ x vai para 0, sobra 3." />
+
+<Exercicio enunciado="Limite de 5 ÷ x quando x tende ao infinito? (número)" resposta="0" dica="Dividir por um número enorme." resolucao="Vira quase zero: o limite é 0." />
+
+## Passo 8: o teorema do valor intermediário
+
+Se uma função é **contínua** num intervalo e muda de negativa para positiva, ela **precisa passar pelo zero**: o gráfico não pula. Isso é o **teorema do valor intermediário**: se f é contínua em [a, b] e k está entre f(a) e f(b), então algum c entre a e b tem f(c) = k.
+
+Essa ideia ajuda a **achar raízes** de equações difíceis. Divida o intervalo ao meio, olhe o sinal no meio e fique com a metade em que o sinal muda. Cada corte **encurrala** a raiz.
+
+<BisseccaoDaRaiz />
+
+<Exercicio enunciado="Uma função contínua tem f(0) = −3 e f(4) = 2. Existe raiz entre 0 e 4? (sim ou nao)" resposta="sim" dica="O sinal muda de negativo para positivo." resolucao="Sim: sendo contínua, precisa passar por zero." />
+
+<Aprofundar titulo="O famoso limite de sen(x) ÷ x">
+
+A função sen(x) ÷ x **não existe** em x = 0 (dá 0 ÷ 0). Mesmo assim, quando x chega perto de 0, os valores ficam **arbitrariamente perto de 1**. Então o limite é **1**. Esse resultado é a base para calcular derivadas de funções trigonométricas.
+
+Aqui o x vai em **radianos**, e a função é "consertada" definindo seu valor em 0 como 1. Ela se chama função **sinc** e fica contínua.
+
+</Aprofundar>
+
+<Aprofundar titulo="Por que 0,999... é igual a 1">
+
+0,999... é a soma 0,9 + 0,09 + 0,009 + ..., e cada pedaço é um décimo do anterior. As somas parciais são 0,9, 0,99, 0,999 e assim por diante, e cada uma fica a 0,1, depois 0,01, depois 0,001... de distância de **1**. Essa distância vai a **zero**. O limite das somas é **1**, e é isso que "0,999..." quer dizer.
+
+É o mesmo raciocínio de 1/2 + 1/4 + 1/8 + ..., que tem limite 1. Aquiles alcança a tartaruga porque 100 + 10 + 1 + 0,1 + ... tem limite 1000 ÷ 9, ou 111,111... metros.
+
+</Aprofundar>
+
+<Exercicio enunciado="Para onde se aproxima 1/2 + 1/4 + 1/8 + 1/16 + ... sem parar? (número)" resposta="1" dica="Cada pedaço é a metade do que falta." resolucao="O limite da soma é 1." />
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'O que significa dizer que o limite de f(x), quando x tende a a, é L?',
+    opcoes: ['Quanto mais perto de a está x, mais perto de L está f(x)', 'f(a) é igual a L', 'f nunca chega a L'],
+    correta: 0,
+    explicacao: 'O limite olha para os valores ao redor de a. O valor em a pode ser diferente ou nem existir.',
+  },
+  {
+    enunciado: 'Em f(x) = (x² − 1) ÷ (x − 1), o limite quando x tende a 1 é...',
+    opcoes: ['2', '0', 'não existe'],
+    correta: 0,
+    explicacao: 'Fatorando, x² − 1 = (x − 1)(x + 1). Cancelando, sobra x + 1, que perto de 1 vale 2.',
+  },
+  {
+    enunciado: 'Um limite pode existir num ponto onde a função não está definida?',
+    opcoes: ['Sim, porque o limite só olha ao redor do ponto', 'Não, nunca', 'Só se a função for constante'],
+    correta: 0,
+    explicacao: 'O valor do limite não depende de f estar definida em a, como no exemplo do buraco.',
+  },
+  {
+    enunciado: 'f vale 1 pela esquerda de 2 e 4 pela direita. O limite em x = 2...',
+    opcoes: ['não existe, porque os lados discordam', 'é 4', 'é 2,5, a média'],
+    correta: 0,
+    explicacao: 'O limite só existe quando os dois limites laterais são iguais.',
+  },
+  {
+    enunciado: 'Quais são as três condições para f ser contínua em a?',
+    opcoes: ['f(a) existe, o limite existe e os dois são iguais', 'f(a) é positivo, o limite é zero e a função cresce', 'A função é um polinômio'],
+    correta: 0,
+    explicacao: 'Esses três itens juntos dizem que dá para desenhar o gráfico ali sem tirar o lápis do papel.',
+  },
+  {
+    enunciado: 'Quanto vale o limite de (x² − 9) ÷ (x − 3) quando x tende a 3?',
+    opcoes: ['6', '0', '9'],
+    correta: 0,
+    explicacao: 'Fatore: (x − 3)(x + 3) ÷ (x − 3) = x + 3, que perto de 3 vale 6.',
+  },
+  {
+    enunciado: 'O limite de 1/x quando x tende ao infinito é...',
+    opcoes: ['0', '1', 'infinito'],
+    correta: 0,
+    explicacao: 'Dividir 1 por um número cada vez maior dá um resultado cada vez mais perto de 0.',
+  },
+  {
+    enunciado: 'Em f(x) = 2x + 1 perto de 3, qual δ serve para ε = 1?',
+    opcoes: ['0,5', '2', '1'],
+    correta: 0,
+    explicacao: 'O erro de f é o dobro do erro de x, então δ = ε ÷ 2 = 0,5. Com δ = 1, o erro de f chegaria a 2, passando da tolerância.',
+  },
+  {
+    enunciado: 'Uma função contínua tem f(1) = −1 e f(2) = 5. O que o teorema do valor intermediário garante?',
+    opcoes: ['Existe um x entre 1 e 2 em que f vale zero', 'f é crescente', 'f vale 2 em x = 1,5'],
+    correta: 0,
+    explicacao: 'Sendo contínua, f não pula: para ir de −1 a 5 precisa passar por todos os valores no meio, inclusive o zero.',
+  },
+  {
+    enunciado: 'Quem escreveu, em 1861, a definição de épsilon e delta quase como é usada hoje?',
+    opcoes: ['Karl Weierstrass', 'Zenão de Eleia', 'G. H. Hardy'],
+    correta: 0,
+    explicacao: 'Bolzano usou a técnica em 1817 e Cauchy tratou de limites em 1821. Weierstrass fixou a forma moderna em 1861, e Hardy criou a notação com a seta em 1908.',
+  },
+  {
+    enunciado: 'O que resolve o paradoxo de Aquiles e a tartaruga?',
+    opcoes: ['A soma de infinitos passos cada vez menores pode ter um limite finito', 'Aquiles na verdade nunca alcança a tartaruga', 'O tempo para'],
+    correta: 0,
+    explicacao: '100 + 10 + 1 + 0,1 + ... tem limite 111,11... metros: depois dessa distância, Aquiles passa a tartaruga.',
+  },
+  {
+    enunciado: 'Qual é a descontinuidade de f(x) = 1 ÷ (x − 1) em x = 1?',
+    opcoes: ['Infinita: os valores explodem perto de 1', 'Um buraco removível', 'Um salto entre 1 e 3'],
+    correta: 0,
+    explicacao: 'Perto de 1, o denominador fica quase zero e a fração cresce sem limite. Não há valor que conserte a função.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- O **limite** diz para onde f(x) vai quando x chega perto de a, sem se importar com o valor em a. Notação: lim (x → a) f(x) = L.
+- Só existe limite se os dois **limites laterais** (pela esquerda e pela direita) forem **iguais**.
+- Para **polinômios**, o limite é só substituir. Quando dá **0 ÷ 0**, fatore e cancele o fator que zera.
+- Os limites **de soma, diferença, produto e quociente** valem quando os limites existem (o denominador não pode ter limite zero).
+- **Contínua em a** quer dizer: f(a) existe, o limite existe e os dois são iguais. Falhas: **buraco**, **salto** e **infinito**.
+- **Épsilon e delta** formalizam "chegar perto": para qualquer tolerância ε, há um δ que a respeita.
+- O limite no infinito de 1/x é 0, e isso resolve frações como (3x + 2) ÷ x, que tendem a 3.
+- O **teorema do valor intermediário** garante raízes: uma função contínua que troca de sinal passa por zero.
+
+**Um pouco de história.** Por volta de 490 a 430 a.C., Zenão de Eleia propôs paradoxos como o de Aquiles e a tartaruga. A resposta rigorosa levou mais de dois mil anos: Bolzano usou épsilon e delta em 1817, Cauchy tratou de limites em 1821 e Weierstrass fixou a definição moderna em 1861. Em 1908, Hardy criou a notação com a seta embaixo do lim.
+
+</Resumo>
+
+Os limites são o alicerce de todo o Cálculo. A **derivada** (a velocidade num instante) e a **integral** (a área sob uma curva) são, as duas, **limites**. Na próxima cápsula da linha Avançada, você vai usar tudo isto para medir a **velocidade de um carro num único instante**.
+
+<Conexoes />
+
+</Etapa>

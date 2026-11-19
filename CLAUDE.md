@@ -25,6 +25,7 @@ interativas e aplicação prática. Fácil de entender, sem ser raso.
 Só duas áreas por enquanto:
 
 1. **Matemática**: básica (1º ao 5º ano, pedido do dono), ensino fundamental (anos finais) e ensino médio, usando a BNCC como referência de conteúdo.
+   Há também a linha **Avançada** (`trilha: 'avancada'`: cálculo, álgebra linear, estatística inferencial), pedida pelo dono a partir do mapa da Khan Academy.
    O mapa completo de cada linha (com grupo por ano ou tema) fica em `src/conteudo/indice.ts`.
 2. **Computação básica**: com foco em entender como sistemas web funcionam e são hospedados
    (internet, servidores, domínios, banco de dados, deploy).
