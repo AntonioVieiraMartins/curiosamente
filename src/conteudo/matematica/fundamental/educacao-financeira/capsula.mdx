@@ -1,0 +1,402 @@
+import OrcamentoDoMes from '../../../../components/simulacoes/OrcamentoDoMes'
+import MetaDePoupanca from '../../../../components/simulacoes/MetaDePoupanca'
+import SimplesOuComposto from '../../../../components/simulacoes/SimplesOuComposto'
+import AVistaOuParcelado from '../../../../components/simulacoes/AVistaOuParcelado'
+import ComparaPacotes from '../../../../components/simulacoes/ComparaPacotes'
+import InflacaoPoderDeCompra from '../../../../components/simulacoes/InflacaoPoderDeCompra'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Coin, Banknote, Real, Pix), listadas no meta.ts. A regra 50/30/20 é apresentada como sugestão de bolso, não como lei. */}
+
+<Etapa id="gancho">
+
+No começo do mês, a conta tem R$ 2.000. No fim do mês, a conta está zerada e você não lembra direito para onde o dinheiro foi. Parece mágica, mas é só **matemática sem anotação**: o dinheiro que entra e o dinheiro que sai nunca desaparecem, eles só vão para algum lugar.
+
+A educação financeira é a arte de **decidir antes** para onde o dinheiro vai, usando contas simples: soma, porcentagem e comparação. Quem faz isso não precisa ganhar muito para ter paz. Quem não faz pode ganhar bem e viver sem fôlego.
+
+<Palpite
+  chave="inicial"
+  pergunta="Um celular custa R$ 2.000 à vista, ou 10 parcelas de R$ 230. Quanto você paga a mais parcelando?"
+  opcoes={['Nada, são só 10 parcelas', 'R$ 300', 'R$ 230']}
+/>
+
+Nesta cápsula você vai montar um orçamento, calcular quanto tempo leva para juntar uma meta, entender juros (a favor e contra você), comparar preços do jeito certo e ver por que o dinheiro parado perde força com a inflação.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Antes do dinheiro existia a **troca**: um saco de grãos por um cordeiro. O problema era achar alguém que quisesse exatamente o que você tinha. O dinheiro foi inventado para resolver isso: algo que todo mundo aceita em troca de qualquer coisa.
+
+<LinhaDoTempo marcos={[
+  { ano: 'por volta de 600 a.C.', texto: 'Na Lídia (região da atual Turquia), surgem algumas das primeiras moedas cunhadas que se conhecem.' },
+  { ano: 'século XI', texto: 'Na China, durante a dinastia Song, circula o papel-moeda, bem antes de ele chegar à Europa.' },
+  { ano: '1994', texto: 'O Brasil lança o Plano Real e a moeda passa a ser o real (R$), que usamos até hoje.' },
+  { ano: '2020', texto: 'O Banco Central lança o Pix, e transferir dinheiro passa a levar poucos segundos.' },
+]} />
+
+## Da troca à moeda
+
+Com a moeda, o preço de tudo passou a ser medido na mesma régua. Um pedaço de metal com peso e marca garantidos servia de "ponte" entre quem vendia e quem comprava. Aprender a **contar e comparar valores** virou habilidade de sobrevivência.
+
+## Papel e promessa
+
+Carregar muito metal era pesado. Por isso, na China, apareceram notas de papel que **representavam** um valor guardado em outro lugar. Funcionava porque as pessoas **confiavam** no papel. Dinheiro, no fundo, é confiança.
+
+## O real e o Pix
+
+Por muitos anos o Brasil teve preços que subiam rápido, e o dinheiro perdia valor de um mês para o outro. O **Plano Real**, de 1994, criou uma moeda nova e ajudou a controlar essa subida. Em 2020, o **Pix** tornou o pagamento digital instantâneo. A tecnologia muda, mas a conta continua a mesma: o que entra menos o que sai.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O que entra e o que sai
+
+<Termo cor="azul">Renda</Termo> é o dinheiro que entra: mesada, salário, venda de algo. <Termo cor="coral">Gasto</Termo> é o dinheiro que sai. A diferença é o **saldo**:
+
+- renda maior que gasto: **sobra** (dá para guardar)
+- renda igual ao gasto: **fica zerado**
+- renda menor que gasto: **falta** (vira dívida)
+
+<Brincando titulo="Orçamento: a torneira e o balde">
+
+Pense num balde com uma torneira entrando e um furo na lateral. A **torneira** é a renda e o **furo** é o gasto. Se entra mais água do que sai, o nível **sobe** (você guarda). Se sai mais do que entra, o balde **esvazia** e, no fim, fica seco.
+
+O orçamento é só olhar para a torneira e para o furo **antes** de o balde secar, e decidir de quanto precisa ser cada um.
+
+</Brincando>
+
+Teste você mesmo: monte o mês de quem recebe R$ 2.000. Mexa nos gastos e veja o que sobra.
+
+<OrcamentoDoMes />
+
+## 2. Necessidade ou desejo?
+
+Gastos **fixos** não mudam muito de um mês para outro (aluguel, escola, internet). Gastos **variáveis** mudam (lanche, passeio, roupas). E há dois tipos de motivo para gastar:
+
+- **Necessidade:** sem isso a vida fica difícil (moradia, comida, transporte, saúde).
+- **Desejo:** é bom ter, mas dá para esperar ou trocar por algo mais barato (jogo novo, delivery, tênis de marca).
+
+Desejo não é pecado: faz parte de viver bem. A ideia é **escolher** o que vale a pena, e não ser escolhido pela vontade do momento.
+
+## 3. O tempo mexe com o dinheiro
+
+R$ 100 guardados hoje podem **render**. R$ 100 de dívida podem **crescer**. E R$ 100 parados no cofre **compram um pouco menos** a cada ano. Os três fenômenos têm nome (juros e inflação) e você vai aprender a calcular cada um.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Você guarda R$ 1.000 a 2% ao mês durante 12 meses. Quanto os juros compostos rendem A MAIS que os juros simples?"
+  opcoes={['Nada, é igual', 'Cerca de R$ 28', 'Cerca de R$ 240']}
+  correta={1}
+  explicacao="Os juros simples rendem 2% de R$ 1.000 todo mês: R$ 20 por mês, R$ 240 em 12 meses. Os compostos rendem juros sobre os juros: R$ 1.268,24 no fim, ou seja, R$ 268,24 de rendimento. A diferença é de R$ 28,24."
+>
+
+Faça o teste. Arraste os controles e compare as duas barras:
+
+<SimplesOuComposto />
+
+Repare que a barra azul (simples) cresce em linha reta, e a coral (compostos) vai se afastando. Quanto mais tempo e quanto maior a taxa, maior a diferença. Isso é ótimo para quem guarda e **muito ruim** para quem deve.
+
+Agora volte ao palpite do começo. Escolha "Celular" e compare o preço à vista com as parcelas:
+
+<AVistaOuParcelado />
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Nada, são só 10 parcelas', 'R$ 300', 'R$ 230']}
+  correta={1}
+  seAcertou="Certo: 10 × R$ 230 = R$ 2.300, que são R$ 300 a mais que o preço à vista. Esses R$ 300 são os juros embutidos nas parcelas."
+  seErrou="O certo é R$ 300: 10 × R$ 230 = R$ 2.300, e a diferença para os R$ 2.000 à vista é R$ 300. Só somar as parcelas já revela o juro escondido."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Montando o orçamento
+
+Um orçamento tem três passos: **anotar** o que entra, **listar** o que sai e **decidir** o destino da sobra. Quem só anota o que já gastou descobre os buracos tarde demais. Quem planeja descobre antes.
+
+Uma sugestão popular, que serve como ponto de partida (e não como lei), é a **regra 50/30/20**: **50%** da renda para necessidades, **30%** para desejos e **20%** para guardar. Cada pessoa ajusta conforme a sua realidade.
+
+<Brincando titulo="Regra 50/30/20: o prato do mês">
+
+Imagine a renda como um prato com 10 colheradas. **5 colheradas** vão para a comida do dia a dia (as necessidades), **3** vão para a sobremesa (os desejos) e **2** você guarda na geladeira para amanhã.
+
+Se alguém come as 10 de uma vez, amanhã não tem nada. A regra é só um jeito de **dividir o prato** antes de começar a comer.
+
+</Brincando>
+
+<ExemploResolvido titulo="Dividir R$ 2.500 pela regra 50/30/20">
+  <Passo>Necessidades: 50% de 2.500 = 0,5 × 2.500 = **R$ 1.250**.</Passo>
+  <Passo>Desejos: 30% de 2.500 = 0,3 × 2.500 = **R$ 750**.</Passo>
+  <Passo>Guardar: 20% de 2.500 = 0,2 × 2.500 = **R$ 500**.</Passo>
+  <Passo>Confira: 1.250 + 750 + 500 = 2.500. Os três pedaços fecham 100%. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma pessoa recebe R$ 3.000 por mês. Pela regra 50/30/20, quantos reais vão para os desejos (30%)?" resposta="900" dica="Calcule 30% de 3.000: 0,3 × 3.000." resolucao="0,3 × 3.000 = 900 reais." />
+
+<Exercicio enunciado="Com renda de R$ 1.800 e gastos de R$ 1.450 no mês, quantos reais sobram?" resposta="350" dica="Sobra = renda menos gastos." resolucao="1.800 − 1.450 = 350 reais." />
+
+<Exercicio enunciado="Uma pessoa gasta R$ 360 com lazer e a renda é R$ 1.800. Que porcentagem da renda vai para o lazer?" resposta="20" dica="Divida 360 por 1.800 e multiplique por 100." resolucao="360 ÷ 1.800 = 0,2, ou seja, 20%." />
+
+## Poupar e reserva de emergência
+
+**Poupar** é guardar parte do que entra para usar depois. Há dois motivos: **realizar um objetivo** (bicicleta, viagem, curso) e **se proteger** de imprevistos (conserto, doença, perda de emprego).
+
+A proteção tem nome: **reserva de emergência**. Uma orientação comum é guardar o equivalente a **3 a 6 meses de gastos essenciais**, num lugar seguro e de fácil acesso.
+
+Para um objetivo, a conta é uma divisão: **meta ÷ valor guardado por mês = meses**. Teste:
+
+<MetaDePoupanca />
+
+<ExemploResolvido titulo="Juntar R$ 2.400 guardando R$ 150 por mês">
+  <Passo>Meta: R$ 2.400. Depósito mensal: R$ 150.</Passo>
+  <Passo>Número de meses = 2.400 ÷ 150 = **16 meses**.</Passo>
+  <Passo>Em anos: 16 meses é 1 ano e 4 meses.</Passo>
+  <Passo>Para chegar em 12 meses, seria preciso guardar 2.400 ÷ 12 = R$ 200 por mês. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos meses leva para juntar R$ 1.200 guardando R$ 80 por mês?" resposta="15" dica="Divida a meta pelo valor mensal." resolucao="1.200 ÷ 80 = 15 meses." />
+
+<Exercicio enunciado="Os gastos essenciais de uma família são R$ 1.500 por mês. De quantos reais precisa a reserva de emergência de 3 meses?" resposta="4500" dica="Multiplique o gasto mensal pelo número de meses." resolucao="3 × 1.500 = 4.500 reais." />
+
+<Exercicio enunciado="Quanto é preciso guardar por mês para juntar R$ 3.600 em 18 meses?" resposta="200" dica="Valor por mês = meta ÷ meses." resolucao="3.600 ÷ 18 = 200 reais por mês." />
+
+## Juros: o preço do dinheiro no tempo
+
+<Termo cor="coral">Juros</Termo> são o "aluguel" do dinheiro. Quem **guarda** num banco empresta o dinheiro e recebe juros. Quem **deve** paga juros. A taxa é dada em porcentagem por período, por exemplo **2% ao mês**.
+
+Há dois jeitos de calcular:
+
+- **Juros simples:** a taxa sempre incide sobre o valor **inicial**. R$ 1.000 a 2% ao mês rendem R$ 20 todo mês.
+- **Juros compostos:** a taxa incide sobre o valor **do mês anterior**, já com os juros. Cada mês rende um pouco mais que o anterior (juros sobre juros).
+
+<Brincando titulo="Juros compostos: a árvore que dá sementes">
+
+Plante uma árvore que dá 2 frutos por ano. No **juro simples**, você só junta os frutos e nunca planta nenhum: a produção é sempre 2 por ano. No **juro composto**, você **planta** os frutos. No ano seguinte, há mais árvores, e elas dão mais frutos.
+
+Quem planta os frutos tem muito mais no fim. Por isso o composto parece lento no começo e **explode** com o tempo.
+
+</Brincando>
+
+<ExemploResolvido titulo="R$ 1.000 a 2% ao mês por 3 meses, simples e composto">
+  <Passo>**Simples:** 2% de 1.000 = R$ 20 por mês. Em 3 meses: 3 × 20 = R$ 60. Total: **R$ 1.060**.</Passo>
+  <Passo>**Compostos, mês 1:** 1.000 × 1,02 = R$ 1.020.</Passo>
+  <Passo>**Mês 2:** 1.020 × 1,02 = R$ 1.040,40. **Mês 3:** 1.040,40 × 1,02 = R$ 1.061,21 (arredondado).</Passo>
+  <Passo>Diferença: R$ 1.061,21 − R$ 1.060 = R$ 1,21. Pouco em 3 meses, mas cresce muito com o tempo. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Juros simples: R$ 500 a 3% ao mês durante 4 meses. Quantos reais de juros no total?" resposta="60" dica="3% de 500 é quanto por mês? Multiplique por 4." resolucao="3% de 500 = 15 por mês. Em 4 meses: 4 × 15 = 60 reais." />
+
+<Exercicio enunciado="Juros compostos: R$ 1.000 a 10% ao mês por 2 meses. Quanto vira no total, em reais?" resposta="1210" dica="Multiplique por 1,10 duas vezes." resolucao="1.000 × 1,1 = 1.100. Depois, 1.100 × 1,1 = 1.210 reais." />
+
+<Aprofundar titulo="A fórmula dos juros compostos e a regra dos 72">
+
+A conta repetida "× (1 + taxa)" tem fórmula curta: **M = C × (1 + i)<sup>n</sup>**. Aqui M é o montante final, C é o capital inicial, i é a taxa (em decimal) e n é o número de períodos. Para R$ 1.000 a 2% ao mês por 12 meses: M = 1.000 × 1,02<sup>12</sup> ≈ R$ 1.268,24.
+
+Cuidado com taxas de períodos diferentes: **1% ao mês não é 12% ao ano**. Em compostos, 1,01<sup>12</sup> ≈ 1,1268, ou seja, cerca de **12,68% ao ano**.
+
+Um atalho de cabeça é a **regra dos 72**: para saber em quantos períodos o dinheiro dobra, divida 72 pela taxa em %. A 6% ao ano, 72 ÷ 6 = 12 anos (o valor exato é cerca de 11,9). É uma estimativa, e funciona bem para taxas entre 4% e 12%.
+
+</Aprofundar>
+
+## À vista, parcelado e desconto
+
+Quando uma loja oferece "à vista R$ 1.200 ou 12x de R$ 120", some as parcelas: 12 × 120 = **R$ 1.440**. A diferença, R$ 240, é o **custo de parcelar**. Em porcentagem, 240 ÷ 1.200 = **20%** a mais.
+
+Se a soma das parcelas é igual ao preço à vista, é "sem juros". Nesse caso, parcelar não custa nada (mas continua sendo um compromisso do mês seguinte).
+
+<Brincando titulo="Parcelar: o aluguel do dinheiro">
+
+Parcelar é como pegar o dinheiro emprestado da loja. Você leva a TV hoje (a loja "empresta" os R$ 1.200 do preço) e devolve em pedaços. No fim, devolveu R$ 1.440. Os R$ 240 a mais são o **aluguel** desse empréstimo.
+
+Por isso, a pergunta certa não é "cabe a parcela no mês?", e sim "quanto eu pago **no total** e vale a pena por esse extra?".
+
+</Brincando>
+
+<ExemploResolvido titulo="12x de R$ 120 ou R$ 1.200 à vista">
+  <Passo>Soma das parcelas: 12 × 120 = R$ 1.440.</Passo>
+  <Passo>Custo extra: 1.440 − 1.200 = **R$ 240**.</Passo>
+  <Passo>Em porcentagem: 240 ÷ 1.200 = 0,2 = **20%** a mais.</Passo>
+  <Passo>Se tiver o dinheiro, o desconto à vista compensa. Se não tiver, vale esperar e juntar. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um produto custa R$ 800 à vista, ou 4 parcelas de R$ 220. Quantos reais a mais você paga parcelando?" resposta="80" dica="Some as parcelas e subtraia o preço à vista." resolucao="4 × 220 = 880. A diferença é 880 − 800 = 80 reais." />
+
+<Exercicio enunciado="Uma loja dá 10% de desconto para pagamento à vista num produto de R$ 600. Quanto fica o preço, em reais?" resposta="540" dica="Desconto de 10% de 600 é 60." resolucao="10% de 600 = 60. Então 600 − 60 = 540 reais." />
+
+## Preço por unidade
+
+O pacote maior parece sempre mais barato, mas nem sempre é. A comparação justa usa a **mesma unidade**: preço por quilo, por litro, por unidade. A conta é uma divisão: **preço ÷ quantidade**.
+
+<Brincando titulo="Tudo na mesma régua">
+
+Se um colega mede em passos e outro em palmos, ninguém sabe quem andou mais. É preciso medir os dois com a **mesma régua**.
+
+No supermercado, a régua é o "preço por quilo" (ou litro). Depois de converter os dois pacotes para essa régua, a comparação fica óbvia.
+
+</Brincando>
+
+<ComparaPacotes />
+
+<ExemploResolvido titulo="Sabão: 800 g por R$ 9,60 ou 2 kg por R$ 26">
+  <Passo>Primeiro, a mesma unidade: 800 g = 0,8 kg.</Passo>
+  <Passo>Pacote pequeno: 9,60 ÷ 0,8 = **R$ 12,00 por kg**.</Passo>
+  <Passo>Pacote grande: 26 ÷ 2 = **R$ 13,00 por kg**.</Passo>
+  <Passo>O pequeno é mais barato por kg! O tamanho grande não garante economia. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um pacote de 500 g custa R$ 4. Quantos reais custa o quilo?" resposta="8" dica="500 g é meio quilo. Divida o preço por 0,5." resolucao="4 ÷ 0,5 = 8 reais por quilo." />
+
+<Exercicio enunciado="Um suco de 3 litros custa R$ 15. Quantos reais custa cada litro?" resposta="5" dica="Divida o preço pelo número de litros." resolucao="15 ÷ 3 = 5 reais por litro." />
+
+## Inflação: o dinheiro parado perde força
+
+<Termo cor="amarelo">Inflação</Termo> é a alta geral dos preços. Se ela é de 5% ao ano, a cesta que custava R$ 100 passa a custar R$ 105 no ano seguinte, e assim por diante (também em efeito composto). O dinheiro no cofre continua R$ 100, mas **compra menos**.
+
+Por isso guardar não significa só "esconder": é preciso um lugar onde o dinheiro **renda pelo menos o suficiente para acompanhar** os preços.
+
+<Brincando titulo="A nota que compra menos sorvete">
+
+Hoje, uma nota de R$ 10 compra 2 sorvetes de R$ 5. Daqui a alguns anos, o sorvete custa R$ 6 e a mesma nota compra só 1 sorvete e um pouco. A nota continua R$ 10, mas o **sorvete encolheu o poder dela**.
+
+Inflação é isso: não é o dinheiro que diminui, é o que ele consegue **comprar**.
+
+</Brincando>
+
+<InflacaoPoderDeCompra />
+
+<Exercicio enunciado="Com inflação de 10% em um ano, um item que custava R$ 80 passa a custar quantos reais?" resposta="88" dica="Aumente 10%: multiplique por 1,10." resolucao="80 × 1,10 = 88 reais." />
+
+## Cartão de crédito e dívida
+
+O cartão é muito prático, mas pagar só o **mínimo** da fatura é um dos caminhos mais caros que existem. O que não é pago entra no **rotativo**, com juros compostos altos. Com uma taxa hipotética de 10% ao mês, uma dívida de R$ 500 vira R$ 550 em um mês, R$ 605 em dois, e continua crescendo.
+
+Regras de bolso: **pague a fatura inteira**, não compre no cartão o que não caberia no orçamento e, se já estiver devendo, **procure negociar** e priorize a dívida mais cara.
+
+<Exercicio enunciado="Uma dívida de R$ 500 no rotativo, com juros de 10% ao mês e sem nenhum pagamento. Quantos reais ela vale depois de 1 mês?" resposta="550" dica="Aumente 10% sobre 500." resolucao="500 × 1,10 = 550 reais." />
+
+<Aprofundar titulo="Por que a dívida do cartão cresce tão rápido">
+
+Com 10% ao mês (valor só para o exemplo), a dívida de R$ 500 fica 500 × 1,1<sup>12</sup> ≈ **R$ 1.569** em um ano sem pagar nada. Isso é mais que o triplo, e a taxa anual equivalente passa de 213%.
+
+É o mesmo efeito composto dos investimentos, só que agora **contra** você. A lição é a mesma, mas ao contrário: o tempo é amigo de quem guarda e inimigo de quem deve.
+
+</Aprofundar>
+
+<ExemploResolvido titulo="Comparar dois caminhos para comprar uma bicicleta de R$ 900">
+  <Passo>**Caminho A (poupar):** guardar R$ 150 por mês. Meses = 900 ÷ 150 = **6 meses**. Paga R$ 900.</Passo>
+  <Passo>**Caminho B (parcelar):** 6 parcelas de R$ 170 = **R$ 1.020**. Leva a bicicleta hoje.</Passo>
+  <Passo>Diferença: 1.020 − 900 = R$ 120 (13,3% a mais) para ter a bicicleta 6 meses antes.</Passo>
+  <Passo>Decisão consciente: se a bicicleta não é urgente, esperar economiza R$ 120. ✓</Passo>
+</ExemploResolvido>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Renda de R$ 1.500 e gastos de R$ 1.620. O que acontece?',
+    opcoes: ['Sobram R$ 120', 'Faltam R$ 120', 'Fica zerado'],
+    correta: 1,
+    explicacao: 'Os gastos passaram da renda: 1.620 − 1.500 = 120. Faltam R$ 120, que viram dívida se não cortar nada.',
+  },
+  {
+    enunciado: 'Qual destes é uma necessidade, e não um desejo?',
+    opcoes: ['Jogo novo', 'Comida do dia a dia', 'Tênis de marca'],
+    correta: 1,
+    explicacao: 'Comida é necessidade. Os outros dois são desejos: bons de ter, mas dá para esperar ou trocar por algo mais barato.',
+  },
+  {
+    enunciado: 'Pela regra 50/30/20, quanto vai para guardar numa renda de R$ 2.000?',
+    opcoes: ['R$ 200', 'R$ 400', 'R$ 600'],
+    correta: 1,
+    explicacao: '20% de 2.000 = 0,2 × 2.000 = R$ 400.',
+  },
+  {
+    enunciado: 'Meta de R$ 1.500, guardando R$ 100 por mês. Quantos meses?',
+    opcoes: ['10', '15', '150'],
+    correta: 1,
+    explicacao: '1.500 ÷ 100 = 15 meses.',
+  },
+  {
+    enunciado: 'Qual é o objetivo principal da reserva de emergência?',
+    opcoes: ['Comprar desejos', 'Se proteger de imprevistos', 'Pagar o cartão todo mês'],
+    correta: 1,
+    explicacao: 'A reserva existe para imprevistos (conserto, doença, perda de renda), e por isso deve ser segura e fácil de acessar.',
+  },
+  {
+    enunciado: 'Juros simples: R$ 400 a 5% ao mês por 3 meses. Quanto rende no total?',
+    opcoes: ['R$ 20', 'R$ 60', 'R$ 460'],
+    correta: 1,
+    explicacao: '5% de 400 = 20 por mês. Em 3 meses: 60 reais de juros. (O total seria R$ 460, mas a pergunta é o rendimento.)',
+  },
+  {
+    enunciado: 'Qual é a diferença entre juros simples e compostos?',
+    opcoes: ['Nenhuma', 'No composto, os juros também rendem juros', 'No simples, os juros são maiores'],
+    correta: 1,
+    explicacao: 'No composto, a taxa incide sobre o valor já com os juros acumulados. No simples, incide sempre sobre o valor inicial.',
+  },
+  {
+    enunciado: 'À vista R$ 900 ou 3x de R$ 330. Quanto custa o parcelamento?',
+    opcoes: ['R$ 90 a mais', 'R$ 330 a mais', 'Não custa nada'],
+    correta: 0,
+    explicacao: '3 × 330 = 990. A diferença é 990 − 900 = R$ 90 (10% a mais).',
+  },
+  {
+    enunciado: '600 g por R$ 7,20 ou 1,5 kg por R$ 16. Qual sai mais barato por quilo?',
+    opcoes: ['O de 600 g', 'O de 1,5 kg', 'Empatam'],
+    correta: 1,
+    explicacao: '7,20 ÷ 0,6 = R$ 12 por kg. 16 ÷ 1,5 ≈ R$ 10,67 por kg. O pacote maior compensa nesta comparação.',
+  },
+  {
+    enunciado: 'O que a inflação faz com o dinheiro guardado no cofre?',
+    opcoes: ['Aumenta o valor da nota', 'Diminui o que ela consegue comprar', 'Nada'],
+    correta: 1,
+    explicacao: 'A nota continua com o mesmo número, mas, com os preços subindo, compra menos.',
+  },
+  {
+    enunciado: 'Uma dívida de R$ 1.000 a 5% ao mês, sem pagar nada. Quanto vale depois de 2 meses?',
+    opcoes: ['R$ 1.100', 'R$ 1.102,50', 'R$ 1.050'],
+    correta: 1,
+    explicacao: '1.000 × 1,05 = 1.050. Depois, 1.050 × 1,05 = 1.102,50. O juro do segundo mês incide sobre 1.050, e não sobre 1.000.',
+  },
+  {
+    enunciado: 'Quem paga só o mínimo da fatura do cartão...',
+    opcoes: ['Fica livre da dívida', 'Deixa o restante no rotativo, com juros altos', 'Ganha desconto no mês seguinte'],
+    correta: 1,
+    explicacao: 'O que não foi pago entra no rotativo, que cobra juros compostos altos. O caminho mais seguro é pagar a fatura inteira.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Renda − gastos = saldo.** Anote os dois lados e decida o destino da sobra antes de gastar.
+- **Necessidade** (moradia, comida, saúde) e **desejo** são diferentes. A regra **50/30/20** é um ponto de partida, e não uma lei.
+- **Reserva de emergência:** de 3 a 6 meses de gastos essenciais, guardados num lugar seguro.
+- **Meta ÷ valor por mês = tempo** para juntar.
+- **Juros simples** incidem sobre o valor inicial; **compostos** incidem também sobre os juros (juros sobre juros), e crescem muito com o tempo.
+- **Parcelado:** some as parcelas e compare com o preço à vista. A diferença é o juro.
+- **Preço por unidade:** divida o preço pela quantidade, na mesma unidade, para comparar.
+- **Inflação** faz o mesmo dinheiro comprar menos. A dívida do cartão (rotativo) cresce rápido: pague a fatura inteira.
+
+**Um pouco de história.** Algumas das primeiras moedas cunhadas surgiram na Lídia, por volta de 600 a.C. O papel-moeda circulou na China a partir da dinastia Song, no século XI. O Brasil lançou o real em 1994 e o Pix em 2020.
+
+</Resumo>
+
+Educação financeira é matemática com consequência na vida real. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

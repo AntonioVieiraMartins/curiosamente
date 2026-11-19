@@ -1,0 +1,389 @@
+import DesenrolarACircunferencia from '../../../../components/simulacoes/DesenrolarACircunferencia'
+import RodaEDistancia from '../../../../components/simulacoes/RodaEDistancia'
+import FatiasDaPizza from '../../../../components/simulacoes/FatiasDaPizza'
+import PizzaGrandeOuDuas from '../../../../components/simulacoes/PizzaGrandeOuDuas'
+import ArcoESetor from '../../../../components/simulacoes/ArcoESetor'
+import AgulhasDeBuffon from '../../../../components/simulacoes/AgulhasDeBuffon'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Pi, Approximations of π, Archimedes, Buffon's needle problem), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Pegue uma lata, uma moeda, um prato e a roda de uma bicicleta. Meça a **volta** de cada uma com um barbante e depois o **meio** (de um lado ao outro, passando pelo centro). Divida a volta pelo meio. O resultado é sempre o mesmo, perto de **3,14**.
+
+Não importa se o objeto é do tamanho de uma moeda ou de um planeta: a volta é sempre pouco mais de **três vezes** a largura. Esse número misterioso, que aparece em todo círculo do universo, se chama **π** (lê-se "pi").
+
+<Palpite
+  chave="inicial"
+  pergunta="Uma lata tem 8 cm de diâmetro (a largura, de um lado ao outro). Se você der uma volta com um barbante em torno dela, quanto mede o barbante, mais ou menos?"
+  opcoes={['Cerca de 16 cm', 'Cerca de 25 cm', 'Cerca de 50 cm']}
+/>
+
+Nesta cápsula você vai entender o que é o π, usá-lo para calcular a volta e a área de qualquer círculo, ver por que uma pizza grande vale muito mais que duas pequenas e até descobrir o π jogando agulhas no chão.
+
+</Etapa>
+
+<Etapa id="historia">
+
+O círculo é tão antigo quanto a roda. Mas descobrir **quanto vale o π** levou milhares de anos, e a busca nunca terminou.
+
+<LinhaDoTempo marcos={[
+  { ano: 'por volta de 1650 a.C.', texto: 'No Egito, o papiro de Rhind ensina a calcular a área do círculo com um valor próximo de 3,16 para o π.' },
+  { ano: 'por volta de 250 a.C.', texto: 'Arquimedes prende o π entre 223/71 e 22/7 usando polígonos de 96 lados.' },
+  { ano: 'por volta de 480', texto: 'Na China, Zu Chongzhi chega a 355/113, um valor correto até a sexta casa depois da vírgula.' },
+  { ano: '1706', texto: 'O galês William Jones passa a usar a letra grega π para esse número.' },
+  { ano: '1761', texto: 'Johann Lambert prova que π é irracional: suas casas decimais nunca terminam nem se repetem.' },
+  { ano: '1777', texto: 'Buffon publica o problema da agulha, em que o π aparece num experimento com agulhas jogadas ao acaso.' },
+]} />
+
+## Os egípcios e o papiro de Rhind
+
+Há cerca de 3.600 anos, um escriba egípcio registrou no **papiro de Rhind** uma regra para a área de um círculo: pegue o diâmetro, tire um nono dele e multiplique o resultado por ele mesmo. Isso equivale a usar π ≈ 3,16, um valor muito bom para construir celeiros e medir terras.
+
+## Arquimedes e os polígonos
+
+**Arquimedes** teve uma ideia genial: desenhar um polígono **dentro** do círculo e outro **fora**. O círculo fica espremido entre os dois. Aumentando o número de lados até 96, ele concluiu que π está entre **223/71** (≈ 3,1408) e **22/7** (≈ 3,1429). Era um método que **poderia** continuar para sempre, se ele tivesse paciência.
+
+## Zu Chongzhi e o 355/113
+
+Cerca de 700 anos depois, na China, **Zu Chongzhi** usou polígonos com milhares de lados e achou a fração **355/113**, que dá 3,1415929. Esse valor é tão preciso que ficou como a aproximação mais precisa por cerca de 900 anos.
+
+## O π ganha seu símbolo
+
+Durante séculos, ninguém tinha um símbolo curto para o π. Em **1706**, William Jones usou a letra grega π (de "perímetro"). O símbolo pegou depois que o gigante **Euler** passou a usá-lo, e hoje o conhecemos em todo o mundo.
+
+## Um número sem fim
+
+Em 1761, **Lambert** mostrou que o π é **irracional**: ele não pode ser escrito como fração exata. Suas casas decimais (3,14159265...) **nunca acabam** e **não se repetem**. Por isso usamos aproximações como 3,14.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Círculo ou circunferência?
+
+Parecem sinônimos, mas não são. A <Termo cor="azul">circunferência</Termo> é só a **linha** da borda (o aro de uma roda). O <Termo cor="verde">círculo</Termo> é a **região** inteira, com a parte de dentro (a pizza toda, e não só a crosta).
+
+Todos os pontos da circunferência estão à **mesma distância** de um ponto especial no meio: o **centro**.
+
+<Brincando titulo="Círculo: a pizza e a crosta">
+
+Imagine uma pizza. A **crosta** é a circunferência: só a linha da borda. A pizza **inteira**, com queijo, molho e tudo, é o círculo.
+
+Quando pedimos "a volta" da pizza (para colocar uma fita decorativa, por exemplo), estamos falando da crosta, da circunferência. Quando perguntamos "quanto cabe de queijo?", estamos falando do círculo.
+
+</Brincando>
+
+## 2. As partes de uma circunferência
+
+- **Raio (r):** da borda até o centro.
+- **Diâmetro (d):** da borda até a borda, passando pelo centro. É **o dobro do raio**: d = 2r.
+- **Corda:** qualquer segmento que liga dois pontos da borda. O diâmetro é a maior corda.
+- **Arco:** um pedaço da borda.
+
+## 3. A descoberta: volta ÷ largura é sempre igual
+
+Pegue qualquer círculo. Estique a borda numa reta e compare com o diâmetro. Sempre cabem **três diâmetros** e **um pedacinho** (14 centésimos de outro diâmetro). Isso vale para uma moeda, para um prato ou para o Sol.
+
+<DesenrolarACircunferencia />
+
+A volta da circunferência chama-se <Termo cor="coral">comprimento</Termo> (ou perímetro do círculo). A razão **comprimento ÷ diâmetro** é o **π**.
+
+<Brincando titulo="π: o passo da roda">
+
+Uma roda dá uma volta completa sobre o chão. Quanto ela andou? Exatamente o **comprimento da borda**, que é "três diâmetros e mais um pedacinho".
+
+Uma roda de 1 metro de largura avança pouco mais de 3 metros por volta. Uma de 2 metros avança pouco mais de 6. É por isso que o π é a "régua de conversão" entre a largura da roda e o quanto ela anda.
+
+</Brincando>
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Se você jogar agulhas ao acaso sobre um chão com linhas paralelas, o número π vai aparecer?"
+  opcoes={['Não, π só aparece em círculos', 'Sim, na proporção de agulhas que cruzam as linhas', 'Só se as agulhas forem curvas']}
+  correta={1}
+  explicacao="Surpreendentemente, sim. Se a agulha tem o mesmo comprimento da distância entre as linhas, a chance de ela cruzar uma linha é 2 ÷ π (cerca de 63,7%). Então, com muitas agulhas, 2 × (total) ÷ (cruzaram) se aproxima de π."
+>
+
+Jogue agulhas e veja o π aparecer num experimento sem nenhum círculo à vista:
+
+<AgulhasDeBuffon />
+
+A estimativa oscila no começo e vai se firmando com milhares de lançamentos. É o mesmo efeito da **lei dos grandes números**: um experimento com acaso fica previsível quando repetido muitas vezes.
+
+Agora volte ao palpite do começo. Uma lata de 8 cm de diâmetro:
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Cerca de 16 cm', 'Cerca de 25 cm', 'Cerca de 50 cm']}
+  correta={1}
+  seAcertou="Certo: 8 × 3,14 ≈ 25,1 cm. A volta é sempre pouco mais de três vezes o diâmetro."
+  seErrou="O certo é cerca de 25 cm: 8 × 3,14 ≈ 25,1. A volta é sempre pouco mais de três diâmetros, ou seja, 3 × 8 = 24 e um pedacinho."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Elementos de uma circunferência
+
+Revise as partes: o raio vai do centro à borda, o diâmetro é o dobro do raio e passa pelo centro, a corda liga dois pontos da borda, e o arco é um pedaço da borda.
+
+<Exercicio enunciado="Uma circunferência tem raio de 7 cm. Quanto mede o diâmetro, em cm?" resposta="14" dica="O diâmetro é o dobro do raio." resolucao="d = 2 × 7 = 14 cm." />
+
+<Exercicio enunciado="O diâmetro de um prato é 18 cm. Quanto mede o raio, em cm?" resposta="9" dica="O raio é a metade do diâmetro." resolucao="r = 18 ÷ 2 = 9 cm." />
+
+## O comprimento da circunferência
+
+Como a razão comprimento ÷ diâmetro é π, o comprimento é:
+
+**C = π × d**, ou, como d = 2r, **C = 2 × π × r**
+
+Nas contas deste texto, usamos **π ≈ 3,14**.
+
+<Brincando titulo="Comprimento: a fita em volta da lata">
+
+Ponha uma fita em volta de uma lata. Depois estique a fita. Ela mede "três vezes a largura da lata e mais um pouquinho". Esse "três e um pouquinho" é o π.
+
+Por isso, para saber o comprimento de qualquer círculo, basta **medir a largura** (o diâmetro) e multiplicar por 3,14. Dobrou a largura? A fita dobra também.
+
+</Brincando>
+
+<ExemploResolvido titulo="Uma roda de bicicleta tem 66 cm de diâmetro. Quanto ela anda em 10 voltas?">
+  <Passo>Comprimento de uma volta: C = π × d = 3,14 × 66 = **207,24 cm**.</Passo>
+  <Passo>Em 10 voltas: 10 × 207,24 = **2.072,4 cm**.</Passo>
+  <Passo>Em metros: 2.072,4 ÷ 100 ≈ **20,7 metros**.</Passo>
+  <Passo>Confira o tamanho: 66 cm de diâmetro dá cerca de 2 metros por volta. 10 voltas dão uns 20 metros. ✓</Passo>
+</ExemploResolvido>
+
+<RodaEDistancia />
+
+<Exercicio enunciado="Use π = 3,14. Qual é o comprimento de uma circunferência de diâmetro 10 cm, em cm?" resposta="31,4" dica="C = π × d." resolucao="C = 3,14 × 10 = 31,4 cm." />
+
+<Exercicio enunciado="Use π = 3,14. Uma roda tem raio de 30 cm e dá 10 voltas completas. Quantos centímetros ela percorre?" resposta="1884" dica="Primeiro ache C = 2 × π × r. Depois multiplique por 10." resolucao="C = 2 × 3,14 × 30 = 188,4 cm. Em 10 voltas: 1.884 cm." />
+
+<Exercicio enunciado="Uma circunferência tem comprimento 62,8 cm. Quanto mede o raio, em cm? (use π = 3,14)" resposta="10" dica="C = 2 × π × r, então r = C ÷ (2 × 3,14)." resolucao="r = 62,8 ÷ 6,28 = 10 cm." />
+
+<ExemploResolvido titulo="Voltas numa pista circular de raio 30 m">
+  <Passo>Comprimento da pista: C = 2 × 3,14 × 30 = **188,4 m**.</Passo>
+  <Passo>Para correr 942 m, divida pelo comprimento de uma volta: 942 ÷ 188,4 = **5 voltas**.</Passo>
+  <Passo>Confira: 5 × 188,4 = 942. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma pista circular tem 188,4 m de comprimento. Quantas voltas é preciso dar para correr 942 m?" resposta="5" dica="Divida a distância total pelo comprimento da pista." resolucao="942 ÷ 188,4 = 5 voltas." />
+
+## A área do círculo
+
+A <Termo cor="amarelo">área</Termo> mede a parte de dentro. Para o círculo, a fórmula é:
+
+**A = π × r²**
+
+Note: é o **raio ao quadrado** (r × r), e não o dobro do raio.
+
+<Brincando titulo="A pizza que vira retângulo">
+
+Corte uma pizza em muitas fatias finas e **encaixe** as fatias alternando a ponta para cima e para baixo. A figura vira quase um **retângulo comprido e baixinho**.
+
+Esse retângulo tem **altura igual ao raio** (r) e **base igual a metade da borda** (porque metade das fatias fica em cima e metade embaixo): metade de 2πr = πr. Área do retângulo = base × altura = πr × r = **πr²**. Quanto mais fatias, mais perfeito é o retângulo.
+
+</Brincando>
+
+<FatiasDaPizza />
+
+<ExemploResolvido titulo="Área de uma pizza de 30 cm de diâmetro">
+  <Passo>O raio é metade do diâmetro: r = 30 ÷ 2 = **15 cm**.</Passo>
+  <Passo>A = π × r² = 3,14 × 15 × 15 = 3,14 × 225.</Passo>
+  <Passo>3,14 × 225 = **706,5 cm²**.</Passo>
+  <Passo>Confira: um quadrado de 30 cm de lado teria 900 cm². O círculo cabe dentro dele, então deve ser menor. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Use π = 3,14. Qual é a área de um círculo de raio 10 cm, em cm²?" resposta="314" dica="A = π × r × r." resolucao="A = 3,14 × 100 = 314 cm²." />
+
+<Exercicio enunciado="Use π = 3,14. Qual é a área de um círculo de raio 3 cm, em cm²?" resposta="28,26" dica="r² = 3 × 3 = 9." resolucao="A = 3,14 × 9 = 28,26 cm²." />
+
+<ExemploResolvido titulo="Qual é o raio de um círculo de área 78,5 cm²?">
+  <Passo>A = π × r², então r² = A ÷ π = 78,5 ÷ 3,14 = **25**.</Passo>
+  <Passo>Que número vezes ele mesmo dá 25? É o 5.</Passo>
+  <Passo>**r = 5 cm.**</Passo>
+  <Passo>Confira: 3,14 × 5 × 5 = 78,5. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um círculo tem área de 12,56 cm². Quanto mede o raio, em cm? (use π = 3,14)" resposta="2" dica="r² = área ÷ 3,14." resolucao="r² = 12,56 ÷ 3,14 = 4, então r = 2 cm." />
+
+<Aprofundar titulo="Arquimedes: espremendo o π entre dois polígonos">
+
+Arquimedes desenhou um hexágono dentro de um círculo de diâmetro 1: o perímetro do hexágono é 3 (menor que o do círculo). Desenhou outro hexágono por fora, com perímetro um pouco maior. Em seguida, **dobrou** o número de lados: 12, 24, 48 e, por fim, **96 lados**.
+
+A cada dobra, os polígonos de dentro e de fora ficam mais perto da circunferência, e os dois perímetros se aproximam do mesmo valor. Com 96 lados, ele concluiu que **3 10/71 &lt; π &lt; 3 1/7**, ou seja, 223/71 &lt; π &lt; 22/7, o que dá entre 3,1408 e 3,1429.
+
+Foi o primeiro método que dava para **melhorar quanto quiséssemos**, bastava ter mais lados e mais paciência. Esse é o mesmo espírito do simulador "Cortando a pizza em triângulos".
+
+</Aprofundar>
+
+## Área e o quadrado do raio
+
+Como a área usa o **quadrado** do raio, dobrar o raio faz a área **quadruplicar** (2 × 2 = 4). Triplicar o raio multiplica a área por 9. É por isso que uma pizza de 40 cm tem **quatro vezes** a área de uma de 20 cm.
+
+<Brincando titulo="Pizza: o preço do tamanho">
+
+Em área, uma pizza de 20 cm cabe **4 vezes** dentro de uma de 40 cm: a largura dobrou e a altura também, e 2 × 2 = 4. A pizza grande dá o mesmo que **quatro** pizzas pequenas, e não duas.
+
+Por isso, quando a pizzaria cobra "só um pouco mais" pela pizza maior, geralmente **vale a pena**: você leva muito mais pizza. Compare sempre as **áreas**, e não os diâmetros.
+
+</Brincando>
+
+<PizzaGrandeOuDuas />
+
+<Exercicio enunciado="Se o raio de um círculo dobra, a área fica quantas vezes maior?" resposta="4" dica="A área usa r², e 2² = 4." resolucao="Com o dobro do raio, (2r)² = 4r². A área fica 4 vezes maior." />
+
+<Exercicio enunciado="Uma pizza tem 40 cm de diâmetro e outra tem 20 cm. A área da maior é quantas vezes a da menor?" resposta="4" dica="O diâmetro da maior é o dobro da menor." resolucao="Dobrar o diâmetro (e o raio) quadruplica a área: 4 vezes." />
+
+## Arco e setor circular
+
+Uma fatia de pizza é um **setor circular**; a borda dessa fatia é um **arco**. O **ângulo central** (no vértice, no centro) diz que fração do círculo a fatia ocupa: ângulo ÷ 360°.
+
+- **Comprimento do arco** = (ângulo ÷ 360) × 2πr
+- **Área do setor** = (ângulo ÷ 360) × πr²
+
+<ArcoESetor />
+
+<Brincando titulo="Arco e setor: a fração da pizza">
+
+Se você pega **1/4** da pizza, leva também **1/4 da crosta** (o arco) e **1/4 do queijo** (a área). A fatia é igual à pizza inteira multiplicada pela fração.
+
+Então, em vez de decorar duas fórmulas novas, basta lembrar: **fração da fatia × o valor do círculo inteiro**. Se o ângulo é 90°, a fração é 90 ÷ 360 = 1/4.
+
+</Brincando>
+
+<ExemploResolvido titulo="Arco e área de um setor de 90° num círculo de raio 10 cm">
+  <Passo>Fração do círculo: 90 ÷ 360 = **1/4**.</Passo>
+  <Passo>Comprimento total: 2 × 3,14 × 10 = 62,8 cm. Arco = 1/4 de 62,8 = **15,7 cm**.</Passo>
+  <Passo>Área total: 3,14 × 10 × 10 = 314 cm². Setor = 1/4 de 314 = **78,5 cm²**.</Passo>
+  <Passo>Confira: a fatia é um quarto da pizza inteira. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Use π = 3,14. Quanto mede o arco de 60° numa circunferência de raio 6 cm, em cm?" resposta="6,28" dica="60 ÷ 360 = 1/6 do comprimento total (2 × 3,14 × 6)." resolucao="Comprimento total = 37,68 cm. Um sexto: 6,28 cm." />
+
+<Exercicio enunciado="Use π = 3,14. Qual é a área de um semicírculo (180°) de raio 10 cm, em cm²?" resposta="157" dica="Metade da área do círculo (314)." resolucao="Metade de 314 = 157 cm²." />
+
+## O π: um número sem fim
+
+O π vale 3,14159265358979... e as casas **nunca acabam nem se repetem**. Por isso, não existe fração exata para ele. As frações **22/7** (≈ 3,1429) e **355/113** (≈ 3,14159292) são só aproximações. Nas contas do dia a dia, 3,14 já basta.
+
+<Aprofundar titulo="Por que o π aparece nas agulhas de Buffon">
+
+No problema de Buffon, a agulha tem o mesmo tamanho que a distância entre as linhas. A posição do centro da agulha e o seu **ângulo** são sorteados ao acaso. A agulha cruza uma linha quando o centro está perto o bastante da linha, e "perto o bastante" depende de **sen(ângulo)**.
+
+Somando todos os ângulos possíveis, o resultado da conta dá **2 ÷ π**. O π aparece porque girar a agulha em todas as direções é, no fundo, **percorrer um círculo**.
+
+A chance é 2 ÷ π ≈ 0,6366. Se, em N lançamentos, K agulhas cruzam, então K ÷ N ≈ 2 ÷ π e **π ≈ 2N ÷ K**. É exatamente a conta que o simulador faz.
+
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'O que é o diâmetro de uma circunferência?',
+    opcoes: ['A metade do raio', 'O dobro do raio', 'A volta da borda'],
+    correta: 1,
+    explicacao: 'O diâmetro vai de um lado ao outro passando pelo centro: d = 2r.',
+  },
+  {
+    enunciado: 'Qual é a diferença entre circunferência e círculo?',
+    opcoes: ['Nenhuma', 'A circunferência é só a borda; o círculo inclui a parte de dentro', 'O círculo é só a borda'],
+    correta: 1,
+    explicacao: 'Circunferência: a linha da borda. Círculo: a região inteira, com o interior.',
+  },
+  {
+    enunciado: 'O que significa π?',
+    opcoes: ['Comprimento ÷ diâmetro de qualquer circunferência', 'A área de qualquer círculo', 'O raio do círculo'],
+    correta: 0,
+    explicacao: 'π é a razão entre o comprimento da circunferência e o seu diâmetro, igual em todos os círculos (≈ 3,14).',
+  },
+  {
+    enunciado: 'Uma roda tem diâmetro de 50 cm. Quanto ela avança em 1 volta? (π = 3,14)',
+    opcoes: ['157 cm', '78,5 cm', '314 cm'],
+    correta: 0,
+    explicacao: 'C = π × d = 3,14 × 50 = 157 cm.',
+  },
+  {
+    enunciado: 'Um círculo tem raio 4 cm. Qual é a área? (π = 3,14)',
+    opcoes: ['25,12 cm²', '50,24 cm²', '12,56 cm²'],
+    correta: 1,
+    explicacao: 'A = π × r² = 3,14 × 16 = 50,24 cm².',
+  },
+  {
+    enunciado: 'Se o raio de um círculo triplica, a área fica...',
+    opcoes: ['3 vezes maior', '6 vezes maior', '9 vezes maior'],
+    correta: 2,
+    explicacao: 'A área usa r², e 3² = 9.',
+  },
+  {
+    enunciado: 'O comprimento de uma circunferência é 31,4 cm. Quanto mede o diâmetro? (π = 3,14)',
+    opcoes: ['5 cm', '10 cm', '20 cm'],
+    correta: 1,
+    explicacao: 'd = C ÷ π = 31,4 ÷ 3,14 = 10 cm.',
+  },
+  {
+    enunciado: 'Uma pizza de 20 cm e outra de 40 cm. A maior tem quantas vezes a área da menor?',
+    opcoes: ['2 vezes', '3 vezes', '4 vezes'],
+    correta: 2,
+    explicacao: 'Dobrar o diâmetro dobra o raio, e a área cresce com r²: 2² = 4 vezes.',
+  },
+  {
+    enunciado: 'Um setor tem ângulo de 120°. Que fração do círculo ele é?',
+    opcoes: ['1/4', '1/3', '1/2'],
+    correta: 1,
+    explicacao: '120 ÷ 360 = 1/3.',
+  },
+  {
+    enunciado: 'Como é escrito o π?',
+    opcoes: ['Uma fração exata, 22/7', 'Um decimal exato, 3,14', 'Um decimal infinito que não se repete'],
+    correta: 2,
+    explicacao: '22/7 e 3,14 são só aproximações. O π é irracional: 3,14159265... sem fim e sem repetir.',
+  },
+  {
+    enunciado: 'Quem prendeu o π entre 223/71 e 22/7 usando polígonos de 96 lados?',
+    opcoes: ['Euler', 'Arquimedes', 'Buffon'],
+    correta: 1,
+    explicacao: 'Foi Arquimedes, por volta de 250 a.C.',
+  },
+  {
+    enunciado: 'No experimento de Buffon, se a agulha tem o mesmo tamanho que a distância entre as linhas, a chance de cruzar é...',
+    opcoes: ['2 ÷ π', 'π ÷ 2', '1 ÷ π'],
+    correta: 0,
+    explicacao: 'A chance é 2 ÷ π ≈ 63,7%. Por isso, com muitas agulhas, 2 × total ÷ cruzaram dá uma estimativa do π.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Circunferência** é a borda; **círculo** é a região toda. Todos os pontos da borda estão à mesma distância (o **raio**) do centro.
+- **Diâmetro** = 2 × raio. **Corda** liga dois pontos da borda; **arco** é um pedaço da borda.
+- **π = comprimento ÷ diâmetro**, igual em todo círculo (≈ 3,14). É irracional: sem fim e sem repetição.
+- **Comprimento:** C = π × d = 2 × π × r.
+- **Área:** A = π × r². Dobrar o raio quadruplica a área.
+- **Setor e arco:** fração = ângulo ÷ 360, multiplicada pela área ou pelo comprimento do círculo inteiro.
+- Em contas do dia a dia, use **π ≈ 3,14**.
+
+**Um pouco de história.** O papiro de Rhind (cerca de 1650 a.C.) já tinha uma regra para a área do círculo. Arquimedes prendeu o π entre 223/71 e 22/7. Zu Chongzhi chegou a 355/113, William Jones passou a usar o símbolo π em 1706, Lambert provou em 1761 que ele é irracional, e Buffon, em 1777, mostrou o π aparecendo numa chuva de agulhas.
+
+</Resumo>
+
+O círculo aparece em rodas, relógios e órbitas. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

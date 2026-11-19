@@ -1,0 +1,396 @@
+import TrianguloComPalitos from '../../../../components/simulacoes/TrianguloComPalitos'
+import SomaDoTriangulo from '../../../../components/simulacoes/SomaDoTriangulo'
+import FamiliaDosQuadrilateros from '../../../../components/simulacoes/FamiliaDosQuadrilateros'
+import PoligonoPorDentro from '../../../../components/simulacoes/PoligonoPorDentro'
+import TartarugaDaVolta from '../../../../components/simulacoes/TartarugaDaVolta'
+import OQueLadrilha from '../../../../components/simulacoes/OQueLadrilha'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Honeycomb conjecture, Heptadecagon, Polygon, Triangle inequality), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Abra uma colmeia e você vai ver milhares de cantinhos de cera, todos **hexágonos**. As abelhas não fazem círculos, nem quadrados, nem triângulos. Será que elas fizeram conta? Não: elas seguem um jeito de construir que, por acaso, é o **mais econômico** possível, e a matemática consegue explicar por quê.
+
+Os polígonos estão em todo lugar: na bola de futebol, no piso do banheiro, nas placas de trânsito, nas treliças de uma ponte. Entender como eles funcionam é entender **por que certas formas aguentam peso, cobrem o chão sem buracos e aparecem na natureza**.
+
+<Palpite
+  chave="inicial"
+  pergunta="Você tem três palitos: de 2 cm, 3 cm e 6 cm. Dá para formar um triângulo com eles?"
+  opcoes={['Sim, sempre dá', 'Não dá', 'Só se dobrar um palito']}
+/>
+
+Nesta cápsula você vai conhecer os triângulos e quadriláteros, descobrir regras para os ângulos de qualquer polígono, contar diagonais e entender por que só alguns polígonos cobrem o chão sem deixar buracos.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Os polígonos começaram nos campos e nas construções: marcar um terreno, levantar uma parede, dividir uma terra depois da cheia do rio. Mas virar **teoria** exigiu muita gente curiosa.
+
+<LinhaDoTempo marcos={[
+  { ano: 'por volta de 300 a.C.', texto: 'Euclides organiza em Os Elementos o que se sabia sobre triângulos, quadriláteros e polígonos.' },
+  { ano: 'século IV', texto: 'Papo de Alexandria escreve que as abelhas escolhem o hexágono por ser a forma mais econômica de guardar mel.' },
+  { ano: '1796', texto: 'Aos 19 anos, Carl Friedrich Gauss mostra como construir com régua e compasso um polígono regular de 17 lados.' },
+  { ano: '1999', texto: 'O matemático Thomas Hales prova a conjectura do favo de mel: o hexágono é, de fato, a divisão mais econômica.' },
+]} />
+
+## Euclides e os Elementos
+
+Por volta de 300 a.C., em Alexandria, **Euclides** juntou o conhecimento geométrico da época num livro chamado **Os Elementos**. Nele, os triângulos e os polígonos aparecem com definições claras e provas passo a passo. Essa forma de organizar a matemática (definição, regra, prova) virou modelo para séculos.
+
+## As abelhas e Papo
+
+Cerca de 600 anos depois, **Papo de Alexandria** observou as colmeias e escreveu que as abelhas, de algum modo, "sabiam" qual forma economiza mais cera. Para ele, as abelhas escolhiam o hexágono porque ele permite guardar mais mel gastando menos material. Mas ele não tinha uma prova. A dúvida ficou aberta por **mais de 1.600 anos**.
+
+## Gauss e o polígono de 17 lados
+
+Em 1796, o jovem **Gauss** descobriu que dá para desenhar um polígono regular de 17 lados usando apenas régua (sem números) e compasso. Era o primeiro polígono regular novo a ser construído assim em mais de dois mil anos.
+
+## A prova do favo
+
+Só em **1999** o matemático **Thomas Hales** provou a conjectura do favo de mel: para cobrir o plano com células de mesma área, o hexágono usa o menor perímetro total. A "intuição das abelhas" tinha, enfim, uma prova.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Polígono: uma linha que volta para o começo
+
+<Termo cor="azul">Polígono</Termo> é uma figura plana **fechada**, formada só por segmentos de reta (os **lados**) que se encontram nos **vértices**. Um círculo não é polígono (não tem lados retos). Uma figura aberta, como a letra "V", também não.
+
+O nome diz o número de lados: triângulo (3), quadrilátero (4), pentágono (5), hexágono (6), heptágono (7), octógono (8) e decágono (10). Os prefixos vêm do grego: "penta" é cinco, "hexa" é seis, e assim por diante.
+
+<Brincando titulo="Polígono: o cercado do cachorro">
+
+Imagine que você tem um pedaço de corda com pontas e quer fazer um cercado. Se as pontas ficam soltas, o cachorro foge. Para ser polígono, a cerca precisa **fechar** a volta, e cada pedaço precisa ser **reto**.
+
+Com 3 estacas você faz o cercado mais simples (triângulo). Com 4, um quadrado ou retângulo. Quanto mais estacas, mais lados e mais cantos tem o cercado.
+
+</Brincando>
+
+## 2. Regular e irregular
+
+Um polígono é <Termo cor="verde">regular</Termo> quando tem **todos os lados iguais** e **todos os ângulos iguais** (quadrado, triângulo equilátero, hexágono da colmeia). Nos outros casos, é irregular.
+
+## 3. Os triângulos primeiro
+
+Todo polígono pode ser **dividido em triângulos**. Por isso o triângulo é o "tijolo" da geometria: se você entende os triângulos, entende o resto.
+
+Por que o triângulo é tão importante na construção? Porque é **rígido**: com três barras presas, a forma não deforma. Já um quadrado de barras articuladas "amassa" para um lado. É por isso que pontes e telhados têm triângulos.
+
+<Brincando titulo="O triângulo não amassa">
+
+Pegue quatro palitos de sorvete presos nas pontas com tachinhas, formando um quadrado. Empurre um canto: o quadrado vira um losango e **dobra**. Agora faça um triângulo com três palitos: por mais que você empurre, ele **não muda de forma**.
+
+Por isso as estruturas de estrada e as torres de energia são cheias de triângulos: eles seguram o peso sem entortar.
+
+</Brincando>
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Queremos cobrir o chão só com peças do mesmo polígono regular, sem buracos e sem sobrepor. Qual destes NÃO consegue?"
+  opcoes={['Triângulo', 'Quadrado', 'Pentágono']}
+  correta={2}
+  explicacao="Em volta de cada ponto, os ângulos precisam somar exatamente 360°. O triângulo (60°) cabe 6 vezes, o quadrado (90°) cabe 4 vezes, mas o pentágono (108°) cabe 3,33 vezes: sobra um buraco. O hexágono (120°) cabe 3 vezes e também funciona."
+>
+
+Escolha cada polígono e veja se os ângulos em volta de um ponto fecham os 360°:
+
+<OQueLadrilha />
+
+Repare que só o triângulo, o quadrado e o hexágono fecham o círculo todo. É por isso que os pisos de casa quase sempre são quadrados, e as abelhas usam hexágonos: ambos encaixam sem deixar nenhum espaço.
+
+Agora volte ao palpite do começo. Mexa nos palitos até chegar a 2, 3 e 6:
+
+<TrianguloComPalitos />
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Sim, sempre dá', 'Não dá', 'Só se dobrar um palito']}
+  correta={1}
+  seAcertou="Certo: 2 + 3 = 5, e 5 não passa de 6. Os dois palitos menores, juntos, não alcançam o maior, então as pontas não se encontram."
+  seErrou="O certo é que não dá: 2 + 3 = 5, que é menor que 6. Para fechar um triângulo, os dois lados menores precisam somar mais que o maior."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Triângulos: a regra que fecha
+
+Um triângulo tem **3 lados**, **3 vértices** e **3 ângulos**. Só existe se cada lado for **menor que a soma dos outros dois**. Essa é a <Termo cor="coral">desigualdade triangular</Termo>.
+
+<Brincando titulo="Desigualdade triangular: o atalho é mais curto">
+
+Você quer ir da escola até a padaria. Pode ir direto (uma linha reta) ou passar antes pela praça (dois trechos). O caminho direto **nunca** é mais longo que o desvio pela praça.
+
+Num triângulo é igual: um lado é o "caminho direto" entre dois vértices, e os outros dois são o "desvio". O desvio precisa ser **mais longo** que o direto. Se não for, o desvio não consegue ligar os dois pontos, e o triângulo **não fecha**.
+
+</Brincando>
+
+<ExemploResolvido titulo="Existe triângulo com lados 4, 5 e 9?">
+  <Passo>Pegue o maior lado: 9.</Passo>
+  <Passo>Some os outros dois: 4 + 5 = 9.</Passo>
+  <Passo>Para fechar, precisaria ser maior que 9, mas 9 não é maior que 9.</Passo>
+  <Passo>**Não existe.** Os lados menores, esticados, só encostam no maior (formam uma linha, sem altura). ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um triângulo tem lados 4 e 9. Qual é o MAIOR valor inteiro possível para o terceiro lado?" resposta="12" dica="O terceiro lado precisa ser menor que 4 + 9 = 13." resolucao="O terceiro lado precisa ser menor que 13. O maior inteiro é 12." />
+
+<Exercicio enunciado="Com os lados 4 e 9, qual é o MENOR valor inteiro possível para o terceiro lado?" resposta="6" dica="O 9 também precisa ser menor que 4 + (terceiro lado)." resolucao="9 precisa ser menor que 4 + x, então x é maior que 5. O menor inteiro é 6." />
+
+### Classificando triângulos
+
+Dá para classificar de duas maneiras:
+
+- **Pelos lados:** **equilátero** (3 lados iguais), **isósceles** (2 lados iguais) e **escaleno** (3 lados diferentes).
+- **Pelos ângulos:** **acutângulo** (3 ângulos agudos, menores que 90°), **retângulo** (um ângulo reto) e **obtusângulo** (um ângulo maior que 90°).
+
+<ExemploResolvido titulo="Classifique o triângulo de lados 5, 5 e 8">
+  <Passo>Dois lados iguais (5 e 5): é **isósceles**. Existe? 5 + 5 = 10, que é maior que 8. ✓</Passo>
+  <Passo>Pelos ângulos: compare o quadrado do maior lado com a soma dos quadrados dos outros. 8² = 64. 5² + 5² = 50.</Passo>
+  <Passo>Como 50 é menor que 64, o ângulo oposto ao lado 8 é maior que 90°.</Passo>
+  <Passo>É **isósceles e obtusângulo**. ✓</Passo>
+</ExemploResolvido>
+
+### A soma dos ângulos de um triângulo
+
+Os três ângulos de um triângulo sempre somam **180°**. Mexa nos ângulos e veja o terceiro se ajustar:
+
+<SomaDoTriangulo />
+
+<Brincando titulo="Rasgue os cantos e junte">
+
+Desenhe um triângulo qualquer num papel e **rasgue os três cantos**. Agora junte os três cantos pelas pontas, lado a lado. Eles formam uma **linha reta**, e uma linha reta mede **180°**.
+
+Isso vale para qualquer triângulo, grande ou pequeno, alto ou baixo. Os cantos trocam de tamanho, mas a soma é sempre 180°.
+
+</Brincando>
+
+<Exercicio enunciado="Um triângulo tem ângulos de 50° e 60°. Quanto mede o terceiro, em graus?" resposta="70" dica="Some os dois e subtraia de 180." resolucao="50 + 60 = 110. Então 180 − 110 = 70 graus." />
+
+<Exercicio enunciado="Um triângulo isósceles tem perímetro 26 e dois lados de 9. Quanto mede o terceiro lado?" resposta="8" dica="Perímetro é a soma dos lados." resolucao="9 + 9 + x = 26, então x = 26 − 18 = 8." />
+
+<Exercicio enunciado="Qual é o perímetro de um triângulo de lados 7, 8 e 10?" resposta="25" dica="Some os três lados." resolucao="7 + 8 + 10 = 25." />
+
+<Aprofundar titulo="Por que a soma dá 180° (a prova com uma paralela)">
+
+Pegue um triângulo ABC e trace, pelo vértice C, uma reta **paralela** ao lado AB. Agora há duas retas paralelas cortadas por duas transversais (os lados CA e CB).
+
+Pelos ângulos **alternos internos** (que são iguais), os dois ângulos que ficam ao lado de C, na reta nova, são iguais aos ângulos A e B do triângulo. Juntos com o ângulo C, eles formam um **ângulo raso** (uma reta), que mede 180°. Portanto A + B + C = 180°.
+
+Essa prova só funciona na geometria plana (a do papel). Numa esfera, como a superfície da Terra, a soma dos ângulos de um triângulo passa de 180°.
+
+</Aprofundar>
+
+## Quadriláteros: uma família
+
+<Termo cor="azul">Quadriláteros</Termo> são polígonos de 4 lados. Existe uma "árvore genealógica": o **paralelogramo** tem lados opostos paralelos; o **retângulo** é um paralelogramo com 4 ângulos retos; o **losango** é um paralelogramo com 4 lados iguais; o **quadrado** é os dois ao mesmo tempo; e o **trapézio** tem só um par de lados paralelos.
+
+<FamiliaDosQuadrilateros />
+
+<Brincando titulo="Quadriláteros: a família que herda características">
+
+Pense numa família: o paralelogramo é o "pai". O retângulo e o losango são filhos, e cada um herda tudo do pai (lados opostos paralelos), mas acrescenta algo novo: o retângulo ganha **ângulos retos**, e o losango ganha **lados iguais**.
+
+O quadrado é neto dos dois: herda dos dois lados, então tem ângulos retos **e** lados iguais. Por isso todo quadrado é retângulo e é losango, mas nem todo retângulo é quadrado.
+
+</Brincando>
+
+A soma dos ângulos internos de qualquer quadrilátero é **360°**: ele pode ser dividido em 2 triângulos (2 × 180°).
+
+<Exercicio enunciado="Um quadrilátero tem ângulos de 90°, 80° e 110°. Quanto mede o quarto ângulo?" resposta="80" dica="A soma é 360°." resolucao="90 + 80 + 110 = 280. Então 360 − 280 = 80 graus." />
+
+<Exercicio enunciado="Num paralelogramo, um ângulo mede 70°. Quanto mede o ângulo vizinho (consecutivo)?" resposta="110" dica="Ângulos consecutivos de um paralelogramo somam 180°." resolucao="180 − 70 = 110 graus." />
+
+## Polígonos quaisquer: soma, diagonais e ângulos
+
+<Termo cor="coral">Diagonal</Termo> é o segmento que liga dois vértices que **não são vizinhos**. Para um polígono de n lados, há duas fórmulas importantes:
+
+- **Soma dos ângulos internos:** (n − 2) × 180°
+- **Número de diagonais:** n × (n − 3) ÷ 2
+
+Veja as duas ao mesmo tempo:
+
+<PoligonoPorDentro />
+
+<Brincando titulo="Soma dos ângulos: fatie a pizza em triângulos">
+
+Escolha **um vértice** do polígono e ligue-o a todos os outros que não são vizinhos. O polígono se divide em **triângulos**: sempre dois a menos que o número de lados (um pentágono vira 3 triângulos, um hexágono vira 4).
+
+Cada triângulo vale 180°. Então basta contar triângulos: no pentágono, 3 × 180° = 540°. A fórmula (n − 2) × 180° é só "quantos triângulos cabem" vezes 180°.
+
+</Brincando>
+
+<Brincando titulo="Diagonais: o aperto de mão da festa">
+
+Numa festa com 6 pessoas, cada uma cumprimenta todas as outras que **não são vizinhas** na roda (os vizinhos já se conheciam). Cada pessoa aperta a mão de 6 − 3 = 3 pessoas. Como cada aperto envolve duas pessoas, divida por 2: 6 × 3 ÷ 2 = **9 diagonais**.
+
+O "−3" na fórmula é: a própria pessoa e seus dois vizinhos, que ficam de fora.
+
+</Brincando>
+
+<ExemploResolvido titulo="Soma dos ângulos do heptágono e ângulo de um heptágono regular">
+  <Passo>Heptágono tem 7 lados. Soma = (7 − 2) × 180° = 5 × 180° = **900°**.</Passo>
+  <Passo>Se for regular, os 7 ângulos são iguais: 900° ÷ 7 ≈ **128,57°**.</Passo>
+  <Passo>Número de diagonais: 7 × (7 − 3) ÷ 2 = 7 × 4 ÷ 2 = **14**.</Passo>
+  <Passo>Confira no desenho: de cada vértice saem 4 diagonais, e 7 × 4 = 28 (contando duas vezes), 28 ÷ 2 = 14. ✓</Passo>
+</ExemploResolvido>
+
+<ExemploResolvido titulo="Quantas diagonais tem um dodecágono (12 lados)?">
+  <Passo>Fórmula: n × (n − 3) ÷ 2.</Passo>
+  <Passo>12 × (12 − 3) ÷ 2 = 12 × 9 ÷ 2.</Passo>
+  <Passo>12 × 9 = 108, e 108 ÷ 2 = **54 diagonais**. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é a soma dos ângulos internos de um hexágono, em graus?" resposta="720" dica="(n − 2) × 180 com n = 6." resolucao="(6 − 2) × 180 = 4 × 180 = 720 graus." />
+
+<Exercicio enunciado="Quantas diagonais tem um octógono?" resposta="20" dica="n × (n − 3) ÷ 2 com n = 8." resolucao="8 × 5 ÷ 2 = 40 ÷ 2 = 20 diagonais." />
+
+<Exercicio enunciado="A soma dos ângulos internos de um polígono é 1080°. Quantos lados ele tem?" resposta="8" dica="1080 ÷ 180 = n − 2." resolucao="1080 ÷ 180 = 6, então n − 2 = 6 e n = 8 lados (octógono)." />
+
+## Ângulos de um polígono regular
+
+Num polígono regular de n lados, todos os ângulos internos são iguais:
+
+- **Ângulo interno** = (n − 2) × 180° ÷ n
+- **Ângulo externo** = 360° ÷ n (e interno + externo = 180°)
+
+<TartarugaDaVolta />
+
+<Brincando titulo="Ângulo externo: a tartaruga que dá a volta">
+
+Uma tartaruga anda pelo contorno de um polígono regular. Em cada vértice ela **vira um pouco** para seguir no lado seguinte. Quando chega de volta ao ponto de partida, ela deu **uma volta completa**: virou 360° no total.
+
+Se o polígono tem n lados, ela virou n vezes, todas iguais. Então cada virada é 360° ÷ n. Essa virada é o **ângulo externo**, e o ângulo de dentro é o que falta para 180°.
+
+</Brincando>
+
+<Exercicio enunciado="Quanto mede cada ângulo interno de um pentágono regular, em graus?" resposta="108" dica="(5 − 2) × 180 ÷ 5." resolucao="3 × 180 = 540, e 540 ÷ 5 = 108 graus." />
+
+<Exercicio enunciado="Quanto mede o ângulo externo de um decágono regular (10 lados), em graus?" resposta="36" dica="360 ÷ n." resolucao="360 ÷ 10 = 36 graus." />
+
+<Exercicio enunciado="O ângulo externo de um polígono regular mede 30°. Quantos lados ele tem?" resposta="12" dica="n = 360 ÷ ângulo externo." resolucao="360 ÷ 30 = 12 lados (dodecágono)." />
+
+<Exercicio enunciado="Qual é o perímetro de um hexágono regular de lado 5 cm, em cm?" resposta="30" dica="Perímetro é lado vezes número de lados." resolucao="6 × 5 = 30 cm." />
+
+<Aprofundar titulo="Por que o hexágono economiza cera">
+
+Compare três formas regulares com a **mesma área** (digamos, 1 cm²), que podem cobrir o plano:
+
+- **Triângulo equilátero:** lado ≈ 1,52 cm, perímetro ≈ **4,56 cm**
+- **Quadrado:** lado = 1 cm, perímetro = **4 cm**
+- **Hexágono regular:** lado ≈ 0,62 cm, perímetro ≈ **3,72 cm**
+
+Como cada parede da colmeia é compartilhada entre duas células, quanto menor o perímetro por célula, menos cera. O hexágono ganha dos outros dois. O círculo teria perímetro ainda menor (≈ 3,54 cm), mas **não cobre o plano** sem deixar buracos. O resultado geral é a conjectura do favo de mel, provada por Hales em 1999.
+
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Quais destes comprimentos de palitos formam um triângulo?',
+    opcoes: ['2, 3 e 6', '3, 4 e 5', '1, 2 e 3'],
+    correta: 1,
+    explicacao: 'Só 3, 4 e 5 satisfazem: 3 + 4 = 7 é maior que 5. Em 2, 3 e 6, a soma dos menores é 5 (menor que 6); em 1, 2 e 3, é exatamente 3, e só encosta.',
+  },
+  {
+    enunciado: 'Um triângulo com 3 lados iguais se chama...',
+    opcoes: ['Escaleno', 'Isósceles', 'Equilátero'],
+    correta: 2,
+    explicacao: 'Equilátero: 3 lados iguais. Isósceles tem 2 iguais e escaleno tem os 3 diferentes.',
+  },
+  {
+    enunciado: 'Dois ângulos de um triângulo medem 40° e 75°. Quanto mede o terceiro?',
+    opcoes: ['55°', '65°', '115°'],
+    correta: 1,
+    explicacao: '40 + 75 = 115, e 180 − 115 = 65°.',
+  },
+  {
+    enunciado: 'Quanto soma os ângulos internos de um quadrilátero?',
+    opcoes: ['180°', '360°', '540°'],
+    correta: 1,
+    explicacao: 'Qualquer quadrilátero se divide em 2 triângulos: 2 × 180° = 360°.',
+  },
+  {
+    enunciado: 'Qual figura é, ao mesmo tempo, retângulo e losango?',
+    opcoes: ['Trapézio', 'Paralelogramo qualquer', 'Quadrado'],
+    correta: 2,
+    explicacao: 'O quadrado tem 4 ângulos retos (retângulo) e 4 lados iguais (losango).',
+  },
+  {
+    enunciado: 'Quantos lados tem um decágono?',
+    opcoes: ['8', '10', '12'],
+    correta: 1,
+    explicacao: '"Deca" quer dizer dez: decágono tem 10 lados.',
+  },
+  {
+    enunciado: 'Qual é a soma dos ângulos internos de um pentágono?',
+    opcoes: ['360°', '540°', '720°'],
+    correta: 1,
+    explicacao: '(5 − 2) × 180° = 3 × 180° = 540°.',
+  },
+  {
+    enunciado: 'Quantas diagonais tem um hexágono?',
+    opcoes: ['6', '9', '12'],
+    correta: 1,
+    explicacao: '6 × (6 − 3) ÷ 2 = 6 × 3 ÷ 2 = 9 diagonais.',
+  },
+  {
+    enunciado: 'Quanto mede cada ângulo interno de um hexágono regular?',
+    opcoes: ['108°', '120°', '135°'],
+    correta: 1,
+    explicacao: '(6 − 2) × 180° ÷ 6 = 720° ÷ 6 = 120°.',
+  },
+  {
+    enunciado: 'Qual é o ângulo externo de um polígono regular de 9 lados?',
+    opcoes: ['40°', '45°', '140°'],
+    correta: 0,
+    explicacao: '360° ÷ 9 = 40°. (O 140° é o ângulo interno, que completa 180°.)',
+  },
+  {
+    enunciado: 'Por que o pentágono regular NÃO ladrilha o chão sozinho?',
+    opcoes: ['Porque tem lados demais', 'Porque 360° não é múltiplo de 108°', 'Porque os lados são diferentes'],
+    correta: 1,
+    explicacao: 'O ângulo interno do pentágono regular é 108°, e 360° ÷ 108° = 3,33. Ao redor de um ponto sobra um buraco.',
+  },
+  {
+    enunciado: 'Por que as colmeias têm células hexagonais?',
+    opcoes: ['Porque o hexágono é mais bonito', 'Porque cobre o plano gastando menos cera que triângulos e quadrados', 'Porque as abelhas sabem geometria'],
+    correta: 1,
+    explicacao: 'Entre as formas que cobrem o plano sem buracos, o hexágono tem o menor perímetro para a mesma área, o que economiza cera. Foi provado por Hales em 1999.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Polígono:** figura plana fechada, só com lados retos. O nome vem do número de lados.
+- **Regular:** lados e ângulos todos iguais.
+- **Desigualdade triangular:** cada lado do triângulo é menor que a soma dos outros dois.
+- **Triângulo:** pelos lados (equilátero, isósceles, escaleno) e pelos ângulos (acutângulo, retângulo, obtusângulo). A soma dos ângulos é **180°**.
+- **Quadriláteros:** soma 360°. O quadrado é retângulo e losango ao mesmo tempo.
+- **Soma dos ângulos internos:** (n − 2) × 180°. **Diagonais:** n × (n − 3) ÷ 2.
+- **Regular:** ângulo interno = (n − 2) × 180° ÷ n; ângulo externo = 360° ÷ n.
+- Só **triângulo, quadrado e hexágono** regulares ladrilham o plano sozinhos, porque seus ângulos dividem 360° exatamente.
+
+**Um pouco de história.** Por volta de 300 a.C., Euclides organizou a geometria em Os Elementos. No século IV, Papo de Alexandria escreveu sobre as abelhas e o hexágono. Em 1796, Gauss construiu o polígono de 17 lados com régua e compasso, e em 1999 Thomas Hales provou a conjectura do favo de mel.
+
+</Resumo>
+
+Formas e ângulos estão por trás de muita coisa. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>
