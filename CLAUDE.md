@@ -60,6 +60,12 @@ até o dono pedir. A estrutura do app precisa permitir adicionar áreas novas se
    - Para cada subtópico: explicação lúdica → exemplo resolvido (`<ExemploResolvido>`) → exercícios (`<Exercicio>`).
    - Várias simulações ao longo da cápsula, não só uma. Desafio final com 10 ou mais perguntas, do fácil ao difícil.
    - **Régua mínima** (medida em Porcentagem e Frações, a pedido do dono): cerca de 3.500 palavras no `capsula.mdx`, pelo menos 5 simulações, 12 ou mais exercícios `<Exercicio>`, 4 ou mais `<ExemploResolvido>` e desafio com 12 perguntas. Confira com `wc -w` e `grep -c` antes de dar a cápsula como pronta.
+   - **Explicação lúdica** (pedido do dono: muita gente tem dificuldade com fórmulas e trechos complexos): em **todo assunto um pouco mais difícil de entender**, coloque uma caixa `<Brincando titulo="…">`. Regras:
+     - Não há número fixo nem etapa fixa: vale na Intuição e no Conteúdo, onde o assunto pesar (fórmula, regra, símbolo, ideia abstrata).
+     - Fica **logo abaixo do texto do assunto que explica**, antes do `<ExemploResolvido>` e dos `<Exercicio>`. Nunca depois de exercícios.
+     - É um **acréscimo**: não tire a fórmula nem o texto técnico, nem o `<Aprofundar>`. A caixa conta a mesma ideia com uma brincadeira, história ou cena do dia a dia (ladrilhos, GPS, pizza, ponte, marceneiro...).
+     - Título no formato "tema: a cena" (ex.: "Dois lados: dois escavadores num túnel"). Textos curtos, e a cena precisa ser **fiel à matemática** (confira a conta).
+     - Sem XP, não é obrigatória. Todas as cápsulas novas devem ter; as antigas ganham aos poucos (já têm: Limites e Pitágoras).
    - **Sempre bastante conteúdo** (pedido do dono, repetido): nunca entregue uma cápsula "básica" ou "por cima". Se a contagem ficar abaixo da régua, complete antes de mostrar. Vale para toda cápsula nova, de qualquer linha (Básica, Fundamental, Médio e Computação).
 
 ## Estrutura de uma cápsula
@@ -95,7 +101,7 @@ Componentes disponíveis sem precisar de `import` (ficam em `src/components/caps
 | `<LembrarPalpite chave="inicial" opcoes correta seAcertou seErrou />` | Mais adiante, lembra o palpite e compara |
 | `<Resumo>…lista…</Resumo>` | Caixa "Para levar" com as ideias principais (vai em Conexões). Termina com um parágrafo **"Um pouco de história."** do assunto |
 | `<Aprofundar titulo="…">…</Aprofundar>` | Caixa escondida (prova, fórmula, variações) dentro do Conteúdo, colocada logo depois do tópico que aprofunda. Abrir a primeira rende o XP de Aprofundar |
-| `<Brincando titulo="…">…</Brincando>` | Caixa azul escondida "Explicação lúdica": a mesma ideia de uma fórmula ou regra difícil, contada com uma brincadeira ou cena do dia a dia. Sem XP. Vai perto do trecho que explica (começou em Limites e continuidade) |
+| `<Brincando titulo="…">…</Brincando>` | Caixa azul escondida "Explicação lúdica": a mesma ideia de uma fórmula ou regra difícil, contada com uma brincadeira ou cena do dia a dia. Sem XP. Vai logo abaixo do trecho que explica, antes de exemplos e exercícios (regras em "Explicação lúdica", nos princípios pedagógicos) |
 | `<ExemploResolvido titulo="…"><Passo>…</Passo>…</ExemploResolvido>` | Conta resolvida, um passo revelado por vez |
 | `<Exercicio enunciado="…" resposta="3/8" dica="…" resolucao="…" />` | Exercício com resposta digitada (aceita 3/8, 0,375 ou 1 1/2) |
 
