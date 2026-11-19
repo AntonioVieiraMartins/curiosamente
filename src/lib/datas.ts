@@ -12,6 +12,9 @@ const formatoDia = new Intl.DateTimeFormat('en-CA', {
 export const diaEmBrasilia = (momento: string | Date = new Date()) => formatoDia.format(new Date(momento))
 
 // Soma (ou subtrai) dias de um "AAAA-MM-DD", sem se confundir com fuso horário
+// Dias desde 1970 no horário de Brasília: serve para trocar conteúdo da página inicial todo dia
+export const numeroDoDia = () => Math.floor(new Date(`${diaEmBrasilia()}T00:00:00Z`).getTime() / 86_400_000)
+
 export function somarDias(dia: string, n: number) {
   const d = new Date(`${dia}T12:00:00Z`)
   d.setUTCDate(d.getUTCDate() + n)
