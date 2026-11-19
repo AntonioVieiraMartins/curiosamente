@@ -44,10 +44,6 @@ até o dono pedir. A estrutura do app precisa permitir adicionar áreas novas se
 | 3Blue1Brown | Animação que constrói a intuição antes da fórmula |
 | Duolingo | Sequência de dias, XP, metas diárias leves |
 
-## Referência curricular (BNCC)
-
-O que a BNCC pede em **todas as áreas** (Matemática, Ciências da Natureza, Ciências Humanas, Linguagens e Ensino Religioso), com as habilidades oficiais, está em `docs/bncc/`. Comece por `docs/bncc/README.md`. A comparação entre a BNCC e as cápsulas de Matemática (o que está pronto, planejado ou sem plano) fica em `docs/bncc/cobertura-matematica.md`: atualize esse arquivo quando uma cápsula nova ficar pronta. Quando o dono pedir Biologia ou outra matéria, use o arquivo da área como ponto de partida.
-
 ## Princípios pedagógicos (seguir sempre)
 
 1. **Prever antes de ver**: toda simulação pede um palpite antes de rodar.
