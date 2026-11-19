@@ -45,11 +45,11 @@ O truque: o 2 é primo, então todos os múltiplos de 2 (4, 6, 8...) não são. 
 
 Por volta de 300 a.C., Euclides fez uma pergunta ousada: e se os primos acabassem? Imagine que você tem uma lista de **todos** os primos. Multiplique todos e some 1. Esse número novo não é divisível por nenhum da lista (sempre sobra 1). Então ou ele é primo, ou tem um fator primo que **não estava na lista**. Nos dois casos a lista estava incompleta.
 
-Conclusão: **nenhuma lista finita contém todos os primos**. Eles nunca acabam. Você vai refazer essa prova, com números de verdade, na etapa Conteúdo, dentro da caixa **Aprofundar** que fica perto de "Primos protegem segredos".
+Conclusão: **nenhuma lista finita contém todos os primos**. Eles nunca acabam. Você vai refazer essa prova, com números de verdade, na etapa Conteúdo, na seção "Os primos nunca acabam".
 
 ## O número 1 não entrou no clube
 
-Os primeiros matemáticos gregos nem tratavam o 1 como "número" de verdade: era a unidade, o tijolo que forma os números. No início do século XX os matemáticos concordaram em deixá-lo de fora dos primos. Você vai ver o motivo prático numa caixa Aprofundar da etapa Conteúdo.
+Os primeiros matemáticos gregos nem tratavam o 1 como "número" de verdade: era a unidade, o tijolo que forma os números. No início do século XX os matemáticos concordaram em deixá-lo de fora dos primos. Você vai ver o motivo prático na etapa Conteúdo, na seção sobre o teorema fundamental da aritmética.
 
 </Etapa>
 
@@ -154,8 +154,8 @@ Repare em duas coisas. Depois de riscar os múltiplos de 2, 3, 5 e 7, **todos** 
   chave="inicial"
   opcoes={['Sim, existe um maior de todos', 'Não, a lista nunca acaba', 'Ninguém sabe']}
   correta={1}
-  seAcertou="E o palpite do começo? Você acertou: os primos nunca acabam. A prova de Euclides está numa caixa Aprofundar da etapa Conteúdo."
-  seErrou="E o palpite do começo? A resposta é que os primos nunca acabam. Euclides provou isso há mais de 2.000 anos. A prova está numa caixa Aprofundar da etapa Conteúdo."
+  seAcertou="E o palpite do começo? Você acertou: os primos nunca acabam. A prova de Euclides está na etapa Conteúdo."
+  seErrou="E o palpite do começo? A resposta é que os primos nunca acabam. Euclides provou isso há mais de 2.000 anos. A prova está na etapa Conteúdo."
 />
 
 </Previsao>
@@ -186,13 +186,15 @@ E dá para fazer desertos tão grandes quanto você quiser. Para uma fila de 5 c
 
 <Etapa id="pratica">
 
-<Aprofundar titulo="O teorema fundamental da aritmética">
+## O teorema fundamental da aritmética
 
-Todo número inteiro maior que 1 pode ser escrito como produto de primos, e esse jeito é **único**, a menos da ordem dos fatores.
+Todo número inteiro maior que 1 pode ser escrito como produto de primos, e esse jeito é **único**, a menos da ordem dos fatores. Por isso os primos são os "átomos" dos números.
 
-É por isso que o 1 **não** é primo. Se fosse, a unicidade quebraria: 6 = 2 × 3 = 1 × 2 × 3 = 1 × 1 × 2 × 3... infinitas maneiras. Deixar o 1 de fora mantém a regra limpa.
+É também por isso que o 1 **não** é primo. Se fosse, a unicidade quebraria: 6 = 2 × 3 = 1 × 2 × 3 = 1 × 1 × 2 × 3... infinitas maneiras. Deixar o 1 de fora mantém a regra limpa.
 
-</Aprofundar>
+## Os primos nunca acabam: a prova de Euclides
+
+Será que um dia a lista de primos termina? Euclides provou, há mais de 2.000 anos, que **não**. A ideia é desmentir qualquer lista que alguém apresente como "todos os primos".
 
 <Brincando titulo="A prova de Euclides: a lista que sempre fica incompleta">
 
@@ -204,9 +206,7 @@ Então o número novo ou é primo ou é feito de primos que **não estavam na li
 
 </Brincando>
 
-<Aprofundar titulo="A prova de Euclides, com números de verdade">
-
-Vamos testar com uma lista: os primos 2, 3, 5, 7, 11 e 13.
+Agora com uma lista maior, passo a passo:
 
 <ExemploResolvido titulo="Existe um primo fora da lista 2, 3, 5, 7, 11, 13?">
   <Passo>Multiplique todos: 2 × 3 × 5 × 7 × 11 × 13 = 30.030. Some 1: **30.031**.</Passo>
@@ -217,7 +217,9 @@ Vamos testar com uma lista: os primos 2, 3, 5, 7, 11 e 13.
 
 Repare num detalhe: o número "produto + 1" nem sempre é primo. O que a prova garante é que ele traz **pelo menos um primo novo**.
 
-</Aprofundar>
+## Por que basta testar até a raiz
+
+Para saber se um número é primo, não precisa testar todos os divisores possíveis: basta ir **até a raiz** dele.
 
 <Brincando titulo="Divisores vêm em pares: um pequeno e um grande">
 
@@ -229,17 +231,11 @@ Por isso, para saber se 97 é primo, só precisa testar até 9 (porque 10 × 10 
 
 </Brincando>
 
-<Aprofundar titulo="Por que basta testar até a raiz">
+Em conta: se n = a × b e a for o menor dos dois, então a × a ≤ a × b = n, ou seja, **a ≤ √n**. Portanto, se n tem algum divisor além de 1, ele tem um divisor até √n. Se testamos todos até √n e nenhum serve, n é primo. É o mesmo motivo que deixa a peneira parar no 7 (porque 11² = 121 passa de 100).
 
-Se n = a × b e a for o menor dos dois, então a × a ≤ a × b = n, ou seja, **a ≤ √n**. Portanto, se n tem algum divisor além de 1, ele tem um divisor até √n. Se testamos todos até √n e nenhum serve, n é primo. É o mesmo motivo que deixa a peneira parar no 7 (porque 11² = 121 passa de 100).
-
-</Aprofundar>
-
-<Aprofundar titulo="Os primos ficam mais raros">
+## Os primos ficam mais raros
 
 Entre 1 e 100 há **25 primos**. Entre 1 e 1.000, **168**. Quanto maior o número, menor a "densidade" de primos, mas eles nunca acabam. É como uma floresta que vai ficando mais esparsa sem nunca terminar.
-
-</Aprofundar>
 
 ## Primos protegem segredos
 
@@ -273,15 +269,13 @@ Simplificar uma fração é **cortar os primos que se repetem** em cima e embaix
 
 <Exercicio enunciado="Simplifique a fração 36/60. (Escreva como 3/5.)" resposta="3/5" dica="Corte os primos iguais de cima e de baixo." resolucao="36 = 2² × 3² e 60 = 2² × 3 × 5. Cortando 2² e 3, sobra 3/5." />
 
-<Aprofundar titulo="Um padrão: 6k ± 1">
+## Um padrão: 6k ± 1
 
 Todo primo maior que 3 é vizinho de um múltiplo de 6: ou é da forma 6k − 1 (5, 11, 17, 23, 29) ou da forma 6k + 1 (7, 13, 19, 31, 37). Por quê? Os outros números são pares (6k, 6k + 2, 6k + 4) ou múltiplos de 3 (6k + 3). Mas **atenção**: nem todo 6k ± 1 é primo. 25 = 6 × 4 + 1 e 25 = 5 × 5.
 
 <Exercicio enunciado="Qual é a soma dos fatores primos distintos de 30? (30 = 2 × 3 × 5)" resposta="10" dica="Some 2 + 3 + 5." resolucao="2 + 3 + 5 = 10." />
 
 <Exercicio enunciado="Quantos divisores tem o número primo 13?" resposta="2" dica="Um primo só tem dois divisores." resolucao="O 1 e o 13: dois divisores." />
-
-</Aprofundar>
 
 <Aprofundar titulo="Primos de Mersenne">
 
@@ -311,12 +305,6 @@ Pegue um par maior que 2: 4 = 2 + 2, 6 = 3 + 3, 8 = 3 + 5, 10 = 5 + 5, 12 = 5 + 
 - **"O 1 é primo."** Falso: tem um só divisor.
 - **Esquecer o 2.** É primo, e é o único par.
 - **Testar só até a metade.** Só é preciso até a raiz.
-
-<Aprofundar titulo="Problemas em aberto">
-
-Os primos têm perguntas simples que ninguém sabe responder: há infinitos primos gêmeos? Todo par é soma de dois primos? Matemáticos testaram bilhões de casos e nunca acharam exceções, mas ainda não existe prova. São fronteiras da matemática, e a pergunta é simples o bastante para você entender.
-
-</Aprofundar>
 
 ## Onde mais aparecem
 

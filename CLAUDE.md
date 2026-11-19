@@ -66,6 +66,7 @@ até o dono pedir. A estrutura do app precisa permitir adicionar áreas novas se
      - É um **acréscimo**: não tire a fórmula nem o texto técnico, nem o `<Aprofundar>`. A caixa conta a mesma ideia com uma brincadeira, história ou cena do dia a dia (ladrilhos, GPS, pizza, ponte, marceneiro...).
      - Título no formato "tema: a cena" (ex.: "Dois lados: dois escavadores num túnel"). Textos curtos, e a cena precisa ser **fiel à matemática** (confira a conta).
      - Sem XP, não é obrigatória. Todas as cápsulas novas devem ter; as antigas ganham aos poucos (já têm: Limites e toda a linha Fundamental, todo o Médio e toda a Computação; a Básica não precisa, a pedido do dono).
+   - **Aprofundar é só o que passa do necessário** (pedido do dono): definições, regras, métodos, exemplos e exercícios do assunto ficam no texto normal, com título `##`/`###`. Só vão para `<Aprofundar>` provas, "por que funciona", curiosidades, história extra e variações avançadas. Nunca empilhe várias caixas no começo do Conteúdo.
    - **Sempre bastante conteúdo** (pedido do dono, repetido): nunca entregue uma cápsula "básica" ou "por cima". Se a contagem ficar abaixo da régua, complete antes de mostrar. Vale para toda cápsula nova, de qualquer linha (Básica, Fundamental, Médio e Computação).
 
 ## Estrutura de uma cápsula
