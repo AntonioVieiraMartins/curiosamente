@@ -192,6 +192,16 @@ Sobre números inteiros positivos: o menor múltiplo de b é o próprio b; já o
 
 </Aprofundar>
 
+<Brincando titulo="Fatores primos: desmontar o número como um brinquedo de blocos">
+
+Todo número composto é como um **brinquedo montado** com blocos que não se quebram mais: os **primos**. Desmontar é descobrir quais blocos foram usados.
+
+Pegue o 60. Ele quebra em 6 × 10. O 6 quebra em 2 × 3, e o 10 quebra em 2 × 5. Agora só tem blocos inteiros: 2, 2, 3 e 5. Então 60 = 2 × 2 × 3 × 5, ou 2² × 3 × 5.
+
+Qualquer caminho de desmontar chega **aos mesmos blocos**, como um brinquedo que sempre tem as mesmas peças. E com os blocos na mão, dá para achar o MMC e o MDC olhando o que dois números têm em comum.
+
+</Brincando>
+
 <Aprofundar titulo="Decomposição em fatores primos">
 
 Todo número maior que 1 pode ser escrito como um produto de números primos, e esse jeito é **único** (fora a ordem). É como o "RG" do número.
@@ -250,6 +260,16 @@ Duas rodas dentadas encaixadas só voltam à posição inicial, com os dois dent
 
 <Exercicio enunciado="Na mesma situação, quantas voltas dá a roda de 18 dentes?" resposta="2" dica="36 ÷ 18." resolucao="36 ÷ 18 = 2 voltas." />
 
+<Brincando titulo="Euclides: cortar tábuas até não sobrar nada">
+
+Você tem uma tábua de **48 cm** e outra de **18 cm**, e quer cortar as duas em pedaços **iguais, os maiores possíveis**, sem sobra.
+
+Comece cortando pedaços de 18 cm da tábua grande: saem 2 pedaços e **sobram 12 cm**. Agora a pergunta é a mesma com a tábua de 18 e a sobra de 12. Corte 12 da de 18: sobram **6**. Corte 6 da de 12: sobra **0**.
+
+Quando a sobra zera, o último tamanho usado (**6 cm**) é o maior pedaço que cabe exato nas duas tábuas. Esse é o MDC. O método é só repetir "corte e veja o que sobra".
+
+</Brincando>
+
 <Aprofundar titulo="O algoritmo de Euclides">
 
 Para achar o MDC de dois números grandes, divida o maior pelo menor e olhe o **resto**. Troque: o menor passa a ser o maior, o resto passa a ser o menor. Repita até o resto ser zero. O último divisor é o MDC.
@@ -269,6 +289,16 @@ Por que funciona? Quem divide 48 e 18 também divide o resto 12 (porque 12 = 48 
 O MMC já apareceu na cápsula de Frações: para somar 1/4 + 1/6, os denominadores precisam ser iguais. O menor denominador comum é o MMC de 4 e 6, ou seja, 12. Então 1/4 = 3/12 e 1/6 = 2/12, e a soma é 5/12.
 
 E o MDC serve para **simplificar**: 12/18 vira 2/3 quando dividimos em cima e embaixo pelo MDC, que é 6.
+
+<Brincando titulo="Soma dos algarismos: a dezena é um 9 mais um 1">
+
+Olhe o 10: ele é **9 + 1**. O 100 é **99 + 1**, e o 1000 é **999 + 1**. Todos esses números são "um múltiplo de 9 mais 1 sobrando".
+
+Então, num número como 345, os 3 centos são 3 vezes (99 + 1), as 4 dezenas são 4 vezes (9 + 1), e os 5 são só 5. Separando, tudo que é múltiplo de 9 sai da conta, e **sobram** 3 + 4 + 5.
+
+Por isso, se a soma dos algarismos é múltipla de 9, o número também é. O mesmo raciocínio vale para o 3, já que 9 é múltiplo de 3.
+
+</Brincando>
 
 <Aprofundar titulo="Por que o truque da soma dos algarismos funciona">
 

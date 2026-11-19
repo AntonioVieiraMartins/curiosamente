@@ -111,6 +111,16 @@ Listar divisores dá trabalho. Mas se você já desmontou o número em primos, d
 
 Veja o 24 = 2³ × 3. Para o fator 2 você pode escolher usar 0, 1, 2 ou 3 vezes: **4 opções**. Para o fator 3, usar 0 ou 1 vez: **2 opções**. Combinando, 4 × 2 = **8 divisores**. A regra: some 1 a cada expoente e multiplique.
 
+<Brincando titulo="Contar divisores: montar o cardápio">
+
+Os divisores de 60 vêm dos blocos 2, 2, 3 e 5. Para fazer um divisor, você **escolhe** quantos blocos de cada tipo pegar, como num cardápio.
+
+Do bloco 2, dá para pegar 0, 1 ou 2 blocos: **3 jeitos**. Do 3, pega 0 ou 1: **2 jeitos**. Do 5, pega 0 ou 1: **2 jeitos**. Cada combinação é um divisor diferente, então são 3 × 2 × 2 = **12**.
+
+Por isso a regra é "some 1 a cada expoente e multiplique": o "+ 1" existe porque a escolha de **não pegar nenhum** bloco também conta.
+
+</Brincando>
+
 <ExemploResolvido titulo="Quantos divisores tem 60?">
   <Passo>Desmonte: 60 = 2² × 3 × 5.</Passo>
   <Passo>Expoentes: 2, 1 e 1. Somando 1 a cada um: 3, 2 e 2.</Passo>
@@ -184,6 +194,16 @@ Todo número inteiro maior que 1 pode ser escrito como produto de primos, e esse
 
 </Aprofundar>
 
+<Brincando titulo="A prova de Euclides: a lista que sempre fica incompleta">
+
+Imagine que alguém diga: "Aqui está a lista de **todos** os primos". Para desmentir, você pega a lista, **multiplica todos** e soma 1. Com a lista 2, 3 e 5 (só como teste): 2 × 3 × 5 + 1 = 31.
+
+Teste: 31 divide por 2? Sobra 1. Por 3? Sobra 1. Por 5? Sobra 1. **Nenhum** primo da lista divide o novo número, porque sempre sobra 1.
+
+Então o número novo ou é primo ou é feito de primos que **não estavam na lista**. Em qualquer caso, a lista estava incompleta. Como isso funciona para qualquer lista, os primos nunca acabam.
+
+</Brincando>
+
 <Aprofundar titulo="A prova de Euclides, com números de verdade">
 
 Vamos testar com uma lista: os primos 2, 3, 5, 7, 11 e 13.
@@ -198,6 +218,16 @@ Vamos testar com uma lista: os primos 2, 3, 5, 7, 11 e 13.
 Repare num detalhe: o número "produto + 1" nem sempre é primo. O que a prova garante é que ele traz **pelo menos um primo novo**.
 
 </Aprofundar>
+
+<Brincando titulo="Divisores vêm em pares: um pequeno e um grande">
+
+Os divisores de um número formam **duplas**. Para o 36: 1 e 36, 2 e 18, 3 e 12, 4 e 9, 6 e 6. Em cada dupla, um é pequeno e o outro é grande, e eles se **encontram no meio**, em 6, que é a raiz de 36.
+
+Então, se um número tem um divisor grande, o **parceiro** dele é um divisor pequeno. Basta procurar do lado pequeno, até a raiz. Se você não achou ninguém até lá, não existe parceiro do outro lado.
+
+Por isso, para saber se 97 é primo, só precisa testar até 9 (porque 10 × 10 = 100 passa de 97).
+
+</Brincando>
 
 <Aprofundar titulo="Por que basta testar até a raiz">
 
@@ -222,6 +252,14 @@ Em resumo: **fácil de montar, difícil de desmontar**. É isso que mantém seus
 <FabricaDePrimos />
 
 Escolha primos pequenos e veja: já com números de três algarismos, achar os primos "de volta" dá um monte de tentativas. Imagine primos gigantes.
+
+<Brincando titulo="Primos protegem segredos: o cadeado fácil de fechar">
+
+Multiplicar dois primos é como **fechar um cadeado**: 101 × 103 = 10.403, e leva segundos. Mas, se alguém te der só o 10.403 e perguntar "quais primos geraram isso?", você precisa **tentar um por um**.
+
+Com números pequenos ainda dá. Mas, com primos de **centenas de dígitos**, desmontar o produto leva um tempo absurdo, mesmo para computadores. Essa diferença de esforço (fácil de fechar, difícil de abrir) é o que protege muita coisa na internet.
+
+</Brincando>
 
 ## Primos e frações
 
