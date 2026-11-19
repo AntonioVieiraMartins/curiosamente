@@ -89,7 +89,7 @@ export const capsulas: ResumoCapsula[] = [
   m('fundamental', 'congruencia', 'Congruência de triângulos', 'Quando dois triângulos são exatamente iguais?', { grupo: '8º ano' }),
   m('fundamental', 'construcoes-geometricas', 'Construções com régua e compasso', 'Desenhar um hexágono perfeito só com um compasso.', { grupo: '8º ano', conexoes: ['poligonos'] }),
   m('fundamental', 'sistemas-de-equacoes', 'Sistemas de equações', 'Dois planos de celular: qual compensa?', { grupo: '8º ano' }),
-  m('fundamental', 'areas-e-perimetros', 'Áreas e perímetros', 'Com a mesma cerca, qual terreno é o maior?', { grupo: '8º ano' }),
+  m('fundamental', 'areas-e-perimetros', 'Áreas e perímetros', 'Com a mesma cerca, qual terreno é o maior?', { grupo: '8º ano', estado: 'pronta', duracaoMin: 40, conexoes: ['volume'] }),
   m('fundamental', 'volume', 'Volume', 'Quantos litros cabem nessa caixa d’água?', { grupo: '8º ano', conexoes: ['geometria-espacial'] }),
   m('fundamental', 'contagem', 'Contagem', '3 camisas e 2 calças: quantas roupas diferentes?', { grupo: '8º ano', conexoes: ['combinatoria'] }),
 

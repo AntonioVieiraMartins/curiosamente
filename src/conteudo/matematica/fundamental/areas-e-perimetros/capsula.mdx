@@ -1,0 +1,449 @@
+import CercaDoMesmoTamanho from '../../../../components/simulacoes/CercaDoMesmoTamanho'
+import ConversaoDeAreas from '../../../../components/simulacoes/ConversaoDeAreas'
+import DeitarOParalelogramo from '../../../../components/simulacoes/DeitarOParalelogramo'
+import TrianguloMetadeDoRetangulo from '../../../../components/simulacoes/TrianguloMetadeDoRetangulo'
+import TrapezioDobrado from '../../../../components/simulacoes/TrapezioDobrado'
+import FiguraEmL from '../../../../components/simulacoes/FiguraEmL'
+import PisoDaSala from '../../../../components/simulacoes/PisoDaSala'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Area, Perimeter, Isoperimetric inequality, Heron's formula, Dido), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Você ganhou **24 metros de cerca** e pode cercar um terreno retangular do jeito que quiser. Dá para fazer um terreno comprido e estreito, um quadradão, ou algo no meio. A cerca é a mesma: 24 metros, nem um a mais.
+
+Será que o tamanho do terreno, isto é, o chão que sobra lá dentro, também é o mesmo? Cercar e cobrir são duas medidas diferentes: a primeira é o <Termo cor="azul">perímetro</Termo> (a volta) e a segunda é a <Termo cor="coral">área</Termo> (o chão). Quase todo mundo mistura as duas, e isso custa dinheiro.
+
+<Palpite
+  chave="inicial"
+  pergunta="Dois terrenos: o terreno A tem perímetro maior que o terreno B. Então a área de A também é maior?"
+  opcoes={['Sim, sempre', 'Não necessariamente', 'Só se forem quadrados']}
+/>
+
+Nesta cápsula você vai aprender a medir a volta e o chão das principais figuras, a trocar de unidade sem se enrolar, a calcular figuras "emendadas" e a descobrir qual formato rende a maior área com a mesma cerca.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Medir terra é uma das necessidades mais antigas da humanidade. Quem planta precisa saber **quanto** planta; quem cobra imposto precisa saber **de quem** é cada pedaço; quem constrói precisa saber **quanto material** comprar.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Antigo Egito', texto: 'Depois das cheias do Nilo, as terras de cultivo precisavam ser medidas de novo. Os agrimensores usavam cordas esticadas.' },
+  { ano: 'Século 5 a.C.', texto: 'O historiador grego Heródoto conta que a geometria nasceu no Egito, por causa dessa medição de terras.' },
+  { ano: 'Por volta de 300 a.C.', texto: 'Euclides organiza a geometria nos Elementos, com as áreas das figuras planas.' },
+  { ano: 'Século 1', texto: 'Heron de Alexandria registra a fórmula que dá a área de um triângulo conhecendo só os três lados.' },
+  { ano: 'Século 19', texto: 'Matemáticos conseguem provas completas de que, com o mesmo perímetro, o círculo é a figura de maior área.' },
+]} />
+
+## Cordas e cheias do rio
+
+Todo ano o rio Nilo transbordava, cobria os campos de lama fértil e apagava as divisas. Depois da cheia, era preciso refazer as medidas para cada família receber a terra certa. Os egípcios usavam **cordas com nós** para medir e esticar linhas retas. O grego Heródoto, que viajou pelo Egito, contou que foi assim que a **geometria** nasceu: a palavra grega significa "medida da terra".
+
+## A rainha e a pele de boi
+
+Uma lenda antiga conta que a princesa **Dido**, ao fugir da sua cidade e chegar à costa da África, pediu ao rei local um pedaço de terra. Ele disse que ela poderia ficar com o quanto uma pele de boi conseguisse cercar. Dido cortou a pele em tiras finíssimas, emendou todas e formou uma corda enorme. Depois a esticou em torno de uma colina junto ao mar, e ali fundou a cidade de **Cartago**. É só uma lenda, mas levanta uma pergunta séria: com um fio de comprimento fixo, **qual formato cerca a maior área**? Os matemáticos chamam isso de problema isoperimétrico.
+
+## A resposta é o círculo
+
+Os gregos já suspeitavam que a resposta era o **círculo**. Provar isso de forma completa e rigorosa só aconteceu no século 19. Nesta cápsula você vai descobrir, só com retângulos, o começo dessa resposta: quanto mais o retângulo se parece com um quadrado, maior a área.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Perímetro: a volta
+
+O <Termo cor="azul">perímetro</Termo> é o comprimento do **contorno** de uma figura. É a distância que você andaria se desse uma volta inteira, rente à borda. Para saber o perímetro, some os **lados**. A unidade é de comprimento: cm, m, km.
+
+<Brincando titulo="Perímetro: a formiga na borda">
+
+Uma formiga sai de um canto de uma mesa e caminha rente à borda até voltar ao ponto de partida. A distância que ela andou é o **perímetro**.
+
+Se a mesa é um retângulo de 2 m por 1 m, ela anda 2 + 1 + 2 + 1 = 6 metros. Não importa o que há no meio da mesa: só a borda conta.
+
+</Brincando>
+
+## 2. Área: o chão que sobra dentro
+
+A <Termo cor="coral">área</Termo> é o tamanho da **superfície** dentro da figura. Para medir, cobrimos o chão com quadradinhos de tamanho conhecido e contamos. Se cabem 20 quadradinhos de 1 m por 1 m, a área é de **20 metros quadrados** (20 m²).
+
+<Brincando titulo="Área: a tinta da parede">
+
+Para pintar uma parede, a quantidade de tinta depende da **superfície** que você vai cobrir, e não do tamanho da moldura em volta. Duas paredes podem ter o mesmo contorno e áreas bem diferentes.
+
+A área responde "quanto de chão (ou de parede, ou de campo) cabe aqui dentro?". O perímetro responde "quanto de cerca, de rodapé ou de fita cabe em volta?".
+
+</Brincando>
+
+## 3. Quadradinhos: a unidade de área
+
+A unidade de área é um **quadrado** cujo lado é a unidade de comprimento. O m² é um quadrado de 1 m por 1 m. O cm² é um quadrado de 1 cm por 1 cm. Por isso a unidade de área é sempre "ao quadrado".
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Com 24 metros de cerca, qual terreno retangular tem a maior área?"
+  opcoes={['O mais comprido e estreito (por exemplo, 1 m por 11 m)', 'O quadrado (6 m por 6 m)', 'Todos têm a mesma área, porque a cerca é a mesma']}
+  correta={1}
+  explicacao="A cerca é igual, mas a área muda: 1 × 11 = 11 m², 4 × 8 = 32 m², 6 × 6 = 36 m². Quanto mais perto do quadrado, maior a área."
+>
+
+Mexa na largura e veja a área mudar enquanto o perímetro fica igual:
+
+<CercaDoMesmoTamanho />
+
+Repare nas barras: elas formam uma "montanha" que sobe até o quadrado (6 por 6) e desce de novo. Com o **mesmo perímetro**, formas diferentes têm **áreas diferentes**. Então perímetro e área não andam juntos.
+
+Agora o palpite do começo. O terreno com mais cerca ao redor tem sempre mais chão?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Sim, sempre', 'Não necessariamente', 'Só se forem quadrados']}
+  correta={1}
+  seAcertou="Certo: perímetro e área são medidas diferentes. Um terreno comprido e fininho pode ter cerca grande e pouco chão."
+  seErrou="O certo é: não necessariamente. Um terreno de 1 m por 11 m tem 24 m de cerca e só 11 m² de chão, enquanto um quadrado de 6 m por 6 m tem a mesma cerca e 36 m² de chão."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Perímetro das figuras
+
+Para qualquer polígono, o perímetro é a **soma de todos os lados**. Em figuras regulares, dá para encurtar:
+
+- **Retângulo** de base b e altura h: P = 2 × (b + h)
+- **Quadrado** de lado l: P = 4 × l
+- **Polígono regular** de n lados iguais a l: P = n × l
+- **Circunferência** de raio r: C = 2 × π × r
+
+<ExemploResolvido titulo="Quanto custa cercar um terreno de 20 m por 15 m, se o metro de cerca custa R$ 12?">
+  <Passo>O terreno é um retângulo. O perímetro é P = 2 × (20 + 15) = 2 × 35 = **70 m**.</Passo>
+  <Passo>Cada metro de cerca custa R$ 12, então o custo é 70 × 12 = **R$ 840**.</Passo>
+  <Passo>Confira: andar em volta é 20 + 15 + 20 + 15 = 70. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é o perímetro, em metros, de um retângulo de 8 m por 5 m?" resposta="26" dica="P = 2 × (8 + 5)." resolucao="2 × 13 = 26 m." />
+
+<Exercicio enunciado="Um quadrado tem lado 7 cm. Qual é o perímetro, em cm?" resposta="28" dica="Quatro lados iguais." resolucao="4 × 7 = 28 cm." />
+
+<Exercicio enunciado="Um quadrado tem perímetro 36 m. Quanto mede cada lado, em metros?" resposta="9" dica="Divida o perímetro por 4." resolucao="36 ÷ 4 = 9 m." />
+
+<Exercicio enunciado="Um pentágono tem lados de 5, 7, 4, 6 e 3 cm. Qual é o perímetro, em cm?" resposta="25" dica="Some todos os lados." resolucao="5 + 7 + 4 + 6 + 3 = 25 cm." />
+
+<Exercicio enunciado="Um canteiro circular tem raio de 5 m. Quantos metros de cerca são necessários para dar a volta? (use π = 3,14)" resposta="31,4" dica="C = 2 × π × r." resolucao="2 × 3,14 × 5 = 31,4 m." />
+
+## Área do retângulo e do quadrado
+
+O retângulo é a figura mais simples de medir: se ele tem 5 quadradinhos em cada fileira e 3 fileiras, tem 5 × 3 = 15 quadradinhos. Isso é a **base vezes a altura**.
+
+**Retângulo:** A = b × h. **Quadrado:** A = l × l = l².
+
+<Brincando titulo="Área do retângulo: a barra de chocolate">
+
+Uma barra de chocolate tem 4 quadradinhos por fileira e 3 fileiras. Para saber quantos quadradinhos há, você não precisa contar um por um: faz 4 × 3 = 12.
+
+Esse é o segredo da multiplicação na área: **fileiras vezes colunas**. Cada fileira tem a base inteira, e há tantas fileiras quanto a altura.
+
+</Brincando>
+
+<ExemploResolvido titulo="Quanto custa o piso de uma sala de 5 m por 4 m, se o m² custa R$ 45?">
+  <Passo>A sala é um retângulo: A = 5 × 4 = **20 m²**.</Passo>
+  <Passo>Cada m² custa R$ 45: 20 × 45 = **R$ 900**.</Passo>
+  <Passo>Confira: 20 quadradinhos de 1 m² a R$ 45 cada. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é a área, em m², de um retângulo de 12 m por 7 m?" resposta="84" dica="Base vezes altura." resolucao="12 × 7 = 84 m²." />
+
+<Exercicio enunciado="Qual é a área, em cm², de um quadrado de lado 9 cm?" resposta="81" dica="Lado vezes lado." resolucao="9 × 9 = 81 cm²." />
+
+<Exercicio enunciado="Um retângulo tem área de 48 m² e largura de 6 m. Quanto mede a altura, em metros?" resposta="8" dica="Se A = b × h, então h = A ÷ b." resolucao="48 ÷ 6 = 8 m." />
+
+<Exercicio enunciado="Uma parede de 4 m por 2,5 m vai ser pintada. Uma lata rende 5 m². Quantas latas são necessárias?" resposta="2" dica="Calcule a área e divida pelo rendimento." resolucao="Área = 4 × 2,5 = 10 m². 10 ÷ 5 = 2 latas." />
+
+## Medindo o chão com pisos
+
+Quantos pisos cabem numa sala? Divida a área da sala pela área de um piso. Mexa na sala e no piso, e veja que escolher o piso certo muda quanto você compra:
+
+<PisoDaSala />
+
+<ExemploResolvido titulo="Quantos pisos de 50 cm por 50 cm cobrem uma sala de 5 m por 4 m?">
+  <Passo>Área da sala: 5 × 4 = **20 m²**.</Passo>
+  <Passo>Um piso de 50 cm = 0,5 m de lado tem área 0,5 × 0,5 = **0,25 m²**.</Passo>
+  <Passo>Número de pisos: 20 ÷ 0,25 = **80**.</Passo>
+  <Passo>Confira: em 5 m cabem 10 pisos; em 4 m cabem 8. 10 × 8 = 80. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos pisos de 50 cm por 50 cm são necessários para cobrir uma sala de 5 m por 4 m? (sem contar sobra)" resposta="80" dica="Divida a área da sala pela área de um piso (0,25 m²)." resolucao="20 ÷ 0,25 = 80 pisos." />
+
+## Unidades de área: cuidado com o quadrado
+
+Aqui está a pegadinha mais comum: **1 m = 100 cm**, mas **1 m² não é 100 cm²**. Um quadrado de 1 m por 1 m tem 100 cm por 100 cm, e a área em centímetros é 100 × 100 = **10.000 cm²**.
+
+Em geral, quando a unidade de comprimento muda por um fator k, a unidade de área muda por **k²**:
+
+- 1 m² = 10.000 cm² (100 × 100)
+- 1 km² = 1.000.000 m² (1.000 × 1.000)
+- 1 hectare (ha) = 10.000 m², o tamanho de um quadrado de 100 m por 100 m
+
+<ConversaoDeAreas />
+
+<Brincando titulo="Unidades: o piso e os azulejinhos">
+
+Pense num piso de 1 m por 1 m coberto de azulejinhos de 1 cm por 1 cm. Em cada fileira cabem 100 azulejinhos, e há 100 fileiras. Ao todo: **10.000** azulejinhos.
+
+Por isso, ao passar de m² para cm², multiplicamos por 10.000, e não por 100. Para voltar de cm² para m², dividimos por 10.000.
+
+</Brincando>
+
+Curiosidade do Brasil: o **alqueire**, medida de terra muito usada no campo, não é igual no país inteiro. O alqueire paulista tem 24.200 m², e o mineiro tem 48.400 m², o dobro!
+
+<ExemploResolvido titulo="Converter 2,5 m² para cm²">
+  <Passo>Cada m² tem 10.000 cm².</Passo>
+  <Passo>2,5 × 10.000 = **25.000 cm²**.</Passo>
+  <Passo>Confira: 2,5 m² é um pouco mais que 2 m². 25.000 cm² é maior que 20.000 cm². ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos cm² há em 3 m²? (só o número)" resposta="30000" dica="Multiplique por 10.000." resolucao="3 × 10.000 = 30.000 cm²." />
+
+<Exercicio enunciado="Um terreno retangular mede 200 m por 300 m. Quantos hectares ele tem? (1 ha = 10.000 m²)" resposta="6" dica="Calcule a área em m² e divida por 10.000." resolucao="200 × 300 = 60.000 m². 60.000 ÷ 10.000 = 6 ha." />
+
+## Dobrar o lado: a área quadruplica
+
+Se o lado do quadrado dobra, a área não dobra: ela **quadruplica**. Um quadrado de lado 1 tem área 1; de lado 2, área 4; de lado 3, área 9. A área cresce com o **quadrado** do lado.
+
+<Exercicio enunciado="Um quadrado de lado 5 cm tem o lado dobrado para 10 cm. Quantas vezes a área aumenta? (só o número)" resposta="4" dica="Compare 5 × 5 com 10 × 10." resolucao="25 passa a 100, ou seja, a área fica 4 vezes maior." />
+
+## Área do paralelogramo
+
+Um paralelogramo é um retângulo "empurrado de lado". Se você corta um triângulo de uma ponta e cola na outra, ele **vira um retângulo** de mesma base e mesma altura. Por isso:
+
+**A = base × altura**, em que a altura é medida **na vertical** (perpendicular à base), e não pelo lado inclinado.
+
+<DeitarOParalelogramo />
+
+<Brincando titulo="Paralelogramo: o baralho empurrado">
+
+Empilhe um baralho certinho: é um retângulo. Agora empurre o topo da pilha de lado, de leve. A pilha fica inclinada, mas **tem as mesmas cartas** e a mesma altura. A área (a quantidade de papel) não mudou.
+
+O que mudou foi só o lado inclinado, que ficou mais comprido. É por isso que, na área, usamos a **altura** e não o lado torto.
+
+</Brincando>
+
+<Exercicio enunciado="Um paralelogramo tem base 10 cm e altura 4 cm (o lado inclinado mede 5 cm). Qual é a área, em cm²?" resposta="40" dica="Use a altura, e não o lado inclinado." resolucao="10 × 4 = 40 cm²." />
+
+## Área do triângulo
+
+Todo triângulo é **metade** de um retângulo (ou de um paralelogramo) de mesma base e mesma altura. Duas cópias dele se encaixam e formam o paralelogramo.
+
+**A = (base × altura) ÷ 2**
+
+<TrianguloMetadeDoRetangulo />
+
+<Brincando titulo="Triângulo: a pizza cortada na diagonal">
+
+Corte uma pizza retangular de uma ponta à outra, pela diagonal. Cada pedaço é um triângulo, e é **exatamente a metade** da pizza. Por isso a área do triângulo é metade de base × altura.
+
+Se o triângulo for mais "pontudo", a regra continua valendo: o topo pode ficar em qualquer lugar da linha de cima, sempre dá a metade do retângulo.
+
+</Brincando>
+
+<ExemploResolvido titulo="Qual é a área da parte triangular de um telhado com base de 8 m e altura de 3 m?">
+  <Passo>A base do triângulo é 8 m e a altura (vertical) é 3 m.</Passo>
+  <Passo>A = (8 × 3) ÷ 2 = 24 ÷ 2 = **12 m²**.</Passo>
+  <Passo>Confira: o retângulo de 8 por 3 tem 24 m², e o triângulo é a metade. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é a área, em cm², de um triângulo de base 12 cm e altura 5 cm?" resposta="30" dica="Base vezes altura, dividido por 2." resolucao="12 × 5 ÷ 2 = 30 cm²." />
+
+## Área do losango
+
+O losango tem duas **diagonais** que se cruzam em ângulo reto. Ele é metade do retângulo formado pelas duas diagonais:
+
+**A = (D × d) ÷ 2**, em que D é a diagonal maior e d é a menor.
+
+<Exercicio enunciado="Um losango tem diagonais de 10 cm e 6 cm. Qual é a área, em cm²?" resposta="30" dica="Diagonal maior vezes diagonal menor, dividido por 2." resolucao="10 × 6 ÷ 2 = 30 cm²." />
+
+## Área do trapézio
+
+O trapézio tem **duas bases paralelas**, uma maior (B) e uma menor (b). Se você juntar uma cópia dele, de cabeça para baixo, forma um retângulo (ou paralelogramo) de base B + b. O trapézio é a metade disso:
+
+**A = (B + b) × h ÷ 2**
+
+<TrapezioDobrado />
+
+<Brincando titulo="Trapézio: a média das bases">
+
+Dá para ler a fórmula de outro jeito: (B + b) ÷ 2 é a **média** das duas bases. O trapézio tem a mesma área de um retângulo cuja base é essa média e cuja altura é a do trapézio.
+
+É como "nivelar" o trapézio: tirar o que sobra de um lado e passar para o outro, até virar um retângulo.
+
+</Brincando>
+
+<ExemploResolvido titulo="Um terreno em forma de trapézio tem frente de 20 m, fundo de 12 m e 10 m de distância entre eles. Qual é a área?">
+  <Passo>As bases paralelas são a frente (20 m) e o fundo (12 m). A altura é a distância entre elas: 10 m.</Passo>
+  <Passo>A = (20 + 12) × 10 ÷ 2 = 32 × 10 ÷ 2 = 320 ÷ 2 = **160 m²**.</Passo>
+  <Passo>Confira: a média das bases é 16, e 16 × 10 = 160. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um trapézio tem bases de 10 cm e 6 cm e altura de 4 cm. Qual é a área, em cm²?" resposta="32" dica="(B + b) × h ÷ 2." resolucao="(10 + 6) × 4 ÷ 2 = 16 × 4 ÷ 2 = 32 cm²." />
+
+## Figuras compostas
+
+Muita figura real é uma "emenda" de figuras simples. A estratégia é **decompor**: dividir em retângulos, triângulos e trapézios que você já sabe medir, calcular cada área e **somar**. Outro caminho é **completar**: calcular a figura maior e **subtrair** o pedaço que falta.
+
+<FiguraEmL />
+
+<ExemploResolvido titulo="Uma sala em L é um retângulo de 10 m por 8 m com um canto retangular de 4 m por 3 m retirado. Qual é a área?">
+  <Passo>Completar: o retângulo inteiro tem 10 × 8 = **80 m²**.</Passo>
+  <Passo>O canto retirado tem 4 × 3 = **12 m²**.</Passo>
+  <Passo>Área da sala = 80 − 12 = **68 m²**.</Passo>
+  <Passo>Confira dividindo: à esquerda (10 − 4) × 8 = 48 e à direita embaixo 4 × (8 − 3) = 20. 48 + 20 = 68. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma figura em L é um retângulo de 10 por 8 com um canto de 4 por 3 retirado. Qual é a área?" resposta="68" dica="Área do retângulo menos a área do canto." resolucao="80 − 12 = 68." />
+
+<Brincando titulo="Figuras compostas: o quebra-cabeça de peças">
+
+Imagine uma casa de brinquedo feita de peças: um quadrado para as paredes e um triângulo para o telhado. A área da casa é a **soma** das áreas das peças.
+
+Se a casa tem um buraco (uma janela), é o contrário: calculamos a parede inteira e **tiramos** a área da janela. Soma e subtração: é só isso.
+
+</Brincando>
+
+## Perímetro e área não andam juntos
+
+Já vimos que com a mesma cerca a área muda. O contrário também vale: com a **mesma área**, o perímetro muda. Uma área de 36 m² pode ser um quadrado de 6 por 6 (perímetro 24 m), um retângulo de 4 por 9 (perímetro 26 m) ou um de 1 por 36 (perímetro 74 m). Quanto mais "esticado", maior o perímetro.
+
+<Exercicio enunciado="Qual é a maior área, em m², de um terreno retangular que pode ser cercado com 40 m de cerca? (dica: pense no quadrado)" resposta="100" dica="Perímetro 40 dá lado 10 no quadrado." resolucao="O quadrado de lado 10 m tem perímetro 40 m e área 10 × 10 = 100 m²: é a maior." />
+
+<Aprofundar titulo="Fórmula de Heron: a área só com os três lados">
+
+Se você conhece só os **três lados** a, b e c de um triângulo, dá para calcular a área sem a altura. Primeiro calcule o **semiperímetro** s = (a + b + c) ÷ 2. Depois a área é a raiz quadrada de s × (s − a) × (s − b) × (s − c).
+
+Exemplo com o triângulo de lados 3, 4 e 5: s = 6, e a área é a raiz de 6 × 3 × 2 × 1 = raiz de 36 = **6**. Confere com a conta de sempre: base 3, altura 4, área 3 × 4 ÷ 2 = 6. A fórmula leva o nome de Heron de Alexandria, que a registrou no século 1.
+
+</Aprofundar>
+
+<Aprofundar titulo="O problema da rainha Dido: o círculo vence">
+
+Entre todas as figuras com o **mesmo perímetro**, o círculo é a que tem **maior área**. Nos retângulos você viu que o quadrado ganha dos comprimidos. Entre os polígonos regulares de mesmo perímetro, quanto mais lados, maior a área. O círculo é como um polígono com "infinitos lados".
+
+Por isso as bolhas de sabão são redondas: a tensão da água quer a menor superfície (o menor "contorno") para o volume de ar preso. E por isso os pratos, as panelas e os tanques cilíndricos aproveitam bem o material.
+
+</Aprofundar>
+
+<Aprofundar titulo="Perímetro infinito, área limitada: o floco de Koch">
+
+Desenhe um triângulo equilátero. Em cada lado, troque o terço do meio por uma pontinha em forma de triângulo, e repita isso para sempre. A cada passo, o perímetro é multiplicado por 4/3, e por isso cresce **sem limite**. Mas a figura nunca sai de um círculo fixo em volta dela: a área fica **limitada**.
+
+É um exemplo extremo de como perímetro e área são independentes: uma curva infinitamente longa pode cercar uma área finita.
+
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'O que mede o perímetro de uma figura?',
+    opcoes: ['A superfície dentro dela', 'O comprimento do contorno', 'O espaço que ela ocupa em 3D'],
+    correta: 1,
+    explicacao: 'O perímetro é a soma dos lados, a "volta" da figura. A área é que mede o interior.',
+  },
+  {
+    enunciado: 'Qual é o perímetro de um retângulo de 9 m por 4 m?',
+    opcoes: ['13 m', '26 m', '36 m'],
+    correta: 1,
+    explicacao: '2 × (9 + 4) = 26 m. (36 seria a área, em m².)',
+  },
+  {
+    enunciado: 'Qual é a área de um retângulo de 9 m por 4 m?',
+    opcoes: ['26 m²', '36 m²', '13 m²'],
+    correta: 1,
+    explicacao: '9 × 4 = 36 m².',
+  },
+  {
+    enunciado: 'Com 24 m de cerca, qual retângulo tem a maior área?',
+    opcoes: ['3 m por 9 m', '6 m por 6 m', '1 m por 11 m'],
+    correta: 1,
+    explicacao: '3 × 9 = 27, 6 × 6 = 36, 1 × 11 = 11. O quadrado ganha.',
+  },
+  {
+    enunciado: 'Quantos cm² tem 1 m²?',
+    opcoes: ['100', '1.000', '10.000'],
+    correta: 2,
+    explicacao: '1 m = 100 cm, então 1 m² = 100 × 100 = 10.000 cm².',
+  },
+  {
+    enunciado: 'Um hectare é a área de um quadrado de lado...',
+    opcoes: ['10 m', '100 m', '1.000 m'],
+    correta: 1,
+    explicacao: '100 m × 100 m = 10.000 m² = 1 hectare.',
+  },
+  {
+    enunciado: 'Se o lado de um quadrado triplica, a área fica...',
+    opcoes: ['3 vezes maior', '6 vezes maior', '9 vezes maior'],
+    correta: 2,
+    explicacao: 'A área depende do lado ao quadrado: 3 × 3 = 9.',
+  },
+  {
+    enunciado: 'Qual é a área de um triângulo de base 10 e altura 6?',
+    opcoes: ['60', '30', '16'],
+    correta: 1,
+    explicacao: '10 × 6 ÷ 2 = 30.',
+  },
+  {
+    enunciado: 'Qual é a área de um paralelogramo de base 7 e altura 5 (lado inclinado 6)?',
+    opcoes: ['35', '42', '30'],
+    correta: 0,
+    explicacao: 'Usamos a altura, e não o lado inclinado: 7 × 5 = 35.',
+  },
+  {
+    enunciado: 'Qual é a área de um trapézio com bases 8 e 4 e altura 5?',
+    opcoes: ['30', '60', '20'],
+    correta: 0,
+    explicacao: '(8 + 4) × 5 ÷ 2 = 12 × 5 ÷ 2 = 30.',
+  },
+  {
+    enunciado: 'Uma figura em L é um retângulo de 12 por 6 com um canto de 5 por 2 retirado. Qual é a área?',
+    opcoes: ['72', '62', '82'],
+    correta: 1,
+    explicacao: '12 × 6 = 72. O canto tem 5 × 2 = 10. Área = 72 − 10 = 62.',
+  },
+  {
+    enunciado: 'Dois terrenos têm a mesma área. O que dá para dizer do perímetro?',
+    opcoes: ['É sempre o mesmo', 'Pode ser diferente', 'O mais comprido tem perímetro menor'],
+    correta: 1,
+    explicacao: 'Com 36 m², um quadrado de 6 por 6 tem perímetro 24 m, e um retângulo de 1 por 36 tem 74 m. Mesma área, perímetros diferentes.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Perímetro** é a volta (soma dos lados), em unidades de comprimento. **Área** é o chão dentro da figura, em unidades ao quadrado.
+- **Retângulo:** P = 2(b + h), A = b × h. **Quadrado:** P = 4l, A = l².
+- **Paralelogramo:** A = b × h (altura na vertical). **Triângulo:** A = b × h ÷ 2. **Losango:** A = D × d ÷ 2. **Trapézio:** A = (B + b) × h ÷ 2.
+- **Unidades:** 1 m² = 10.000 cm²; 1 km² = 1.000.000 m²; 1 ha = 10.000 m². A unidade de área muda pelo **quadrado** do fator.
+- **Figuras compostas:** some as partes ou tire o pedaço que falta de uma figura maior.
+- Com o mesmo perímetro, a área varia (o quadrado vence os retângulos); com a mesma área, o perímetro também varia.
+
+**Um pouco de história.** Os egípcios mediam terras com cordas depois das cheias do Nilo, e Heródoto viu aí o nascimento da geometria. Euclides organizou as áreas por volta de 300 a.C., Heron registrou a área do triângulo pelos três lados no século 1, e a lenda de Dido ajudou a batizar o problema que só teve prova completa no século 19: com o mesmo perímetro, quem tem maior área é o círculo.
+
+</Resumo>
+
+Medir superfícies leva direto ao volume, que mede o espaço dentro de caixas e tanques. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>
