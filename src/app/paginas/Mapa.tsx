@@ -73,15 +73,28 @@ export default function Mapa() {
 
       <div className="mt-6">
         <label htmlFor={idBusca} className="sr-only">Buscar cápsula</label>
-        <input
-          id={idBusca}
-          type="search"
-          value={busca}
-          onChange={(e) => setBusca(e.target.value)}
-          placeholder="Buscar: frações, DNS, célula, átomo…"
-          className="min-h-12 w-full rounded-full border border-borda bg-superficie px-5 text-base"
-        />
-        <div className="mt-3 flex flex-wrap gap-2" role="group" aria-label="Filtros">
+        <div className="flex gap-2">
+          <input
+            id={idBusca}
+            type="search"
+            value={busca}
+            onChange={(e) => setBusca(e.target.value)}
+            placeholder="Buscar: frações, DNS, célula, átomo…"
+            className="min-h-12 min-w-0 flex-1 rounded-full border border-borda bg-superficie px-5 text-base"
+          />
+          {/* No celular o filtro de estado vira uma lista compacta, para não ocupar uma fileira inteira */}
+          <select
+            aria-label="Mostrar"
+            value={filtro}
+            onChange={(e) => setFiltro(e.target.value as Filtro)}
+            className={`min-h-12 w-32 shrink-0 rounded-full border px-3 text-[15px] font-semibold sm:hidden ${
+              filtro === 'tudo' ? 'border-borda bg-superficie' : 'border-texto bg-texto text-white'
+            }`}
+          >
+            {filtros.map((f) => <option key={f.id} value={f.id}>{f.nome}</option>)}
+          </select>
+        </div>
+        <div className="mt-3 hidden flex-wrap gap-2 sm:flex" role="group" aria-label="Filtros">
           {filtros.map((f) => (
             <button key={f.id} type="button" aria-pressed={filtro === f.id} onClick={() => setFiltro(f.id)} className={chip(filtro === f.id)}>
               {f.nome}
@@ -158,7 +171,7 @@ export default function Mapa() {
           ) : (
             <>
             {linhasDaArea.length > 1 && (
-              <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+              <div className="mt-5 hidden gap-4 sm:grid sm:grid-cols-2 xl:grid-cols-4">
                 {linhasDaArea.map((l) => (
                   <CartaoDaLinha
                     key={l.id}
