@@ -1,0 +1,383 @@
+import Heredograma from '../../../components/simulacoes/Heredograma'
+import ChanceDeFilhos from '../../../components/simulacoes/ChanceDeFilhos'
+import TipoSanguineo from '../../../components/simulacoes/TipoSanguineo'
+import HerancaLigadaAoX from '../../../components/simulacoes/HerancaLigadaAoX'
+import QuantosFilhosAfetados from '../../../components/simulacoes/QuantosFilhosAfetados'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Pedigree chart, ABO blood group system, Karl Landsteiner, Color blindness, John Dalton, Haemophilia, Queen Victoria, X-linked recessive inheritance, Autosomal recessive, Autosomal dominant, Thomas Hunt Morgan), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Um casal descobre que os dois são **portadores** de uma doença genética rara. Nenhum dos dois tem a doença, e nenhum nunca soube que carregava o alelo. A pergunta que eles fazem ao médico é sempre a mesma: **qual a chance de nosso filho nascer com ela?**
+
+Para responder, a genética usa um desenho que parece uma árvore genealógica cheia de quadrados e círculos, o **heredograma**, junto com uma ferramenta que você já conhece: o quadro de Punnett. Com os dois, dá para ler a história de uma característica numa família e **calcular as chances** do próximo bebê.
+
+<Palpite
+  chave="inicial"
+  pergunta="Um casal tem dois filhos com uma doença recessiva (aa). Qual a chance de o terceiro filho também ter a doença?"
+  opcoes={['Menor que 25%, porque já saíram dois', 'Exatamente 25%', 'Maior que 25%, porque a doença está "na vez" dele']}
+/>
+
+Nesta cápsula você vai ver como ler um heredograma, como calcular a probabilidade de filhos afetados, como funciona o tipo sanguíneo e por que algumas características atingem mais os meninos que as meninas.
+
+</Etapa>
+
+<Etapa id="historia">
+
+A genética de famílias começou **antes** de se saber o que era um gene. Mesmo sem conhecer a causa, as pessoas notavam características que "andavam" nas famílias.
+
+<LinhaDoTempo marcos={[
+  { ano: '1798', texto: 'John Dalton descreve a própria dificuldade de distinguir cores e nota que um irmão também a tinha.' },
+  { ano: '1853', texto: 'O filho mais novo da rainha Vitória, Leopold, nasce com hemofilia, que ela passou a famílias reais da Europa.' },
+  { ano: '1901', texto: 'Karl Landsteiner descobre os grupos sanguíneos A, B e O.' },
+  { ano: '1902', texto: 'Landsteiner e colegas identificam o grupo AB. Cada pessoa passa a ter um tipo sanguíneo.' },
+  { ano: '1910', texto: 'Thomas Hunt Morgan acha uma mosca de olhos brancos e mostra que a característica está no cromossomo X.' },
+  { ano: '1930', texto: 'Landsteiner recebe o Nobel de Fisiologia ou Medicina.' },
+  { ano: '1940', texto: 'Landsteiner e Wiener descobrem o fator Rh.' },
+]} />
+
+## Dalton e as cores
+
+O químico inglês **John Dalton** (o mesmo do modelo atômico) percebeu que via cores de um jeito diferente dos outros: confundia vermelho e verde. Em 1798, escreveu sobre isso, e notou que o irmão também via assim. O defeito ficou conhecido como **daltonismo**, em homenagem a ele. Mais tarde, viu-se que a condição é bem mais comum em homens.
+
+## A família real e o sangue que não coagula
+
+A **rainha Vitória** do Reino Unido (1819 a 1901) era portadora do alelo da **hemofilia**, uma doença em que o sangue demora a coagular. Ela passou o alelo a filhas, que o levaram para outras famílias reais da Europa. A doença aparecia nos príncipes e raramente nas princesas, e é um dos casos mais famosos de herança ligada ao cromossomo X. Foi lendo esses **heredogramas** que os médicos começaram a entender como esse tipo de herança funciona.
+
+## O sangue tem tipos
+
+Até 1900, transfusões de sangue eram uma loteria: às vezes funcionavam, às vezes matavam. Em 1901, o médico austríaco **Karl Landsteiner** misturou o sangue de colegas e viu que, em certas combinações, o sangue **aglutinava** (formava grumos). Ele descobriu os grupos **A, B e O** (o AB foi achado logo depois), e isso tornou as transfusões muito mais seguras. Em 1930, ganhou o Nobel por isso.
+
+## Morgan e o cromossomo X
+
+Em 1910, **Thomas Hunt Morgan**, trabalhando com moscas-da-fruta, encontrou um macho de olhos **brancos** no meio de uma população de olhos vermelhos. Cruzando-o, viu que a cor dos olhos acompanhava o **sexo** dos descendentes. Concluiu que o gene da cor dos olhos fica no cromossomo X. Foi uma das primeiras provas de que os genes ficam nos cromossomos.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O heredograma é um mapa da família
+
+Um **heredograma** (ou **genealogia**) é um desenho em que cada pessoa vira um símbolo:
+
+- **Quadrado:** homem. **Círculo:** mulher.
+- **Preenchido:** tem a característica estudada. **Vazio:** não tem.
+- **Linha horizontal entre dois símbolos:** um casal.
+- **Linha vertical descendo do casal:** os filhos.
+- **Algarismos romanos (I, II, III):** as gerações. **Algarismos comuns:** as pessoas de cada geração, da esquerda para a direita.
+
+Lendo o desenho, você descobre o **padrão de herança**: se a característica é dominante ou recessiva, se o gene está num cromossomo comum ou no X.
+
+## 2. A pista do "sumiu e voltou"
+
+A maior pista é esta: **dois pais sem a característica, filho com ela**. Isso só é possível se a característica for **recessiva**. Os pais têm o alelo escondido (são portadores), cada um passa o seu, e o filho fica com dois.
+
+Já uma característica **dominante** nunca "salta" uma geração: quem tem a característica sempre tem um genitor com ela.
+
+<Brincando titulo="Heredograma: o detetive e a árvore genealógica">
+
+Leia um heredograma como um detetive lê uma cena. **Pista 1:** filho afetado de pais normais? Então o alelo estava escondido nos dois (recessivo). **Pista 2:** todo afetado tem um genitor afetado? Então o alelo manda sozinho (dominante). **Pista 3:** só meninos afetados e a mãe "normal" passando para os filhos? Então o gene está no X. Com essas três perguntas dá para resolver quase qualquer heredograma de livro.
+
+</Brincando>
+
+## 3. Cada filho é um sorteio novo
+
+Quando um casal Aa x Aa tem um filho, o sorteio dos gametas acontece de novo para o próximo. Ele **não tem memória**: se saiu um filho aa, o próximo continua com 1 chance em 4. É o mesmo que jogar uma moeda: depois de cinco caras seguidas, a chance de a sexta ser cara continua 50%.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Dois pais sem uma característica têm um filho com ela. A característica é dominante ou recessiva?"
+  opcoes={['Dominante', 'Recessiva', 'Não dá para saber']}
+  correta={1}
+  explicacao="Se fosse dominante, quem tem a característica teria pelo menos um genitor com ela. Os pais não têm, então ela estava escondida nos dois: é recessiva, e os pais são portadores (Aa)."
+>
+
+Observe a família abaixo e depois veja os genótipos:
+
+<Heredograma />
+
+Agora calcule você: escolha o genótipo dos pais e o número de filhos.
+
+<ChanceDeFilhos />
+
+Volte ao palpite do começo: dois filhos com a doença, qual a chance de o terceiro também ter?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Menor que 25%, porque já saíram dois', 'Exatamente 25%', 'Maior que 25%, porque a doença está "na vez" dele']}
+  correta={1}
+  seAcertou="Certo: exatamente 25%. Os filhos não têm memória, e cada um é um sorteio novo, com a mesma chance."
+  seErrou="O certo é: exatamente 25%. Cada gravidez é um sorteio novo. Ter tido dois filhos afetados não aumenta nem diminui a chance do terceiro."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Como ler os três tipos de herança
+
+Existem três padrões principais para uma característica num cromossomo comum ou no X:
+
+- **Autossômica recessiva:** o gene está num cromossomo comum (autossomo). Aparece em homens e mulheres na mesma frequência. Pode **pular gerações**. Pais normais podem ter filho afetado. Exemplos: albinismo, fibrose cística, anemia falciforme e fenilcetonúria.
+- **Autossômica dominante:** também num cromossomo comum. **Não pula** gerações: todo afetado tem um genitor afetado. Basta um alelo para a característica aparecer. Exemplo: doença de Huntington.
+- **Recessiva ligada ao X:** o gene está no cromossomo X. Atinge **muito mais homens** do que mulheres. Exemplos: daltonismo e hemofilia.
+
+<ExemploResolvido titulo="Como descobrir os genótipos de um heredograma recessivo">
+  <Passo>Comece pelos **afetados**: eles são **aa**, sem dúvida (precisam de duas cópias).</Passo>
+  <Passo>Os pais de um afetado receberam cada um um alelo a, mas não têm a característica: são **Aa**.</Passo>
+  <Passo>Os outros filhos sem a característica são **AA ou Aa**: de Aa x Aa, as chances são 1/4 AA e 2/4 Aa.</Passo>
+  <Passo>Quem se casa de fora da família e não tem histórico de doença é, em geral, tratado como **AA** (a chance de ser portador é pequena, mas existe).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Dois portadores (Aa x Aa) têm um filho. Qual a chance, em porcentagem, de ele ter a doença recessiva?" resposta="25" dica="Só aa é afetado: 1 em 4." resolucao="Das 4 combinações (AA, Aa, aA, aa), só aa é afetado: 1 em 4, ou 25%." />
+
+## Probabilidade: as duas regras de ouro
+
+Para calcular chances de eventos em sequência, você só precisa de duas regras:
+
+- **Regra do E (multiplicação):** quando dois eventos acontecem **ao mesmo tempo ou em sequência** e são **independentes**, as chances se **multiplicam**. Exemplo: ser aa **e** ser menino: 1/4 × 1/2 = 1/8.
+- **Regra do OU (soma):** quando basta que **um dos casos** aconteça e eles **não podem ocorrer juntos**, as chances se **somam**. Exemplo: ser AA **ou** aa: 1/4 + 1/4 = 1/2.
+
+<Brincando titulo="Regra do E e do OU: o cardápio do restaurante">
+
+Num restaurante, você tem 1/2 de chance de pedir sobremesa **e** 1/4 de chance de pedir suco: para pedir **as duas coisas**, as chances se multiplicam (1/2 × 1/4 = 1/8), porque é mais difícil acontecer as duas do que uma só. Já para pedir **uma coisa ou outra** (que não podem vir juntas), as chances se somam, porque há mais jeitos de o evento acontecer.
+
+</Brincando>
+
+<ExemploResolvido titulo="Um casal Aa x Aa quer saber a chance de o filho ser uma menina afetada (aa)">
+  <Passo>Chance de ser **aa**: 1/4.</Passo>
+  <Passo>Chance de ser **menina**: 1/2.</Passo>
+  <Passo>São independentes, então usa a regra do **E**: 1/4 × 1/2 = **1/8**, ou 12,5%.</Passo>
+</ExemploResolvido>
+
+<ExemploResolvido titulo="Um casal Aa x Aa tem 2 filhos. Qual a chance de os dois serem aa?">
+  <Passo>Chance de o primeiro ser aa: 1/4.</Passo>
+  <Passo>Chance de o segundo ser aa: também 1/4 (sorteio novo).</Passo>
+  <Passo>Os dois: 1/4 × 1/4 = **1/16**, ou 6,25%.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um casal Aa x Aa quer ter um menino afetado (aa). Qual a chance, em porcentagem?" resposta="12,5" dica="1/4 vezes 1/2." resolucao="1/4 × 1/2 = 1/8 = 12,5%." />
+
+<Exercicio enunciado="Um casal Aa x Aa tem 2 filhos. Qual a chance, em porcentagem, de os dois serem aa?" resposta="6,25" dica="1/4 vezes 1/4." resolucao="1/16 = 6,25%." />
+
+<Exercicio enunciado="Um casal Aa x Aa tem 2 filhos. Qual a chance, em porcentagem, de nenhum ser aa?" resposta="56,25" dica="Cada filho tem 3/4 de chance de não ser aa." resolucao="3/4 × 3/4 = 9/16 = 56,25%." />
+
+<Exercicio enunciado="Um casal Aa x aa tem 3 filhos. Qual a chance, em porcentagem, de todos serem aa?" resposta="12,5" dica="Cada filho tem 1/2 de chance de ser aa." resolucao="1/2 × 1/2 × 1/2 = 1/8 = 12,5%." />
+
+<QuantosFilhosAfetados />
+
+Repare: com 4 filhos, a chance de **nenhum** ser aa é 31,6%, e a de pelo menos um ser aa é 68,4%. A chance de pelo menos um afetado cresce com o número de filhos, mas **cada** filho continua com 25%.
+
+## A pergunta do filho "normal"
+
+Imagine que Aa x Aa tem um filho **sem** a doença. Qual a chance de ele ser portador (Aa)? Não é 1/2. Como já sabemos que o filho **não** é aa, sobram só **3 combinações**: AA, Aa e aA. Dessas, **2** são portadoras. A resposta é **2 em 3**.
+
+<ExemploResolvido titulo="Entre 300 filhos sem a doença de casais Aa x Aa, quantos são portadores?">
+  <Passo>Se o filho não é aa, ficam 3 possibilidades: AA (1), Aa (2).</Passo>
+  <Passo>A chance de ser portador é **2/3**.</Passo>
+  <Passo>2/3 de 300 = **200 portadores**, e 100 são AA.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Entre 300 filhos sem a doença de casais Aa x Aa, quantos você espera que sejam portadores?" resposta="200" dica="2 em cada 3." resolucao="2/3 de 300 = 200." />
+
+<Aprofundar titulo="Casamento entre parentes e doenças recessivas">
+
+Todos nós somos portadores de alguns alelos recessivos prejudiciais, só que, na maioria das vezes, eles ficam escondidos. Quando dois **parentes próximos** (como primos) têm filhos, a chance de **os dois terem o mesmo alelo raro**, herdado de um ancestral comum, é maior. Por isso a **consanguinidade** aumenta o risco de doenças recessivas. Numa única geração, o aumento é modesto, e o aconselhamento genético ajuda as famílias a entender os riscos. Em lugares onde casamentos entre parentes são comuns há várias gerações, certas doenças recessivas aparecem mais.
+
+</Aprofundar>
+
+## O tipo sanguíneo (sistema ABO)
+
+O tipo de sangue ABO é um exemplo clássico de **três alelos** para um gene:
+
+- **IA** (produz o marcador A na superfície das hemácias).
+- **IB** (produz o marcador B).
+- **i** (não produz nenhum marcador).
+
+IA e IB são **codominantes**: quando juntos, os dois aparecem (tipo AB). O alelo i é **recessivo** a ambos. Isso dá 4 fenótipos e 6 genótipos:
+
+- Tipo **A:** IAIA ou IAi.
+- Tipo **B:** IBIB ou IBi.
+- Tipo **AB:** IAIB.
+- Tipo **O:** ii.
+
+<TipoSanguineo />
+
+<Brincando titulo="ABO: crachás no fundo da sala">
+
+Imagine que as hemácias usam crachás. O alelo IA faz o crachá "A", e o IB faz o "B". O alelo i **não faz crachá nenhum**. Quem tem IA e IB usa **os dois crachás** (AB). Quem tem IA e i usa só o "A", porque o i não coloca nada que atrapalhe. E quem tem ii não tem crachá: é o tipo "O", de "zero".
+
+</Brincando>
+
+<ExemploResolvido titulo="Pai IAi (tipo A) e mãe IBi (tipo B): que tipos de filho são possíveis?">
+  <Passo>O pai dá **IA** ou **i**. A mãe dá **IB** ou **i**.</Passo>
+  <Passo>Combinações: IAIB (**AB**), IAi (**A**), IBi (**B**) e ii (**O**).</Passo>
+  <Passo>Os **quatro** tipos de sangue são possíveis, cada um com **25%** de chance.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Pai IAi e mãe IBi: que porcentagem dos filhos é do tipo O?" resposta="25" dica="Só ii é tipo O." resolucao="Só 1 em 4 combinações é ii: 25%." />
+
+<Exercicio enunciado="Pai IAIB (tipo AB) e mãe ii (tipo O): que porcentagem dos filhos é do tipo A?" resposta="50" dica="O pai dá IA ou IB; a mãe dá só i." resolucao="Metade dos filhos recebe IA (e é IAi, tipo A) e metade recebe IB (IBi, tipo B): 50% do tipo A." />
+
+<Exercicio enunciado="Quantos genótipos diferentes existem no sistema ABO?" resposta="6" dica="IAIA, IAi, IBIB, IBi, IAIB e ii." resolucao="São 6 genótipos, que formam 4 fenótipos (A, B, AB e O)." />
+
+Há ainda o **fator Rh**: quem tem a proteína Rh é "positivo" (+), e quem não tem é "negativo" (−). De forma simplificada, o Rh positivo é dominante e o negativo é recessivo. Uma situação de cuidado é quando a mãe é Rh negativo e o bebê é Rh positivo: o corpo da mãe pode criar anticorpos contra o sangue do bebê, o que é evitado com acompanhamento médico e uma injeção preventiva.
+
+<Aprofundar titulo="Doador universal: por que o tipo O é tão pedido">
+
+As hemácias do tipo **O negativo** não têm os marcadores A, B nem Rh, então quase não provocam reação no receptor. Por isso o O negativo é usado em emergências, quando não dá tempo de saber o tipo do paciente. Já quem é **AB positivo** pode receber hemácias de qualquer tipo. Mas isso vale para o **sangue vermelho**: no plasma, as regras são ao contrário. Na prática, hospitais preferem sempre o tipo igual ao do paciente quando possível. E doar sangue, no Brasil, salva vidas todos os dias.
+
+</Aprofundar>
+
+## Herança ligada ao sexo
+
+As mulheres têm dois cromossomos X (XX), e os homens têm um X e um Y (XY). O cromossomo X é grande e carrega muitos genes, mas o Y é pequeno e tem poucos. Por isso, um alelo **recessivo no X** se comporta de um jeito diferente:
+
+- Um **homem** tem só um X, então se esse X tiver o alelo recessivo, ele **terá a característica**, mesmo com uma só cópia.
+- Uma **mulher** tem dois X: precisa do alelo nos dois para ter a característica. Com um só, ela é **portadora**, normal, mas pode passar o alelo.
+
+É por isso que daltonismo e hemofilia são muito mais comuns em homens. O daltonismo de vermelho e verde afeta cerca de **8%** dos homens e cerca de **0,5%** das mulheres de ascendência europeia, e entre os dois sexos o número é bem diferente porque os homens só precisam de uma cópia.
+
+Regra importante: o **pai passa o X para as filhas** e o **Y para os filhos**. Então um pai daltônico nunca passa o alelo para um filho homem: seus filhos recebem o Y dele, e o X vem da mãe.
+
+<HerancaLigadaAoX />
+
+<Brincando titulo="Cromossomo X: a casa com uma só fechadura">
+
+Imagine que cada cromossomo X guarda uma chave de um cofre. As mulheres têm **duas chaves** de cada tipo, então, se uma estiver quebrada, a outra abre o cofre. Os homens só têm **uma chave** do X. Se ela estiver quebrada, o cofre não abre. É por isso que uma falha numa chave do X **aparece** nos homens, e as mulheres só têm o problema se as duas chaves estiverem quebradas.
+
+</Brincando>
+
+<ExemploResolvido titulo="Uma mulher portadora de daltonismo (XD Xd) tem filhos com um homem de visão normal (XD Y)">
+  <Passo>A mãe dá **XD** ou **Xd**, com a mesma chance. O pai dá **XD** (para as filhas) ou **Y** (para os filhos).</Passo>
+  <Passo>Meninas: XD XD (normal) ou XD Xd (portadora). **Nenhuma é daltônica**, porque todas recebem XD do pai.</Passo>
+  <Passo>Meninos: XD Y (normal) ou Xd Y (**daltônico**). **Metade dos meninos** é daltônica.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Mãe portadora (XD Xd) e pai de visão normal: que porcentagem dos meninos é daltônica?" resposta="50" dica="O menino recebe um X da mãe: XD ou Xd." resolucao="Metade recebe Xd e é daltônica: 50%." />
+
+<Exercicio enunciado="Mãe de visão normal (XD XD) e pai daltônico (Xd Y): que porcentagem das meninas é portadora?" resposta="100" dica="A menina recebe o X do pai." resolucao="Todas as meninas recebem Xd do pai e XD da mãe: 100% são portadoras." />
+
+<Exercicio enunciado="Num grupo de 1000 homens, 8% são daltônicos. Quantos são?" resposta="80" dica="8% de 1000." resolucao="0,08 × 1000 = 80 homens." />
+
+<Aprofundar titulo="Por que o Y é tão pequeno?">
+
+O cromossomo Y tem só algumas **dezenas de genes**, enquanto o X tem mais de **mil**. O Y carrega, por exemplo, um gene que desencadeia o desenvolvimento de testículos no embrião (o SRY). Os cientistas acreditam que, ao longo de milhões de anos, o Y foi perdendo genes. Mesmo assim, ele continua cumprindo bem o seu papel.
+
+</Aprofundar>
+
+## Doenças dominantes
+
+Nas doenças autossômicas dominantes, um só alelo basta. Um exemplo é a **doença de Huntington**, que afeta o sistema nervoso e costuma aparecer na vida adulta, entre os 30 e os 50 anos. Se um dos pais é **Hh** (afetado) e o outro é **hh** (normal), cada filho tem **50% de chance** de herdar o alelo H.
+
+<Exercicio enunciado="Um pai com doença de Huntington (Hh) e uma mãe sem a doença (hh) têm um filho. Qual a chance, em porcentagem, de ele ter o alelo da doença?" resposta="50" dica="O pai dá H ou h." resolucao="Metade dos filhos recebe H: 50%." />
+
+## Aconselhamento genético e teste do pezinho
+
+Famílias com histórico de doenças genéticas podem procurar um **aconselhamento genético**, uma consulta em que um profissional explica os riscos, calcula probabilidades (como você fez aqui) e discute as opções. No Brasil, o **teste do pezinho**, feito nos primeiros dias de vida pelo SUS, detecta doenças como a **fenilcetonúria**, a **anemia falciforme**, o hipotireoidismo e a fibrose cística. Descobrir cedo permite tratar a tempo e evitar sequelas.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'No heredograma, o que o símbolo preenchido indica?',
+    opcoes: ['Que a pessoa tem a característica estudada', 'Que a pessoa é mulher', 'Que a pessoa morreu'],
+    correta: 0,
+    explicacao: 'Preenchido = tem a característica. Quadrado é homem e círculo é mulher.',
+  },
+  {
+    enunciado: 'Dois pais sem uma característica têm um filho com ela. A característica é:',
+    opcoes: ['Recessiva', 'Dominante', 'Impossível'],
+    correta: 0,
+    explicacao: 'Os pais são portadores (Aa) do alelo escondido, e o filho recebeu um a de cada um.',
+  },
+  {
+    enunciado: 'Qual a chance de o filho de dois portadores (Aa x Aa) ter a doença recessiva?',
+    opcoes: ['25%', '50%', '75%'],
+    correta: 0,
+    explicacao: 'Só a combinação aa, 1 em 4.',
+  },
+  {
+    enunciado: 'Um casal teve 2 filhos com uma doença recessiva (aa). A chance do terceiro ter a doença é:',
+    opcoes: ['Menor que 25%', '25%', 'Maior que 25%'],
+    correta: 1,
+    explicacao: 'Cada filho é um sorteio novo. O acaso não tem memória.',
+  },
+  {
+    enunciado: 'A chance de um casal Aa x Aa ter um menino aa é:',
+    opcoes: ['1/4', '1/8', '1/2'],
+    correta: 1,
+    explicacao: 'Regra do E: 1/4 (ser aa) × 1/2 (ser menino) = 1/8.',
+  },
+  {
+    enunciado: 'Um filho sem a doença de um casal Aa x Aa. Qual a chance de ele ser portador?',
+    opcoes: ['1/2', '2/3', '3/4'],
+    correta: 1,
+    explicacao: 'Ele não é aa, então sobram AA (1), Aa (1) e aA (1). Dois dos três são portadores: 2/3.',
+  },
+  {
+    enunciado: 'Quantos fenótipos o sistema sanguíneo ABO tem?',
+    opcoes: ['3', '4', '6'],
+    correta: 1,
+    explicacao: 'Os fenótipos são A, B, AB e O. Os genótipos possíveis são 6.',
+  },
+  {
+    enunciado: 'Uma pessoa de sangue tipo AB tem genótipo:',
+    opcoes: ['IAIB', 'IAi', 'ii'],
+    correta: 0,
+    explicacao: 'IA e IB são codominantes: os dois marcadores aparecem ao mesmo tempo.',
+  },
+  {
+    enunciado: 'Pai IAi e mãe ii. Que tipos de sangue os filhos podem ter?',
+    opcoes: ['Só A', 'A ou O', 'A, B, AB ou O'],
+    correta: 1,
+    explicacao: 'O pai dá IA ou i, a mãe dá só i. Os filhos são IAi (tipo A) ou ii (tipo O).',
+  },
+  {
+    enunciado: 'Por que o daltonismo é mais comum em homens?',
+    opcoes: ['Porque o gene está no X e os homens têm só um X', 'Porque os homens têm dois Y', 'Porque o daltonismo é dominante'],
+    correta: 0,
+    explicacao: 'Com um só X, um homem com o alelo recessivo já mostra a característica.',
+  },
+  {
+    enunciado: 'Um pai daltônico pode passar o alelo do daltonismo para um filho homem?',
+    opcoes: ['Sim, sempre', 'Não, o filho recebe o Y do pai', 'Só se a mãe também for daltônica'],
+    correta: 1,
+    explicacao: 'O pai passa o Y aos filhos e o X às filhas. O X dos filhos vem da mãe.',
+  },
+  {
+    enunciado: 'Numa doença dominante autossômica, um pai afetado (Hh) e uma mãe normal (hh). A chance de cada filho ser afetado é:',
+    opcoes: ['25%', '50%', '100%'],
+    correta: 1,
+    explicacao: 'O pai dá H ou h, com a mesma chance.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Heredograma:** quadrado é homem, círculo é mulher, preenchido tem a característica. Pais normais com filho afetado indicam herança recessiva.
+- **Padrões:** autossômica recessiva (pula gerações), autossômica dominante (todo afetado tem genitor afetado) e recessiva ligada ao X (mais homens afetados).
+- **Probabilidade:** regra do E multiplica, regra do OU soma. Cada filho é um sorteio novo, sem memória. Entre os filhos normais de Aa x Aa, 2/3 são portadores.
+- **ABO:** três alelos (IA, IB e i), 6 genótipos e 4 fenótipos. IA e IB são codominantes.
+- **Ligada ao X:** homens só têm um X, então um alelo recessivo basta. Pai passa X para as filhas e Y para os filhos.
+
+**Um pouco de história.** Dalton descreveu o daltonismo em 1798. A rainha Vitória levou a hemofilia a famílias reais da Europa. Landsteiner descobriu os grupos sanguíneos em 1901 (Nobel em 1930), e Morgan mostrou em 1910 que genes ficam no cromossomo X.
+
+</Resumo>
+
+Agora você sabe ler uma família e calcular chances. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

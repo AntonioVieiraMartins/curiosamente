@@ -1,0 +1,401 @@
+import QuadroDePunnett from '../../../components/simulacoes/QuadroDePunnett'
+import PlantandoErvilhas from '../../../components/simulacoes/PlantandoErvilhas'
+import CruzamentoTeste from '../../../components/simulacoes/CruzamentoTeste'
+import DihibridoNaGrade from '../../../components/simulacoes/DihibridoNaGrade'
+import FlorQueMistura from '../../../components/simulacoes/FlorQueMistura'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Gregor Mendel, Mendelian inheritance, Dominance (genetics), Punnett square, Test cross, Incomplete dominance, Mendel's Laws, Mendelian paradox), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Você tem o nariz da sua avó, o sorriso do seu pai e a altura de ninguém da família. Por que os filhos se parecem com os pais, **mas não são cópias**? E por que uma característica pode "pular" uma geração e reaparecer num neto?
+
+Em 1865, um **monge** que cuidava da horta de um mosteiro, num lugar sem laboratório, respondeu a isso com **ervilhas**, papel e muita paciência. Ele não sabia o que era um gene, nem o que era DNA, mas descobriu as **regras** que os genes seguem.
+
+<Palpite
+  chave="inicial"
+  pergunta="Uma planta de ervilha de flor roxa é cruzada com outra, também de flor roxa. Algumas filhas saem de flor branca. Isso é possível?"
+  opcoes={['Não, roxa com roxa só dá roxa', 'Sim, e saem mais ou menos 1 branca para cada 3 roxas', 'Sim, mas é um erro raro e sem regra']}
+/>
+
+Nesta cápsula você vai ver como Mendel fez os experimentos, como funcionam os alelos dominantes e recessivos, como usar o quadro de Punnett para prever as chances e o que acontece quando o cruzamento envolve duas características ao mesmo tempo.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Até o século 19, quase todo mundo acreditava na **herança por mistura**: o filho seria um meio-termo dos pais, como tinta preta misturada com tinta branca dá cinza. Isso tem um problema: se tudo se misturasse, depois de poucas gerações todos seriam iguais. A natureza mostra o contrário.
+
+<LinhaDoTempo marcos={[
+  { ano: '1822', texto: 'Nasce Johann Mendel, numa família de camponeses do que hoje é a República Tcheca. Mais tarde, no mosteiro, adota o nome Gregor.' },
+  { ano: '1856', texto: 'Mendel começa os cruzamentos com ervilhas no jardim do mosteiro de Brno.' },
+  { ano: '1865', texto: 'Apresenta os resultados em duas palestras para a Sociedade de História Natural de Brno.' },
+  { ano: '1866', texto: 'O trabalho é publicado. Quase ninguém reage.' },
+  { ano: '1884', texto: 'Mendel morre, sem ver o reconhecimento do seu trabalho.' },
+  { ano: '1900', texto: 'De Vries, Correns e Tschermak, cada um por conta própria, redescobrem as regras de Mendel.' },
+  { ano: '1905', texto: 'William Bateson passa a usar a palavra genética para a nova ciência.' },
+  { ano: '1909', texto: 'Wilhelm Johannsen cria os termos gene, genótipo e fenótipo.' },
+]} />
+
+## O monge e o jardim
+
+**Gregor Mendel** entrou, em 1843, no mosteiro agostiniano de São Tomás, em Brno. A ordem gostava de ciência: o mosteiro tinha biblioteca, jardim e estufa. Mendel estudou também na Universidade de Viena, onde aprendeu física e botânica. Gostava de **contar**, e isso foi seu superpoder.
+
+## Oito anos de ervilhas
+
+A ervilha é uma ótima planta para esse trabalho: cresce rápido, dá muitas sementes e tem variedades bem definidas (semente lisa ou rugosa, flor roxa ou branca). E o mais importante: ela se **autofecunda** sozinha, mas Mendel podia abrir a flor e polinizar com o pólen de outra planta, escolhendo os pais.
+
+Entre 1856 e 1863, ele cultivou e analisou **cerca de 28 mil plantas**. Escolheu **sete características** com duas formas bem diferentes cada: forma da semente, cor da semente, cor da flor, forma da vagem, cor da vagem, posição da flor e altura do caule. Começou só com linhagens **puras**, que dão sempre o mesmo resultado quando cruzadas entre si, e fez algo novo: **contou** cada tipo de descendente e comparou as proporções.
+
+## Ignorado por 34 anos
+
+Em 1866, o artigo de Mendel foi publicado. Poucos cientistas leram, e quem leu não viu a importância. Mendel virou abade do mosteiro, ocupou-se de tarefas administrativas e morreu em 1884. Em **1900**, três botânicos, o holandês **Hugo de Vries**, o alemão **Carl Correns** e o austríaco **Erich von Tschermak**, chegaram independentemente aos mesmos resultados, foram buscar na literatura e encontraram o artigo de Mendel, que já tinha feito tudo 34 anos antes.
+
+## Genes nos cromossomos
+
+Em 1902, Sutton e Boveri mostraram que o comportamento dos cromossomos na meiose combina com os "fatores" de Mendel. Em 1909, Johannsen batizou esses fatores de **genes**. Depois, Thomas Hunt Morgan e seu grupo provaram, com moscas-da-fruta, que os genes ficam mesmo nos cromossomos.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Dois fatores por característica
+
+Mendel imaginou que cada característica é controlada por **dois fatores**, um herdado de cada genitor. Hoje chamamos esses fatores de **alelos** (versões de um gene). Para a cor da flor, por exemplo, um alelo pode dar roxo e outro, branco.
+
+Cada pai ou mãe passa **só um** dos seus dois alelos para o filho, sorteado ao acaso. E cada filho junta dois: um de cada genitor.
+
+## 2. Um alelo manda mais
+
+Quando os dois alelos são diferentes, nem sempre as duas versões aparecem. Em ervilhas, quem tem um alelo "roxo" e um "branco" fica **roxa**. O alelo que aparece é o **dominante**, e o que fica escondido é o **recessivo**. O alelo recessivo só aparece quando a planta tem **duas cópias** dele.
+
+<Brincando titulo="Dominante e recessivo: o bolo que só desanda se os dois errarem">
+
+Duas pessoas fazem um bolo juntas. Se **pelo menos uma** sabe a receita, o bolo sai bom. O bolo só sai estragado se **as duas** erram a receita. O alelo dominante é a pessoa que sabe a receita: uma basta. O recessivo é quem erra: o bolo só desanda com duas. Por isso o alelo recessivo "some" numa geração e reaparece na seguinte, quando dois portadores se encontram.
+
+</Brincando>
+
+## 3. Sorteio de bolas
+
+Pense em cada pai ou mãe como uma **urna com duas bolas**: as duas bolas são os seus dois alelos. O filho tira **uma bola de cada urna**. Se a urna do pai tem uma bola A e uma a, e a da mãe também, as combinações possíveis são AA, Aa, aA e aa, cada uma com a mesma chance. Essa é a ideia por trás do quadro de Punnett que você vai usar.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Duas plantas de ervilha lisa, cada uma com um alelo A (liso) e um a (rugoso), são cruzadas. Que fração dos filhos terá semente rugosa?"
+  opcoes={['Nenhuma', 'Um quarto', 'Metade']}
+  correta={1}
+  explicacao="Cada pai passa A ou a, com a mesma chance. Só os filhos aa (1 em 4) são rugosos. Os outros três quartos têm pelo menos um A e ficam lisos."
+>
+
+Cruze dois pais e veja os filhos possíveis:
+
+<QuadroDePunnett />
+
+Escolha Aa e Aa. Saem três tipos de genótipo (AA, Aa e aa) na razão 1 : 2 : 1, mas só **dois** fenótipos (lisa e rugosa), na razão 3 : 1.
+
+Agora plante de verdade e veja a proporção emergir do acaso:
+
+<PlantandoErvilhas />
+
+Com poucas sementes a conta oscila, e com muitas se aproxima de 3 para 1. Foi por isso que Mendel contou milhares de plantas.
+
+Volte ao palpite do começo: duas plantas de flor roxa podem ter filhas de flor branca?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Não, roxa com roxa só dá roxa', 'Sim, e saem mais ou menos 1 branca para cada 3 roxas', 'Sim, mas é um erro raro e sem regra']}
+  correta={1}
+  seAcertou="Certo: se as duas plantas roxas são Aa, 1 em cada 4 filhas será aa, de flor branca. A proporção é 3 roxas para 1 branca."
+  seErrou="O certo é: sim, e a proporção é de 3 roxas para 1 branca. As duas plantas roxas têm o alelo branco escondido (Aa). Cada filha tem 1 chance em 4 de receber o alelo branco dos dois."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## O vocabulário da genética
+
+Antes de seguir, vale conhecer as palavras que a genética usa:
+
+- **Gene:** um trecho do DNA com uma instrução (por exemplo, a cor da flor).
+- **Alelo:** cada versão de um gene (roxo ou branco). Os alelos são escritos com letras: maiúscula para o dominante (A) e minúscula para o recessivo (a).
+- **Genótipo:** os dois alelos que o indivíduo tem (AA, Aa ou aa).
+- **Fenótipo:** o que aparece (semente lisa ou rugosa). O fenótipo depende do genótipo, e muitas vezes também do ambiente.
+- **Homozigoto:** tem dois alelos **iguais** (AA ou aa).
+- **Heterozigoto:** tem dois alelos **diferentes** (Aa).
+- **Linhagem pura:** homozigoto para a característica, que sempre dá o mesmo resultado quando cruzado entre si.
+
+Perceba que Aa e AA têm **o mesmo fenótipo** (liso), mas **genótipos diferentes**. Olhando só para a planta, não dá para saber qual é qual.
+
+<Exercicio enunciado="Quantos genótipos diferentes são possíveis para um gene com dois alelos, A e a?" resposta="3" dica="AA, Aa e ..." resolucao="AA, Aa e aa: são 3 genótipos." />
+
+## O primeiro experimento de Mendel
+
+Mendel cruzou uma planta pura de semente lisa (AA) com uma pura de semente rugosa (aa). Todos os filhos, chamados de **F1**, saíram **lisos**: a rugosidade sumiu. Não havia "mistura". Em seguida, cruzou os filhos entre si. Nos netos (**F2**), a rugosidade **reapareceu**, e em proporção quase fixa: **5.474 lisas para 1.850 rugosas**, cerca de **3 para 1** (2,96 : 1).
+
+Ele repetiu com cada uma das sete características e encontrou sempre o mesmo padrão. Com a cor da semente (amarela ou verde), por exemplo, contou 6.022 amarelas e 2.001 verdes, quase exatamente 3 : 1.
+
+<ExemploResolvido titulo="Cruzando AA com aa: por que todo F1 é liso, e por que o F2 volta com rugosas?">
+  <Passo>O pai AA só produz gametas **A**. A mãe aa só produz gametas **a**.</Passo>
+  <Passo>Todo filho recebe um A e um a: **Aa**. Como A é dominante, todos são **lisos**.</Passo>
+  <Passo>No F2, cruzamos Aa com Aa. Cada um produz gametas A e a, metade e metade.</Passo>
+  <Passo>As combinações são AA, Aa, aA e aa. Só **aa** (1 em 4) é rugoso. Resultado: **3 lisas para 1 rugosa**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Cruzando duas plantas Aa, que porcentagem dos filhos é aa (rugosa)?" resposta="25" dica="Uma das quatro combinações." resolucao="1 em 4 = 25%." />
+
+<Exercicio enunciado="Cruzando AA com aa, que porcentagem dos filhos tem semente lisa?" resposta="100" dica="Todos os filhos são Aa." resolucao="Todos são Aa, e A é dominante: 100% lisos." />
+
+<Exercicio enunciado="Cruzando Aa com Aa e plantando 800 sementes, quantas lisas você espera?" resposta="600" dica="3 em cada 4." resolucao="3/4 de 800 = 600 sementes lisas (e 200 rugosas)." />
+
+## O quadro de Punnett
+
+O **quadro de Punnett** (em homenagem ao geneticista britânico Reginald Punnett, que o criou no início do século 20) é uma tabela que mostra todas as combinações de gametas. Como usar:
+
+- Escreva os gametas de um genitor **em cima** e os do outro, **ao lado**.
+- Preencha cada quadrado com a junção das duas letras.
+- Conte os genótipos e os fenótipos: cada quadrado vale a mesma chance.
+
+<Brincando titulo="Punnett: duas urnas e uma tabela de jogo">
+
+Pense num jogo de tabuleiro com duas urnas de bolinhas. Cada urna tem uma bolinha A e outra a. Para saber todos os resultados possíveis, você monta uma tabela: de um lado, as bolinhas da urna 1, e do outro, as da urna 2. Cada casa da tabela é um resultado. Como todas as casas têm o mesmo tamanho, todos os resultados são **igualmente prováveis**. É só isso que o quadro de Punnett faz.
+
+</Brincando>
+
+<ExemploResolvido titulo="Uma planta Aa é cruzada com uma aa. Quais os filhos?">
+  <Passo>A planta Aa dá gametas **A** e **a**. A planta aa dá só gametas **a**.</Passo>
+  <Passo>Combinações: A + a = **Aa**, e a + a = **aa**. Cada uma tem a mesma chance.</Passo>
+  <Passo>Metade dos filhos é **Aa** (lisos) e metade é **aa** (rugosos). A razão é de **1 : 1**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Cruzando Aa com aa, que porcentagem dos filhos é Aa?" resposta="50" dica="Metade e metade." resolucao="Metade (50%) dos filhos é Aa, e a outra metade é aa." />
+
+## A primeira lei de Mendel
+
+Os resultados levam à **primeira lei de Mendel**, também chamada de **lei da segregação**:
+
+- Cada indivíduo tem **dois alelos** para cada característica.
+- Na formação dos gametas, os dois alelos **se separam**, e cada gameta recebe **só um**.
+- Na fecundação, os alelos se juntam de novo, formando pares.
+
+Hoje sabemos o porquê: os alelos estão em cromossomos homólogos, que se separam na **meiose I**, exatamente o que você viu na cápsula anterior.
+
+<Aprofundar titulo="Os números de Mendel eram bons demais?">
+
+Em 1936, o estatístico e geneticista **Ronald Fisher** examinou os dados de Mendel e achou que eles estavam **perto demais** do esperado, mais perto do que o acaso costuma permitir. Isso gerou um debate que dura décadas. Algumas explicações possíveis: Mendel pode ter parado de contar quando os números "fechavam", um ajudante pode ter arredondado, ou o próprio cálculo de Fisher tinha limites. Ninguém acusa a teoria: ela foi confirmada por milhares de experimentos depois. É só um lembrete de que **mesmo uma descoberta enorme** pode ter pontos discutíveis nos detalhes.
+
+</Aprofundar>
+
+## Como descobrir o genótipo escondido
+
+Uma planta de semente lisa pode ser AA ou Aa. Para descobrir, usa-se o **cruzamento-teste**: cruza-se com uma planta **aa**, recessiva.
+
+- Se **todos** os filhos saírem lisos, a planta era provavelmente **AA** (só dá gameta A).
+- Se **aparecerem rugosos**, ela era **Aa** (deu gameta a para alguns filhos).
+
+<CruzamentoTeste />
+
+<ExemploResolvido titulo="Um cruzamento-teste com 8 filhos: 5 lisos e 3 rugosos. Qual o genótipo do pai liso?">
+  <Passo>O outro genitor é aa, que só dá gametas **a**.</Passo>
+  <Passo>Apareceram filhos **rugosos (aa)**, então o genitor liso passou um alelo **a** para eles.</Passo>
+  <Passo>Logo, ele tem o alelo a e é **Aa**. Os números 5 e 3 estão perto do esperado de 4 e 4.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Num cruzamento-teste de uma planta lisa (Aa) com aa, que porcentagem dos filhos é rugosa?" resposta="50" dica="Metade dos gametas da planta Aa é a." resolucao="Metade dos filhos é Aa e metade é aa: 50% rugosos." />
+
+## Duas características ao mesmo tempo
+
+Mendel também cruzou plantas que diferiam em **duas** características: a forma (lisa ou rugosa) e a cor (amarela ou verde) da semente. Ele começou com uma planta pura lisa e amarela (AABB) e uma pura rugosa e verde (aabb). Os filhos (F1) foram todos **AaBb**, lisos e amarelos.
+
+No F2, ele contou 556 sementes, e encontrou:
+
+- **315** lisas e amarelas.
+- **108** lisas e verdes.
+- **101** rugosas e amarelas.
+- **32** rugosas e verdes.
+
+Dividindo por 32, isso dá quase **9 : 3 : 3 : 1**. Isso é o esperado quando as duas características se **herdam de forma independente**. Cada indivíduo AaBb produz **4 tipos de gameta**, com a mesma chance: AB, Ab, aB e ab. Cruzando dois AaBb, o quadro tem **16 casas**.
+
+<DihibridoNaGrade />
+
+<Brincando titulo="9 : 3 : 3 : 1: duas moedas jogadas juntas">
+
+Jogue **duas moedas** ao mesmo tempo. A primeira representa a forma da semente (3 chances em 4 de ser lisa) e a segunda a cor (3 chances em 4 de ser amarela). Como uma não afeta a outra, as chances **se multiplicam**: lisa e amarela = 3/4 × 3/4 = **9/16**. Lisa e verde = 3/4 × 1/4 = **3/16**. Rugosa e amarela = 1/4 × 3/4 = **3/16**. Rugosa e verde = 1/4 × 1/4 = **1/16**. Aí estão os 9, 3, 3 e 1.
+
+</Brincando>
+
+<ExemploResolvido titulo="Quantos tipos de gameta faz um indivíduo AaBb, e quais?">
+  <Passo>O primeiro gene dá **A** ou **a**. O segundo dá **B** ou **b**.</Passo>
+  <Passo>Cada gameta recebe um alelo de cada gene: combinações **AB, Ab, aB e ab**.</Passo>
+  <Passo>2 × 2 = **4 tipos de gameta**, cada um com 1/4 de chance.</Passo>
+</ExemploResolvido>
+
+<ExemploResolvido titulo="No cruzamento AaBb x AaBb, qual a chance de um filho rugoso e verde (aabb)?">
+  <Passo>A chance de aa é 1/4.</Passo>
+  <Passo>A chance de bb também é 1/4.</Passo>
+  <Passo>Como os genes são independentes, **multiplicamos**: 1/4 × 1/4 = **1/16**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos tipos de gameta produz um indivíduo AaBb?" resposta="4" dica="2 vezes 2." resolucao="AB, Ab, aB e ab: 4 tipos." />
+
+<Exercicio enunciado="Quantos tipos de gameta produz um indivíduo AaBbCc?" resposta="8" dica="2 vezes 2 vezes 2." resolucao="2 × 2 × 2 = 8 tipos." />
+
+<Exercicio enunciado="Cruzando AaBb com AaBb, quantas das 16 combinações dão semente lisa e amarela?" resposta="9" dica="Casos com pelo menos um A e pelo menos um B." resolucao="9 de 16 (a razão 9 : 3 : 3 : 1)." />
+
+<Exercicio enunciado="Cruzando AaBb com AaBb e obtendo 1600 sementes, quantas rugosas e verdes você espera?" resposta="100" dica="1/16 de 1600." resolucao="1600 ÷ 16 = 100 sementes." />
+
+<Exercicio enunciado="Cruzando AaBb com AaBb e obtendo 160 sementes, quantas lisas e verdes (3/16) você espera?" resposta="30" dica="160 ÷ 16 = 10 por casa." resolucao="3 × 10 = 30 sementes." />
+
+## A segunda lei de Mendel
+
+A **segunda lei de Mendel**, a lei da **segregação independente**, diz que os alelos de genes diferentes se separam **de forma independente** na formação dos gametas. O que acontece com a forma da semente não influencia a cor.
+
+Hoje sabemos que a lei vale quando os genes estão em **cromossomos diferentes**. Se dois genes ficam bem próximos no **mesmo** cromossomo, eles tendem a ser herdados juntos (são genes **ligados**), e as proporções mudam. Mendel teve sorte: os sete genes que ele estudou ficam em lugares onde a regra funciona bem.
+
+<Aprofundar titulo="Genes ligados e o crossing-over">
+
+Se dois genes ficam no mesmo cromossomo, os alelos que já estavam juntos vão juntos para o gameta. O **crossing-over** da meiose pode quebrar essa ligação, mas só de vez em quando, e quanto **mais longe** os genes estão, mais frequente é a troca. Foi assim que Thomas Hunt Morgan e seus alunos, trabalhando com moscas-da-fruta, começaram a fazer **mapas** dos genes nos cromossomos, medindo a frequência de troca entre eles.
+
+</Aprofundar>
+
+## Quando nem tudo é dominante
+
+Mendel teve sorte: as sete características dele eram simples. Muita coisa na natureza **foge** da regra "um dominante e um recessivo". Os casos mais comuns:
+
+- **Dominância incompleta:** o heterozigoto tem um fenótipo **intermediário**. Na planta maravilha (*Mirabilis jalapa*), vermelha com branca dá flores **rosas**. Cruzando duas rosas, saem vermelhas, rosas e brancas na razão **1 : 2 : 1**.
+- **Codominância:** os dois alelos aparecem **ao mesmo tempo**, sem mistura. É o caso do grupo sanguíneo AB (você verá na cápsula de heredogramas).
+- **Vários genes para uma característica:** altura, cor da pele e cor dos olhos humanos dependem de **muitos genes** e do ambiente, então não seguem a regra 3 : 1.
+- **Um gene para várias características:** alguns genes afetam vários aspectos do corpo ao mesmo tempo.
+
+<FlorQueMistura />
+
+<Brincando titulo="Dominância incompleta: tinta vermelha com tinta branca">
+
+Aqui sim, a ideia antiga da "mistura" parece valer: vermelho mais branco dá rosa. Mas há uma diferença importante. Se você cruzar duas rosas, as cores originais **reaparecem** (vermelhas e brancas), o que não aconteceria numa mistura de tintas de verdade. Os alelos não se misturam: **continuam intactos** e se separam de novo na formação dos gametas. O rosa é só o efeito de uma cópia de cada.
+
+</Brincando>
+
+<ExemploResolvido titulo="Duas flores rosas (RB) são cruzadas. Quais as proporções dos filhos?">
+  <Passo>Cada uma dá gametas **R** e **B**, com a mesma chance.</Passo>
+  <Passo>Combinações: RR, RB, BR e BB.</Passo>
+  <Passo>**1/4 vermelhas (RR), 2/4 rosas (RB) e 1/4 brancas (BB)**: razão 1 : 2 : 1.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Cruzando duas flores rosas (RB x RB), que porcentagem dos filhos é rosa?" resposta="50" dica="2 das 4 combinações." resolucao="RB e BR são rosas: 2 em 4, ou 50%." />
+
+## Mitos e verdades sobre genética humana
+
+Muita gente aprende que "olhos castanhos são dominantes e olhos azuis, recessivos" e que enrolar a língua é uma característica simples. A realidade é mais complicada:
+
+- A cor dos olhos depende de **vários genes**. Dois pais de olhos azuis podem, raramente, ter um filho de olhos castanhos.
+- Enrolar a língua **não** é determinado por um só gene, como se ensinava. Gêmeos idênticos nem sempre têm a mesma habilidade.
+- Alguns exemplos que **seguem** a regra de um gene: **albinismo** (recessivo), **fibrose cística** (recessiva), **anemia falciforme** (recessiva) e **doença de Huntington** (dominante).
+
+Na próxima cápsula, de heredogramas, você vai usar tudo isso para calcular a chance de uma família ter filhos com uma característica.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Quem é considerado o pai da genética?',
+    opcoes: ['Charles Darwin', 'Gregor Mendel', 'Louis Pasteur'],
+    correta: 1,
+    explicacao: 'Mendel, monge de Brno, descobriu as regras da herança com ervilhas, entre 1856 e 1863.',
+  },
+  {
+    enunciado: 'Por que a ervilha foi uma boa escolha para Mendel?',
+    opcoes: ['Cresce rápido, dá muitas sementes e tem variedades bem definidas', 'É a única planta com genes', 'Não precisa de água'],
+    correta: 0,
+    explicacao: 'Também permite controlar quem poliniza quem, o que é essencial para planejar os cruzamentos.',
+  },
+  {
+    enunciado: 'O que é um alelo?',
+    opcoes: ['Uma versão de um gene', 'Um tipo de célula', 'Um cromossomo inteiro'],
+    correta: 0,
+    explicacao: 'O gene da cor da flor, por exemplo, tem um alelo para roxo e outro para branco.',
+  },
+  {
+    enunciado: 'Uma planta Aa é:',
+    opcoes: ['Homozigota dominante', 'Heterozigota', 'Homozigota recessiva'],
+    correta: 1,
+    explicacao: 'Heterozigoto é quem tem dois alelos diferentes.',
+  },
+  {
+    enunciado: 'Cruzando duas plantas Aa, que proporção de fenótipos se espera?',
+    opcoes: ['1 : 1', '3 : 1', '9 : 3 : 3 : 1'],
+    correta: 1,
+    explicacao: '3 com o fenótipo dominante para 1 com o recessivo.',
+  },
+  {
+    enunciado: 'Cruzando AA com aa, como são todos os filhos?',
+    opcoes: ['AA', 'Aa', 'aa'],
+    correta: 1,
+    explicacao: 'Cada filho recebe um A de um lado e um a do outro: todos são Aa.',
+  },
+  {
+    enunciado: 'Cruzando Aa com aa, que fração dos filhos é aa?',
+    opcoes: ['Nenhum', 'Metade', 'Todos'],
+    correta: 1,
+    explicacao: 'O genitor Aa dá A ou a, com a mesma chance. Metade dos filhos recebe a e fica aa.',
+  },
+  {
+    enunciado: 'Para que serve o cruzamento-teste?',
+    opcoes: ['Descobrir o genótipo de um indivíduo com fenótipo dominante', 'Fazer plantas maiores', 'Contar cromossomos'],
+    correta: 0,
+    explicacao: 'Cruzando com um recessivo (aa), os filhos revelam se o indivíduo era AA ou Aa.',
+  },
+  {
+    enunciado: 'O que diz a primeira lei de Mendel?',
+    opcoes: ['Os alelos de cada gene se separam na formação dos gametas', 'Todos os genes ficam juntos', 'Os filhos são sempre iguais aos pais'],
+    correta: 0,
+    explicacao: 'Cada gameta recebe só um dos dois alelos de cada gene.',
+  },
+  {
+    enunciado: 'Quantos tipos de gameta produz um indivíduo AaBb (genes independentes)?',
+    opcoes: ['2', '4', '8'],
+    correta: 1,
+    explicacao: 'AB, Ab, aB e ab: 2 × 2 = 4 tipos.',
+  },
+  {
+    enunciado: 'No cruzamento AaBb x AaBb, qual a razão de fenótipos esperada?',
+    opcoes: ['3 : 1', '9 : 3 : 3 : 1', '1 : 2 : 1'],
+    correta: 1,
+    explicacao: 'Com dois genes independentes e dominância completa, a razão é 9 : 3 : 3 : 1, em 16 combinações.',
+  },
+  {
+    enunciado: 'Cruzando duas flores rosas de dominância incompleta (RB x RB), qual a razão dos filhos?',
+    opcoes: ['1 vermelha : 2 rosas : 1 branca', '3 rosas : 1 branca', 'Todas rosas'],
+    correta: 0,
+    explicacao: 'O heterozigoto tem fenótipo próprio, então os três genótipos aparecem como três cores: 1 : 2 : 1.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Alelos:** cada característica tem dois, um de cada genitor. O dominante (A) aparece com uma cópia, e o recessivo (a), só com duas.
+- **Genótipo e fenótipo:** AA e Aa têm o mesmo fenótipo, mas genótipos diferentes. Homozigoto tem alelos iguais, e heterozigoto, diferentes.
+- **Primeira lei:** os dois alelos se separam na formação dos gametas. Aa x Aa dá 1 AA : 2 Aa : 1 aa (fenótipos 3 : 1).
+- **Quadro de Punnett:** tabela com todas as combinações, todas com a mesma chance. O cruzamento-teste com aa revela o genótipo escondido.
+- **Segunda lei:** genes em cromossomos diferentes se herdam de forma independente. AaBb x AaBb dá 9 : 3 : 3 : 1.
+- **Exceções:** dominância incompleta (1 : 2 : 1), codominância, genes ligados e características com muitos genes.
+
+**Um pouco de história.** Mendel cruzou cerca de 28 mil ervilhas entre 1856 e 1863 e publicou o resultado em 1866. Ficou 34 anos esquecido, até 1900, quando De Vries, Correns e Tschermak o redescobriram. Bateson deu o nome de genética à ciência (1905), Johannsen criou a palavra gene (1909), e Morgan provou que os genes ficam nos cromossomos.
+
+</Resumo>
+
+Agora que você sabe as regras, pode prever as chances de uma família. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

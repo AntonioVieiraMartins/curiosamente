@@ -1,0 +1,453 @@
+import FasesDaMitose from '../../../components/simulacoes/FasesDaMitose'
+import DobrandoCelulas from '../../../components/simulacoes/DobrandoCelulas'
+import ContaCromossomos from '../../../components/simulacoes/ContaCromossomos'
+import CrossingOver from '../../../components/simulacoes/CrossingOver'
+import CombinacoesDeGametas from '../../../components/simulacoes/CombinacoesDeGametas'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Mitosis, Meiosis, Cell cycle, Walther Flemming, Oscar Hertwig, Crossing over, Nondisjunction, Down syndrome, Hayflick limit), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Você começou como **uma única célula**, menor que um ponto final. Hoje seu corpo tem algo como **30 a 40 trilhões** delas. Ninguém colou célula por célula: cada uma nasceu da **divisão** de outra, de novo e de novo.
+
+E há um segredo a mais. Seus pais também começaram de uma célula, mas você **não é cópia** de nenhum deles, nem de seus irmãos. Existem **dois tipos de divisão**: um faz cópias fiéis (a mitose), e outro faz células diferentes umas das outras (a meiose).
+
+<Palpite
+  chave="inicial"
+  pergunta="Quantos cromossomos tem uma célula do seu corpo (por exemplo, uma célula da pele)?"
+  opcoes={['23', '46', '92']}
+/>
+
+Nesta cápsula você vai ver como uma célula se divide em duas iguais, como ela faz células sexuais com **metade** do DNA, por que isso cria variedade e o que acontece quando a divisão dá errado.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Antes de existir microscópio bom, ninguém sabia de onde vinham as células. Pensava-se que elas surgiam sozinhas, "do nada". Foi preciso observar uma célula em plena divisão, e para isso era necessário **tingir** o que há dentro dela.
+
+<LinhaDoTempo marcos={[
+  { ano: '1855', texto: 'Rudolf Virchow divulga a ideia de que toda célula vem de outra célula.' },
+  { ano: '1876', texto: 'Oscar Hertwig vê, em ouriços-do-mar, o núcleo do espermatozoide se unir ao do óvulo.' },
+  { ano: '1882', texto: 'Walther Flemming descreve a divisão das células com detalhes e a chama de mitose.' },
+  { ano: '1883', texto: 'Edouard van Beneden vê que as células sexuais de um verme têm metade dos cromossomos.' },
+  { ano: '1902', texto: 'Walter Sutton e Theodor Boveri ligam os cromossomos aos fatores da herança de Mendel.' },
+  { ano: '1905', texto: 'Os biólogos Farmer e Moore dão o nome de meiose à divisão que reduz o número de cromossomos.' },
+  { ano: '1959', texto: 'Jérôme Lejeune descobre que a síndrome de Down tem um cromossomo 21 a mais.' },
+  { ano: '2001', texto: 'Hartwell, Nurse e Hunt ganham o Nobel por descobrir os controles do ciclo celular.' },
+]} />
+
+## Toda célula vem de outra célula
+
+Em meados do século 19, o médico alemão **Rudolf Virchow** defendeu a frase latina *omnis cellula e cellula*: toda célula vem de uma célula. Era uma ideia ousada, porque muita gente ainda acreditava em geração espontânea. Faltava ver isso acontecendo.
+
+## Flemming e os corantes
+
+**Walther Flemming**, um médico e biólogo alemão, usava corantes para tingir células vivas e mortas de salamandra. Ele notou que dentro do núcleo havia filamentos que absorviam bem a tinta. Chamou aquele material de **cromatina** (de "cor") e acompanhou os filamentos: eles se enrolavam, se alinhavam, se separavam em dois grupos e iam parar em duas células novas. Em 1882, deu o nome de **mitose** (de "fio") a todo esse processo.
+
+## O número que cai pela metade
+
+Em 1876, **Oscar Hertwig** viu pela primeira vez, num ouriço-do-mar, o núcleo de um espermatozoide entrar no óvulo e se juntar ao núcleo dele. Aí surgiu um problema: se cada célula sexual trouxesse o número cheio de cromossomos, o filho teria o dobro, e o neto, o quádruplo. Em 1883, **Edouard van Beneden** estudou um verme parasita e viu que óvulo e espermatozoide têm **metade** dos cromossomos das outras células. Em 1905, esse processo ganhou o nome de **meiose**.
+
+## Cromossomos e Mendel se encontram
+
+Em 1902, o americano **Walter Sutton** (estudando gafanhotos) e o alemão **Theodor Boveri** (estudando ouriços) perceberam que os cromossomos se comportam exatamente como os "fatores" de Mendel: vêm em pares, separam-se e se juntam de novo na fecundação. Foi o começo da ideia de que os genes moram nos cromossomos, que vamos usar na próxima cápsula, a de Mendel.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Copiar o manual e repartir
+
+Imagine uma editora com **um único manual de instruções** (o DNA). Para abrir uma filial idêntica, ela precisa de **duas etapas**: primeiro **fotocopiar** o manual inteiro, depois **entregar uma cópia** para cada filial. É a mitose: a célula copia o DNA e reparte as cópias para as duas filhas.
+
+Por isso as duas células-filhas têm **o mesmo DNA** da célula-mãe. É assim que uma única célula vira um bebê, que uma ferida fecha e que a pele se renova.
+
+## 2. A receita da variedade
+
+Agora imagine que a editora quer fazer um livro novo misturando dois manuais: o da mãe e o do pai. Se ela juntasse os dois inteiros, o livro ficaria grande demais. Então cada um dá **metade**: só **um capítulo de cada tipo**. Para isso, cada célula sexual precisa ter **metade** do material. É a meiose.
+
+E mais: os capítulos são **sorteados** (às vezes o da mãe, às vezes o do pai), e ainda trocam trechos entre si. Resultado: cada célula sexual é única.
+
+<Brincando titulo="Mitose e meiose: a fotocopiadora e o baralho">
+
+A **mitose** é uma fotocopiadora: entra uma folha, saem duas iguais. A **meiose** é um **baralho embaralhado**: você tem dois baralhos (o da mãe e o do pai), separa cada naipe, embaralha, e entrega **só metade das cartas** a cada célula sexual. Cada mão é diferente da outra, mas todas têm o número certo de cartas.
+
+</Brincando>
+
+## 3. Dois conjuntos, um de cada lado
+
+Quase todas as células do seu corpo têm **dois conjuntos** de cromossomos: um que veio da mãe e outro do pai. Cromossomos que combinam (mesmo tamanho, mesmos genes nas mesmas posições) são chamados **homólogos**. As células com dois conjuntos chamam-se **diploides** (2n). As células sexuais têm só um conjunto e são **haploides** (n).
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Uma célula humana tem 46 cromossomos e faz mitose. Quantos cromossomos tem cada célula-filha?"
+  opcoes={['23', '46', '92']}
+  correta={1}
+  explicacao="Na mitose, o DNA é copiado e repartido por igual. Cada filha fica com os mesmos 46 cromossomos da célula-mãe."
+>
+
+Veja a mitose fase por fase. Aperte os botões em ordem e acompanhe os cromossomos:
+
+<FasesDaMitose />
+
+A mitose faz **duas** células iguais. Agora compare com a meiose: escolha uma espécie e alterne entre os dois tipos de divisão:
+
+<ContaCromossomos />
+
+Na meiose, as células-filhas ficam com **metade**. Isso é essencial: quando óvulo e espermatozoide se unem, a conta fecha de novo em 46.
+
+Volte ao palpite do começo. Quantos cromossomos tem uma célula da pele?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['23', '46', '92']}
+  correta={1}
+  seAcertou="Certo: 46, em 23 pares. Só as células sexuais (óvulo e espermatozoide) têm 23."
+  seErrou="O certo é 46, organizados em 23 pares. O número 23 é o das células sexuais, e 92 aparece só por um instante, quando o DNA já foi copiado e a célula ainda não se dividiu."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Por que as células se dividem
+
+As células se dividem por três motivos principais:
+
+- **Crescer.** Um bebê, uma planta ou uma lagarta aumentam porque têm mais células, e não porque as células ficam gigantes.
+- **Reparar.** Quando você se corta, as células ao redor da ferida se dividem até fechá-la. A camada de fora da pele se renova em cerca de um mês, e o revestimento do intestino, em poucos dias.
+- **Substituir.** Células do sangue têm vida curta, e a medula dos ossos produz milhões novas a cada segundo.
+
+Há ainda um limite físico. Quando uma célula cresce, o volume aumenta mais depressa do que a superfície. Chega um ponto em que a "pele" (membrana) não dá conta de passar comida e lixo para o interior. Dividir-se em duas menores resolve esse problema.
+
+## O ciclo celular
+
+Uma célula que se divide passa por uma sequência de etapas que se repete. É o **ciclo celular**, com duas grandes partes:
+
+- **Interfase**, a fase de "preparar". É a maior parte do ciclo.
+- **Fase M**, a divisão em si: a mitose (o núcleo se divide) e a citocinese (o citoplasma se divide).
+
+A interfase tem três pedaços:
+
+- **G1**: a célula cresce e faz o seu trabalho.
+- **S**: o DNA é **copiado** (S de síntese). Cada cromossomo passa a ter duas cópias coladas.
+- **G2**: a célula confere a cópia, cresce mais um pouco e se prepara para dividir.
+
+Numa célula humana cultivada em laboratório, o ciclo inteiro dura cerca de **24 horas**, e a maior parte desse tempo é interfase. Uma célula do cérebro ou do músculo do coração, que já está "formada", pode deixar de se dividir quase por completo.
+
+<Brincando titulo="Ciclo celular: a mudança de casa">
+
+Mudar de casa tem três etapas. Primeiro você **cresce** e vive normalmente (G1). Depois **copia tudo** o que precisa levar: faz duas listas idênticas de objetos (S). Depois **confere** as caixas (G2). Só então vem o **dia da mudança** (a fase M), quando cada metade vai para um endereço. Se você não fizesse a lista antes, a mudança daria errado, e é por isso que o DNA precisa ser copiado **antes** de a célula se dividir.
+
+</Brincando>
+
+<DobrandoCelulas />
+
+Cada divisão **dobra** o número de células. É uma potência de 2: depois de n divisões, há 2 elevado a n células.
+
+<ExemploResolvido titulo="Uma bactéria se divide a cada 20 minutos. Quantas existem depois de 3 horas?">
+  <Passo>3 horas são 180 minutos.</Passo>
+  <Passo>180 ÷ 20 = **9 divisões** seguidas.</Passo>
+  <Passo>Cada divisão dobra: 2 elevado a 9 = **512 células**, todas descendentes de uma só.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma célula se divide 10 vezes seguidas. Quantas células existem no final?" resposta="1024" dica="2 elevado a 10." resolucao="2 elevado a 10 = 1024 células." />
+
+<Exercicio enunciado="Uma bactéria se divide a cada 20 minutos. Quantas existem depois de 2 horas, saindo de uma só?" resposta="64" dica="2 horas = 120 minutos; quantas divisões?" resolucao="120 ÷ 20 = 6 divisões. 2 elevado a 6 = 64 bactérias." />
+
+<Exercicio enunciado="Quantas células existem depois de 5 divisões, saindo de uma única célula?" resposta="32" dica="2 elevado a 5." resolucao="2 × 2 × 2 × 2 × 2 = 32." />
+
+## Cromossomos, cromátides e homólogos
+
+Três palavras que se misturam:
+
+- **Cromossomo:** um pacote de DNA enrolado com proteínas. Em humanos há **46**.
+- **Cromátide:** cada "metade" de um cromossomo duplicado. Depois da fase S, cada cromossomo tem **duas cromátides irmãs**, idênticas, grudadas no meio (por uma região chamada centrômero). É o desenho em forma de X.
+- **Homólogos:** os dois cromossomos de um par, um de cada genitor.
+
+Atenção: um cromossomo duplicado (com duas cromátides) **ainda conta como um cromossomo**. A contagem só muda quando as cromátides irmãs se separam, e cada uma passa a ser contada como um cromossomo.
+
+Os humanos têm **23 pares**: 22 pares comuns, chamados autossomos, mais um par de cromossomos sexuais (XX na maioria das mulheres, XY na maioria dos homens).
+
+<Brincando titulo="Cromossomos: pares de meias">
+
+Pense numa gaveta com **23 pares de meias**. Cada par tem uma meia da mãe e uma do pai, parecidas, mas não idênticas. Isso é o conjunto diploide (46 meias). Na fase S, cada meia é copiada e as duas cópias ficam **grudadas** (a cromátide irmã). Ainda são 46 meias, só que agora "duplas". Quando elas se soltam, voltam a ser 46 meias simples em cada célula nova.
+
+</Brincando>
+
+<ExemploResolvido titulo="Um gato tem 38 cromossomos nas células do corpo. Quantos há em cada célula sexual?">
+  <Passo>O número do corpo é 2n = 38.</Passo>
+  <Passo>A célula sexual é haploide (n), a metade de 2n.</Passo>
+  <Passo>n = 38 ÷ 2 = **19 cromossomos**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um cachorro tem 78 cromossomos nas células do corpo. Quantos há em um espermatozoide?" resposta="39" dica="É a metade." resolucao="78 ÷ 2 = 39 cromossomos." />
+
+<Exercicio enunciado="Uma célula humana está no final da fase S, com o DNA já copiado. Quantas cromátides ela tem no total?" resposta="92" dica="46 cromossomos, cada um com duas cromátides." resolucao="46 × 2 = 92 cromátides (mas ainda são 46 cromossomos)." />
+
+<Exercicio enunciado="Uma célula tem 2n = 6 e está na anáfase da mitose. Quantos cromossomos vão para cada polo?" resposta="6" dica="Cada filha precisa receber o conjunto completo." resolucao="Cada célula-filha precisa ter 6 cromossomos, então 6 vão para cada polo." />
+
+## A mitose, passo a passo
+
+A mitose tem quatro fases, que formam uma sequência contínua. Use a simulação da etapa anterior para acompanhar:
+
+- **Prófase:** os cromossomos se enrolam e ficam visíveis como X. A membrana do núcleo se desfaz, e o **fuso** (fibras feitas de proteínas) começa a se formar.
+- **Metáfase:** os cromossomos se alinham no **meio** da célula, presos às fibras do fuso. É a fase mais fácil de contar cromossomos, e por isso os cariótipos usam células nesse momento.
+- **Anáfase:** as cromátides irmãs se **separam** e são puxadas para polos opostos. Agora cada uma é um cromossomo. É nesse instante que o número de cromossomos da célula dobra, por pouco tempo.
+- **Télofase:** os dois grupos chegam aos polos, se desenrolam, e novos núcleos se formam.
+
+Logo depois vem a **citocinese**, a divisão do citoplasma. Numa célula animal, a membrana "aperta" no meio, como um cinto, até se separar em duas. Numa célula vegetal, que tem parede rígida, forma-se uma **placa** no meio que vira a nova parede.
+
+<Brincando titulo="Mitose: um cabo de guerra bem organizado">
+
+Imagine 46 cordas duplas (os X) presas ao meio de um salão. Na hora da anáfase, os puxadores de cada lado soltam o nó no meio de cada corda dupla, e as duas metades de cada uma vão para lados opostos. Os dois lados ficam com 46 cordas, idênticas. O truque da mitose é o **alinhamento**: como os X ficam em fila no meio, é praticamente impossível que um lado receba duas metades da mesma corda ou que algum fique sem nenhuma.
+
+</Brincando>
+
+<ExemploResolvido titulo="Quantos cromossomos e cromátides há em cada fase da mitose numa célula humana?">
+  <Passo>**Interfase, no começo (G1):** 46 cromossomos, cada um com 1 cromátide = 46 cromátides.</Passo>
+  <Passo>**Depois do S, na prófase e na metáfase:** ainda 46 cromossomos, mas cada um com 2 cromátides = **92 cromátides**.</Passo>
+  <Passo>**Na anáfase:** as cromátides irmãs se separam e passam a ser contadas como cromossomos: por um instante a célula tem **92 cromossomos** (46 em cada polo).</Passo>
+  <Passo>**Depois da citocinese:** duas células, cada uma com **46 cromossomos**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos cromossomos tem uma célula humana na anáfase da mitose, contando os dois polos?" resposta="92" dica="As cromátides irmãs já se separaram." resolucao="46 cromossomos duplicados viram 92 cromossomos simples, 46 em cada lado." />
+
+<Exercicio enunciado="Uma célula-mãe humana faz mitose. Quantas células-filhas se formam?" resposta="2" dica="A mitose faz duas células iguais." resolucao="Duas células-filhas, cada uma com 46 cromossomos." />
+
+<Aprofundar titulo="Células imortais e o relógio dos telômeros">
+
+Na ponta de cada cromossomo há uma "tampa" de DNA repetitivo, o **telômero**. A cada divisão, os telômeros ficam um pouco mais curtos. Em 1961, **Leonard Hayflick** viu que células humanas cultivadas em laboratório se dividem **cerca de 40 a 60 vezes** e depois param. É o **limite de Hayflick**. Células-tronco e células de câncer costumam ter uma enzima (a telomerase) que reconstrói os telômeros, e por isso se dividem sem parar. Em 1951, células tiradas de um tumor da paciente Henrietta Lacks deram origem à linhagem **HeLa**, que é cultivada até hoje em laboratórios do mundo todo.
+
+</Aprofundar>
+
+## Quem manda a célula se dividir (e parar)
+
+Uma célula não se divide quando quer. O ciclo tem **pontos de checagem**, como fiscais em uma fábrica. Em cada um, proteínas conferem perguntas como: o DNA foi copiado direito? Há algum dano? Todos os cromossomos estão presos ao fuso? Se algo estiver errado, o ciclo **para** para o conserto, e, se não der, a célula se autodestrói em uma morte programada.
+
+As proteínas que controlam o ritmo são as **ciclinas** e seus parceiros. Elas foram descobertas por **Leland Hartwell, Tim Hunt e Paul Nurse**, que ganharam o Nobel de Fisiologia ou Medicina em 2001.
+
+**O câncer** acontece quando esse controle falha. Mutações em genes que acionam ou freiam a divisão (como o gene **p53**, chamado "guardião do genoma") fazem a célula se multiplicar sem parar e sem respeitar limites, formando um tumor. Por isso muitos tratamentos atacam células que se dividem rápido, e é a mesma razão pela qual a quimioterapia afeta também o cabelo e o intestino.
+
+<ExemploResolvido titulo="Por que uma célula do cérebro quase nunca vira tumor, e uma do intestino sim?">
+  <Passo>Cada divisão é uma chance de **erro** na cópia do DNA.</Passo>
+  <Passo>Células do intestino se dividem **a cada poucos dias**: milhões de divisões ao longo da vida.</Passo>
+  <Passo>Neurônios maduros praticamente **não se dividem**: têm poucas chances de acumular erros de cópia.</Passo>
+  <Passo>Mais divisões, mais oportunidades de uma mutação perigosa: por isso tumores são mais comuns em tecidos que se renovam muito (embora existam tumores cerebrais, vindos de outras células de apoio que ainda se dividem).</Passo>
+</ExemploResolvido>
+
+## A meiose: dividir duas vezes
+
+A meiose acontece só nos órgãos que fazem células sexuais (os testículos e os ovários). Uma célula diploide (46) passa por **duas divisões seguidas**, mas o DNA é copiado **uma vez só**. Resultado: **quatro células haploides** (23 cada).
+
+- **Meiose I** (a que reduz o número). Os cromossomos homólogos se emparelham, lado a lado, e **trocam pedaços** (crossing-over). Depois, cada par se separa: um homólogo vai para cada lado. Fica com 2 células, cada uma com 23 cromossomos **ainda duplicados** (em X).
+- **Meiose II** (parecida com a mitose). As cromátides irmãs se separam. Fica com 4 células, cada uma com 23 cromossomos simples.
+
+A diferença-chave: na mitose, as cromátides irmãs se separam e a célula mantém o número. Na meiose I, são os **homólogos** que se separam, e por isso o número cai pela metade.
+
+<Brincando titulo="Meiose: dividir o álbum de figurinhas">
+
+Você e uma amiga têm cada uma um álbum com os mesmos 23 tipos de figurinha, mas as suas são ligeiramente diferentes das dela (pense em cores diferentes). Vocês juntam os álbuns, **trocam alguns pedaços** (o crossing-over) e então fazem 2 pilhas, cada uma com um exemplar de cada tipo (meiose I). Por fim, dividem cada pilha ao meio (meiose II). No final, 4 pilhas, cada uma com **um exemplar** de cada tipo, e nenhuma é igual a outra.
+
+</Brincando>
+
+<ExemploResolvido titulo="Uma célula com 2n = 8 faz meiose. Quantas células e quantos cromossomos no final?">
+  <Passo>Depois da meiose I: **2 células** com 4 cromossomos duplicados cada.</Passo>
+  <Passo>Depois da meiose II: **4 células** com 4 cromossomos simples cada.</Passo>
+  <Passo>Cada célula final tem **n = 4** cromossomos, metade de 2n = 8.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas células-filhas uma célula produz depois de completar a meiose?" resposta="4" dica="Duas divisões seguidas." resolucao="1 vira 2 na meiose I, e 2 viram 4 na meiose II." />
+
+<Exercicio enunciado="Uma célula humana começa a meiose. Quantas células existem depois da meiose I?" resposta="2" dica="Só a primeira divisão." resolucao="A meiose I faz 2 células, cada uma com 23 cromossomos duplicados." />
+
+<Exercicio enunciado="Um óvulo humano (23 cromossomos) é fecundado por um espermatozoide (23). Quantos cromossomos tem o ovo (zigoto)?" resposta="46" dica="Some os dois." resolucao="23 + 23 = 46 cromossomos, e a espécie mantém o número." />
+
+## Espermatozoides e óvulos
+
+Nem todo caminho da meiose é igual:
+
+- Nos homens, cada célula que entra em meiose faz **4 espermatozoides**, e a produção começa na puberdade e segue por toda a vida, na ordem de milhões por dia.
+- Nas mulheres, cada célula que entra em meiose faz **1 óvulo grande e 3 pequenas células de descarte** (os corpúsculos polares), porque o óvulo precisa guardar quase todo o citoplasma, como reserva de comida para o embrião. A meiose começa **antes do nascimento** e fica parada. Uma menina nasce com cerca de 1 a 2 milhões de células que podem virar óvulos, e a meiose só continua a cada ciclo, na ovulação. A meiose II só termina se houver fecundação.
+
+Por isso a idade da mãe importa: células que ficam décadas "paradas" têm mais chance de errar a separação dos cromossomos.
+
+## Por que filhos de um casal são diferentes
+
+A meiose mistura o material genético de três maneiras:
+
+- **Separação ao acaso (segregação independente).** De cada par de homólogos, vai para o gameta o da mãe ou o do pai, ao acaso. Com 23 pares, são 2 elevado a 23 = **8.388.608** combinações possíveis de gameta.
+- **Crossing-over.** Os homólogos trocam pedaços na prófase I, criando cromossomos "mistos".
+- **Fecundação ao acaso.** Qualquer espermatozoide pode encontrar qualquer óvulo.
+
+<CrossingOver />
+
+<CombinacoesDeGametas />
+
+<Brincando titulo="Variedade: embaralhar antes de cortar">
+
+Imagine 23 moedas, cada uma com uma face "mãe" e outra "pai". Para fazer um gameta, você joga todas as moedas e fica com a face que caiu para cima. A chance de repetir exatamente a mesma sequência duas vezes é minúscula: 1 em mais de 8 milhões. E esse número ainda ignora o crossing-over, que "embaralha dentro de cada moeda".
+
+</Brincando>
+
+<ExemploResolvido titulo="Uma mosca-da-fruta tem 2n = 8. Quantos tipos de gameta ela pode fazer, sem contar o crossing-over?">
+  <Passo>2n = 8 cromossomos são **4 pares** (n = 4).</Passo>
+  <Passo>Cada par vai de 2 jeitos para o gameta.</Passo>
+  <Passo>2 × 2 × 2 × 2 = 2 elevado a 4 = **16 tipos de gameta**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma planta tem 3 pares de cromossomos. Quantos tipos de gameta ela pode fazer (sem crossing-over)?" resposta="8" dica="2 elevado a 3." resolucao="2 × 2 × 2 = 8 tipos." />
+
+<Exercicio enunciado="O milho tem 2n = 20. Quantos tipos de gameta ele pode fazer (sem crossing-over)?" resposta="1024" dica="n = 10 pares; 2 elevado a 10." resolucao="20 cromossomos = 10 pares. 2 elevado a 10 = 1024 tipos de gameta." />
+
+<Aprofundar titulo="Gêmeos idênticos e gêmeos fraternos">
+
+**Gêmeos idênticos** vêm de **um só ovo** (um óvulo e um espermatozoide), que depois da fecundação se separa em duas partes, e cada uma vira um bebê. Têm o mesmo DNA, por isso nascem tão parecidos. **Gêmeos fraternos** vêm de **dois óvulos** fecundados por dois espermatozoides diferentes: são irmãos comuns que dividiram a barriga. Isso mostra que a variedade vem da meiose e da fecundação, e não da mitose.
+
+</Aprofundar>
+
+## Quando a separação dá errado
+
+Às vezes, na meiose, um par de cromossomos **não se separa** direito. É a **não-disjunção**. O gameta sai com um cromossomo a mais (24) ou a menos (22). Se for fecundado por um gameta normal (23), o embrião terá 47 ou 45 cromossomos.
+
+Exemplos conhecidos:
+
+- **Síndrome de Down (trissomia do 21):** três cópias do cromossomo 21, 47 cromossomos no total. Ocorre em cerca de 1 em cada 700 nascimentos, e o risco aumenta com a idade da mãe. Foi descoberta por Jérôme Lejeune e colegas em 1959.
+- **Síndrome de Turner (45, X):** só um cromossomo X. Afeta meninas.
+- **Síndrome de Klinefelter (47, XXY):** um X a mais. Afeta meninos.
+
+A maioria dos embriões com número errado de cromossomos não se desenvolve, e muitos abortos espontâneos nas primeiras semanas têm essa causa.
+
+<ExemploResolvido titulo="Um óvulo com 24 cromossomos é fecundado por um espermatozoide normal. Quantos cromossomos tem o embrião?">
+  <Passo>O óvulo tem n + 1 = **24** (houve não-disjunção).</Passo>
+  <Passo>O espermatozoide normal tem **23**.</Passo>
+  <Passo>24 + 23 = **47 cromossomos**. Se o extra for o cromossomo 21, é a síndrome de Down.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma pessoa com síndrome de Down tem quantos cromossomos em cada célula do corpo?" resposta="47" dica="46 mais um." resolucao="Três cópias do 21 em vez de duas: 46 + 1 = 47." />
+
+## Mitose x meiose
+
+- **Onde:** a mitose acontece em quase todas as células do corpo. A meiose, só nos órgãos que fazem células sexuais.
+- **Divisões:** a mitose tem 1; a meiose, 2.
+- **Células no final:** 2 na mitose; 4 na meiose.
+- **Cromossomos por célula:** na mitose, 2n (igual à mãe). Na meiose, n (metade).
+- **Células-filhas:** na mitose, idênticas. Na meiose, diferentes entre si.
+- **Para que serve:** a mitose, para crescer, reparar e substituir. A meiose, para fazer gametas e gerar variedade.
+
+## Aplicações no dia a dia
+
+- **Cicatrização e enxertos de pele:** a mitose fecha feridas, e o cultivo de pele em laboratório ajuda a tratar queimaduras.
+- **Plantas por estaca:** quando você corta um galho e planta, ele cria raízes por mitose e vira uma planta nova, **geneticamente idêntica** à planta-mãe. É um clone.
+- **Reprodução sexuada:** a meiose explica por que irmãos se parecem, mas não são iguais (exceto gêmeos idênticos).
+- **Câncer:** o controle do ciclo celular é o alvo de muitos remédios.
+- **Cariótipo:** exame que fotografa os cromossomos em metáfase e permite contar e achar erros, como a trissomia do 21.
+
+<Exercicio enunciado="Uma criança tem 47 cromossomos. Quantos a mais ela tem do que o número normal da espécie?" resposta="1" dica="O normal é 46." resolucao="47 − 46 = 1 cromossomo a mais." />
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Quantas células-filhas surgem numa mitose?',
+    opcoes: ['2', '3', '4'],
+    correta: 0,
+    explicacao: 'A mitose faz duas células-filhas, geneticamente iguais à célula-mãe.',
+  },
+  {
+    enunciado: 'Em que parte do ciclo celular o DNA é copiado?',
+    opcoes: ['Fase G1', 'Fase S', 'Citocinese'],
+    correta: 1,
+    explicacao: 'S vem de síntese: é quando cada cromossomo passa a ter duas cromátides irmãs.',
+  },
+  {
+    enunciado: 'Uma célula humana depois de uma mitose tem quantos cromossomos?',
+    opcoes: ['23', '46', '92'],
+    correta: 1,
+    explicacao: 'A mitose mantém o número: 46 cromossomos em cada célula-filha.',
+  },
+  {
+    enunciado: 'Em que fase da mitose as cromátides irmãs se separam?',
+    opcoes: ['Prófase', 'Metáfase', 'Anáfase'],
+    correta: 2,
+    explicacao: 'Na anáfase, as cromátides irmãs são puxadas para polos opostos.',
+  },
+  {
+    enunciado: 'Em que fase os cromossomos se alinham no meio da célula?',
+    opcoes: ['Metáfase', 'Télofase', 'Interfase'],
+    correta: 0,
+    explicacao: 'Na metáfase, os cromossomos ficam em fila no meio, presos ao fuso.',
+  },
+  {
+    enunciado: 'Quantas células se formam ao final da meiose?',
+    opcoes: ['2', '4', '8'],
+    correta: 1,
+    explicacao: 'Duas divisões seguidas (meiose I e II) dão 4 células haploides.',
+  },
+  {
+    enunciado: 'Por que a meiose reduz o número de cromossomos à metade?',
+    opcoes: ['Para que, na fecundação, o número volte ao normal', 'Porque o DNA é perdido', 'Porque os cromossomos desaparecem'],
+    correta: 0,
+    explicacao: 'Se os gametas tivessem 46, o filho teria 92. Com 23 de cada lado, a soma é 46.',
+  },
+  {
+    enunciado: 'O que é o crossing-over?',
+    opcoes: ['A troca de pedaços entre cromossomos homólogos', 'A separação das cromátides irmãs', 'A fusão de duas células'],
+    correta: 0,
+    explicacao: 'Ocorre na prófase I e cria cromossomos com combinações novas de genes.',
+  },
+  {
+    enunciado: 'Quantos tipos de gameta uma pessoa pode fazer pela separação ao acaso dos 23 pares (sem crossing-over)?',
+    opcoes: ['46', 'Cerca de 8 milhões', 'Mais de 70 trilhões'],
+    correta: 1,
+    explicacao: '2 elevado a 23 = 8.388.608. O número de 70 trilhões é o de combinações de dois gametas.',
+  },
+  {
+    enunciado: 'Uma planta feita por estaca (um galho plantado) é:',
+    opcoes: ['Geneticamente diferente da planta-mãe', 'Um clone da planta-mãe', 'Sempre estéril'],
+    correta: 1,
+    explicacao: 'Cresce por mitose, então tem o mesmo DNA da planta-mãe.',
+  },
+  {
+    enunciado: 'O que é a não-disjunção?',
+    opcoes: ['Uma separação errada dos cromossomos', 'Uma divisão do citoplasma', 'A cópia do DNA'],
+    correta: 0,
+    explicacao: 'Um par de cromossomos não se separa e o gameta fica com um a mais ou a menos.',
+  },
+  {
+    enunciado: 'Quando o controle do ciclo celular falha e as células se multiplicam sem parar, o resultado pode ser:',
+    opcoes: ['Câncer', 'Fotossíntese', 'Osmose'],
+    correta: 0,
+    explicacao: 'O câncer é uma divisão sem controle, muitas vezes causada por mutações em genes como o p53.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Ciclo celular:** interfase (G1, S com cópia do DNA, G2) e fase M (mitose e citocinese). Os pontos de checagem protegem contra erros, e o câncer é a falha desse controle.
+- **Mitose:** 1 célula diploide faz 2 células iguais, com o mesmo número de cromossomos. Fases: prófase, metáfase, anáfase e télofase. Serve para crescer, reparar e substituir.
+- **Meiose:** 1 célula diploide faz 4 células haploides, em duas divisões. Na meiose I os homólogos se separam, e na II as cromátides irmãs.
+- **Variedade:** separação ao acaso (2 elevado a 23 combinações), crossing-over e fecundação ao acaso.
+- **Erros:** a não-disjunção causa número errado de cromossomos, como a trissomia do 21 (síndrome de Down, 47 cromossomos).
+
+**Um pouco de história.** Virchow (1855) afirmou que toda célula vem de outra. Hertwig (1876) viu a fecundação. Flemming (1882) descreveu e nomeou a mitose, e Van Beneden (1883) viu a redução à metade nos gametas, que em 1905 recebeu o nome de meiose. Sutton e Boveri (1902) uniram cromossomos e herança, e Lejeune (1959) achou o cromossomo extra da síndrome de Down.
+
+</Resumo>
+
+A divisão celular é a base da herança. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

@@ -1,0 +1,385 @@
+import MutacaoNoCodigo from '../../../components/simulacoes/MutacaoNoCodigo'
+import QuadroDeLeitura from '../../../components/simulacoes/QuadroDeLeitura'
+import UmaLetraMuda from '../../../components/simulacoes/UmaLetraMuda'
+import MutacoesNoCromossomo from '../../../components/simulacoes/MutacoesNoCromossomo'
+import MutacoesPorGeracao from '../../../components/simulacoes/MutacoesPorGeracao'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Mutation, Hugo de Vries, Hermann Joseph Muller, Sickle cell disease, Frameshift mutation, Point mutation, Chromosomal rearrangement, Polyploidy, Ames test, Lactase persistence, Paternal age effect), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Cada vez que uma célula copia o DNA, ela copia **3 bilhões de letras**. Mesmo com um sistema de revisão fantástico, às vezes uma letra sai errada. Esse erro, quando fica registrado no DNA, é uma **mutação**.
+
+E aqui vai o susto: **você tem mutações que seus pais não têm**. Elas surgiram na hora em que o óvulo e o espermatozoide que formaram você foram feitos. Mas não precisa se preocupar: a maioria não faz diferença nenhuma. E, olhando para a história da vida, as mutações são também a **matéria-prima da evolução**: sem elas, não haveria novidade nenhuma.
+
+<Palpite
+  chave="inicial"
+  pergunta="Quantas mutações novas, em média, uma pessoa tem em relação ao DNA dos pais?"
+  opcoes={['Nenhuma: o DNA é copiado sem erro', 'Cerca de 70', 'Mais de 10 mil']}
+/>
+
+Nesta cápsula você vai ver o que é uma mutação, como ela acontece, os diferentes tipos (de uma só letra até pedaços inteiros de cromossomos), quando ela é ruim, neutra ou até útil, e como isso se liga a doenças e à evolução.
+
+</Etapa>
+
+<Etapa id="historia">
+
+A palavra "mutação" é mais velha que o DNA. Os cientistas já viam filhotes e plantas que surgiam diferentes dos pais, de repente, e que passavam a diferença para os descendentes. Faltava saber **de onde** isso vinha.
+
+<LinhaDoTempo marcos={[
+  { ano: '1901', texto: 'Hugo de Vries, botânico holandês, propõe a teoria da mutação: mudanças repentinas e herdáveis.' },
+  { ano: '1927', texto: 'Hermann Muller mostra que os raios X causam mutações em moscas-da-fruta.' },
+  { ano: '1949', texto: 'Linus Pauling e colegas chamam a anemia falciforme de doença molecular.' },
+  { ano: '1953', texto: 'Watson e Crick mostram o DNA em dupla hélice e já notam que um erro de cópia pode virar mutação.' },
+  { ano: '1956', texto: 'Vernon Ingram descobre que a hemoglobina falciforme difere da normal em um único aminoácido.' },
+  { ano: '1959', texto: 'Jérôme Lejeune descobre que a síndrome de Down é causada por um cromossomo 21 a mais.' },
+  { ano: '1970', texto: 'Bruce Ames e colegas criam um teste simples, com bactérias, para saber se uma substância causa mutações.' },
+]} />
+
+## Hugo de Vries e as primulas
+
+Em 1901, **Hugo de Vries** estudava a prímula-da-tarde e viu plantas novas e diferentes surgindo em meio às normais, e que passavam essa diferença para as sementes. Chamou essas mudanças de **mutações** (da palavra latina para "mudança"). Ele achava que as espécies novas apareciam por saltos. Hoje se sabe que a maioria das mutações é pequena, mas a ideia de que a herança pode mudar de repente era certeira.
+
+## Muller e os raios X
+
+Em 1927, **Hermann Muller** colocou moscas-da-fruta sob raios X e viu que o número de mutações **disparava**. Foi a primeira prova de que algo do ambiente pode **causar** mutações. Ganhou o Nobel em 1946. Mais tarde, a descoberta ajudou a criar as regras de proteção contra radiação, como o avental de chumbo na hora de fazer uma radiografia.
+
+## Uma doença, uma letra
+
+Em 1949, **Linus Pauling** mostrou que a hemoglobina de pessoas com anemia falciforme se comporta de modo diferente da normal. Em 1956, **Vernon Ingram** achou a razão: uma única troca de aminoácido, de glutamato por valina. Como o código genético já estava sendo decifrado, ficou claro que bastava **uma letra** trocada no DNA para mudar uma proteína e causar uma doença.
+
+## Síndromes e cromossomos
+
+Em 1959, o médico francês **Jérôme Lejeune** contou os cromossomos de crianças com síndrome de Down e achou 47, em vez de 46. Foi a primeira doença ligada a uma alteração no **número** de cromossomos.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O erro de digitação
+
+Imagine copiar à mão um livro enorme. É natural errar uma letra de vez em quando. Algumas trocas não mudam nada ("casa" escrito "caza" ainda se entende). Outras mudam o sentido ("sapo" virou "capo"). Outras estragam a frase inteira. É o que acontece com o DNA.
+
+- **Trocar uma letra** por outra: mutação de **substituição**.
+- **Colocar** uma letra a mais: **inserção**.
+- **Tirar** uma letra: **deleção**.
+
+## 2. A leitura de três em três
+
+Lembre que a célula lê o código em **trios** (códons). Isso faz toda diferença: trocar uma letra afeta, no máximo, **um** trio. Mas inserir ou tirar uma letra **desloca** a leitura de todos os trios seguintes.
+
+<Brincando titulo="Mutação: a frase de palavras de três letras">
+
+Considere a frase **SOL VAI SER MAR**, com palavras de três letras. **Trocar** uma letra (SOL VAI SEM MAR) estraga só uma palavra. Mas **tirar** a primeira letra de VAI e reler de três em três dá: SOL AIS ERM AR, e **tudo depois** vira bobagem. Já tirar **três letras** inteiras (a palavra VAI) dá SOL SER MAR: perde-se uma palavra, mas o resto continua legível. É assim que as mutações de uma letra, de três letras e as trocas funcionam.
+
+</Brincando>
+
+## 3. O código tem redundância
+
+Existem **64 trios** para só **20 aminoácidos** (mais o sinal de PARE). Isso significa que vários trios dão o **mesmo** aminoácido. Por isso, algumas trocas de letra não mudam nada na proteína: o código tem um pouco de "folga", que protege contra erros.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Uma mutação trocou uma única letra no DNA de um gene. O que pode acontecer com a proteína?"
+  opcoes={['Ela sempre fica defeituosa', 'Pode não mudar nada, trocar um aminoácido ou até encurtar a proteína', 'Ela sempre fica melhor']}
+  correta={1}
+  explicacao="O resultado depende da letra e do lugar: pode ser silenciosa (mesmo aminoácido), de troca (outro aminoácido) ou sem sentido (surge um PARE e a proteína fica curta)."
+>
+
+Aperte as letras da fita de RNA para mudá-las e veja o que acontece com a proteína:
+
+<MutacaoNoCodigo />
+
+Tente mudar a **3ª letra** de cada trio: muitas vezes nada acontece. Tente mudar a **1ª letra**: quase sempre muda o aminoácido. E tente transformar um trio em UAA, UAG ou UGA: surge um PARE.
+
+Agora veja o que acontece quando **entram ou saem** letras:
+
+<QuadroDeLeitura />
+
+Uma letra a mais ou a menos desloca a leitura toda. Três letras a mais ou a menos só acrescenta ou tira um aminoácido.
+
+Volte ao palpite do começo: quantas mutações novas tem uma pessoa em relação aos pais?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Nenhuma: o DNA é copiado sem erro', 'Cerca de 70', 'Mais de 10 mil']}
+  correta={1}
+  seAcertou="Certo: cerca de 70 mutações novas por geração. Quase todas caem em trechos do DNA onde não fazem diferença."
+  seErrou="O certo é: cerca de 70. A cópia do DNA é muito precisa, mas são 6 bilhões de letras nas duas cópias do genoma. Um erro por bilhão já dá várias dezenas de mutações novas."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## O que é uma mutação
+
+Uma **mutação** é qualquer mudança permanente na sequência do DNA (ou no número ou na estrutura dos cromossomos). Ela pode acontecer:
+
+- **Por acaso**, num erro na hora de copiar o DNA.
+- **Por causa do ambiente**, quando algo no ambiente estraga o DNA (os **agentes mutagênicos**).
+
+Dois pontos importantes:
+
+- Uma mutação **só é herdada** se acontecer numa **célula germinativa** (que dá origem a óvulos e espermatozoides). Mutações em células do corpo (**somáticas**), como as da pele, não passam para os filhos, mas podem causar problemas à própria pessoa, como câncer.
+- Mutação **não** é, por si só, boa ou ruim. O efeito depende de onde ela cai.
+
+## De onde vêm as mutações
+
+- **Erros de cópia.** A enzima que copia o DNA erra uma vez a cada 100 mil letras, mais ou menos. Mas há uma **revisão** (a própria enzima confere o que acabou de colocar) e um sistema de **reparo**, que juntos diminuem a taxa para cerca de **1 erro por bilhão de letras**.
+- **Radiação.** Raios ultravioleta (UV) do sol grudam letras vizinhas de timina (T), formando "dobras" no DNA. Raios X e raios gama quebram o DNA.
+- **Substâncias químicas.** Muitas substâncias da fumaça do cigarro grudam no DNA e causam erros.
+- **Vírus.** Alguns vírus inserem o próprio DNA no do hospedeiro.
+
+Em 1970, Bruce Ames e colegas criaram o **teste de Ames**, que usa bactérias para ver se uma substância aumenta as mutações. É muito usado para testar produtos químicos.
+
+<Brincando titulo="Reparo do DNA: o revisor de texto">
+
+A cópia do DNA tem **três filtros**. Primeiro, a enzima copiadora **confere** a letra que acabou de colocar (como quem relê enquanto escreve). Depois, um sistema de **revisão** passa pelo texto procurando letras que não combinam. Por fim, há um **reparo** que corta e substitui trechos danificados. É por isso que a taxa final é de **1 erro em 1 bilhão de letras**, e não 1 em 100 mil.
+
+</Brincando>
+
+<ExemploResolvido titulo="Quantas mutações novas aparecem em 5 crianças, se cada uma tem cerca de 70?">
+  <Passo>Cada criança tem **70** mutações novas, em média.</Passo>
+  <Passo>5 crianças: 5 × 70 = **350 mutações**.</Passo>
+  <Passo>Quase todas caem em trechos que não afetam proteínas (só uns 1,5% do DNA são genes), então muito poucas têm algum efeito.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Se cada pessoa tem cerca de 70 mutações novas, quantas há no total em 5 pessoas?" resposta="350" dica="5 vezes 70." resolucao="5 × 70 = 350 mutações." />
+
+<MutacoesPorGeracao />
+
+<Aprofundar titulo="A idade do pai e as mutações">
+
+Em 2012, pesquisadores islandeses compararam o DNA de pais e filhos e viram que a idade do **pai** pesa muito: cada ano a mais de idade do pai soma **cerca de duas** mutações novas nos filhos. Isso acontece porque os espermatozoides são produzidos o tempo todo, e cada nova leva de células passou por mais cópias do DNA. Já os óvulos são formados antes do nascimento, então a idade da mãe tem pouco efeito nesse tipo de mutação (mas influencia os erros de número de cromossomos, que você viu na cápsula de divisão celular).
+
+</Aprofundar>
+
+<Exercicio enunciado="Se cada ano a mais de idade do pai soma cerca de 2 mutações, quantas mutações a mais tem o filho de um pai de 40 anos em relação ao de um pai de 25 anos?" resposta="30" dica="Diferença de 15 anos." resolucao="15 anos × 2 = 30 mutações a mais." />
+
+## Mutações de uma letra (pontuais)
+
+As mutações **pontuais** mudam uma ou poucas letras:
+
+- **Silenciosa:** o novo trio ainda dá o mesmo aminoácido. A proteína não muda. Exemplo: GAG vira GAA (os dois são glutamato).
+- **De troca (missense):** o novo trio dá outro aminoácido. Exemplo: GAG vira GUG (glutamato vira valina). O efeito pode ser nenhum, leve ou grave.
+- **Sem sentido (nonsense):** o novo trio é um PARE. A proteína sai **curta**, quase sempre sem função. Exemplo: GAG vira UAG.
+- **Inserção ou deleção:** letras a mais ou a menos. Se o número **não é múltiplo de 3**, a leitura se desloca: é a mutação de **quadro de leitura** (frameshift), geralmente grave.
+
+<ExemploResolvido titulo="Classifique as mutações do trio GAG (glutamato)">
+  <Passo>**GAG para GAA:** o novo trio também é glutamato. **Silenciosa.**</Passo>
+  <Passo>**GAG para GUG:** vira valina. **De troca (missense).**</Passo>
+  <Passo>**GAG para UAG:** vira PARE. **Sem sentido (nonsense).**</Passo>
+</ExemploResolvido>
+
+<ExemploResolvido titulo="Uma letra foi inserida logo depois do AUG, e a fita AUG AAG GCU UCC virou AUG GAA GGC UUC C. O que mudou?">
+  <Passo>Uma letra (G) entrou: **1 letra** a mais, e 1 não é múltiplo de 3.</Passo>
+  <Passo>Todos os trios depois do AUG **deslocaram**: AAG GCU UCC virou GAA GGC UUC.</Passo>
+  <Passo>Os aminoácidos seguintes mudam quase todos. É uma **mutação de quadro de leitura**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O RNA AUG AAA GGG UAA é lido do AUG até o PARE. Quantos aminoácidos tem a proteína?" resposta="3" dica="O PARE não vira aminoácido." resolucao="AUG (Met), AAA (Lis) e GGG (Gli): 3 aminoácidos. O UAA só encerra." />
+
+<Exercicio enunciado="Quantas substituições diferentes são possíveis em um trio de 3 letras (cada letra pode mudar para 3 outras)?" resposta="9" dica="3 posições vezes 3 trocas." resolucao="3 × 3 = 9 trios diferentes por uma só troca." />
+
+<Exercicio enunciado="Uma proteína tem 150 aminoácidos. Quantas letras tem a parte do gene que a codifica (sem contar o PARE)?" resposta="450" dica="Cada aminoácido usa um trio." resolucao="150 × 3 = 450 letras." />
+
+<Exercicio enunciado="Um gene tem 3 letras inseridas no meio da sequência. Quantos aminoácidos a mais a proteína ganha?" resposta="1" dica="3 letras formam um trio." resolucao="3 letras formam 1 trio, ou seja, 1 aminoácido a mais, sem deslocar a leitura." />
+
+<Exercicio enunciado="Uma proteína tem 100 aminoácidos. Uma mutação sem sentido cria um PARE no lugar do 40º aminoácido. Quantos aminoácidos tem a proteína curta?" resposta="39" dica="Os aminoácidos que vieram antes do PARE." resolucao="O 40º trio virou PARE: sobram os 39 aminoácidos anteriores." />
+
+<Exercicio enunciado="Com as 4 letras do RNA (A, U, C, G), quantos trios diferentes é possível formar?" resposta="64" dica="4 vezes 4 vezes 4." resolucao="4 × 4 × 4 = 64 trios, para 20 aminoácidos e o sinal de PARE." />
+
+## Uma letra, uma doença: anemia falciforme
+
+O exemplo mais clássico de mutação de troca é a **anemia falciforme**. No gene da hemoglobina (a proteína que carrega oxigênio nas hemácias), o 6º trio muda de GAG para GUG (no RNA). O aminoácido muda de **glutamato** para **valina**. Essa pequena troca faz as moléculas de hemoglobina se grudarem em fibras quando falta oxigênio, e a hemácia vira uma **foice**. Elas travam nos vasos, causam dor e carregam menos oxigênio.
+
+<UmaLetraMuda />
+
+A anemia falciforme é **recessiva**: quem tem duas cópias (aa) tem a doença. Quem tem uma só (Aa), o **traço falciforme**, em geral não tem sintomas graves. E há uma surpresa: o traço **protege contra a malária**. Em 1954, o médico Anthony Allison mostrou que em regiões onde a malária é comum, o alelo se tornou frequente. É a **vantagem do heterozigoto**: uma mutação que faz mal em dose dupla pode ser útil em dose única.
+
+<Brincando titulo="Falciforme: uma carta com uma letra errada">
+
+Imagine uma carta de instruções de 146 palavras para montar uma bicicleta (a cadeia de hemoglobina tem cerca de 146 aminoácidos). Se **uma só palavra** estiver errada, na maioria das vezes dá para montar do mesmo jeito. Mas, se justamente ela for a palavra que explica como juntar duas peças, a bicicleta fica torta. Na hemoglobina, a palavra errada fica numa posição que faz as moléculas grudarem umas nas outras.
+
+</Brincando>
+
+<Exercicio enunciado="Dois portadores do traço falciforme (Aa x Aa) têm um filho. Qual a chance, em porcentagem, de ele ter anemia falciforme (aa)?" resposta="25" dica="Só aa tem a doença." resolucao="1 em 4 combinações: 25%." />
+
+## Mutações grandes: nos cromossomos
+
+Algumas mutações mudam **pedaços grandes** de cromossomos:
+
+- **Deleção:** um pedaço se perde.
+- **Duplicação:** um pedaço aparece duas vezes.
+- **Inversão:** um pedaço gira de ponta-cabeça.
+- **Translocação:** um pedaço troca de lugar com outro cromossomo.
+
+<MutacoesNoCromossomo />
+
+## Mutações no número de cromossomos
+
+Quando a divisão celular dá errado (a **não-disjunção** da cápsula anterior), o número de cromossomos fica errado. Esses casos se chamam **aneuploidias**:
+
+- **Síndrome de Down:** três cromossomos 21 (47 no total).
+- **Síndrome de Turner:** 45 cromossomos, só um X.
+- **Síndrome de Klinefelter:** 47 cromossomos, XXY.
+
+Há também a **poliploidia**: células com **conjuntos inteiros** a mais de cromossomos. Isso é raro e fatal em animais, mas muito comum em plantas, e é muito útil. O **trigo** do pão é hexaploide (6 conjuntos de 7 cromossomos = 42), e a banana Cavendish, a mais vendida, é triploide (3 conjuntos de 11 = 33, e por isso não tem sementes).
+
+<ExemploResolvido titulo="Quantos cromossomos tem uma célula do trigo, que tem 6 conjuntos de 7?">
+  <Passo>Cada conjunto tem **7** cromossomos.</Passo>
+  <Passo>O trigo do pão tem **6** conjuntos (hexaploide).</Passo>
+  <Passo>6 × 7 = **42 cromossomos**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="A banana Cavendish tem 3 conjuntos de 11 cromossomos. Quantos cromossomos ela tem?" resposta="33" dica="3 vezes 11." resolucao="3 × 11 = 33 cromossomos." />
+
+<Exercicio enunciado="Uma pessoa com síndrome de Turner tem 45 cromossomos. Quantos a menos ela tem do que o normal (46)?" resposta="1" dica="46 menos 45." resolucao="46 − 45 = 1 cromossomo a menos (falta um X)." />
+
+## Mutações ruins, neutras e boas
+
+O efeito de uma mutação depende de **onde** ela cai e do **ambiente**:
+
+- **Prejudicial:** estraga uma proteína importante. Exemplos: fibrose cística, hemofilia, muitos casos de câncer.
+- **Neutra:** não faz diferença. É a grande maioria, porque quase todo o DNA não codifica proteínas, e porque o código genético tem redundância.
+- **Benéfica:** dá uma vantagem. Exemplos:
+  - A **tolerância à lactose** em adultos. Todos os bebês digerem leite, mas, na maior parte da história humana, os adultos perdiam essa capacidade. Em populações que criavam gado, surgiram mutações que **mantêm** a enzima lactase ligada na vida adulta, e elas se espalharam.
+  - A **resistência de bactérias a antibióticos.** Uma bactéria com uma mutação rara que a protege sobrevive quando o remédio mata as outras, e passa a ser a maioria.
+  - O traço falciforme contra a **malária**.
+
+A mesma mutação pode ser boa ou ruim dependendo do **ambiente**. Na África, onde há malária, o alelo falciforme tem vantagem. Num lugar sem malária, ele só traz desvantagem.
+
+<Brincando titulo="Mutação: a ferramenta que serve ou atrapalha">
+
+Uma chave de fenda com a ponta torta é um defeito numa oficina que só usa parafusos comuns. Mas, se aparece um parafuso de formato raro que só a ponta torta abre, a chave "defeituosa" passa a ser a **única** que funciona. A mutação é igual: **não é boa nem má em si**, e o que vale é se o ambiente favorece ou não a nova forma.
+
+</Brincando>
+
+<Aprofundar titulo="Mutações na agricultura">
+
+Os agricultores usam mutações há milênios sem saber, escolhendo as plantas diferentes que apareciam. Desde o século 20, os cientistas **provocam** mutações com radiação ou com substâncias químicas e escolhem as plantas úteis (a chamada **mutagênese**). Variedades de arroz, trigo, cevada e até a toranja vermelha vieram assim. Diferente da engenharia genética, que você vai ver na próxima cápsula, o cientista não escolhe **qual** gene muda, só seleciona entre os resultados.
+
+</Aprofundar>
+
+<ExemploResolvido titulo="Como surge uma população de bactérias resistente?">
+  <Passo>Numa população enorme (bilhões), por acaso **algumas** bactérias já têm uma mutação que as protege do antibiótico.</Passo>
+  <Passo>Quando o remédio é usado, mata as sensíveis. As **resistentes sobrevivem**.</Passo>
+  <Passo>As sobreviventes se dividem e passam a mutação adiante. Em poucas gerações, a **maioria** é resistente. O remédio não criou a mutação: ele só **selecionou** quem já a tinha.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Se uma bactéria tem uma chance de 0,001 de ganhar uma mutação a cada divisão, quantas mutações novas se esperam entre 1 milhão de divisões?" resposta="1000" dica="1 milhão vezes 0,001." resolucao="1.000.000 × 0,001 = 1000 mutações." />
+
+## Mutação e câncer
+
+O **câncer** é uma doença de mutações **acumuladas** em células do corpo. Uma célula só se torna um tumor depois de várias mutações em genes que controlam a divisão. Fatores de risco, como o **sol sem proteção** (UV), o **cigarro** e algumas infecções, aumentam as chances de mutações. Por isso, protetor solar e não fumar **reduzem o risco**. As mutações do câncer são somáticas: **não** passam aos filhos, a não ser que a pessoa tenha herdado uma mutação de risco (como em alguns tipos de câncer de mama e de intestino).
+
+## Mutações e evolução
+
+Se não houvesse mutações, todos os indivíduos de uma espécie teriam exatamente os mesmos alelos, e a seleção natural não teria o que escolher. As mutações são a **fonte primária de variação**. A maioria é neutra ou ruim, mas, de vez em quando, uma é útil, e se espalha. É assim que a diferença entre espécies se acumula, ao longo de milhões de anos. Vamos ver isso em detalhes na cápsula de seleção natural.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'O que é uma mutação?',
+    opcoes: ['Uma mudança permanente no DNA', 'Uma doença infecciosa', 'Um tipo de célula'],
+    correta: 0,
+    explicacao: 'É qualquer alteração na sequência do DNA ou na estrutura ou no número de cromossomos.',
+  },
+  {
+    enunciado: 'Para uma mutação ser passada aos filhos, ela precisa acontecer em:',
+    opcoes: ['Qualquer célula do corpo', 'Uma célula germinativa (que faz óvulos ou espermatozoides)', 'Só nas células do cérebro'],
+    correta: 1,
+    explicacao: 'Mutações somáticas (de células do corpo) não passam para os filhos.',
+  },
+  {
+    enunciado: 'GAG virou GAA, e os dois codificam glutamato. Que tipo de mutação é essa?',
+    opcoes: ['Silenciosa', 'Sem sentido', 'De quadro de leitura'],
+    correta: 0,
+    explicacao: 'O aminoácido continua o mesmo, então a proteína não muda.',
+  },
+  {
+    enunciado: 'Qual mutação cria um sinal de PARE no meio do gene?',
+    opcoes: ['Silenciosa', 'De troca (missense)', 'Sem sentido (nonsense)'],
+    correta: 2,
+    explicacao: 'O novo trio é UAA, UAG ou UGA, e a proteína sai curta.',
+  },
+  {
+    enunciado: 'Por que apagar 1 letra de um gene costuma ser pior do que trocar 1 letra?',
+    opcoes: ['Porque desloca a leitura de todos os trios seguintes', 'Porque apaga o gene inteiro', 'Porque troca o cromossomo'],
+    correta: 0,
+    explicacao: 'A leitura é de três em três, então uma letra a menos muda todos os trios depois dela.',
+  },
+  {
+    enunciado: 'Apagar 3 letras seguidas (um trio inteiro) em geral:',
+    opcoes: ['Tira um aminoácido e o resto da proteína continua igual', 'Desloca toda a leitura', 'Duplica o gene'],
+    correta: 0,
+    explicacao: '3 é múltiplo de 3, então a leitura não se desloca.',
+  },
+  {
+    enunciado: 'Na anemia falciforme, o que muda na hemoglobina?',
+    opcoes: ['Um aminoácido (glutamato vira valina)', 'O gene inteiro some', 'O número de cromossomos'],
+    correta: 0,
+    explicacao: 'Uma troca de uma só letra no DNA (GAG por GUG no RNA) muda um aminoácido.',
+  },
+  {
+    enunciado: 'Por que o traço falciforme (Aa) pode ser vantajoso em regiões com malária?',
+    opcoes: ['Dá certa proteção contra a malária', 'Cura a malária', 'Faz o corpo produzir mais sangue'],
+    correta: 0,
+    explicacao: 'É a vantagem do heterozigoto, descrita por Allison em 1954.',
+  },
+  {
+    enunciado: 'O que é a síndrome de Down?',
+    opcoes: ['Três cópias do cromossomo 21', 'A falta do cromossomo X', 'Uma mutação de uma letra'],
+    correta: 0,
+    explicacao: 'É uma aneuploidia: 47 cromossomos, com o 21 em três cópias.',
+  },
+  {
+    enunciado: 'Qual desses é um agente mutagênico?',
+    opcoes: ['Radiação ultravioleta do sol', 'Água filtrada', 'Sono'],
+    correta: 0,
+    explicacao: 'O UV causa dobras no DNA. Raios X e várias substâncias do cigarro também são mutagênicos.',
+  },
+  {
+    enunciado: 'A maioria das mutações novas num ser humano é:',
+    opcoes: ['Neutra, sem efeito perceptível', 'Muito prejudicial', 'Muito benéfica'],
+    correta: 0,
+    explicacao: 'Porque quase todo o DNA não codifica proteínas e o código tem redundância.',
+  },
+  {
+    enunciado: 'Uma população de bactérias fica resistente a um antibiótico porque:',
+    opcoes: ['O remédio seleciona as que já tinham uma mutação de resistência', 'O remédio cria a mutação de propósito', 'As bactérias decidem mudar'],
+    correta: 0,
+    explicacao: 'As mutações aparecem por acaso. O antibiótico só deixa vivas as resistentes.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Mutação:** mudança permanente no DNA. Só é herdada se ocorrer em células germinativas. Cada pessoa tem cerca de 70 mutações novas.
+- **Causas:** erros de cópia (1 em 1 bilhão depois do reparo), radiação (UV, raios X), substâncias químicas e alguns vírus.
+- **Pontuais:** silenciosa, de troca (missense) e sem sentido (nonsense). Inserção ou deleção de letras que não são múltiplos de 3 causam mudança no quadro de leitura.
+- **Grandes:** deleção, duplicação, inversão e translocação de pedaços de cromossomos. Aneuploidias (Down, Turner, Klinefelter) e poliploidia (trigo e banana).
+- **Efeitos:** prejudiciais, neutros ou benéficos, conforme o lugar e o ambiente. Fonte da variação para a evolução, e base do câncer quando se acumulam nas células do corpo.
+
+**Um pouco de história.** De Vries (1901) propôs a teoria da mutação. Muller (1927) mostrou que raios X causam mutações. Pauling (1949) e Ingram (1956) ligaram a anemia falciforme a uma troca de aminoácido, e Lejeune (1959) achou o cromossomo 21 extra na síndrome de Down. Ames (1970) criou um teste de mutagenicidade.
+
+</Resumo>
+
+Mutações são o começo da variedade. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

@@ -1,0 +1,405 @@
+import EnzimaDeRestricao from '../../../components/simulacoes/EnzimaDeRestricao'
+import InsulinaEmBacteria from '../../../components/simulacoes/InsulinaEmBacteria'
+import CopiasDaPcr from '../../../components/simulacoes/CopiasDaPcr'
+import ImpressaoDigitalDeDna from '../../../components/simulacoes/ImpressaoDigitalDeDna'
+import GuiaDoCrispr from '../../../components/simulacoes/GuiaDoCrispr'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Biotechnology, Restriction enzyme, Recombinant DNA, Insulin, Polymerase chain reaction, Kary Mullis, Genetic fingerprinting, Dolly (sheep), CRISPR, Jennifer Doudna, Emmanuelle Charpentier, Genetically modified organism, He Jiankui, Exagamglogene autotemcel), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Até os anos 1980, quem tinha diabetes tipo 1 tomava insulina tirada do pâncreas de **porcos e de vacas**. Funcionava, mas dependia de abatedouros e podia causar reações. Hoje, a maior parte da insulina vem de **bactérias** (e leveduras) que receberam, num laboratório, o **gene humano** da insulina e trabalham como pequenas fábricas.
+
+Isso é **biotecnologia**: usar seres vivos, ou partes deles, para fazer produtos. As pessoas já fazem isso há milhares de anos (pão, queijo, vinho), mas, depois de entender o DNA, passamos a poder **cortar, copiar e colar genes**. E, desde 2012, até **editar** uma letra específica do DNA, com uma ferramenta chamada CRISPR.
+
+<Palpite
+  chave="inicial"
+  pergunta="Como uma bactéria consegue fabricar a insulina humana?"
+  opcoes={['Ela é alimentada com insulina de porco', 'Ela recebe uma cópia do gene humano da insulina e lê esse gene como se fosse dela', 'Ela se transforma numa célula humana']}
+/>
+
+Nesta cápsula você vai ver as ferramentas básicas (enzimas de restrição, DNA recombinante e PCR), as aplicações (insulina, vacinas, impressão digital de DNA, transgênicos e clonagem), como funciona o CRISPR e as perguntas éticas que ele traz.
+
+</Etapa>
+
+<Etapa id="historia">
+
+A engenharia genética surgiu da curiosidade sobre algo muito pequeno: **como as bactérias se defendem de vírus**. A resposta rendeu as primeiras "tesouras" de DNA.
+
+<LinhaDoTempo marcos={[
+  { ano: '1970', texto: 'Hamilton Smith e colegas descobrem a primeira enzima de restrição que corta o DNA num lugar certo.' },
+  { ano: '1972', texto: 'Paul Berg cria as primeiras moléculas de DNA recombinante, juntando DNA de dois organismos.' },
+  { ano: '1973', texto: 'Stanley Cohen e Herbert Boyer colocam DNA de outra espécie dentro de bactérias.' },
+  { ano: '1975', texto: 'Cientistas se reúnem em Asilomar, nos Estados Unidos, para discutir regras de segurança.' },
+  { ano: '1977', texto: 'Frederick Sanger inventa um método para ler a sequência do DNA.' },
+  { ano: '1982', texto: 'A insulina humana feita por bactérias, a Humulin, é aprovada para uso.' },
+  { ano: '1983', texto: 'Kary Mullis tem a ideia da PCR, uma fotocopiadora de DNA.' },
+  { ano: '1984', texto: 'Alec Jeffreys cria a impressão digital de DNA.' },
+  { ano: '1996', texto: 'Nasce Dolly, a primeira ovelha clonada de uma célula adulta.' },
+  { ano: '2012', texto: 'Jennifer Doudna e Emmanuelle Charpentier mostram como usar o CRISPR para editar DNA. Ganham o Nobel de Química em 2020.' },
+  { ano: '2023', texto: 'O Reino Unido e os Estados Unidos aprovam a primeira terapia com CRISPR, para a anemia falciforme.' },
+]} />
+
+## As tesouras das bactérias
+
+As bactérias são atacadas por vírus o tempo todo. Alguns pesquisadores descobriram que elas têm **enzimas que cortam o DNA do vírus** em pontos precisos. Em 1970, **Hamilton Smith** e colegas isolaram uma delas, e logo se viu que dava para usar essas **enzimas de restrição** como tesouras. Werner Arber, Daniel Nathans e Hamilton Smith ganharam o Nobel por isso em 1978.
+
+## Cortar e colar
+
+Em 1972, **Paul Berg** juntou DNA de um vírus com DNA de bactéria, e criou a primeira molécula de **DNA recombinante**. Em 1973, **Stanley Cohen e Herbert Boyer** mostraram que dava para colocar esse DNA numa bactéria, e ela o copiava. Estava aberto o caminho. Os próprios cientistas ficaram preocupados com os riscos, e em 1975 fizeram a **conferência de Asilomar** para criar regras de segurança antes de seguir adiante.
+
+## Insulina de bactéria
+
+Em 1921 e 1922, Banting, Best, Collip e Macleod mostraram que a **insulina** salvava pessoas com diabetes. Por décadas, ela vinha do pâncreas de animais. Em 1978, uma empresa de biotecnologia e um hospital de pesquisa nos Estados Unidos conseguiram que bactérias produzissem insulina humana. Em 1982, a **Humulin** se tornou o primeiro medicamento feito por engenharia genética aprovado para uso em pessoas.
+
+## Uma ideia numa estrada
+
+Em 1983, o químico **Kary Mullis** estava dirigindo à noite na Califórnia e teve a ideia de um método para copiar um trecho de DNA milhões de vezes: a **PCR**. Ganhou o Nobel de Química de 1993. A PCR só se tornou prática quando se descobriu uma enzima de bactérias que vivem em fontes quentes, que **aguenta o calor**.
+
+## Do laboratório ao tribunal
+
+Em 1984, o geneticista britânico **Alec Jeffreys** percebeu que certos trechos repetidos do DNA são tão variáveis que funcionam como uma **impressão digital** de cada pessoa. A técnica logo foi usada para resolver crimes e para comprovar paternidade.
+
+## Editando o DNA
+
+Em 2012, **Jennifer Doudna** e **Emmanuelle Charpentier** mostraram que uma defesa de bactérias contra vírus, o CRISPR, podia ser transformada numa ferramenta para **editar** qualquer gene com precisão. Em 2020, ganharam o Nobel de Química. Em 2023, a primeira terapia aprovada com essa técnica, o Casgevy, passou a tratar a anemia falciforme e outra doença do sangue.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O DNA é o mesmo em todo ser vivo
+
+Esta é a ideia que torna tudo possível: o **código genético é praticamente universal**. O trio AUG quer dizer "metionina, início" em bactérias, plantas, fungos e pessoas. Por isso, uma bactéria consegue **ler** um gene humano e fabricar a proteína, como um leitor de livros que entende qualquer idioma escrito com o mesmo alfabeto.
+
+## 2. Tesoura, cola e fotocopiadora
+
+A biotecnologia moderna usa três ferramentas básicas:
+
+- **Tesoura:** as enzimas de restrição, que cortam o DNA em lugares certos.
+- **Cola:** uma enzima (DNA ligase) que une pedaços de DNA.
+- **Fotocopiadora:** a PCR, que faz milhões de cópias de um trecho, e as próprias bactérias, que se multiplicam copiando o DNA que carregam.
+
+<Brincando titulo="DNA recombinante: editar um vídeo">
+
+Pense em editar um filme. A **tesoura** corta uma cena de um vídeo. A **cola** emenda essa cena dentro de outro vídeo. E a **fotocopiadora** faz milhares de cópias do filme editado. O DNA recombinante faz o mesmo: corta um gene de um organismo, cola dentro de um plasmídeo (um pequeno anel de DNA de bactéria) e deixa a bactéria copiar. A cada divisão, ela faz uma cópia do novo "filme".
+
+</Brincando>
+
+## 3. A bactéria como fábrica
+
+Bactérias são ótimas para isso: se multiplicam rápido (uma divisão a cada cerca de 20 minutos), são baratas de cultivar e carregam anéis de DNA, os **plasmídeos**, que são fáceis de entrar e sair. Se você coloca um gene num plasmídeo e o plasmídeo numa bactéria, **cada nova bactéria** terá o gene.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Uma enzima de restrição corta o DNA sempre que encontra uma sequência específica de 6 letras. Se o DNA tem 3 desses pontos e é uma fita reta, em quantos pedaços ele fica?"
+  opcoes={['3', '4', '6']}
+  correta={1}
+  explicacao="Cada corte cria um pedaço a mais. Com 3 cortes numa fita reta, ficam 4 pedaços."
+>
+
+Use a tesoura molecular num trecho de DNA e veja quantos pedaços saem:
+
+<EnzimaDeRestricao />
+
+Cada enzima reconhece **uma sequência só**, e corta toda vez que a encontra. Depois do corte, os pedaços podem ser colados em outro DNA com a ligase. Veja o caminho completo até a insulina:
+
+<InsulinaEmBacteria />
+
+Volte ao palpite do começo: como a bactéria consegue fabricar a insulina humana?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Ela é alimentada com insulina de porco', 'Ela recebe uma cópia do gene humano da insulina e lê esse gene como se fosse dela', 'Ela se transforma numa célula humana']}
+  correta={1}
+  seAcertou="Certo: o código genético é o mesmo em todos os seres vivos, então a bactéria lê o gene humano e fabrica a proteína."
+  seErrou="O certo é: a bactéria recebe o gene humano da insulina e o lê com o mesmo código genético que usa para os próprios genes. Ela continua sendo bactéria, mas fabrica uma proteína humana."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## As enzimas de restrição
+
+As **enzimas de restrição** são proteínas de bactérias que reconhecem uma sequência curta de DNA (em geral de 4 a 8 letras) e **cortam** ali. O nome vem do tipo de bactéria de onde vêm. Por exemplo, a **EcoRI** vem da *Escherichia coli* e reconhece GAATTC, cortando entre o G e o A. Há centenas de enzimas de restrição diferentes, cada uma com a sua sequência.
+
+Uma sequência de 6 letras aparece, por acaso, **uma vez a cada 4.096 letras** (4 elevado a 6). Em genomas grandes, a enzima faz muitos cortes. Num DNA reto, **n cortes** fazem **n + 1 pedaços**. Num DNA circular (como um plasmídeo), **n cortes** fazem **n pedaços**.
+
+<ExemploResolvido titulo="Um DNA reto de 5000 pares de bases é cortado nas posições 2000 e 3500. Quais os tamanhos dos pedaços?">
+  <Passo>Dois cortes numa fita reta fazem **3 pedaços**.</Passo>
+  <Passo>Primeiro pedaço: de 0 a 2000 = **2000**.</Passo>
+  <Passo>Segundo: de 2000 a 3500 = **1500**. Terceiro: de 3500 a 5000 = **1500**.</Passo>
+  <Passo>Conferindo: 2000 + 1500 + 1500 = 5000.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um DNA reto de 5000 pares de bases é cortado nas posições 2000 e 3500. Qual o tamanho do maior pedaço?" resposta="2000" dica="Os pedaços têm 2000, 1500 e 1500." resolucao="O maior pedaço é o primeiro, com 2000 pares de bases." />
+
+<Exercicio enunciado="Um plasmídeo circular tem 3 sítios de corte para uma enzima. Em quantos pedaços ele fica?" resposta="3" dica="Num círculo, n cortes fazem n pedaços." resolucao="3 cortes num círculo fazem 3 pedaços." />
+
+<Exercicio enunciado="Um DNA reto tem 4 sítios de corte para uma enzima. Em quantos pedaços ele fica?" resposta="5" dica="n cortes fazem n + 1 pedaços." resolucao="4 + 1 = 5 pedaços." />
+
+<Exercicio enunciado="Uma enzima reconhece uma sequência de 6 letras. Por acaso, ela aparece em média uma vez a cada quantas letras (4 elevado a 6)?" resposta="4096" dica="4 × 4 × 4 × 4 × 4 × 4." resolucao="4 elevado a 6 = 4096 letras." />
+
+<Exercicio enunciado="Uma bactéria com o plasmídeo se divide a cada 20 minutos. Quantas bactérias há depois de 1 hora, saindo de uma?" resposta="8" dica="1 hora tem 3 divisões." resolucao="3 divisões: 2 elevado a 3 = 8 bactérias, todas com o plasmídeo." />
+
+## DNA recombinante e plasmídeos
+
+O **DNA recombinante** é um DNA feito juntando pedaços de origens diferentes. O processo clássico tem quatro passos:
+
+- **Cortar** o gene de interesse e o plasmídeo com a **mesma** enzima de restrição, para que as pontas se encaixem.
+- **Colar** os dois com a **ligase**.
+- **Colocar** o plasmídeo na bactéria (por choque de calor ou eletricidade).
+- **Selecionar** as bactérias que receberam o plasmídeo. Em geral, o plasmídeo leva também um gene de **resistência a um antibiótico**, então só as bactérias que o receberam sobrevivem num meio com esse remédio.
+
+Esse método é usado para fabricar muitas proteínas importantes: a **insulina**, o hormônio do crescimento, vacinas (como a da hepatite B, feita em leveduras) e enzimas de uso industrial.
+
+<Brincando titulo="Insulina: a receita que a bactéria copia">
+
+Imagine que a insulina humana é uma **receita de bolo** escrita no caderno de uma confeiteira (o gene). Você copia essa receita num cartão e a **cola** dentro do livro de receitas de uma padaria de bactérias (o plasmídeo). A padaria lê todas as receitas do livro, inclusive a nova, e faz o bolo. E, como a padaria se multiplica em novas filiais a cada 20 minutos, todas as filiais têm o livro com a receita nova.
+
+</Brincando>
+
+<ExemploResolvido titulo="Quantos aminoácidos tem a insulina, e quantas letras de DNA codificam isso?">
+  <Passo>A insulina é feita de duas cadeias: a **A**, com 21 aminoácidos, e a **B**, com 30.</Passo>
+  <Passo>Total: 21 + 30 = **51 aminoácidos**.</Passo>
+  <Passo>Cada aminoácido usa um trio de letras: 51 × 3 = **153 letras** (sem contar o sinal de PARE).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="A insulina tem uma cadeia A de 21 aminoácidos e uma cadeia B de 30. Quantos aminoácidos há no total?" resposta="51" dica="Some as duas cadeias." resolucao="21 + 30 = 51 aminoácidos." />
+
+<Exercicio enunciado="Quantas letras de DNA são necessárias para codificar 51 aminoácidos (sem contar o PARE)?" resposta="153" dica="Um trio por aminoácido." resolucao="51 × 3 = 153 letras." />
+
+## A PCR: a fotocopiadora de DNA
+
+A **PCR** (reação em cadeia da polimerase) faz milhões de cópias de um trecho de DNA **em poucas horas**, a partir de uma quantidade minúscula. Um ciclo tem três passos, que se repetem num aparelho que muda a temperatura (o termociclador):
+
+- **Desnaturar (cerca de 95 °C):** o calor separa as duas fitas do DNA.
+- **Anelar (cerca de 55 °C):** pedaços curtos de DNA, os **primers**, grudam nas pontas do trecho que se quer copiar.
+- **Estender (cerca de 72 °C):** uma enzima, a **Taq polimerase**, copia o trecho a partir dos primers.
+
+A Taq vem de uma bactéria (*Thermus aquaticus*) que vive em fontes de água quente, e por isso **não se desfaz com o calor**. Cada ciclo **dobra** o número de cópias: depois de n ciclos, há 2 elevado a n cópias.
+
+<CopiasDaPcr />
+
+<Brincando titulo="PCR: dobrar as moedas todo dia">
+
+Se você tem uma moeda e **dobra** o que tem a cada dia, no dia 10 terá 1.024 moedas, e no dia 30, mais de **1 bilhão**. A PCR é essa mesma conta: um ciclo por dia seria bastante, mas o aparelho faz um ciclo em poucos minutos. Por isso, em 30 ciclos, uma única molécula vira mais de 1 bilhão.
+
+</Brincando>
+
+<ExemploResolvido titulo="Depois de quantos ciclos de PCR uma molécula passa de 1 milhão de cópias?">
+  <Passo>Depois de n ciclos há 2 elevado a n cópias.</Passo>
+  <Passo>2 elevado a 10 = 1.024. 2 elevado a 20 = **1.048.576**.</Passo>
+  <Passo>Com 19 ciclos são 524.288 (menos de 1 milhão). Com **20 ciclos** já passa de 1 milhão.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas cópias existem depois de 10 ciclos de PCR, a partir de uma molécula?" resposta="1024" dica="2 elevado a 10." resolucao="2 elevado a 10 = 1024." />
+
+<Exercicio enunciado="Quantos ciclos de PCR são necessários, no mínimo, para passar de 1 milhão de cópias?" resposta="20" dica="2 elevado a 20 é pouco mais de 1 milhão." resolucao="2 elevado a 20 = 1.048.576, então 20 ciclos." />
+
+<Exercicio enunciado="Cada ciclo de PCR dura 2 minutos. Quanto tempo (em minutos) levam 30 ciclos?" resposta="60" dica="30 vezes 2." resolucao="30 × 2 = 60 minutos." />
+
+## Impressão digital de DNA
+
+O DNA de duas pessoas é 99,9% igual, mas o 0,1% que difere inclui trechos repetitivos (as letras se repetem várias vezes em fila) que variam muito de pessoa para pessoa. Compara-se o tamanho desses trechos entre amostras. Para isso, usa-se:
+
+- A **PCR**, para copiar os trechos a partir de uma gota de sangue ou de um fio de cabelo.
+- A **eletroforese em gel**: o DNA tem carga negativa e anda em direção ao polo positivo, e **os pedaços menores andam mais depressa** que os maiores. No final, cada amostra forma um padrão de **faixas**, como um código de barras.
+
+<ImpressaoDigitalDeDna />
+
+A técnica é usada em testes de **paternidade**, para identificar **vítimas** de desastres, e para **inocentar ou incriminar** suspeitos. No Brasil, uma lei de 2012 criou bancos de perfis genéticos de condenados por certos crimes. Com mais trechos analisados, a chance de duas pessoas diferentes terem o mesmo perfil fica extremamente pequena. A exceção são os gêmeos idênticos, que têm o mesmo DNA.
+
+<Exercicio enunciado="Num gel, aparecem fragmentos de 100, 500 e 2000 pares de bases. Qual o tamanho do fragmento que anda mais longe?" resposta="100" dica="Os menores correm mais." resolucao="O menor fragmento (100) anda mais longe no gel." />
+
+<Aprofundar titulo="A eletroforese, passo a passo">
+
+O gel é uma gelatina de agarose, cheia de minúsculos poros. As amostras de DNA são colocadas em buracos (poços) numa ponta, e uma corrente elétrica é ligada. Como as moléculas de DNA são **negativas**, elas andam em direção ao polo positivo. Os fragmentos pequenos passam pelos poros com facilidade, e os grandes ficam presos e andam devagar. Depois de um tempo, as moléculas ficam organizadas por tamanho. Para ver as faixas, usa-se um corante que gruda no DNA e brilha sob luz especial. Incluir uma amostra de tamanhos conhecidos (uma "régua") permite descobrir o tamanho de cada faixa.
+
+</Aprofundar>
+
+## Organismos transgênicos
+
+Um **organismo transgênico** (ou geneticamente modificado) é um ser que recebeu um gene de **outra espécie**. Alguns exemplos:
+
+- **Milho e soja Bt:** receberam um gene de uma bactéria (*Bacillus thuringiensis*) que faz uma proteína tóxica para certos insetos-praga, o que reduz o uso de inseticida.
+- **Arroz dourado:** recebeu genes para produzir betacaroteno, que o corpo transforma em vitamina A. Foi criado para combater a falta dessa vitamina, que causa cegueira infantil em países pobres.
+- **Feijão resistente a vírus:** no Brasil, a Embrapa desenvolveu um feijão resistente ao vírus do mosaico dourado, aprovado em 2011.
+- **Bactérias e leveduras que fazem remédios:** insulina, hormônio do crescimento e vacinas.
+
+A maior parte da soja plantada no Brasil é transgênica. No Brasil, a **CTNBio** (Comissão Técnica Nacional de Biossegurança) avalia a segurança de cada transgênico antes de ele ser liberado. Os transgênicos aprovados passam por testes, e cada caso é analisado separadamente, porque **o que importa é o gene inserido**, não a técnica em si.
+
+<ExemploResolvido titulo="Como ler a frase transgênicos são perigosos ou transgênicos são seguros?">
+  <Passo>"Transgênico" só diz **como** a planta foi feita, e não o que ela tem de diferente.</Passo>
+  <Passo>Um gene pode ser inofensivo (vitamina A) ou problemático (uma proteína que causa alergia), então **cada caso** precisa ser testado.</Passo>
+  <Passo>Por isso, a regra é testar **cada produto**: alergenicidade, toxicidade e efeitos no ambiente. Generalizar é um erro nos dois sentidos.</Passo>
+</ExemploResolvido>
+
+## Clonagem
+
+**Clonar** é fazer um organismo geneticamente idêntico a outro. Na natureza, isso é comum: bactérias que se dividem, plantas que brotam de um galho e gêmeos idênticos. A clonagem de um **mamífero** a partir de uma célula adulta é mais difícil. Em 1996, no Instituto Roslin, na Escócia, nasceu **Dolly**, uma ovelha criada com a **transferência do núcleo** de uma célula da glândula mamária de uma ovelha adulta para um óvulo sem núcleo. Dolly viveu até 2003. Desde então, foram clonados cães, gatos, cavalos e vacas, mas a técnica ainda é cara e tem baixa taxa de sucesso.
+
+Um clone **não é uma cópia perfeita**: ele tem o mesmo DNA do núcleo, mas o ambiente, a alimentação e as experiências o tornam um indivíduo diferente. Por exemplo, as manchas de um gato clonado são diferentes das do gato original.
+
+<Aprofundar titulo="Clonagem terapêutica e células-tronco">
+
+**Células-tronco** podem virar vários tipos de célula. Em 2006, o japonês **Shinya Yamanaka** mostrou que células adultas da pele podem ser **reprogramadas** para voltar a esse estado, as chamadas **células-tronco pluripotentes induzidas**. Ele ganhou o Nobel de 2012 por isso. Elas podem ser usadas para estudar doenças em laboratório e, no futuro, talvez para recuperar tecidos, sem precisar usar embriões.
+
+</Aprofundar>
+
+## CRISPR: um corretor de DNA
+
+O **CRISPR** nasceu de uma descoberta sobre as defesas das bactérias: elas guardam pedaços do DNA de vírus que as atacaram, como uma foto de procurado, e usam um **RNA-guia** para levar uma enzima (a **Cas9**) até o DNA do vírus e cortá-lo.
+
+Doudna e Charpentier perceberam que dava para trocar o guia por **qualquer sequência** de cerca de 20 letras. Assim, a Cas9 corta o DNA onde o cientista quiser. Para cortar, a Cas9 precisa também achar um sinal curto ao lado do alvo, o **PAM** (para a Cas9 mais usada, a sequência NGG, em que N é qualquer letra).
+
+<GuiaDoCrispr />
+
+Depois do corte, a célula **tenta consertar** o DNA, e isso permite:
+
+- **Desligar um gene:** o conserto apressado costuma cometer erros que estragam o gene.
+- **Corrigir ou trocar o gene:** se o cientista fornecer um trecho de DNA correto como modelo, a célula pode copiá-lo no lugar do trecho com defeito.
+
+<Brincando titulo="CRISPR: localizar e substituir num texto">
+
+Pense num editor de texto: você aperta Ctrl+F, digita uma frase de 20 letras e o programa **acha o lugar exato**. O RNA-guia é o campo de busca, e a Cas9 é a tesoura que corta ali. Se o guia estiver com 1 ou 2 letras erradas, o programa pode achar um lugar parecido e cortar no ponto errado. Por isso, cientistas passam muito tempo escolhendo guias que **só combinem com um lugar** do genoma.
+
+</Brincando>
+
+<ExemploResolvido titulo="Quantas letras a Cas9 precisa achar ao lado do alvo?">
+  <Passo>O guia tem **20 letras**.</Passo>
+  <Passo>O PAM tem **3 letras** (NGG).</Passo>
+  <Passo>Total: 20 + 3 = **23 letras** de sequência para a Cas9 reconhecer e cortar.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos PAMs diferentes do tipo NGG existem, se N pode ser A, T, C ou G?" resposta="4" dica="Só a primeira letra varia." resolucao="AGG, TGG, CGG e GGG: 4 PAMs." />
+
+<Exercicio enunciado="O alvo tem 20 letras e o PAM, 3. Quantas letras no total a Cas9 precisa reconhecer?" resposta="23" dica="Some as duas partes." resolucao="20 + 3 = 23 letras." />
+
+## Aplicações e riscos do CRISPR
+
+- **Medicina:** em 2023, a primeira terapia com CRISPR (Casgevy) foi aprovada para a anemia falciforme, editando as células-tronco do sangue do próprio paciente. É uma **terapia somática**: afeta só aquela pessoa e não passa para os filhos.
+- **Agricultura:** plantas mais resistentes a pragas ou secas, sem genes de outras espécies.
+- **Pesquisa:** criar modelos de doenças em animais e células.
+
+Os cuidados são grandes. Os **cortes fora do alvo** podem causar erros em outros genes, e o tratamento ainda é caro, o que levanta um problema de **acesso**. E há a questão da edição **germinativa** (em embriões, óvulos ou espermatozoides), que **passa para as gerações futuras**. Em 2018, o cientista chinês He Jiankui anunciou o nascimento de bebês com os genes editados. O mundo científico condenou o ato por falta de segurança e de necessidade médica, e ele foi condenado pela Justiça da China.
+
+## Perguntas éticas
+
+A biotecnologia exige perguntas que a ciência sozinha não responde:
+
+- **Segurança:** os riscos foram testados o suficiente?
+- **Acesso:** os tratamentos serão só para quem pode pagar?
+- **Privacidade:** quem pode ver o seu DNA, e para quê (seguros, empregos)?
+- **Limites:** curar uma doença é diferente de "melhorar" características como altura ou inteligência. Onde fica a linha?
+- **Consentimento:** como proteger as pessoas, sobretudo quem ainda nem nasceu?
+
+Essas são decisões da sociedade, e por isso quem entende o básico de genética pode participar do debate. É um bom motivo para estudar este assunto.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'O que é biotecnologia?',
+    opcoes: ['O uso de seres vivos, ou de partes deles, para fazer produtos', 'Um tipo de máquina de lavar', 'O estudo apenas de animais'],
+    correta: 0,
+    explicacao: 'Vai de pão, queijo e vinho até insulina feita por bactérias e CRISPR.',
+  },
+  {
+    enunciado: 'Qual a função de uma enzima de restrição?',
+    opcoes: ['Cortar o DNA numa sequência específica', 'Copiar o DNA', 'Ler o RNA'],
+    correta: 0,
+    explicacao: 'Ela reconhece uma sequência curta e corta ali, como uma tesoura molecular.',
+  },
+  {
+    enunciado: 'Que enzima cola pedaços de DNA?',
+    opcoes: ['Helicase', 'DNA ligase', 'Lactase'],
+    correta: 1,
+    explicacao: 'A ligase une as pontas de DNA cortadas.',
+  },
+  {
+    enunciado: 'O que é DNA recombinante?',
+    opcoes: ['DNA com pedaços de origens diferentes unidos', 'DNA que se multiplica sozinho', 'DNA do RNA'],
+    correta: 0,
+    explicacao: 'Por exemplo, um gene humano dentro de um plasmídeo de bactéria.',
+  },
+  {
+    enunciado: 'Por que uma bactéria consegue produzir uma proteína humana?',
+    opcoes: ['O código genético é praticamente universal', 'Ela se transforma em célula humana', 'Ela come a insulina pronta'],
+    correta: 0,
+    explicacao: 'O mesmo trio codifica o mesmo aminoácido em quase todos os seres vivos.',
+  },
+  {
+    enunciado: 'Quantas cópias a PCR faz depois de 10 ciclos, a partir de uma molécula?',
+    opcoes: ['10', '100', '1024'],
+    correta: 2,
+    explicacao: 'Cada ciclo dobra o número de cópias: 2 elevado a 10 = 1024.',
+  },
+  {
+    enunciado: 'Por que a PCR usa uma enzima de bactéria de fontes quentes (a Taq)?',
+    opcoes: ['Porque aguenta o calor dos ciclos', 'Porque é mais barata', 'Porque é vermelha'],
+    correta: 0,
+    explicacao: 'A temperatura chega a cerca de 95 °C em cada ciclo, e uma enzima comum se desmancharia.',
+  },
+  {
+    enunciado: 'Na eletroforese em gel, qual fragmento anda mais depressa?',
+    opcoes: ['O maior', 'O menor', 'Todos andam igual'],
+    correta: 1,
+    explicacao: 'Os fragmentos pequenos passam pelos poros do gel com facilidade.',
+  },
+  {
+    enunciado: 'O que é um organismo transgênico?',
+    opcoes: ['Um ser que recebeu um gene de outra espécie', 'Um ser clonado', 'Um ser sem DNA'],
+    correta: 0,
+    explicacao: 'Exemplo: o milho Bt, com um gene de uma bactéria.',
+  },
+  {
+    enunciado: 'Como nasceu a ovelha Dolly?',
+    opcoes: ['Pela transferência do núcleo de uma célula adulta para um óvulo sem núcleo', 'Por um cruzamento comum', 'Por mutação'],
+    correta: 0,
+    explicacao: 'O núcleo veio de uma célula da glândula mamária de uma ovelha adulta.',
+  },
+  {
+    enunciado: 'No CRISPR, o que faz o RNA-guia?',
+    opcoes: ['Leva a Cas9 até o trecho de DNA que combina com ele', 'Copia o DNA', 'Fabrica insulina'],
+    correta: 0,
+    explicacao: 'O guia tem cerca de 20 letras que combinam com o alvo. A Cas9 corta ali.',
+  },
+  {
+    enunciado: 'Qual a diferença entre edição somática e germinativa?',
+    opcoes: ['Somática afeta só a pessoa tratada, e germinativa passa para as próximas gerações', 'Nenhuma', 'Somática é só para plantas'],
+    correta: 0,
+    explicacao: 'A edição germinativa levanta mais questões éticas, porque a mudança é herdada.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Ferramentas:** enzimas de restrição (tesoura), DNA ligase (cola), plasmídeos (veículos) e PCR (fotocopiadora). Os genes funcionam em qualquer espécie porque o código genético é universal.
+- **DNA recombinante:** gene cortado e colado num plasmídeo, que entra numa bactéria. Assim se faz insulina, hormônio do crescimento e vacinas.
+- **PCR:** 95 °C, 55 °C e 72 °C. Dobra as cópias a cada ciclo (2 elevado a n). Usa a Taq polimerase.
+- **Impressão digital de DNA:** compara trechos repetitivos, separados por tamanho em gel. Serve para paternidade, identificação e crimes.
+- **Transgênicos e clones:** transgênicos têm gene de outra espécie. Clones têm o mesmo DNA do núcleo (Dolly, 1996).
+- **CRISPR:** RNA-guia de cerca de 20 letras mais Cas9. Corta, desliga ou corrige genes. Traz promessas e riscos éticos.
+
+**Um pouco de história.** Smith descobriu as enzimas de restrição (1970). Berg (1972) e Cohen e Boyer (1973) criaram o DNA recombinante. A insulina humana veio de bactérias em 1982, Mullis inventou a PCR em 1983 e Jeffreys, a impressão digital de DNA, em 1984. Dolly nasceu em 1996, e Doudna e Charpentier mostraram o CRISPR como ferramenta em 2012.
+
+</Resumo>
+
+A biotecnologia é onde o conhecimento do DNA vira ação. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>
