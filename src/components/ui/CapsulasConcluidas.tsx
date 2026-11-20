@@ -27,7 +27,7 @@ export default function CapsulasConcluidas() {
       {feitas.map(({ cap, quando }) => (
         <li key={cap!.id}>
           <Link to={`/capsula/${cap!.id}`} className="flex min-h-11 items-center gap-3 rounded-xl hover:text-azul-texto">
-            <Estacao cor={buscarLinha(cap!).cor} concluida />
+            <Estacao cor={buscarLinha(cap!).cor} estado="concluida" />
             <span className="font-semibold">{cap!.titulo}</span>
             <span className="text-sm text-suave">{formatar(quando)}</span>
           </Link>

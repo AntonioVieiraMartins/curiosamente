@@ -2,10 +2,10 @@ import type { Linha, ResumoCapsula } from '../../conteudo/indice'
 import type { ProgressoCapsula } from '../../lib/progressoLocal'
 import SiglaLinha from '../ui/SiglaLinha'
 
-type Props = { linha: Linha; capsulas: ResumoCapsula[]; progresso: Record<string, ProgressoCapsula>; aoAbrir: () => void }
+type Props = { linha: Linha; capsulas: ResumoCapsula[]; progresso: Record<string, ProgressoCapsula>; aoAbrir: () => void; selecionada?: boolean }
 
 // Cartão da visão geral: progresso da linha e qual é a próxima cápsula
-export default function CartaoDaLinha({ linha, capsulas, progresso, aoAbrir }: Props) {
+export default function CartaoDaLinha({ linha, capsulas, progresso, aoAbrir, selecionada = false }: Props) {
   const prontas = capsulas.filter((c) => c.estado === 'pronta')
   const feitas = prontas.filter((c) => progresso[c.id]?.concluida).length
   const proxima = prontas.find((c) => !progresso[c.id]?.concluida)
@@ -14,6 +14,8 @@ export default function CartaoDaLinha({ linha, capsulas, progresso, aoAbrir }: P
     <button
       type="button"
       onClick={aoAbrir}
+      aria-pressed={selecionada}
+      style={selecionada ? { boxShadow: `0 0 0 2px ${linha.cor}` } : undefined}
       className="flex min-h-11 w-full flex-col rounded-[20px] bg-superficie p-5 text-left shadow-cartao transition hover:-translate-y-0.5 hover:shadow-cartao-alto"
     >
       <span className="flex items-center gap-3">

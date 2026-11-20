@@ -1,11 +1,12 @@
-import { useId, useMemo, useState } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
-import Rotulo from '../../components/ui/Rotulo'
+import { useId, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import CartaoDaLinha from '../../components/mapa/CartaoDaLinha'
 import CapsulaCompacta from '../../components/mapa/CapsulaCompacta'
-import { areas, capsulas, linhas, linhaDaCapsula, modulosComputacao, type ResumoCapsula } from '../../conteudo/indice'
+import PainelDaCapsula from '../../components/mapa/PainelDaCapsula'
+import LinhaDoMapa from '../../components/ui/LinhaDoMapa'
+import SiglaLinha from '../../components/ui/SiglaLinha'
+import { areas, capsulas, linhas, linhaDaCapsula } from '../../conteudo/indice'
 import { useTodoProgresso } from '../../hooks/useProgresso'
-import { botaoPrimario } from '../../components/ui/estilos'
 
 type Filtro = 'tudo' | 'prontas' | 'andamento' | 'nao-comecei'
 const filtros: { id: Filtro; nome: string }[] = [
@@ -16,7 +17,6 @@ const filtros: { id: Filtro; nome: string }[] = [
 ]
 
 const semAcento = (t: string) => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
-const grupoDe = (c: ResumoCapsula) => (c.area === 'computacao' ? modulosComputacao[c.trilha] : c.grupo) ?? 'Cápsulas'
 const chip = (ativo: boolean) =>
   `min-h-11 rounded-full border px-4 text-[15px] font-semibold transition-colors ${
     ativo ? 'border-texto bg-texto text-white' : 'border-borda bg-superficie text-texto hover:border-texto/30'
@@ -26,6 +26,7 @@ export default function Mapa() {
   const [params, setParams] = useSearchParams()
   const [busca, setBusca] = useState(() => params.get('q') ?? '')
   const [filtro, setFiltro] = useState<Filtro>('tudo')
+  const [escolhidaId, setEscolhidaId] = useState<string | null>(null)
   const progresso = useTodoProgresso()
   const idBusca = useId()
 
@@ -35,7 +36,6 @@ export default function Mapa() {
   const linhaAberta = linhaDoEndereco ?? (areaAberta?.linhas.length === 1 ? linhas.find((l) => l.id === areaAberta.linhas[0]) : undefined)
   const linhasDaArea = areaAberta ? linhas.filter((l) => l.area === areaAberta.id) : []
   const andando = (id: string) => !progresso[id]?.concluida && (progresso[id]?.concluidas.length ?? 0) > 0
-  const retomar = capsulas.find((c) => andando(c.id))
 
   const termo = semAcento(busca.trim())
   const procurando = termo !== '' || filtro !== 'tudo'
@@ -57,35 +57,19 @@ export default function Mapa() {
     setParams(id ? { area: id } : {})
   }
 
-  // Grupos da linha aberta, na ordem do índice
-  const grupos = useMemo(() => {
-    if (!linhaAberta) return []
-    const porGrupo = new Map<string, ResumoCapsula[]>()
-    for (const c of capsulas.filter((x) => linhaDaCapsula(x) === linhaAberta.id)) {
-      const g = grupoDe(c)
-      porGrupo.set(g, [...(porGrupo.get(g) ?? []), c])
-    }
-    return [...porGrupo]
-  }, [linhaAberta])
+  // Estação escolhida (painel do computador): a que a pessoa clicou; senão a que está em andamento, a primeira pronta ainda não feita ou a primeira
+  const daLinha = linhaAberta ? capsulas.filter((c) => linhaDaCapsula(c) === linhaAberta.id) : []
+  const escolhida =
+    daLinha.find((c) => c.id === escolhidaId) ??
+    daLinha.find((c) => andando(c.id)) ??
+    daLinha.find((c) => c.estado === 'pronta' && !progresso[c.id]?.concluida) ??
+    daLinha[0]
 
   return (
-    <section className="mx-auto max-w-5xl px-4 pt-8 sm:pt-14">
-      <Rotulo>Mapa</Rotulo>
-      <h1 className="mt-3 font-serif text-4xl font-medium leading-tight tracking-tight sm:text-5xl">
+    <section className="mx-auto max-w-[1200px] px-4 pt-2 sm:pt-9 lg:px-10">
+      <h1 className="font-serif text-[28px] font-medium leading-[1.15] sm:text-[40px] sm:leading-[1.1]">
         Para onde vamos <em>hoje?</em>
       </h1>
-
-      {retomar && (
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-borda bg-superficie p-4">
-          <p className="min-w-0">
-            <span className="text-sm text-suave">Continuar de onde parou</span>
-            <span className="block font-semibold">
-              {retomar.titulo} · etapa {(progresso[retomar.id]?.etapaAtual ?? 0) + 1} de 7
-            </span>
-          </p>
-          <Link to={`/capsula/${retomar.id}`} className={botaoPrimario}>Continuar</Link>
-        </div>
-      )}
 
       <div className="mt-6">
         <label htmlFor={idBusca} className="sr-only">Buscar cápsula</label>
@@ -172,22 +156,35 @@ export default function Mapa() {
               ))}
             </div>
           ) : (
-            <div className="mt-6 space-y-8">
-              {grupos.map(([nome, lista]) => (
-                <section key={nome} aria-label={nome}>
-                  <h2 className="text-xs font-semibold uppercase tracking-wider text-suave">
-                    {nome} · {lista.filter((c) => c.estado === 'pronta').length} de {lista.length} prontas
-                  </h2>
-                  <ul className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                    {lista.map((c) => (
-                      <li key={c.id}>
-                        <CapsulaCompacta cap={c} linha={linhaAberta} progresso={progresso[c.id]} />
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              ))}
+            <>
+            {linhasDaArea.length > 1 && (
+              <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                {linhasDaArea.map((l) => (
+                  <CartaoDaLinha
+                    key={l.id}
+                    linha={l}
+                    capsulas={capsulas.filter((c) => linhaDaCapsula(c) === l.id)}
+                    progresso={progresso}
+                    aoAbrir={() => escolher(l.id)}
+                    selecionada={linhaAberta.id === l.id}
+                  />
+                ))}
+              </div>
+            )}
+            <div className="mt-6 grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_380px]">
+              <div className="min-w-0">
+                <div className="mb-4 flex items-center gap-3">
+                  <SiglaLinha linha={linhaAberta} />
+                  <div>
+                    <h2 className="font-serif text-2xl font-medium leading-tight">{linhaAberta.nome}</h2>
+                    <p className="text-sm text-suave">{linhaAberta.descricao} · {daLinha.length} estações</p>
+                  </div>
+                </div>
+                <LinhaDoMapa linha={linhaAberta} capsulas={daLinha} progresso={progresso} selecionadaId={escolhida?.id} aoEscolher={(c) => setEscolhidaId(c.id)} />
+              </div>
+              {escolhida && <PainelDaCapsula cap={escolhida} progresso={progresso[escolhida.id]} />}
             </div>
+            </>
           )}
         </>
       )}
