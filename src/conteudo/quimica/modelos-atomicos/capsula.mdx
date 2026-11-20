@@ -1,0 +1,428 @@
+import CincoModelos from '../../../components/simulacoes/CincoModelos'
+import FolhaDeOuro from '../../../components/simulacoes/FolhaDeOuro'
+import SaltoDoEletron from '../../../components/simulacoes/SaltoDoEletron'
+import TesteDeChama from '../../../components/simulacoes/TesteDeChama'
+import QualModeloExplica from '../../../components/simulacoes/QualModeloExplica'
+
+{/* Fatos conferidos nas fontes do meta.ts (Wikipedia em inglês: Atomic theory, Rutherford model, Geiger–Marsden experiment, Bohr model, Atomic orbital, Flame test). Valores de energia são do hidrogênio, em elétron-volts, e aproximados. */}
+
+<Etapa id="gancho">
+
+Nenhum cientista **viu** um átomo ao longo de quase toda a história da química. Ainda assim, em pouco mais de cem anos, eles descobriram que o átomo tem um núcleo, que os elétrons só podem estar em certos "degraus de energia" e que a luz colorida dos fogos de artifício vem de saltos dentro dos átomos. Tudo isso sem ver nada diretamente.
+
+Como é possível descobrir a forma de algo que é cem mil vezes menor do que a menor coisa visível? Do mesmo jeito que se descobre o que há dentro de uma caixa fechada: **jogando coisas nela e observando o que acontece**. Foi o que Rutherford fez com uma folha de ouro.
+
+<Palpite
+  chave="inicial"
+  pergunta="Em 1909, partículas minúsculas e velozes foram disparadas contra uma folha finíssima de ouro. Na época, acreditava-se que o átomo era uma esfera macia. O que você acha que aconteceu com as partículas?"
+  opcoes={['Todas atravessaram quase em linha reta', 'Todas pararam ou quicaram, porque o ouro é duro', 'Quase todas atravessaram, mas umas poucas voltaram para trás']}
+/>
+
+Nesta cápsula você vai ver como os **modelos do átomo** mudaram, de **Dalton a Bohr** e até os **orbitais** de hoje. Vai aprender o que cada experimento mostrou, calcular **níveis de energia** e entender de onde vêm as **cores** da luz.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Um modelo científico é como um mapa: simplifica a realidade para ajudar a entendê-la. Quando um experimento novo não cabe no mapa antigo, o mapa muda. A história do átomo é uma sequência de mapas, cada um melhor que o anterior.
+
+<LinhaDoTempo marcos={[
+  { ano: '1808', texto: 'Dalton propõe que átomos são esferas maciças e indivisíveis, uma para cada elemento.' },
+  { ano: '1897 e 1904', texto: 'Thomson descobre o elétron e propõe um átomo de carga positiva com elétrons dentro, o "pudim de passas".' },
+  { ano: '1909 e 1911', texto: 'O experimento de Geiger e Marsden leva Rutherford a propor um núcleo pequeno e denso.' },
+  { ano: '1913', texto: 'Niels Bohr propõe elétrons em níveis fixos de energia, explicando as cores emitidas pelo hidrogênio.' },
+  { ano: '1926', texto: 'Schrödinger publica a equação que dá origem ao modelo atual, o dos orbitais.' },
+  { ano: '1932', texto: 'Chadwick descobre o nêutron, completando o quadro do núcleo.' },
+]} />
+
+## Dalton: a bolinha
+
+Para Dalton, o átomo era como uma pequena bola de bilhar: dura, maciça, sem partes. Cada elemento tinha a sua, com massa própria. Foi uma boa ideia: explicava por que as substâncias se combinam em **proporções fixas**. Mas não dizia nada sobre eletricidade, e logo apareceu um problema.
+
+## Thomson: o pudim de passas
+
+Em 1897, J. J. Thomson estudou raios saindo de um tubo de vidro com gás e descobriu que eram feitos de partículas **negativas e levíssimas**, saídas de dentro dos átomos. O átomo não era maciço: tinha **elétrons**. Como o átomo todo é neutro, tinha de haver carga positiva compensando. Em 1904, Thomson imaginou uma esfera positiva com os elétrons espalhados dentro, como passas num pudim. Esse nome vem de comparações da época.
+
+## Rutherford: o susto da folha de ouro
+
+Em 1909, no laboratório de Ernest Rutherford, Hans Geiger e Ernest Marsden dispararam **partículas alfa** (positivas e pesadas) contra uma folha de ouro finíssima. Pelo modelo de Thomson, elas deveriam atravessar quase retas. E a maioria atravessou. Mas, a cada 8.000 partículas, **uma voltava para trás**. Rutherford comparou o susto a atirar uma bala de canhão num lenço de papel e a bala voltar.
+
+## Bohr: degraus de energia
+
+O modelo de Rutherford tinha um problema: pela física clássica, um elétron girando em volta do núcleo perderia energia e **cairia em espiral** em uma fração de segundo. Mas os átomos existem. Em 1913, o físico dinamarquês Niels Bohr propôs algo estranho e certeiro: os elétrons só podem estar em **órbitas com energias fixas**, e **só emitem luz quando pulam** de uma para outra.
+
+## O átomo de hoje
+
+A partir de 1924, a física descobriu que partículas pequenas também se comportam como **ondas**. Em 1926, Schrödinger escreveu uma equação para elas, e Werner Heisenberg mostrou que não dá para saber ao mesmo tempo a posição e a velocidade exata de um elétron. O elétron deixou de ser uma bolinha numa órbita e virou uma **nuvem de probabilidade**: os <Termo cor="azul">orbitais</Termo>.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Para que serve um modelo?
+
+Um modelo **não é o átomo**. É uma ferramenta para explicar o que se observa e prever o que ainda não se mediu. Um modelo bom é aquele que **explica os fatos** e continua valendo enquanto não aparece um fato que ele não explique. Por isso a ciência troca de modelo sem vergonha: cada troca é um avanço.
+
+## 2. A pergunta que cada modelo respondeu
+
+- **Dalton:** por que as substâncias se combinam em proporções fixas?
+- **Thomson:** de onde vêm os elétrons, se o átomo é neutro?
+- **Rutherford:** por que algumas partículas voltam?
+- **Bohr:** por que cada elemento emite luz de cores próprias?
+- **Orbitais:** por que o elétron não se comporta como uma bolinha?
+
+<Brincando titulo="Modelo e mapa: o metrô e a cidade real">
+
+O mapa do metrô de uma cidade não mostra as curvas reais das ruas nem as distâncias certas: mostra só linhas retas e estações. Mas é perfeito para saber **onde trocar de linha**. Se você quisesse caminhar pela cidade, precisaria de outro mapa. Um modelo atômico é igual: o de Bohr é ótimo para explicar cores e camadas, mas não serve para explicar tudo. Cada modelo é um mapa útil **para certas perguntas**.
+
+</Brincando>
+
+## 3. O que mudou de um para outro
+
+Do primeiro para o último, o átomo foi ficando **mais vazio e mais estranho**: de bolinha maciça (Dalton) a nuvem de probabilidade (orbitais). O interessante é que cada novo modelo **incluiu** o que o anterior explicava. Os modelos antigos ainda são usados quando basta: para o dia a dia, o modelo de camadas (Bohr) funciona muito bem.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Na experiência da folha de ouro, o átomo tem um núcleo minúsculo, muito pesado e positivo, num espaço quase vazio. O que deve acontecer com a maioria das partículas alfa?"
+  opcoes={['Quase todas voltam, porque o átomo é muito denso', 'Quase todas passam sem desvio, porque o átomo é quase vazio', 'Quase todas são absorvidas pela folha']}
+  correta={1}
+  explicacao="Como o núcleo é minúsculo perto do átomo, quase todas as partículas passam longe dele e atravessam o 'vazio'. Só as raras que passam muito perto (ou batem de frente) são desviadas ou voltam."
+>
+
+Alterne entre os dois modelos e mude o número de partículas disparadas:
+
+<FolhaDeOuro />
+
+Agora volte ao palpite do começo:
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Todas atravessaram quase em linha reta', 'Todas pararam ou quicaram, porque o ouro é duro', 'Quase todas atravessaram, mas umas poucas voltaram para trás']}
+  correta={2}
+  seAcertou="Certo: quase todas atravessaram, mas cerca de uma em cada 8.000 voltou, o que só faz sentido com um núcleo pequeno e denso."
+  seErrou="O certo é: quase todas atravessaram, mas umas poucas voltaram. Esse 'pouquíssimas voltam' foi o que mostrou o núcleo: um átomo-pudim não faria nenhuma voltar."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Os cinco modelos lado a lado
+
+<CincoModelos />
+
+## Dalton (1808)
+
+Dalton propôs que:
+
+- toda matéria é feita de átomos, **indivisíveis e indestrutíveis**;
+- átomos de um mesmo elemento são **iguais** (mesma massa);
+- átomos de elementos diferentes são **diferentes**;
+- as reações químicas apenas **reorganizam** átomos, sem criar nem destruir nenhum;
+- um composto é uma **combinação fixa** de átomos.
+
+Hoje sabemos que o átomo **pode** ser dividido (tem partes) e que átomos do mesmo elemento podem ter massas diferentes (isótopos). Mas a ideia de que as reações só reorganizam átomos continua perfeita: é a base do balanceamento de equações.
+
+<Brincando titulo="Dalton: peças de Lego de tipos fixos">
+
+Pense numa caixa de peças de Lego: tijolos azuis, vermelhos, amarelos. Cada cor é um elemento. Você pode montar casinhas, carrinhos, castelos (compostos), mas as peças continuam as mesmas: montar e desmontar não cria nem destrói peças. Era essa a imagem de Dalton, e ela explica por que o total de átomos antes e depois de uma reação é o mesmo.
+
+</Brincando>
+
+## Thomson (1897 a 1904)
+
+Descobertas de Thomson: o **elétron** (partícula negativa, muito mais leve que o átomo) e a razão entre sua carga e sua massa. Seu modelo coloca os elétrons dentro de uma esfera positiva. Ele explica por que os átomos são neutros e por que dá para arrancar elétrons (eletricidade estática, raios, tubos de TV antigos). Mas foi **derrubado** pelo experimento de Rutherford.
+
+## Rutherford (1911)
+
+O experimento de Geiger e Marsden:
+
+1. Uma fonte radioativa emite partículas alfa (cargas positivas, pesadas).
+2. Elas são disparadas contra uma folha de ouro com poucos milhares de átomos de espessura.
+3. Detectores em volta da folha registram para onde as partículas vão.
+
+Resultados: **a maioria passa reta**, **algumas se desviam um pouco** e **cerca de 1 em 8.000 volta**. Conclusões de Rutherford:
+
+- O átomo é **quase todo vazio** (quase tudo passa).
+- Existe um **núcleo** minúsculo, **positivo e muito denso** (o que desvia e faz voltar).
+- Os elétrons ficam **fora do núcleo**, em volta.
+
+<FolhaDeOuro />
+
+<ExemploResolvido titulo="Em 40.000 disparos de partículas alfa contra uma folha de ouro, cerca de quantas voltariam, se a proporção é 1 em 8.000?">
+  <Passo>Divida o total pela proporção: 40.000 ÷ 8.000.</Passo>
+  <Passo>40.000 ÷ 8.000 = **5 partículas**.</Passo>
+  <Passo>O número é pequeno, mas bastou para mudar toda a ideia do átomo.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Em 16.000 disparos, quantas partículas voltariam, na proporção de 1 em 8.000?" resposta="2" dica="16.000 ÷ 8.000." resolucao="16.000 ÷ 8.000 = 2 partículas." />
+
+<Exercicio enunciado="Em 80.000 disparos, quantas partículas voltariam, na proporção de 1 em 8.000?" resposta="10" dica="80.000 ÷ 8.000." resolucao="80.000 ÷ 8.000 = 10 partículas." />
+
+<Brincando titulo="Rutherford: bolinhas de gude num campo com uma árvore">
+
+Imagine um campo enorme e vazio, com uma única árvore bem grossa no meio. Você atira milhares de bolinhas de gude em linha reta, às cegas. A maioria passa longe da árvore e segue sem desvio. Algumas passam perto e desviam um pouco. Uma ou outra bate de frente e volta. Só olhando para onde as bolinhas vão, você descobre que há **uma coisa pequena e dura** no campo, sem nunca tê-la visto. Foi assim que o núcleo foi descoberto.
+
+</Brincando>
+
+## O problema do modelo de Rutherford
+
+Se os elétrons giram em volta do núcleo, o eletromagnetismo clássico diz que eles **irradiam energia** e **caem em espiral** em direção ao núcleo, em uma fração minúscula de segundo. Mas os átomos são estáveis. Além disso, o modelo não explicava por que o hidrogênio aquecido emite luz **só em algumas cores**. Era preciso uma ideia nova.
+
+## Bohr (1913)
+
+Bohr propôs, para o átomo de hidrogênio:
+
+1. Os elétrons giram em **órbitas** de energia **fixa** (os **níveis de energia**, ou **camadas**).
+2. Enquanto está numa órbita, o elétron **não irradia**.
+3. Quando **pula** de uma órbita de energia maior para uma menor, **emite** luz. Quando recebe a energia certa, **pula para cima**, **absorvendo** luz.
+4. A luz emitida ou absorvida tem energia **exatamente igual** à diferença entre os dois níveis.
+
+Isso foi o início da ideia de **quantização**: a energia do elétron no átomo só pode ter certos valores, e não qualquer um. Para o hidrogênio, os valores são:
+
+<Formula>
+<Linha>E(n) = −13,6 eV ÷ n²</Linha>
+</Formula>
+
+O **eV** (elétron-volt) é uma unidade de energia pequena, própria do mundo atômico. O n é o **nível** (1, 2, 3, ...). O sinal negativo indica que o elétron está **preso** ao átomo: quanto mais negativa a energia, mais preso. Em n = 1 está mais preso, e quanto maior n, menos preso, chegando a zero quando o elétron escapa.
+
+<Brincando titulo="Níveis de energia: os degraus de uma escada">
+
+Imagine uma escada em que só dá para ficar **em degraus, nunca entre eles**. Descer um degrau libera energia (como pular de um degrau gera um barulho). Subir exige receber energia. O elétron é assim: só existe em degraus fixos, e a luz que sai é exatamente a "diferença de altura" entre o degrau de partida e o de chegada. Degraus mais altos ficam mais próximos uns dos outros, como na conta de −13,6 ÷ n².
+
+</Brincando>
+
+<ExemploResolvido titulo="Qual a energia do elétron do hidrogênio nos níveis 1, 2 e 3?">
+  <Passo>n = 1: E = −13,6 ÷ 1 = **−13,6 eV**.</Passo>
+  <Passo>n = 2: E = −13,6 ÷ 4 = **−3,4 eV**.</Passo>
+  <Passo>n = 3: E = −13,6 ÷ 9 ≈ **−1,51 eV**.</Passo>
+  <Passo>Os níveis vão se aproximando de zero conforme n cresce.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual o valor, sem o sinal, da energia do nível n = 2 do hidrogênio, em eV?" resposta="3,4" dica="13,6 ÷ 4." resolucao="13,6 ÷ 4 = 3,4 eV (a energia é −3,4 eV)." />
+
+<Exercicio enunciado="Qual o valor, sem o sinal, da energia do nível n = 4 do hidrogênio, em eV?" resposta="0,85" dica="13,6 ÷ 16." resolucao="13,6 ÷ 16 = 0,85 eV." />
+
+<Exercicio enunciado="Quanta energia, em eV, é preciso dar a um elétron do hidrogênio em n = 1 para arrancá-lo do átomo (levá-lo a energia zero)?" resposta="13,6" dica="A diferença entre −13,6 e 0." resolucao="É a energia de ionização do hidrogênio: 13,6 eV." />
+
+## A luz de cada salto
+
+Quando o elétron pula de um nível mais alto (n_i) para um mais baixo (n_f), a energia do fóton emitido é a diferença:
+
+<Formula>
+<Linha>ΔE = 13,6 × (1 ÷ n_f² − 1 ÷ n_i²)  eV</Linha>
+</Formula>
+
+E o comprimento de onda da luz (em nanômetros) sai de:
+
+<Formula>
+<Linha>λ ≈ 1.240 ÷ ΔE  (nm, com ΔE em eV)</Linha>
+</Formula>
+
+Luz **visível** tem comprimento de onda entre cerca de 380 nm (violeta) e 750 nm (vermelho). Menos que 380 nm é **ultravioleta** e mais que 750 nm é **infravermelho**: ambos invisíveis.
+
+<SaltoDoEletron />
+
+<ExemploResolvido titulo="O elétron do hidrogênio desce de n = 3 para n = 2. Qual a energia e a cor da luz emitida?">
+  <Passo>ΔE = 13,6 × (1/4 − 1/9) = 13,6 × (9 − 4)/36 = 13,6 × 5/36 ≈ **1,89 eV**.</Passo>
+  <Passo>λ = 1.240 ÷ 1,89 ≈ **656 nm**.</Passo>
+  <Passo>656 nm é **vermelho**. É a linha vermelha famosa do hidrogênio.</Passo>
+</ExemploResolvido>
+
+<ExemploResolvido titulo="O elétron do hidrogênio desce de n = 4 para n = 2. Qual a cor da luz emitida?">
+  <Passo>ΔE = 13,6 × (1/4 − 1/16) = 13,6 × 3/16 = **2,55 eV**.</Passo>
+  <Passo>λ = 1.240 ÷ 2,55 ≈ **486 nm**.</Passo>
+  <Passo>486 nm é **azul-esverdeado**. É a segunda linha do hidrogênio visível.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual a energia, em eV, do fóton emitido quando o elétron do hidrogênio desce de n = 2 para n = 1?" resposta="10,2" dica="13,6 × (1 − 1/4)." resolucao="13,6 × 3/4 = 10,2 eV (luz ultravioleta)." />
+
+<Exercicio enunciado="Um fóton tem energia de 2,48 eV. Qual o seu comprimento de onda, em nm? (use λ = 1.240 ÷ E)" resposta="500" dica="1.240 ÷ 2,48." resolucao="1.240 ÷ 2,48 = 500 nm: luz verde-azulada." />
+
+<Brincando titulo="Cores do hidrogênio: o carimbo do elemento">
+
+Cada elemento tem seus próprios degraus de energia, então só emite certos saltos, e portanto certas cores. Se você decompuser a luz do hidrogênio com um prisma, não vê um arco-íris contínuo, e sim **poucas linhas coloridas finas**, sempre nas mesmas posições. É como uma **impressão digital**: o conjunto de cores identifica o elemento. É assim que os astrônomos sabem de que são feitas estrelas a bilhões de quilômetros de distância.
+
+</Brincando>
+
+## O teste de chama
+
+Você pode ver os saltos dos elétrons sem laboratório de física: basta pôr um pouco de sal numa chama. A chama dá energia aos elétrons, que **sobem** de nível e depois **descem**, emitindo luz. Como cada elemento tem seus próprios níveis, cada um dá uma **cor** diferente.
+
+<TesteDeChama />
+
+Os **fogos de artifício** usam exatamente isso: sais de sódio para amarelo, de cobre para azul-esverdeado, de estrôncio para vermelho, e assim por diante.
+
+## Quantas camadas e quantos elétrons?
+
+No modelo de Bohr e nos seguintes, os níveis são numerados n = 1, 2, 3, ... (também chamados K, L, M, N...). O número **máximo** de elétrons de cada camada é **2n²**:
+
+- n = 1: 2 × 1² = **2** elétrons.
+- n = 2: 2 × 2² = **8** elétrons.
+- n = 3: 2 × 3² = **18** elétrons.
+- n = 4: 2 × 4² = **32** elétrons.
+
+<Exercicio enunciado="Quantos elétrons cabem, no máximo, na camada n = 3?" resposta="18" dica="2n²." resolucao="2 × 9 = 18 elétrons." />
+
+<Exercicio enunciado="Quantos elétrons cabem, no máximo, na camada n = 4?" resposta="32" dica="2n²." resolucao="2 × 16 = 32 elétrons." />
+
+## O modelo atual: orbitais
+
+Hoje, a ideia de "órbita" foi substituída pela de **orbital**: uma **região do espaço** onde é muito provável encontrar um elétron. Não dá para dizer onde o elétron está, só **onde há mais chance** de ele estar. Os orbitais têm formas diferentes:
+
+- **s:** esférico. Cada camada tem 1 orbital s.
+- **p:** em forma de "halteres" (dois lóbulos). Há 3 orbitais p por camada, a partir da 2ª.
+- **d e f:** formas mais complexas (5 e 7 orbitais, respectivamente).
+
+Um orbital comporta, no máximo, **2 elétrons**. Daí vem o 2n²: na camada 2 há 1 orbital s + 3 orbitais p = 4 orbitais, e 4 × 2 = 8.
+
+<Brincando titulo="Orbitais: a nuvem de moscas em volta de uma lâmpada">
+
+Tire uma foto de longa exposição de uma mosca voando em volta de uma lâmpada. Você não verá uma bolinha numa órbita: verá uma **nuvem borrada**, mais densa perto da lâmpada e mais rala longe. Cada ponto da foto mostra onde a mosca **esteve**. O orbital é isso: um "retrato de longa exposição" do elétron, que mostra onde é mais provável encontrá-lo. Não tem trajetória, só probabilidade.
+
+</Brincando>
+
+<Exercicio enunciado="Quantos elétrons cabem, no máximo, nos 3 orbitais p de uma camada, juntos?" resposta="6" dica="3 orbitais × 2 elétrons." resolucao="3 × 2 = 6 elétrons." />
+
+<Exercicio enunciado="Quantos elétrons cabem nos 5 orbitais d, juntos?" resposta="10" dica="5 × 2." resolucao="5 × 2 = 10 elétrons." />
+
+## Qual modelo para cada situação?
+
+Nenhum modelo é "o certo": cada um é útil dentro de seus limites. Teste-se:
+
+<QualModeloExplica />
+
+## Linha do tempo em números
+
+Quantos anos separam as descobertas? O elétron foi descoberto em 1897 e o nêutron em 1932: **35 anos** de trabalho para chegar às três partículas básicas. Entre a ideia do átomo de Demócrito e a prova de Perrin, foram mais de **2.300 anos**.
+
+<Exercicio enunciado="Quantos anos se passaram entre a descoberta do elétron (1897) e a do nêutron (1932)?" resposta="35" dica="1932 − 1897." resolucao="35 anos." />
+
+<Exercicio enunciado="O átomo tem cerca de 10⁻¹⁰ m e o núcleo cerca de 10⁻¹⁵ m. Quantas potências de 10 o átomo é maior que o núcleo?" resposta="5" dica="Subtraia os expoentes: −10 − (−15)." resolucao="−10 − (−15) = 5: o átomo é cerca de 10⁵ (100 mil) vezes maior." />
+
+<Aprofundar titulo="Por que o elétron não cai no núcleo?">
+
+Pelo modelo quântico, o elétron tem um comportamento de onda. Para ficar "preso" perto do núcleo, ele precisaria ocupar uma região muito pequena, e isso exigiria uma energia cinética enorme (o princípio da incerteza). O equilíbrio entre a atração do núcleo e essa "resistência a ser espremido" define o tamanho do átomo. O elétron não cai porque já está no nível de menor energia permitido.
+
+</Aprofundar>
+
+<Aprofundar titulo="Limitações do modelo de Bohr">
+
+O modelo de Bohr funciona muito bem para o hidrogênio, mas falha para átomos com mais de um elétron, não explica a intensidade das linhas de cor e não explica detalhes finos do espectro. Mesmo assim, é uma excelente primeira imagem: níveis de energia e saltos que emitem luz são ideias que continuam valendo no modelo atual.
+
+</Aprofundar>
+
+<Aprofundar titulo="Pauli e o preenchimento dos orbitais">
+
+Em 1925, Wolfgang Pauli mostrou que dois elétrons nunca ocupam exatamente o mesmo estado: por isso um orbital comporta no máximo 2 elétrons (com "giros", ou spins, opostos). Os elétrons de um átomo ocupam os orbitais de menor energia primeiro. A ordem de preenchimento não é exatamente a das camadas: por exemplo, o orbital 4s é preenchido antes do 3d. Essa ordem explica a forma da tabela periódica, assunto da próxima cápsula.
+
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Qual modelo via o átomo como uma esfera maciça e indivisível?',
+    opcoes: ['Dalton', 'Rutherford', 'Bohr'],
+    correta: 0,
+    explicacao: 'Dalton (1808) imaginou o átomo como uma pequena bola maciça.',
+  },
+  {
+    enunciado: 'O que Thomson descobriu em 1897?',
+    opcoes: ['O núcleo', 'O elétron', 'O nêutron'],
+    correta: 1,
+    explicacao: 'Thomson descobriu o elétron, partícula negativa de dentro do átomo.',
+  },
+  {
+    enunciado: 'No experimento da folha de ouro, o que a maioria das partículas alfa fez?',
+    opcoes: ['Voltou para trás', 'Atravessou sem grande desvio', 'Foi absorvida'],
+    correta: 1,
+    explicacao: 'A maioria atravessou. Isso mostrou que o átomo é quase todo vazio.',
+  },
+  {
+    enunciado: 'O que fez algumas partículas alfa voltarem?',
+    opcoes: ['Um núcleo pequeno, pesado e positivo', 'A folha ser muito grossa', 'Os elétrons, que são muito pesados'],
+    correta: 0,
+    explicacao: 'Só uma concentração de carga positiva e massa, o núcleo, faz uma alfa quicar de volta.',
+  },
+  {
+    enunciado: 'Qual problema do modelo de Rutherford Bohr tentou resolver?',
+    opcoes: ['Por que os átomos são grandes', 'Por que os elétrons não caem no núcleo e por que emitem só certas cores', 'Por que existem isótopos'],
+    correta: 1,
+    explicacao: 'Bohr propôs níveis fixos de energia, estáveis, e luz emitida só nos saltos.',
+  },
+  {
+    enunciado: 'No modelo de Bohr, o elétron emite luz quando...',
+    opcoes: ['gira em qualquer órbita', 'pula de um nível mais alto para um mais baixo', 'fica parado'],
+    correta: 1,
+    explicacao: 'A luz sai na descida entre níveis. Dentro de um nível, o elétron não irradia.',
+  },
+  {
+    enunciado: 'Para o hidrogênio, a energia do nível n = 2 vale em módulo...',
+    opcoes: ['13,6 eV', '3,4 eV', '1,51 eV'],
+    correta: 1,
+    explicacao: '13,6 ÷ 4 = 3,4 eV.',
+  },
+  {
+    enunciado: 'A cor da chama no teste de chama indica...',
+    opcoes: ['a temperatura do fogo', 'o elemento presente, pelos saltos de energia dos elétrons', 'a cor do recipiente'],
+    correta: 1,
+    explicacao: 'Cada elemento tem níveis próprios, e cada um emite uma cor característica.',
+  },
+  {
+    enunciado: 'Quantos elétrons cabem, no máximo, na camada n = 3?',
+    opcoes: ['8', '18', '32'],
+    correta: 1,
+    explicacao: '2n² = 2 × 9 = 18.',
+  },
+  {
+    enunciado: 'O que é um orbital?',
+    opcoes: ['A trajetória exata do elétron', 'A região onde é muito provável encontrar um elétron', 'O núcleo do átomo'],
+    correta: 1,
+    explicacao: 'Orbital é uma região de probabilidade, e não uma trajetória.',
+  },
+  {
+    enunciado: 'Quantos elétrons cabem, no máximo, em um orbital?',
+    opcoes: ['1', '2', '8'],
+    correta: 1,
+    explicacao: 'Cada orbital comporta até 2 elétrons (Pauli).',
+  },
+  {
+    enunciado: 'Por que a ciência troca de modelo atômico?',
+    opcoes: ['Por moda', 'Porque novos experimentos mostram fatos que o modelo antigo não explica', 'Para complicar'],
+    correta: 1,
+    explicacao: 'Um modelo vale enquanto explica os fatos. Quando aparece um fato novo que não cabe, ele é aperfeiçoado ou trocado.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Dalton (1808):** esfera maciça. Explica proporções fixas e reações como reorganização de átomos.
+- **Thomson (1897 a 1904):** elétrons dentro de uma esfera positiva ("pudim de passas").
+- **Rutherford (1911):** núcleo pequeno, denso e positivo; átomo quase vazio. Prova: 1 em 8.000 partículas alfa volta.
+- **Bohr (1913):** níveis fixos de energia; luz é emitida nos saltos. E(n) = −13,6 ÷ n² (hidrogênio). λ ≈ 1.240 ÷ ΔE.
+- **Camadas:** no máximo 2n² elétrons (2, 8, 18, 32...).
+- **Orbitais (1926):** regiões de probabilidade; cada orbital comporta até 2 elétrons.
+- **Teste de chama:** cada elemento tem a sua cor, devido aos saltos dos elétrons.
+- Um modelo é um mapa útil, e não o átomo em si.
+
+**Um pouco de história.** Em 1909, Geiger e Marsden perceberam que uma partícula em cada 8.000 voltava ao bater numa folha de ouro. Rutherford entendeu em 1911: existia um núcleo. Dois anos depois, Bohr deu aos elétrons seus degraus de energia, e em 1926 os orbitais completaram o quadro.
+
+</Resumo>
+
+Conhecer o átomo por dentro explica por que os elementos têm propriedades parecidas em famílias, e isso leva à **tabela periódica**. Para onde seguir:
+
+<Conexoes />
+
+</Etapa>

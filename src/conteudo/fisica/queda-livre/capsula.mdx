@@ -1,0 +1,367 @@
+import QuedaNosMundos from '../../../components/simulacoes/QuedaNosMundos'
+import PenaEMartelo from '../../../components/simulacoes/PenaEMartelo'
+import QuedaSegundoASegundo from '../../../components/simulacoes/QuedaSegundoASegundo'
+import BolaParaCima from '../../../components/simulacoes/BolaParaCima'
+import TesteDaReguinha from '../../../components/simulacoes/TesteDaReguinha'
+
+{/* Fatos conferidos nas fontes do meta.ts (Wikipedia em inglês: Free fall, Standard gravity, Apollo 15, Galileo Galilei, Terminal velocity). A história da torre de Pisa é contada como lenda. Valores de g de outros mundos são aproximados. */}
+
+<Etapa id="gancho">
+
+Você solta, ao mesmo tempo, uma bola de boliche e uma bola de pingue-pongue, da mesma altura. Qual chega primeiro ao chão? Quase todo mundo diz: "a de boliche, é mais pesada". E quase todo mundo, em dois mil anos de história, concordou com isso.
+
+Só que, se você tirasse **todo o ar** do ambiente, as duas chegariam **juntas**. Isso parece impossível, mas é um dos fatos mais bem testados da física. Em 1971, um astronauta fez essa experiência na Lua, com um martelo e uma pena, na frente de milhões de espectadores.
+
+<Palpite
+  chave="inicial"
+  pergunta="Num lugar sem ar, como a Lua, você solta um martelo e uma pena ao mesmo tempo, da mesma altura. O que acontece?"
+  opcoes={['O martelo chega bem antes, porque é mais pesado', 'A pena chega antes, porque é mais leve e flutua', 'Os dois chegam ao mesmo tempo']}
+/>
+
+Nesta cápsula você vai aprender o que é **queda livre**, por que a **aceleração da gravidade** é a mesma para todos os corpos, como calcular o **tempo e a velocidade de uma queda** e como tratar o **lançamento vertical** para cima.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Durante cerca de dois mil anos, quase todo mundo acreditou numa regra que parecia óbvia: **o que é mais pesado cai mais depressa**. Foi preciso um experimento (ou pelo menos um raciocínio) para derrubar essa ideia.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Século 4 a.C.', texto: 'Aristóteles ensina que corpos mais pesados caem mais depressa que os mais leves.' },
+  { ano: 'Por volta de 1600', texto: 'Galileu argumenta que, sem a resistência do ar, todos os corpos cairiam com a mesma aceleração.' },
+  { ano: '1638', texto: 'Nos "Discursos", Galileu descreve a queda como movimento uniformemente acelerado.' },
+  { ano: '1687', texto: 'Newton explica a queda com a lei da gravitação universal.' },
+  { ano: '1971', texto: 'Na missão Apollo 15, o astronauta David Scott solta um martelo e uma pena na Lua, e os dois caem juntos.' },
+]} />
+
+## O raciocínio de Galileu
+
+Galileu usou um argumento só de pensamento, sem sair de casa. Imagine uma pedra pesada e uma leve. Se Aristóteles estivesse certo, a pesada cairia mais rápido. Agora amarre as duas com uma corda. A leve **freia** a pesada, então o conjunto deveria cair **mais devagar** que a pesada sozinha. Mas o conjunto é **mais pesado** que ela, então deveria cair **mais rápido**. Dá um beco sem saída: as duas coisas não podem ser verdade ao mesmo tempo. A saída é que **todas caem igual**.
+
+## A lenda da torre de Pisa
+
+Existe uma história famosa de que Galileu teria soltado bolas de pesos diferentes do alto da torre inclinada de Pisa. É muito provável que seja uma **lenda**: a história só aparece décadas depois, contada por um aluno dele, e não há registro do próprio Galileu. O que sabemos de verdade são os experimentos com **rampas** e o argumento acima.
+
+## Da Lua com um martelo
+
+Em 2 de agosto de 1971, na Apollo 15, o astronauta David Scott segurou um martelo e uma pena de falcão na Lua e os soltou juntos. Sem ar na Lua, os dois caíram lado a lado e tocaram o chão no mesmo instante. Foi a prova mais bonita da ideia de Galileu: **sem ar, não importa o peso**.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O que é queda livre?
+
+<Termo cor="azul">Queda livre</Termo> é o movimento de um corpo que cai **só sob a ação da gravidade**, sem nenhum outro empurrão, e sem resistência do ar. Na prática, a resistência do ar quase sempre existe, mas para corpos pesados e compactos, em quedas curtas, ela é pequena e podemos **desprezá-la**.
+
+## 2. Todos caem com a mesma aceleração
+
+A grande surpresa: perto da superfície da Terra, **todos os corpos em queda livre ganham a mesma velocidade a cada segundo**, qualquer que seja o peso. Essa aceleração se chama <Termo cor="coral">aceleração da gravidade</Termo>, e vale cerca de **9,8 m/s²**. Ou seja, a cada segundo de queda a velocidade aumenta **9,8 m/s** (cerca de 35 km/h).
+
+Mas por que o pesado não cai mais depressa, se a gravidade o puxa com mais força? Porque ele também é **mais difícil de acelerar**: tem mais inércia. A força maior é compensada pela massa maior, e a aceleração fica igual.
+
+<Brincando titulo="Peso e inércia: empurrar um carrinho de supermercado">
+
+Imagine dois carrinhos de supermercado: um vazio e um cheio. Você empurra o cheio com o **dobro** da força. Mas ele tem o **dobro** da massa. Resultado: os dois ganham velocidade do mesmo jeito. Com a gravidade é igual: a Terra puxa o corpo pesado com mais força, mas ele também tem mais inércia, e as duas coisas se cancelam. Por isso a aceleração da queda é a **mesma para todos**.
+
+</Brincando>
+
+## 3. Por que a pena cai devagar aqui?
+
+Aqui na Terra a pena cai devagar por causa do **ar**. O ar empurra de volta com uma força que depende do **formato** do corpo. A pena tem grande área e pouca massa, então o ar a freia muito. A bola de boliche é compacta, e o ar quase não a atrapalha. **Tirando o ar, os dois caem iguais**.
+
+<Brincando titulo="Folha de papel: duas quedas diferentes">
+
+Solte uma folha de papel aberta: ela balança e demora a chegar ao chão. Agora amasse a mesma folha numa bolinha e solte de novo: cai direto e rápido. O papel é o mesmo, e o peso também. A única mudança é o **formato**, e portanto o tamanho do "empurrão" do ar. Isso mostra que o que atrasa a queda é o ar, e não a "falta de peso".
+
+</Brincando>
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Num lugar sem ar, você solta ao mesmo tempo uma pena e um martelo, da mesma altura. O que acontece?"
+  opcoes={['O martelo chega antes, porque é mais pesado', 'A pena chega antes', 'Chegam juntos']}
+  correta={2}
+  explicacao="Sem ar, só a gravidade age, e ela dá a mesma aceleração a todos os corpos. Pena e martelo caem lado a lado, como na Lua em 1971."
+>
+
+Alterne entre "com ar" e "vácuo" e mude o tempo da queda:
+
+<PenaEMartelo />
+
+A simulação é bem simplificada, mas mostra a ideia: o ar atrapalha a pena, e sem ar não há diferença.
+
+Agora volte ao palpite do começo:
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['O martelo chega bem antes, porque é mais pesado', 'A pena chega antes, porque é mais leve e flutua', 'Os dois chegam ao mesmo tempo']}
+  correta={2}
+  seAcertou="Certo: sem ar, a aceleração da gravidade é a mesma para todos, e os dois chegam juntos."
+  seErrou="O certo é: chegam ao mesmo tempo. Sem ar, a aceleração é a mesma para qualquer corpo, e foi isso que o astronauta mostrou na Lua."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## A aceleração da gravidade
+
+Na superfície da Terra, a aceleração da gravidade é cerca de:
+
+<Formula>
+<Linha>g ≈ 9,8 m/s²</Linha>
+</Formula>
+
+Em exercícios, é comum **arredondar para 10 m/s²** para facilitar a conta. Vamos usar **g = 10 m/s²** nas contas de lápis, quando o enunciado não disser outro valor. No resto da cápsula e nas simulações, usamos 9,8.
+
+Esse valor não é igual em todo lugar. Depende do astro (e, de leve, do ponto da Terra). Veja quanto leva a mesma queda em mundos diferentes:
+
+<QuedaNosMundos />
+
+## A queda livre é um MUV
+
+A queda livre é um caso especial do movimento uniformemente variado, com **aceleração g** apontando para baixo. As equações que você já conhece valem, com a = g. Partindo do repouso (v₀ = 0), contando a altura de queda h para baixo:
+
+<Formula>
+<Linha>v = g × t</Linha>
+<Linha>h = g × t² ÷ 2</Linha>
+<Linha>v² = 2 × g × h</Linha>
+</Formula>
+
+<Brincando titulo="v = g·t: o carro que ganha 10 por segundo">
+
+Imagine um carro que, a cada segundo, ganha 10 m/s de velocidade. Depois de 1 s está a 10 m/s, depois de 2 s a 20, depois de 3 s a 30. Esse é o seu "motor" de queda: a gravidade acelera tudo em **cerca de 10 m/s a cada segundo**. Em 3 s, você já está a 30 m/s, ou 108 km/h.
+
+</Brincando>
+
+<ExemploResolvido titulo="Uma pedra é solta, do repouso, do alto de um prédio de 20 m (g = 10 m/s²). Quanto tempo ela leva para chegar ao chão e com que velocidade chega?">
+  <Passo>Tempo: h = g·t² ÷ 2, então 20 = 5·t², t² = 4 e **t = 2 s**.</Passo>
+  <Passo>Velocidade: v = g·t = 10 × 2 = **20 m/s**, ou 72 km/h.</Passo>
+  <Passo>Conferindo com Torricelli: v² = 2 × 10 × 20 = 400, e v = 20 m/s. Deu igual.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um corpo é solto do repouso. Qual a velocidade, em m/s, depois de 3 s? (use g = 10 m/s²)" resposta="30" dica="v = g × t." resolucao="v = 10 × 3 = 30 m/s." />
+
+<Exercicio enunciado="Um corpo é solto do repouso. Quantos metros ele cai em 2 s? (use g = 10 m/s²)" resposta="20" dica="h = g·t² ÷ 2." resolucao="h = 10 × 4 ÷ 2 = 20 m." />
+
+<Exercicio enunciado="De que altura, em metros, uma pedra precisa ser solta para levar 3 s até o chão? (use g = 10 m/s²)" resposta="45" dica="h = 5·t²." resolucao="h = 10 × 9 ÷ 2 = 45 m." />
+
+<Exercicio enunciado="Uma pedra é solta de 80 m de altura. Com que velocidade, em m/s, chega ao chão? (use g = 10 m/s²)" resposta="40" dica="v² = 2·g·h." resolucao="v² = 2 × 10 × 80 = 1600, então v = 40 m/s." />
+
+## O padrão de Galileu na queda
+
+Como a queda é um MUV que parte do repouso, as distâncias totais crescem como **1, 4, 9, 16, 25...** (o quadrado do tempo), e os trechos de cada segundo crescem como **1, 3, 5, 7, 9...** (os números ímpares). Com g = 9,8, o "1" vale 4,9 m.
+
+<QuedaSegundoASegundo />
+
+<ExemploResolvido titulo="Quantos metros uma pedra solta cai no 3º segundo (entre t = 2 s e t = 3 s)? (g = 10 m/s²)">
+  <Passo>Queda em 3 s: 5 × 3² = 45 m.</Passo>
+  <Passo>Queda em 2 s: 5 × 2² = 20 m.</Passo>
+  <Passo>No 3º segundo: 45 − 20 = **25 m**. Os trechos 5, 15, 25 são 5 × 1, 5 × 3 e 5 × 5: os ímpares.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma pedra é solta do repouso. Quantos metros ela cai durante o 2º segundo (entre t = 1 s e t = 2 s)? (use g = 10 m/s²)" resposta="15" dica="Queda em 2 s menos queda em 1 s." resolucao="20 − 5 = 15 m." />
+
+## Outros mundos
+
+Na Lua, a gravidade é cerca de **1,6 m/s²**, ou seja, mais ou menos **um sexto** da terrestre. Por isso os astronautas davam passos longos, saltitando. Em Marte, a gravidade é cerca de 3,7 m/s². Em Júpiter, cerca de 24,8 m/s². Mas **a massa** de um corpo é a mesma em qualquer lugar. Só o **peso** muda.
+
+<ExemploResolvido titulo="Na Lua (g = 1,6 m/s²), um objeto é solto do repouso. Qual a velocidade depois de 5 s? Que distância ele cai?">
+  <Passo>Velocidade: v = 1,6 × 5 = **8 m/s**.</Passo>
+  <Passo>Distância: h = 1,6 × 25 ÷ 2 = 40 ÷ 2 = **20 m**.</Passo>
+  <Passo>Na Terra, em 5 s, o objeto estaria a 50 m/s e teria caído 125 m: a queda lunar é uma "câmera lenta".</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Na Lua (g = 1,6 m/s²), um objeto é solto. Qual a velocidade, em m/s, depois de 5 s?" resposta="8" dica="v = g × t." resolucao="v = 1,6 × 5 = 8 m/s." />
+
+<Exercicio enunciado="Ainda na Lua (g = 1,6 m/s²): quantos metros um objeto cai em 3 s, partindo do repouso?" resposta="7,2" dica="h = g·t² ÷ 2." resolucao="h = 1,6 × 9 ÷ 2 = 7,2 m." />
+
+## Medindo o seu tempo de reação
+
+A queda livre serve para medir coisas pequenas. Um amigo segura uma régua na vertical e a solta sem avisar. Você agarra o mais rápido possível. Quanto mais a régua caiu, **mais lento** foi o seu reflexo. A distância d dá o tempo: t = √(2d ÷ g).
+
+<TesteDaReguinha />
+
+<ExemploResolvido titulo="Você agarra a régua depois de ela cair 20 cm. Qual o seu tempo de reação? (g = 10 m/s²)">
+  <Passo>Passe a distância para metros: d = 0,20 m.</Passo>
+  <Passo>h = g·t² ÷ 2, então 0,20 = 5·t² e t² = 0,04.</Passo>
+  <Passo>**t = 0,2 s**, um tempo bem típico.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma régua cai 20 cm antes de ser agarrada. Qual o tempo de reação, em segundos? (use g = 10 m/s²)" resposta="0,2" dica="0,20 = 5·t²." resolucao="t² = 0,04, então t = 0,2 s." />
+
+<Exercicio enunciado="Você solta uma pedra num poço e ouve ela bater na água 3 s depois. Ignorando o tempo do som, qual a profundidade, em metros? (use g = 10 m/s²)" resposta="45" dica="h = 5·t²." resolucao="h = 5 × 9 = 45 m." />
+
+## Lançamento vertical para cima
+
+Se você joga uma bola **para cima**, ela sobe **freando** (a gravidade aponta para baixo), para por um instante no **topo** e desce **acelerando**. A aceleração é a **mesma o tempo todo**: g, para baixo. No topo, a velocidade é zero, mas a aceleração continua sendo g.
+
+Com o sentido para cima como positivo, a = −g, e as equações ficam:
+
+<Formula>
+<Linha>v = v₀ − g × t</Linha>
+<Linha>h = v₀ × t − g × t² ÷ 2</Linha>
+</Formula>
+
+<BolaParaCima />
+
+- **No topo:** v = 0. O tempo de subida é t = v₀ ÷ g.
+- **Altura máxima:** h = v₀² ÷ (2g).
+- **Tempo total no ar** (volta ao ponto de partida): 2 × v₀ ÷ g, o dobro da subida.
+- A bola volta ao ponto de partida com a **mesma velocidade** com que saiu, só que para baixo.
+
+<Brincando titulo="Subir e descer: o elevador que freia e depois acelera">
+
+Imagine um elevador que sobe a 20 m/s, mas vai perdendo 10 m/s por segundo. Em 1 s está a 10 m/s, em 2 s a 0 (parou no ponto mais alto). Depois, a mesma aceleração o puxa para baixo: em 3 s está a −10 m/s, em 4 s a −20 m/s, voltando ao andar de partida com a mesma rapidez. Subida e descida são **simétricas**.
+
+</Brincando>
+
+<ExemploResolvido titulo="Uma bola é lançada para cima a 15 m/s (g = 10 m/s²). Quanto tempo leva para chegar ao topo? Que altura atinge? Quanto tempo fica no ar?">
+  <Passo>Topo: v = 0 = 15 − 10·t, então **t = 1,5 s**.</Passo>
+  <Passo>Altura: h = v₀² ÷ (2g) = 225 ÷ 20 = **11,25 m**.</Passo>
+  <Passo>Tempo total: 2 × 1,5 = **3 s**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma bola é lançada para cima a 20 m/s. Quanto tempo, em segundos, leva para chegar ao topo? (use g = 10 m/s²)" resposta="2" dica="No topo v = 0: 0 = 20 − 10·t." resolucao="t = 20 ÷ 10 = 2 s." />
+
+<Exercicio enunciado="Para a mesma bola (v₀ = 20 m/s), qual a altura máxima, em metros? (use g = 10 m/s²)" resposta="20" dica="h = v₀² ÷ (2g)." resolucao="h = 400 ÷ 20 = 20 m." />
+
+<Exercicio enunciado="Ainda a mesma bola: qual o tempo total até voltar à mão, em segundos?" resposta="4" dica="O dobro do tempo de subida." resolucao="2 × 2 = 4 s." />
+
+<Exercicio enunciado="Uma pedra é lançada para cima a 30 m/s. Qual a velocidade, em m/s, depois de 1 s? (use g = 10 m/s²)" resposta="20" dica="v = 30 − 10 × 1." resolucao="v = 30 − 10 = 20 m/s: ainda subindo, mais devagar." />
+
+## Resistência do ar e velocidade limite
+
+Em quedas longas, o ar freia cada vez mais conforme o corpo ganha velocidade. Chega um ponto em que a **força do ar iguala a gravidade**. A aceleração cai a zero e a velocidade para de aumentar: é a <Termo cor="verde">velocidade limite</Termo>. Para uma pessoa em queda com o corpo deitado de barriga para baixo, ela fica em torno de 55 m/s (cerca de 200 km/h). Abrir o paraquedas aumenta tanto a área que a velocidade limite cai para poucos metros por segundo.
+
+<ExemploResolvido titulo="Uma gota de chuva cai de uma nuvem a 2.000 m. Sem ar, com que velocidade chegaria ao chão? (g = 10 m/s²)">
+  <Passo>v² = 2·g·h = 2 × 10 × 2000 = 40000.</Passo>
+  <Passo>v = **200 m/s**, ou 720 km/h: uma gota assim machucaria muito.</Passo>
+  <Passo>Na vida real, o ar limita a gota a poucos metros por segundo (cerca de 10 m/s nas maiores), e por isso a chuva não machuca.</Passo>
+</ExemploResolvido>
+
+<Aprofundar titulo="Por que g vale 9,8 m/s²? Um olhar para Newton">
+
+A gravidade de um planeta depende da sua **massa** e do **raio**: g = G·M ÷ R², onde G é a constante da gravitação. A Lua tem pouca massa e raio pequeno, e por isso g é menor. Júpiter tem muita massa, e g é maior. Newton, em 1687, mostrou que a mesma força que derruba a maçã também mantém a Lua em órbita. A gravidade é o tema de outra cápsula do mapa.
+
+</Aprofundar>
+
+<Aprofundar titulo="Em órbita: todo mundo está em queda livre">
+
+Os astronautas na Estação Espacial parecem flutuar, mas a gravidade lá ainda é cerca de 90% da da superfície. Eles flutuam porque **estão em queda livre**, junto com a estação, o tempo todo. Só que, além de cair, a estação se move para o lado com tanta velocidade que, enquanto cai, a superfície da Terra se curva e "foge". Ela cai sem nunca chegar ao chão.
+
+</Aprofundar>
+
+<Aprofundar titulo="Queda com ar: a conta é mais difícil">
+
+Com o ar, a aceleração não é constante: diminui à medida que a velocidade aumenta, até a velocidade limite. Não dá para usar as fórmulas simples do MUV, e sim equações mais avançadas (ou computadores). Por isso, em exercícios de queda livre, o enunciado costuma dizer "despreze a resistência do ar".
+
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'O que é queda livre?',
+    opcoes: ['Qualquer queda de uma altura grande', 'O movimento de um corpo sob ação somente da gravidade', 'Uma queda com paraquedas'],
+    correta: 1,
+    explicacao: 'Queda livre é o movimento em que só a gravidade age, sem resistência do ar.',
+  },
+  {
+    enunciado: 'Sem ar, uma pena e um martelo soltos juntos...',
+    opcoes: ['o martelo chega antes', 'a pena chega antes', 'chegam juntos'],
+    correta: 2,
+    explicacao: 'Sem ar, todos os corpos caem com a mesma aceleração, o que foi mostrado na Lua em 1971.',
+  },
+  {
+    enunciado: 'Qual o valor aproximado de g na superfície da Terra?',
+    opcoes: ['1,6 m/s²', '9,8 m/s²', '98 m/s²'],
+    correta: 1,
+    explicacao: 'g vale cerca de 9,8 m/s². A Lua tem 1,6 m/s².',
+  },
+  {
+    enunciado: 'Por que na Terra uma folha de papel aberta cai mais devagar que amassada?',
+    opcoes: ['O papel amassado pesa mais', 'A resistência do ar age mais na folha aberta', 'A gravidade puxa mais o papel amassado'],
+    correta: 1,
+    explicacao: 'O peso é o mesmo. A folha aberta tem mais área, e o ar a freia mais.',
+  },
+  {
+    enunciado: 'Um corpo é solto do repouso. Qual a velocidade em 4 s? (g = 10 m/s²)',
+    opcoes: ['10 m/s', '40 m/s', '80 m/s'],
+    correta: 1,
+    explicacao: 'v = g·t = 10 × 4 = 40 m/s.',
+  },
+  {
+    enunciado: 'Quantos metros cai um corpo em 3 s a partir do repouso? (g = 10 m/s²)',
+    opcoes: ['30 m', '45 m', '90 m'],
+    correta: 1,
+    explicacao: 'h = 5 × 3² = 45 m.',
+  },
+  {
+    enunciado: 'Se o tempo de queda dobra, a altura caída fica...',
+    opcoes: ['2 vezes maior', '4 vezes maior', '8 vezes maior'],
+    correta: 1,
+    explicacao: 'h é proporcional a t². Dobrando o tempo, a distância quadruplica.',
+  },
+  {
+    enunciado: 'No ponto mais alto de um lançamento vertical, a velocidade e a aceleração valem...',
+    opcoes: ['v = 0 e a = 0', 'v = 0 e a = g, para baixo', 'v = g e a = 0'],
+    correta: 1,
+    explicacao: 'Por um instante o corpo para, mas a gravidade continua agindo: a = g.',
+  },
+  {
+    enunciado: 'Uma bola é lançada para cima a 20 m/s. Em quanto tempo chega ao topo? (g = 10 m/s²)',
+    opcoes: ['1 s', '2 s', '4 s'],
+    correta: 1,
+    explicacao: '0 = 20 − 10·t, então t = 2 s.',
+  },
+  {
+    enunciado: 'Na Lua, comparada com a Terra, um objeto solto cai...',
+    opcoes: ['mais rápido', 'igual', 'mais devagar, porque a gravidade é menor'],
+    correta: 2,
+    explicacao: 'g na Lua é cerca de 1,6 m/s², menos de um sexto do da Terra.',
+  },
+  {
+    enunciado: 'O que é velocidade limite?',
+    opcoes: ['A velocidade máxima da luz', 'A velocidade em que a força do ar iguala o peso, e o corpo para de acelerar', 'A velocidade de lançamento'],
+    correta: 1,
+    explicacao: 'Quando a resistência do ar iguala o peso, a aceleração zera e a velocidade se mantém.',
+  },
+  {
+    enunciado: 'Os astronautas na Estação Espacial flutuam porque...',
+    opcoes: ['lá não há gravidade', 'eles e a estação estão em queda livre ao redor da Terra', 'o espaço é muito frio'],
+    correta: 1,
+    explicacao: 'A gravidade lá ainda é forte. Eles flutuam porque caem junto com a estação.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Queda livre:** só a gravidade age. É um MUV com a = g.
+- **g ≈ 9,8 m/s²** na Terra (10 nas contas rápidas), cerca de 1,6 na Lua.
+- **Todos os corpos** caem com a mesma aceleração, sem ar. O ar é que atrasa a pena.
+- **Do repouso:** v = g·t, h = g·t² ÷ 2, v² = 2·g·h.
+- **Padrão de Galileu:** em segundos iguais, os trechos crescem como 1, 3, 5, 7...
+- **Lançamento vertical:** sobe freando, para no topo (v = 0) e desce acelerando. Altura máxima v₀² ÷ (2g). Tempo total = 2·v₀ ÷ g.
+- **Velocidade limite:** quando o ar iguala o peso, a velocidade para de crescer.
+
+**Um pouco de história.** Aristóteles achava que o pesado cai mais depressa. Galileu mostrou, com um raciocínio e experimentos em rampas, que não: todos caem igual sem o ar. Em 1971, David Scott provou isso na Lua com um martelo e uma pena.
+
+</Resumo>
+
+Quando você joga a bola não só para cima, mas também **para a frente**, a trajetória vira uma parábola. É o tema do lançamento oblíquo. Para onde seguir:
+
+<Conexoes />
+
+</Etapa>

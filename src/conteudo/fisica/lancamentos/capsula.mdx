@@ -1,0 +1,386 @@
+import LancamentoHorizontal from '../../../components/simulacoes/LancamentoHorizontal'
+import DuasBolasCaindo from '../../../components/simulacoes/DuasBolasCaindo'
+import LancamentoObliquo from '../../../components/simulacoes/LancamentoObliquo'
+import AnguloIdeal from '../../../components/simulacoes/AnguloIdeal'
+import AcertaOAlvo from '../../../components/simulacoes/AcertaOAlvo'
+
+{/* Fatos conferidos nas fontes do meta.ts (Wikipedia em inglês: Projectile motion, Niccolò Fontana Tartaglia, Galileo Galilei, Magnus effect). Valores das simulações desprezam a resistência do ar. */}
+
+<Etapa id="gancho">
+
+Um jogador chuta uma bola parada, de falta, a 25 metros do gol. A bola sobe, passa por cima da barreira e desce **curvando** para dentro do gol. Ela não vai reta, e não sobe para sempre: faz um **arco**.
+
+Agora uma pergunta curiosa: se você dispara um tiro **para a frente, na horizontal**, e solta uma bolinha **do mesmo ponto, ao mesmo tempo**, qual chega ao chão primeiro? A bala voa para longe, a bolinha só cai. Parece que a bola solta chegaria antes... mas a natureza tem uma surpresa.
+
+<Palpite
+  chave="inicial"
+  pergunta="Uma bola é lançada na horizontal, de um penhasco. No mesmo instante, outra é solta, sem velocidade, do mesmo ponto. Qual chega ao chão primeiro?"
+  opcoes={['A solta, porque só cai', 'A lançada para o lado, porque tem mais velocidade', 'As duas chegam ao mesmo tempo']}
+/>
+
+Nesta cápsula você vai aprender o **lançamento horizontal** e o **lançamento oblíquo**: como separar o movimento em duas partes independentes, calcular o **alcance** e a **altura máxima**, e descobrir qual **ângulo** manda a bola mais longe.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Desde que existem canhões, existe a pergunta: **para onde apontar?** Durante séculos, artilheiros acreditavam em trajetórias estranhas: a bala subiria reta, faria uma curva rápida e depois cairia reta. A geometria verdadeira do arco só foi entendida no século 17.
+
+<LinhaDoTempo marcos={[
+  { ano: '1537', texto: 'Niccolò Tartaglia publica a "Nova Scientia" e conclui que o maior alcance de um canhão se obtém com a inclinação de 45 graus.' },
+  { ano: '1638', texto: 'Nos "Discursos", Galileu mostra que a trajetória de um projétil é uma parábola, juntando um movimento horizontal uniforme e uma queda acelerada.' },
+  { ano: '1687', texto: 'Newton liga o movimento dos projéteis ao da Lua, ambos sob a gravidade.' },
+  { ano: '1997', texto: 'Roberto Carlos marca de falta contra a França, num chute famoso por curvar no ar.' },
+]} />
+
+## Tartaglia e os artilheiros
+
+Tartaglia, matemático italiano, foi consultado por artilheiros que queriam saber como alcançar mais longe. Ele chegou à regra do ângulo de **45 graus** para o maior alcance. A explicação completa do porquê ainda precisava de uma nova física.
+
+## A grande ideia de Galileu
+
+Galileu percebeu que o movimento de uma bala **pode ser separado em dois movimentos que não se atrapalham**: um horizontal, com velocidade **constante**, e um vertical, que é uma **queda livre**. Combinando os dois, ele provou que o caminho da bala é uma **parábola**. É o chamado **princípio da independência dos movimentos**.
+
+## Dos canhões aos chutes
+
+Hoje o mesmo raciocínio calcula o salto de um atleta, a água de um chafariz, o arremesso de basquete e o pouso de uma sonda. Com uma ressalva: em chutes de futebol, o **ar** e o **giro da bola** também mudam a trajetória, e a parábola perfeita é só uma primeira aproximação.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Dois movimentos num só
+
+Quando você joga uma bola para a frente, ela faz **duas coisas ao mesmo tempo**: avança para o lado e cai. O segredo é tratar cada uma **separadamente**:
+
+- **Na horizontal:** nada empurra a bola para a frente nem para trás (sem ar). A velocidade horizontal é **constante**: é um **MRU**.
+- **Na vertical:** a gravidade age. É uma **queda livre**: um MUV com aceleração g, para baixo.
+
+O tempo é o mesmo para os dois, e é o que **liga** as duas contas.
+
+## 2. Por que o caminho é uma parábola
+
+Como a bola anda **distâncias iguais** para o lado em tempos iguais, mas **cai cada vez mais** (1, 3, 5, 7...), o resultado é uma curva que se abre cada vez mais para baixo: a parábola.
+
+<Brincando titulo="Dois movimentos: a esteira e o elevador">
+
+Imagine que você está dentro de um elevador de vidro, que cai, sobre uma esteira que anda para o lado numa velocidade fixa. Você deixa uma bolinha cair e, ao mesmo tempo, a esteira a leva para o lado. Para quem vê de fora, a bolinha desenha uma curva. Para você, no elevador, ela só cai em linha reta. A **parte do lado** e a **parte da queda** são totalmente independentes: uma não muda a outra.
+
+</Brincando>
+
+## 3. A bola que sobe e a que cai juntas
+
+Se uma bola é lançada para o lado e outra é solta do mesmo ponto, **as duas chegam ao chão no mesmo instante**. Na vertical, as duas fazem exatamente a mesma coisa: partem sem velocidade vertical e caem com g. O movimento horizontal não "ajuda" a bola a ficar mais tempo no ar.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Uma bola é lançada na horizontal de um penhasco. Outra é solta do mesmo ponto, ao mesmo tempo. Qual chega primeiro ao chão?"
+  opcoes={['A solta', 'A lançada para o lado', 'Chegam juntas']}
+  correta={2}
+  explicacao="Na vertical as duas fazem a mesma coisa: partem com velocidade vertical zero e caem com a aceleração g. O movimento para o lado não muda o tempo de queda. Chegam juntas."
+>
+
+Veja as duas bolas fotografadas a cada 0,25 s:
+
+<DuasBolasCaindo />
+
+Repare que as bolas estão **sempre na mesma altura**. Agora o palpite do começo:
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['A solta, porque só cai', 'A lançada para o lado, porque tem mais velocidade', 'As duas chegam ao mesmo tempo']}
+  correta={2}
+  seAcertou="Certo: o tempo de queda só depende da altura. Andar para o lado não muda isso."
+  seErrou="O certo é: chegam juntas. O tempo de queda só depende da altura e de g, e o movimento horizontal é independente do vertical."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Lançamento horizontal
+
+Uma bola sai de um penhasco de altura h, com velocidade horizontal v. Para calcular onde ela cai:
+
+1. **Tempo de queda**, só pela vertical: h = g·t² ÷ 2, então t = √(2h ÷ g).
+2. **Alcance horizontal**, pela horizontal: x = v × t.
+
+<LancamentoHorizontal />
+
+<Brincando titulo="Penhasco e rampa: o tempo é o mesmo">
+
+O tempo que a bola fica no ar só depende da **altura do penhasco**: um penhasco alto dá muito tempo. A velocidade para o lado só decide **até onde** ela chega nesse tempo. Pense numa pessoa correndo e pulando de um píer: se o píer está a 5 m de altura, o tempo no ar é o mesmo quer ela corra devagar ou rápido. Quem corre mais rápido só cai mais longe.
+
+</Brincando>
+
+<ExemploResolvido titulo="Uma bola é lançada na horizontal a 10 m/s, do alto de um penhasco de 45 m (g = 10 m/s²). Quanto tempo leva para cair e que distância horizontal percorre?">
+  <Passo>Tempo de queda: 45 = 5·t², então t² = 9 e **t = 3 s**.</Passo>
+  <Passo>Alcance: x = 10 × 3 = **30 m**.</Passo>
+  <Passo>Velocidade vertical ao chegar: v_y = g·t = 10 × 3 = 30 m/s.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma bola cai de uma altura de 20 m, lançada na horizontal. Quantos segundos leva para chegar ao chão? (use g = 10 m/s²)" resposta="2" dica="20 = 5·t²." resolucao="t² = 4, então t = 2 s." />
+
+<Exercicio enunciado="Uma bola é lançada na horizontal a 15 m/s, de 80 m de altura. Que distância horizontal, em metros, ela percorre até chegar ao chão? (use g = 10 m/s²)" resposta="60" dica="Primeiro ache o tempo: 80 = 5·t²." resolucao="t² = 16, t = 4 s. x = 15 × 4 = 60 m." />
+
+<Exercicio enunciado="Um avião solta um pacote a 500 m de altura, voando na horizontal a 100 m/s. Quantos segundos o pacote leva para cair? (use g = 10 m/s²)" resposta="10" dica="500 = 5·t²." resolucao="t² = 100, então t = 10 s." />
+
+## Lançamento oblíquo
+
+No lançamento **oblíquo**, a bola sai inclinada, com velocidade v e ângulo θ em relação ao chão. Para tratar cada movimento, **decomponha** a velocidade em duas partes:
+
+<Formula>
+<Linha>vₓ = v × cos θ</Linha>
+<Linha>v_y = v × sen θ</Linha>
+</Formula>
+
+A parte **horizontal** vₓ é constante (MRU). A parte **vertical** v_y é um lançamento vertical: sobe freando e desce acelerando.
+
+<LancamentoObliquo />
+
+<Brincando titulo="Decompor a velocidade: o caminho na diagonal da rua">
+
+Imagine que você anda pela diagonal de um quarteirão: 3 passos para o leste e 4 para o norte, 5 passos no caminho reto. Dá para descrever a mesma viagem de dois jeitos: "5 passos na diagonal" ou "3 para o leste e 4 para o norte". A velocidade de um lançamento é igual: "50 m/s a 37°" é o mesmo que "40 m/s para a frente e 30 m/s para cima".
+
+</Brincando>
+
+<ExemploResolvido titulo="Um corpo é lançado a 50 m/s, com ângulo de 37° (sen 37° = 0,6 e cos 37° = 0,8). Ache as componentes da velocidade.">
+  <Passo>vₓ = 50 × 0,8 = **40 m/s**.</Passo>
+  <Passo>v_y = 50 × 0,6 = **30 m/s**.</Passo>
+  <Passo>Conferindo: 40² + 30² = 1600 + 900 = 2500 = 50². Deu certo.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um corpo é lançado a 50 m/s, a 37° (sen 37° = 0,6; cos 37° = 0,8). Qual a componente horizontal vₓ, em m/s?" resposta="40" dica="vₓ = v × cos θ." resolucao="50 × 0,8 = 40 m/s." />
+
+<Exercicio enunciado="Para o mesmo lançamento, qual a componente vertical inicial v_y, em m/s?" resposta="30" dica="v_y = v × sen θ." resolucao="50 × 0,6 = 30 m/s." />
+
+## Tempo de subida, altura máxima, tempo total e alcance
+
+Com v_y e vₓ, todo o lançamento sai de contas que você já conhece:
+
+- **Tempo de subida:** t_sub = v_y ÷ g (no topo, a velocidade vertical é zero).
+- **Altura máxima:** h = v_y² ÷ (2g).
+- **Tempo total no ar:** t = 2 × t_sub (volta à mesma altura).
+- **Alcance:** x = vₓ × t.
+
+No topo, a velocidade **não é zero**: ela é igual a vₓ, só horizontal.
+
+<ExemploResolvido titulo="Com vₓ = 40 m/s e v_y = 30 m/s (g = 10 m/s²), ache o tempo de subida, a altura máxima, o tempo total e o alcance.">
+  <Passo>Tempo de subida: 30 ÷ 10 = **3 s**.</Passo>
+  <Passo>Altura máxima: 30² ÷ 20 = 900 ÷ 20 = **45 m**.</Passo>
+  <Passo>Tempo total: 2 × 3 = **6 s**.</Passo>
+  <Passo>Alcance: 40 × 6 = **240 m**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Com v_y = 30 m/s e g = 10 m/s², quantos segundos o corpo leva para chegar ao topo?" resposta="3" dica="t = v_y ÷ g." resolucao="30 ÷ 10 = 3 s." />
+
+<Exercicio enunciado="Com v_y = 30 m/s e g = 10 m/s², qual a altura máxima, em metros?" resposta="45" dica="h = v_y² ÷ (2g)." resolucao="900 ÷ 20 = 45 m." />
+
+<Exercicio enunciado="Com vₓ = 40 m/s e tempo total de 6 s, qual o alcance, em metros?" resposta="240" dica="x = vₓ × t." resolucao="40 × 6 = 240 m." />
+
+<Exercicio enunciado="No ponto mais alto da trajetória de um corpo lançado com vₓ = 40 m/s, qual a velocidade, em m/s?" resposta="40" dica="No topo, v_y = 0." resolucao="Só sobra a componente horizontal: 40 m/s." />
+
+## O ângulo do maior alcance
+
+Combinando as fórmulas (sem ar), o alcance de um lançamento que começa e termina na mesma altura é:
+
+<Formula>
+<Linha>alcance = v² × sen(2θ) ÷ g</Linha>
+</Formula>
+
+O sen(2θ) é máximo (vale 1) quando 2θ = 90°, isto é, **θ = 45°**. E ângulos que **somam 90°** (como 30° e 60°) dão o **mesmo alcance**. A diferença é a altura: o ângulo maior sobe mais e demora mais no ar.
+
+<AnguloIdeal />
+
+<Brincando titulo="45 graus: o jardineiro e a mangueira">
+
+Quem usa uma mangueira de jardim sabe: para a água chegar bem longe, não se aponta nem reto para a frente, nem para o céu. Aponta-se numa **inclinação do meio**, perto de 45°. Se for muito baixa, a água cai logo, por falta de tempo. Se for muito alta, ela fica muito tempo no ar, mas anda pouco para a frente. O ponto certo equilibra os dois, e a conta mostra que é 45°.
+
+</Brincando>
+
+<ExemploResolvido titulo="Um corpo é lançado a 20 m/s com ângulo de 45° (g = 10 m/s²). Qual o alcance?">
+  <Passo>sen(2 × 45°) = sen 90° = 1.</Passo>
+  <Passo>Alcance = 20² × 1 ÷ 10 = 400 ÷ 10 = **40 m**.</Passo>
+  <Passo>Com 30° ou com 60°, o alcance seria menor: 400 × sen 60° ÷ 10 ≈ 34,6 m, igual nos dois.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um corpo é lançado a 30 m/s com ângulo de 45°. Qual o alcance, em metros? (use g = 10 m/s²)" resposta="90" dica="900 × 1 ÷ 10." resolucao="Alcance = 900 ÷ 10 = 90 m." />
+
+<Exercicio enunciado="Dois lançamentos têm a mesma velocidade, um a 30° e outro a 60°. Qual deles tem o maior alcance? Responda 30, 60 ou 0 (se forem iguais)." resposta="0" dica="30° + 60° = 90°." resolucao="Ângulos complementares dão o mesmo alcance." />
+
+<Exercicio enunciado="Se a velocidade de lançamento dobra, o alcance fica quantas vezes maior (mesmo ângulo)?" resposta="4" dica="O alcance depende de v²." resolucao="(2v)² = 4v², então o alcance é 4 vezes maior." />
+
+<Exercicio enunciado="Qual o ângulo, em graus, que dá o maior alcance (sem ar, ponto de chegada na mesma altura)?" resposta="45" dica="sen(2θ) = 1." resolucao="2θ = 90°, então θ = 45°." />
+
+## Hora do desafio
+
+Agora é sua vez de mirar. Ajuste a velocidade e o ângulo para a bola cair no alvo. Há mais de uma combinação certa:
+
+<AcertaOAlvo />
+
+## Lançamento oblíquo saindo do alto
+
+Muitas vezes a bola não volta à altura de onde saiu. Pense numa pedra jogada para cima e para a frente do alto de uma ponte: ela sobe, desce, passa pela altura da ponte e continua caindo até a água. Nesse caso, a **separação em dois movimentos** continua valendo, e o que muda é a equação da altura. Na vertical, a posição em cada instante é y = h₀ + v_y·t − g·t² ÷ 2, e a bola chega ao chão quando y = 0. Na horizontal, continua x = vₓ·t.
+
+<ExemploResolvido titulo="Uma pedra é lançada de uma ponte de 20 m de altura, na horizontal, a 8 m/s. Em que ponto, a partir da base da ponte, ela cai na água? (g = 10 m/s²)">
+  <Passo>Vertical: 20 = 5·t², então t² = 4 e t = 2 s.</Passo>
+  <Passo>Horizontal: x = 8 × 2 = **16 m**.</Passo>
+  <Passo>A velocidade vertical ao chegar é v_y = 10 × 2 = 20 m/s, para baixo. A horizontal continua 8 m/s.</Passo>
+  <Passo>Velocidade total ao chegar: raiz de (8² + 20²) = raiz de 464, cerca de **21,5 m/s**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma bola sai da borda de uma mesa a 2 m/s e cai no chão a 0,6 m da mesa. Quantos segundos ela ficou no ar?" resposta="0,3" dica="Horizontal: 0,6 = 2·t." resolucao="t = 0,6 ÷ 2 = 0,3 s." />
+
+<Exercicio enunciado="Com esse tempo de 0,3 s, qual a altura da mesa, em metros? (use g = 10 m/s²)" resposta="0,45" dica="h = 5·t²." resolucao="h = 5 × 0,09 = 0,45 m." />
+
+## Pense nos esportes
+
+O lançamento aparece em quase todo esporte de bola. No **basquete**, quem arremessa escolhe um ângulo alto para a bola entrar na cesta "de cima", porque assim o buraco, visto de cima, fica mais largo. No **salto em distância**, o atleta corre para ganhar velocidade horizontal e salta com um ângulo menor que 45° (cerca de 20°), porque o corpo não consegue converter toda a corrida em velocidade para cima. No **arremesso de peso** e no **lançamento de dardo**, o ângulo ideal também fica um pouco abaixo de 45°, já que a bola sai de uma altura acima do chão.
+
+<Brincando titulo="O salto em distância: correr e voar">
+
+No salto em distância, a corrida de antes dá ao atleta uma **velocidade horizontal grande**. Na hora de pular, ele só tem tempo de converter um pouco dessa corrida em **subida**. Se tentasse subir muito, perderia velocidade para a frente. Por isso o ângulo real do salto é pequeno: o atleta equilibra o que ganha em altura e o que perde de avanço. É a mesma conta do ângulo de 45°, só que com limites do corpo humano.
+
+</Brincando>
+
+<ExemploResolvido titulo="Um jogador chuta uma bola a 20 m/s com ângulo de 30°. Quanto tempo ela fica no ar? (sen 30° = 0,5; g = 10 m/s²)">
+  <Passo>Componente vertical: v_y = 20 × 0,5 = 10 m/s.</Passo>
+  <Passo>Subida: 10 ÷ 10 = 1 s.</Passo>
+  <Passo>Tempo total: 2 × 1 = **2 s**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Para o chute anterior (v_y = 10 m/s, g = 10 m/s²), qual a altura máxima, em metros?" resposta="5" dica="h = v_y² ÷ (2g)." resolucao="100 ÷ 20 = 5 m." />
+
+## O que muda com o ar e a altura
+
+Todas essas contas supõem **sem ar** e que a bola chega à **mesma altura** de onde saiu. Na vida real:
+
+- O **ar** freia a bola. O alcance diminui e o ângulo ideal fica um pouco **abaixo** de 45°.
+- Se o ponto de chegada é **mais baixo** que o de saída (como uma bola chutada de um morro), o melhor ângulo também fica abaixo de 45°.
+- O **giro** da bola (o efeito Magnus) pode fazê-la curvar de lado ou "boiar".
+
+<Aprofundar titulo="Por que a trajetória é uma parábola?">
+
+Na horizontal, x = vₓ·t, então t = x ÷ vₓ. Na vertical, y = v_y·t − g·t² ÷ 2. Trocando t por x ÷ vₓ, aparece y = (v_y ÷ vₓ)·x − (g ÷ 2vₓ²)·x². É uma equação do 2º grau em x, ou seja, uma **parábola** de concavidade para baixo. É por isso que o lançamento é irmão da função quadrática.
+
+</Aprofundar>
+
+<Aprofundar titulo="Chute com efeito: o giro que curva a bola">
+
+Uma bola que gira no ar arrasta consigo uma camada de ar. De um lado, o ar passa mais rápido, e do outro, mais devagar. Essa diferença cria uma força para o lado: o **efeito Magnus**. Em chutes como o famoso gol de falta de Roberto Carlos em 1997, a bola sai girando e a trajetória deixa de ser uma parábola perfeita: ela curva para dentro do gol. Para jogar bola com precisão, o ar e o giro importam.
+
+</Aprofundar>
+
+<Aprofundar titulo="Uma bola de canhão e a Lua: o pensamento de Newton">
+
+Newton imaginou um canhão no alto de uma montanha altíssima. Com pouca velocidade, a bala cai perto. Com mais velocidade, cai mais longe. Com uma velocidade enorme, a Terra se curva embaixo da bala tão depressa quanto ela cai, e a bala **nunca chega ao chão**: fica em órbita. A Lua, os satélites e a Estação Espacial são "projéteis" que caem para sempre sem acertar.
+
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'No lançamento de um projétil (sem ar), o movimento horizontal é...',
+    opcoes: ['uniformemente acelerado', 'uniforme, com velocidade constante', 'sempre zero'],
+    correta: 1,
+    explicacao: 'Sem ar, nada age na horizontal, então a velocidade horizontal é constante: MRU.',
+  },
+  {
+    enunciado: 'No lançamento de um projétil (sem ar), o movimento vertical é...',
+    opcoes: ['uniforme', 'uniformemente variado, com aceleração g para baixo', 'sempre igual à velocidade horizontal'],
+    correta: 1,
+    explicacao: 'Na vertical age a gravidade: é queda livre ou lançamento vertical, ambos MUV com a = g.',
+  },
+  {
+    enunciado: 'Uma bola é lançada na horizontal e outra é solta do mesmo ponto. Chegam ao chão...',
+    opcoes: ['a solta primeiro', 'a lançada primeiro', 'ao mesmo tempo'],
+    correta: 2,
+    explicacao: 'Os movimentos horizontal e vertical são independentes. O tempo de queda só depende da altura.',
+  },
+  {
+    enunciado: 'Qual é a forma da trajetória de um projétil sem ar?',
+    opcoes: ['Uma reta', 'Uma parábola', 'Um círculo'],
+    correta: 1,
+    explicacao: 'A combinação de MRU na horizontal com MUV na vertical resulta numa parábola.',
+  },
+  {
+    enunciado: 'Uma bola é lançada na horizontal de 20 m de altura. Quanto tempo leva para cair? (g = 10 m/s²)',
+    opcoes: ['1 s', '2 s', '4 s'],
+    correta: 1,
+    explicacao: '20 = 5·t², então t² = 4 e t = 2 s.',
+  },
+  {
+    enunciado: 'Uma velocidade de 100 m/s com ângulo de 37° (sen 37° = 0,6 e cos 37° = 0,8) tem componente horizontal de...',
+    opcoes: ['60 m/s', '80 m/s', '100 m/s'],
+    correta: 1,
+    explicacao: 'vₓ = 100 × cos 37° = 80 m/s. A componente vertical seria 60 m/s.',
+  },
+  {
+    enunciado: 'No ponto mais alto da trajetória de um lançamento oblíquo...',
+    opcoes: ['a velocidade é zero', 'a velocidade é horizontal e igual a vₓ', 'a aceleração é zero'],
+    correta: 1,
+    explicacao: 'No topo só a componente vertical é zero. A horizontal continua, e a aceleração continua sendo g.',
+  },
+  {
+    enunciado: 'Qual ângulo dá o maior alcance (sem ar, mesma altura de saída e chegada)?',
+    opcoes: ['30°', '45°', '60°'],
+    correta: 1,
+    explicacao: 'O alcance é proporcional a sen(2θ), máximo em θ = 45°.',
+  },
+  {
+    enunciado: 'Dois lançamentos com mesma velocidade, um a 30° e outro a 60°, têm...',
+    opcoes: ['alcances diferentes, maior no de 60°', 'o mesmo alcance', 'alcances diferentes, maior no de 30°'],
+    correta: 1,
+    explicacao: 'Ângulos complementares (que somam 90°) dão o mesmo alcance.',
+  },
+  {
+    enunciado: 'Se a velocidade de lançamento dobra (mesmo ângulo), o alcance...',
+    opcoes: ['dobra', 'quadruplica', 'fica igual'],
+    correta: 1,
+    explicacao: 'O alcance é proporcional a v². Dobrando v, quadruplica.',
+  },
+  {
+    enunciado: 'Com v_y = 20 m/s e g = 10 m/s², quanto dura a subida?',
+    opcoes: ['1 s', '2 s', '4 s'],
+    correta: 1,
+    explicacao: 't = v_y ÷ g = 20 ÷ 10 = 2 s.',
+  },
+  {
+    enunciado: 'Na vida real, com o ar, o alcance de uma bola chutada é...',
+    opcoes: ['igual ao previsto sem ar', 'menor que o previsto sem ar', 'sempre maior que o previsto sem ar'],
+    correta: 1,
+    explicacao: 'A resistência do ar freia a bola e reduz o alcance.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Independência dos movimentos:** horizontal (MRU) e vertical (MUV, aceleração g) acontecem juntos e não se atrapalham. O tempo liga os dois.
+- **Lançamento horizontal:** t = √(2h ÷ g) e alcance = v × t. Chega ao chão junto com uma bola solta da mesma altura.
+- **Lançamento oblíquo:** vₓ = v·cos θ e v_y = v·sen θ.
+- **Subida:** t = v_y ÷ g. **Altura máxima:** v_y² ÷ (2g). **Tempo total:** 2·t_sub. **Alcance:** vₓ × t_total.
+- **Maior alcance:** θ = 45° (sem ar). Ângulos complementares dão o mesmo alcance. Alcance = v²·sen(2θ) ÷ g.
+- **Trajetória:** parábola. No topo, a velocidade é só horizontal.
+- **Na vida real:** o ar e o giro da bola mudam a trajetória.
+
+**Um pouco de história.** Tartaglia, em 1537, achou o ângulo de 45° para o canhão. Galileu, em 1638, mostrou que a trajetória é uma parábola, juntando um movimento uniforme e uma queda acelerada.
+
+</Resumo>
+
+Essa parábola é a mesma curva da função quadrática. Para onde seguir:
+
+<Conexoes />
+
+</Etapa>

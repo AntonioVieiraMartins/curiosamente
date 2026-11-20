@@ -1,0 +1,412 @@
+import MuvNaPista from '../../../components/simulacoes/MuvNaPista'
+import AreaDoGrafico from '../../../components/simulacoes/AreaDoGrafico'
+import ParabolaDaPosicao from '../../../components/simulacoes/ParabolaDaPosicao'
+import VelocidadeSemTempo from '../../../components/simulacoes/VelocidadeSemTempo'
+import DistanciaDeFreada from '../../../components/simulacoes/DistanciaDeFreada'
+
+{/* Fatos conferidos nas fontes do meta.ts (Wikipedia em inglês: Equations of motion, Acceleration, Galileo Galilei, Mean speed theorem). Valores de desaceleração usados nas simulações são didáticos e aproximados. */}
+
+<Etapa id="gancho">
+
+Você dirige a 72 km/h, o que dá **20 m/s**. De repente, um cachorro atravessa a rua à sua frente. Você pisa no freio e o carro desacelera **5 m/s a cada segundo**. Em quanto tempo o carro para? E, mais importante: **quantos metros ele percorre até parar**?
+
+A resposta decide se você chega perto do cachorro ou não. E ela não vem de uma regra de três: a velocidade está **mudando o tempo todo**, então a distância não é simplesmente "velocidade vezes tempo". É preciso uma ferramenta nova, o **movimento uniformemente variado**.
+
+<Palpite
+  chave="inicial"
+  pergunta="O carro está a 20 m/s e perde 5 m/s a cada segundo. Que distância ele percorre até parar?"
+  opcoes={['20 m, a velocidade em metros por segundo', '40 m', '80 m, como se andasse 4 s a 20 m/s']}
+/>
+
+Nesta cápsula você vai aprender o que é **aceleração constante**, as duas equações do movimento (velocidade e posição), a ler **gráficos** do movimento variado, a usar a **equação de Torricelli** e a calcular a **distância de frenagem** de verdade.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Galileu Galilei tinha um problema: a queda de uma pedra é rápida demais para medir. Em 1600, não havia cronômetro. Então ele fez o que físicos inteligentes fazem: **diminuiu o problema**.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Século 14', texto: 'Estudiosos do Merton College, em Oxford, enunciam a regra da velocidade média: um corpo que acelera de forma constante anda o mesmo que outro com a velocidade média.' },
+  { ano: 'Por volta de 1600', texto: 'Galileu faz bolas rolar em rampas inclinadas para estudar o movimento com aceleração.' },
+  { ano: '1638', texto: 'Nos "Discursos e demonstrações sobre duas novas ciências", Galileu descreve o movimento uniformemente acelerado.' },
+  { ano: '1687', texto: 'Newton, nos "Principia", liga aceleração e força.' },
+]} />
+
+## A rampa de Galileu
+
+Em vez de deixar a bola cair, Galileu a fazia **rolar numa rampa suave**. Quanto mais leve a inclinação, mais devagar a bola andava, e mais fácil era medir. Para marcar o tempo, ele usava um recipiente de água furado: a água que escorria durante o percurso era pesada depois, e o peso dizia quanto tempo tinha passado.
+
+## O padrão dos números ímpares
+
+Medindo as distâncias percorridas em intervalos de tempo **iguais**, Galileu encontrou um padrão: se a bola andava 1 unidade no primeiro intervalo, andava **3** no segundo, **5** no terceiro, **7** no quarto. São os **números ímpares** em sequência. Somando: 1, 1+3 = 4, 4+5 = 9, 9+7 = 16. As distâncias totais crescem como **1, 4, 9, 16**, ou seja, como o **quadrado do tempo**.
+
+## Uma ideia que vinha de antes
+
+Esse padrão já tinha sido previsto na teoria séculos antes, pelos estudiosos de Oxford. Eles perceberam que, se a velocidade cresce de forma regular, o corpo anda o mesmo que andaria se mantivesse a **velocidade média** o tempo todo. Galileu juntou a teoria com o experimento e mostrou que a natureza segue essa regra.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O que muda no movimento variado?
+
+No movimento uniforme a velocidade era **constante**. No <Termo cor="azul">movimento uniformemente variado</Termo> (**MUV**), a velocidade **muda**, mas de um jeito muito regular: **a mesma quantidade a cada segundo**. Essa quantidade é a <Termo cor="coral">aceleração</Termo>.
+
+Se a aceleração é 3 m/s², a cada segundo a velocidade ganha 3 m/s: 0, 3, 6, 9, 12... Se a aceleração é negativa, como −5 m/s², a velocidade **perde** 5 m/s a cada segundo: 20, 15, 10, 5, 0. Isso é frear.
+
+## 2. A velocidade é uma reta, a distância não
+
+Como a velocidade cresce numa taxa fixa, o gráfico dela é uma **reta inclinada**. Mas a distância depende da velocidade a cada instante. Quanto mais rápido o corpo está, **mais metros ele cobre em cada segundo**. Por isso a posição cresce **cada vez mais depressa**, formando uma curva.
+
+<Brincando titulo="Aceleração: a escada de degraus que crescem">
+
+Imagine uma escada em que cada degrau é mais comprido que o anterior: o primeiro tem 1 metro, o segundo 3, o terceiro 5, o quarto 7. Cada segundo você pisa num degrau. Em 1 segundo você andou 1 m, em 2 segundos 4 m (1 + 3), em 3 segundos 9 m (1 + 3 + 5), em 4 segundos 16 m. É exatamente o padrão que Galileu achou com a bola na rampa: **os degraus crescem, porque a velocidade cresce**.
+
+</Brincando>
+
+## 3. O que sente o seu corpo
+
+Quando o carro acelera, você é empurrado para o encosto. Quando ele freia, você vai para a frente. O corpo **sente a aceleração**, e não a velocidade. Num avião a 900 km/h em linha reta, a viagem é tranquila. Na decolagem, que acelera, você sente o assento empurrando.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Um carro parte do repouso com aceleração constante. Ele anda 4 m no primeiro segundo. Quantos metros anda ao todo em 2 segundos?"
+  opcoes={['8 m, o dobro, porque o tempo dobrou', '16 m, o quádruplo, porque a distância cresce com o quadrado do tempo', '6 m']}
+  correta={1}
+  explicacao="No MUV partindo do repouso, a distância é proporcional ao quadrado do tempo: dobrar o tempo quadruplica a distância. 4 m em 1 s viram 16 m em 2 s."
+>
+
+Mude a velocidade inicial, a aceleração e o tempo. Veja a posição e a velocidade:
+
+<MuvNaPista />
+
+Repare: com a = 2 m/s² e v₀ = 0, as posições em 1, 2, 3 e 4 segundos são 1, 4, 9 e 16 metros. Os números de Galileu!
+
+Agora o palpite do começo. O carro estava a 20 m/s e perdia 5 m/s por segundo. Que distância percorreu até parar?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['20 m, a velocidade em metros por segundo', '40 m', '80 m, como se andasse 4 s a 20 m/s']}
+  correta={1}
+  seAcertou="Certo: o carro leva 4 s para parar e, como a velocidade cai de 20 até 0, a média é 10 m/s. 10 × 4 = 40 m."
+  seErrou="O certo é 40 m. O carro leva 4 s para parar, mas só no primeiro instante anda a 20 m/s: a velocidade cai até zero, e a média é 10 m/s. 10 × 4 = 40 m, e não os 80 m de uma velocidade constante."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## A aceleração
+
+A <Termo cor="coral">aceleração</Termo> mede **quanto a velocidade muda em cada segundo**:
+
+<Formula>
+<Linha>a = Δv ÷ Δt</Linha>
+</Formula>
+
+No MUV ela é **constante**. A unidade é m/s² (metros por segundo, por segundo). Aceleração positiva: velocidade aumenta (se o corpo anda no sentido positivo). Aceleração negativa: a velocidade diminui, e o corpo está **freando**.
+
+## A equação da velocidade
+
+Se a velocidade inicial é v₀ e a aceleração é a, depois de um tempo t a velocidade será:
+
+<Formula>
+<Linha>v = v₀ + a × t</Linha>
+</Formula>
+
+É a mesma ideia da equação horária do MRU, mas agora é a **velocidade** que "cresce em linha reta": começa em v₀ e soma a a cada segundo.
+
+<Brincando titulo="v = v₀ + a·t: o velocímetro e o pé no acelerador">
+
+Você está num carro a 10 m/s e aperta o acelerador de um jeito que o velocímetro sobe 2 m/s a cada segundo. Depois de 1 s ele marca 12, depois de 2 s marca 14, depois de 3 s marca 16. Em 5 segundos subiu 5 × 2 = 10, e marca 20. A fórmula só guarda essa conta: **velocidade de partida + (quanto ela sobe por segundo) × (quantos segundos)**.
+
+</Brincando>
+
+<ExemploResolvido titulo="Um carro a 5 m/s acelera a 3 m/s². Qual a velocidade depois de 4 s? E em que instante ele chega a 26 m/s?">
+  <Passo>Equação: v = 5 + 3·t.</Passo>
+  <Passo>Em t = 4 s: v = 5 + 3 × 4 = 5 + 12 = **17 m/s**.</Passo>
+  <Passo>Para v = 26: 26 = 5 + 3·t, então 21 = 3·t e t = **7 s**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um carro a 10 m/s acelera a 2 m/s². Qual a velocidade, em m/s, depois de 5 s?" resposta="20" dica="v = v₀ + a·t." resolucao="v = 10 + 2 × 5 = 20 m/s." />
+
+<Exercicio enunciado="Um corpo parte do repouso com aceleração de 3 m/s². Em quantos segundos chega a 18 m/s?" resposta="6" dica="Resolva 18 = 0 + 3·t." resolucao="18 = 3·t, então t = 6 s." />
+
+<Exercicio enunciado="Um carro a 30 m/s freia com aceleração de −5 m/s². Em quantos segundos ele para (v = 0)?" resposta="6" dica="Resolva 0 = 30 − 5·t." resolucao="5·t = 30, então t = 6 s." />
+
+## A equação da posição
+
+E a posição? No MUV, a posição em cada instante é:
+
+<Formula>
+<Linha>s = s₀ + v₀ × t + a × t² ÷ 2</Linha>
+</Formula>
+
+O primeiro termo, s₀, é a posição de partida. O segundo, v₀·t, é o que o corpo andaria **se a velocidade não mudasse**. O terceiro, a·t² ÷ 2, é o **bônus da aceleração**: a distância extra que vem de ele estar ficando mais rápido (ou menos, se a for negativo).
+
+<Brincando titulo="s = s₀ + v₀·t + a·t²/2: a velocidade que não para de crescer">
+
+Pense numa corrida de dois amigos. O primeiro anda sempre a 3 m/s. O segundo parte devagar, mas a cada segundo fica mais rápido. No começo o segundo está atrás, mas depois ultrapassa, porque **a cada segundo anda mais que no anterior**. O termo a·t²/2 mede esse "a mais". Como t está ao quadrado, ele cresce muito rápido: com o triplo do tempo, o bônus é nove vezes maior.
+
+</Brincando>
+
+<ExemploResolvido titulo="Um carro parte do repouso com aceleração de 2 m/s². Que distância percorre em 10 s?">
+  <Passo>Partindo do repouso: v₀ = 0 e s₀ = 0.</Passo>
+  <Passo>s = 0 + 0 × 10 + 2 × 10² ÷ 2.</Passo>
+  <Passo>s = 2 × 100 ÷ 2 = **100 m**.</Passo>
+</ExemploResolvido>
+
+<ExemploResolvido titulo="Uma moto a 10 m/s acelera a 2 m/s². Que distância percorre em 5 s?">
+  <Passo>Termo da velocidade inicial: v₀·t = 10 × 5 = 50 m.</Passo>
+  <Passo>Termo da aceleração: a·t² ÷ 2 = 2 × 25 ÷ 2 = 25 m.</Passo>
+  <Passo>Total: 50 + 25 = **75 m**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um corpo parte do repouso com aceleração de 4 m/s². Que distância, em metros, percorre em 3 s?" resposta="18" dica="s = a·t² ÷ 2." resolucao="s = 4 × 9 ÷ 2 = 18 m." />
+
+<Exercicio enunciado="Um carro a 5 m/s acelera a 2 m/s². Que distância, em metros, percorre em 4 s?" resposta="36" dica="s = v₀·t + a·t² ÷ 2." resolucao="5 × 4 = 20 e 2 × 16 ÷ 2 = 16. Total: 36 m." />
+
+<Exercicio enunciado="Um carro parte da posição 10 m, com v₀ = 2 m/s e a = 2 m/s². Qual a posição, em metros, em t = 3 s?" resposta="25" dica="Some s₀, v₀·t e a·t² ÷ 2." resolucao="10 + 2 × 3 + 2 × 9 ÷ 2 = 10 + 6 + 9 = 25 m." />
+
+## O gráfico velocidade × tempo
+
+No MUV o gráfico da velocidade é uma **reta inclinada**. A inclinação dela é a **aceleração**. E, como no MRU, a **área debaixo** da reta é o **deslocamento**. Aqui a área é um **trapézio**: (base menor + base maior) ÷ 2 × altura.
+
+<AreaDoGrafico />
+
+<ExemploResolvido titulo="Um corpo tem v₀ = 4 m/s e a = 2 m/s². Use o gráfico v × t para achar o deslocamento em 5 s.">
+  <Passo>Velocidade final: v = 4 + 2 × 5 = 14 m/s.</Passo>
+  <Passo>Área do trapézio: (4 + 14) ÷ 2 × 5 = 9 × 5 = **45 m**.</Passo>
+  <Passo>Conferindo pela fórmula: 4 × 5 + 2 × 25 ÷ 2 = 20 + 25 = 45 m. Deu igual.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um corpo tem v₀ = 2 m/s e a = 4 m/s². Qual a velocidade, em m/s, no instante t = 3 s?" resposta="14" dica="v = 2 + 4·3." resolucao="v = 2 + 12 = 14 m/s." />
+
+<Exercicio enunciado="Pelo gráfico v × t do corpo anterior (de 2 m/s a 14 m/s em 3 s), que deslocamento, em metros, houve nesses 3 s?" resposta="24" dica="Área do trapézio: (2 + 14) ÷ 2 × 3." resolucao="(2 + 14) ÷ 2 = 8, e 8 × 3 = 24 m." />
+
+## A velocidade média no MUV
+
+Como a velocidade cresce em linha reta, a **velocidade média** é exatamente o **meio** entre a inicial e a final:
+
+<Formula>
+<Linha>vm = (v₀ + v) ÷ 2</Linha>
+</Formula>
+
+Essa regra **só vale no MUV**. É a regra de Oxford do século 14: andar acelerando de v₀ a v dá a mesma distância que andar o tempo todo na velocidade média.
+
+<ExemploResolvido titulo="Um trem aumenta a velocidade de 10 m/s para 30 m/s em 5 s, com aceleração constante. Que distância percorre?">
+  <Passo>Velocidade média: (10 + 30) ÷ 2 = 20 m/s.</Passo>
+  <Passo>Distância: 20 × 5 = **100 m**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um carro passa de 20 m/s para 0 em 4 s, com aceleração constante. Que distância, em metros, percorre?" resposta="40" dica="Velocidade média = (20 + 0) ÷ 2." resolucao="vm = 10 m/s e 10 × 4 = 40 m. É a resposta do problema do cachorro." />
+
+## O gráfico posição × tempo
+
+No MRU o gráfico da posição era uma reta. No MUV ele é uma **parábola**: uma curva que **vai ficando mais inclinada** quando o corpo acelera. A inclinação em cada ponto é a velocidade naquele instante.
+
+<ParabolaDaPosicao />
+
+- Parábola **abrindo para cima** (aceleração positiva): o corpo fica cada vez mais rápido.
+- A inclinação em cada ponto é a **velocidade** daquele instante.
+- Se v₀ = 0, a curva começa **horizontal**: no começo o corpo está parado.
+
+## A equação de Torricelli
+
+Às vezes você **não sabe o tempo** e não precisa dele. Quer saber, por exemplo, a velocidade depois de andar uma certa distância. Para esse caso existe uma equação que **elimina o tempo**:
+
+<Formula>
+<Linha>v² = v₀² + 2 × a × Δs</Linha>
+</Formula>
+
+Ela leva o nome de Evangelista Torricelli, aluno de Galileu. Para deduzi-la, basta pegar a equação da velocidade, isolar o tempo e colocar na equação da posição.
+
+<VelocidadeSemTempo />
+
+<Brincando titulo="Torricelli: a freada que não olha o relógio">
+
+Você está num carro e vê um obstáculo a 40 metros. Você não pensa em segundos, e sim em **metros**: "dá para parar antes?". A equação de Torricelli responde essa pergunta direto, ligando **velocidade, aceleração e distância**, sem passar pelo tempo. Por isso é a mais usada em problemas de freada.
+
+</Brincando>
+
+<ExemploResolvido titulo="Um carro a 20 m/s freia com aceleração de −5 m/s². Que distância percorre até parar?">
+  <Passo>Parar significa v = 0. Equação: 0² = 20² + 2 × (−5) × Δs.</Passo>
+  <Passo>0 = 400 − 10 × Δs, então 10 × Δs = 400.</Passo>
+  <Passo>Δs = **40 m**. Confere com o palpite do início.</Passo>
+</ExemploResolvido>
+
+<ExemploResolvido titulo="Um carro parte do repouso com aceleração de 2 m/s². Qual a velocidade depois de 25 m?">
+  <Passo>v² = 0² + 2 × 2 × 25 = 100.</Passo>
+  <Passo>v = raiz de 100 = **10 m/s**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um carro a 20 m/s freia com a = −5 m/s². Que distância, em metros, percorre até parar?" resposta="40" dica="Use v = 0 em v² = v₀² + 2·a·Δs." resolucao="0 = 400 − 10·Δs, então Δs = 40 m." />
+
+<Exercicio enunciado="Um corpo parte do repouso com aceleração de 5 m/s². Qual a velocidade, em m/s, depois de 40 m?" resposta="20" dica="v² = 2·a·Δs." resolucao="v² = 2 × 5 × 40 = 400, então v = 20 m/s." />
+
+<Exercicio enunciado="Uma moto aumenta a velocidade de 10 m/s para 20 m/s em 150 m. Qual a aceleração, em m/s²?" resposta="1" dica="400 = 100 + 2·a·150." resolucao="300 = 300·a, então a = 1 m/s²." />
+
+## Distância de frenagem: a conta que salva vidas
+
+Quando você vê um perigo, o carro não começa a frear de imediato. Primeiro há o **tempo de reação**: em geral cerca de 1 segundo entre ver e apertar o pedal. Durante esse tempo o carro continua em **MRU**, na velocidade que já tinha. Só depois começa a freada, em **MUV**. A distância total é a soma das duas:
+
+<Formula>
+<Linha>distância total = v × t_reação + v² ÷ (2a)</Linha>
+</Formula>
+
+<DistanciaDeFreada />
+
+Repare em como o v² manda: **dobrar a velocidade multiplica a distância de freada por 4**. É por isso que reduzir um pouco a velocidade em trechos perigosos faz tanta diferença.
+
+<ExemploResolvido titulo="Um carro a 72 km/h (20 m/s), com reação de 1 s e desaceleração de 7 m/s² no asfalto seco. Qual a distância total para parar?">
+  <Passo>Reação: 20 × 1 = 20 m.</Passo>
+  <Passo>Freada: 20² ÷ (2 × 7) = 400 ÷ 14 ≈ 28,6 m.</Passo>
+  <Passo>Total: 20 + 28,6 ≈ **49 m**, quase o comprimento de cinco ônibus.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um carro a 108 km/h (30 m/s) freia com desaceleração de 5 m/s². Qual a distância, em metros, só da freada?" resposta="90" dica="v² ÷ (2a) = 900 ÷ 10." resolucao="900 ÷ 10 = 90 m." />
+
+<Exercicio enunciado="Um motorista a 25 m/s leva 1,5 s para reagir. Que distância, em metros, o carro percorre antes de começar a frear?" resposta="37,5" dica="Distância = v × t." resolucao="25 × 1,5 = 37,5 m." />
+
+<Exercicio enunciado="Se a velocidade de um carro dobra, a distância de freada fica quantas vezes maior?" resposta="4" dica="A distância é proporcional a v²." resolucao="(2v)² = 4v², então a freada fica 4 vezes maior." />
+
+## Encontro com aceleração
+
+Dois corpos se encontram quando têm a **mesma posição no mesmo instante**. O método é o mesmo do MRU: escreva as duas equações horárias e **iguale**. A diferença é que agora uma delas pode ter t².
+
+<ExemploResolvido titulo="Dois carros saem juntos do mesmo ponto. O carro A parte do repouso com aceleração de 2 m/s². O carro B anda a 10 m/s constante. Quando A alcança B?">
+  <Passo>A: s = 0 + 0·t + 2·t² ÷ 2 = t². B: s = 10·t.</Passo>
+  <Passo>Igualando: t² = 10·t, então t² − 10·t = 0 e t × (t − 10) = 0.</Passo>
+  <Passo>Soluções: t = 0 (a largada) e **t = 10 s**. A posição é 10 × 10 = **100 m**.</Passo>
+  <Passo>Nesse momento A está a 20 m/s, o dobro de B: acelerando, ele alcançou e vai passar.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O carro A parte do repouso com a = 4 m/s². O carro B anda a 20 m/s constante, saindo do mesmo ponto no mesmo instante. Em quantos segundos A alcança B?" resposta="10" dica="2·t² = 20·t." resolucao="2·t² = 20·t, então t = 10 s." />
+
+<Aprofundar titulo="Por que a área do gráfico v × t é o deslocamento?">
+
+No movimento uniforme, a área de um retângulo (v × t) já era o deslocamento. No MUV, divida o tempo em faixas muito finas. Em cada faixa a velocidade quase não muda, então o deslocamento é velocidade × tempo da faixa, ou seja, a área de uma faixa fininha. Somando todas as faixas, você tem a área total debaixo da reta, que no MUV é um trapézio. Essa ideia de somar faixas finas é o início do **cálculo integral**.
+
+</Aprofundar>
+
+<Aprofundar titulo="Deduzindo a equação de Torricelli">
+
+Da equação da velocidade: t = (v − v₀) ÷ a. Substituindo na equação da posição (com s₀ = 0): Δs = v₀·t + a·t² ÷ 2 = v₀·(v − v₀) ÷ a + (v − v₀)² ÷ (2a). Colocando tudo sobre 2a e simplificando, sobra: 2·a·Δs = v² − v₀². Daí vem v² = v₀² + 2·a·Δs.
+
+</Aprofundar>
+
+<Aprofundar titulo="Aceleração e a sensação de peso">
+
+O que você sente num elevador, num carro ou numa montanha-russa é a **aceleração**, e não a velocidade. Em linha reta a 100 km/h constantes você não sente nada especial. Numa curva fechada ou numa freada brusca, a aceleração é grande, e o corpo é empurrado. A **aceleração da gravidade** na Terra é cerca de 9,8 m/s²: por isso, quando um piloto de caça sente "5 g", ele sente o corpo cerca de cinco vezes mais pesado.
+
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'O que é o movimento uniformemente variado (MUV)?',
+    opcoes: ['Movimento com velocidade constante', 'Movimento com aceleração constante, em que a velocidade muda a cada segundo na mesma quantidade', 'Movimento sem trajetória definida'],
+    correta: 1,
+    explicacao: 'No MUV a aceleração é constante: a velocidade muda sempre na mesma quantidade por segundo.',
+  },
+  {
+    enunciado: 'A aceleração de 3 m/s² significa que...',
+    opcoes: ['o corpo anda 3 metros por segundo', 'a velocidade ganha 3 m/s a cada segundo', 'o corpo anda 3 metros por segundo ao quadrado de distância'],
+    correta: 1,
+    explicacao: 'Aceleração é a variação da velocidade por unidade de tempo: 3 m/s² é 3 m/s a mais a cada segundo.',
+  },
+  {
+    enunciado: 'Um carro a 4 m/s acelera a 2 m/s². Qual a velocidade após 3 s?',
+    opcoes: ['6 m/s', '10 m/s', '12 m/s'],
+    correta: 1,
+    explicacao: 'v = 4 + 2 × 3 = 10 m/s.',
+  },
+  {
+    enunciado: 'Qual a equação da posição no MUV?',
+    opcoes: ['s = s₀ + v·t', 's = s₀ + v₀·t + a·t²/2', 's = v₀ + a·t'],
+    correta: 1,
+    explicacao: 'A posição soma a inicial, o que andaria sem acelerar (v₀·t) e o bônus da aceleração (a·t²/2).',
+  },
+  {
+    enunciado: 'Um corpo parte do repouso com a = 2 m/s². Que distância percorre em 5 s?',
+    opcoes: ['10 m', '25 m', '50 m'],
+    correta: 1,
+    explicacao: 's = 2 × 25 ÷ 2 = 25 m.',
+  },
+  {
+    enunciado: 'No gráfico v × t do MUV, a aceleração é...',
+    opcoes: ['a área debaixo da reta', 'a inclinação da reta', 'o valor onde a reta corta o eixo'],
+    correta: 1,
+    explicacao: 'A inclinação da reta de v × t é a aceleração. A área é o deslocamento.',
+  },
+  {
+    enunciado: 'No gráfico s × t do MUV, a curva é...',
+    opcoes: ['uma reta inclinada', 'uma parábola', 'uma linha horizontal'],
+    correta: 1,
+    explicacao: 'Como a posição depende de t², o gráfico é uma parábola.',
+  },
+  {
+    enunciado: 'Um carro passa de 10 m/s para 30 m/s em 5 s, com aceleração constante. Que distância percorre?',
+    opcoes: ['100 m', '150 m', '50 m'],
+    correta: 0,
+    explicacao: 'A velocidade média é (10 + 30) ÷ 2 = 20 m/s, e 20 × 5 = 100 m.',
+  },
+  {
+    enunciado: 'Um carro a 20 m/s freia a −5 m/s². Que distância percorre até parar?',
+    opcoes: ['20 m', '40 m', '80 m'],
+    correta: 1,
+    explicacao: 'Por Torricelli: 0 = 400 − 10·Δs, então Δs = 40 m.',
+  },
+  {
+    enunciado: 'Se a velocidade de um carro dobra, a distância de freada...',
+    opcoes: ['dobra', 'quadruplica', 'fica igual'],
+    correta: 1,
+    explicacao: 'A distância de freada é proporcional a v². Dobrando a velocidade, ela fica 4 vezes maior.',
+  },
+  {
+    enunciado: 'Para que serve o tempo de reação no cálculo da distância total de parada?',
+    opcoes: ['Ele não entra na conta', 'Nesse tempo o carro segue em movimento uniforme, somando uma distância extra', 'Ele reduz a distância de freada'],
+    correta: 1,
+    explicacao: 'Antes de o freio fazer efeito, o carro continua na mesma velocidade, andando v × t_reação.',
+  },
+  {
+    enunciado: 'A equação de Torricelli é útil quando...',
+    opcoes: ['você sabe o tempo e quer a posição', 'você não conhece nem precisa do tempo', 'a aceleração é zero'],
+    correta: 1,
+    explicacao: 'Torricelli liga velocidades, aceleração e distância sem o tempo.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **MUV:** aceleração constante. A velocidade muda sempre na mesma quantidade por segundo.
+- **Aceleração:** a = Δv ÷ Δt, em m/s². Frear é aceleração negativa.
+- **Velocidade:** v = v₀ + a·t. **Posição:** s = s₀ + v₀·t + a·t² ÷ 2.
+- **Velocidade média no MUV:** vm = (v₀ + v) ÷ 2.
+- **Gráfico v × t:** reta; inclinação = aceleração; área = deslocamento (trapézio).
+- **Gráfico s × t:** parábola.
+- **Torricelli:** v² = v₀² + 2·a·Δs, sem o tempo.
+- **Distância de parada:** reação (MRU) + freada (MUV). Dobrar a velocidade quadruplica a freada.
+
+**Um pouco de história.** Galileu fez bolas rolar em rampas, mediu o tempo com água escorrendo e descobriu que as distâncias crescem como 1, 3, 5, 7. Em 1638 ele publicou o resultado, e a física do movimento acelerado nasceu.
+
+</Resumo>
+
+A queda de uma pedra é um exemplo especial de MUV, com aceleração de cerca de 9,8 m/s². Para onde seguir:
+
+<Conexoes />
+
+</Etapa>

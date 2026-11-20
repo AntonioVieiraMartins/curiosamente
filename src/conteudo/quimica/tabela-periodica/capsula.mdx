@@ -1,0 +1,398 @@
+import TabelaDosDezoito from '../../../components/simulacoes/TabelaDosDezoito'
+import FamiliasDaTabela from '../../../components/simulacoes/FamiliasDaTabela'
+import PrevisaoDeMendeleiev from '../../../components/simulacoes/PrevisaoDeMendeleiev'
+import TendenciasPeriodicas from '../../../components/simulacoes/TendenciasPeriodicas'
+import ClassificaElemento from '../../../components/simulacoes/ClassificaElemento'
+
+{/* Fatos conferidos nas fontes do meta.ts (Wikipedia em inglês: Periodic table, Dmitri Mendeleev, Henry Moseley, Alkali metal, Noble gas, Electronegativity, Atomic radius). Valores de raio e eletronegatividade são aproximados. */}
+
+<Etapa id="gancho">
+
+Em 1869, um professor russo de química estava cansado de decorar propriedades de 63 elementos, um por um. Teve uma ideia: escrever cada elemento em um cartão, com sua massa e suas propriedades, e **organizar os cartões em fileiras**, como numa partida de paciência. Quando colocou os elementos em ordem de massa, algo surpreendente apareceu: **propriedades parecidas voltavam em intervalos regulares**.
+
+Mais incrível: nas partes em que o padrão "quebrava", ele disse que **havia elementos ainda não descobertos**, e descreveu como eles seriam. Anos depois, eles foram achados, e as previsões estavam quase certas.
+
+<Palpite
+  chave="inicial"
+  pergunta="Sódio e potássio são metais moles que reagem com violência na água. O elemento logo abaixo do potássio na tabela periódica é o rubídio. O que você espera dele?"
+  opcoes={['Um gás sem cor, que não reage com nada', 'Um metal mole, ainda mais reativo na água que o potássio', 'Um metal duro e pesado, como o ferro']}
+/>
+
+Nesta cápsula você vai aprender a **ler a tabela periódica**: períodos, grupos, famílias, a ligação com os **elétrons de valência** e as **tendências** que ajudam a prever o comportamento de um elemento.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Organizar os elementos foi um quebra-cabeça de mais de meio século, no qual vários químicos chegaram perto antes de Mendeleiev.
+
+<LinhaDoTempo marcos={[
+  { ano: '1829', texto: 'Johann Döbereiner nota "tríades" de elementos com propriedades parecidas (como cloro, bromo e iodo).' },
+  { ano: '1864', texto: 'John Newlands percebe que as propriedades se repetem a cada oito elementos em ordem de massa, a "lei das oitavas".' },
+  { ano: '1869', texto: 'Dmitri Mendeleiev publica sua tabela periódica, deixando casas vazias para elementos desconhecidos.' },
+  { ano: '1875 a 1886', texto: 'São descobertos o gálio, o escândio e o germânio, que preenchem as lacunas previstas por Mendeleiev.' },
+  { ano: '1913', texto: 'Henry Moseley mostra que a ordem certa é a do número atômico (prótons), e não a da massa.' },
+  { ano: '2016', texto: 'Os últimos quatro elementos (nihônio, moscóvio, tenesso e oganessônio) recebem nome oficial, completando a sétima linha.' },
+]} />
+
+## Os primeiros padrões
+
+Quando os químicos medidores do século 19 passaram a medir **massas atômicas** com precisão, alguns notaram que certos elementos formavam famílias. Cloro, bromo e iodo, por exemplo, tinham comportamento parecido. Mas nenhum esquema conseguiu organizar **todos** os elementos até então conhecidos.
+
+## Mendeleiev e as casas vazias
+
+Dmitri Mendeleiev, em 1869, escreveu os elementos por ordem de massa e, quando uma propriedade não se encaixava, **trocou a ordem** ou **deixou uma casa vazia**. Ele não apenas organizou: **previu** que as lacunas seriam preenchidas por elementos novos, e descreveu como seriam. Chamou-os, por exemplo, de "eka-silício". Em 1886, o germânio foi descoberto e tinha quase exatamente as propriedades previstas.
+
+## Moseley arruma a ordem
+
+A tabela de Mendeleiev tinha algumas trocas estranhas: o telúrio (mais pesado) vinha antes do iodo (mais leve) para as propriedades baterem. Em 1913, o inglês Henry Moseley, medindo raios X de vários elementos, descobriu o **número atômico** (Z) e mostrou que a ordem certa é pelo número de **prótons**. Com isso as trocas deixaram de ser estranhas. Moseley morreu na Primeira Guerra, aos 27 anos.
+
+## A tabela hoje
+
+A tabela atual tem **118 elementos**, em 7 linhas e 18 colunas. Os elementos além do urânio (Z = 92) são todos **artificiais**, feitos em aceleradores de partículas, e vivem muito pouco. Em 2019, a ONU celebrou o Ano Internacional da Tabela Periódica, nos 150 anos da primeira tabela de Mendeleiev.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. A tabela é um mapa, não uma lista
+
+A tabela periódica não é só uma lista de 118 nomes. A **posição** de cada elemento diz muita coisa sobre ele: quantas camadas tem, quantos elétrons na última, se é metal, se reage com facilidade. Quem aprende a **ler a posição** consegue prever um elemento que nunca viu.
+
+## 2. Linhas e colunas
+
+- As **linhas** horizontais são os <Termo cor="azul">períodos</Termo> (de 1 a 7). O número do período é o número de **camadas** de elétrons do átomo.
+- As **colunas** verticais são os <Termo cor="verde">grupos</Termo> ou **famílias** (de 1 a 18). Elementos do mesmo grupo têm o **mesmo número de elétrons na última camada** e, por isso, comportamento parecido.
+
+## 3. A ordem é por número atômico
+
+Os elementos aparecem em ordem **crescente de Z** (número de prótons), da esquerda para a direita e de cima para baixo: 1 (hidrogênio), 2 (hélio), 3 (lítio)... Quando o número de camadas aumenta, começa uma nova linha.
+
+<Brincando titulo="Tabela periódica: o prédio de apartamentos">
+
+Imagine um prédio onde cada andar é um período (mais um andar, mais uma camada de elétrons). Em cada andar, os apartamentos são numerados da esquerda para a direita. Quem mora na mesma coluna, em andares diferentes, é da mesma família: tem o mesmo número de "móveis" no cômodo da frente (os elétrons de valência) e, por isso, o mesmo jeito de agir com os vizinhos. Os de cima, como o sódio, são menores. Os de baixo, como o césio, ficam num andar mais alto: são maiores e mais "fáceis de visitar".
+
+</Brincando>
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="O sódio (Na) e o potássio (K) estão no mesmo grupo e os dois reagem com a água. Se o potássio está um andar abaixo do sódio, quem você espera que reaja com mais violência?"
+  opcoes={['O sódio, porque está mais em cima', 'O potássio, porque o elétron de fora está mais longe do núcleo e sai mais fácil', 'Os dois reagem exatamente igual']}
+  correta={1}
+  explicacao="Descendo no grupo, a última camada fica mais longe do núcleo, e o elétron de fora é menos atraído. Perder esse elétron é mais fácil, e a reação é mais violenta: K reage mais que Na."
+>
+
+Toque nos elementos e veja período, grupo e elétrons de valência:
+
+<TabelaDosDezoito />
+
+Repare que **sódio e lítio** estão na mesma coluna: o mesmo número de elétrons de valência (1). Agora volte ao palpite do começo:
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Um gás sem cor, que não reage com nada', 'Um metal mole, ainda mais reativo na água que o potássio', 'Um metal duro e pesado, como o ferro']}
+  correta={1}
+  seAcertou="Certo: o rubídio é do mesmo grupo (1) e fica abaixo do potássio. É um metal mole e ainda mais reativo."
+  seErrou="O certo é: um metal mole e ainda mais reativo. O rubídio está no mesmo grupo (metais alcalinos) e abaixo do potássio: segue a tendência de ficar mais reativo descendo."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Como é a tabela
+
+A tabela tem:
+
+- **7 períodos** (linhas): o período indica o número de camadas.
+- **18 grupos** (colunas): o grupo indica, em geral, o número de elétrons de valência.
+- Um bloco central com os **metais de transição** (grupos 3 a 12).
+- Duas fileiras separadas embaixo (**lantanídeos** e **actinídeos**), que são "encaixadas" entre os grupos 2 e 3 só para a tabela não ficar larga demais.
+
+## Os grupos e a camada de valência
+
+Para os grupos **1 e 2** e **13 a 18**, o número de elétrons da **última camada** (valência) dá para ver pelo número do grupo:
+
+- Grupos 1 e 2: **1 e 2** elétrons.
+- Grupos 13 a 18: o número do grupo **menos 10**: 3, 4, 5, 6, 7 e 8.
+
+Assim, o cloro (grupo 17) tem 7 elétrons de valência. O oxigênio (grupo 16) tem 6. O carbono (grupo 14) tem 4. O hélio, do grupo 18, é exceção: tem 2 e já está completo.
+
+<Brincando titulo="Grupo = número de elétrons na última camada: placas de ônibus">
+
+Pense em cada família como uma linha de ônibus que sempre carrega o mesmo número de passageiros no andar de cima. Toda a linha "1" tem 1 passageiro (Li, Na, K...), toda a linha "17" tem 7 (F, Cl, Br...). Mesmo que o ônibus seja de tamanhos diferentes (períodos), o número de passageiros do andar de cima é o mesmo. É por isso que os elementos da mesma coluna agem de forma parecida: eles lidam com o mesmo número de elétrons nas reações.
+
+</Brincando>
+
+<ExemploResolvido titulo="Onde fica o enxofre (Z = 16)? Quantas camadas e quantos elétrons de valência tem?">
+  <Passo>Distribuição eletrônica: 2, 8, 6 (16 elétrons no total).</Passo>
+  <Passo>São **3 camadas**, então fica no **período 3**.</Passo>
+  <Passo>Última camada com **6 elétrons**: grupo 16 (6 + 10).</Passo>
+  <Passo>O enxofre é um não metal do grupo dos calcogênios, junto com o oxigênio.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O cloro está no grupo 17. Quantos elétrons de valência ele tem?" resposta="7" dica="Grupo menos 10." resolucao="17 − 10 = 7 elétrons de valência." />
+
+<Exercicio enunciado="O magnésio está no grupo 2. Quantos elétrons de valência ele tem?" resposta="2" dica="Grupos 1 e 2: o número do grupo." resolucao="2 elétrons de valência." />
+
+<Exercicio enunciado="O carbono está no grupo 14. Quantos elétrons de valência ele tem?" resposta="4" dica="14 − 10." resolucao="4 elétrons de valência." />
+
+<Exercicio enunciado="O sódio (Z = 11) tem distribuição 2, 8, 1. Em que período da tabela ele está?" resposta="3" dica="O período é o número de camadas." resolucao="Três camadas: período 3." />
+
+<Exercicio enunciado="O cálcio (Z = 20) tem distribuição 2, 8, 8, 2. Em que período ele está?" resposta="4" dica="Conte as camadas." resolucao="Quatro camadas: período 4." />
+
+## As famílias
+
+Os grupos mais conhecidos têm nomes próprios:
+
+- **Grupo 1, metais alcalinos** (Li, Na, K...): moles, brilhantes, reagem muito com a água.
+- **Grupo 2, alcalinoterrosos** (Mg, Ca...): menos reativos que os alcalinos.
+- **Grupos 3 a 12, metais de transição** (Fe, Cu, Au...): duros, bons condutores, formam cores variadas.
+- **Grupo 16, calcogênios** (O, S...).
+- **Grupo 17, halogênios** (F, Cl, Br, I): muito reativos, "querem" ganhar 1 elétron.
+- **Grupo 18, gases nobres** (He, Ne, Ar...): camada completa, praticamente não reagem.
+
+<FamiliasDaTabela />
+
+<Brincando titulo="Gases nobres: os satisfeitos da festa">
+
+Numa festa de troca de figurinhas, quem já tem o álbum completo não quer trocar com ninguém. Os gases nobres são assim: com a última camada cheia, não precisam ganhar nem perder elétrons, e quase nunca reagem. Os outros elementos "querem" chegar a esse estado: o sódio doa 1 elétron e fica com a configuração do neônio. O cloro ganha 1 e fica com a do argônio. É a ideia por trás das ligações químicas.
+
+</Brincando>
+
+## Íons e posição na tabela
+
+Como os átomos tendem a ficar com a última camada completa, o grupo diz que íon o elemento costuma formar:
+
+- Grupo 1: perde 1 e vira **+1** (Na⁺).
+- Grupo 2: perde 2 e vira **+2** (Mg²⁺).
+- Grupo 16: ganha 2 e vira **−2** (O²⁻).
+- Grupo 17: ganha 1 e vira **−1** (Cl⁻).
+- Grupo 18: não forma íons.
+
+<ExemploResolvido titulo="Qual a carga do íon mais comum do cálcio (grupo 2) e do flúor (grupo 17)?">
+  <Passo>Cálcio: 2 elétrons de valência. Perde 2: carga **+2** (Ca²⁺).</Passo>
+  <Passo>Flúor: 7 elétrons de valência. Ganha 1 para chegar a 8: carga **−1** (F⁻).</Passo>
+  <Passo>Os dois juntos formam o fluoreto de cálcio, CaF₂, usado em pastas de dente: um Ca²⁺ para dois F⁻.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O magnésio (grupo 2) forma um íon. Qual o valor da carga, sem sinal?" resposta="2" dica="Perde os elétrons de valência." resolucao="Perde 2 elétrons: Mg²⁺, carga +2." />
+
+<Exercicio enunciado="Qual o número de elétrons de valência do oxigênio (grupo 16)?" resposta="6" dica="16 − 10." resolucao="6 elétrons." />
+
+## Metais, não metais e semimetais
+
+A tabela também se divide por tipo de propriedade:
+
+- **Metais** (à esquerda e no meio): brilham, conduzem bem calor e eletricidade, são moldáveis, e tendem a **perder** elétrons. A maioria dos elementos são metais.
+- **Não metais** (à direita, mais o hidrogênio): não brilham, são maus condutores, tendem a **ganhar** elétrons.
+- **Semimetais** (numa linha diagonal, como o silício): propriedades intermediárias. O silício é a base dos chips de computador.
+- **Gases nobres** (grupo 18): não reativos.
+
+<ClassificaElemento />
+
+## O gênio de Mendeleiev: prever o que não se via
+
+Mendeleiev deixou lacunas e descreveu os elementos que faltavam. Compare a previsão com a realidade:
+
+<PrevisaoDeMendeleiev />
+
+<ExemploResolvido titulo="Mendeleiev previu para o eka-silício massa atômica 72. O germânio real tem cerca de 72,6. Qual foi o erro percentual da previsão?">
+  <Passo>Diferença: 72,6 − 72 = 0,6.</Passo>
+  <Passo>Em relação ao valor real: 0,6 ÷ 72,6 ≈ 0,008.</Passo>
+  <Passo>Em porcentagem: cerca de **0,8%**. Um acerto impressionante para 1871.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Em que ano Mendeleiev publicou sua tabela periódica?" resposta="1869" dica="Foram 150 anos celebrados em 2019." resolucao="1869." />
+
+<Exercicio enunciado="Quantos elementos químicos existem na tabela periódica atual?" resposta="118" dica="Os 4 últimos receberam nome em 2016." resolucao="118 elementos." />
+
+<Brincando titulo="Previsão da tabela: o quebra-cabeça com peças faltando">
+
+Imagine um quebra-cabeça de 1.000 peças com algumas peças que sumiram. Como a imagem já está quase toda montada, você consegue **dizer exatamente como cada peça faltante deveria ser**: a cor, o formato, onde se encaixa. Foi o que Mendeleiev fez. Quando a peça sumida (o gálio, o germânio) apareceu na caixa, encaixou perfeitamente.
+
+</Brincando>
+
+## Tendências periódicas
+
+Algumas propriedades **variam de modo regular** ao longo da tabela. As principais:
+
+- **Raio atômico** (tamanho do átomo): **diminui** da esquerda para a direita num período (mais prótons puxam as mesmas camadas com mais força) e **aumenta** de cima para baixo num grupo (mais camadas).
+- **Eletronegatividade** (força com que o átomo atrai elétrons numa ligação): **aumenta** da esquerda para a direita e **diminui** de cima para baixo. O flúor é o campeão.
+- **Energia de ionização** (energia para arrancar um elétron): segue a mesma tendência da eletronegatividade.
+
+<TendenciasPeriodicas />
+
+<Brincando titulo="Tendências: o ímã que fica mais forte ou mais longe">
+
+Pense no núcleo como um ímã e na última camada como uma folha de ferro presa ao ímã por uma linha. Ao andar numa linha da tabela para a direita, o ímã fica **mais forte** (mais prótons) e a folha está na mesma distância: ela é puxada mais, o átomo **encolhe** e fica mais difícil roubar um elétron dele. Ao descer uma coluna, a folha fica **mais longe** do ímã, o puxão é mais fraco, o átomo **cresce** e o elétron sai mais fácil. É assim que o césio, bem embaixo à esquerda, é o mais fácil de perder elétrons, e o flúor, em cima à direita, o mais "ganancioso".
+
+</Brincando>
+
+<ExemploResolvido titulo="Entre sódio (Na), cloro (Cl) e potássio (K), qual tem o maior raio atômico e qual tem a maior eletronegatividade?">
+  <Passo>Na e Cl estão no período 3; K está no período 4 (um andar abaixo).</Passo>
+  <Passo>Maior raio: o **potássio**, porque tem mais camadas (4).</Passo>
+  <Passo>Entre Na e Cl, no mesmo período, a eletronegatividade cresce para a direita: o cloro (grupo 17) é o mais eletronegativo.</Passo>
+  <Passo>Resposta: maior raio, **K**; maior eletronegatividade, **Cl**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um período da tabela tem quantos grupos (colunas), contando a tabela completa?" resposta="18" dica="Os grupos vão de 1 a 18." resolucao="18 grupos." />
+
+<Exercicio enunciado="O número atômico do gás nobre que vem logo depois do neônio (Z = 10) é:" resposta="18" dica="O argônio fecha o período 3." resolucao="O argônio, Z = 18." />
+
+## Por que a posição prevê o comportamento?
+
+Tudo se resume ao **elétron de valência**. Quando dois átomos se encontram, são os elétrons da última camada que interagem primeiro. Se dois elementos têm o mesmo número deles, vão reagir de jeito parecido. É por isso que a tabela funciona como um mapa de comportamentos: **mesma coluna, mesmo estilo**.
+
+Pense no sódio (Na) e no potássio (K). Ambos têm 1 elétron na última camada, e os dois reagem com a água, produzindo hidrogênio e uma base. Já o cloro (Cl) e o bromo (Br) têm 7, e os dois são líquidos ou gases que tingem a água de amarelo-esverdeado ou marrom e atacam metais. Quem aprende uma linha da tabela aprende, de graça, a se comportar de quem está na coluna.
+
+<Brincando titulo="Mesma coluna, mesma personalidade: irmãos de uma família">
+
+Imagine uma família de irmãos que moram em casas de tamanhos diferentes (períodos diferentes), mas todos têm o mesmo hábito: **tocar a campainha duas vezes ao chegar**. Os vizinhos conhecem o hábito de toda a família. Na tabela, o hábito é o número de elétrons de valência: quem faz parte da mesma coluna "toca a campainha" do mesmo jeito, ou seja, forma o mesmo tipo de íon e o mesmo tipo de composto. Basta conhecer um irmão para adivinhar como os outros se comportam.
+
+</Brincando>
+
+<ExemploResolvido titulo="O lítio (Li) forma o óxido Li₂O. Que fórmula você espera para o óxido de sódio? E para o óxido de potássio?">
+  <Passo>Li, Na e K estão no grupo 1: todos formam íons +1.</Passo>
+  <Passo>O oxigênio (grupo 16) forma O²⁻. Para equilibrar a carga, são necessários dois íons +1 para um O²⁻.</Passo>
+  <Passo>Óxido de sódio: **Na₂O**. Óxido de potássio: **K₂O**. O padrão do lítio vale para a família toda.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos íons de sódio (Na⁺) são necessários para cada íon de oxigênio (O²⁻) no óxido de sódio?" resposta="2" dica="A soma das cargas deve ser zero." resolucao="Dois Na⁺ (+2) compensam um O²⁻ (−2): Na₂O." />
+
+## Como ler um quadradinho da tabela
+
+Cada elemento aparece num quadradinho com:
+
+- o **número atômico** (Z), em geral no alto;
+- o **símbolo** (1 ou 2 letras; só a primeira é maiúscula, como Na);
+- o **nome**;
+- a **massa atômica**, que é a média das massas dos isótopos (por isso é um número quebrado).
+
+Muitos símbolos vêm do latim: Na (natrium, sódio), K (kalium, potássio), Fe (ferrum, ferro), Au (aurum, ouro), Ag (argentum, prata), Pb (plumbum, chumbo).
+
+<Aprofundar titulo="Por que a tabela tem esse formato?">
+
+O formato vem da ordem em que os orbitais são preenchidos. O bloco da esquerda (grupos 1 e 2) é o bloco "s". O da direita (grupos 13 a 18) é o "p". O do meio (grupos 3 a 12) é o "d", e as fileiras de baixo são o "f". Cada bloco tem o tamanho certo para os orbitais que preenche: s cabe 2 elétrons, p cabe 6, d cabe 10 e f cabe 14. Por isso os períodos têm 2, 8, 8, 18, 18, 32 e 32 elementos.
+
+</Aprofundar>
+
+<Aprofundar titulo="Elementos artificiais e a ilha de estabilidade">
+
+Elementos com Z maior que 92 são feitos em laboratório, ao se juntar núcleos em aceleradores de partículas, e quase todos duram frações de segundo. O oganessônio (Z = 118), o último da tabela, tem só uns poucos átomos produzidos na história. Alguns físicos esperam que existam núcleos "mágicos", muito mais estáveis, numa "ilha de estabilidade" além do que já foi feito. Ainda é uma busca em aberto.
+
+</Aprofundar>
+
+<Aprofundar titulo="Hidrogênio: o elemento sem lugar fixo">
+
+O hidrogênio fica no grupo 1 por ter 1 elétron de valência, mas **não é um metal alcalino**: é um gás e se comporta como não metal. Em algumas tabelas, ele aparece sozinho no topo, ou no grupo 17 (por poder ganhar 1 elétron). É um caso em que a posição é uma convenção útil, e não uma verdade absoluta.
+
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'As linhas horizontais da tabela periódica chamam-se...',
+    opcoes: ['grupos', 'períodos', 'famílias'],
+    correta: 1,
+    explicacao: 'Linhas são períodos, e o número do período é o número de camadas.',
+  },
+  {
+    enunciado: 'As colunas verticais chamam-se...',
+    opcoes: ['grupos (ou famílias)', 'períodos', 'camadas'],
+    correta: 0,
+    explicacao: 'Colunas são grupos. Elementos do mesmo grupo têm o mesmo número de elétrons de valência.',
+  },
+  {
+    enunciado: 'Os elementos estão em ordem crescente de...',
+    opcoes: ['massa apenas', 'número atômico', 'ordem alfabética'],
+    correta: 1,
+    explicacao: 'Desde Moseley (1913), a ordem é pelo número atômico, o número de prótons.',
+  },
+  {
+    enunciado: 'O sódio (Z = 11) tem distribuição 2, 8, 1. Ele está no...',
+    opcoes: ['período 1, grupo 3', 'período 3, grupo 1', 'período 1, grupo 11'],
+    correta: 1,
+    explicacao: 'Três camadas: período 3. Um elétron de valência: grupo 1.',
+  },
+  {
+    enunciado: 'Quantos elétrons de valência tem um halogênio (grupo 17)?',
+    opcoes: ['1', '7', '17'],
+    correta: 1,
+    explicacao: 'Grupos 13 a 18: o número do grupo menos 10. 17 − 10 = 7.',
+  },
+  {
+    enunciado: 'Por que os gases nobres quase não reagem?',
+    opcoes: ['São muito pesados', 'Têm a última camada completa', 'Estão sempre quentes'],
+    correta: 1,
+    explicacao: 'Com a camada de valência completa, não precisam ganhar nem perder elétrons.',
+  },
+  {
+    enunciado: 'O que fez Mendeleiev de especial em 1869?',
+    opcoes: ['Descobriu o elétron', 'Organizou os elementos e previu os que faltavam', 'Inventou o balão'],
+    correta: 1,
+    explicacao: 'Ele deixou lacunas e descreveu elementos ainda desconhecidos, depois descobertos.',
+  },
+  {
+    enunciado: 'O potássio, abaixo do sódio no grupo 1, é...',
+    opcoes: ['menos reativo que o sódio', 'mais reativo que o sódio', 'um gás nobre'],
+    correta: 1,
+    explicacao: 'Descendo no grupo, o elétron de valência fica mais longe e sai mais fácil.',
+  },
+  {
+    enunciado: 'Num período, da esquerda para a direita, o raio atômico...',
+    opcoes: ['aumenta', 'diminui', 'não muda'],
+    correta: 1,
+    explicacao: 'Mais prótons puxam as mesmas camadas com mais força, e o átomo encolhe.',
+  },
+  {
+    enunciado: 'Qual o elemento mais eletronegativo?',
+    opcoes: ['Césio', 'Flúor', 'Hélio'],
+    correta: 1,
+    explicacao: 'O flúor, no canto superior direito (sem contar os gases nobres), é o mais eletronegativo.',
+  },
+  {
+    enunciado: 'Que carga costuma ter o íon de um elemento do grupo 2?',
+    opcoes: ['+1', '+2', '−2'],
+    correta: 1,
+    explicacao: 'Dois elétrons de valência: perde 2 e vira +2.',
+  },
+  {
+    enunciado: 'Qual é o símbolo do ouro, vindo do latim aurum?',
+    opcoes: ['Go', 'Au', 'Or'],
+    correta: 1,
+    explicacao: 'Au vem de aurum, ouro em latim. Fe é ferro, Ag é prata e Na é sódio.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Tabela periódica:** 118 elementos em ordem crescente de número atômico (Z), em 7 períodos e 18 grupos.
+- **Período** (linha) = número de camadas. **Grupo** (coluna) = elétrons de valência (grupos 1 e 2; e 13 a 18 menos 10).
+- **Famílias:** alcalinos (1), alcalinoterrosos (2), calcogênios (16), halogênios (17), gases nobres (18) e metais de transição (3 a 12).
+- **Tipos:** metais (perdem elétrons), não metais (ganham), semimetais e gases nobres.
+- **Íons típicos:** grupo 1 → +1; grupo 2 → +2; grupo 16 → −2; grupo 17 → −1.
+- **Tendências:** raio diminui para a direita e aumenta para baixo; eletronegatividade faz o contrário.
+- **Mendeleiev (1869)** previu elementos que faltavam; **Moseley (1913)** deu a ordem por Z.
+
+**Um pouco de história.** Em 1869, Mendeleiev organizou os elementos em fileiras e deixou casas vazias para os que ainda não eram conhecidos. Em 1886, o germânio foi descoberto e batia com a previsão. Em 1913, Moseley mostrou que a ordem certa é pelo número de prótons.
+
+</Resumo>
+
+Agora que você sabe quem são os elementos e como se organizam, dá para entender **como eles se unem**: as ligações químicas. Para onde seguir:
+
+<Conexoes />
+
+</Etapa>

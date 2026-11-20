@@ -1,0 +1,395 @@
+import ZoomDoAtomo from '../../../components/simulacoes/ZoomDoAtomo'
+import MontaAtomo from '../../../components/simulacoes/MontaAtomo'
+import GanhaOuPerdeEletron from '../../../components/simulacoes/GanhaOuPerdeEletron'
+import IsotoposDoCarbono from '../../../components/simulacoes/IsotoposDoCarbono'
+import EstadioDoAtomo from '../../../components/simulacoes/EstadioDoAtomo'
+
+{/* Fatos conferidos nas fontes do meta.ts (Wikipedia em inglês: Atom, Atomic theory, Isotope, Ion, Brownian motion). Tamanhos e massas são valores aproximados. */}
+
+<Etapa id="gancho">
+
+Pegue uma folha de ouro bem fina e corte ao meio. Corte de novo. E de novo. Será que dá para continuar **para sempre**, sempre obtendo um pedacinho de ouro? Ou chega uma hora em que existe um **menor pedaço possível**, que, se for dividido, deixa de ser ouro?
+
+Os gregos antigos já faziam essa pergunta. Hoje sabemos a resposta, e ela é impressionante: tudo à sua volta, do ar ao seu dedo, é feito de **uns 100 tipos de blocos minúsculos**, os **átomos**, combinados de formas diferentes. E cada átomo, por sua vez, tem **partes por dentro**.
+
+<Palpite
+  chave="inicial"
+  pergunta="Se você dividir um pedaço de ouro em pedaços cada vez menores, o que acontece no fim?"
+  opcoes={['Dá para dividir para sempre, e continua sendo ouro', 'Chega a um átomo de ouro: o menor pedaço que ainda é ouro', 'O ouro vira pó e deixa de ter qualquer propriedade']}
+/>
+
+Nesta cápsula você vai descobrir **do que o átomo é feito**, como saber **qual elemento** ele é, o que são **íons** e **isótopos**, e quão **pequeno** (e quão vazio) ele é.
+
+</Etapa>
+
+<Etapa id="historia">
+
+A ideia do átomo tem mais de dois mil anos, mas por muito tempo foi só uma ideia. A prova veio muito depois.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Por volta de 400 a.C.', texto: 'Os filósofos gregos Leucipo e Demócrito propõem que a matéria é feita de partículas indivisíveis, os "átomos".' },
+  { ano: '1808', texto: 'John Dalton publica a teoria de que cada elemento é feito de átomos próprios, com massa característica.' },
+  { ano: '1897', texto: 'J. J. Thomson descobre o elétron.' },
+  { ano: '1905', texto: 'Albert Einstein explica o movimento dos grãos de pólen na água como choques com moléculas.' },
+  { ano: '1911', texto: 'Ernest Rutherford conclui que o átomo tem um núcleo minúsculo e pesado.' },
+  { ano: '1932', texto: 'James Chadwick descobre o nêutron.' },
+]} />
+
+## A ideia dos gregos
+
+Demócrito imaginou que, se você dividisse a matéria sem parar, chegaria a um pedacinho que não dá para dividir mais. Chamou-o de **átomo**, que vem de uma palavra grega que significa **"indivisível"**. Era uma ideia por pura lógica, sem experimento. Aristóteles não gostou, e por quase dois mil anos a ideia ficou em segundo plano.
+
+## Dalton traz de volta o átomo
+
+No começo do século 19, o professor inglês John Dalton estudou como os gases se combinam e propôs, em 1808, que cada elemento é feito de átomos **todos iguais entre si e diferentes dos de outros elementos**. Os compostos seriam combinações de átomos em proporções fixas. Foi a primeira teoria atômica baseada em medidas.
+
+## Os átomos têm partes
+
+Em 1897, Thomson mostrou que dentro do átomo existem partículas **ainda menores**, com carga elétrica negativa: os **elétrons**. O átomo não era "indivisível". Depois vieram o **núcleo** (Rutherford, 1911) e o **nêutron** (Chadwick, 1932). Esses modelos são o tema da próxima cápsula.
+
+## Átomos existem de verdade?
+
+Até o começo do século 20, alguns cientistas ainda duvidavam. A prova veio do **movimento browniano**: grãos de pólen na água se mexem em zigue-zague, sem parar. Em 1905, Einstein calculou que isso é efeito de choques com moléculas de água invisíveis, e os experimentos do francês Jean Perrin confirmaram a conta alguns anos depois. A discussão estava encerrada.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O átomo é a menor parte de um elemento
+
+Um <Termo cor="azul">elemento químico</Termo> é um tipo de átomo: ouro, oxigênio, carbono, ferro. O **átomo de ouro** é o menor pedaço que ainda é ouro. Dividir mais do que isso é possível, mas o resultado **deixa de ser ouro**. Conhecemos hoje **118 elementos**, e todo o resto do universo é combinação deles.
+
+## 2. Três tipos de partícula
+
+Um átomo é feito de três tipos de partículas:
+
+- <Termo cor="coral">Prótons</Termo>: carga **positiva**, ficam no centro (o **núcleo**).
+- <Termo cor="amarelo">Nêutrons</Termo>: **sem carga**, também ficam no núcleo.
+- <Termo cor="azul">Elétrons</Termo>: carga **negativa**, andam em volta do núcleo, na região chamada **eletrosfera**.
+
+Prótons e nêutrons têm massa quase igual. O elétron é cerca de **1.800 vezes mais leve**. Por isso, quase toda a massa do átomo está no núcleo.
+
+<Brincando titulo="O átomo: uma bolinha de gude no meio de um campo gigante">
+
+Imagine um campo de futebol enorme, com um grão de pimenta no centro e algumas moscas voando lá longe, nas arquibancadas. O grão de pimenta é o **núcleo** (pesado, concentra a massa). As moscas são os **elétrons** (levíssimos). E o resto é **espaço vazio**. O átomo é assim: quase todo vazio, mas com o peso concentrado no meio.
+
+</Brincando>
+
+## 3. Quem decide qual é o elemento?
+
+Só uma coisa: o **número de prótons**. Um átomo com 6 prótons é carbono. Um com 8 prótons é oxigênio. Um com 79 é ouro. Mudar o número de elétrons ou de nêutrons **não troca o elemento**. Esse número é o "RG" do átomo, chamado <Termo cor="verde">número atômico</Termo>.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Um átomo tem 6 prótons e ganha mais 1 nêutron. O que acontece?"
+  opcoes={['Vira outro elemento', 'Continua sendo o mesmo elemento, só ficou um pouco mais pesado', 'Fica com carga positiva']}
+  correta={1}
+  explicacao="O elemento é definido pelo número de prótons. Um nêutron a mais não troca o elemento: cria um isótopo mais pesado. E, como o nêutron não tem carga, a carga não muda."
+>
+
+Monte átomos mudando as partículas. Veja o elemento, a massa e a carga:
+
+<MontaAtomo />
+
+Com 6 prótons, sempre aparece o carbono, não importa quantos nêutrons ou elétrons. Agora volte ao palpite do começo:
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Dá para dividir para sempre, e continua sendo ouro', 'Chega a um átomo de ouro: o menor pedaço que ainda é ouro', 'O ouro vira pó e deixa de ter qualquer propriedade']}
+  correta={1}
+  seAcertou="Certo: o menor pedaço que ainda é ouro é o átomo de ouro. Abaixo disso, o que sobram são prótons, nêutrons e elétrons, que sozinhos não são ouro."
+  seErrou="O certo é: chega a um átomo de ouro. É o menor pedaço que ainda é ouro. Dividindo o átomo, sobram partículas que, sozinhas, não têm as propriedades do ouro."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## As três partículas
+
+- **Próton:** carga +1, fica no núcleo, massa de cerca de 1 u.
+- **Nêutron:** carga 0, fica no núcleo, massa de cerca de 1 u.
+- **Elétron:** carga −1, fica na eletrosfera, massa de cerca de 1/1.836 u.
+
+A unidade **u** é a "unidade de massa atômica", criada para medir coisas minúsculas. Um próton tem cerca de 1,67 × 10⁻²⁷ kg, uma massa sem sentido no dia a dia: por isso usamos o u.
+
+<Brincando titulo="Carga: cada próton cancela um elétron">
+
+Pense em prótons como moedas de +1 e em elétrons como moedas de −1. Um átomo com 6 de cada: +6 − 6 = 0, e o saldo é zero. O átomo é **neutro**. Se perder uma moeda de −1, o saldo passa a +1. Se ganhar uma, o saldo vai a −1. Só os elétrons "trocam de mão" nas reações químicas; os prótons ficam presos no núcleo.
+
+</Brincando>
+
+## Número atômico e número de massa
+
+Dois números descrevem um átomo:
+
+- **Número atômico (Z):** quantidade de **prótons**. Define o elemento.
+- **Número de massa (A):** **prótons + nêutrons**. Dá a "massa aproximada" em u.
+
+<Formula>
+<Linha>A = Z + N</Linha>
+</Formula>
+
+Em átomo **neutro**, o número de elétrons é igual a Z. Escrevemos assim: o símbolo no centro, o número de massa em cima à esquerda e o atômico embaixo. Por exemplo, o sódio é "²³Na", com Z = 11.
+
+<ExemploResolvido titulo="Um átomo de sódio tem Z = 11 e A = 23. Quantos prótons, nêutrons e elétrons tem, se estiver neutro?">
+  <Passo>Prótons = Z = **11**.</Passo>
+  <Passo>Nêutrons = A − Z = 23 − 11 = **12**.</Passo>
+  <Passo>Neutro: elétrons = prótons = **11**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos prótons tem um átomo de carbono (Z = 6)?" resposta="6" dica="O número atômico é o número de prótons." resolucao="Z = 6, então 6 prótons." />
+
+<Exercicio enunciado="Um átomo tem Z = 17 e A = 35. Quantos nêutrons ele tem?" resposta="18" dica="N = A − Z." resolucao="35 − 17 = 18 nêutrons." />
+
+<Exercicio enunciado="Um átomo tem 26 prótons e 30 nêutrons. Qual o seu número de massa?" resposta="56" dica="A = prótons + nêutrons." resolucao="26 + 30 = 56." />
+
+<Exercicio enunciado="Um átomo neutro tem 17 prótons. Quantos elétrons ele tem?" resposta="17" dica="Neutro: carga zero." resolucao="Neutro, então elétrons = prótons = 17." />
+
+## Escalas: quão pequeno é o átomo?
+
+Um átomo mede cerca de **0,1 nanômetro** (10⁻¹⁰ m) de diâmetro. Em um grão de areia de 1 mm cabem uns **10 milhões** de átomos enfileirados. E o núcleo é cerca de **100 mil vezes menor** que o átomo.
+
+<ZoomDoAtomo />
+
+<EstadioDoAtomo />
+
+Isso explica um fato curioso: você é feito quase só de espaço vazio, e ainda assim não atravessa a parede. Os **elétrons** do seu corpo e os da parede se repelem (cargas iguais), e é essa repulsão que dá a sensação de "sólido".
+
+## Íons: quando o átomo perde ou ganha elétrons
+
+Um átomo neutro pode **ganhar** ou **perder** elétrons. Quando isso acontece, ele vira um <Termo cor="coral">íon</Termo>:
+
+- Perdeu elétrons: sobra carga **positiva**, é um **cátion** (ex.: Na⁺).
+- Ganhou elétrons: sobra carga **negativa**, é um **ânion** (ex.: Cl⁻).
+
+O número de **prótons** não muda. É por isso que o elemento continua o mesmo.
+
+<GanhaOuPerdeEletron />
+
+<Brincando titulo="Íons: o jogo de trocar figurinhas">
+
+Pense nos elétrons como figurinhas. O sódio tem uma figurinha "sobrando" e adora trocar. O cloro está só uma figurinha atrás para completar o álbum. Quando se encontram, o sódio dá a figurinha ao cloro: o sódio fica positivo (Na⁺) e o cloro negativo (Cl⁻). Os dois, agora com cargas opostas, se atraem. É assim que nasce o sal de cozinha. (Os detalhes ficam para a cápsula de ligações químicas.)
+
+</Brincando>
+
+<ExemploResolvido titulo="O íon Al³⁺ tem Z = 13 e A = 27. Quantos prótons, elétrons e nêutrons ele tem?">
+  <Passo>Prótons: Z = **13**.</Passo>
+  <Passo>A carga é +3: perdeu 3 elétrons. Elétrons = 13 − 3 = **10**.</Passo>
+  <Passo>Nêutrons: A − Z = 27 − 13 = **14**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O íon Na⁺ tem Z = 11. Quantos elétrons ele tem?" resposta="10" dica="Carga +1: perdeu 1 elétron." resolucao="11 − 1 = 10 elétrons." />
+
+<Exercicio enunciado="O íon O²⁻ tem Z = 8. Quantos elétrons ele tem?" resposta="10" dica="Carga −2: ganhou 2 elétrons." resolucao="8 + 2 = 10 elétrons." />
+
+<Exercicio enunciado="Um íon tem 13 prótons e 10 elétrons. Qual a sua carga (somente o número, sem sinal)?" resposta="3" dica="Carga = prótons − elétrons." resolucao="13 − 10 = +3." />
+
+## Isótopos
+
+Átomos do **mesmo elemento** (mesmo Z) podem ter **números diferentes de nêutrons**. São os <Termo cor="verde">isótopos</Termo>. Têm quase o mesmo comportamento químico, mas massas diferentes. O hidrogênio tem três: com 0 nêutron (hidrogênio comum, ¹H), com 1 (deutério, ²H) e com 2 (trítio, ³H).
+
+<IsotoposDoCarbono />
+
+<ExemploResolvido titulo="Quantos nêutrons tem o carbono-14 (Z = 6)? E o carbono-12?">
+  <Passo>O nome indica a massa A: carbono-14 tem A = 14.</Passo>
+  <Passo>Nêutrons do C-14: 14 − 6 = **8**.</Passo>
+  <Passo>Nêutrons do C-12: 12 − 6 = **6**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos nêutrons tem o deutério, um hidrogênio (Z = 1) com número de massa 2?" resposta="1" dica="N = A − Z." resolucao="2 − 1 = 1 nêutron." />
+
+<Exercicio enunciado="Quantos nêutrons tem o carbono-13 (Z = 6)?" resposta="7" dica="N = A − Z." resolucao="13 − 6 = 7 nêutrons." />
+
+## A massa atômica da tabela
+
+Na tabela periódica, a massa de cada elemento aparece como um número "quebrado", como 35,45 para o cloro. Isso acontece porque o valor é a **média das massas dos isótopos**, ponderada pela abundância de cada um na natureza.
+
+<ExemploResolvido titulo="Um elemento tem dois isótopos: um de massa 10 (20% dos átomos) e outro de massa 11 (80%). Qual a massa atômica média?">
+  <Passo>20% de 10 = 0,2 × 10 = 2.</Passo>
+  <Passo>80% de 11 = 0,8 × 11 = 8,8.</Passo>
+  <Passo>Média: 2 + 8,8 = **10,8 u**. É a massa do boro na tabela, cerca de 10,81.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um elemento tem dois isótopos, de massa 35 (75% dos átomos) e de massa 37 (25%). Qual a massa média, em u? (use ponto ou vírgula)" resposta="35,5" dica="0,75 × 35 + 0,25 × 37." resolucao="26,25 + 9,25 = 35,5 u. O cloro real tem cerca de 35,45." />
+
+<Exercicio enunciado="Quantas vezes, aproximadamente, um próton é mais pesado que um elétron? (um número inteiro)" resposta="1836" dica="É cerca de 1.836 vezes." resolucao="A massa do próton é cerca de 1.836 vezes a do elétron." />
+
+## Os elétrons moram em camadas
+
+Os elétrons não ficam espalhados de qualquer jeito. Eles se organizam em **camadas** (ou níveis de energia) em volta do núcleo, como andares de um prédio. Cada camada **cabe um número máximo** de elétrons. Nos 18 primeiros elementos, a regra simples é:
+
+- **1ª camada (a mais perto do núcleo):** até **2** elétrons.
+- **2ª camada:** até **8** elétrons.
+- **3ª camada:** até **8** (nos primeiros 18 elementos; depois cabem mais).
+
+Os elétrons ocupam sempre as camadas de **dentro para fora**: só passam para a próxima quando a anterior está cheia. O hidrogênio tem 1 elétron: fica na 1ª camada. O carbono tem 6: 2 na 1ª e 4 na 2ª. O sódio tem 11: 2, 8 e 1. A última camada ocupada é a **camada de valência**, e é ela que decide **como o átomo faz química**.
+
+<Brincando titulo="Camadas: um teatro com poltronas">
+
+Imagine um teatro circular, com filas em volta do palco. A primeira fila, a mais perto do palco, tem só 2 poltronas. A segunda tem 8. As pessoas (elétrons) sempre procuram a fila mais perto do palco que ainda tem lugar. Quando a fila se enche, a próxima pessoa senta na fila de trás. O átomo de sódio é uma pessoa sentada sozinha na terceira fila: está longe do palco e fácil de tirar de lá. É por isso que o sódio perde esse elétron com facilidade e vira Na⁺.
+
+</Brincando>
+
+<ExemploResolvido titulo="Distribua os elétrons de um átomo neutro de oxigênio (Z = 8) e de cloro (Z = 17) nas camadas.">
+  <Passo>Oxigênio: 8 elétrons. 1ª camada: 2. Sobram 6, que vão para a 2ª. Distribuição: **2, 6**.</Passo>
+  <Passo>Cloro: 17 elétrons. 1ª camada: 2. 2ª camada: 8. Sobram 7, na 3ª. Distribuição: **2, 8, 7**.</Passo>
+  <Passo>A camada de valência do oxigênio tem 6 elétrons e a do cloro tem 7. Ambos "querem" ganhar elétrons para completar 8.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos elétrons tem a última camada (valência) do sódio (Z = 11)?" resposta="1" dica="Distribuição 2, 8, ?." resolucao="11 − 2 − 8 = 1 elétron na 3ª camada." />
+
+<Exercicio enunciado="Quantos elétrons tem a camada de valência do carbono (Z = 6)?" resposta="4" dica="2 na primeira camada, o resto na segunda." resolucao="6 − 2 = 4 elétrons na 2ª camada." />
+
+## Átomo, elemento e substância: não confunda
+
+Três palavras que parecem iguais, mas não são:
+
+- **Átomo:** a partícula. Um átomo de oxigênio é uma coisinha só.
+- **Elemento químico:** o **tipo** de átomo, definido pelo número de prótons. "Oxigênio" é um elemento: qualquer átomo com 8 prótons.
+- **Substância:** o material que você pega nas mãos. A água é uma substância; o gás oxigênio que respiramos também.
+
+O gás oxigênio do ar não é feito de átomos soltos: são **moléculas de dois átomos de oxigênio juntos** (O₂). A água é feita de **moléculas** com dois átomos de hidrogênio e um de oxigênio (H₂O). Os átomos quase nunca andam sozinhos na natureza: eles se juntam, e esse "juntar" é o tema das ligações químicas.
+
+<Brincando titulo="Átomos, elementos e substâncias: letras, alfabeto e palavras">
+
+Pense nas letras do alfabeto. Cada **tipo de letra** (A, B, C...) é como um **elemento**. Cada **letra escrita** numa folha é como um **átomo**. Juntando letras, formam-se **palavras**, que são como as **substâncias**. Com cerca de 100 letras (os elementos) dá para escrever milhões de palavras (as substâncias). E a mesma letra pode estar em muitas palavras diferentes, assim como o carbono está no açúcar, no diamante e no gás carbônico.
+
+</Brincando>
+
+<Exercicio enunciado="Quantos prótons tem todo átomo do elemento oxigênio (Z = 8)?" resposta="8" dica="O elemento é definido pelo número de prótons." resolucao="Z = 8: todo oxigênio tem 8 prótons." />
+
+## Por que átomos diferentes se comportam diferente?
+
+Se todos os átomos são feitos das mesmas três partículas, por que o sódio é um metal mole que explode na água e o neônio é um gás que não reage com nada? A diferença está no **número de prótons** e, principalmente, na **distribuição dos elétrons nas camadas**. O sódio tem 1 elétron sobrando na última camada, que é fácil de perder. O neônio tem a última camada **completa** (8 elétrons), e átomos com camada completa são muito "satisfeitos", não precisam trocar nada. Esse raciocínio vai explicar as ligações químicas e a tabela periódica nas próximas cápsulas.
+
+## Os elementos no universo e no corpo
+
+Quase tudo o que você é feito vem de poucos elementos: **oxigênio, carbono, hidrogênio e nitrogênio** formam a maior parte do corpo humano. Já no universo, o hidrogênio e o hélio são de longe os mais comuns. Todos os outros átomos foram **feitos dentro de estrelas** (ou em explosões estelares). O carbono do seu corpo foi forjado em uma estrela que morreu antes do Sol nascer.
+
+<Aprofundar titulo="Do que são feitos os prótons e os nêutrons?">
+
+Prótons e nêutrons também têm partes: são feitos de partículas ainda menores chamadas **quarks**. Um próton tem dois quarks "up" e um "down". Um nêutron tem um "up" e dois "down". Os elétrons, até onde sabemos, não têm partes: são partículas fundamentais. Esse é um assunto da física de partículas.
+
+</Aprofundar>
+
+<Aprofundar titulo="O número de Avogadro e a quantidade de átomos">
+
+Átomos são tão pequenos que, em uma colher de água, há **mais de 10²³ átomos**: cem mil bilhões de bilhões. Os químicos contam átomos em grupos enormes chamados **mols**. Um mol de qualquer coisa tem cerca de 6,02 × 10²³ unidades. A cápsula de mol explica o assunto.
+
+</Aprofundar>
+
+<Aprofundar titulo="Datação por carbono-14">
+
+Os seres vivos absorvem um pouco de carbono-14 do ar enquanto vivem. Quando morrem, param de absorver, e o C-14 que sobrou vai se desfazendo, com meia-vida de cerca de 5.730 anos. Medindo o quanto resta num osso ou numa madeira antiga, dá para estimar há quanto tempo o ser morreu. Funciona bem até algumas dezenas de milhares de anos.
+
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'A palavra "átomo", em grego, significa...',
+    opcoes: ['pequeno', 'indivisível', 'invisível'],
+    correta: 1,
+    explicacao: 'Demócrito chamou assim por acreditar que seria a parte que não se divide.',
+  },
+  {
+    enunciado: 'Qual partícula tem carga negativa?',
+    opcoes: ['Próton', 'Nêutron', 'Elétron'],
+    correta: 2,
+    explicacao: 'O elétron tem carga −1. O próton, +1. O nêutron não tem carga.',
+  },
+  {
+    enunciado: 'Onde ficam os prótons e os nêutrons?',
+    opcoes: ['Na eletrosfera', 'No núcleo', 'Fora do átomo'],
+    correta: 1,
+    explicacao: 'Prótons e nêutrons formam o núcleo. Os elétrons ficam em volta.',
+  },
+  {
+    enunciado: 'O que define o elemento químico de um átomo?',
+    opcoes: ['O número de nêutrons', 'O número de prótons', 'O número de elétrons'],
+    correta: 1,
+    explicacao: 'O número atômico (prótons) é o "RG" do elemento.',
+  },
+  {
+    enunciado: 'Um átomo tem Z = 11 e A = 23. Quantos nêutrons tem?',
+    opcoes: ['11', '12', '34'],
+    correta: 1,
+    explicacao: 'N = A − Z = 23 − 11 = 12.',
+  },
+  {
+    enunciado: 'Um átomo neutro tem 8 prótons. Quantos elétrons?',
+    opcoes: ['4', '8', '16'],
+    correta: 1,
+    explicacao: 'Neutro: o número de elétrons é igual ao de prótons.',
+  },
+  {
+    enunciado: 'O íon Cl⁻ (Z = 17) tem quantos elétrons?',
+    opcoes: ['16', '17', '18'],
+    correta: 2,
+    explicacao: 'Carga −1 significa que ganhou 1 elétron: 17 + 1 = 18.',
+  },
+  {
+    enunciado: 'Isótopos são átomos do mesmo elemento com...',
+    opcoes: ['números diferentes de prótons', 'números diferentes de nêutrons', 'números diferentes de elétrons e de prótons'],
+    correta: 1,
+    explicacao: 'Mesmo Z (mesmo elemento), mas número de nêutrons diferente.',
+  },
+  {
+    enunciado: 'O carbono-14 tem quantos nêutrons? (Z = 6)',
+    opcoes: ['6', '8', '14'],
+    correta: 1,
+    explicacao: 'N = 14 − 6 = 8.',
+  },
+  {
+    enunciado: 'Quando um átomo perde elétrons, ele vira...',
+    opcoes: ['um ânion', 'um cátion', 'outro elemento'],
+    correta: 1,
+    explicacao: 'Perder elétrons deixa a carga positiva: cátion. O elemento continua o mesmo.',
+  },
+  {
+    enunciado: 'Por que a massa atômica na tabela periódica é um número quebrado?',
+    opcoes: ['Há erro de medida', 'É a média das massas dos isótopos, pela abundância', 'Os prótons têm massa fracionária'],
+    correta: 1,
+    explicacao: 'O valor da tabela é uma média ponderada pela abundância dos isótopos.',
+  },
+  {
+    enunciado: 'Qual afirmação sobre o tamanho do átomo é correta?',
+    opcoes: ['O átomo é quase todo ocupado pelo núcleo', 'O núcleo é minúsculo perto do átomo, que é quase todo espaço vazio', 'Os elétrons são maiores que o núcleo'],
+    correta: 1,
+    explicacao: 'O núcleo é cerca de 100 mil vezes menor que o átomo. O resto é espaço com elétrons.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Átomo:** menor parte de um elemento que ainda é aquele elemento.
+- **Partículas:** prótons (+, núcleo), nêutrons (0, núcleo) e elétrons (−, eletrosfera).
+- **Z (número atômico):** nº de prótons. Define o elemento. **A = Z + N** (número de massa).
+- **Átomo neutro:** prótons = elétrons.
+- **Íons:** cátion (perdeu elétrons, +) e ânion (ganhou elétrons, −). O elemento não muda.
+- **Isótopos:** mesmo Z, nêutrons diferentes (ex.: C-12, C-13, C-14).
+- **Massa atômica da tabela:** média dos isótopos, ponderada pela abundância.
+- **Tamanho:** cerca de 10⁻¹⁰ m. O núcleo é uns 100 mil vezes menor. O átomo é quase só espaço vazio.
+
+**Um pouco de história.** Demócrito imaginou o átomo por lógica, por volta de 400 a.C. Dalton o trouxe de volta com medidas em 1808, Thomson achou o elétron em 1897 e Rutherford o núcleo em 1911. Em 1905 Einstein explicou o movimento browniano, o que acabou com as dúvidas.
+
+</Resumo>
+
+Falta contar como os cientistas imaginaram a **estrutura** do átomo, de Dalton a Bohr, com os modelos que usamos até hoje. Para onde seguir:
+
+<Conexoes />
+
+</Etapa>
