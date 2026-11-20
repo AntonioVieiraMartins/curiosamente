@@ -2,6 +2,7 @@ import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom'
 import AvisoConquista from '../components/ui/AvisoConquista'
 import { useCartoesDeHoje } from '../hooks/useCartoes'
 import { buscarConteudo } from '../conteudo/registro'
+import SomDeNivel from './SomDeNivel'
 import MenuLateral from './MenuLateral'
 import { CabecalhoCelular, MenuDeBaixo } from './NavegacaoCelular'
 
@@ -39,6 +40,7 @@ export default function Layout() {
 
       {!foco && <MenuDeBaixo pendentes={pendentes} />}
       <AvisoConquista />
+      <SomDeNivel />
       <ScrollRestoration />
     </div>
   )

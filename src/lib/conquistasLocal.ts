@@ -1,6 +1,7 @@
 // Medalhas guardadas neste navegador (visitante) ou copiadas da conta (quem está logado).
 // Também guarda "marcos" que não passam pelo XP, como rodar 10 mil vezes uma simulação.
 import { useSyncExternalStore } from 'react'
+import { tocar } from './sons'
 
 type Dados = {
   obtidas: Record<string, string> // id da conquista → quando ganhou (ISO)
@@ -74,6 +75,7 @@ const ouvintesNovidade = new Set<() => void>()
 const avisarFila = () => ouvintesNovidade.forEach((f) => f())
 
 export function anunciarConquista(id: string) {
+  tocar('premio')
   fila = [...fila, id]
   avisarFila()
 }

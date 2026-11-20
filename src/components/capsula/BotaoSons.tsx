@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ligarSons, sonsLigados, tocar } from '../../lib/sons'
+import { ligarSons, sonsLigados } from '../../lib/sons'
 
 // Liga e desliga os sons de acerto, erro e etapa concluída
 export default function BotaoSons() {
@@ -8,7 +8,6 @@ export default function BotaoSons() {
     const novo = !ligado
     ligarSons(novo)
     setLigado(novo)
-    if (novo) tocar('clique')
   }
   return (
     <button

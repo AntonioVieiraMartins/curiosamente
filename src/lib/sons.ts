@@ -2,7 +2,7 @@
 // Só tocam depois de uma ação da pessoa (clique), e dá para desligar pelo botão do cabeçalho.
 const CHAVE = 'curiosamente:sons'
 
-export type Som = 'clique' | 'acerto' | 'erro' | 'etapa' | 'conclusao'
+export type Som = 'acerto' | 'erro' | 'nivel' | 'premio'
 
 let ctx: AudioContext | null = null
 
@@ -24,11 +24,10 @@ export function ligarSons(ligado: boolean) {
 
 // Cada nota: frequência (Hz), começo (s) e duração (s)
 const notas: Record<Som, [number, number, number][]> = {
-  clique: [[520, 0, 0.06]],
   acerto: [[523, 0, 0.12], [784, 0.1, 0.2]],
   erro: [[330, 0, 0.14], [262, 0.12, 0.22]],
-  etapa: [[523, 0, 0.1], [659, 0.09, 0.1], [784, 0.18, 0.18]],
-  conclusao: [[523, 0, 0.12], [659, 0.11, 0.12], [784, 0.22, 0.12], [1047, 0.33, 0.35]],
+  nivel: [[523, 0, 0.12], [659, 0.11, 0.12], [784, 0.22, 0.12], [1047, 0.33, 0.35]],
+  premio: [[784, 0, 0.1], [988, 0.09, 0.1], [1319, 0.18, 0.3]],
 }
 
 export function tocar(som: Som) {

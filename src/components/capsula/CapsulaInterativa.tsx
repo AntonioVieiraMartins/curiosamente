@@ -1,5 +1,4 @@
 import { Suspense, useRef } from 'react'
-import { tocar } from '../../lib/sons'
 import CabecalhoCapsula from './CabecalhoCapsula'
 import SumarioEtapas from './SumarioEtapas'
 import ApoioDaCapsula from './ApoioDaCapsula'
@@ -34,7 +33,6 @@ export default function CapsulaInterativa({ conteudo }: { conteudo: ConteudoCaps
   function concluirEstaEtapa() {
     const etapa = etapas[atual].id
     concluirEtapa(atual)
-    tocar(atual === etapas.length - 1 ? 'conclusao' : 'etapa')
     void ganharXp('etapa', `${meta.id}:${etapa}`, meta.id)
     if (atual === etapas.length - 1) void ganharXp('capsula', meta.id, meta.id, meta.xp)
   }

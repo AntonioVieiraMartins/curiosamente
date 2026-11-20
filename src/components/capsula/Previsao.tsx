@@ -39,7 +39,7 @@ export default function Previsao({ pergunta, opcoes, correta, explicacao, childr
               key={opcao}
               type="button"
               disabled={palpite !== null}
-              onClick={() => { setPalpite(i); tocar('clique') }}
+              onClick={() => setPalpite(i)}
               aria-pressed={palpite === i}
               className={`${estiloOpcao} ${
                 palpite === i ? 'border-azul bg-superficie text-azul-texto' : 'border-transparent bg-superficie enabled:hover:border-azul'

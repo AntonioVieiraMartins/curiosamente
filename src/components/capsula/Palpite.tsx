@@ -1,5 +1,4 @@
 import { useCapsula } from './ContextoCapsula'
-import { tocar } from '../../lib/sons'
 
 type PropsPalpite = { chave: string; pergunta: string; opcoes: string[] }
 
@@ -17,7 +16,7 @@ export function Palpite({ chave, pergunta, opcoes }: PropsPalpite) {
           <button
             key={opcao}
             type="button"
-            onClick={() => { registrarPalpite(chave, i); tocar('clique') }}
+            onClick={() => registrarPalpite(chave, i)}
             aria-pressed={escolhida === i}
             className={`min-h-11 rounded-xl border-2 bg-superficie px-4 py-3 font-semibold transition ${
               escolhida === i ? 'border-azul text-azul-texto' : 'border-transparent hover:border-azul'
