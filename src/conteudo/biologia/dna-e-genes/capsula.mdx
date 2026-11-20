@@ -1,0 +1,428 @@
+import PareamentoDeBases from '../../../components/simulacoes/PareamentoDeBases'
+import RegraDeChargaff from '../../../components/simulacoes/RegraDeChargaff'
+import EmpacotandoODna from '../../../components/simulacoes/EmpacotandoODna'
+import TranscreveETraduz from '../../../components/simulacoes/TranscreveETraduz'
+import TamanhoDoGenoma from '../../../components/simulacoes/TamanhoDoGenoma'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (DNA, Friedrich Miescher, Avery-MacLeod-McCarty experiment, Hershey-Chase experiment, Chargaff's rules, Photo 51, Genetic code, Human Genome Project, Meselson-Stahl experiment), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Todo mundo que você conhece é diferente: cor dos olhos, altura, cabelo, jeito de rir. Mas, por dentro, as instruções que montaram cada pessoa são **quase idênticas**. E essas instruções cabem num fio fininho dentro de cada célula, o <Termo cor="azul">DNA</Termo>.
+
+Esticado, o DNA de uma célula teria **cerca de 2 metros**. Ele é escrito com um alfabeto de **apenas quatro letras**, e é copiado trilhões de vezes, quase sem erro, a cada vez que uma célula se divide. É o livro de instruções mais bem guardado e mais bem copiado da natureza.
+
+<Palpite
+  chave="inicial"
+  pergunta="Quanto do DNA é igual entre duas pessoas quaisquer, escolhidas ao acaso no mundo?"
+  opcoes={['Cerca de 50%', 'Cerca de 90%', 'Cerca de 99,9%']}
+/>
+
+Nesta cápsula você vai ver como o DNA foi descoberto, como é feito (a dupla hélice e as quatro letras), como ele se copia, como vira proteína (o código genético) e quão grande é o genoma humano.
+
+</Etapa>
+
+<Etapa id="historia">
+
+O DNA foi descoberto em **1869**, mas só em **1953** alguém entendeu como ele é feito. No meio do caminho, houve uma longa discussão: o que carrega a hereditariedade, as proteínas ou o DNA?
+
+<LinhaDoTempo marcos={[
+  { ano: '1869', texto: 'Friedrich Miescher extrai de células uma substância nova, rica em fósforo, que chama de nucleína.' },
+  { ano: '1928', texto: 'Frederick Griffith mostra que bactérias inofensivas podem virar perigosas ao receber algo de bactérias mortas.' },
+  { ano: '1944', texto: 'Avery, MacLeod e McCarty provam que essa "substância transformadora" é o DNA.' },
+  { ano: '1950', texto: 'Erwin Chargaff nota que, no DNA, a quantidade de A é igual à de T, e a de C, à de G.' },
+  { ano: '1952', texto: 'Hershey e Chase confirmam, com vírus, que o que passa de geração para geração é o DNA. Rosalind Franklin e Raymond Gosling fazem a famosa Foto 51.' },
+  { ano: '1953', texto: 'Watson e Crick propõem a dupla hélice na revista Nature.' },
+  { ano: '1961', texto: 'Nirenberg e Matthaei começam a decifrar o código genético.' },
+  { ano: '2003', texto: 'O Projeto Genoma Humano divulga a sequência quase completa do genoma humano.' },
+]} />
+
+## Miescher e o pus
+
+Em 1869, o médico suíço **Friedrich Miescher** queria estudar o que havia dentro dos glóbulos brancos. Para conseguir muitas células, usou o pus de **bandagens de hospital**. Encontrou, dentro do núcleo, uma substância ácida, rica em fósforo, diferente das proteínas. Chamou de **nucleína**. Era o DNA, mas ninguém imaginava ainda o que ele fazia.
+
+## Quem carrega a herança?
+
+Por décadas, a maioria achava que a herança vinha das **proteínas**, porque elas são bem mais variadas. Em 1928, **Frederick Griffith** misturou bactérias mortas perigosas com vivas inofensivas e viu as vivas **mudarem de tipo**. Algo passou de uma para a outra. Em 1944, **Avery, MacLeod e McCarty** descobriram que esse "algo" era o **DNA**. Em 1952, **Hershey e Chase** reforçaram a prova usando vírus que atacam bactérias: o que entrava na bactéria era o DNA do vírus, e não a proteína.
+
+## A corrida pela forma
+
+Em 1950, **Chargaff** fez uma conta importante: em qualquer DNA, a quantidade de **A** é igual à de **T**, e a de **C**, à de **G**. Em 1952, a química **Rosalind Franklin**, com o estudante Raymond Gosling, fotografou o DNA com raios X, na famosa **Foto 51**, que mostrava um padrão em X, típico de uma hélice. Em 1953, **James Watson e Francis Crick**, em Cambridge, juntaram tudo isso (e as medidas de Franklin e Wilkins) e propuseram o modelo da **dupla hélice**. Em 1962, Watson, Crick e **Maurice Wilkins** ganharam o Nobel. Franklin tinha morrido em 1958, e o Nobel não é dado a quem já morreu.
+
+## Decifrando o código
+
+Em 1961, **Marshall Nirenberg** e Heinrich Matthaei fabricaram um RNA só com a letra U (UUUUUU...) e viram que ele produzia uma proteína feita só de **fenilalanina**. Era a primeira palavra do código genético decifrada. Em poucos anos, os 64 trios foram lidos. Em 2003, o **Projeto Genoma Humano**, um esforço internacional, apresentou a sequência quase completa dos 3 bilhões de letras humanas.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O DNA é um livro de receitas
+
+Pense numa **biblioteca**. Ela tem muitos **livros** (os cromossomos). Cada livro tem muitas **receitas** (os genes). Cada receita ensina a fazer **uma proteína**. E cada receita é escrita com **letras**: só quatro, **A, T, C e G**.
+
+- **Genoma:** a biblioteca inteira.
+- **Cromossomo:** um livro.
+- **Gene:** uma receita.
+- **Base (A, T, C, G):** uma letra.
+
+As proteínas, por sua vez, fazem o trabalho da célula: enzimas, músculos, hemoglobina, anticorpos. Quem tem as receitas manda em quem a célula é.
+
+<Brincando titulo="DNA: a receita de bolo guardada na biblioteca">
+
+A receita da vovó (o gene) fica num caderno (o cromossomo) que mora na biblioteca (o núcleo). Você não leva o caderno para a cozinha, porque ele é precioso: faz uma **cópia** da receita (o RNA) e usa a cópia. Assim o original nunca se estraga. O DNA é guardado e copiado com muito cuidado, porque um erro na receita pode estragar o bolo (a proteína) para sempre.
+
+</Brincando>
+
+## 2. Uma escada com degraus que combinam
+
+O DNA tem a forma de uma **escada de corda torcida**, a dupla hélice. Os **corrimãos** são feitos de açúcar e fosfato. Os **degraus** são pares de letras: **A** sempre com **T**, e **C** sempre com **G**. Como as letras se encaixam sempre do mesmo jeito, **uma fita conta a outra**: se você sabe uma metade, adivinha a outra.
+
+## 3. Quatro letras, muitas palavras
+
+Quatro letras parecem pouco. Mas, assim como as 26 letras formam todas as palavras, as 4 bases, em fileira de **milhões**, formam todas as receitas. A célula lê o DNA de **três em três letras**, os trios, ou **códons**, e cada trio vira um aminoácido, o tijolinho das proteínas.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Uma fita de DNA tem a sequência A-T-G-C. Qual é a sequência da outra fita, que se encaixa nela?"
+  opcoes={['T-A-C-G', 'T-A-G-C', 'A-T-G-C']}
+  correta={0}
+  explicacao="A liga com T, T liga com A, G liga com C, e C liga com G. A outra fita fica T-A-C-G."
+>
+
+Monte a outra fita, letra por letra:
+
+<PareamentoDeBases />
+
+Cada fita é o **molde** da outra. Quando a célula copia o DNA, ela separa as duas fitas e usa cada uma como molde de uma nova.
+
+Agora volte ao palpite do começo. Quanto do DNA é igual entre duas pessoas?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Cerca de 50%', 'Cerca de 90%', 'Cerca de 99,9%']}
+  correta={2}
+  seAcertou="Certo: cerca de 99,9% do DNA é igual entre quaisquer duas pessoas. A diferença de 0,1% é o que nos faz únicos."
+  seErrou="O certo é: cerca de 99,9%. Somos todos muito parecidos por dentro. A pequena diferença, de uma letra em cada mil, já faz milhões de variações entre duas pessoas."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## O que é o DNA por dentro
+
+O DNA (ácido desoxirribonucleico) é uma cadeia de unidades chamadas **nucleotídeos**. Cada nucleotídeo tem **três peças**:
+
+- Um **açúcar**, a desoxirribose.
+- Um **fosfato**.
+- Uma **base**: **A** (adenina), **T** (timina), **C** (citosina) ou **G** (guanina).
+
+O açúcar e o fosfato formam o "corrimão", e as bases ficam para dentro, como degraus. As bases se ligam por **pontes de hidrogênio**, ligações fracas, mas que, em milhões, seguram a escada: **A–T** tem 2 pontes, e **C–G** tem 3.
+
+<Brincando titulo="Pareamento: as peças de encaixe">
+
+Imagine peças de quebra-cabeça com formatos exatos. A peça A só encaixa na T, e a C só na G. Se você tentar encaixar A com C, a peça não entra. É por isso que a célula copia o DNA tão bem: cada peça só aceita o parceiro certo.
+
+</Brincando>
+
+<ExemploResolvido titulo="Uma fita de DNA é A-A-C-G-T. Qual é a fita complementar?">
+  <Passo>A liga com T: A → **T**.</Passo>
+  <Passo>A → **T**, C → **G**, G → **C**, T → **A**.</Passo>
+  <Passo>A fita complementar é **T-T-G-C-A**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Num DNA, 20% das bases são C. Quantos por cento são G?" resposta="20" dica="C sempre se liga com G." resolucao="C = G, então G também é 20%." />
+
+<Exercicio enunciado="Quantas pontes de hidrogênio há em um trecho com 5 pares A–T (2 pontes cada) e 5 pares C–G (3 pontes cada)?" resposta="25" dica="5 × 2 + 5 × 3." resolucao="5 × 2 = 10, 5 × 3 = 15. Total: 25 pontes." />
+
+## A regra de Chargaff
+
+A regra que Chargaff achou em 1950 é uma conta simples: **A = T** e **C = G**. Isso quer dizer que, se você sabe a porcentagem de uma letra, descobre as outras três.
+
+<RegraDeChargaff />
+
+<ExemploResolvido titulo="Num DNA, 22% das bases são A. Quanto é cada uma das outras?">
+  <Passo>**T = A = 22%**.</Passo>
+  <Passo>A + T = 22 + 22 = 44%. Sobram 100 − 44 = 56%.</Passo>
+  <Passo>C e G dividem igualmente: 56 ÷ 2 = **28% cada**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Num DNA, 30% das bases são A. Quantos por cento são T?" resposta="30" dica="A = T." resolucao="A e T são iguais: 30%." />
+
+<Exercicio enunciado="Num DNA, A e T somam 60%. Quantos por cento são C e G juntos?" resposta="40" dica="100 − 60." resolucao="100 − 60 = 40%." />
+
+<Exercicio enunciado="Num DNA, 22% das bases são A. Quantos por cento são C?" resposta="28" dica="(100 − 22 − 22) ÷ 2." resolucao="(100 − 44) ÷ 2 = 28%." />
+
+<Aprofundar titulo="As fitas correm em sentidos contrários">
+
+As duas fitas do DNA são **antiparalelas**: uma vai "para cima" e a outra, "para baixo", como duas pistas de uma estrada com mãos contrárias. Cada fita tem uma ponta chamada 5' (lê-se "cinco linha") e outra, 3'. A enzima que copia o DNA só consegue trabalhar num sentido, o que cria um jeito curioso de copiar: uma das fitas é copiada de forma contínua, e a outra, em pedacinhos, que depois são costurados. Isso é um detalhe, mas explica por que o processo de copiar o DNA é mais intrincado do que parece.
+
+</Aprofundar>
+
+## Genes, cromossomos e genoma
+
+O DNA não fica solto. Nas células com núcleo, ele é enrolado em estruturas chamadas **cromossomos**. O ser humano tem **46 cromossomos**, em **23 pares**: um de cada par vem da mãe, e o outro, do pai. Dentro deles estão cerca de **20 mil genes** que guardam receitas de proteínas, e esses genes ocupam só uns **1,5%** do DNA. O resto inclui trechos que controlam **quando** e **onde** cada gene é ligado, e outros que ainda estão sendo estudados. Não é "lixo": boa parte tem função.
+
+Para caber no núcleo, o DNA é muito **empacotado**:
+
+<EmpacotandoODna />
+
+<Brincando titulo="Empacotando o DNA: o fio de lã e a bola">
+
+Dois metros de fio de lã não cabem numa caixinha, a menos que você enrole em volta de carretéis (as histonas), junte os carretéis num novelo e enrole o novelo mais uma vez. É o que a célula faz com o DNA: enrola em volta de proteínas e dobra várias vezes até virar um cromossomo que cabe no núcleo, de uns 6 µm.
+
+</Brincando>
+
+<ExemploResolvido titulo="Quantos pares de cromossomos tem uma célula humana com 46 cromossomos?">
+  <Passo>Os cromossomos vêm em pares: um da mãe, outro do pai.</Passo>
+  <Passo>46 ÷ 2 = **23 pares**.</Passo>
+  <Passo>Nas células sexuais (óvulo e espermatozoide), há 23 cromossomos, um de cada par.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma célula humana tem 46 cromossomos. Quantos pares são?" resposta="23" dica="46 ÷ 2." resolucao="46 ÷ 2 = 23 pares." />
+
+<Exercicio enunciado="Se dez pares de bases ocupam 3,4 nm, quantos nm ocupam 100 pares?" resposta="34" dica="100 pares são 10 vezes mais." resolucao="3,4 × 10 = 34 nm." />
+
+## Copiando o DNA: a replicação
+
+Antes de a célula se dividir, ela precisa **copiar** todo o DNA. O processo se chama <Termo cor="verde">replicação</Termo>, e funciona assim:
+
+- Uma enzima, a **helicase**, abre a escada, separando as duas fitas, como um zíper.
+- Outra enzima, a **DNA polimerase**, anda ao longo de cada fita e monta uma fita nova, encaixando as letras certas (A com T, C com G).
+- No fim, existem **duas moléculas** idênticas, cada uma com uma fita velha e uma fita nova.
+
+Esse jeito se chama **semiconservativo**: cada cópia conserva metade do original. Em 1958, **Meselson e Stahl** provaram isso com bactérias cujo DNA foi marcado com uma forma pesada de nitrogênio.
+
+A DNA polimerase é muito precisa e, ainda por cima, **confere** o que fez, como quem relê um texto depois de digitar. Depois dessa revisão e de outros reparos, sobra cerca de **um erro a cada bilhão de letras copiadas**. Os raros erros que escapam são as **mutações**, que veremos em outra cápsula.
+
+<Brincando titulo="Replicação: o zíper e as duas fotocopiadoras">
+
+Abra o zíper do casaco devagar: de um lado fica um dente, do outro, outro. Agora imagine que cada lado "cresce" os dentes que faltam, e você ganha dois casacos completos. É o que acontece com o DNA: cada fita é o molde para a que falta. No fim há dois casacos, cada um com metade nova e metade velha.
+
+</Brincando>
+
+<ExemploResolvido titulo="Um DNA se replica 3 vezes seguidas. Quantas moléculas existem no final?">
+  <Passo>A cada replicação, o número **dobra**: 1 → 2 → 4 → 8.</Passo>
+  <Passo>Depois de 3 replicações: 2³ = **8 moléculas**.</Passo>
+  <Passo>Só **2** delas guardam uma das fitas originais; as outras 6 são feitas só de fitas novas.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um DNA se replica 4 vezes seguidas. Quantas moléculas existem no final?" resposta="16" dica="2⁴." resolucao="2 × 2 × 2 × 2 = 16 moléculas." />
+
+<Aprofundar titulo="O experimento de Meselson e Stahl">
+
+Em 1958, Matthew Meselson e Franklin Stahl cultivaram bactérias com nitrogênio pesado (¹⁵N), que deixa o DNA mais denso. Depois passaram as bactérias para um meio com nitrogênio leve (¹⁴N) e mediram a densidade do DNA a cada geração. Na primeira geração, todo o DNA tinha densidade **intermediária**: metade pesado, metade leve. Isso só faz sentido se cada molécula nova tiver uma fita velha e uma nova. A ideia, chamada de "o mais bonito experimento da biologia" por alguns, resolveu uma dúvida entre três hipóteses possíveis.
+
+</Aprofundar>
+
+## Do DNA à proteína
+
+O DNA tem as receitas, mas quem **trabalha** são as proteínas. Para ir de um ao outro, a célula faz **duas etapas**, o chamado **dogma central**:
+
+<Formula>
+  <Linha>DNA → RNA → proteína</Linha>
+</Formula>
+
+- **Transcrição** (no núcleo): a enzima RNA polimerase copia **um gene** do DNA para uma molécula de **RNA mensageiro**. O RNA é parecido com o DNA, mas tem fita **simples**, o açúcar é outro (ribose) e, no lugar do **T**, tem o **U** (uracila).
+- **Tradução** (no ribossomo): o ribossomo lê o RNA **de três em três letras**. Cada trio, ou **códon**, manda colocar um aminoácido específico, e os aminoácidos se juntam numa cadeia, que se dobra e vira a proteína.
+
+<ExemploResolvido titulo="Um gene tem o trecho de DNA (fita molde) TAC GGG AAA. Qual é o RNA e a proteína?">
+  <Passo>Transcrição, trocando cada base (A→U, T→A, C→G, G→C): TAC → **AUG**, GGG → **CCC**, AAA → **UUU**.</Passo>
+  <Passo>O RNA é **AUG CCC UUU**.</Passo>
+  <Passo>Tradução: AUG = metionina (início), CCC = prolina, UUU = fenilalanina.</Passo>
+  <Passo>A proteína começa com **Met-Pro-Fen**.</Passo>
+</ExemploResolvido>
+
+<Brincando titulo="Transcrição e tradução: o ditado e a cozinha">
+
+A transcrição é como **copiar uma receita** do livro para um papel (o RNA). Na tradução, o cozinheiro (o ribossomo) **lê o papel de três em três palavras** e, a cada trio, pega um ingrediente (aminoácido) e coloca na panela. No fim, o prato está pronto (a proteína). O livro volta para a estante sem sujar.
+
+</Brincando>
+
+## O código genético
+
+Os trios do RNA formam o <Termo cor="coral">código genético</Termo>. Com 4 letras tomadas de 3 em 3, existem **4 × 4 × 4 = 64** trios possíveis. Mas só há **20 aminoácidos**. Por isso:
+
+- Vários trios dão o **mesmo aminoácido** (o código é "redundante"). Isso protege contra erros: uma troca de letra pode não mudar nada.
+- O trio **AUG** é o **início** (e vale metionina).
+- Três trios, **UAA, UAG e UGA**, são sinais de **PARE**.
+- O código é quase igual em todos os seres vivos, de bactérias a humanos. É por isso que uma bactéria consegue fabricar insulina humana, se receber o gene.
+
+Teste você mesmo. Toque numa base do DNA para trocá-la e veja o que acontece com a proteína:
+
+<TranscreveETraduz />
+
+<ExemploResolvido titulo="Quantos trios existem se o código usasse só 2 letras por palavra? E com 3?">
+  <Passo>Com 2 letras: 4 × 4 = **16** combinações, o que não bastaria para 20 aminoácidos.</Passo>
+  <Passo>Com 3 letras: 4 × 4 × 4 = **64** combinações, mais que suficiente.</Passo>
+  <Passo>Por isso a natureza usa trios.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos trios diferentes é possível formar com as 4 bases, tomadas de 3 em 3?" resposta="64" dica="4 × 4 × 4." resolucao="4 × 4 × 4 = 64 trios." />
+
+<Exercicio enunciado="Um trecho de gene tem 300 bases (sem contar o sinal de PARE). Quantos aminoácidos a proteína terá?" resposta="100" dica="Cada aminoácido usa 3 bases." resolucao="300 ÷ 3 = 100 aminoácidos." />
+
+<Exercicio enunciado="Uma proteína tem 250 aminoácidos. Quantas bases do gene (sem contar o PARE) a codificam?" resposta="750" dica="3 bases por aminoácido." resolucao="250 × 3 = 750 bases." />
+
+<Aprofundar titulo="O RNA que virou vacina">
+
+Nas vacinas de mRNA contra a covid-19, as células recebem um **RNA mensageiro** com a receita de uma proteína do vírus (a "spike"). Os ribossomos leem esse RNA e fabricam a proteína, que treina o sistema imune. O mRNA dura pouco, é destruído pela célula em horas ou dias e **não entra no núcleo**, então não altera o DNA. A ideia só foi possível porque conhecemos bem o caminho "DNA → RNA → proteína" e o código genético.
+
+</Aprofundar>
+
+## Um mesmo DNA, muitas células
+
+O DNA de uma célula do seu fígado é **o mesmo** do de uma célula do seu cérebro. O que muda é **quais genes estão ligados**. Cada tipo de célula lê só as páginas de que precisa: o neurônio liga os genes dos sinais elétricos, e a célula do músculo liga os das proteínas que contraem. Genes são ligados e desligados por proteínas e sinais químicos, e esse controle é tão importante quanto as próprias receitas.
+
+<Brincando titulo="Genes ligados e desligados: a biblioteca com marcadores">
+
+Numa biblioteca com milhares de livros, cada leitor abre só alguns, e cada seção tem uma lâmpada própria: na cozinha, acende só a da receita de bolos, e na oficina, acende só a de ferramentas. O livro todo está em todas as salas (todas as células têm o DNA todo), mas só algumas páginas são iluminadas em cada uma.
+
+</Brincando>
+
+## O genoma em números
+
+Os números do genoma humano impressionam:
+
+- Cerca de **3,1 bilhões** de pares de bases num conjunto.
+- Cerca de **20 mil genes** que codificam proteínas.
+- Cada par de bases ocupa cerca de **0,34 nm**. Em um conjunto, isso soma cerca de **1 m**. Como a maioria das nossas células tem dois conjuntos, são uns **2 m** por célula.
+- Duas pessoas diferem em uma letra a cada mil, mais ou menos: umas **3 milhões** de diferenças.
+- Com os chimpanzés, nosso DNA é igual em cerca de 98 a 99%.
+
+<TamanhoDoGenoma />
+
+<ExemploResolvido titulo="Duas pessoas diferem em cerca de 1 letra a cada 1.000. Em 3,1 bilhões de pares de bases, quantas diferenças dá?">
+  <Passo>3.100.000.000 ÷ 1.000 = **3.100.000**.</Passo>
+  <Passo>São cerca de **3,1 milhões** de diferenças.</Passo>
+  <Passo>Parece muito, mas é só 0,1% do total. Os outros 99,9% são iguais.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Se duas pessoas diferem em 1 letra a cada 1.000, quantas diferenças há em 2.000.000 de letras?" resposta="2000" dica="2.000.000 ÷ 1.000." resolucao="2.000.000 ÷ 1.000 = 2.000 diferenças." />
+
+<Exercicio enunciado="Quantos anos se passaram entre a descoberta da nucleína por Miescher (1869) e a dupla hélice (1953)?" resposta="84" dica="1953 − 1869." resolucao="1953 − 1869 = 84 anos." />
+
+<Exercicio enunciado="Quantos anos se passaram entre a dupla hélice (1953) e o Projeto Genoma Humano (2003)?" resposta="50" dica="2003 − 1953." resolucao="2003 − 1953 = 50 anos." />
+
+<Aprofundar titulo="Quanto DNA há em todo o corpo?">
+
+Se cada célula com núcleo tem uns 2 m de DNA, e o corpo tem de 30 a 40 trilhões de células, o comprimento total passaria de **60 bilhões de quilômetros**. Isso daria mais de **400 viagens de ida da Terra ao Sol** (que fica a 150 milhões de km). É uma estimativa grosseira, porque nem toda célula tem núcleo (as hemácias maduras, não), mas dá uma ideia da escala.
+
+</Aprofundar>
+
+## Onde isso aparece na vida
+
+- **Teste de paternidade e perícia:** cada pessoa tem um DNA único (exceto gêmeos idênticos). Em 1984, Alec Jeffreys criou a "impressão digital genética".
+- **Ancestralidade:** testes comparam variações do DNA para estimar as origens de uma pessoa.
+- **Medicina:** doenças genéticas, remédios sob medida e vacinas de RNA usam o conhecimento sobre genes.
+- **Insulina por bactérias:** colocam o gene humano numa bactéria, que passa a produzi-la.
+- **Agricultura:** plantas são melhoradas por cruzamentos e, hoje, também por edição do DNA.
+- **Evolução:** comparar DNA de espécies mostra o parentesco entre elas.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Qual das opções lista as bases do DNA?',
+    opcoes: ['A, T, C e G', 'A, U, C e G', 'A, B, C e D'],
+    correta: 0,
+    explicacao: 'No DNA, as bases são adenina, timina, citosina e guanina. O U (uracila) aparece no RNA.',
+  },
+  {
+    enunciado: 'Qual o pareamento correto no DNA?',
+    opcoes: ['A com C e T com G', 'A com T e C com G', 'A com G e T com C'],
+    correta: 1,
+    explicacao: 'A sempre se liga a T (2 pontes), e C sempre a G (3 pontes).',
+  },
+  {
+    enunciado: 'Se numa molécula de DNA 30% das bases são A, quanto é de G?',
+    opcoes: ['20%', '30%', '40%'],
+    correta: 0,
+    explicacao: 'T = A = 30%. Sobram 40%, que se dividem igualmente entre C e G: 20% cada.',
+  },
+  {
+    enunciado: 'Quem propôs a dupla hélice em 1953?',
+    opcoes: ['Mendel', 'Watson e Crick', 'Pasteur'],
+    correta: 1,
+    explicacao: 'Watson e Crick, usando também as imagens de raios X de Franklin e Gosling.',
+  },
+  {
+    enunciado: 'O que Avery, MacLeod e McCarty mostraram em 1944?',
+    opcoes: ['Que o DNA é a substância da hereditariedade', 'Que a proteína carrega a herança', 'Que o DNA é feito de açúcar'],
+    correta: 0,
+    explicacao: 'Eles provaram que a "substância transformadora" de Griffith era o DNA.',
+  },
+  {
+    enunciado: 'Por que a replicação é chamada de semiconservativa?',
+    opcoes: ['Porque só metade do DNA é copiado', 'Porque cada nova molécula tem uma fita velha e uma nova', 'Porque o DNA é guardado pela metade'],
+    correta: 1,
+    explicacao: 'Cada molécula-filha conserva uma das fitas originais e ganha uma nova.',
+  },
+  {
+    enunciado: 'Um DNA se replica 3 vezes seguidas. Quantas moléculas existem no final?',
+    opcoes: ['6', '8', '9'],
+    correta: 1,
+    explicacao: 'O número dobra a cada replicação: 2³ = 8.',
+  },
+  {
+    enunciado: 'Qual a ordem do fluxo da informação genética?',
+    opcoes: ['Proteína → RNA → DNA', 'DNA → RNA → proteína', 'RNA → DNA → proteína'],
+    correta: 1,
+    explicacao: 'O DNA é transcrito em RNA, e o RNA é traduzido em proteína.',
+  },
+  {
+    enunciado: 'Qual a diferença entre o RNA e o DNA?',
+    opcoes: ['O RNA tem U no lugar de T e geralmente é de fita simples', 'O RNA tem 8 letras', 'O RNA só existe nas plantas'],
+    correta: 0,
+    explicacao: 'O RNA tem ribose, uracila (U) no lugar da timina e, em geral, uma fita só.',
+  },
+  {
+    enunciado: 'Quantos trios (códons) diferentes são possíveis com as 4 bases?',
+    opcoes: ['16', '20', '64'],
+    correta: 2,
+    explicacao: '4 × 4 × 4 = 64. Eles codificam 20 aminoácidos e os sinais de início e de fim.',
+  },
+  {
+    enunciado: 'O que o trio AUG indica?',
+    opcoes: ['PARE', 'Início da proteína (metionina)', 'Um erro'],
+    correta: 1,
+    explicacao: 'AUG é o sinal de início e também codifica metionina.',
+  },
+  {
+    enunciado: 'Por que o DNA de uma célula do fígado e de uma do cérebro é o mesmo, mas elas são diferentes?',
+    opcoes: ['Porque os genes ligados em cada uma são diferentes', 'Porque cada uma tem um DNA diferente', 'Porque o cérebro não tem DNA'],
+    correta: 0,
+    explicacao: 'Todas têm o mesmo DNA, mas cada tipo de célula liga só os genes de que precisa.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **DNA:** cadeia de nucleotídeos (açúcar, fosfato e uma base: A, T, C ou G). Dupla hélice, com A–T (2 pontes) e C–G (3 pontes). Regra de Chargaff: A = T e C = G.
+- **Gene:** uma receita de proteína. **Cromossomo:** DNA enrolado em proteínas (46 em humanos, 23 pares). **Genoma:** o conjunto de todo o DNA, com cerca de 3,1 bilhões de pares de bases e uns 20 mil genes.
+- **Replicação:** semiconservativa, com helicase e DNA polimerase. Dobra o número de moléculas, quase sem erro (cerca de 1 em 1 bilhão).
+- **Dogma central:** DNA → (transcrição) RNA → (tradução) proteína. O RNA tem U no lugar de T.
+- **Código genético:** 64 trios, 20 aminoácidos, AUG de início e 3 PARE. Quase universal.
+- **Todos nós:** cerca de 99,9% iguais. Cada célula tem o mesmo DNA, mas liga genes diferentes.
+
+**Um pouco de história.** Miescher achou a nucleína em 1869. Avery, MacLeod e McCarty (1944) e Hershey e Chase (1952) provaram que o DNA carrega a herança. Chargaff (1950), Franklin e Gosling (Foto 51) e Watson e Crick (1953) revelaram a dupla hélice. Nirenberg (1961) começou a ler o código, e o Projeto Genoma Humano completou a leitura em 2003.
+
+</Resumo>
+
+O DNA é o manual, e a célula é a fábrica que o lê. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

@@ -1,0 +1,415 @@
+import ContaDaFotossintese from '../../../components/simulacoes/ContaDaFotossintese'
+import CoresDaLuz from '../../../components/simulacoes/CoresDaLuz'
+import LuzEPlanta from '../../../components/simulacoes/LuzEPlanta'
+import CloroplastoPorDentro from '../../../components/simulacoes/CloroplastoPorDentro'
+import DiaENoiteDaPlanta from '../../../components/simulacoes/DiaENoiteDaPlanta'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Photosynthesis, Jan Baptist van Helmont, Joseph Priestley, Jan Ingenhousz, Chloroplast, Calvin cycle, Great Oxidation Event), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Plante uma semente num vaso. Regue todo dia, deixe no sol. Depois de alguns meses, você tem uma planta de um metro de altura. Ela pesa **muito mais** do que a semente. De onde veio toda essa matéria nova? A terra do vaso não diminuiu quase nada.
+
+A resposta é surpreendente: a maior parte do corpo de uma planta vem **do ar**. Ela pega o gás carbônico que está solto à sua volta, junta com água e, usando a luz do Sol como energia, **fabrica açúcar**. No caminho, solta o oxigênio que a gente respira. Esse processo se chama <Termo cor="verde">fotossíntese</Termo>.
+
+<Palpite
+  chave="inicial"
+  pergunta="Um pé de feijão cresce num vaso por meses, só com água e sol. De onde vem a maior parte do que ele ganhou de massa?"
+  opcoes={['Da terra do vaso, que vai sumindo', 'Do gás carbônico do ar', 'Da água só']}
+/>
+
+Nesta cápsula você vai ver como descobriram a fotossíntese (com um salgueiro, uma vela e um rato), a equação que resume tudo, o que acontece dentro do cloroplasto, por que as folhas são verdes e o que limita a velocidade da planta.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Durante séculos, as pessoas acharam que as plantas comiam terra. A descoberta de que não é assim foi feita aos poucos, por gente curiosa que **pesou**, **acendeu velas** e **olhou de perto**.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Cerca de 1640', texto: 'Jan Baptist van Helmont planta um salgueiro e mostra que a árvore ganha muito peso e a terra quase nada.' },
+  { ano: '1771', texto: 'Joseph Priestley vê que uma planta numa campânula faz o ar "estragado" por uma vela voltar a sustentar a chama.' },
+  { ano: '1779', texto: 'Jan Ingenhousz descobre que isso só acontece com luz, e só nas partes verdes.' },
+  { ano: '1782 a 1804', texto: 'Senebier e de Saussure mostram que a planta usa gás carbônico e água.' },
+  { ano: '1882', texto: 'Theodor Engelmann mostra com bactérias que a luz azul e a vermelha são as mais usadas.' },
+  { ano: '1941', texto: 'Ruben e Kamen provam que o oxigênio da fotossíntese vem da água.' },
+  { ano: '1950', texto: 'Melvin Calvin e colegas descobrem o caminho do carbono até o açúcar (Nobel de 1961).' },
+]} />
+
+## O salgueiro de van Helmont
+
+Por volta de 1640, o médico belga **Jan Baptist van Helmont** fez um experimento famoso. Pesou **200 libras** de terra seca e a pôs num vaso. Plantou nele um salgueiro de **5 libras** e só o regou com água de chuva. Cinco anos depois, o salgueiro pesava **169 libras e 3 onças**, e a terra, quando seca de novo, tinha perdido só **cerca de 2 onças**. Van Helmont concluiu que a árvore vinha da **água**. Estava certo ao dizer que não era a terra, mas errou em parte: faltava descobrir que o **ar** também entra na conta.
+
+## Priestley e o ar renovado
+
+Em 1771, o inglês **Joseph Priestley** colocou uma vela acesa numa campânula de vidro fechada. Ela logo se apagou: o ar "estragou". Depois colocou um ramo de hortelã dentro, e uns dias depois a vela voltou a acender. Algo que a planta fazia **renovava** o ar. Priestley ainda não sabia que isso era oxigênio, mas foi uma pista enorme.
+
+## Ingenhousz: a luz faz diferença
+
+O médico holandês **Jan Ingenhousz** repetiu os testes em 1779 e descobriu duas coisas importantes. Primeiro, a "purificação" do ar só acontece **com luz**. Segundo, só as **partes verdes** da planta fazem isso. Ele já tinha entendido o essencial: a luz é a força que move a máquina.
+
+## O caminho do carbono
+
+Nos 150 anos seguintes, a lista completou: a planta usa **gás carbônico** (Senebier, 1782), usa **água** (de Saussure, 1804), e produz **glicose**. Em 1941, **Ruben e Kamen** usaram uma versão rara do oxigênio, marcada, para mostrar que o O₂ solto vem da **água**, e não do gás carbônico. Nos anos 1950, **Melvin Calvin** seguiu cada passo do carbono até virar açúcar, e ganhou o Nobel de Química de 1961.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. A planta é uma fábrica movida a sol
+
+Pense numa **cozinha solar**. Os ingredientes são **água** (que a raiz puxa da terra) e **gás carbônico** (que entra pelo ar). A energia vem da luz do Sol, captada por uma tinta verde, a <Termo cor="verde">clorofila</Termo>. O prato pronto é a **glicose**, um açúcar. O resto da receita sai pela folha: o **oxigênio**.
+
+A frase que resume tudo, em palavras:
+
+**gás carbônico + água + luz → glicose + oxigênio**
+
+## 2. A planta se alimenta fabricando comida
+
+Nós e os animais precisamos **comer** outros seres vivos. A planta não: ela é <Termo cor="azul">autótrofa</Termo>, quer dizer, **fabrica o próprio alimento**. Quem depende de comer outros seres é <Termo cor="coral">heterótrofo</Termo>. Quase toda a comida do planeta começa numa fotossíntese: o capim vira o leite da vaca, o trigo vira pão, e o fitoplâncton vira o peixe.
+
+## 3. Onde acontece
+
+A fotossíntese acontece dentro de umas organelas verdes chamadas **cloroplastos**, que existem nas células das folhas, das algas e de outros seres. A cor verde vem da clorofila, que fica guardada em pilhas de discos dentro do cloroplasto. As folhas são, em geral, planas e finas: é uma forma de **pegar o máximo de luz** com o mínimo de material.
+
+<Brincando titulo="Fotossíntese: a padaria que usa o sol como forno">
+
+Numa padaria comum, o forno gasta gás ou luz elétrica para assar o pão. A planta é uma padaria com **forno solar**: os ingredientes são o ar (gás carbônico) e a água, a "farinha" é o carbono do ar, e a energia vem de graça, do Sol. O pão que sai do forno é a glicose. E, como em toda padaria, sobra uma coisa que vai para o lixo: o oxigênio. Só que para nós esse "lixo" é o ar que a gente respira.
+
+</Brincando>
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Para a fotossíntese, cada glicose pede 6 gás carbônicos e 6 águas. Se você tem 12 CO₂ e só 6 H₂O, quantas glicoses dá para fazer?"
+  opcoes={['2, porque o CO₂ dá para 2', '1, porque a água só dá para 1', '0, porque falta luz']}
+  correta={1}
+  explicacao="Cada glicose gasta 6 de cada ingrediente. Com 6 H₂O só dá para 1 glicose, e a água é quem limita, mesmo sobrando CO₂."
+>
+
+Mexa nas quantidades de cada ingrediente e veja o que sai:
+
+<ContaDaFotossintese />
+
+Repare: o ingrediente que **acaba primeiro** manda na produção. E, para cada glicose, saem sempre 6 oxigênios.
+
+Agora volte ao palpite do começo. De onde vem a maior parte da massa que a planta ganha?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Da terra do vaso, que vai sumindo', 'Do gás carbônico do ar', 'Da água só']}
+  correta={1}
+  seAcertou="Certo: o carbono do corpo da planta vem do gás carbônico do ar. A água também entra na conta, mas é o carbono que forma a maior parte da massa seca."
+  seErrou="O certo é: do gás carbônico do ar. A terra quase não diminui (van Helmont mostrou isso). A água entra, mas o que forma a massa seca da planta é o carbono tirado do ar."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## A equação da fotossíntese
+
+Em linguagem de química, a fotossíntese se escreve assim:
+
+<Formula>
+  <Linha>6 CO₂ + 6 H₂O + luz → C₆H₁₂O₆ + 6 O₂</Linha>
+</Formula>
+
+Lendo devagar: **6 moléculas de gás carbônico** mais **6 de água**, com energia da **luz**, dão **1 de glicose** mais **6 de oxigênio**. Os números na frente (os coeficientes) mostram que a conta fecha: dos dois lados há **6 carbonos**, **12 hidrogênios** e **18 oxigênios**.
+
+<Brincando titulo="A equação: a receita de bolo que vale para qualquer tamanho">
+
+A receita diz "6 de cada coisa para 1 bolo". Quer 2 bolos? 12 de cada. Quer 10? 60. A equação é uma receita: a proporção é sempre a mesma. Se faltar ovo, o bolo para, mesmo com farinha de sobra. Na fotossíntese, é igual: se faltar água ou gás carbônico, a produção de glicose para por ali.
+
+</Brincando>
+
+<ExemploResolvido titulo="Uma folha tem 20 moléculas de CO₂ e 30 de H₂O. Quantas glicoses ela consegue fazer?">
+  <Passo>Cada glicose pede 6 CO₂ e 6 H₂O.</Passo>
+  <Passo>Com o CO₂: 20 ÷ 6 = 3,33. Dá para **3** glicoses inteiras.</Passo>
+  <Passo>Com a água: 30 ÷ 6 = 5. Dá para 5.</Passo>
+  <Passo>Vale o menor: **3 glicoses**. O gás carbônico é quem limita. Saem 3 × 6 = 18 oxigênios.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Para fazer 3 glicoses, quantas moléculas de gás carbônico a planta precisa?" resposta="18" dica="6 por glicose." resolucao="3 × 6 = 18 moléculas." />
+
+<Exercicio enunciado="Para fazer 5 glicoses, quantas moléculas de água a planta precisa?" resposta="30" dica="6 por glicose." resolucao="5 × 6 = 30 moléculas de água." />
+
+<Exercicio enunciado="Se a planta faz 4 glicoses, quantas moléculas de oxigênio ela solta?" resposta="24" dica="6 por glicose." resolucao="4 × 6 = 24 moléculas de O₂." />
+
+## A conta das massas
+
+Numa reação, a **massa se conserva**. Cada molécula de CO₂ tem massa 44 (em unidades de massa atômica), a de H₂O tem 18, a de glicose tem 180 e a de O₂ tem 32. Na equação:
+
+- Lado esquerdo: 6 × 44 (CO₂) + 6 × 18 (H₂O) = 264 + 108 = **372**.
+- Lado direito: 180 (glicose) + 6 × 32 (O₂) = 180 + 192 = **372**.
+
+Deu igual! A massa que entra é a que sai. Nada se cria nem se perde.
+
+<ExemploResolvido titulo="Quanto de oxigênio sai quando a planta fabrica 180 g de glicose?">
+  <Passo>A equação mostra que 180 g de glicose saem junto com 6 × 32 = **192 g** de O₂.</Passo>
+  <Passo>É uma proporção fixa: 180 g de glicose para 192 g de oxigênio.</Passo>
+  <Passo>Conferindo: entram 264 g de CO₂ e 108 g de água (372 g), e saem 180 + 192 = 372 g.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos gramas de oxigênio (O₂, 32 g por mol) saem junto com 180 g de glicose, sabendo que são 6 mols de O₂?" resposta="192" dica="6 × 32." resolucao="6 × 32 = 192 g." />
+
+<Exercicio enunciado="Qual é a massa, em gramas, de 6 mols de CO₂ (44 g por mol)?" resposta="264" dica="6 × 44." resolucao="6 × 44 = 264 g." />
+
+<Aprofundar titulo="De onde vem o oxigênio?">
+
+Parece natural pensar que o O₂ solto vem do gás carbônico (CO₂), que tem oxigênio. Mas não: ele vem da **água**. Em 1941, Samuel Ruben e Martin Kamen usaram **oxigênio-18**, uma versão rara e mais pesada do oxigênio, para marcar a água. O oxigênio-18 apareceu no O₂ que a planta soltou, e não no açúcar. A água é "quebrada" pela luz e os átomos de oxigênio dela se juntam em pares. Já o oxigênio do CO₂ acaba na glicose e na água produzida. A equação de cima é um resumo, a conta real tem muitos passos.
+
+</Aprofundar>
+
+## Dentro do cloroplasto: duas fases
+
+A fotossíntese acontece em **duas fases** que trabalham em dupla:
+
+- **Fase clara** (nos **tilacoides**, os discos empilhados): a clorofila **capta a luz**. A energia quebra a água, solta o **oxigênio** e carrega duas "baterias" moleculares, o **ATP** e o **NADPH**.
+- **Fase química**, chamada ciclo de Calvin (no **estroma**, o líquido em volta): com as baterias carregadas, a planta **prende o carbono** do gás carbônico e monta a **glicose**.
+
+<CloroplastoPorDentro />
+
+A fase química não precisa de luz direta, mas **depende** das baterias que a fase clara fez. Sem luz por muito tempo, as baterias acabam, e tudo para.
+
+<Brincando titulo="As duas fases: a usina de carregar e a fábrica de montar">
+
+Uma fábrica de brinquedos tem duas áreas. Na primeira, painéis solares **carregam baterias**. Na segunda, os operários usam as baterias para **montar** brinquedos. Se as baterias acabam, a segunda área para, mesmo com peças de sobra. Na planta, a fase clara é a área das baterias (ATP e NADPH), e a fase química, a montagem do açúcar.
+
+</Brincando>
+
+<Exercicio enunciado="Em quantas fases a fotossíntese se divide (clara e química)?" resposta="2" dica="Veja o nome de cada uma." resolucao="Duas: fase clara e fase química." />
+
+<Aprofundar titulo="O ciclo de Calvin em poucas palavras">
+
+No ciclo de Calvin, uma enzima chamada **rubisco** prende uma molécula de CO₂ numa molécula de 5 carbonos. O resultado, de 6 carbonos, se divide em duas de 3 carbonos, que recebem energia das baterias e viram o açúcar. Cada volta do ciclo prende 1 carbono. Para fazer **1 glicose (6 carbonos)**, o ciclo precisa dar 6 voltas. A rubisco é considerada a enzima mais abundante da Terra.
+
+</Aprofundar>
+
+## Por que as folhas são verdes
+
+A luz branca do Sol é uma mistura de cores. A clorofila **absorve muito o azul e o vermelho** e **reflete o verde**. Como o verde volta para os nossos olhos, vemos a folha verde. A planta usa pouco o verde porque ele é refletido.
+
+<CoresDaLuz />
+
+No outono, algumas folhas amarelam ou avermelham. A clorofila se desfaz e deixa à mostra pigmentos que estavam escondidos, como os **carotenoides** (amarelo e laranja). Eles estavam lá o tempo todo, mas o verde da clorofila encobria.
+
+<Brincando titulo="Folha verde: a bola que rebate a cor">
+
+Imagine um jogo em que a folha apanha as bolas azuis e vermelhas (e aproveita a energia delas), mas **rebate** as verdes de volta. Quem olha de longe só vê as bolas que voltam, as verdes. Por isso a folha parece verde: é justamente a cor que ela **não** quer.
+
+</Brincando>
+
+<ExemploResolvido titulo="Uma luz vermelha e uma luz verde, de mesma força, iluminam duas plantas iguais. Qual cresce mais rápido?">
+  <Passo>A clorofila absorve bem a luz **vermelha**.</Passo>
+  <Passo>A clorofila reflete boa parte da luz **verde**, aproveitando pouco.</Passo>
+  <Passo>Logo, a planta sob luz **vermelha** faz mais fotossíntese e cresce mais rápido.</Passo>
+</ExemploResolvido>
+
+## O que limita a fotossíntese
+
+A planta não faz fotossíntese sem limite. A velocidade depende de alguns fatores:
+
+- **Luz:** quanto mais luz, mais rápido, até certo ponto.
+- **Gás carbônico:** o ar tem só cerca de 0,04%, então ele costuma ser escasso.
+- **Temperatura:** as enzimas gostam de calor moderado, mas param se esquentar demais.
+- **Água:** sem água, os poros da folha se fecham e o gás carbônico não entra.
+
+O fator que está mais "no limite" é o **fator limitante**. Se ele melhora, a velocidade sobe. Se outro fator melhora, nada muda. É como uma corrente: ela é tão forte quanto o elo mais fraco.
+
+<LuzEPlanta />
+
+Por isso, em estufas, quem planta aumenta a luz, a água e até o gás carbônico, mas só o que estiver limitando.
+
+<ExemploResolvido titulo="Uma planta recebe muita luz, mas pouco CO₂. Se o dono dobrar a luz, a fotossíntese dobra?">
+  <Passo>Com muita luz e pouco CO₂, o fator limitante é o **CO₂**.</Passo>
+  <Passo>Dobrar a luz **não** muda o limite.</Passo>
+  <Passo>Então a fotossíntese **não dobra**. Para aumentar, é preciso mais CO₂.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O ar tem cerca de 0,04% de CO₂. Quantos litros de CO₂ há em 10.000 litros de ar?" resposta="4" dica="0,04% de 10.000." resolucao="0,0004 × 10.000 = 4 litros." />
+
+<Exercicio enunciado="O ar tem cerca de 21% de oxigênio. Quantos litros de O₂ há em 200 litros de ar?" resposta="42" dica="21% de 200." resolucao="0,21 × 200 = 42 litros." />
+
+## A folha por dentro e o caminho do ar
+
+A folha é uma máquina bem desenhada:
+
+- A **epiderme** é a pele, coberta por uma cera que evita perder água.
+- Na face de baixo, há milhares de poros chamados **estômatos**. Eles abrem para o ar entrar (gás carbônico) e sair (oxigênio e vapor de água). Cada um é cercado por duas células-guarda que controlam a abertura.
+- No meio, o **mesofilo** guarda as células cheias de cloroplastos.
+- As **nervuras** são os canais: o **xilema** traz água e sais da raiz, e o **floema** leva o açúcar para o resto da planta.
+
+A planta enfrenta um dilema: abrir os estômatos deixa entrar o CO₂, mas também deixa a água **escapar**. Em dias secos, ela fecha os poros para economizar água, e a fotossíntese cai.
+
+<Brincando titulo="Estômatos: a janela que dá ar mas gasta água">
+
+Você abre a janela da cozinha para o cheiro sair e o ar entrar. Mas, com o vento, o ar quente também entra. A planta é assim: abre a janela (estômato) para o gás carbônico entrar, mas junto escapa vapor de água. Num dia seco e quente, ela prefere fechar a janela e economizar água, mesmo que a produção de açúcar caia.
+
+</Brincando>
+
+## Dia e noite: fotossíntese e respiração
+
+A planta **também respira**: gasta açúcar e solta gás carbônico, o dia inteiro e a noite inteira. De dia, a fotossíntese é bem maior que a respiração, então sobra açúcar (para crescer) e oxigênio (para o ar). À noite, sem luz, só resta a respiração. O momento em que as duas se igualam, de manhã e à tarde, é o **ponto de compensação**.
+
+<DiaENoiteDaPlanta />
+
+<ExemploResolvido titulo="Uma folha produz 3 mg de açúcar por hora de luz. Em um dia com 12 horas de luz, quanto produz?">
+  <Passo>Taxa: 3 mg por hora.</Passo>
+  <Passo>Horas de luz: 12.</Passo>
+  <Passo>Total: 3 × 12 = **36 mg** (sem descontar o que a respiração gasta).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma folha produz 3 mg de açúcar por hora de luz. Quantos mg ela produz em 12 horas?" resposta="36" dica="3 × 12." resolucao="3 × 12 = 36 mg." />
+
+<Aprofundar titulo="Plantas de deserto e a fotossíntese à noite">
+
+Cactos e outras plantas de lugares secos têm um truque chamado **CAM**: abrem os estômatos **à noite**, quando é mais frio e úmido, e guardam o gás carbônico em ácidos. De dia, com os poros fechados, usam esse estoque na fotossíntese. Economizam água, mas crescem devagar. Já o milho e a cana-de-açúcar têm um outro truque (a fotossíntese C4) que concentra o CO₂ perto da rubisco e rende muito em lugares quentes.
+
+</Aprofundar>
+
+## O que a planta faz com a glicose
+
+A glicose é só o começo. A planta:
+
+- **Gasta** parte na respiração, para ter energia.
+- **Guarda** parte como **amido**, uma cadeia de glicoses, em raízes, sementes e frutos (batata, arroz, trigo).
+- **Constrói** a **celulose**, outra cadeia de glicoses, que forma a parede das células e a madeira.
+- **Transforma** o resto em gorduras, proteínas e outros compostos.
+
+Quando você come um pão, uma batata ou um arroz, está comendo **luz solar guardada** em açúcar.
+
+<ExemploResolvido titulo="Uma árvore tem 1.000 kg de massa seca, sendo cerca de 50% de carbono. Quantos kg de carbono ela guarda?">
+  <Passo>50% de 1.000 kg = **500 kg** de carbono.</Passo>
+  <Passo>Esse carbono veio do gás carbônico do ar, ao longo de vários anos de fotossíntese.</Passo>
+  <Passo>Cada 12 g de carbono vêm de 44 g de CO₂. Então a árvore tirou do ar mais de 1.800 kg de CO₂.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="12 g de carbono vêm de 44 g de CO₂. Quantos gramas de CO₂ são necessários para ter 6 g de carbono?" resposta="22" dica="6 é metade de 12." resolucao="6 g é metade de 12 g, então precisa da metade de 44: 22 g." />
+
+<Exercicio enunciado="O salgueiro de van Helmont foi de 5 para 169 libras. Quantas libras ele ganhou (arredonde para libras inteiras)?" resposta="164" dica="169 − 5." resolucao="169 − 5 = 164 libras." />
+
+<Exercicio enunciado="Quantos anos se passaram entre o experimento de Priestley (1771) e o de Ingenhousz (1779)?" resposta="8" dica="1779 − 1771." resolucao="1779 − 1771 = 8 anos." />
+
+<Aprofundar titulo="O dia em que o ar ganhou oxigênio">
+
+Há cerca de **2,4 bilhões de anos**, o ar da Terra tinha quase nenhum oxigênio. Então surgiram as **cianobactérias**, micróbios que faziam fotossíntese e soltavam O₂. Durante centenas de milhões de anos, esse oxigênio reagiu com o ferro dos mares e com outras coisas, até sobrar no ar. Foi o **Grande Evento de Oxigenação**. Muitos seres da época morreram, porque o oxigênio era veneno para eles, mas abriu caminho para os seres que respiram oxigênio, como nós. Os cloroplastos das plantas e das algas descendem de cianobactérias que foram "adotadas" por células antigas.
+
+</Aprofundar>
+
+## Onde isso aparece na vida
+
+- **Florestas:** as árvores guardam carbono na madeira. Plantar árvores e proteger florestas retira CO₂ do ar.
+- **Algas e fitoplâncton:** as algas microscópicas do mar fazem fotossíntese em quantidade enorme. Estimativas indicam que algo como a metade do oxigênio do planeta vem delas.
+- **Combustíveis:** o carvão e o petróleo são restos de seres que fizeram fotossíntese há milhões de anos. Queimá-los devolve ao ar o CO₂ antigo.
+- **Energia solar:** um painel solar converte uns 20% da luz em eletricidade. Uma planta no campo guarda só uns 1% a 2% da luz como açúcar. A planta é mais lenta, mas fabrica matéria.
+- **Hortas e estufas:** quem planta controla luz, água e temperatura para que o fator limitante nunca seja o problema.
+- **Teste do iodo:** o iodo fica azul-escuro quando encontra amido. Se uma folha com sol fica azul e uma folha no escuro não fica, é prova de que ela fez açúcar com luz.
+
+<Exercicio enunciado="Uma folha converte 2% da luz em açúcar e um painel solar converte 20%. O painel converte quantas vezes mais?" resposta="10" dica="20 ÷ 2." resolucao="20 ÷ 2 = 10 vezes mais." />
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Qual é a equação resumida da fotossíntese?',
+    opcoes: ['Glicose + O₂ → CO₂ + H₂O', '6 CO₂ + 6 H₂O + luz → glicose + 6 O₂', 'CO₂ → O₂'],
+    correta: 1,
+    explicacao: 'A planta usa gás carbônico, água e luz para fazer glicose e soltar oxigênio.',
+  },
+  {
+    enunciado: 'O que o experimento do salgueiro de van Helmont mostrou?',
+    opcoes: ['A árvore ganha massa sem tirar quase nada da terra', 'A árvore come terra', 'A água some no vaso'],
+    correta: 0,
+    explicacao: 'A árvore ganhou mais de 160 libras e a terra perdeu só uns 2 onças. Faltava descobrir o papel do ar.',
+  },
+  {
+    enunciado: 'O que Ingenhousz descobriu em 1779?',
+    opcoes: ['Que a planta renova o ar em qualquer situação', 'Que isso só acontece com luz e nas partes verdes', 'Que a planta não respira'],
+    correta: 1,
+    explicacao: 'Sem luz e fora das partes verdes, a "purificação" do ar não acontece.',
+  },
+  {
+    enunciado: 'De onde vem o oxigênio liberado na fotossíntese?',
+    opcoes: ['Do gás carbônico', 'Da água', 'Da glicose'],
+    correta: 1,
+    explicacao: 'Ruben e Kamen (1941) mostraram que o O₂ vem da água, quebrada pela luz.',
+  },
+  {
+    enunciado: 'Onde acontece a fotossíntese na célula?',
+    opcoes: ['Mitocôndria', 'Cloroplasto', 'Lisossomo'],
+    correta: 1,
+    explicacao: 'O cloroplasto tem clorofila e guarda as duas fases da fotossíntese.',
+  },
+  {
+    enunciado: 'Qual cor de luz a clorofila menos usa?',
+    opcoes: ['Verde', 'Azul', 'Vermelha'],
+    correta: 0,
+    explicacao: 'A clorofila reflete o verde, e por isso as folhas parecem verdes.',
+  },
+  {
+    enunciado: 'O que acontece na fase clara?',
+    opcoes: ['A luz é captada, a água se quebra e saem oxigênio, ATP e NADPH', 'O açúcar é queimado', 'O gás carbônico vira glicose'],
+    correta: 0,
+    explicacao: 'A fase clara capta a luz e carrega as baterias. O açúcar é feito depois, na fase química.',
+  },
+  {
+    enunciado: 'Com 12 CO₂ e 30 H₂O, quantas glicoses dá para fazer?',
+    opcoes: ['2', '5', '12'],
+    correta: 0,
+    explicacao: 'O CO₂ dá para 12 ÷ 6 = 2 glicoses. A água dá para 5, mas vale o menor.',
+  },
+  {
+    enunciado: 'O que é fator limitante?',
+    opcoes: ['O fator que está mais escasso e limita a velocidade', 'O fator que sobra', 'A cor da folha'],
+    correta: 0,
+    explicacao: 'Se melhorar o fator limitante, a velocidade sobe. Se melhorar outro, não muda nada.',
+  },
+  {
+    enunciado: 'Para que servem os estômatos?',
+    opcoes: ['Para trocar gases (CO₂, O₂ e vapor de água)', 'Para guardar açúcar', 'Para absorver luz'],
+    correta: 0,
+    explicacao: 'Os estômatos abrem e fecham para deixar entrar o gás carbônico, sair o oxigênio e controlar a perda de água.',
+  },
+  {
+    enunciado: 'O que a planta faz à noite?',
+    opcoes: ['Só respira, gastando açúcar', 'Só faz fotossíntese', 'Nada'],
+    correta: 0,
+    explicacao: 'Sem luz, não há fotossíntese. A respiração continua.',
+  },
+  {
+    enunciado: 'Por que um pão é "luz solar guardada"?',
+    opcoes: ['Porque o trigo guardou em açúcar e amido a energia que a fotossíntese capturou da luz', 'Porque o pão é assado ao sol', 'Porque o trigo vive de luz'],
+    correta: 0,
+    explicacao: 'A energia da luz foi guardada no amido do trigo, que virou farinha e depois pão.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Fotossíntese:** 6 CO₂ + 6 H₂O + luz → glicose + 6 O₂. A planta fabrica o próprio alimento (é autótrofa).
+- **Onde:** nos cloroplastos, que têm clorofila. Fase clara (tilacoides): capta luz, quebra a água, libera O₂ e faz ATP e NADPH. Fase química, ciclo de Calvin (estroma): usa as baterias para montar a glicose.
+- **Cor:** a clorofila absorve azul e vermelho, e reflete verde.
+- **Fatores limitantes:** luz, CO₂, temperatura e água. Quem estiver mais escasso manda na velocidade.
+- **Folha:** estômatos trocam gases, o xilema traz água e o floema leva o açúcar.
+- **Massa:** o carbono do corpo da planta vem do CO₂ do ar. A massa se conserva na equação (372 de um lado e 372 do outro).
+
+**Um pouco de história.** Van Helmont (cerca de 1640) mostrou que a árvore não come terra. Priestley (1771) viu que as plantas renovam o ar, e Ingenhousz (1779) descobriu que isso exige luz e partes verdes. Ruben e Kamen (1941) mostraram que o O₂ vem da água, e Calvin (anos 1950) seguiu o carbono até o açúcar.
+
+</Resumo>
+
+A fotossíntese guarda energia em açúcar. A célula, mais adiante, vai abrir esse açúcar e liberar a energia de novo. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

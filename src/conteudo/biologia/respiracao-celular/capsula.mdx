@@ -1,0 +1,415 @@
+import DaGlicoseAoATP from '../../../components/simulacoes/DaGlicoseAoATP'
+import ComOuSemOxigenio from '../../../components/simulacoes/ComOuSemOxigenio'
+import CicloDoATP from '../../../components/simulacoes/CicloDoATP'
+import UsinaMitocondria from '../../../components/simulacoes/UsinaMitocondria'
+import EsforcoEEnergia from '../../../components/simulacoes/EsforcoEEnergia'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Cellular respiration, Adenosine triphosphate, Glycolysis, Citric acid cycle, Fermentation, Mitochondrion, Antoine Lavoisier, Hans Adolf Krebs), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Você acorda, toma café com pão e sai correndo para pegar o ônibus. Cada passo, cada batida do coração e cada pensamento custam **energia**. Mas de onde ela vem? Não tem tomada no seu corpo, e você não bebe gasolina.
+
+A resposta está em cada uma das suas células. Dentro delas, minúsculas usinas chamadas **mitocôndrias** pegam o açúcar da comida e o **oxigênio** que você respira e os transformam em uma moeda de energia que a célula consegue gastar. Esse processo é a <Termo cor="verde">respiração celular</Termo>. E ele é, em quase tudo, o **espelho** da fotossíntese.
+
+<Palpite
+  chave="inicial"
+  pergunta="Quando você respira o ar, para onde vai o oxigênio que entrou nos pulmões?"
+  opcoes={['Vira o gás carbônico que você solta', 'Fica guardado nos pulmões', 'É usado nas células para liberar energia do açúcar']}
+/>
+
+Nesta cápsula você vai ver como a ideia de respiração mudou ao longo da história, o que é o ATP (a moeda de energia da célula), as três etapas da respiração, o que acontece quando falta oxigênio (fermentação) e por que o pão cresce e o músculo queima.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Durante muito tempo, achava-se que respirar servia para **esfriar o coração**. A ideia só mudou quando alguém percebeu que respirar se parece muito com **queimar**.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Cerca de 1780', texto: 'Antoine Lavoisier compara a respiração a uma combustão lenta: o corpo consome oxigênio e libera gás carbônico e calor.' },
+  { ano: '1857', texto: 'Louis Pasteur mostra que a fermentação é obra de seres vivos, as leveduras, que vivem "sem ar".' },
+  { ano: '1897', texto: 'Eduard Buchner mostra que o extrato de levedura, sem células vivas, também fermenta: o trabalho é feito por enzimas.' },
+  { ano: '1929', texto: 'Karl Lohmann descobre o ATP no músculo.' },
+  { ano: '1937', texto: 'Hans Krebs descreve o ciclo que leva seu nome.' },
+  { ano: '1941', texto: 'Fritz Lipmann propõe que o ATP é a "moeda de energia" da célula.' },
+  { ano: '1961', texto: 'Peter Mitchell propõe que a energia da respiração vem de um gradiente de prótons (Nobel de 1978).' },
+]} />
+
+## Lavoisier e a vela do corpo
+
+Por volta de 1780, o francês **Antoine Lavoisier**, fundador da química moderna, mediu algo notável: um animal numa câmara fechada **consumia oxigênio** e **liberava gás carbônico e calor**, igualzinho a uma vela queimando, só que bem mais devagar. Ele concluiu que a respiração é uma **combustão lenta**. A ideia estava quase certa. Só faltava descobrir que isso acontece dentro de **cada célula**, e não nos pulmões.
+
+## Pasteur e a vida sem ar
+
+Em 1857, **Louis Pasteur** estudou o suco de uva virando vinho e descobriu que os culpados eram **seres vivos**, as leveduras. E mais: elas fermentavam justamente **sem oxigênio**. Era uma surpresa, porque parecia impossível viver sem ar. Pasteur falou em "vida sem ar". Quarenta anos depois, **Buchner** mostrou que nem era preciso a célula viva: bastavam as enzimas que ela produz.
+
+## A moeda de energia
+
+Em 1929, **Karl Lohmann** achou no músculo uma molécula de energia, o **ATP**. Em 1941, **Fritz Lipmann** percebeu o papel dela: é a **moeda** que a célula usa, como o dinheiro que você recebe de um trabalho e gasta em outro lugar. **Hans Krebs** descobriu um dos ciclos centrais que alimentam essa moeda, e os dois dividiram o Nobel de 1953.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. A energia da comida está presa no açúcar
+
+Quando a planta faz fotossíntese, ela **guarda** energia da luz nas ligações da glicose. A respiração é o caminho de volta: a célula **abre** essa glicose, devagar, e vai recolhendo a energia em pequenas porções.
+
+A frase que resume tudo, em palavras:
+
+**glicose + oxigênio → gás carbônico + água + energia**
+
+Repare: é a fotossíntese **de trás para a frente**. O que uma faz, a outra desfaz, e o que sobra de uma é o que a outra precisa.
+
+## 2. A energia vem em trocados
+
+Queimar uma glicose de uma vez soltaria uma explosão de calor, que machucaria a célula. Em vez disso, a célula desmonta a glicose em **muitos passos pequenos**, e em cada passo carrega um pouco de energia numa molécula de "trocado": o <Termo cor="amarelo">ATP</Termo>. A célula gasta o ATP quando precisa, como quem paga em dinheiro vivo.
+
+<Brincando titulo="Respiração celular: trocar uma nota grande por moedas">
+
+Uma nota de 100 reais é difícil de gastar numa padaria: o caixa não tem troco. Mas, se você troca por moedas e notas pequenas, consegue pagar o pão, o café e o ônibus. A glicose é a nota grande. A célula troca em **moedinhas de ATP** (umas 30 por glicose), que servem para pagar cada tarefa pequena: contrair um músculo, fabricar uma proteína, mandar um sinal nervoso.
+
+</Brincando>
+
+## 3. Quem faz isso
+
+A respiração celular acontece em **toda célula**, de quase todos os seres vivos: de plantas, animais, fungos e de muitas bactérias. Nas células com núcleo, a maior parte do trabalho acontece nas <Termo cor="coral">mitocôndrias</Termo>. As plantas respiram o tempo todo, e também fazem fotossíntese de dia.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Uma célula consegue quantos ATP de uma glicose? Compare quando ela tem oxigênio e quando não tem."
+  opcoes={['Os mesmos 2 ATP, com ou sem oxigênio', 'Com oxigênio, cerca de 15 vezes mais do que sem', 'Sem oxigênio, rende mais, porque é mais rápido']}
+  correta={1}
+  explicacao="Sem oxigênio, só a primeira etapa funciona e dá 2 ATP. Com oxigênio, as três etapas funcionam, e o total sobe para cerca de 30 ATP: umas 15 vezes mais."
+>
+
+Troque o caminho e veja o rendimento de energia:
+
+<ComOuSemOxigenio />
+
+Com oxigênio, a glicose é desmontada **por inteiro**, e a célula colhe quase toda a energia. Sem oxigênio, o caminho para na metade: a glicose fica "meio usada", e a célula colhe só uma pequena parte.
+
+Agora volte ao palpite do começo. Para onde vai o oxigênio que você respira?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Vira o gás carbônico que você solta', 'Fica guardado nos pulmões', 'É usado nas células para liberar energia do açúcar']}
+  correta={2}
+  seAcertou="Isso: o oxigênio chega às células pelo sangue e é usado na respiração celular. No fim, ele vira água. O CO₂ que você solta vem da glicose, e não do oxigênio."
+  seErrou="O certo é: é usado nas células para liberar energia do açúcar. O oxigênio não vira o gás carbônico (esse vem do carbono da glicose) e não fica guardado nos pulmões. No fim da cadeia respiratória, o oxigênio vira água."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## A equação da respiração celular
+
+Em linguagem de química, a respiração aeróbia (com oxigênio) se escreve assim:
+
+<Formula>
+  <Linha>C₆H₁₂O₆ + 6 O₂ → 6 CO₂ + 6 H₂O + energia</Linha>
+</Formula>
+
+Compare com a fotossíntese: os dois lados estão **trocados**. O que a planta guarda, a respiração libera. A "energia" que sai se divide em duas: uma parte vira **ATP**, a moeda da célula, e o resto vira **calor** (é ele que mantém seu corpo em cerca de 36,5 °C).
+
+A conta fecha em massa, assim como na fotossíntese. Entram 180 g de glicose e 6 × 32 = 192 g de O₂, num total de **372 g**. Saem 6 × 44 = 264 g de CO₂ e 6 × 18 = 108 g de água, também **372 g**.
+
+<ExemploResolvido titulo="Uma célula respira 5 glicoses. Quantos CO₂ e quantos O₂ estão envolvidos?">
+  <Passo>Cada glicose usa **6 O₂** e libera **6 CO₂**.</Passo>
+  <Passo>O₂ consumido: 5 × 6 = **30**.</Passo>
+  <Passo>CO₂ liberado: 5 × 6 = **30**. Também saem 30 H₂O.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas moléculas de CO₂ saem quando uma célula respira 5 glicoses?" resposta="30" dica="6 por glicose." resolucao="5 × 6 = 30 moléculas." />
+
+<Exercicio enunciado="Quantos gramas de CO₂ (6 mols, 44 g cada) saem de uma glicose (180 g) respirada?" resposta="264" dica="6 × 44." resolucao="6 × 44 = 264 g." />
+
+<Exercicio enunciado="Quantos gramas de água (6 mols, 18 g cada) saem de uma glicose respirada?" resposta="108" dica="6 × 18." resolucao="6 × 18 = 108 g." />
+
+## ATP: a moeda da célula
+
+O **ATP** (adenosina trifosfato) é uma molécula com **três fosfatos** em fila. Quando a célula precisa de energia, ela **solta o último fosfato**, e o ATP vira **ADP** (adenosina difosfato), liberando um pouco de energia utilizável. Depois, a respiração junta o fosfato de volta ao ADP, "recarregando" a bateria.
+
+<Formula>
+  <Linha>ATP ⇄ ADP + fosfato + energia</Linha>
+</Formula>
+
+A célula não guarda muito ATP: o corpo inteiro tem só cerca de **50 g** em cada instante. Mas ele é **reciclado sem parar**. Estimativas dizem que, num dia, o corpo gasta e recarrega uma quantidade de ATP próxima do **seu próprio peso**. Cada molécula de ATP é gasta e refeita milhares de vezes.
+
+<CicloDoATP />
+
+<Brincando titulo="ATP: a pilha recarregável">
+
+Uma pilha recarregável vai para o brinquedo e fica descarregada. Você coloca no carregador e ela volta pronta. O ATP é a pilha, a célula gasta, e a respiração é o carregador. Não faz sentido comprar uma pilha nova a cada vez: a mesma pilha é usada e recarregada de novo e de novo, mil vezes por dia.
+
+</Brincando>
+
+<ExemploResolvido titulo="Se o corpo guarda 50 g de ATP e cada molécula é refeita 1.000 vezes por dia, quanto ATP é reciclado por dia?">
+  <Passo>O estoque é de 50 g.</Passo>
+  <Passo>Cada molécula é reciclada 1.000 vezes: 50 × 1.000 = 50.000 g.</Passo>
+  <Passo>50.000 g = **50 kg**, mais ou menos o peso de uma pessoa. É por isso que se diz que gastamos o peso do corpo em ATP por dia.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O corpo guarda 50 g de ATP, e cada molécula é reciclada 1.000 vezes por dia. Quantos quilos de ATP são reciclados por dia?" resposta="50" dica="50 g × 1.000 = 50.000 g." resolucao="50 × 1.000 = 50.000 g = 50 kg." />
+
+<Aprofundar titulo="De onde vem a energia do ATP?">
+
+A ligação entre o segundo e o terceiro fosfato do ATP é "tensa", como uma mola comprimida: fica mais estável depois de solta. Soltá-la libera cerca de **30 kJ por mol**. Não é uma energia gigantesca, mas é do tamanho certo para a maioria das tarefas da célula, que fazem uma coisa de cada vez. A célula usa o ATP para empurrar uma reação difícil: junta o fosfato a uma molécula, e isso a "ativa" para a próxima reação. Foi Lipmann quem percebeu esse papel de moeda, em 1941.
+
+</Aprofundar>
+
+## As três etapas da respiração
+
+A respiração aeróbia tem **três etapas**, cada uma num lugar:
+
+- **Glicólise** (no citoplasma): a glicose, de 6 carbonos, é cortada em **duas moléculas de piruvato**, de 3 carbonos cada. Não usa oxigênio. Rende **2 ATP** (saldo).
+- **Ciclo de Krebs** (na matriz da mitocôndria): o piruvato é "desmontado" e todo o carbono sai como **CO₂**. Rende **2 ATP** e, principalmente, muitas moléculas carregadoras de energia.
+- **Cadeia respiratória** (na membrana interna da mitocôndria): as moléculas carregadoras entregam a energia numa fila de proteínas. O **oxigênio** recebe os elétrons no fim e vira **água**. Rende cerca de **26 ATP**.
+
+Somando, uns **30 ATP** por glicose. Livros mais antigos falam em 36 ou 38, mas medidas mais recentes indicam algo entre **30 e 32**.
+
+<DaGlicoseAoATP />
+
+<Brincando titulo="As três etapas: desmontar, picar e gerar luz">
+
+Imagine uma usina de reciclagem de carros. Primeiro, um guindaste **corta o carro ao meio** (glicólise). Depois, os trabalhadores **desmontam cada peça** num galpão (Krebs) e separam o que serve. No fim, uma turbina gira com a água das peças e **gera eletricidade** (cadeia respiratória). A maior parte da energia vem só no último passo, que depende do oxigênio.
+
+</Brincando>
+
+<ExemploResolvido titulo="Quantos ATP renderiam 4 glicoses respiradas por completo (cerca de 30 por glicose)?">
+  <Passo>Uma glicose: cerca de 30 ATP.</Passo>
+  <Passo>Quatro glicoses: 4 × 30 = **120 ATP**.</Passo>
+  <Passo>Detalhando uma glicose: 2 (glicólise) + 2 (Krebs) + 26 (cadeia) = 30.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos ATP rendem 3 glicoses respiradas por completo, cerca de 30 por glicose?" resposta="90" dica="3 × 30." resolucao="3 × 30 = 90 ATP." />
+
+<Exercicio enunciado="Somando glicólise (2 ATP), Krebs (2 ATP) e cadeia respiratória (26 ATP), quantos ATP por glicose?" resposta="30" dica="2 + 2 + 26." resolucao="2 + 2 + 26 = 30 ATP." />
+
+## A mitocôndria: a usina por dentro
+
+A mitocôndria tem **duas membranas**. A de fora é lisa. A de dentro é **dobrada em cristas**, que aumentam a área, como pregas numa cortina. Entre as duas, há um espaço estreito. No meio, a **matriz**. A cadeia respiratória fica nas cristas, e o ciclo de Krebs, na matriz.
+
+<UsinaMitocondria />
+
+Uma curiosidade: no fim da cadeia, as cristas bombeiam **prótons (H⁺)** para o espaço entre as membranas, formando uma "represa". Quando os prótons voltam por uma proteína chamada **ATP-sintase**, ela gira como uma turbina e **monta o ATP**. Peter Mitchell propôs essa ideia em 1961, e ela foi recebida com desconfiança, mas deu a ele o Nobel de 1978.
+
+Células que gastam muita energia, como as do **coração** e do **músculo**, têm muitas mitocôndrias. Já as hemácias não têm nenhuma: elas fazem só a fermentação.
+
+<Aprofundar titulo="Quanto da energia da glicose vira ATP?">
+
+A glicose guarda cerca de **2.870 kJ por mol** (isso é, uns 686 kcal). Trinta ATP de cerca de 30,5 kJ cada somam uns **915 kJ**. Isso dá 915 ÷ 2.870 ≈ **32%** de aproveitamento. O resto, uns dois terços, vira **calor**, que mantém seu corpo quente. É um aproveitamento melhor do que o de um motor de carro a gasolina, que fica perto de 25% a 30%.
+
+</Aprofundar>
+
+## Sem oxigênio: a fermentação
+
+Se não há oxigênio, a cadeia respiratória **para**, e o ciclo de Krebs também. Resta a **glicólise**, que dá só 2 ATP. Mas ela precisa de uma molécula que, sem o oxigênio, não se recarrega. A fermentação existe para **destravar a glicólise**: o piruvato é transformado em outra coisa, e a célula segue ganhando seus 2 ATP.
+
+Há dois tipos comuns:
+
+- **Fermentação láctica:** o piruvato vira **ácido lático** (lactato). Acontece no **músculo** em esforço forte, nas **bactérias do iogurte** e do queijo, e nas hemácias.
+- **Fermentação alcoólica:** o piruvato vira **álcool (etanol)** e **CO₂**. Acontece nas **leveduras**: o CO₂ faz o **pão crescer** e a cerveja ter gás, e o álcool é o da cerveja, do vinho e do combustível feito de cana.
+
+<Brincando titulo="Fermentação: a bomba de emergência">
+
+Numa casa sem luz, você acende uma vela. Dá luz suficiente para andar, mas não para ler um livro. A fermentação é a vela: produz um pouquinho de energia rapidamente, sem depender do oxigênio. Quando o oxigênio volta, a luz elétrica (a respiração) assume e rende muito mais.
+
+</Brincando>
+
+<ExemploResolvido titulo="Quantas vezes a respiração rende mais ATP do que a fermentação, por glicose?">
+  <Passo>Respiração aeróbia: cerca de 30 ATP.</Passo>
+  <Passo>Fermentação: 2 ATP.</Passo>
+  <Passo>30 ÷ 2 = **15 vezes mais**.</Passo>
+</ExemploResolvido>
+
+<ExemploResolvido titulo="Uma levedura fermenta 10 glicoses (1 glicose dá 2 etanol, 2 CO₂ e 2 ATP). Quanto de cada sai?">
+  <Passo>CO₂: 10 × 2 = **20**.</Passo>
+  <Passo>Etanol: 10 × 2 = **20**.</Passo>
+  <Passo>ATP: 10 × 2 = **20**. Compare: com oxigênio, as mesmas 10 glicoses renderiam 300.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos ATP rendem 3 glicoses fermentadas, sendo 2 ATP por glicose?" resposta="6" dica="3 × 2." resolucao="3 × 2 = 6 ATP." />
+
+<Exercicio enunciado="Quantas vezes a respiração (30 ATP) rende mais do que a fermentação (2 ATP)?" resposta="15" dica="30 ÷ 2." resolucao="30 ÷ 2 = 15 vezes." />
+
+<Exercicio enunciado="Uma levedura fermenta 10 glicoses, e cada uma gera 2 CO₂. Quantos CO₂ saem?" resposta="20" dica="10 × 2." resolucao="10 × 2 = 20 CO₂." />
+
+<Aprofundar titulo="Mito: ácido lático e dor no dia seguinte">
+
+Muita gente acredita que a dor muscular de um ou dois dias depois do treino vem do ácido lático acumulado. É um **mito**. O lactato sai do músculo e é reaproveitado em minutos ou poucas horas. A dor tardia vem de **microlesões nas fibras** causadas pelo esforço, seguidas de inflamação. O lactato, sim, participa da "queimação" durante o esforço forte, mas não é o vilão de depois.
+
+</Aprofundar>
+
+## Esforço e energia
+
+No dia a dia, seu corpo usa os dois caminhos ao mesmo tempo, em proporções diferentes. Numa caminhada leve, quase tudo é respiração aeróbia: o oxigênio chega bem. Num **tiro**, os músculos gastam ATP mais rápido do que o oxigênio consegue chegar, e a **fermentação** entra para ajudar. Por isso você fica sem fôlego, e por isso não dá para correr em velocidade máxima por muito tempo.
+
+<EsforcoEEnergia />
+
+<Brincando titulo="Corrida: o carro elétrico e o gerador">
+
+Pense num carro que anda com a bateria (respiração) e, quando precisa de uma arrancada, liga também um gerador barulhento (fermentação). O gerador dá força rápida, mas gasta combustível à toa e cansa o motor. Na prática, ele só entra quando a bateria não dá conta. Quanto mais forte o esforço, mais o gerador trabalha.
+
+</Brincando>
+
+## O que a gente come é combustível
+
+Não só o açúcar alimenta a respiração. Os alimentos entram na via em pontos diferentes:
+
+- **Carboidratos** (pão, arroz, frutas): viram glicose. Rendem cerca de **4 kcal por grama**.
+- **Proteínas** (carnes, ovos, feijão): rendem cerca de **4 kcal por grama**, mas o corpo prefere usar para construir peças.
+- **Gorduras** (óleo, manteiga, castanhas): rendem cerca de **9 kcal por grama**, mais do dobro. Por isso são o estoque de longo prazo.
+
+A "caloria" que aparece nos rótulos (na verdade, **quilocaloria**, kcal) é a medida da energia que o alimento pode liberar na respiração.
+
+<ExemploResolvido titulo="Um pacote traz 20 g de carboidrato e 10 g de gordura. Quantas kcal tem?">
+  <Passo>Carboidrato: 20 × 4 = 80 kcal.</Passo>
+  <Passo>Gordura: 10 × 9 = 90 kcal.</Passo>
+  <Passo>Total: 80 + 90 = **170 kcal**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas kcal há em 100 g de carboidrato, sendo 4 kcal por grama?" resposta="400" dica="100 × 4." resolucao="100 × 4 = 400 kcal." />
+
+<Exercicio enunciado="Quantas kcal há em 10 g de gordura, sendo 9 kcal por grama?" resposta="90" dica="10 × 9." resolucao="10 × 9 = 90 kcal." />
+
+<Exercicio enunciado="Quantos anos se passaram entre Lavoisier comparar a respiração à combustão (cerca de 1780) e Krebs descrever o seu ciclo (1937)?" resposta="157" dica="1937 − 1780." resolucao="1937 − 1780 = 157 anos." />
+
+<Aprofundar titulo="O que acontece quando o oxigênio é bloqueado: o cianeto">
+
+O **cianeto** é um veneno rápido porque trava a última proteína da cadeia respiratória, aquela que entrega os elétrons ao oxigênio. Com a cadeia parada, a célula não faz o ATP principal, mesmo cercada de oxigênio. As células que mais gastam energia, as do cérebro e do coração, sofrem primeiro. O monóxido de carbono tem outro caminho: ele toma o lugar do oxigênio na hemoglobina, e o oxigênio nem chega às células.
+
+</Aprofundar>
+
+## O espelho da fotossíntese
+
+Juntando as duas cápsulas, aparece um **ciclo gigante**:
+
+- A **fotossíntese** pega CO₂, água e luz e faz glicose e O₂.
+- A **respiração** pega glicose e O₂ e faz CO₂, água e ATP.
+
+O carbono do ar vai para as plantas, passa pelos animais (que as comem) e volta ao ar quando todos respiram. Um átomo de carbono do seu corpo já esteve no ar, numa planta e, talvez, em outros seres.
+
+<Aprofundar titulo="Mitocôndrias: herança da mãe">
+
+As mitocôndrias têm **DNA próprio**, pequeno e em forma de anel, parecido com o de bactérias. Quando um espermatozoide fecunda o óvulo, quase só o óvulo contribui com mitocôndrias, então herdamos esse DNA, em geral, **só da mãe**. Esse fato é usado para estudar a árvore genealógica de populações inteiras, pela linhagem materna. Doenças mitocondriais, raras, afetam principalmente órgãos que gastam muita energia, como músculo, cérebro e coração.
+
+</Aprofundar>
+
+## Onde isso aparece na vida
+
+- **Pão e cerveja:** leveduras fermentam o açúcar. O CO₂ faz a massa crescer, e o álcool evapora no forno.
+- **Iogurte e queijo:** bactérias fazem a fermentação láctica e azedam o leite, o que ajuda a conservar.
+- **Etanol:** o combustível de cana é feito por fermentação alcoólica.
+- **Exercício:** o treino aumenta o número de mitocôndrias e os vasos nos músculos, e o corpo passa a usar melhor o oxigênio.
+- **Frio e calor:** o calor que sobra da respiração mantém a temperatura do corpo. Quando você treme de frio, os músculos queimam mais açúcar só para gerar calor.
+- **Compostagem:** os micróbios respiram a matéria orgânica e esquentam a pilha de restos.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Qual é a equação resumida da respiração aeróbia?',
+    opcoes: ['6 CO₂ + 6 H₂O → glicose + 6 O₂', 'glicose + 6 O₂ → 6 CO₂ + 6 H₂O + energia', 'glicose → oxigênio'],
+    correta: 1,
+    explicacao: 'A respiração é o espelho da fotossíntese: a glicose reage com o oxigênio e libera CO₂, água e energia.',
+  },
+  {
+    enunciado: 'Onde acontece a maior parte da respiração celular em células com núcleo?',
+    opcoes: ['No núcleo', 'Nas mitocôndrias', 'Nos ribossomos'],
+    correta: 1,
+    explicacao: 'As mitocôndrias são as usinas de energia da célula.',
+  },
+  {
+    enunciado: 'O que é o ATP?',
+    opcoes: ['A moeda de energia da célula', 'Um tipo de açúcar', 'Uma proteína da membrana'],
+    correta: 0,
+    explicacao: 'O ATP guarda energia numa forma que a célula consegue gastar rapidamente.',
+  },
+  {
+    enunciado: 'Qual a ordem das três etapas da respiração?',
+    opcoes: ['Cadeia respiratória, Krebs, glicólise', 'Glicólise, Krebs, cadeia respiratória', 'Krebs, glicólise, cadeia respiratória'],
+    correta: 1,
+    explicacao: 'A glicose é cortada na glicólise, desmontada no Krebs e, no fim, a cadeia respiratória rende a maior parte do ATP.',
+  },
+  {
+    enunciado: 'Quantos ATP por glicose, aproximadamente, rende a respiração aeróbia completa?',
+    opcoes: ['2', 'Cerca de 30', '300'],
+    correta: 1,
+    explicacao: 'Os valores atuais ficam entre 30 e 32 ATP por glicose.',
+  },
+  {
+    enunciado: 'Qual é o papel do oxigênio na respiração?',
+    opcoes: ['Virar o CO₂ que soltamos', 'Receber os elétrons no fim da cadeia e virar água', 'Quebrar a glicose'],
+    correta: 1,
+    explicacao: 'O oxigênio é o aceptor final dos elétrons. Sem ele, a cadeia para.',
+  },
+  {
+    enunciado: 'De onde vêm os CO₂ que soltamos ao respirar?',
+    opcoes: ['Do carbono da glicose', 'Do oxigênio que inspiramos', 'Da água'],
+    correta: 0,
+    explicacao: 'O carbono da glicose sai como CO₂, principalmente no ciclo de Krebs.',
+  },
+  {
+    enunciado: 'Quantos ATP rende a fermentação por glicose?',
+    opcoes: ['2', '30', '0'],
+    correta: 0,
+    explicacao: 'Sem oxigênio, só a glicólise funciona, e rende 2 ATP.',
+  },
+  {
+    enunciado: 'O que faz o pão crescer?',
+    opcoes: ['O álcool da levedura', 'O CO₂ da fermentação alcoólica da levedura', 'O oxigênio da farinha'],
+    correta: 1,
+    explicacao: 'A levedura fermenta o açúcar e solta CO₂, que forma bolhas na massa.',
+  },
+  {
+    enunciado: 'Qual dessas afirmações sobre o ácido lático é verdadeira?',
+    opcoes: ['Ele causa a dor muscular do dia seguinte', 'Ele é produzido na fermentação láctica e sai do músculo em pouco tempo', 'Ele é produzido pelas plantas'],
+    correta: 1,
+    explicacao: 'A dor tardia vem de microlesões nas fibras, e não do ácido lático, que é eliminado rápido.',
+  },
+  {
+    enunciado: 'Quantas kcal há em 10 g de gordura (9 kcal por grama)?',
+    opcoes: ['40', '90', '9'],
+    correta: 1,
+    explicacao: '10 × 9 = 90 kcal.',
+  },
+  {
+    enunciado: 'Por que herdamos o DNA mitocondrial em geral da mãe?',
+    opcoes: ['Porque o óvulo contribui com quase todas as mitocôndrias do embrião', 'Porque o pai não tem mitocôndrias', 'Porque o DNA mitocondrial só existe em mulheres'],
+    correta: 0,
+    explicacao: 'O espermatozoide contribui com muito pouco ou nada de mitocôndria, e o óvulo, com quase todas.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Respiração celular:** glicose + 6 O₂ → 6 CO₂ + 6 H₂O + energia. É o espelho da fotossíntese.
+- **ATP:** a moeda de energia da célula. Vira ADP quando gasta e é recarregado pela respiração. O corpo guarda só uns 50 g e recicla o equivalente ao seu peso por dia.
+- **Três etapas:** glicólise (citoplasma, 2 ATP), ciclo de Krebs (matriz, 2 ATP) e cadeia respiratória (cristas, cerca de 26 ATP). Total: cerca de 30 ATP por glicose.
+- **Sem oxigênio:** só a glicólise funciona, com fermentação (láctica ou alcoólica), e rende 2 ATP. A respiração rende cerca de 15 vezes mais.
+- **Alimentos:** carboidrato e proteína rendem cerca de 4 kcal por grama, gordura cerca de 9.
+- **Mitocôndria:** duas membranas, cristas, DNA próprio herdado da mãe.
+
+**Um pouco de história.** Lavoisier (cerca de 1780) comparou a respiração a uma combustão lenta. Pasteur (1857) mostrou que a fermentação é obra de leveduras e Buchner (1897), que bastam as enzimas. Lohmann achou o ATP (1929), Krebs descreveu o ciclo (1937), Lipmann viu o ATP como moeda (1941) e Mitchell explicou a turbina de prótons (1961).
+
+</Resumo>
+
+A respiração libera a energia que a fotossíntese guardou. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

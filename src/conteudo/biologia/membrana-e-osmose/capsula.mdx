@@ -1,0 +1,415 @@
+import OsmoseEmU from '../../../components/simulacoes/OsmoseEmU'
+import DifusaoDeCorante from '../../../components/simulacoes/DifusaoDeCorante'
+import QuemAtravessaAMembrana from '../../../components/simulacoes/QuemAtravessaAMembrana'
+import CelulaEmTresMeios from '../../../components/simulacoes/CelulaEmTresMeios'
+import SaladaMurcha from '../../../components/simulacoes/SaladaMurcha'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Osmosis, Cell membrane, Fluid mosaic model, Aquaporin, Sodium-potassium pump), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Você tempera a alface com sal e vai atender o telefone. Dez minutos depois, a salada está **murcha**, e no fundo da tigela há uma poça de água. Ninguém espremeu nada. Ninguém molhou nada. A água simplesmente **saiu da folha**.
+
+Quem mandou a água sair? E por que ela só saiu depois que o sal chegou? A resposta está no muro que cerca cada célula: a <Termo cor="azul">membrana</Termo>. Ela decide quem entra, quem sai e o que acontece com a água quando o sal aparece.
+
+<Palpite
+  chave="inicial"
+  pergunta="De onde veio a água que juntou no fundo da tigela de salada?"
+  opcoes={['Do sal, que derreteu e virou água', 'De dentro das células da alface', 'Do ar, que condensou na tigela']}
+/>
+
+Nesta cápsula você vai ver como é feita a membrana, como as coisas atravessam por ela (sem gastar e gastando energia), o que é a <Termo cor="verde">osmose</Termo> e por que o soro fisiológico tem a quantidade de sal que tem.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Ninguém enxerga a membrana de uma célula. Ela tem **menos de 10 nanômetros** de espessura, fina demais até para os melhores microscópios de luz. Por isso a história dela é a história de gente que descobriu o muro sem nunca vê-lo, só pelo jeito que as coisas entram e saem.
+
+<LinhaDoTempo marcos={[
+  { ano: '1748', texto: 'Jean-Antoine Nollet fecha álcool dentro de uma bexiga de porco, mergulha na água e vê a bexiga inchar: a água entra, o álcool não sai.' },
+  { ano: '1826', texto: 'Henri Dutrochet estuda o fenômeno em plantas e dá o nome de osmose.' },
+  { ano: '1895', texto: 'Ernest Overton nota que o que dissolve em gordura entra na célula mais depressa: a membrana tem gordura.' },
+  { ano: '1925', texto: 'Gorter e Grendel extraem a gordura de hemácias e concluem que a membrana tem duas camadas dela.' },
+  { ano: '1957', texto: 'Jens Skou descobre a bomba que joga sódio para fora das células (Nobel de 1997).' },
+  { ano: '1972', texto: 'Singer e Nicolson propõem o modelo do mosaico fluido, aceito até hoje.' },
+  { ano: '1992 a 2003', texto: 'Peter Agre descobre as aquaporinas, os canais da água, e ganha o Nobel de Química de 2003.' },
+]} />
+
+## A bexiga de porco
+
+Em 1748, o francês **Jean-Antoine Nollet**, padre e físico, fez um experimento simples. Encheu um pote com álcool, tampou com uma **bexiga de porco** bem esticada e mergulhou tudo em água. Algumas horas depois, a bexiga estava estufada, como uma bola. Ele tinha achado algo estranho: a água entrava pela bexiga, mas o álcool não saía na mesma medida. A bexiga deixava passar uma coisa e segurava a outra.
+
+Quase 80 anos depois, **Henri Dutrochet** repetiu a ideia com materiais de plantas e animais. Ele chamou o fenômeno de <Termo cor="verde">osmose</Termo>, palavra que vem do grego e quer dizer "empurrão".
+
+## A gordura que cerca a célula
+
+No fim do século XIX, **Ernest Overton** testou centenas de substâncias em células vegetais. Percebeu um padrão: as que se dissolviam em **gordura** entravam rápido, as que preferiam água entravam devagar. A conclusão era ousada para a época: a casca da célula devia ser feita de algo como gordura.
+
+Em 1925, os holandeses **Gorter e Grendel** tiraram toda a gordura de um número conhecido de hemácias e espalharam numa superfície de água. A área que a gordura cobriu era **o dobro** da área das hemácias. Logo, a membrana tinha **duas** camadas de gordura. Era a ideia da bicamada, antes de qualquer foto dela.
+
+## O mosaico que se mexe
+
+Em 1972, **Singer e Nicolson** juntaram tudo no modelo do **mosaico fluido**: a membrana é um mar de gordura em que flutuam proteínas, como barcos. "Mosaico" porque há peças de vários tipos, "fluido" porque as peças se movem. Esse modelo explica quase tudo o que veremos aqui.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. A célula é uma casa com muro e portões
+
+Pense numa casa com um muro em volta. O muro não é de tijolo: é uma **cerca de seguranças**. Alguns visitantes passam direto, outros só entram pelo portão, e alguns só entram se alguém lá dentro abrir e gastar energia para isso. A membrana funciona assim, e dizemos que ela é <Termo cor="azul">seletiva</Termo>.
+
+## 2. Tudo se espalha
+
+Abra um perfume num canto da sala. Em minutos, o cheiro chega ao outro canto. Ninguém soprou. As moléculas **se mexem o tempo todo, ao acaso**, e acabam se espalhando de onde há muitas para onde há poucas. Esse espalhamento é a <Termo cor="verde">difusão</Termo>, e ela não gasta energia nenhuma: é só o acaso trabalhando.
+
+<Brincando titulo="Difusão: a sala cheia de bolinhas">
+
+Imagine uma sala com uma porta no meio. De um lado há cem bolinhas pulando de qualquer jeito. Do outro, nenhuma. Cada bolinha pula para onde quiser, sem plano. Mas, como só há bolinhas de um lado, o que se vê é que **mais bolinhas atravessam a porta para o lado vazio** do que o contrário. Com o tempo, os dois lados ficam parecidos, e as bolinhas continuam pulando sem parar. Ninguém empurrou: foi só o acaso.
+
+</Brincando>
+
+## 3. A água também se espalha
+
+A água também é feita de moléculas que se mexem. Quando a água tem **sal dissolvido**, as moléculas de água ficam "ocupadas" cercando o sal e há menos água livre por perto. Então a água pura (onde há mais água livre) tende a ir para o lado salgado (onde há menos). Se uma membrana separar os dois lados e **deixar a água passar, mas não o sal**, o resultado é a osmose: a água vai para o lado do sal.
+
+A frase para guardar: **a água vai para onde há mais sal**, procurando diluir.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Num tubo em U, a água pura fica de um lado e a água com sal do outro, com uma membrana no meio que só deixa a água passar. O que acontece com o nível do lado salgado?"
+  opcoes={['Sobe, porque a água vem do lado puro', 'Desce, porque o sal puxa a água para baixo', 'Fica igual']}
+  correta={0}
+  explicacao="A água atravessa a membrana do lado puro para o lado salgado, tentando diluir o sal. O nível do lado salgado sobe, e o do lado puro desce."
+>
+
+Mexa na quantidade de sal e veja o nível dos dois lados:
+
+<OsmoseEmU />
+
+Sem sal, nada acontece. Quanto mais sal, mais a água vai para o lado salgado. O sal não atravessa a membrana, e a água é que faz o caminho.
+
+Agora volte ao palpite do começo. De onde veio a água do fundo da tigela de salada?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Do sal, que derreteu e virou água', 'De dentro das células da alface', 'Do ar, que condensou na tigela']}
+  correta={1}
+  seAcertou="Isso mesmo: veio de dentro das células. O sal ficou por fora e puxou a água delas por osmose."
+  seErrou="O certo é: de dentro das células da alface. O sal não vira água, e o ar não tem tanta água assim. O sal fica por fora e puxa a água das células, por osmose."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## A membrana por dentro
+
+A membrana plasmática é feita de uma **bicamada de fosfolipídios**. Cada fosfolipídio parece um pirulito com duas perninhas:
+
+- A **cabeça** gosta de água (é hidrofílica).
+- As duas **caudas** fogem da água (são hidrofóbicas).
+
+Na água, os fosfolipídios se arrumam sozinhos em **duas camadas**, com as caudas viradas uma para a outra, no meio, e as cabeças para fora, em contato com a água de dentro e de fora da célula. Resultado: o miolo da membrana é **gordura pura**, e quase nada que gosta de água consegue atravessá-lo.
+
+No meio dessa gordura, flutuam:
+
+- **Proteínas transportadoras e canais**: os portões.
+- **Colesterol**: encaixado entre as gorduras, deixa a membrana nem dura demais nem mole demais.
+- **Proteínas receptoras**: antenas que recebem sinais de fora, como hormônios.
+- **Açúcares na face de fora**: "crachás" que ajudam as células a se reconhecerem.
+
+A espessura toda tem cerca de **7 a 10 nm**. Para ter ideia, uma folha de papel tem uns 100.000 nm.
+
+<Brincando titulo="Membrana: o sanduíche com seguranças">
+
+Pense num sanduíche feito de duas fatias de pão (as cabeças, que gostam de água) com um recheio de manteiga (as caudas, que fogem da água). Quem vive na água não consegue atravessar a manteiga. Já o que é feito de gordura passa pelo recheio sem problema. Os **seguranças** (proteínas) ficam espetados no sanduíche e abrem portas especiais. É por isso que a membrana é um filtro: a manteiga barra uns, e os seguranças liberam outros.
+
+</Brincando>
+
+<ExemploResolvido titulo="Um gás como o gás carbônico (CO₂) sai da célula. Ele precisa de portão?">
+  <Passo>O CO₂ é uma molécula **pequena** e **sem carga**.</Passo>
+  <Passo>Moléculas assim se dissolvem bem na gordura e passam entre os fosfolipídios.</Passo>
+  <Passo>Logo, o CO₂ atravessa **direto**, sem portão e sem gastar ATP.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="A membrana de uma célula tem cerca de 7 nm de espessura. Quantas membranas, uma sobre a outra, somariam 70 nm?" resposta="10" dica="70 ÷ 7." resolucao="70 ÷ 7 = 10 membranas." />
+
+<Exercicio enunciado="Quantos anos se passaram entre o experimento de Nollet (1748) e o nome osmose dado por Dutrochet (1826)?" resposta="78" dica="1826 − 1748." resolucao="1826 − 1748 = 78 anos." />
+
+<Exercicio enunciado="Quantos anos separam o experimento de Gorter e Grendel (1925) e o modelo do mosaico fluido (1972)?" resposta="47" dica="1972 − 1925." resolucao="1972 − 1925 = 47 anos." />
+
+## Difusão: o espalhamento sem custo
+
+A <Termo cor="verde">difusão</Termo> é o movimento das partículas de onde **há mais** para onde **há menos**. Dizemos que elas descem o **gradiente de concentração**, como uma bola rolando morro abaixo: de graça.
+
+Três coisas deixam a difusão mais rápida:
+
+- **Calor:** as partículas se agitam mais.
+- **Diferença grande:** quanto mais cheio de um lado e vazio do outro, mais rápido.
+- **Distância curta:** o espalhamento é rápido nas pequenas distâncias e lentíssimo nas longas.
+
+<DifusaoDeCorante />
+
+A terceira regra é a mais importante para a biologia. Para uma molécula pequena, o tempo de difusão cresce com **o quadrado** da distância. Se a distância é 10 vezes maior, o tempo fica **100 vezes maior**.
+
+<Brincando titulo="Difusão e distância: o recado no corredor">
+
+Um recado passado de boca em boca entre vizinhos chega rápido ao fim de um corredor curto. Num corredor 10 vezes mais comprido, o recado não leva 10 vezes mais tempo: leva muito mais, porque cada pessoa também erra o caminho, volta, para e recomeça. A difusão é igual: cada partícula anda ao acaso, indo e voltando, então distâncias grandes custam caro.
+
+</Brincando>
+
+<ExemploResolvido titulo="Uma molécula pequena leva cerca de 0,05 s para cruzar 10 µm (o tamanho de uma célula). Quanto leva para cruzar 100 µm?">
+  <Passo>A distância ficou **10 vezes** maior (de 10 µm para 100 µm).</Passo>
+  <Passo>O tempo cresce com o **quadrado**: 10 × 10 = 100 vezes maior.</Passo>
+  <Passo>0,05 s × 100 = **5 s**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Se a distância de difusão fica 10 vezes maior, o tempo fica quantas vezes maior?" resposta="100" dica="O tempo cresce com o quadrado da distância." resolucao="10 × 10 = 100 vezes." />
+
+<Exercicio enunciado="Uma molécula leva 0,05 s para cruzar 10 µm. Quanto tempo leva, em segundos, para cruzar 100 µm?" resposta="5" dica="0,05 × 100." resolucao="Distância 10 vezes maior, tempo 100 vezes maior: 0,05 × 100 = 5 s." />
+
+<Exercicio enunciado="Uma molécula leva 0,05 s para cruzar 10 µm. Cruzando 1 mm (1.000 µm), a distância é 100 vezes maior. Quantos segundos leva?" resposta="500" dica="100 × 100 = 10.000 vezes mais, e 0,05 × 10.000." resolucao="Tempo 100 × 100 = 10.000 vezes maior: 0,05 × 10.000 = 500 s, quase 8 minutos." />
+
+<Aprofundar titulo="Por que as células são tão pequenas?">
+
+A difusão explica o tamanho das células. Um nutriente que entra pela membrana precisa **chegar ao centro** por difusão. Numa célula de 10 µm, isso leva uns 0,05 s. Se a célula tivesse 1 mm (100 vezes mais), levaria uns 500 s, e as peças do centro passariam fome. Além disso, a **superfície** (por onde se entra) cresce menos do que o **volume** (que precisa ser alimentado) quando a célula aumenta. As duas contas dizem o mesmo: célula grande demais não se sustenta. Os seres grandes resolvem isso sendo feitos de muitas células pequenas, com um sistema de circulação para carregar as coisas por longas distâncias.
+
+</Aprofundar>
+
+## Os caminhos pela membrana
+
+Nem tudo atravessa do mesmo jeito. Há quatro caminhos principais:
+
+- **Difusão simples:** moléculas pequenas e de gordura (O₂, CO₂, hormônios como a testosterona) passam direto entre os fosfolipídios. Sem proteína e sem ATP.
+- **Difusão facilitada:** moléculas maiores ou com carga (glicose, íons) passam por uma **proteína** que serve de canal ou de porteiro. Continua descendo o gradiente, sem gastar ATP.
+- **Osmose:** é a difusão da **água**, que passa um pouco entre os fosfolipídios e muito por canais chamados **aquaporinas**.
+- **Transporte ativo:** a substância é levada **contra** o gradiente, de onde há pouco para onde há muito. É como subir o morro: exige **energia** (ATP) e uma proteína-bomba.
+
+As três primeiras formas são o **transporte passivo** (sem gasto de energia). A quarta é o <Termo cor="coral">transporte ativo</Termo>.
+
+<Brincando titulo="Transporte ativo: carregar a mochila morro acima">
+
+Descer uma ladeira não custa nada: é só deixar rolar. Subir custa esforço. O transporte passivo é a descida (as substâncias vão a favor da corrente). O ativo é a subida: para levar algo para onde já tem muito, a célula precisa gastar energia, e a proteína-bomba é o motor que faz o carrinho subir.
+
+</Brincando>
+
+<QuemAtravessaAMembrana />
+
+## A bomba de sódio e potássio
+
+A bomba mais famosa fica em todas as células animais. Em cada ciclo, ela:
+
+- **Joga 3 íons de sódio (Na⁺) para fora.**
+- **Traz 2 íons de potássio (K⁺) para dentro.**
+- **Gasta 1 ATP.**
+
+Ela mantém o sódio alto fora e o potássio alto dentro, e isso é o que permite aos **neurônios** mandar sinais elétricos, aos músculos se contrair e à célula manter o volume. Os neurônios gastam uma fatia enorme de toda a energia que usam só para manter essas bombas funcionando.
+
+<ExemploResolvido titulo="A bomba faz 10 ciclos. Quantos íons de cada tipo ela move e quantos ATP gasta?">
+  <Passo>Em cada ciclo saem 3 Na⁺: 10 × 3 = **30 Na⁺** para fora.</Passo>
+  <Passo>Em cada ciclo entram 2 K⁺: 10 × 2 = **20 K⁺** para dentro.</Passo>
+  <Passo>Cada ciclo gasta 1 ATP: **10 ATP** no total.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma bomba de sódio e potássio faz 10 ciclos. Quantos íons de sódio ela joga para fora?" resposta="30" dica="3 por ciclo." resolucao="10 × 3 = 30 íons de sódio." />
+
+<Exercicio enunciado="Uma bomba de sódio e potássio faz 10 ciclos. Quantos íons de potássio ela traz para dentro?" resposta="20" dica="2 por ciclo." resolucao="10 × 2 = 20 íons de potássio." />
+
+<Exercicio enunciado="Quantos ATP uma bomba gasta em 25 ciclos, sendo 1 ATP por ciclo?" resposta="25" dica="1 ATP por ciclo." resolucao="25 × 1 = 25 ATP." />
+
+<Aprofundar titulo="Por que 3 para fora e 2 para dentro?">
+
+A conta não é redonda, e isso é de propósito. Como a bomba tira 3 cargas positivas e traz só 2, a cada ciclo o **lado de dentro fica um pouco mais negativo** do que o de fora. Essa diferença elétrica da membrana é parte da voltagem que os neurônios usam para transmitir sinais. Foi Jens Skou quem descobriu a enzima responsável, em 1957, estudando nervos de caranguejo. Ele ganhou o Nobel de Química em 1997.
+
+</Aprofundar>
+
+## Osmose: a água vai para onde tem mais sal
+
+Agora podemos dar nomes certos. Numa solução temos o **soluto** (o que se dissolve, como o sal) e o **solvente** (o que dissolve, como a água). A <Termo cor="verde">osmose</Termo> é a passagem do solvente por uma membrana **semipermeável**, do lado com **menos soluto** para o lado com **mais soluto**.
+
+Para comparar dois lados, usamos três palavras:
+
+- **Hipotônico:** tem **menos** soluto que o outro lado.
+- **Isotônico:** tem **a mesma** quantidade.
+- **Hipertônico:** tem **mais** soluto que o outro lado.
+
+A água sempre vai do meio hipotônico para o hipertônico. Para uma hemácia, cuja parte de dentro tem uns 0,9% de sal, isso quer dizer:
+
+- **Fora com menos sal** (hipotônico): a água entra, a célula incha e pode estourar.
+- **Fora com a mesma quantidade** (isotônico): nada muda.
+- **Fora com mais sal** (hipertônico): a água sai e a célula murcha.
+
+<CelulaEmTresMeios />
+
+As células vegetais têm uma **parede celular** que as protege. Num meio hipotônico, elas enchem até a parede segurar e ficam firmes (**turgor**). Num meio hipertônico, perdem água e a planta murcha.
+
+<Brincando titulo="Hipo e hiper: a festa e a rua vazia">
+
+Imagine duas ruas ligadas por uma ponte. Numa tem uma festa lotada de gente (muito soluto). Na outra, só alguns vizinhos (pouco soluto). Se o que pode atravessar a ponte são só as **moléculas de água**, elas vão procurar a festa e deixar a rua vazia ainda mais vazia. A água sempre vai para onde está o "agito", ou seja, o lado com mais soluto.
+
+</Brincando>
+
+<ExemploResolvido titulo="Uma hemácia (0,9% de sal por dentro) cai num copo com 0,3% de sal. O que acontece?">
+  <Passo>Fora tem **menos** sal (0,3% contra 0,9%): o meio é **hipotônico**.</Passo>
+  <Passo>A água vai para onde há mais sal: **para dentro** da célula.</Passo>
+  <Passo>A hemácia **incha** e, se entrar água demais, **estoura** (hemólise).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O soro fisiológico tem 0,9 g de sal em cada 100 mL. Quantos gramas de sal há em 1 litro (1.000 mL)?" resposta="9" dica="1.000 mL é 10 vezes 100 mL." resolucao="0,9 × 10 = 9 g de sal em 1 litro." />
+
+<Exercicio enunciado="Quantos gramas de sal há numa bolsa de soro fisiológico de 500 mL (0,9 g em cada 100 mL)?" resposta="4,5" dica="500 mL = 5 vezes 100 mL." resolucao="0,9 × 5 = 4,5 g." />
+
+<Exercicio enunciado="Se você dissolve 30 g de sal em 1 litro de água, quantos gramas de sal há em 250 mL dessa mistura?" resposta="7,5" dica="250 mL é um quarto de litro." resolucao="30 ÷ 4 = 7,5 g." />
+
+<Exercicio enunciado="A hemácia tem 0,9% de sal dentro e está num copo com 0,3% de sal. Quantas vezes o sal de dentro é maior que o de fora?" resposta="3" dica="0,9 ÷ 0,3." resolucao="0,9 ÷ 0,3 = 3 vezes." />
+
+<Aprofundar titulo="Pressão osmótica: a força da osmose">
+
+A osmose é capaz de empurrar. Se a água entra num recipiente fechado, ela cria uma pressão chamada **pressão osmótica**, que o químico Jacobus van 't Hoff calculou, no fim do século XIX, com a fórmula de gás: **π = i · M · R · T**. Aqui M é a concentração em mol por litro, R = 0,082 atm·L/(mol·K), T é a temperatura em kelvin e i é o número de partículas que cada unidade do soluto libera (o sal de cozinha, NaCl, vira 2 íons, então i = 2). Para o soro fisiológico (9 g/L, o que dá cerca de 0,154 mol/L) a 37 °C (310 K), o resultado é cerca de 7,8 atm, uma pressão enorme para uma célula de membrana tão fina. É por isso que uma hemácia na água pura **estoura**.
+
+</Aprofundar>
+
+## Osmose na vida real
+
+- **Salgar para conservar:** o bacalhau, a carne seca e o charque são salgados. O sal em volta puxa a água dos micróbios que tentam crescer, e eles murcham. Sem água, não estragam.
+- **Doces em calda:** geleias e compotas têm tanto açúcar que fazem o mesmo. O açúcar também é um soluto.
+- **Sede com água do mar:** a água do mar tem cerca de 35 g de sal por litro, bem mais do que o corpo aguenta. Beber água do mar tira água das suas células e piora a sede.
+- **Lesma no sal:** o sal puxa a água do corpo mole dela, e ela desidrata. É um exemplo de osmose em ação, mas é cruel: melhor evitar.
+- **Raízes:** as raízes têm mais soluto que o solo úmido, então puxam água da terra por osmose. Se você exagera no adubo, o solo fica "mais salgado" que a raiz, e a planta murcha por excesso de adubo.
+- **Rins artificiais:** na hemodiálise, o sangue passa por uma membrana que deixa sair resíduos e retém as células, mimetizando o trabalho dos rins.
+- **Dessalinização:** na osmose reversa, uma bomba faz força **contra** a osmose e empurra a água do mar por uma membrana fina que deixa passar só a água. O sal fica para trás.
+
+<SaladaMurcha />
+
+<ExemploResolvido titulo="Quanto sal há em 2 litros de água do mar, se cada litro tem cerca de 35 g?">
+  <Passo>Cada litro tem 35 g de sal.</Passo>
+  <Passo>Em 2 litros: 2 × 35 = **70 g**.</Passo>
+  <Passo>Como a pessoa precisaria beber muito para repor a água perdida, e o sal que entra puxa ainda mais água, a conta não fecha: beber água do mar desidrata.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Cada litro de água do mar tem cerca de 35 g de sal. Quantos gramas de sal há em 2 litros?" resposta="70" dica="2 × 35." resolucao="2 × 35 = 70 g." />
+
+<Exercicio enunciado="A alface tem cerca de 95% de água. Quantos gramas de água há numa alface de 200 g?" resposta="190" dica="95% de 200." resolucao="0,95 × 200 = 190 g de água." />
+
+<Aprofundar titulo="Como a ameba e o peixe de água doce lidam com a osmose?">
+
+Quem vive na água doce está sempre num meio hipotônico: a água quer entrar o tempo todo. A **ameba** de água doce tem um **vacúolo contrátil**, uma bolsinha que enche de água e depois **espirra** para fora, como quem esvazia um barco com um balde. Os **peixes de água doce** fazem xixi diluído e muito, e os de água salgada fazem o contrário, bebem água do mar e eliminam o sal pelas brânquias. Cada ser vivo encontrou um jeito de equilibrar a água por dentro.
+
+</Aprofundar>
+
+## Onde isso aparece na vida
+
+- **Soro e injeções:** o líquido que entra na veia é isotônico, para não estourar nem murchar as células do sangue.
+- **Colírio e soro nasal:** também são feitos isotônicos, para não arder.
+- **Diabetes:** com muita glicose no sangue, o corpo precisa fazer mais xixi e dá muita sede. A glicose "puxa" água.
+- **Pele enrugada no banho:** a pele dos dedos fica enrugada na água, em parte por reações dos nervos que controlam os vasos. Não é osmose pura, e esse é um mito comum.
+- **Raízes e plantas:** a água sobe das raízes até as folhas num caminho que começa pela osmose.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'De que é feita a base da membrana plasmática?',
+    opcoes: ['Uma camada de açúcar', 'Uma bicamada de fosfolipídios', 'Uma camada de proteína só'],
+    correta: 1,
+    explicacao: 'Os fosfolipídios se arrumam em duas camadas, com as cabeças para a água e as caudas para dentro.',
+  },
+  {
+    enunciado: 'Por que dizemos que a membrana é seletiva?',
+    opcoes: ['Porque deixa passar tudo', 'Porque controla o que entra e o que sai', 'Porque só deixa a água passar'],
+    correta: 1,
+    explicacao: 'Ela deixa passar algumas substâncias, bloqueia outras e abre portões especiais para outras ainda.',
+  },
+  {
+    enunciado: 'Qual a característica da difusão?',
+    opcoes: ['Vai de onde há menos para onde há mais, com ATP', 'Vai de onde há mais para onde há menos, sem ATP', 'Só acontece em plantas'],
+    correta: 1,
+    explicacao: 'Na difusão, as partículas descem o gradiente de concentração, de graça.',
+  },
+  {
+    enunciado: 'Se a distância de difusão fica 10 vezes maior, o tempo fica:',
+    opcoes: ['10 vezes maior', '100 vezes maior', 'Igual'],
+    correta: 1,
+    explicacao: 'O tempo de difusão cresce com o quadrado da distância: 10 × 10 = 100.',
+  },
+  {
+    enunciado: 'O oxigênio entra numa célula por qual caminho?',
+    opcoes: ['Difusão simples, direto pela gordura', 'Bomba com gasto de ATP', 'Só pelo núcleo'],
+    correta: 0,
+    explicacao: 'O oxigênio é pequeno e sem carga, e atravessa a bicamada direto.',
+  },
+  {
+    enunciado: 'O que é o transporte ativo?',
+    opcoes: ['Movimento a favor do gradiente, sem energia', 'Movimento contra o gradiente, com gasto de ATP', 'Movimento da água somente'],
+    correta: 1,
+    explicacao: 'No transporte ativo, a bomba leva a substância para onde já há muito dela, e para isso gasta energia.',
+  },
+  {
+    enunciado: 'A cada ciclo, a bomba de sódio e potássio faz o quê?',
+    opcoes: ['3 Na⁺ para dentro e 2 K⁺ para fora', '3 Na⁺ para fora e 2 K⁺ para dentro', '2 Na⁺ para fora e 3 K⁺ para dentro'],
+    correta: 1,
+    explicacao: 'Três íons de sódio saem e dois de potássio entram, gastando 1 ATP.',
+  },
+  {
+    enunciado: 'O que é osmose?',
+    opcoes: ['A passagem da água por uma membrana semipermeável, do lado com menos soluto para o lado com mais', 'A passagem do sal pela membrana', 'A fabricação de proteínas'],
+    correta: 0,
+    explicacao: 'A água se move para o lado mais concentrado, tentando diluí-lo.',
+  },
+  {
+    enunciado: 'Uma hemácia é colocada em água pura. O que acontece?',
+    opcoes: ['Murcha', 'Incha e pode estourar', 'Fica igual'],
+    correta: 1,
+    explicacao: 'A água pura é hipotônica em relação à célula: a água entra, e a hemácia incha e pode estourar.',
+  },
+  {
+    enunciado: 'Por que a salada com sal murcha?',
+    opcoes: ['O sal sai das folhas', 'A água sai das células, atraída pelo sal de fora', 'O sal esquenta a folha'],
+    correta: 1,
+    explicacao: 'O meio fica hipertônico, e a água das células sai por osmose.',
+  },
+  {
+    enunciado: 'Quantos gramas de sal há em 500 mL de soro fisiológico (0,9 g em 100 mL)?',
+    opcoes: ['0,9 g', '4,5 g', '9 g'],
+    correta: 1,
+    explicacao: '0,9 × 5 = 4,5 g.',
+  },
+  {
+    enunciado: 'Por que o bacalhau salgado dura muito tempo sem estragar?',
+    opcoes: ['O sal puxa a água dos micróbios, que murcham', 'O sal esquenta o bacalhau', 'O sal é um alimento para micróbios'],
+    correta: 0,
+    explicacao: 'O sal deixa o meio hipertônico para os micróbios: a água sai deles e não conseguem crescer.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Membrana plasmática:** bicamada de fosfolipídios com proteínas (mosaico fluido). Seletiva: controla o que entra e sai.
+- **Difusão:** de onde há mais para onde há menos, sem gastar ATP. O tempo cresce com o quadrado da distância, o que explica por que as células são pequenas.
+- **Caminhos:** difusão simples (O₂, CO₂, gorduras), difusão facilitada (glicose e íons, por proteínas), osmose (água, por aquaporinas) e transporte ativo (contra o gradiente, com ATP).
+- **Bomba de sódio e potássio:** 3 Na⁺ para fora, 2 K⁺ para dentro, 1 ATP por ciclo.
+- **Osmose:** a água vai do meio com menos soluto (hipotônico) para o com mais (hipertônico). Em meio isotônico, nada muda. O soro fisiológico tem 0,9% de sal.
+- **Na vida:** salga de alimentos, salada que murcha, sede com água do mar, soro, dessalinização.
+
+**Um pouco de história.** Em 1748, o abade Nollet notou que uma bexiga de porco deixava a água entrar e segurava o álcool. Dutrochet batizou o fenômeno de osmose em 1826. Gorter e Grendel (1925) descobriram a bicamada, e Singer e Nicolson (1972) propuseram o modelo do mosaico fluido. Skou (bomba de sódio e potássio, 1957) e Agre (aquaporinas) ganharam o Nobel.
+
+</Resumo>
+
+A membrana protege a célula, e a célula é a base da vida. As conexões abaixo levam para as cápsulas que continuam o assunto, como a das soluções, e para o que as células fazem com a energia que a bomba gasta:
+
+<Conexoes />
+
+</Etapa>
