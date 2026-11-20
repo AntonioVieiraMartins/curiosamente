@@ -24,7 +24,7 @@ const chip = (ativo: boolean) =>
 
 export default function Mapa() {
   const [params, setParams] = useSearchParams()
-  const [busca, setBusca] = useState('')
+  const [busca, setBusca] = useState(() => params.get('q') ?? '')
   const [filtro, setFiltro] = useState<Filtro>('tudo')
   const progresso = useTodoProgresso()
   const idBusca = useId()

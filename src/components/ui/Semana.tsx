@@ -1,22 +1,21 @@
-const dias = ['seg', 'ter', 'qua', 'qui', 'sex', 'sáb', 'dom']
+const dias = [
+  { letra: 'S', nome: 'segunda' }, { letra: 'T', nome: 'terça' }, { letra: 'Q', nome: 'quarta' },
+  { letra: 'Q', nome: 'quinta' }, { letra: 'S', nome: 'sexta' }, { letra: 'S', nome: 'sábado' }, { letra: 'D', nome: 'domingo' },
+]
 
-// Os 7 dias da semana; dia estudado fica verde com um "visto". Hoje ganha um contorno.
+// Os 7 dias da semana: dia estudado = bolinha verde cheia; hoje = anel verde; os outros = anel cinza
 export default function Semana({ estudados, hoje = -1 }: { estudados: boolean[]; hoje?: number }) {
   return (
-    <ol className="grid grid-cols-7 gap-1.5 sm:gap-2">
+    <ol className="flex justify-between">
       {dias.map((dia, i) => (
-        <li key={dia} className="text-center">
+        <li key={dia.nome} className="flex flex-col items-center gap-1.5">
           <span
-            className={`grid aspect-square place-items-center rounded-xl text-lg font-bold ${
-              estudados[i] ? 'bg-verde text-white' : 'bg-fundo text-transparent'
-            } ${i === hoje ? 'ring-2 ring-texto/40 ring-offset-2' : ''}`}
-          >
-            ✓
-          </span>
-          <span className={`mt-1.5 block text-xs ${i === hoje ? 'font-semibold text-texto' : 'text-suave'}`}>
-            {dia}
-            <span className="sr-only">{i === hoje ? ' (hoje)' : ''}{estudados[i] ? ': estudou' : ': não estudou'}</span>
-          </span>
+            className={`size-7 rounded-full ${
+              estudados[i] ? 'bg-verde' : `border-2 bg-superficie ${i === hoje ? 'border-verde' : 'border-borda'}`
+            }`}
+          />
+          <span className={`text-xs ${i === hoje ? 'font-semibold text-texto' : 'text-suave'}`} aria-hidden="true">{dia.letra}</span>
+          <span className="sr-only">{dia.nome}{i === hoje ? ' (hoje)' : ''}{estudados[i] ? ': estudou' : ': não estudou'}</span>
         </li>
       ))}
     </ol>

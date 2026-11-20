@@ -30,7 +30,7 @@ export default function EnigmaDoDia() {
   }
 
   return (
-    <section className="mx-auto max-w-3xl px-4 pt-8 sm:pt-14" aria-label="Curiosidades e enigmas">
+    <section aria-label="Curiosidades e enigmas">
       <div
         className={`${cartao} relative overflow-hidden p-5 pb-4 text-center sm:p-10 sm:pb-6`}
         onMouseEnter={() => setSobre(true)}

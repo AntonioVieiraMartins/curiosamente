@@ -8,10 +8,10 @@ export default function ReguaXp({ xpTotal }: { xpTotal: number }) {
   const porcento = Math.round(((xpTotal - inicio) / (fim - inicio)) * 100)
 
   return (
-    <div>
-      <div className="flex items-baseline justify-between text-sm">
-        <span className="font-semibold">Nível {nivel}</span>
-        <span className="text-suave">faltam {fim - xpTotal} XP para o nível {nivel + 1}</span>
+    <div className="flex flex-col gap-3">
+      <div className="flex items-baseline justify-between">
+        <span className="font-serif text-[26px] font-medium">Nível {nivel}</span>
+        <span className="text-[13px] text-suave">{xpTotal.toLocaleString('pt-BR')} XP</span>
       </div>
       <div
         role="progressbar"
@@ -19,14 +19,11 @@ export default function ReguaXp({ xpTotal }: { xpTotal: number }) {
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={porcento}
-        className="mt-3 h-3 overflow-hidden rounded-full bg-fundo"
+        className="h-2.5 overflow-hidden rounded-full bg-fundo"
       >
-        <div className="h-full rounded-full bg-azul" style={{ width: `${Math.max(porcento, 2)}%` }} />
+        <div className="h-full rounded-full bg-verde" style={{ width: `${Math.max(porcento, 2)}%` }} />
       </div>
-      <div aria-hidden="true" className="mt-2 flex justify-between text-xs text-suave">
-        <span>{inicio} XP</span>
-        <span>{fim} XP</span>
-      </div>
+      <span className="text-[13px] text-suave">Faltam {fim - xpTotal} XP para o nível {nivel + 1}</span>
     </div>
   )
 }

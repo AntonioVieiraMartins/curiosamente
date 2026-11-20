@@ -1,92 +1,75 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { useState, type FormEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
 import EnigmaDoDia from '../../components/inicio/EnigmaDoDia'
 import Vitrine from '../../components/inicio/Vitrine'
-import Rotulo from '../../components/ui/Rotulo'
-import { botaoPrimario, cartao } from '../../components/ui/estilos'
-import { areas, capsulas, linhaDaCapsula, linhas } from '../../conteudo/indice'
-import CartaoDaLinha from '../../components/mapa/CartaoDaLinha'
+import CartaoContinuar from '../../components/inicio/CartaoContinuar'
+import CartaoRevisaoDeHoje from '../../components/inicio/CartaoRevisaoDeHoje'
+import PainelDoProgresso from '../../components/inicio/PainelDoProgresso'
+import SuasLinhas from '../../components/inicio/SuasLinhas'
+import { capsulas } from '../../conteudo/indice'
 import { useTodoProgresso } from '../../hooks/useProgresso'
 import { useCartoesDeHoje } from '../../hooks/useCartoes'
 
-const combinado = [
-  { titulo: 'Errar não tira ponto', texto: 'Quando você erra, a cápsula mostra o porquê.' },
-  { titulo: 'Palpite antes de ver', texto: 'Toda simulação começa com uma aposta sua.' },
-  { titulo: 'Fato é fato', texto: 'E quando é mito, a gente chama de mito.' },
-]
+// Saudação e data no horário de Brasília
+function saudacaoEData() {
+  const agora = new Date()
+  const hora = Number(new Intl.DateTimeFormat('pt-BR', { hour: 'numeric', hourCycle: 'h23', timeZone: 'America/Sao_Paulo' }).format(agora))
+  const data = new Intl.DateTimeFormat('pt-BR', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'America/Sao_Paulo' }).format(agora)
+  return {
+    saudacao: hora < 12 ? 'Bom dia' : hora < 18 ? 'Boa tarde' : 'Boa noite',
+    data: data.charAt(0).toUpperCase() + data.slice(1),
+  }
+}
 
 export default function Inicio() {
   const pendentes = useCartoesDeHoje().length
   const progresso = useTodoProgresso()
   const navegar = useNavigate()
+  const [busca, setBusca] = useState('')
+  const { saudacao, data } = saudacaoEData()
   const retomar = capsulas.find((c) => !progresso[c.id]?.concluida && (progresso[c.id]?.concluidas.length ?? 0) > 0)
+
+  function buscar(e: FormEvent) {
+    e.preventDefault()
+    const termo = busca.trim()
+    navegar(termo ? `/mapa?q=${encodeURIComponent(termo)}` : '/mapa')
+  }
+
   return (
-    <>
-      {pendentes > 0 && (
-        <section className="mx-auto max-w-3xl px-4 pt-6">
-          <div className={`${cartao} flex flex-wrap items-center justify-between gap-3 p-4 sm:p-5`}>
-            <p className="font-semibold">
-              Você tem {pendentes} {pendentes === 1 ? 'cartão' : 'cartões'} para revisar hoje.
-            </p>
-            <Link to="/revisar" className={botaoPrimario}>Revisar agora</Link>
+    <div className="mx-auto grid max-w-[1200px] gap-8 px-4 pb-4 pt-2 sm:pt-9 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-x-8 lg:px-10">
+      <div className="flex min-w-0 flex-col gap-4 sm:gap-8">
+        <header className="flex flex-wrap items-end justify-between gap-5">
+          <div>
+            <span className="hidden text-xs font-semibold uppercase tracking-[0.08em] text-suave sm:block">{data}</span>
+            <h1 className="mt-1.5 font-serif text-[28px] font-medium leading-[1.15] sm:text-[40px] sm:leading-[1.1]">
+              {saudacao}. O que vamos <em>descobrir</em> hoje?
+            </h1>
           </div>
-        </section>
-      )}
-      {retomar && (
-        <section className="mx-auto max-w-3xl px-4 pt-4">
-          <div className={`${cartao} flex flex-wrap items-center justify-between gap-3 p-4 sm:p-5`}>
-            <p className="min-w-0 font-semibold">
-              <span className="block text-sm font-normal text-suave">Continuar de onde parou</span>
-              {retomar.titulo}
-            </p>
-            <Link to={`/capsula/${retomar.id}`} className={botaoPrimario}>Continuar</Link>
-          </div>
-        </section>
-      )}
-      <EnigmaDoDia />
+          <form onSubmit={buscar} role="search" className="hidden min-h-12 w-[300px] items-center gap-2 rounded-full border border-borda bg-superficie px-[18px] text-suave sm:flex">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true"><path d="M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.3-4.3" /></svg>
+            <input
+              type="search"
+              value={busca}
+              onChange={(e) => setBusca(e.target.value)}
+              placeholder="Buscar: frações, DNS, célula…"
+              aria-label="Buscar cápsula"
+              className="w-full bg-transparent text-[15px] text-texto outline-none"
+            />
+          </form>
+        </header>
 
-      <section className="mx-auto mt-16 max-w-5xl px-4 sm:mt-24">
-        <Rotulo>Suas trilhas</Rotulo>
-        <h2 className="mt-3 max-w-2xl font-serif text-3xl font-medium leading-tight sm:text-[2.6rem]">
-          Escolha uma área e <em>siga seu ritmo.</em>
-        </h2>
-        <p className="mt-3 max-w-xl text-suave">Cada cápsula tem sete paradas curtas: do palpite ao desafio final. Você decide até onde ir.</p>
-        <div className="mt-8 space-y-10">
-          {areas.map((a) => (
-            <section key={a.id} aria-label={a.nome}>
-              <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-                <h3 className="font-serif text-2xl font-medium">{a.nome}</h3>
-                <Link to={`/mapa?area=${a.id}`} className="text-sm font-semibold text-azul-texto underline-offset-4 hover:underline">Ver tudo de {a.nome}</Link>
-              </div>
-              <p className="text-suave">{a.descricao}</p>
-              <div className="mt-3 grid gap-4 sm:grid-cols-2">
-                {linhas.filter((l) => l.area === a.id).map((l) => (
-                  <CartaoDaLinha
-                    key={l.id}
-                    linha={l}
-                    capsulas={capsulas.filter((c) => linhaDaCapsula(c) === l.id)}
-                    progresso={progresso}
-                    aoAbrir={() => navegar(`/mapa?linha=${l.id}`)}
-                  />
-                ))}
-              </div>
-            </section>
-          ))}
-        </div>
-      </section>
+        {(retomar || pendentes > 0) && (
+          <section aria-label="Hoje" className="grid gap-4 sm:grid-cols-3">
+            {retomar && <CartaoContinuar cap={retomar} progresso={progresso[retomar.id]} />}
+            {pendentes > 0 && <CartaoRevisaoDeHoje n={pendentes} />}
+          </section>
+        )}
 
-      <Vitrine />
-
-      <section className="mx-auto mt-24 max-w-5xl px-4 sm:mt-32">
-        <h2 className="text-center font-serif text-3xl font-medium sm:text-[2.6rem]">O combinado</h2>
-        <ul className="mt-10 grid gap-5 sm:grid-cols-3">
-          {combinado.map((c) => (
-            <li key={c.titulo} className={`${cartao} p-6`}>
-              <p className="font-semibold">{c.titulo}</p>
-              <p className="mt-1 text-suave">{c.texto}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </>
+        <EnigmaDoDia />
+        <Vitrine />
+        <SuasLinhas />
+      </div>
+      <PainelDoProgresso />
+    </div>
   )
 }

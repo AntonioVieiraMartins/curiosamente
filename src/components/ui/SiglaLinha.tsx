@@ -1,8 +1,8 @@
 import type { Linha } from '../../conteudo/indice'
 
 // Bolinha com a letra da linha, como nas placas de metrô
-export default function SiglaLinha({ linha, tamanho = 'm' }: { linha: Linha; tamanho?: 'p' | 'm' }) {
-  const medida = tamanho === 'p' ? 'size-5 text-[10px]' : 'size-10 text-base'
+export default function SiglaLinha({ linha, tamanho = 'm' }: { linha: Linha; tamanho?: 'p' | 'n' | 'm' }) {
+  const medida = tamanho === 'p' ? 'size-5 text-[10px]' : tamanho === 'n' ? 'size-7 text-xs' : 'size-10 text-base'
   return (
     <span
       aria-hidden="true"
