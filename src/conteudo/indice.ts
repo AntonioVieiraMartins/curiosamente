@@ -2,14 +2,14 @@
 // Na etapa 2 do roteiro, cada cápsula pronta ganha sua pasta com meta.ts + capsula.mdx.
 // Para adicionar uma área nova no futuro, basta criar uma linha em `linhas` e itens aqui.
 
-export type Area = 'matematica' | 'computacao'
+export type Area = 'matematica' | 'computacao' | 'biologia' | 'quimica'
 export type Estado = 'pronta' | 'proxima' | 'em-breve'
 
 export type ResumoCapsula = {
   id: string
   titulo: string
   area: Area
-  trilha: string // matemática: "basica" | "fundamental" | "medio"; computação: nome do módulo
+  trilha: string // matemática: "basica" | "fundamental" | "medio" | "avancada"; computação: nome do módulo; biologia e química: o nome da área
   gancho: string
   estado: Estado
   duracaoMin?: number
@@ -19,18 +19,31 @@ export type ResumoCapsula = {
 
 export type Linha = {
   id: string
+  area: Area
   sigla: string
   nome: string
   descricao: string
   cor: string
 }
 
+// Cada área agrupa uma ou mais linhas do mapa (a Matemática tem quatro; as outras têm uma)
+export type InfoArea = { id: Area; nome: string; descricao: string; linhas: string[] }
+
+export const areas: InfoArea[] = [
+  { id: 'matematica', nome: 'Matemática', descricao: 'Da tabuada ao cálculo', linhas: ['basica', 'fundamental', 'medio', 'avancada'] },
+  { id: 'computacao', nome: 'Computação', descricao: 'Do computador ao sistema no ar', linhas: ['computacao'] },
+  { id: 'biologia', nome: 'Biologia', descricao: 'Da célula aos ecossistemas', linhas: ['biologia'] },
+  { id: 'quimica', nome: 'Química', descricao: 'Do átomo às reações do dia a dia', linhas: ['quimica'] },
+]
+
 export const linhas: Linha[] = [
-  { id: 'basica', sigla: 'B', nome: 'Matemática · Básica', descricao: '1º ao 5º ano, a base de tudo', cor: 'var(--color-basica)' },
-  { id: 'fundamental', sigla: 'F', nome: 'Matemática · Fundamental', descricao: '6º ao 9º ano', cor: 'var(--color-fundamental)' },
-  { id: 'medio', sigla: 'M', nome: 'Matemática · Médio', descricao: '1º ao 3º ano', cor: 'var(--color-medio)' },
-  { id: 'avancada', sigla: 'A', nome: 'Matemática · Avançada', descricao: 'Cálculo, álgebra linear e além do Médio', cor: 'var(--color-avancada)' },
-  { id: 'computacao', sigla: 'C', nome: 'Computação', descricao: 'Do computador ao sistema no ar', cor: 'var(--color-computacao)' },
+  { id: 'basica', area: 'matematica', sigla: 'B', nome: 'Matemática · Básica', descricao: '1º ao 5º ano, a base de tudo', cor: 'var(--color-basica)' },
+  { id: 'fundamental', area: 'matematica', sigla: 'F', nome: 'Matemática · Fundamental', descricao: '6º ao 9º ano', cor: 'var(--color-fundamental)' },
+  { id: 'medio', area: 'matematica', sigla: 'M', nome: 'Matemática · Médio', descricao: '1º ao 3º ano', cor: 'var(--color-medio)' },
+  { id: 'avancada', area: 'matematica', sigla: 'A', nome: 'Matemática · Avançada', descricao: 'Cálculo, álgebra linear e além do Médio', cor: 'var(--color-avancada)' },
+  { id: 'computacao', area: 'computacao', sigla: 'C', nome: 'Computação', descricao: 'Do computador ao sistema no ar', cor: 'var(--color-computacao)' },
+  { id: 'biologia', area: 'biologia', sigla: 'Bi', nome: 'Biologia', descricao: 'Da célula aos ecossistemas', cor: 'var(--color-biologia)' },
+  { id: 'quimica', area: 'quimica', sigla: 'Q', nome: 'Química', descricao: 'Do átomo às reações do dia a dia', cor: 'var(--color-quimica)' },
 ]
 
 export const modulosComputacao: Record<string, string> = {
@@ -45,6 +58,13 @@ const m = (trilha: string, id: string, titulo: string, gancho: string, extra: Pa
 })
 const c = (trilha: string, id: string, titulo: string, gancho: string, extra: Partial<ResumoCapsula> = {}): ResumoCapsula => ({
   id, titulo, gancho, trilha, area: 'computacao', estado: 'em-breve', ...extra,
+})
+// Biologia e química têm uma linha só; os assuntos se dividem em `grupo`
+const bio = (id: string, titulo: string, gancho: string, extra: Partial<ResumoCapsula> = {}): ResumoCapsula => ({
+  id, titulo, gancho, trilha: 'biologia', area: 'biologia', estado: 'em-breve', ...extra,
+})
+const qui = (id: string, titulo: string, gancho: string, extra: Partial<ResumoCapsula> = {}): ResumoCapsula => ({
+  id, titulo, gancho, trilha: 'quimica', area: 'quimica', estado: 'em-breve', ...extra,
 })
 
 export const capsulas: ResumoCapsula[] = [
@@ -165,10 +185,70 @@ export const capsulas: ResumoCapsula[] = [
   c('sistema-web', 'senhas-e-hash', 'Usuários e login', 'Por que ninguém deveria guardar sua senha.', { estado: 'pronta', duracaoMin: 40, conexoes: ['banco-de-dados', 'numeros-primos'] }),
   c('hospedagem', 'git-e-github', 'Git e GitHub', 'Salvar o jogo do código e voltar no tempo.', { estado: 'pronta', duracaoMin: 40, conexoes: ['terminal'] }),
   c('hospedagem', 'deploy', 'Deploy', 'Do seu computador para o mundo.', { estado: 'pronta', duracaoMin: 40, conexoes: ['dns'] }),
+
+  // Biologia: da célula aos ecossistemas, na ordem em que as ideias se apoiam
+  bio('o-que-e-vida', 'O que é vida?', 'Um vírus está vivo? Os cientistas ainda discutem.', { grupo: 'A célula e a vida' }),
+  bio('celula', 'A célula', 'Somos feitos de trilhões de minúsculas fábricas.', { grupo: 'A célula e a vida' }),
+  bio('microscopio', 'Microscópio e o mundo invisível', 'Numa gota de água de lagoa vive um zoológico.', { grupo: 'A célula e a vida', conexoes: ['notacao-cientifica'] }),
+  bio('membrana-e-osmose', 'Membrana e osmose', 'Por que a alface murcha quando recebe sal?', { grupo: 'A célula e a vida', conexoes: ['solucoes-e-concentracao'] }),
+  bio('fotossintese', 'Fotossíntese', 'A planta fabrica a própria comida com luz, água e ar.', { grupo: 'Energia da vida', conexoes: ['reacoes-quimicas'] }),
+  bio('respiracao-celular', 'Respiração celular', 'A bateria de cada célula: de onde vem a energia do corpo.', { grupo: 'Energia da vida', conexoes: ['energia-nas-reacoes'] }),
+  bio('dna-e-genes', 'DNA e genes', 'O manual de instruções que cada célula carrega.', { grupo: 'Genética', conexoes: ['binario'] }),
+  bio('divisao-celular', 'Divisão celular: mitose e meiose', 'Como uma célula vira duas, e por que irmãos não são cópias.', { grupo: 'Genética' }),
+  bio('mendel', 'As ervilhas de Mendel', 'Por que filhos se parecem com os pais sem serem cópias?', { grupo: 'Genética', conexoes: ['probabilidade-simples'] }),
+  bio('heredogramas', 'Heredogramas e probabilidade', 'Qual a chance de um bebê ter os olhos do avô?', { grupo: 'Genética', conexoes: ['probabilidade'] }),
+  bio('mutacoes', 'Mutações', 'Um erro de cópia pode ser ruim, neutro ou até útil.', { grupo: 'Genética' }),
+  bio('biotecnologia', 'Biotecnologia e edição do DNA', 'Insulina feita por bactérias e o que é o CRISPR.', { grupo: 'Genética' }),
+  bio('selecao-natural', 'Seleção natural', 'Por que as bactérias ficam resistentes aos antibióticos?', { grupo: 'Evolução e diversidade', conexoes: ['probabilidade-simples'] }),
+  bio('fosseis-e-tempo', 'Fósseis e o tempo profundo', 'Como descobrir a idade de uma rocha?', { grupo: 'Evolução e diversidade', conexoes: ['exponencial'] }),
+  bio('classificacao', 'Classificação dos seres vivos', 'Por que a baleia não é um peixe?', { grupo: 'Evolução e diversidade' }),
+  bio('virus-e-bacterias', 'Vírus e bactérias', 'Quem é vilão, quem é amigo e quem só está de passagem.', { grupo: 'Evolução e diversidade' }),
+  bio('cadeias-alimentares', 'Cadeias e teias alimentares', 'Quem come quem, e o que acontece quando um some.', { grupo: 'Ecologia' }),
+  bio('populacoes', 'Populações e crescimento', 'Coelhos e raposas: por que a conta não cresce para sempre?', { grupo: 'Ecologia', conexoes: ['exponencial'] }),
+  bio('ciclos-da-natureza', 'Ciclos da água, do carbono e do nitrogênio', 'Os átomos do seu corpo já passaram por outros seres.', { grupo: 'Ecologia', conexoes: ['atomo'] }),
+  bio('biomas-do-brasil', 'Biomas do Brasil', 'Amazônia, Cerrado, Mata Atlântica: cada um com seu jeito.', { grupo: 'Ecologia' }),
+  bio('efeito-estufa', 'Efeito estufa e clima', 'Sem efeito estufa a Terra seria um deserto gelado. E com demais?', { grupo: 'Ecologia', conexoes: ['gases'] }),
+  bio('impactos-ambientais', 'Impactos ambientais e sustentabilidade', 'O que muda quando uma cidade inteira recicla.', { grupo: 'Ecologia', conexoes: ['tabelas-e-graficos'] }),
+  bio('digestao', 'Digestão', 'A viagem de um pão pelo seu corpo.', { grupo: 'Corpo humano', conexoes: ['funcoes-inorganicas'] }),
+  bio('circulacao', 'Coração e circulação', 'Uma bomba que não para: o caminho do sangue.', { grupo: 'Corpo humano' }),
+  bio('respiracao', 'Respiração e pulmões', 'Por que o ar entra e sai sem você pensar?', { grupo: 'Corpo humano', conexoes: ['gases'] }),
+  bio('sistema-nervoso', 'Sistema nervoso', 'Como um toque vira um pensamento em frações de segundo.', { grupo: 'Corpo humano' }),
+  bio('imunidade-e-vacinas', 'Imunidade e vacinas', 'Como o corpo aprende a lutar sem ficar doente.', { grupo: 'Corpo humano', conexoes: ['virus-e-bacterias'] }),
+  bio('hormonios', 'Hormônios', 'Mensageiros químicos que mandam no corpo.', { grupo: 'Corpo humano', conexoes: ['quimica-da-vida'] }),
+  bio('reproducao-e-puberdade', 'Reprodução, puberdade e saúde', 'As mudanças do corpo e os cuidados que elas pedem.', { grupo: 'Corpo humano' }),
+  bio('plantas-e-sementes', 'Plantas, flores e sementes', 'Como uma semente sabe para onde crescer?', { grupo: 'Plantas', conexoes: ['fotossintese'] }),
+
+  // Química: do átomo às reações do dia a dia
+  qui('materia-e-propriedades', 'Matéria e suas propriedades', 'Por que o gelo boia na água? A densidade explica.', { grupo: 'Matéria e átomos', conexoes: ['razao-e-proporcao', 'medidas'] }),
+  qui('estados-da-materia', 'Estados da matéria', 'Por que a água vira gelo e vira vapor?', { grupo: 'Matéria e átomos' }),
+  qui('misturas-e-separacao', 'Misturas e separação', 'Como separar sal da água e areia do açúcar?', { grupo: 'Matéria e átomos' }),
+  qui('atomo', 'O átomo', 'Do "indivisível" dos gregos ao átomo que hoje conhecemos.', { grupo: 'Matéria e átomos', conexoes: ['notacao-cientifica'] }),
+  qui('modelos-atomicos', 'Modelos atômicos', 'De Dalton a Bohr: como imaginar o que ninguém vê.', { grupo: 'Matéria e átomos' }),
+  qui('tabela-periodica', 'Tabela periódica', 'Um mapa dos elementos com padrões escondidos.', { grupo: 'Matéria e átomos' }),
+  qui('mol', 'Mol e quantidade de matéria', 'Como contar átomos sem contar um por um.', { grupo: 'Matéria e átomos', conexoes: ['notacao-cientifica', 'potencias'] }),
+  qui('ligacoes-quimicas', 'Ligações químicas', 'Por que sal e açúcar se comportam tão diferente?', { grupo: 'Ligações e substâncias' }),
+  qui('moleculas-e-polaridade', 'Moléculas e polaridade', 'Por que óleo e água não se misturam?', { grupo: 'Ligações e substâncias' }),
+  qui('funcoes-inorganicas', 'Ácidos, bases e sais', 'O suco de repolho que muda de cor.', { grupo: 'Ligações e substâncias' }),
+  qui('ph', 'pH', 'Do limão ao sabão: uma escala que usa logaritmo.', { grupo: 'Ligações e substâncias', conexoes: ['logaritmo'] }),
+  qui('quimica-do-carbono', 'Química do carbono', 'Por que a vida é feita de carbono?', { grupo: 'Ligações e substâncias' }),
+  qui('reacoes-quimicas', 'Reações químicas', 'Como saber que algo se transformou de verdade?', { grupo: 'Reações' }),
+  qui('balanceamento', 'Balanceamento de equações', 'Átomos não somem: a lição de Lavoisier.', { grupo: 'Reações', conexoes: ['equacoes-1-grau'] }),
+  qui('estequiometria', 'Estequiometria: a receita das reações', 'Quanto de cada ingrediente para o bolo químico?', { grupo: 'Reações', conexoes: ['razao-e-proporcao'] }),
+  qui('energia-nas-reacoes', 'Energia nas reações', 'Por que a bolsa de gelo esfria e a de calor esquenta?', { grupo: 'Reações' }),
+  qui('velocidade-das-reacoes', 'Velocidade e catalisadores', 'Por que a comida dura mais na geladeira?', { grupo: 'Reações', conexoes: ['exponencial'] }),
+  qui('equilibrio-quimico', 'Equilíbrio químico', 'Quando a reação para de mudar, mas não para de acontecer.', { grupo: 'Reações' }),
+  qui('oxirreducao-e-pilhas', 'Oxirredução, pilhas e baterias', 'Como uma pilha transforma química em eletricidade?', { grupo: 'Reações' }),
+  qui('solucoes-e-concentracao', 'Soluções e concentração', 'Quanto sal tem no soro? Contas de misturas.', { grupo: 'Soluções e gases', conexoes: ['porcentagem', 'razao-e-proporcao'] }),
+  qui('gases', 'Os gases', 'Por que o balão murcha quando esfria?', { grupo: 'Soluções e gases', conexoes: ['funcoes'] }),
+  qui('quimica-da-cozinha', 'Química da cozinha', 'Por que o bolo cresce e a maçã escurece?', { grupo: 'Química no dia a dia' }),
+  qui('polimeros', 'Plásticos e polímeros', 'Moléculas que formam correntes gigantes.', { grupo: 'Química no dia a dia' }),
+  qui('combustiveis', 'Combustíveis e energia', 'De onde vem a energia do carro e do fogão?', { grupo: 'Química no dia a dia' }),
+  qui('quimica-ambiental', 'Química e meio ambiente', 'Chuva ácida, camada de ozônio e o que fazer.', { grupo: 'Química no dia a dia', conexoes: ['efeito-estufa'] }),
+  qui('quimica-da-vida', 'Química da vida', 'Proteínas, açúcares e gorduras: de que somos feitos.', { grupo: 'Química no dia a dia', conexoes: ['celula', 'dna-e-genes'] }),
 ]
 
 export function linhaDaCapsula(cap: { area: Area; trilha: string }) {
-  return cap.area === 'computacao' ? 'computacao' : cap.trilha
+  return cap.area === 'matematica' ? cap.trilha : cap.area
 }
 
 export function buscarLinha(cap: { area: Area; trilha: string }) {

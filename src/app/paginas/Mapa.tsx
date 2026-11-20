@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import Rotulo from '../../components/ui/Rotulo'
 import CartaoDaLinha from '../../components/mapa/CartaoDaLinha'
 import CapsulaCompacta from '../../components/mapa/CapsulaCompacta'
-import { capsulas, linhas, linhaDaCapsula, modulosComputacao, type ResumoCapsula } from '../../conteudo/indice'
+import { areas, capsulas, linhas, linhaDaCapsula, modulosComputacao, type ResumoCapsula } from '../../conteudo/indice'
 import { useTodoProgresso } from '../../hooks/useProgresso'
 import { botaoPrimario } from '../../components/ui/estilos'
 
@@ -29,7 +29,11 @@ export default function Mapa() {
   const progresso = useTodoProgresso()
   const idBusca = useId()
 
-  const linhaAberta = linhas.find((l) => l.id === params.get('linha'))
+  // A área vem do endereço (?area=) ou da linha aberta (?linha=). Áreas com uma linha só abrem direto nela.
+  const linhaDoEndereco = linhas.find((l) => l.id === params.get('linha'))
+  const areaAberta = areas.find((a) => a.id === (params.get('area') ?? linhaDoEndereco?.area))
+  const linhaAberta = linhaDoEndereco ?? (areaAberta?.linhas.length === 1 ? linhas.find((l) => l.id === areaAberta.linhas[0]) : undefined)
+  const linhasDaArea = areaAberta ? linhas.filter((l) => l.area === areaAberta.id) : []
   const andando = (id: string) => !progresso[id]?.concluida && (progresso[id]?.concluidas.length ?? 0) > 0
   const retomar = capsulas.find((c) => andando(c.id))
 
@@ -46,6 +50,11 @@ export default function Mapa() {
     setBusca('')
     setFiltro('tudo')
     setParams(id ? { linha: id } : {})
+  }
+  const escolherArea = (id: string | null) => {
+    setBusca('')
+    setFiltro('tudo')
+    setParams(id ? { area: id } : {})
   }
 
   // Grupos da linha aberta, na ordem do índice
@@ -85,7 +94,7 @@ export default function Mapa() {
           type="search"
           value={busca}
           onChange={(e) => setBusca(e.target.value)}
-          placeholder="Buscar: frações, DNS, Monty Hall…"
+          placeholder="Buscar: frações, DNS, célula, átomo…"
           className="min-h-12 w-full rounded-full border border-borda bg-superficie px-5 text-base"
         />
         <div className="mt-3 flex flex-wrap gap-2" role="group" aria-label="Filtros">
@@ -116,33 +125,50 @@ export default function Mapa() {
         </div>
       ) : (
         <>
-          <nav aria-label="Linhas" className="mt-8 flex gap-2 overflow-x-auto pb-1">
-            <button type="button" aria-pressed={!linhaAberta} onClick={() => escolher(null)} className={`${chip(!linhaAberta)} shrink-0`}>
-              Visão geral
+          <nav aria-label="Áreas" className="mt-8 flex gap-2 overflow-x-auto pb-1">
+            <button type="button" aria-pressed={!areaAberta} onClick={() => escolherArea(null)} className={`${chip(!areaAberta)} shrink-0`}>
+              Tudo
             </button>
-            {linhas.map((l) => (
-              <button
-                key={l.id}
-                type="button"
-                aria-pressed={linhaAberta?.id === l.id}
-                onClick={() => escolher(l.id)}
-                className={`${chip(linhaAberta?.id === l.id)} shrink-0`}
-              >
-                {l.nome.replace('Matemática · ', '')}
+            {areas.map((a) => (
+              <button key={a.id} type="button" aria-pressed={areaAberta?.id === a.id} onClick={() => escolherArea(a.id)} className={`${chip(areaAberta?.id === a.id)} shrink-0`}>
+                {a.nome}
               </button>
             ))}
           </nav>
+          {linhasDaArea.length > 1 && (
+            <nav aria-label={`Linhas de ${areaAberta?.nome}`} className="mt-2 flex gap-2 overflow-x-auto pb-1">
+              <button type="button" aria-pressed={!linhaAberta} onClick={() => escolherArea(areaAberta!.id)} className={`${chip(!linhaAberta)} shrink-0`}>
+                Todas
+              </button>
+              {linhasDaArea.map((l) => (
+                <button key={l.id} type="button" aria-pressed={linhaAberta?.id === l.id} onClick={() => escolher(l.id)} className={`${chip(linhaAberta?.id === l.id)} shrink-0`}>
+                  {l.nome.replace(`${areaAberta?.nome} · `, '')}
+                </button>
+              ))}
+            </nav>
+          )}
 
           {!linhaAberta ? (
-            <div className="mt-5 grid gap-4 sm:grid-cols-2">
-              {linhas.map((l) => (
-                <CartaoDaLinha
-                  key={l.id}
-                  linha={l}
-                  capsulas={capsulas.filter((c) => linhaDaCapsula(c) === l.id)}
-                  progresso={progresso}
-                  aoAbrir={() => escolher(l.id)}
-                />
+            <div className="mt-5 space-y-8">
+              {(areaAberta ? [areaAberta] : areas).map((a) => (
+                <section key={a.id} aria-label={a.nome}>
+                  {!areaAberta && (
+                    <h2 className="font-serif text-2xl font-medium">
+                      {a.nome} <span className="font-sans text-base font-normal text-suave">· {a.descricao}</span>
+                    </h2>
+                  )}
+                  <div className="mt-3 grid gap-4 sm:grid-cols-2">
+                    {linhas.filter((l) => l.area === a.id).map((l) => (
+                      <CartaoDaLinha
+                        key={l.id}
+                        linha={l}
+                        capsulas={capsulas.filter((c) => linhaDaCapsula(c) === l.id)}
+                        progresso={progresso}
+                        aoAbrir={() => escolher(l.id)}
+                      />
+                    ))}
+                  </div>
+                </section>
               ))}
             </div>
           ) : (

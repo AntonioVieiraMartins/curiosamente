@@ -3,7 +3,7 @@ import EnigmaDoDia from '../../components/inicio/EnigmaDoDia'
 import Vitrine from '../../components/inicio/Vitrine'
 import Rotulo from '../../components/ui/Rotulo'
 import { botaoPrimario, cartao } from '../../components/ui/estilos'
-import { capsulas, linhaDaCapsula, linhas } from '../../conteudo/indice'
+import { areas, capsulas, linhaDaCapsula, linhas } from '../../conteudo/indice'
 import CartaoDaLinha from '../../components/mapa/CartaoDaLinha'
 import { useTodoProgresso } from '../../hooks/useProgresso'
 import { useCartoesDeHoje } from '../../hooks/useCartoes'
@@ -47,18 +47,29 @@ export default function Inicio() {
       <section className="mx-auto mt-16 max-w-5xl px-4 sm:mt-24">
         <Rotulo>Suas trilhas</Rotulo>
         <h2 className="mt-3 max-w-2xl font-serif text-3xl font-medium leading-tight sm:text-[2.6rem]">
-          Escolha uma linha e <em>siga seu ritmo.</em>
+          Escolha uma área e <em>siga seu ritmo.</em>
         </h2>
         <p className="mt-3 max-w-xl text-suave">Cada cápsula tem sete paradas curtas: do palpite ao desafio final. Você decide até onde ir.</p>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
-          {linhas.map((l) => (
-            <CartaoDaLinha
-              key={l.id}
-              linha={l}
-              capsulas={capsulas.filter((c) => linhaDaCapsula(c) === l.id)}
-              progresso={progresso}
-              aoAbrir={() => navegar(`/mapa?linha=${l.id}`)}
-            />
+        <div className="mt-8 space-y-10">
+          {areas.map((a) => (
+            <section key={a.id} aria-label={a.nome}>
+              <div className="flex flex-wrap items-baseline justify-between gap-x-4">
+                <h3 className="font-serif text-2xl font-medium">{a.nome}</h3>
+                <Link to={`/mapa?area=${a.id}`} className="text-sm font-semibold text-azul-texto underline-offset-4 hover:underline">Ver tudo de {a.nome}</Link>
+              </div>
+              <p className="text-suave">{a.descricao}</p>
+              <div className="mt-3 grid gap-4 sm:grid-cols-2">
+                {linhas.filter((l) => l.area === a.id).map((l) => (
+                  <CartaoDaLinha
+                    key={l.id}
+                    linha={l}
+                    capsulas={capsulas.filter((c) => linhaDaCapsula(c) === l.id)}
+                    progresso={progresso}
+                    aoAbrir={() => navegar(`/mapa?linha=${l.id}`)}
+                  />
+                ))}
+              </div>
+            </section>
           ))}
         </div>
       </section>
