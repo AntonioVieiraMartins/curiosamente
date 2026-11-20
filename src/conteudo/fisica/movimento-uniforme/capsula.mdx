@@ -1,0 +1,397 @@
+import CarroNoGrafico from '../../../components/simulacoes/CarroNoGrafico'
+import EncontroDeCarros from '../../../components/simulacoes/EncontroDeCarros'
+import LeituraDoGrafico from '../../../components/simulacoes/LeituraDoGrafico'
+import Ultrapassagem from '../../../components/simulacoes/Ultrapassagem'
+import PlanejaViagem from '../../../components/simulacoes/PlanejaViagem'
+
+{/* Fatos conferidos nas fontes do meta.ts (Wikipedia em inglês: Motion (physics), Equations of motion, Inertia, Eliud Kipchoge, Speed of sound). Valores como a velocidade do som são aproximados. */}
+
+<Etapa id="gancho">
+
+Duas cidades estão a 240 km uma da outra. Você sai de uma às 8h, de carro, e mantém **sempre os mesmos 80 km/h**. Que horas você chega? Fácil: 240 ÷ 80 = 3 horas, então 11h.
+
+Agora uma pergunta que parece mais difícil: dois carros saem **ao mesmo tempo**, um de cada cidade, indo um de encontro ao outro, um a 80 km/h e outro a 60 km/h. **Onde eles se encontram**, e **quando**? A resposta vem de uma ideia simples e poderosa: o movimento com velocidade constante tem uma "receita" que prevê a posição em qualquer momento.
+
+<Palpite
+  chave="inicial"
+  pergunta="Dois carros saem ao mesmo tempo de duas cidades a 240 km uma da outra e vão um ao encontro do outro: um a 80 km/h e outro a 60 km/h. Em quanto tempo se encontram?"
+  opcoes={['Em 3 horas, como se um deles estivesse sozinho', 'Em pouco mais de 1 hora e meia', 'Em 4 horas']}
+/>
+
+Nesta cápsula você vai aprender o **movimento uniforme** (velocidade constante), a **equação horária** s = s₀ + v·t, a ler **gráficos** de posição e de velocidade, e a resolver **encontros** e **ultrapassagens**.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Para a maioria das pessoas, durante séculos, uma coisa parecia óbvia: para um corpo continuar andando, alguém precisa continuar empurrando. A física do movimento uniforme nasceu quando esse "óbvio" foi derrubado.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Século 4 a.C.', texto: 'Aristóteles ensina que um corpo só se mantém em movimento se uma força continuar agindo sobre ele.' },
+  { ano: 'Século 14', texto: 'Estudiosos de Oxford e de Paris desenvolvem as primeiras regras para descrever o movimento com números.' },
+  { ano: '1638', texto: 'Galileu publica as ideias de que o movimento uniforme se mantém sozinho, sem que algo precise empurrar.' },
+  { ano: '1687', texto: 'Newton escreve na primeira lei que todo corpo continua parado ou em movimento retilíneo uniforme se nenhuma força agir.' },
+  { ano: '2019', texto: 'Eliud Kipchoge corre a maratona em menos de 2 horas, numa prova especial (fora das regras oficiais).' },
+]} />
+
+## Por que um corpo para?
+
+Aristóteles olhava para o mundo à sua volta e via que **tudo que se move acaba parando**: a carroça, a pedra jogada, a flecha. Concluiu que o repouso era o estado natural e que o movimento exigia empurrão constante. Parecia sensato.
+
+## O que Galileu percebeu
+
+Galileu imaginou uma bola rolando num plano cada vez mais liso. Quanto menos atrito, mais longe ela rola antes de parar. No limite, sem atrito nenhum, ela **nunca pararia**: rolaria para sempre, em linha reta e com velocidade constante. O que faz as coisas pararem não é "falta de empurrão": é o **atrito**, uma força que age contra o movimento. Essa ideia virou a primeira lei de Newton, a lei da **inércia**.
+
+## O maratonista de menos de duas horas
+
+Em 12 de outubro de 2019, em Viena, o queniano Eliud Kipchoge correu 42,195 km em 1 hora, 59 minutos e 40 segundos, numa prova montada para tentar quebrar a barreira de duas horas. Como o evento teve lebres revezando e outras ajudas, o tempo não vale como recorde oficial. Mesmo assim, vale como exemplo: dividindo a distância pelo tempo, a velocidade média ficou em cerca de **21,2 km/h**, mantida por quase duas horas, o que chega bem perto de um movimento uniforme.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O que é movimento uniforme?
+
+O <Termo cor="azul">movimento uniforme</Termo> é aquele em que a **velocidade é constante**: o corpo anda **distâncias iguais em tempos iguais**. Se a velocidade é 10 m/s, o corpo faz 10 m no primeiro segundo, mais 10 m no segundo, e assim por diante. Não acelera nem freia.
+
+## 2. A trajetória é uma reta
+
+No movimento uniforme que vamos estudar, o corpo anda **em linha reta**. Por isso ele é chamado de **movimento retilíneo uniforme**, ou **MRU**.
+
+<Brincando titulo="MRU: a esteira de aeroporto">
+
+Uma esteira rolante de aeroporto anda sempre na mesma velocidade. Se você ficar parado nela, é levado 1 metro por segundo, 1 metro a cada segundo, sem pressa e sem demora. Em 10 segundos, você andou 10 metros, em 20 segundos, 20 metros. Dobrou o tempo, **dobrou a distância**. Essa proporcionalidade é a marca do movimento uniforme.
+
+</Brincando>
+
+## 3. A receita da posição
+
+Se você sabe **onde o corpo começou** e **com que velocidade ele anda**, sabe onde ele estará em **qualquer** momento: parte da posição inicial e soma a distância andada. Uma receita assim chama-se <Termo cor="verde">equação horária</Termo> (porque diz a posição em função da hora).
+
+<Brincando titulo="Equação horária: o marcador do cronômetro">
+
+Imagine uma pista com marcas de metro em metro. Você começa na marca 20 e anda 3 metros a cada segundo. Depois de 1 s está na marca 23, depois de 2 s na marca 26, depois de 3 s na marca 29. A posição inicial **fica**, e a cada segundo **soma-se 3**. A equação horária é só o jeito curto de escrever essa conta.
+
+</Brincando>
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="No gráfico de posição por tempo de um corpo em movimento uniforme, que tipo de linha aparece?"
+  opcoes={['Uma curva que fica cada vez mais inclinada', 'Uma linha reta, mais inclinada quanto maior a velocidade', 'Uma linha horizontal sempre']}
+  correta={1}
+  explicacao="Como a posição cresce sempre na mesma quantidade por segundo, o gráfico é uma reta. A inclinação mostra a velocidade: reta mais inclinada, velocidade maior. Reta horizontal é corpo parado."
+>
+
+Mude a posição inicial, a velocidade e o tempo. Veja o carro na estrada e o ponto no gráfico:
+
+<CarroNoGrafico />
+
+A **inclinação** da reta é a velocidade. Uma reta **descendo** é velocidade **negativa**: o corpo anda no sentido contrário ao positivo. Uma reta **horizontal** é um corpo **parado**.
+
+Agora o palpite do começo. Dois carros saem ao mesmo tempo de cidades a 240 km, um de encontro ao outro, a 80 e 60 km/h. Em quanto tempo se encontram?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Em 3 horas, como se um deles estivesse sozinho', 'Em pouco mais de 1 hora e meia', 'Em 4 horas']}
+  correta={1}
+  seAcertou="Certo: eles fecham a distância juntos, a 80 + 60 = 140 km/h. 240 ÷ 140 ≈ 1,7 hora, ou cerca de 1 h 43 min."
+  seErrou="O certo é: pouco mais de 1 hora e meia. Como se aproximam um do outro, as velocidades somam: 80 + 60 = 140 km/h. 240 ÷ 140 ≈ 1,7 h, cerca de 1 h 43 min."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## A equação horária do MRU
+
+A posição de um corpo em movimento uniforme, em qualquer instante, é dada por:
+
+<Formula>
+<Linha>s = s₀ + v × t</Linha>
+</Formula>
+
+- **s** é a posição no instante t;
+- **s₀** ("s zero") é a posição inicial, quando t = 0;
+- **v** é a velocidade, constante;
+- **t** é o tempo decorrido.
+
+Ela vem direto da fórmula de velocidade: se v = Δs ÷ Δt, então Δs = v × t, e a nova posição é a antiga mais o que foi andado.
+
+<ExemploResolvido titulo="Um carro está na posição 10 m e anda a 5 m/s no sentido positivo. Onde ele está depois de 4 s? Em que instante chega à posição 60 m?">
+  <Passo>Equação horária: s = 10 + 5 × t.</Passo>
+  <Passo>Para t = 4 s: s = 10 + 5 × 4 = 10 + 20 = **30 m**.</Passo>
+  <Passo>Para chegar a 60 m: 60 = 10 + 5 × t, logo 50 = 5 × t e t = **10 s**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um corpo tem s = 10 + 5·t (em metros, com t em segundos). Qual a posição, em metros, quando t = 4 s?" resposta="30" dica="Troque t por 4." resolucao="s = 10 + 5 × 4 = 30 m." />
+
+<Exercicio enunciado="Com s = 10 + 5·t, em que instante, em segundos, o corpo chega à posição 60 m?" resposta="10" dica="Resolva 60 = 10 + 5·t." resolucao="60 − 10 = 50 = 5·t, então t = 10 s." />
+
+### Velocidade negativa
+
+Se o corpo anda **contra** o sentido positivo da trajetória, a velocidade é **negativa**, e a posição **diminui** com o tempo. Esse tipo de movimento chama-se **retrógrado**. Se anda a favor do sentido positivo, é **progressivo**.
+
+<ExemploResolvido titulo="Um corpo tem a equação s = 100 − 20·t (metros e segundos). Descreva o movimento, calcule a posição em t = 3 s e o instante em que passa pela origem.">
+  <Passo>Posição inicial s₀ = 100 m. Velocidade v = **−20 m/s**: o movimento é **retrógrado** (a posição diminui).</Passo>
+  <Passo>Em t = 3 s: s = 100 − 20 × 3 = 100 − 60 = **40 m**.</Passo>
+  <Passo>Passa pela origem quando s = 0: 0 = 100 − 20·t, logo t = 100 ÷ 20 = **5 s**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um corpo tem s = 100 − 20·t (metros e segundos). Qual a posição, em metros, em t = 3 s?" resposta="40" dica="Troque t por 3." resolucao="100 − 20 × 3 = 40 m." />
+
+<Exercicio enunciado="Um corpo tem s = −20 + 4·t (metros e segundos). Em que instante, em segundos, ele passa pela origem (s = 0)?" resposta="5" dica="Resolva 0 = −20 + 4·t." resolucao="20 = 4·t, então t = 5 s." />
+
+<Brincando titulo="Velocidade negativa: andar de ré no corredor">
+
+O corredor de um prédio tem as portas numeradas 1, 2, 3, 4... Você anda a favor da numeração: o número da porta em que você está **cresce**. Agora você dá meia-volta e anda de volta: o número da porta **diminui**. A diferença não é a rapidez, e sim o **sentido**. A velocidade negativa só avisa que você anda no sentido em que os números **diminuem**.
+
+</Brincando>
+
+## O gráfico posição × tempo
+
+Colocamos o **tempo** no eixo horizontal e a **posição** no vertical. No MRU, o gráfico é uma **reta**. O que ela mostra:
+
+- **Reta subindo**: velocidade positiva (progressivo).
+- **Reta descendo**: velocidade negativa (retrógrado).
+- **Reta horizontal**: velocidade zero (parado).
+- **Quanto mais inclinada**, maior a velocidade em módulo.
+
+Para achar a velocidade num gráfico, divida **quanto a posição mudou** por **quanto o tempo passou**: v = Δs ÷ Δt, a inclinação da reta.
+
+<LeituraDoGrafico />
+
+<ExemploResolvido titulo="Num gráfico, a posição de um corpo vai de 10 m (em t = 0) até 50 m (em t = 4 s). Qual a velocidade?">
+  <Passo>Variação da posição: Δs = 50 − 10 = 40 m.</Passo>
+  <Passo>Variação do tempo: Δt = 4 − 0 = 4 s.</Passo>
+  <Passo>v = 40 ÷ 4 = **10 m/s**, positiva porque a linha sobe.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="No gráfico, a posição de um corpo vai de 10 m (t = 0) até 50 m (t = 4 s). Qual a velocidade, em m/s?" resposta="10" dica="Divida a variação da posição pela variação do tempo." resolucao="(50 − 10) ÷ 4 = 10 m/s." />
+
+## O gráfico velocidade × tempo
+
+Se o gráfico tiver a **velocidade** no eixo vertical, no MRU ele é uma **reta horizontal**: a velocidade não muda. E há um truque bonito: a **área** debaixo dessa reta, até o tempo t, é igual ao **deslocamento**. Num retângulo, área = altura × largura = velocidade × tempo, que é exatamente Δs = v × t.
+
+<ExemploResolvido titulo="Um corpo anda a 12 m/s por 8 s. Qual o deslocamento? Que figura aparece no gráfico v × t?">
+  <Passo>No gráfico v × t, a velocidade é uma linha horizontal na altura 12, de t = 0 até t = 8.</Passo>
+  <Passo>A figura debaixo da linha é um **retângulo** de altura 12 e largura 8.</Passo>
+  <Passo>Área = 12 × 8 = **96 m**, que é o deslocamento.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um corpo anda a 12 m/s por 8 s. Qual o deslocamento, em metros?" resposta="96" dica="A área do retângulo é velocidade × tempo." resolucao="12 × 8 = 96 m." />
+
+<Brincando titulo="Área do gráfico: pintando o caminho andado">
+
+Imagine pintar de azul toda a região **debaixo** da linha do gráfico de velocidade, entre o instante 0 e o instante t. Cada segundo acrescenta uma faixa fina de altura igual à velocidade, e cada faixa corresponde a quantos metros foram andados naquele segundo. Somando as faixas, o tamanho do azul é o caminho todo. Por isso a **área** vale o deslocamento.
+
+</Brincando>
+
+## Planejando viagens
+
+A equação do MRU também resolve problemas do dia a dia. Com a mesma fórmula, achamos o tempo: **t = distância ÷ velocidade**.
+
+<PlanejaViagem />
+
+<ExemploResolvido titulo="Uma pessoa dirige a 90 km/h por 2 horas e meia. Que distância percorre?">
+  <Passo>Distância = velocidade × tempo.</Passo>
+  <Passo>Tempo: 2 h 30 min = 2,5 h.</Passo>
+  <Passo>d = 90 × 2,5 = **225 km**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma pessoa dirige a 90 km/h por 2,5 horas. Que distância percorre, em km?" resposta="225" dica="Distância = velocidade × tempo." resolucao="90 × 2,5 = 225 km." />
+
+## Encontro de dois corpos
+
+Dois corpos se encontram **quando estão na mesma posição ao mesmo tempo**. Para resolver:
+
+1. Escreva a equação horária de cada um.
+2. Iguale as posições: s_A = s_B.
+3. Resolva para achar o **tempo** do encontro.
+4. Se precisar, troque o tempo numa das equações para achar a **posição** do encontro.
+
+<EncontroDeCarros />
+
+<ExemploResolvido titulo="Um carro A parte da posição 0 a 20 m/s. Um carro B está na posição 300 m e anda de volta, a 10 m/s, no sentido contrário. Quando e onde eles se encontram?">
+  <Passo>Equação de A: s_A = 0 + 20·t. Equação de B (velocidade negativa): s_B = 300 − 10·t.</Passo>
+  <Passo>Igualando: 20·t = 300 − 10·t, então 30·t = 300 e **t = 10 s**.</Passo>
+  <Passo>Posição do encontro: s_A = 20 × 10 = **200 m**. Conferindo com B: 300 − 10 × 10 = 200 m. Bate.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um carro A tem s = 20·t e um carro B tem s = 300 − 10·t (metros e segundos). Em que instante, em segundos, eles se encontram?" resposta="10" dica="Iguale as duas equações." resolucao="20·t = 300 − 10·t, então 30·t = 300 e t = 10 s." />
+
+<Exercicio enunciado="Com s_A = 20·t e s_B = 300 − 10·t, em que posição, em metros, eles se encontram?" resposta="200" dica="Use o tempo do encontro (10 s) numa das equações." resolucao="s_A = 20 × 10 = 200 m." />
+
+<Brincando titulo="Encontro: dois amigos andando um ao encontro do outro">
+
+Dois amigos estão nas pontas de um corredor de 300 m e começam a andar na direção um do outro. Cada passo de um **encurta** o corredor que ainda falta. Os dois encurtam o corredor ao mesmo tempo, e por isso o tempo é menor do que se um só andasse. Eles se encontram quando a soma dos pedaços andados é igual aos 300 m do corredor.
+
+</Brincando>
+
+## Atravessando túneis e pontes
+
+Quando o corpo é **grande** perto da distância, como um trem, o comprimento dele entra na conta. Para atravessar **completamente** um túnel, o trem precisa andar o comprimento do **túnel mais o do próprio trem**, porque só termina de passar quando o fim do último vagão sai.
+
+<ExemploResolvido titulo="Um trem de 100 m anda a 20 m/s e atravessa um túnel de 400 m. Quanto tempo leva para passar totalmente pelo túnel?">
+  <Passo>Distância a percorrer: 400 + 100 = **500 m**.</Passo>
+  <Passo>Tempo = distância ÷ velocidade = 500 ÷ 20 = **25 s**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um trem de 100 m anda a 20 m/s e atravessa um túnel de 400 m. Quanto tempo, em segundos, leva para passar totalmente pelo túnel?" resposta="25" dica="A distância é o comprimento do túnel mais o do trem." resolucao="(400 + 100) ÷ 20 = 25 s." />
+
+## Ultrapassagens
+
+Numa ultrapassagem, os dois vão para o **mesmo lado**. A velocidade com que o mais rápido se aproxima é a **diferença** das velocidades (a velocidade relativa), e a distância que ele precisa "ganhar" é a **soma dos comprimentos**: do começo da ultrapassagem (frente do carro colada no fim do caminhão) até o fim (traseira do carro à frente do caminhão).
+
+<Ultrapassagem />
+
+<ExemploResolvido titulo="Um carro de 5 m a 20 m/s ultrapassa um caminhão de 15 m a 15 m/s, os dois no mesmo sentido. Quanto tempo dura a ultrapassagem?">
+  <Passo>Velocidade relativa: 20 − 15 = **5 m/s**.</Passo>
+  <Passo>Distância a "ganhar": 5 + 15 = **20 m**.</Passo>
+  <Passo>Tempo = 20 ÷ 5 = **4 s**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um carro de 5 m a 20 m/s ultrapassa um caminhão de 15 m a 15 m/s, no mesmo sentido. Quanto tempo, em segundos, dura a ultrapassagem?" resposta="4" dica="Distância a ganhar: soma dos comprimentos. Velocidade: diferença." resolucao="(5 + 15) ÷ (20 − 15) = 4 s." />
+
+## Raio e trovão
+
+Um relâmpago e o trovão que vem depois acontecem no mesmo instante, mas a **luz** chega quase instantaneamente (cerca de 300.000 km/s), enquanto o **som** viaja no ar a uns 340 m/s. Por isso você vê o raio **antes** de ouvir o trovão, e a **demora** entre os dois mede a distância da tempestade.
+
+<ExemploResolvido titulo="Você vê um raio e ouve o trovão 3 s depois. A que distância caiu o raio? (som: 340 m/s)">
+  <Passo>A luz chega praticamente na hora. O atraso de 3 s é o tempo do som.</Passo>
+  <Passo>Distância = velocidade × tempo = 340 × 3 = **1.020 m**, pouco mais de 1 km.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Você vê um raio e ouve o trovão 3 s depois. Com som a 340 m/s, a que distância, em metros, caiu o raio?" resposta="1020" dica="Distância = velocidade do som × tempo." resolucao="340 × 3 = 1.020 m." />
+
+<Brincando titulo="Raio e trovão: a regra dos três segundos">
+
+Cada **3 segundos** de atraso entre ver o raio e ouvir o trovão equivalem a **cerca de 1 km** de distância. Conte "um, dois, três..." depois do clarão: se deu 6, o raio caiu a uns 2 km. É uma conta de MRU feita de cabeça, com a luz como "instantânea" e o som a 340 m/s.
+
+</Brincando>
+
+<Aprofundar titulo="A primeira lei de Newton e o MRU">
+
+A **primeira lei de Newton**, ou lei da inércia, diz que um corpo em repouso continua em repouso, e um corpo em movimento continua em **movimento retilíneo uniforme**, **a menos que uma força resultante aja sobre ele**. O MRU é, portanto, o movimento "natural" quando não há força agindo. Se o seu carro anda em linha reta a 80 km/h constantes, as forças sobre ele se **equilibram**: o motor empurra para a frente com a mesma força que o atrito e o ar empurram para trás.
+
+</Aprofundar>
+
+<Aprofundar titulo="Por que a área do gráfico é o deslocamento (a ideia de Oresme)">
+
+No século 14, estudiosos em Oxford e Paris mostraram que, para um movimento de velocidade constante, o espaço percorrido é igual à área de um retângulo cuja altura é a velocidade e a largura é o tempo. Isso é o início do cálculo integral: **somar áreas de faixas finas** para achar quanto um corpo andou. A mesma ideia funcionará para movimentos em que a velocidade muda, na cápsula do MUV.
+
+</Aprofundar>
+
+<Aprofundar titulo="Existe MRU de verdade?">
+
+Em escala de laboratório, um disco de gelo seco em cima de uma mesa de ar anda em linha reta com velocidade quase constante, porque quase não há atrito. No espaço, sondas como a Voyager 1, longe de planetas e do Sol, seguem em linha reta quase sem mudar de velocidade por décadas. Aqui na Terra, o MRU é uma **boa aproximação** de trechos de estrada, de esteiras rolantes e de trens a velocidade constante, mas nunca é perfeito.
+
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'No movimento retilíneo uniforme, o corpo...',
+    opcoes: ['acelera sempre', 'anda distâncias iguais em tempos iguais, em linha reta', 'muda de direção o tempo todo'],
+    correta: 1,
+    explicacao: 'MRU significa velocidade constante em linha reta: distâncias iguais em tempos iguais.',
+  },
+  {
+    enunciado: 'Qual é a equação horária do MRU?',
+    opcoes: ['s = s₀ + v·t', 's = v ÷ t', 's = s₀ × v × t'],
+    correta: 0,
+    explicacao: 'A posição é a posição inicial mais o que foi andado: velocidade vezes tempo.',
+  },
+  {
+    enunciado: 'Um corpo tem s = 10 + 5·t. Sua velocidade é...',
+    opcoes: ['10 m/s', '5 m/s', '15 m/s'],
+    correta: 1,
+    explicacao: 'O número que multiplica t é a velocidade: 5 m/s. O 10 é a posição inicial.',
+  },
+  {
+    enunciado: 'No gráfico posição × tempo do MRU, a linha é...',
+    opcoes: ['uma reta', 'uma parábola', 'um círculo'],
+    correta: 0,
+    explicacao: 'A posição muda sempre na mesma quantidade por segundo, então o gráfico é uma reta.',
+  },
+  {
+    enunciado: 'Um corpo parado aparece no gráfico posição × tempo como...',
+    opcoes: ['reta subindo', 'reta horizontal', 'reta descendo'],
+    correta: 1,
+    explicacao: 'Se a posição não muda, a linha é horizontal, de inclinação zero. A velocidade é zero.',
+  },
+  {
+    enunciado: 'No gráfico posição × tempo, uma reta descendo significa...',
+    opcoes: ['velocidade negativa (movimento retrógrado)', 'o corpo parou', 'aceleração positiva'],
+    correta: 0,
+    explicacao: 'A posição diminui com o tempo: velocidade negativa, o corpo anda contra o sentido positivo.',
+  },
+  {
+    enunciado: 'No gráfico velocidade × tempo do MRU, a área debaixo da reta representa...',
+    opcoes: ['a aceleração', 'o deslocamento', 'o tempo'],
+    correta: 1,
+    explicacao: 'Altura (velocidade) vezes largura (tempo) é velocidade × tempo, que é o deslocamento.',
+  },
+  {
+    enunciado: 'Quanto tempo leva uma viagem de 360 km a 90 km/h constantes?',
+    opcoes: ['3 h', '4 h', '5 h'],
+    correta: 1,
+    explicacao: 'Tempo = 360 ÷ 90 = 4 horas.',
+  },
+  {
+    enunciado: 'Dois carros se aproximam: A a 20 m/s e B a 10 m/s, a 300 m um do outro. Em quanto tempo se encontram?',
+    opcoes: ['10 s', '15 s', '30 s'],
+    correta: 0,
+    explicacao: 'Aproximação: 20 + 10 = 30 m/s. Tempo: 300 ÷ 30 = 10 s.',
+  },
+  {
+    enunciado: 'Um trem de 100 m a 20 m/s atravessa uma ponte de 300 m. O tempo é...',
+    opcoes: ['15 s', '20 s', '25 s'],
+    correta: 1,
+    explicacao: 'Distância: 300 + 100 = 400 m. Tempo: 400 ÷ 20 = 20 s.',
+  },
+  {
+    enunciado: 'Um carro de 5 m a 20 m/s ultrapassa um caminhão de 15 m a 15 m/s. A ultrapassagem dura...',
+    opcoes: ['4 s', '1 s', '20 s'],
+    correta: 0,
+    explicacao: 'Distância a ganhar: 5 + 15 = 20 m. Velocidade relativa: 20 − 15 = 5 m/s. Tempo: 20 ÷ 5 = 4 s.',
+  },
+  {
+    enunciado: 'Você vê um raio e ouve o trovão 6 s depois. A distância do raio é, aproximadamente (som a 340 m/s)...',
+    opcoes: ['2.040 m', '340 m', '57 m'],
+    correta: 0,
+    explicacao: '340 × 6 = 2.040 m, pouco mais de 2 km. A luz chega praticamente na hora.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **MRU:** movimento em linha reta com **velocidade constante** (distâncias iguais em tempos iguais).
+- **Equação horária:** **s = s₀ + v·t**. Velocidade positiva: progressivo. Negativa: retrógrado.
+- **Gráfico s × t:** reta. Inclinação = velocidade. Horizontal = parado.
+- **Gráfico v × t:** reta horizontal. **Área = deslocamento** (v × t).
+- **Tempo** = distância ÷ velocidade. **Distância** = velocidade × tempo.
+- **Encontro:** iguale as posições, s_A = s_B. Em sentidos opostos, as velocidades somam.
+- **Trem atravessando:** distância = comprimento do túnel + comprimento do trem. **Ultrapassagem:** (soma dos comprimentos) ÷ (diferença das velocidades).
+- **Raio e trovão:** cada 3 s de atraso correspondem a cerca de 1 km.
+
+**Um pouco de história.** Aristóteles achava que o movimento precisava de empurrão constante. Galileu mostrou que, sem atrito, um corpo seguiria em linha reta para sempre, e Newton transformou isso, em 1687, na lei da inércia.
+
+</Resumo>
+
+Quando a velocidade deixa de ser constante e passa a mudar de forma regular, o movimento fica **uniformemente variado**. Para onde seguir:
+
+<Conexoes />
+
+</Etapa>

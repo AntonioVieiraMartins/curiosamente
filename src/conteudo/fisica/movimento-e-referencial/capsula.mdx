@@ -1,0 +1,385 @@
+import OnibusReferencial from '../../../components/simulacoes/OnibusReferencial'
+import TremEBola from '../../../components/simulacoes/TremEBola'
+import IdaEVolta from '../../../components/simulacoes/IdaEVolta'
+import VelocidadeRelativa from '../../../components/simulacoes/VelocidadeRelativa'
+import QuemSeMove from '../../../components/simulacoes/QuemSeMove'
+
+{/* Fatos conferidos nas fontes do meta.ts (Wikipedia em inglês: Frame of reference, Galilean invariance, Dialogue Concerning the Two Chief World Systems, Displacement). Velocidades da Terra são aproximadas. */}
+
+<Etapa id="gancho">
+
+Você está sentado num ônibus que anda a 60 km/h. Segura o celular e olha para ele, sem mexer. O celular está parado ou está a 60 km/h?
+
+Parece pergunta de pegadinha, e é. Para você, o celular **está parado**: ele não sai da sua mão. Para quem está na calçada, o celular **passa voando**. Os dois estão certos. E a coisa vai além: o carro parado no sinal vermelho também está correndo a mais de 100 mil km/h em volta do Sol, e ninguém sente nada.
+
+<Palpite
+  chave="inicial"
+  pergunta="Você está sentado num ônibus em movimento, sem mexer no corpo. Você está em movimento ou parado?"
+  opcoes={['Em movimento, sempre', 'Parado, sempre', 'Depende de quem (ou do que) está olhando']}
+/>
+
+Nesta cápsula você vai aprender o que é **movimento**, por que ele sempre depende de um **referencial**, como descrever a **posição** de algo numa reta, a diferença entre **distância percorrida** e **deslocamento**, e como somar ou subtrair velocidades quando dois corpos se movem.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Há mais de dois mil anos as pessoas olham o céu e se perguntam o que se move e o que está parado. A resposta mudou várias vezes, e cada mudança ensinou algo sobre o movimento.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Século 4 a.C.', texto: 'Aristóteles defende que a Terra está parada no centro do universo e que todo movimento precisa de algo empurrando.' },
+  { ano: 'Século 2 d.C.', texto: 'Ptolomeu organiza o modelo com a Terra no centro, que dominaria a astronomia por mais de mil anos.' },
+  { ano: '1543', texto: 'Nicolau Copérnico publica a ideia de que a Terra gira em volta do Sol.' },
+  { ano: '1632', texto: 'Galileu Galilei publica o "Diálogo sobre os dois principais sistemas do mundo" e usa o navio em movimento como argumento.' },
+  { ano: '1687', texto: 'Isaac Newton publica os "Principia" e escreve as leis do movimento.' },
+  { ano: '1905', texto: 'Albert Einstein publica a relatividade restrita e leva a ideia de referencial para a luz.' },
+]} />
+
+## A Terra parada: o que todo mundo via
+
+Para Aristóteles e para quase todos depois dele, a Terra **só podia estar parada**. O argumento parecia irrefutável: se a Terra girasse, uma pedra jogada para cima cairia longe do lugar de onde saiu, porque o chão teria andado debaixo dela. Como a pedra cai no mesmo lugar, a Terra estaria parada. Parecia lógica pura.
+
+## Copérnico e o espanto
+
+Em 1543, Copérnico propôs o contrário: a Terra gira e anda em volta do Sol. A ideia ainda não vinha com a resposta para o argumento da pedra, e por isso muita gente continuou a recusá-la. Faltava entender uma coisa sutil sobre o movimento.
+
+## Galileu e o navio
+
+Galileu respondeu com uma cena. Ele pediu ao leitor para imaginar a cabine fechada de um navio, com borboletas voando, peixes num aquário e uma gota pingando num balde. Com o navio parado ou deslizando suave e uniforme, **tudo se passa exatamente igual**: as borboletas não ficam para trás, a gota cai reta. Nenhuma experiência feita dentro da cabine revela se o navio se move. Esse é o princípio da relatividade de Galileu.
+
+A pedra jogada para cima responde assim: ela **também está se movendo junto com a Terra**. Por isso cai no mesmo ponto, como a bola largada dentro do trem.
+
+## Einstein e a luz
+
+Dois séculos e meio depois, Einstein pegou a mesma ideia e a levou além: as leis da física devem ser iguais para todo observador em movimento uniforme, inclusive para a luz. Isso o levou à relatividade restrita, de 1905. A cápsula de hoje fica com a versão de Galileu, que é a base de tudo.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O que é movimento?
+
+Dizemos que algo está em **movimento** quando a sua **posição muda com o tempo**. Se a posição não muda, está em **repouso**. Mas "posição em relação a quê?" é a pergunta que decide tudo.
+
+## 2. Referencial: o ponto de vista
+
+O <Termo cor="azul">referencial</Termo> é o corpo (ou o ponto) que usamos como base para medir a posição. Quando você diz "o café está a dois metros de mim", o referencial é **você**. Mude o referencial e as posições mudam.
+
+Dentro do ônibus, o passageiro e o motorista se veem parados um em relação ao outro. Para quem está na calçada, os dois passam juntos, em movimento. Não existe "o movimento verdadeiro" de um corpo sozinho: existe o movimento **em relação a algum referencial**.
+
+<Brincando titulo="Referencial: os dois lados da janela">
+
+Você está no ônibus, olhando pela janela, e um carro passa por vocês. Se o carro vai mais rápido, ele parece avançar devagar para a frente. Se vão na mesma velocidade, ele parece **parado ao lado da janela**, como se vocês estivessem presos por um fio invisível. A distância entre vocês não muda, então um está em **repouso em relação ao outro**, mesmo os dois correndo em relação à estrada.
+
+</Brincando>
+
+## 3. Movimento e repouso são relativos
+
+Isso muda como falamos. O correto não é "o carro está em movimento", e sim "o carro está em movimento **em relação à estrada**" ou "em repouso **em relação ao motorista**". No dia a dia, o referencial normal é o **chão**, e por isso dispensamos a explicação.
+
+## 4. Trajetória também depende do referencial
+
+A **trajetória** é o caminho desenhado por um corpo ao se mover. Ela também depende do referencial. Uma bola solta dentro de um trem em movimento cai **em linha reta** para quem está no trem, mas desenha uma **curva** para quem está na plataforma. A mesma queda, dois desenhos diferentes.
+
+<Brincando titulo="Trajetória: o rastro da bola no vagão">
+
+Pense numa criança no trem soltando uma bolinha de gude. Dentro do vagão, a gude cai no pé dela, como se o trem estivesse parado. Agora imagine uma câmera na plataforma, filmando pela janela. Enquanto a gude cai, o vagão **avança**, e a gude avança junto com ele. A câmera vê a gude descendo e andando para a frente ao mesmo tempo: um arco. Foi o que Galileu tentou explicar com o navio.
+
+</Brincando>
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Uma pessoa solta uma bola dentro de um trem que anda em linha reta e em velocidade constante. A bola cai no pé dela. Para quem está na plataforma, vendo o trem passar, como é o caminho da bola?"
+  opcoes={['Uma linha reta para baixo, igual', 'Uma curva, porque a bola também avança com o trem', 'A bola fica para trás, porque o trem corre']}
+  correta={1}
+  explicacao="A bola já se move para a frente junto com o trem antes de ser solta, e continua assim ao cair. Quem está na plataforma vê as duas coisas juntas: para baixo e para a frente. O caminho é uma curva. Já para quem está no trem, a bola cai reta."
+>
+
+Escolha quem está observando e arraste o momento da queda:
+
+<TremEBola />
+
+Mesma bola, mesma queda, dois observadores, **duas trajetórias**. Nenhum dos dois está errado.
+
+Agora o palpite do começo. Sentado no ônibus em movimento, você está em movimento ou parado?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Em movimento, sempre', 'Parado, sempre', 'Depende de quem (ou do que) está olhando']}
+  correta={2}
+  seAcertou="Certo: depende do referencial. Em relação ao banco você está parado. Em relação ao poste da calçada, você se move."
+  seErrou="O certo é: depende do referencial. Em relação ao banco você está parado, e em relação ao poste você se move. Os dois estão certos."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Quem está parado depende de quem olha
+
+Escolha o observador e mude a velocidade do ônibus. Repare em quem aparece parado e em quem aparece correndo:
+
+<OnibusReferencial />
+
+Veja que o referencial é só uma **escolha de quem vai ser o "parado" da conta**. Tudo o que mede movimento depois disso, como velocidade e aceleração, vem dessa escolha.
+
+### Como descrever a posição
+
+Para dizer **onde** um corpo está, escolhemos três coisas:
+
+1. um **referencial** (de onde olhamos);
+2. uma **origem**, o ponto marcado como zero;
+3. um **sentido positivo**, a direção em que os números crescem.
+
+Numa rodovia, a origem é o marco "km 0" e o sentido positivo é o crescimento dos quilômetros. Um carro no "km 85" está a 85 km da origem, no sentido positivo. A posição costuma ser escrita com a letra **s** (de "espaço") ou **x**, e a unidade no Sistema Internacional é o **metro (m)**.
+
+<Brincando titulo="Posição: o marco da estrada">
+
+Quando você viaja de carro, os marcos de quilômetro na beira da estrada funcionam como uma **régua gigante**. Dizer "estamos no km 85" não é dizer quanto já andamos, e sim **onde estamos na régua**. Você pode ter saído do km 60 e andado só 25 km. A posição é o número da régua, e o caminho andado é outra coisa.
+
+</Brincando>
+
+### Ponto material e corpo extenso
+
+Quando o tamanho de um corpo **não importa** para o problema, tratamos o corpo como um **ponto material**: um ponto, sem tamanho, que só tem posição. Um carro viajando de Salvador a Recife é um ponto material, porque os 4 metros do carro são desprezíveis perto dos 800 km de viagem. Mas o mesmo carro, entrando numa garagem apertada, **não** pode ser tratado como ponto, porque agora o tamanho dele decide se cabe ou não. Esse é o **corpo extenso**.
+
+<ExemploResolvido titulo="Um trem de 200 m de comprimento atravessa uma ponte de 300 m. Quando ele pode ser tratado como ponto material?">
+  <Passo>O trem tem 200 m e a ponte 300 m. Para **atravessar a ponte inteira**, o trem precisa andar 300 + 200 = 500 m. Aqui o comprimento do trem **importa**, e ele é um corpo extenso.</Passo>
+  <Passo>Se o mesmo trem faz uma viagem de 600 km entre duas cidades, os 200 m do trem ficam desprezíveis. Nesse caso ele é um **ponto material**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um trem de 200 m atravessa uma ponte de 300 m. Quantos metros o trem precisa andar para passar completamente pela ponte?" resposta="500" dica="O trem só termina de passar quando o fim dele sai da ponte." resolucao="É o comprimento da ponte mais o do trem: 300 + 200 = 500 m." />
+
+## Distância percorrida e deslocamento
+
+São duas coisas diferentes, e elas só ficam iguais quando o caminho é uma reta sem volta.
+
+- **Distância percorrida** é o comprimento **total do caminho** que o corpo andou, somando tudo. Nunca é negativa.
+- **Deslocamento** é a **mudança de posição**: posição final menos posição inicial. Só olha para o início e o fim, e **pode ser positivo, negativo ou zero**.
+
+A fórmula do deslocamento é:
+
+<Formula>
+<Linha>Δs = posição final − posição inicial</Linha>
+</Formula>
+
+O símbolo Δ (lê-se "delta") quer dizer "variação", ou seja, "final menos inicial".
+
+<IdaEVolta />
+
+Quando a pessoa volta, a **distância** continua aumentando, mas o **deslocamento** diminui. Se ela voltasse até o ponto de partida, o deslocamento seria **zero**, mesmo depois de ter andado muito.
+
+<Brincando titulo="Deslocamento: a volta ao quarteirão">
+
+Você sai de casa, dá a volta no quarteirão e chega de novo na porta. Quantos passos andou? Muitos: **distância grande**. Qual a sua mudança de posição? Nenhuma, você está no mesmo lugar: **deslocamento zero**. O deslocamento é como uma linha esticada do ponto de partida até o ponto de chegada, ignorando as curvas do caminho.
+
+</Brincando>
+
+<ExemploResolvido titulo="Uma pessoa sai do km 20 de uma rodovia, vai até o km 75 e depois volta até o km 50. Calcule a distância percorrida e o deslocamento.">
+  <Passo>Ida: do km 20 ao km 75, são 75 − 20 = **55 km**.</Passo>
+  <Passo>Volta: do km 75 ao km 50, são 75 − 50 = **25 km**.</Passo>
+  <Passo>**Distância percorrida** = 55 + 25 = **80 km**.</Passo>
+  <Passo>**Deslocamento** = posição final − inicial = 50 − 20 = **30 km**, no sentido dos quilômetros crescentes.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma pessoa vai do km 10 ao km 90 de uma estrada e volta até o km 40. Qual a distância percorrida, em km?" resposta="130" dica="Some a ida e a volta separadamente." resolucao="Ida: 90 − 10 = 80 km. Volta: 90 − 40 = 50 km. Total: 80 + 50 = 130 km." />
+
+<Exercicio enunciado="Na mesma viagem (do km 10 ao km 90 e volta até o km 40), qual o deslocamento, em km?" resposta="30" dica="Só importa onde começou e onde terminou." resolucao="Posição final menos inicial: 40 − 10 = 30 km." />
+
+<Exercicio enunciado="Uma pessoa anda 3 km até a padaria e volta os mesmos 3 km para casa. Qual a distância percorrida, em km?" resposta="6" dica="Some a ida e a volta." resolucao="3 + 3 = 6 km." />
+
+<Exercicio enunciado="Na caminhada até a padaria e de volta para casa (3 km de ida e 3 km de volta), qual o deslocamento, em km?" resposta="0" dica="Onde a pessoa terminou? E onde começou?" resolucao="A posição final é igual à inicial, então o deslocamento é 0." />
+
+<Exercicio enunciado="Um corredor dá 2,5 voltas numa pista de 400 m. Qual a distância percorrida, em metros?" resposta="1000" dica="Multiplique o número de voltas pelo tamanho da pista." resolucao="2,5 × 400 = 1.000 m." />
+
+## Velocidade relativa
+
+Quando dois corpos se movem, a velocidade de **um em relação ao outro** depende dos sentidos.
+
+- **Mesmo sentido**: **subtrai**. Se o carro A vai a 80 km/h e o B, na frente e no mesmo sentido, a 60 km/h, A se aproxima de B a 80 − 60 = **20 km/h**.
+- **Sentidos opostos**: **soma**. Se os dois se aproximam de frente, um a 80 e o outro a 60, a aproximação é 80 + 60 = **140 km/h**.
+
+Por isso as batidas frontais são tão violentas: a velocidade do choque é a soma das duas.
+
+<VelocidadeRelativa />
+
+<Brincando titulo="Velocidade relativa: duas esteiras no aeroporto">
+
+Numa esteira rolante, você anda a 5 km/h sobre a esteira e a esteira anda a 3 km/h para a frente. Para quem está parado no chão, você anda a 5 + 3 = 8 km/h. Mas se andar **contra** a esteira, só avança 5 − 3 = 2 km/h. Duas velocidades juntas: no mesmo sentido, somam; em sentidos contrários, uma tira da outra.
+
+</Brincando>
+
+<ExemploResolvido titulo="Um passageiro anda a 5 km/h no corredor de um trem que viaja a 80 km/h, no mesmo sentido do trem. Qual a velocidade dele em relação ao solo? E se ele andar no sentido contrário ao do trem?">
+  <Passo>O passageiro e o trem vão para o **mesmo lado**: somamos. 80 + 5 = **85 km/h** em relação ao solo.</Passo>
+  <Passo>Se ele anda para o lado **contrário**, a velocidade dele fica menor: 80 − 5 = **75 km/h** em relação ao solo.</Passo>
+  <Passo>Em relação ao **trem**, ele sempre se move a 5 km/h. O referencial muda o número.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um trem viaja a 80 km/h. Um passageiro anda a 5 km/h no corredor, no mesmo sentido do trem. Qual a velocidade dele em relação ao solo, em km/h?" resposta="85" dica="Mesmo sentido: as velocidades se somam." resolucao="80 + 5 = 85 km/h." />
+
+<Exercicio enunciado="No mesmo trem a 80 km/h, o passageiro anda a 5 km/h no sentido contrário ao do trem. Qual a velocidade dele em relação ao solo, em km/h?" resposta="75" dica="Sentido contrário: uma velocidade tira da outra." resolucao="80 − 5 = 75 km/h." />
+
+<Exercicio enunciado="Dois carros viajam no mesmo sentido: A a 90 km/h e B, na frente, a 60 km/h. Com que velocidade A se aproxima de B, em km/h?" resposta="30" dica="Mesmo sentido: subtraia." resolucao="90 − 60 = 30 km/h." />
+
+<Exercicio enunciado="Dois carros se aproximam de frente numa estrada, um a 70 km/h e o outro a 50 km/h. Com que velocidade se aproximam um do outro, em km/h?" resposta="120" dica="Sentidos opostos: some." resolucao="70 + 50 = 120 km/h." />
+
+<ExemploResolvido titulo="Dois ciclistas estão a 80 km de distância e pedalam um em direção ao outro, a 15 km/h e a 25 km/h. Em quanto tempo se encontram?">
+  <Passo>Eles se aproximam em sentidos opostos, então a velocidade de aproximação é 15 + 25 = **40 km/h**.</Passo>
+  <Passo>A distância a ser fechada é 80 km. O tempo é distância ÷ velocidade: 80 ÷ 40 = **2 horas**.</Passo>
+  <Passo>Conferindo: em 2 h, o primeiro anda 30 km e o segundo, 50 km. Juntos, 30 + 50 = 80 km. Confere.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Dois ciclistas estão a 60 km de distância e pedalam um em direção ao outro, a 10 km/h e a 20 km/h. Em quantas horas se encontram?" resposta="2" dica="Some as velocidades e divida a distância pela soma." resolucao="Aproximação: 10 + 20 = 30 km/h. Tempo: 60 ÷ 30 = 2 horas." />
+
+## Repouso e movimento no dia a dia
+
+Em cada cena, o que muda é o referencial. Teste se você consegue dizer, caso a caso:
+
+<QuemSeMove />
+
+<Brincando titulo="Repouso relativo: a fila do caixa">
+
+Imagine uma fila no mercado. Todo mundo anda devagar para a frente, no mesmo ritmo. **Em relação à pessoa da frente**, você está parado: a distância entre vocês continua a mesma. Mas **em relação ao caixa**, você se move para a frente. As duas frases são verdadeiras ao mesmo tempo.
+
+</Brincando>
+
+### Quando o movimento da Terra "some"
+
+Por que não sentimos a Terra girar e orbitar o Sol? Porque tudo em volta, o chão, o ar, os prédios e nós mesmos, se move **junto**. Em relação à Terra, ficamos em repouso. Só notamos o movimento quando olhamos para fora do referencial, como para o céu à noite.
+
+As velocidades são grandes: em torno do Equador, a rotação da Terra leva o chão a cerca de 1.670 km/h, e a órbita em volta do Sol move a Terra a mais de 100 mil km/h. Mesmo assim, a pedra jogada para cima cai no mesmo lugar, como Galileu explicou.
+
+<ExemploResolvido titulo="Um motorista dirige a 72 km/h e vê, pelo retrovisor, uma moto que o ultrapassa a 90 km/h. Com que velocidade a moto se afasta dele? E o motorista, em relação à moto, anda para onde?">
+  <Passo>Os dois vão para o mesmo lado. A velocidade da moto em relação ao carro é 90 − 72 = **18 km/h**.</Passo>
+  <Passo>O motorista vê a moto se afastar para a frente a 18 km/h.</Passo>
+  <Passo>Para quem está na moto, o carro é que "anda para trás" a 18 km/h. Mesmo fato, com outro referencial.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um motorista dirige a 72 km/h e uma moto o ultrapassa a 90 km/h. Com que velocidade a moto se afasta do carro, em km/h?" resposta="18" dica="Mesmo sentido: subtraia." resolucao="90 − 72 = 18 km/h." />
+
+<Aprofundar titulo="O referencial inercial e a relatividade de Galileu">
+
+Um referencial é **inercial** quando nele vale a primeira lei de Newton: um corpo livre de forças fica parado ou em linha reta com velocidade constante. Qualquer referencial que se mova em linha reta com velocidade constante em relação a um inercial também é inercial. É o que Galileu observou no navio: **nenhuma experiência mecânica diferencia o repouso do movimento uniforme**.
+
+Já um referencial que acelera, como um carro freando, **não** é inercial. Dentro dele surgem "forças" estranhas, como a que joga você para a frente numa freada. Esse assunto volta na cápsula das leis de Newton.
+
+</Aprofundar>
+
+<Aprofundar titulo="Por que o Sol 'nasce' se quem se move é a Terra?">
+
+Quando dizemos que o Sol nasce e se põe, usamos como referencial o **chão onde estamos**. Em relação a ele, o Sol realmente sobe e desce no céu. A diferença entre "o Sol se move" e "a Terra gira" não é de **fato**, e sim de **referencial**. O que Copérnico e Galileu mostraram é que, escolhendo o Sol como referencial, o movimento dos planetas fica muito mais simples de descrever.
+
+</Aprofundar>
+
+<Aprofundar titulo="Distância percorrida e deslocamento em duas dimensões">
+
+Numa reta, deslocamento é uma subtração simples. No plano, ele é uma **seta** (um vetor) do ponto de partida ao ponto de chegada. Se você anda 3 km para o leste e depois 4 km para o norte, a distância percorrida é 3 + 4 = 7 km, mas o deslocamento é a seta em diagonal, com comprimento 5 km (pelo teorema de Pitágoras). A cápsula de lançamentos vai usar essa ideia.
+
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'O que é um referencial?',
+    opcoes: ['O corpo ou ponto usado como base para medir a posição e o movimento', 'A velocidade máxima de um corpo', 'O caminho percorrido por um corpo'],
+    correta: 0,
+    explicacao: 'O referencial é o ponto de vista: o corpo em relação ao qual medimos a posição. Mudar o referencial muda o que vemos.',
+  },
+  {
+    enunciado: 'Um passageiro sentado num ônibus em movimento está em repouso em relação...',
+    opcoes: ['ao poste na calçada', 'ao motorista', 'à árvore na estrada'],
+    correta: 1,
+    explicacao: 'Passageiro e motorista estão no mesmo ônibus, então a distância entre eles não muda. Já poste e árvore ficam para trás.',
+  },
+  {
+    enunciado: 'Um corpo está em movimento quando...',
+    opcoes: ['sua posição muda com o tempo em relação a um referencial', 'ele faz força', 'ele está longe do observador'],
+    correta: 0,
+    explicacao: 'Movimento é mudança de posição ao longo do tempo, sempre em relação a um referencial.',
+  },
+  {
+    enunciado: 'Uma bola é solta dentro de um trem que anda em linha reta e em velocidade constante. Para quem está na plataforma, a trajetória da bola é...',
+    opcoes: ['uma linha reta vertical', 'uma curva', 'uma linha reta horizontal'],
+    correta: 1,
+    explicacao: 'A bola cai e, ao mesmo tempo, acompanha o trem. A soma dos dois movimentos desenha uma curva. Para quem está no trem, é reta.',
+  },
+  {
+    enunciado: 'Uma pessoa vai do km 30 ao km 100 e volta ao km 60. O deslocamento foi...',
+    opcoes: ['30 km', '110 km', '70 km'],
+    correta: 0,
+    explicacao: 'Deslocamento é final menos inicial: 60 − 30 = 30 km. Os 110 km (70 + 40) são a distância percorrida.',
+  },
+  {
+    enunciado: 'Na mesma viagem (km 30 → km 100 → km 60), a distância percorrida foi...',
+    opcoes: ['30 km', '110 km', '70 km'],
+    correta: 1,
+    explicacao: 'Ida de 70 km mais volta de 40 km: 110 km. A distância soma todo o caminho.',
+  },
+  {
+    enunciado: 'Uma pessoa dá uma volta completa numa pista circular e termina onde começou. Qual o deslocamento?',
+    opcoes: ['O comprimento da pista', 'Zero', 'Metade da pista'],
+    correta: 1,
+    explicacao: 'A posição final é a mesma da inicial, então a mudança de posição é zero, apesar do caminho andado.',
+  },
+  {
+    enunciado: 'Dois carros vão no mesmo sentido, A a 100 km/h e B, na frente, a 70 km/h. A velocidade de A em relação a B é...',
+    opcoes: ['30 km/h', '170 km/h', '70 km/h'],
+    correta: 0,
+    explicacao: 'No mesmo sentido, subtraímos: 100 − 70 = 30 km/h.',
+  },
+  {
+    enunciado: 'Dois carros se aproximam de frente, a 60 km/h e a 40 km/h. Em relação a um deles, o outro se aproxima a...',
+    opcoes: ['20 km/h', '100 km/h', '50 km/h'],
+    correta: 1,
+    explicacao: 'Em sentidos opostos, somamos: 60 + 40 = 100 km/h.',
+  },
+  {
+    enunciado: 'Quando um corpo pode ser tratado como ponto material?',
+    opcoes: ['Quando seu tamanho é desprezível perto das distâncias do problema', 'Quando ele está parado', 'Quando ele é muito leve'],
+    correta: 0,
+    explicacao: 'Se o tamanho do corpo não influencia a resposta, tratamos como um ponto. Um carro numa viagem de 800 km é um bom exemplo.',
+  },
+  {
+    enunciado: 'Por que não sentimos a Terra girar e andar em volta do Sol?',
+    opcoes: ['Porque a Terra está parada', 'Porque tudo em volta se move junto conosco', 'Porque o movimento é muito lento'],
+    correta: 1,
+    explicacao: 'O chão, o ar e nós mesmos nos movemos juntos. Em relação à Terra, estamos em repouso. A rotação chega a cerca de 1.670 km/h no Equador, e a órbita passa de 100 mil km/h.',
+  },
+  {
+    enunciado: 'O que Galileu defendeu com a cena do navio?',
+    opcoes: ['Que o navio sempre anda mais rápido que a água', 'Que dentro de uma cabine em movimento uniforme nada revela o movimento', 'Que a Terra está parada'],
+    correta: 1,
+    explicacao: 'Com o navio em movimento uniforme, tudo dentro da cabine se passa como se ele estivesse parado. Por isso não notamos o movimento da Terra.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Movimento** é mudança de posição com o tempo, **sempre em relação a um referencial**. Repouso e movimento são **relativos**.
+- A **posição** precisa de referencial, origem e sentido positivo. A **trajetória** também depende do referencial (a bola no trem: reta ou curva).
+- **Ponto material** é o corpo cujo tamanho não importa no problema.
+- **Distância percorrida** soma todo o caminho (nunca negativa). **Deslocamento** = posição final − posição inicial (pode ser zero ou negativo).
+- **Velocidade relativa:** mesmo sentido, **subtraímos**; sentidos opostos, **somamos**.
+- Não sentimos o movimento da Terra porque tudo em volta se move junto com a gente (Galileu, 1632).
+
+**Um pouco de história.** Aristóteles achava a Terra parada, e Copérnico propôs, em 1543, que ela gira em volta do Sol. Em 1632, Galileu usou a cabine de um navio para mostrar que, num movimento uniforme, nenhuma experiência revela se estamos parados ou não. Einstein levou a ideia à luz, em 1905.
+
+</Resumo>
+
+Agora que você sabe descrever onde as coisas estão e para onde vão, o próximo passo é medir **quão depressa** elas mudam de posição e como essa rapidez muda. Para onde seguir:
+
+<Conexoes />
+
+</Etapa>

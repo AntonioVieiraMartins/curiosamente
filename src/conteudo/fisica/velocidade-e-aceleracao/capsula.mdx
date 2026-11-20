@@ -1,0 +1,388 @@
+import ConversorKmhMs from '../../../components/simulacoes/ConversorKmhMs'
+import MediaDaViagem from '../../../components/simulacoes/MediaDaViagem'
+import AceleracaoDoCarro from '../../../components/simulacoes/AceleracaoDoCarro'
+import InerciaNaFreada from '../../../components/simulacoes/InerciaNaFreada'
+import QuemEMaisRapido from '../../../components/simulacoes/QuemEMaisRapido'
+
+{/* Fatos conferidos nas fontes do meta.ts (Wikipedia em inglês: Speed, Acceleration, Nicole Oresme, Two New Sciences, Speed of sound). Valores de referência (guepardo, som, carros) são aproximados. */}
+
+<Etapa id="gancho">
+
+Você está dentro de um carro parado no sinal. O sinal abre e o motorista pisa fundo. De repente, suas costas são **empurradas contra o banco**. Alguns segundos depois, ele pisa no freio, e você é **jogado para a frente**, parando só por causa do cinto.
+
+Quem empurrou você? O carro não bateu em nada. Foi só a **velocidade mudando**. Esse é um dos segredos da física do movimento: o que você sente não é a velocidade, e sim a **mudança** dela.
+
+<Palpite
+  chave="inicial"
+  pergunta="Você está num avião voando a 900 km/h, em velocidade constante, com o ar calmo. O que você sente?"
+  opcoes={['Um empurrão forte para trás, por causa da velocidade', 'Nada: parece que o avião está parado', 'Um frio na barriga, por causa da velocidade']}
+/>
+
+Nesta cápsula você vai ver o que é **velocidade média**, como passar de km/h para m/s, por que a "média das velocidades" pode enganar, o que é **aceleração** e por que o corpo vai para a frente na freada.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Medir o quão depressa algo se move parece simples hoje, com o velocímetro do carro. Mas por muito tempo ninguém sabia nem como falar disso.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Século 14', texto: 'O francês Nicole Oresme desenha gráficos para mostrar como a velocidade muda com o tempo.' },
+  { ano: 'Por volta de 1600', texto: 'Galileu rola bolas por rampas inclinadas para estudar o movimento com um relógio de água.' },
+  { ano: '1638', texto: 'Galileu publica os "Discursos e demonstrações sobre duas novas ciências", com as leis do movimento acelerado.' },
+  { ano: '1687', texto: 'Newton publica os "Principia" e liga a mudança de velocidade às forças.' },
+  { ano: '1947', texto: 'Chuck Yeager voa mais rápido que o som num avião Bell X-1.' },
+]} />
+
+## A rampa de Galileu
+
+No começo do século 17, Galileu queria entender como os corpos caem. Só que a queda é rápida demais para medir com os relógios da época. A saída dele foi **diluir a queda**: rolar bolas por uma rampa suave, que as faz ganhar velocidade devagar. Ele media o tempo com um relógio de água, pesando a água que escorria. Descobriu que, em tempos iguais, a velocidade da bola **aumentava sempre na mesma quantidade**. Estava descoberta a ideia de **aceleração constante**.
+
+## O gráfico mais antigo
+
+Séculos antes, Nicole Oresme já tinha percebido que dava para **desenhar** a velocidade: uma linha horizontal para o tempo e uma altura para a velocidade em cada instante. Esse é o ancestral dos gráficos de velocidade que você verá nas próximas cápsulas.
+
+## Mais rápido que o som
+
+Em 14 de outubro de 1947, o piloto americano Chuck Yeager pilotou o Bell X-1 e passou da velocidade do som, que no ar frio da altitude é um pouco menor que 1.235 km/h do nível do solo. Muitos achavam que o avião se despedaçaria. Não se despedaçou. A palavra "barreira" ficou, mas a barreira era só um desafio de engenharia.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Velocidade é "quanto muda a posição, por tempo"
+
+Quando você diz "estou a 60 km/h", está dizendo que a cada hora a posição muda 60 km. A <Termo cor="azul">velocidade</Termo> compara **quanto o corpo andou** com **o tempo que levou**. Quanto mais rápido, mais caminho em menos tempo.
+
+## 2. Velocidade média
+
+Numa viagem real a velocidade muda o tempo todo: sai devagar, pega estrada, para no sinal. Para resumir tudo num único número, usamos a <Termo cor="verde">velocidade média</Termo>: o **espaço total** dividido pelo **tempo total**. Não importa o que aconteceu no meio.
+
+<Brincando titulo="Velocidade média: a viagem resumida">
+
+Imagine que você faz uma viagem de 120 km em 2 horas, parando para o lanche no meio. Em alguns trechos o carro foi a 100 km/h, em outros ficou parado. Se alguém quiser **um único número** para contar a viagem, diz "foi como se eu tivesse andado a 60 km/h o tempo todo": 120 km ÷ 2 h = 60 km/h. É um resumo, como a nota média de um aluno em várias provas.
+
+</Brincando>
+
+## 3. Aceleração: a rapidez com que a velocidade muda
+
+Se a velocidade **muda**, existe <Termo cor="coral">aceleração</Termo>. A aceleração diz **quanto a velocidade muda a cada segundo**. Um carro que vai de 0 a 10 m/s em 5 segundos ganha 2 m/s a cada segundo: aceleração de 2 m/s².
+
+Atenção: na física, **frear também é acelerar**, só que com sinal contrário. Qualquer mudança de velocidade, para mais ou para menos, é aceleração.
+
+<Brincando titulo="Aceleração: a escada rolante da velocidade">
+
+Pense na velocidade como a altura em que você está, e na aceleração como uma escada rolante que **sobe a cada segundo**. Se a escada sobe 2 degraus por segundo, depois de 5 segundos você subiu 10 degraus. Se a escada **desce**, você perde altura. A aceleração não é "o quanto você está alto", e sim **o quanto sobe (ou desce) por segundo**.
+
+</Brincando>
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Num carro, com velocidade que não muda (por exemplo, 100 km/h constantes em linha reta), você sente algum empurrão?"
+  opcoes={['Sim, um empurrão para trás, proporcional à velocidade', 'Não: só sentimos quando a velocidade muda', 'Sim, um empurrão para a frente']}
+  correta={1}
+  explicacao="O corpo só 'sente' a mudança de velocidade (a aceleração). Em velocidade constante, você não sente nada: nem em 100 km/h, nem num avião a 900 km/h. É o que Galileu percebeu com o navio."
+>
+
+Mude a aceleração e veja como a velocidade evolui segundo a segundo:
+
+<AceleracaoDoCarro />
+
+Com aceleração **positiva**, as barras crescem. Com **negativa**, encolhem. Com aceleração **zero**, ficam todas do mesmo tamanho: o carro anda em **velocidade constante**.
+
+Agora o palpite do começo. No avião a 900 km/h constantes, o que você sente?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Um empurrão forte para trás, por causa da velocidade', 'Nada: parece que o avião está parado', 'Um frio na barriga, por causa da velocidade']}
+  correta={1}
+  seAcertou="Certo: em velocidade constante você não sente nada. Só sentimos quando a velocidade muda, na decolagem ou na turbulência."
+  seErrou="O certo é: nada. Em velocidade constante não há aceleração, e é a aceleração que sentimos. O empurrão vem só na decolagem, quando a velocidade está mudando."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Velocidade média, passo a passo
+
+A fórmula da velocidade média é:
+
+<Formula>
+<Linha>velocidade média = espaço percorrido ÷ tempo gasto</Linha>
+</Formula>
+
+Em símbolos, vm = Δs ÷ Δt. Os "Δ" lembram que são **variações**: quanto o espaço mudou e quanto o tempo passou. A unidade no Sistema Internacional é **metro por segundo (m/s)**, mas no dia a dia usamos muito **quilômetro por hora (km/h)**.
+
+<ExemploResolvido titulo="Um carro percorre 150 km em 2 horas. Qual a velocidade média?">
+  <Passo>Espaço percorrido: 150 km. Tempo gasto: 2 h.</Passo>
+  <Passo>vm = 150 ÷ 2 = **75 km/h**.</Passo>
+  <Passo>Isso não quer dizer que o carro andou sempre a 75: significa que, **em média**, a cada hora ele andou 75 km.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um carro percorre 150 km em 2 horas. Qual a velocidade média, em km/h?" resposta="75" dica="Divida o espaço pelo tempo." resolucao="150 ÷ 2 = 75 km/h." />
+
+<Exercicio enunciado="Uma atleta corre 100 m em 12,5 s. Qual a velocidade média, em m/s?" resposta="8" dica="Espaço dividido pelo tempo, nas unidades do problema." resolucao="100 ÷ 12,5 = 8 m/s." />
+
+A mesma fórmula, reorganizada, responde a outras perguntas:
+
+- **Distância**: espaço = velocidade × tempo.
+- **Tempo**: tempo = espaço ÷ velocidade.
+
+<Exercicio enunciado="Um ônibus viaja a 80 km/h por 3 horas. Que distância percorre, em km?" resposta="240" dica="Distância = velocidade × tempo." resolucao="80 × 3 = 240 km." />
+
+<Exercicio enunciado="Quantas horas leva uma viagem de 300 km a 60 km/h?" resposta="5" dica="Tempo = distância ÷ velocidade." resolucao="300 ÷ 60 = 5 horas." />
+
+## De km/h para m/s (e de volta)
+
+Os dois jeitos de medir velocidade andam juntos, e o fator para passar de um para o outro é o **3,6**. A conta vem de que 1 km = 1.000 m e 1 hora = 3.600 s. Logo, 1 km/h = 1.000 m ÷ 3.600 s = 1 ÷ 3,6 m/s.
+
+- De **km/h** para **m/s**: **divida** por 3,6.
+- De **m/s** para **km/h**: **multiplique** por 3,6.
+
+<ConversorKmhMs />
+
+<Brincando titulo="Conversão: o 3,6 que parece mágica">
+
+Um jeito de lembrar: o **número menor** é o m/s, e o **número maior** é o km/h. 10 m/s é uma velocidade pequena de ouvir, mas é 36 km/h, um carro andando devagar. Quando for passar de m/s para km/h, o número **cresce** (multiplica por 3,6), e quando for o contrário, **encolhe** (divide por 3,6). Se a resposta foi na direção errada, é sinal de que o fator foi aplicado ao contrário.
+
+</Brincando>
+
+<ExemploResolvido titulo="Converta 90 km/h para m/s e 20 m/s para km/h.">
+  <Passo>De km/h para m/s, **divida por 3,6**: 90 ÷ 3,6 = **25 m/s**.</Passo>
+  <Passo>De m/s para km/h, **multiplique por 3,6**: 20 × 3,6 = **72 km/h**.</Passo>
+  <Passo>Conferindo: 25 m/s × 3,6 = 90 km/h. Bate com o início.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Converta 90 km/h para m/s." resposta="25" dica="Divida por 3,6." resolucao="90 ÷ 3,6 = 25 m/s." />
+
+<Exercicio enunciado="Converta 20 m/s para km/h." resposta="72" dica="Multiplique por 3,6." resolucao="20 × 3,6 = 72 km/h." />
+
+Agora compare velocidades em unidades diferentes. Só dá para comparar depois de levar tudo para a **mesma unidade**:
+
+<QuemEMaisRapido />
+
+## A pegadinha da média
+
+Um carro faz uma viagem de ida e volta por um mesmo caminho: **vai a 60 km/h e volta a 120 km/h**. Qual a velocidade média da viagem inteira? A resposta tentadora é "a média de 60 e 120, que é 90". Mas está **errada**.
+
+O erro está em esquecer que o carro **passa mais tempo** na parte lenta. Veja com 120 km em cada trecho: na ida, 120 ÷ 60 = 2 horas; na volta, 120 ÷ 120 = 1 hora. O total é 240 km em 3 horas, e 240 ÷ 3 = **80 km/h**, e não 90.
+
+<MediaDaViagem />
+
+<Brincando titulo="A média enganosa: a corrida na lama e no asfalto">
+
+Imagine atravessar um trecho de lama a 3 km/h e depois um trecho de asfalto do mesmo tamanho a 6 km/h. Você gasta **muito mais tempo na lama**. A média "certa" fica mais perto do ritmo lento, porque o ritmo lento ocupa mais tempo. A velocidade média é espaço ÷ tempo, e **não** a média das velocidades.
+
+</Brincando>
+
+<ExemploResolvido titulo="Um carro vai de A até B a 60 km/h e volta de B até A a 120 km/h. Qual a velocidade média na viagem toda?">
+  <Passo>Escolha uma distância fácil, por exemplo 120 km entre A e B.</Passo>
+  <Passo>Ida: 120 ÷ 60 = 2 h. Volta: 120 ÷ 120 = 1 h. Tempo total: **3 h**.</Passo>
+  <Passo>Espaço total: 120 + 120 = **240 km**.</Passo>
+  <Passo>vm = 240 ÷ 3 = **80 km/h**. O resultado não depende da distância escolhida.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um carro vai a 60 km/h e volta pelo mesmo caminho a 120 km/h. Qual a velocidade média da viagem toda, em km/h?" resposta="80" dica="Use 120 km em cada trecho e some os tempos." resolucao="Ida: 2 h. Volta: 1 h. Total: 240 km em 3 h = 80 km/h." />
+
+## Velocidade instantânea
+
+O número que aparece no velocímetro do carro é a **velocidade instantânea**: a velocidade **naquele momento**, e não a média. Se você estiver a 100 km/h num trecho e frear, o velocímetro cai na hora. A velocidade média só se calcula olhando uma viagem inteira (ou um trecho), e a instantânea olha um instante.
+
+## Aceleração média
+
+A aceleração é a variação da velocidade dividida pelo tempo:
+
+<Formula>
+<Linha>aceleração média = variação da velocidade ÷ tempo</Linha>
+</Formula>
+
+Em símbolos, a = Δv ÷ Δt. A unidade é **m/s²** (metro por segundo, por segundo), porque a velocidade (m/s) muda a cada segundo. Dizer "2 m/s²" é dizer "a velocidade cresce 2 m/s a cada segundo".
+
+<ExemploResolvido titulo="Um carro vai de 0 a 20 m/s em 5 s. Qual a aceleração média?">
+  <Passo>Variação da velocidade: 20 − 0 = 20 m/s.</Passo>
+  <Passo>Tempo: 5 s.</Passo>
+  <Passo>a = 20 ÷ 5 = **4 m/s²**: a velocidade ganha 4 m/s a cada segundo.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um carro vai de 0 a 20 m/s em 5 s. Qual a aceleração média, em m/s²?" resposta="4" dica="Divida a variação da velocidade pelo tempo." resolucao="a = 20 ÷ 5 = 4 m/s²." />
+
+<Exercicio enunciado="Uma moto vai de 10 m/s a 30 m/s em 4 s. Qual a aceleração média, em m/s²?" resposta="5" dica="A variação da velocidade é a final menos a inicial." resolucao="Δv = 30 − 10 = 20 m/s. a = 20 ÷ 4 = 5 m/s²." />
+
+<Brincando titulo="m/s²: por que o 'segundo' aparece duas vezes">
+
+Pense em dizer "o elevador sobe 2 metros por segundo". Agora, se o elevador **começa** a subir mais depressa a cada segundo, você diz "a cada segundo, ele ganha 2 m/s de velocidade". A palavra "segundo" aparece duas vezes: uma para a velocidade (metros **por segundo**) e outra para a mudança dela (a cada **segundo**). Por isso m/s² é lido "metros por segundo ao quadrado" e quer dizer "metros por segundo, por segundo".
+
+</Brincando>
+
+## O sinal da aceleração
+
+A aceleração tem sinal. Se a velocidade **aumenta**, a aceleração é **positiva** (no sentido do movimento). Se a velocidade **diminui**, a aceleração é **negativa**, também chamada de **desaceleração**. Um carro que freia de 30 m/s até parar em 6 s tem aceleração média
+
+<Formula>
+<Linha>a = (0 − 30) ÷ 6 = −5 m/s²</Linha>
+</Formula>
+
+O sinal de menos diz só que a velocidade está **diminuindo**.
+
+<Exercicio enunciado="Um carro freia de 30 m/s até 10 m/s em 4 s. Qual o valor (sem o sinal) da aceleração, em m/s²?" resposta="5" dica="A variação da velocidade, ignorando o sinal, é 30 − 10." resolucao="Δv = 10 − 30 = −20 m/s. a = −20 ÷ 4 = −5 m/s². O valor, sem sinal, é 5." />
+
+## Calculando a velocidade depois de um tempo
+
+Se a aceleração é constante, a velocidade evolui assim:
+
+<Formula>
+<Linha>v = v₀ + a × t</Linha>
+</Formula>
+
+Aqui v₀ ("v zero") é a velocidade inicial. Cada segundo soma "a" à velocidade, então depois de t segundos foi somado a × t.
+
+<ExemploResolvido titulo="Um carro parte do repouso com aceleração de 3 m/s². Qual a velocidade depois de 6 s?">
+  <Passo>Partiu do repouso: v₀ = 0.</Passo>
+  <Passo>v = v₀ + a × t = 0 + 3 × 6 = **18 m/s**.</Passo>
+  <Passo>Em km/h: 18 × 3,6 = **64,8 km/h**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um carro parte do repouso com aceleração de 3 m/s². Qual a velocidade, em m/s, depois de 6 s?" resposta="18" dica="v = v₀ + a × t, com v₀ = 0." resolucao="3 × 6 = 18 m/s." />
+
+<Exercicio enunciado="Quantos segundos um carro com aceleração de 2,5 m/s² leva, saindo do repouso, para chegar a 20 m/s?" resposta="8" dica="tempo = variação da velocidade ÷ aceleração." resolucao="20 ÷ 2,5 = 8 s." />
+
+<Exercicio enunciado="Um carro vai de 0 a 108 km/h (30 m/s) em 6 s. Qual a aceleração média, em m/s²?" resposta="5" dica="Divida 30 m/s por 6 s." resolucao="30 ÷ 6 = 5 m/s²." />
+
+## Aceleração e o que o corpo sente
+
+Voltando ao gancho. Quando o carro **acelera**, o corpo tende a **manter a velocidade que tinha** e, por isso, é empurrado para trás em relação ao carro. Quando o carro **freia**, o corpo tende a continuar na velocidade antiga e vai para a frente. É a **inércia**: a tendência de todo corpo de manter a sua velocidade. Quem sente não é a velocidade, e sim a **mudança** dela.
+
+<InerciaNaFreada />
+
+<Brincando titulo="Inércia: o café no copo do ônibus">
+
+Já viu o café balançar num copo quando o ônibus arranca ou freia? Quando o ônibus arranca, o café **fica para trás** e escorre pela borda traseira. Quando freia, ele **vai para a frente**. O café só quer continuar andando na velocidade que tinha. Em velocidade constante, o café fica quietinho: ninguém o está empurrando para nenhum lado.
+
+</Brincando>
+
+<Aprofundar titulo="A aceleração da gravidade: 9,8 m/s²">
+
+Perto da superfície da Terra, quando um corpo cai (e a resistência do ar é desprezível), sua velocidade cresce cerca de **9,8 m/s a cada segundo**. É a aceleração da gravidade, representada por **g**. Depois de 1 s de queda, a velocidade é de uns 9,8 m/s (35 km/h), depois de 2 s, de uns 19,6 m/s (70 km/h), e assim por diante. Na cápsula de queda livre isso será detalhado.
+
+</Aprofundar>
+
+<Aprofundar titulo="Quanto vale 'forte' numa aceleração">
+
+Um carro comum que vai de 0 a 100 km/h em 10 s tem aceleração média de cerca de 2,8 m/s². Um carro esportivo pode chegar a mais de 8 m/s². Num elevador comum, a aceleração é de uns 1 m/s². Uma queda livre tem 9,8 m/s², e um caça pode submeter o piloto a várias vezes esse valor. Os pilotos usam roupas especiais justamente para o sangue não "fugir" da cabeça nessas acelerações.
+
+</Aprofundar>
+
+<Aprofundar titulo="Velocidade da luz: o limite do universo">
+
+A luz viaja no vácuo a cerca de **299.792.458 m/s**, aproximadamente 300.000 km/s, ou cerca de 1,08 bilhão de km/h. Pelo que se sabe, nada com massa chega a essa velocidade. Em 1 segundo, a luz dá umas 7 voltas e meia ao redor da Terra.
+
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Qual é a fórmula da velocidade média?',
+    opcoes: ['espaço percorrido ÷ tempo gasto', 'tempo gasto ÷ espaço percorrido', 'espaço percorrido × tempo gasto'],
+    correta: 0,
+    explicacao: 'A velocidade média é espaço dividido por tempo: vm = Δs ÷ Δt.',
+  },
+  {
+    enunciado: 'Um carro percorre 240 km em 3 horas. A velocidade média foi...',
+    opcoes: ['80 km/h', '720 km/h', '60 km/h'],
+    correta: 0,
+    explicacao: '240 ÷ 3 = 80 km/h.',
+  },
+  {
+    enunciado: 'Para passar de km/h para m/s, devemos...',
+    opcoes: ['multiplicar por 3,6', 'dividir por 3,6', 'dividir por 36'],
+    correta: 1,
+    explicacao: 'Divide-se por 3,6 (porque 1 km/h = 1 ÷ 3,6 m/s). Para o caminho de volta, multiplica-se por 3,6.',
+  },
+  {
+    enunciado: '72 km/h correspondem a...',
+    opcoes: ['20 m/s', '72 m/s', '259 m/s'],
+    correta: 0,
+    explicacao: '72 ÷ 3,6 = 20 m/s.',
+  },
+  {
+    enunciado: 'Qual é a unidade de aceleração no Sistema Internacional?',
+    opcoes: ['m/s', 'm/s²', 'km/h'],
+    correta: 1,
+    explicacao: 'A aceleração mede quanto a velocidade (m/s) muda a cada segundo: m/s ÷ s = m/s².',
+  },
+  {
+    enunciado: 'Uma moto vai de 0 a 25 m/s em 5 s. A aceleração média foi...',
+    opcoes: ['5 m/s²', '125 m/s²', '20 m/s²'],
+    correta: 0,
+    explicacao: '25 ÷ 5 = 5 m/s².',
+  },
+  {
+    enunciado: 'Um carro viaja em linha reta a 100 km/h, sempre igual. Sua aceleração é...',
+    opcoes: ['100 m/s²', 'zero', 'negativa'],
+    correta: 1,
+    explicacao: 'Velocidade constante significa que não há variação de velocidade, então a aceleração é zero.',
+  },
+  {
+    enunciado: 'Frear é uma forma de aceleração?',
+    opcoes: ['Não: só aumentar a velocidade conta', 'Sim: a velocidade muda, e a aceleração é negativa', 'Só se o carro parar'],
+    correta: 1,
+    explicacao: 'Qualquer mudança de velocidade é aceleração. Na freada, a velocidade diminui e o sinal da aceleração é negativo.',
+  },
+  {
+    enunciado: 'Um carro vai de A a B a 60 km/h e volta a 120 km/h. A velocidade média na ida e volta é...',
+    opcoes: ['90 km/h', '80 km/h', '100 km/h'],
+    correta: 1,
+    explicacao: 'Com 120 km em cada trecho: 2 h na ida e 1 h na volta. 240 km ÷ 3 h = 80 km/h. A média das velocidades (90) engana, porque o carro passa mais tempo na parte lenta.',
+  },
+  {
+    enunciado: 'Um carro parte do repouso com aceleração de 4 m/s². Qual a velocidade depois de 5 s?',
+    opcoes: ['9 m/s', '20 m/s', '0,8 m/s'],
+    correta: 1,
+    explicacao: 'v = 0 + 4 × 5 = 20 m/s.',
+  },
+  {
+    enunciado: 'Por que o corpo é jogado para a frente quando o carro freia?',
+    opcoes: ['Porque o carro empurra o corpo para a frente', 'Porque o corpo tende a manter a velocidade que tinha (inércia)', 'Porque o ar empurra o corpo'],
+    correta: 1,
+    explicacao: 'O carro desacelera, mas o corpo continua com a velocidade antiga. Em relação ao carro, parece ser jogado para a frente.',
+  },
+  {
+    enunciado: 'Qual das velocidades é a maior?',
+    opcoes: ['10 m/s', '30 km/h', '40 km/h'],
+    correta: 2,
+    explicacao: '10 m/s equivalem a 36 km/h. Em km/h: 36, 30 e 40. A maior é 40 km/h.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Velocidade média** = espaço percorrido ÷ tempo gasto (vm = Δs ÷ Δt). Unidades: m/s (SI) e km/h.
+- **De km/h para m/s**: divida por 3,6. **De m/s para km/h**: multiplique por 3,6.
+- **Velocidade instantânea** é a do velocímetro, naquele momento.
+- **A média das velocidades engana:** na ida a 60 e na volta a 120 km/h, a velocidade média é 80 km/h, e não 90, porque se gasta mais tempo na parte lenta.
+- **Aceleração média** = variação da velocidade ÷ tempo (a = Δv ÷ Δt), em m/s². Frear é aceleração negativa.
+- Com aceleração constante: **v = v₀ + a × t**.
+- Sentimos a **aceleração** (mudança da velocidade), e não a velocidade: por isso a freada joga o corpo para a frente (inércia).
+
+**Um pouco de história.** No século 14, Oresme já desenhava gráficos de velocidade. No começo dos anos 1600, Galileu usou rampas e um relógio de água para provar que, em tempos iguais, a velocidade de uma bola crescia sempre na mesma quantidade. Em 1947, Chuck Yeager passou da velocidade do som.
+
+</Resumo>
+
+Com velocidade e aceleração em mãos, dá para estudar os dois tipos mais importantes de movimento: o que anda sempre na mesma velocidade e o que muda de velocidade de modo constante. Para onde seguir:
+
+<Conexoes />
+
+</Etapa>

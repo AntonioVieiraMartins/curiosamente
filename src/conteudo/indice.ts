@@ -252,9 +252,9 @@ export const capsulas: ResumoCapsula[] = [
   qui('quimica-da-vida', 'Química da vida', 'Proteínas, açúcares e gorduras: de que somos feitos.', { grupo: 'Química no dia a dia', conexoes: ['celula', 'dna-e-genes'] }),
 
   // Física: do movimento ao universo
-  fis('movimento-e-referencial', 'Movimento e referencial', 'Sentado no ônibus, você está parado? Depende de quem olha.', { grupo: 'Movimento', conexoes: ['plano-cartesiano'] }),
-  fis('velocidade-e-aceleracao', 'Velocidade e aceleração', 'Por que o corpo vai para a frente quando o carro freia?', { grupo: 'Movimento', conexoes: ['razao-e-proporcao'] }),
-  fis('movimento-uniforme', 'Movimento uniforme', 'Quando o carro chega: gráficos de posição e tempo.', { grupo: 'Movimento', conexoes: ['funcao-afim'] }),
+  fis('movimento-e-referencial', 'Movimento e referencial', 'Sentado no ônibus, você está parado? Depende de quem olha.', { grupo: 'Movimento', conexoes: ['plano-cartesiano'], estado: 'pronta', duracaoMin: 40 }),
+  fis('velocidade-e-aceleracao', 'Velocidade e aceleração', 'Por que o corpo vai para a frente quando o carro freia?', { grupo: 'Movimento', conexoes: ['razao-e-proporcao'], estado: 'pronta', duracaoMin: 45 }),
+  fis('movimento-uniforme', 'Movimento uniforme', 'Quando o carro chega: gráficos de posição e tempo.', { grupo: 'Movimento', conexoes: ['funcao-afim'], estado: 'pronta', duracaoMin: 45 }),
   fis('movimento-variado', 'Movimento uniformemente variado', 'Frear a tempo: a conta que salva vidas.', { grupo: 'Movimento', conexoes: ['funcao-quadratica'] }),
   fis('queda-livre', 'Queda livre', 'Uma pena e um martelo caem juntos? Na Lua, sim.', { grupo: 'Movimento' }),
   fis('lancamentos', 'Lançamentos', 'A parábola do chute de falta.', { grupo: 'Movimento', conexoes: ['funcao-quadratica', 'trigonometria'] }),
