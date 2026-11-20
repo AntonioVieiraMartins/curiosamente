@@ -132,18 +132,6 @@ export default function Mapa() {
               </button>
             ))}
           </nav>
-          {linhasDaArea.length > 1 && (
-            <nav aria-label={`Linhas de ${areaAberta?.nome}`} className="mt-2 flex gap-2 overflow-x-auto pb-1">
-              <button type="button" aria-pressed={!linhaAberta} onClick={() => escolherArea(areaAberta!.id)} className={`${chip(!linhaAberta)} shrink-0`}>
-                Todas
-              </button>
-              {linhasDaArea.map((l) => (
-                <button key={l.id} type="button" aria-pressed={linhaAberta?.id === l.id} onClick={() => escolher(l.id)} className={`${chip(linhaAberta?.id === l.id)} shrink-0`}>
-                  {l.nome.replace(`${areaAberta?.nome} · `, '')}
-                </button>
-              ))}
-            </nav>
-          )}
 
           {!linhaAberta ? (
             <div className="mt-5 space-y-8">
@@ -171,7 +159,7 @@ export default function Mapa() {
           ) : (
             <>
             {linhasDaArea.length > 1 && (
-              <div className="mt-5 hidden gap-4 sm:grid sm:grid-cols-2 xl:grid-cols-4">
+              <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
                 {linhasDaArea.map((l) => (
                   <CartaoDaLinha
                     key={l.id}
