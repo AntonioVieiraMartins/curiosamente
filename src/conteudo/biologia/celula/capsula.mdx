@@ -1,0 +1,425 @@
+import CelulaPorDentro from '../../../components/simulacoes/CelulaPorDentro'
+import ProcariontesOuEucariontes from '../../../components/simulacoes/ProcariontesOuEucariontes'
+import FabricaDeProteinas from '../../../components/simulacoes/FabricaDeProteinas'
+import EscalaDasCelulas from '../../../components/simulacoes/EscalaDasCelulas'
+import AnalogiaDaCidade from '../../../components/simulacoes/AnalogiaDaCidade'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Cell biology, Cell theory, Organelle, Prokaryote, Eukaryote, Robert Hooke), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Olhe para a sua mão. Ela parece uma peça única, lisa e inteira. Mas, se você pudesse aproximar a imagem milhares de vezes, veria algo muito diferente: uma multidão de **minúsculas unidades**, cada uma com paredes, entradas, usinas e uma central de comando. Cada uma delas é viva.
+
+Essas unidades são as <Termo cor="verde">células</Termo>. Seu corpo é uma cidade de células, que trabalham juntas dia e noite sem você perceber. E mesmo um ser vivo bem simples, como uma bactéria, é **uma célula só** fazendo tudo sozinha.
+
+<Palpite
+  chave="inicial"
+  pergunta="Quantas células tem o corpo de um adulto, aproximadamente?"
+  opcoes={['Cerca de 1 bilhão', 'Cerca de 30 a 40 trilhões', 'Cerca de 1 quintilhão']}
+/>
+
+Nesta cápsula você vai ver como a ideia de célula surgiu, a diferença entre células simples e complexas, o que cada peça faz lá dentro (as organelas), como a célula fabrica proteínas e quão pequenas as células realmente são.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Ninguém sabia que os seres vivos eram feitos de células até alguém conseguir olhar bem de perto. A história da célula é a história de lentes cada vez melhores.
+
+<LinhaDoTempo marcos={[
+  { ano: '1665', texto: 'Robert Hooke observa cortiça ao microscópio e chama as "celinhas" que vê de cellulae.' },
+  { ano: 'Década de 1670', texto: 'Antonie van Leeuwenhoek descobre seres minúsculos na água e os chama de "animálculos".' },
+  { ano: '1831', texto: 'Robert Brown identifica o núcleo nas células de plantas.' },
+  { ano: '1838 e 1839', texto: 'Schleiden (plantas) e Schwann (animais) concluem que todos os seres vivos são feitos de células.' },
+  { ano: '1855', texto: 'Rudolf Virchow resume: toda célula vem de outra célula.' },
+  { ano: 'Anos 1930', texto: 'O microscópio eletrônico mostra as organelas com detalhes nunca vistos.' },
+]} />
+
+## Hooke e a cortiça
+
+Em 1665, o inglês **Robert Hooke** cortou uma fatia finíssima de cortiça e olhou no microscópio que ele mesmo melhorou. Viu uma "colmeia" de pequenos compartimentos. Chamou-os de *cellulae*, "quartinhos", como as celas de um mosteiro. O que Hooke viu, na verdade, eram as paredes de células **mortas** da cortiça. Mas o nome pegou.
+
+## Leeuwenhoek e os bichinhos da água
+
+Na mesma época, o holandês **Antonie van Leeuwenhoek**, que fabricava lentes pequenas e excelentes, olhou para uma gota d'água de lagoa e viu coisas se mexendo. Chamou-as de "animálculos". Eram seres vivos de uma célula só. Ele descobriu até bactérias, que ninguém havia visto antes. Pela primeira vez, o mundo invisível aparecia.
+
+## A teoria celular
+
+Quase 200 anos depois, dois alemães chegaram à mesma ideia. O botânico **Matthias Schleiden** (1838) viu que as plantas eram feitas de células. O zoólogo **Theodor Schwann** (1839) viu o mesmo nos animais. Em 1855, o médico **Rudolf Virchow** completou: toda célula nasce de **outra** célula, o mesmo raciocínio de Redi e Pasteur, agora no nível microscópico.
+
+## Os três pontos da teoria
+
+A <Termo cor="azul">teoria celular</Termo> diz três coisas simples:
+
+- Todos os seres vivos são feitos de **uma ou mais células**.
+- A célula é a **unidade básica** da vida: a menor coisa que faz tudo o que a vida faz.
+- Toda célula **vem de outra** célula que já existia.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. A célula é uma casa com muitos cômodos
+
+Pense na célula como uma **casa**. Tem um **muro** (a membrana) que protege e decide quem entra. Tem um **escritório** que guarda as plantas da casa (o núcleo). Tem uma **cozinha**, uma **usina de energia**, uma **fábrica** de peças e até um sistema de **coleta de lixo**. Cada cômodo é uma <Termo cor="coral">organela</Termo>, uma pequena parte com uma tarefa.
+
+<Brincando titulo="A célula: uma cidade em miniatura">
+
+Uma cidade pequena tem prefeitura, usina elétrica, fábricas, correios, muros com portões e coleta de lixo. A célula tem tudo isso, em miniatura: núcleo (prefeitura), mitocôndrias (usina), ribossomos (fábricas), Golgi (correios), membrana (muros) e lisossomos (lixo). A diferença é que tudo isso cabe numa coisa **menor que um grão de poeira**.
+
+</Brincando>
+
+## 2. Dois grandes tipos
+
+Existem duas grandes famílias de células, e a diferença está no **núcleo**:
+
+- <Termo cor="coral">Procarionte</Termo>: não tem núcleo com membrana. O DNA fica solto dentro da célula. É simples e pequena. As **bactérias** são assim.
+- <Termo cor="verde">Eucarionte</Termo>: tem **núcleo** com membrana e várias organelas. É maior e mais complexa. Os **animais, plantas, fungos e protistas** têm células assim.
+
+## 3. Muitas células, muitos trabalhos
+
+Num ser pluricelular, as células se **especializam**: células nervosas mandam sinais, células musculares contraem, células da pele protegem. Todas têm o mesmo DNA, mas cada uma "liga" só os genes de que precisa.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="A célula de uma folha de alface faz fotossíntese. Qual peça a célula de um animal NÃO tem, e a folha sim?"
+  opcoes={['Mitocôndria', 'Cloroplasto', 'Núcleo']}
+  correta={1}
+  explicacao="O cloroplasto é a organela da fotossíntese. Só existe em plantas e algas. Mitocôndrias e núcleo existem nas células de plantas e animais."
+>
+
+Explore a célula animal e a vegetal. Toque em cada organela para ver a função dela:
+
+<CelulaPorDentro />
+
+Repare que a célula vegetal tem três coisas que a animal não tem: **parede celular**, **cloroplastos** e um **grande vacúolo**. Todas as outras organelas aparecem nas duas.
+
+Agora o palpite do começo. Quantas células tem o corpo humano?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Cerca de 1 bilhão', 'Cerca de 30 a 40 trilhões', 'Cerca de 1 quintilhão']}
+  correta={1}
+  seAcertou="Certo: cerca de 30 a 40 trilhões. É um número estimado, e não exato, porque as células nascem e morrem o tempo todo."
+  seErrou="O certo é: cerca de 30 a 40 trilhões. 1 bilhão é pouco demais, e 1 quintilhão é gente demais. As estimativas variam, porque o corpo renova células o tempo todo."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Procariontes e eucariontes
+
+A divisão entre os dois tipos é uma das mais importantes da biologia.
+
+**Célula procarionte:**
+- Sem núcleo com membrana: o DNA fica numa região do citoplasma (o nucleoide).
+- Quase sem organelas com membrana.
+- Pequena: de 1 a 5 µm, em geral.
+- Exemplos: bactérias e arqueias.
+
+**Célula eucarionte:**
+- Com núcleo, cercado por membrana.
+- Com várias organelas membranosas (mitocôndrias, Golgi etc.).
+- Maior: de 10 a 100 µm, em geral.
+- Exemplos: animais, plantas, fungos e protistas (como a ameba).
+
+<Brincando titulo="Procarionte e eucarionte: o quarto e o apartamento">
+
+A célula procarionte é como **um quarto único**: cama, mesa e cozinha no mesmo espaço, tudo ao alcance. A eucarionte é como **um apartamento com vários cômodos**, cada um com uma porta e uma função: quarto, cozinha, escritório. Dividir em cômodos deixa as tarefas mais organizadas e permite células maiores e mais complexas.
+
+</Brincando>
+
+<ProcariontesOuEucariontes />
+
+<ExemploResolvido titulo="A célula tem núcleo com membrana, mitocôndrias e parede celular. É de bactéria, de animal ou de planta?">
+  <Passo>Tem **núcleo com membrana**: então é eucarionte. Bactérias ficam de fora.</Passo>
+  <Passo>Tem **parede celular**: células animais não têm. Então é de planta (ou de fungo ou alga).</Passo>
+  <Passo>Conclusão: **célula vegetal** (eucarionte).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Entre parede celular, cloroplasto, núcleo, mitocôndria e vacúolo central, quantas são exclusivas das células vegetais (ou seja, a célula animal não tem)?" resposta="3" dica="Veja a simulação." resolucao="Parede celular, cloroplasto e vacúolo central. Total: 3." />
+
+## As organelas e suas tarefas
+
+### Membrana plasmática
+
+Envolve toda a célula. É **seletiva**: deixa entrar o que a célula precisa (nutrientes, água, oxigênio) e sai o que sobra (resíduos). É feita de uma dupla camada de gorduras, com proteínas que funcionam como portinhas.
+
+### Citoplasma
+
+É o "caldo" gelatinoso que enche a célula, entre a membrana e o núcleo. Nele ficam as organelas, e nele acontecem muitas reações químicas.
+
+### Núcleo
+
+É o escritório central. Guarda o **DNA**, o manual de instruções do corpo todo. Fica dentro de uma membrana própria, com poros por onde saem as ordens (cópias do DNA em forma de RNA).
+
+### Mitocôndrias
+
+São as **usinas de energia**. Pegam o açúcar e o oxigênio e liberam energia numa forma que a célula usa: o ATP. Células que gastam muita energia, como as do músculo e do coração, têm muitas mitocôndrias.
+
+### Ribossomos
+
+São as **fábricas de proteínas**. Leem as instruções que chegam do núcleo (RNA) e juntam os aminoácidos na ordem certa. Estão soltos no citoplasma e presos ao retículo.
+
+### Retículo endoplasmático e complexo de Golgi
+
+O **retículo** é uma rede de canais que ajuda a fabricar e a transportar substâncias. O **complexo de Golgi** recebe o que veio do retículo, **embala e etiqueta**, como uma central dos Correios, e despacha para o destino.
+
+### Lisossomos
+
+São bolsinhas cheias de enzimas que **digerem** o que a célula não quer mais: restos, partes velhas e até invasores. São a coleta de lixo e a reciclagem.
+
+### Só nas plantas
+
+- **Parede celular:** capa rígida de celulose, por fora da membrana. Dá forma e sustento.
+- **Cloroplastos:** fazem a **fotossíntese**, transformando luz, água e gás carbônico em açúcar.
+- **Vacúolo central:** grande bolsa de água e substâncias. Mantém a célula firme, como uma bola de festa cheia.
+
+<AnalogiaDaCidade />
+
+<Brincando titulo="Mitocôndria: a usina do bairro">
+
+Cada casa precisa de luz para funcionar. A usina pega combustível (a comida) e gera eletricidade (o ATP) que é distribuída pela cidade. Sem a usina, tudo para. A célula faz igual: sem mitocôndria, a célula não tem energia para fazer nada.
+
+</Brincando>
+
+<Exercicio enunciado="Uma célula do fígado tem, suponha, 1.000 mitocôndrias. Quantas há em 10 células iguais a ela?" resposta="10000" dica="10 × 1.000." resolucao="10 × 1.000 = 10.000 mitocôndrias." />
+
+## Como a célula fabrica uma proteína
+
+As proteínas são as peças de que a célula é feita: enzimas, hormônios, músculos, anticorpos. O caminho de uma delas é como uma **linha de montagem**:
+
+1. O **núcleo** copia o gene em um RNA mensageiro.
+2. O RNA sai do núcleo pelos poros.
+3. O **ribossomo** lê o RNA e junta os aminoácidos.
+4. O **retículo** e o **Golgi** dobram, ajustam e embalam a proteína.
+5. Uma **vesícula** leva a proteína até a membrana, e ela sai.
+
+<Brincando titulo="Proteína: a receita do bolo">
+
+O DNA é o livro de receitas, guardado na biblioteca (o núcleo). Para fazer um bolo, você copia uma receita num papel (o RNA) e leva para a cozinha (o ribossomo). Lá, o cozinheiro segue o papel e monta o bolo. Depois, o bolo é embalado e enviado (Golgi e vesícula). O livro original nunca sai da biblioteca.
+
+</Brincando>
+
+<FabricaDeProteinas />
+
+<ExemploResolvido titulo="A insulina é produzida pelo pâncreas. Siga o caminho de uma molécula de insulina dentro da célula.">
+  <Passo>O **núcleo** copia o gene da insulina em RNA mensageiro.</Passo>
+  <Passo>O RNA vai ao **ribossomo**, que monta a cadeia de aminoácidos da insulina.</Passo>
+  <Passo>**Retículo** e **Golgi** dobram e embalam a molécula em vesículas.</Passo>
+  <Passo>A vesícula chega à **membrana**, e a insulina é liberada no sangue.</Passo>
+</ExemploResolvido>
+
+## O tamanho das células
+
+As células são muito pequenas. Para falar delas, usamos o **micrômetro** (µm): **1 mm = 1.000 µm**, e 1 µm = 1.000 nm (nanômetros).
+
+- Vírus da gripe: cerca de 0,1 µm.
+- Bactéria (E. coli): cerca de 2 µm.
+- Hemácia (célula do sangue): cerca de 7,5 µm.
+- Célula da pele: cerca de 30 µm.
+- Óvulo humano: cerca de 120 µm (quase 0,1 mm, no limite do que o olho vê).
+
+Há exceções enormes. Os neurônios têm prolongamentos (axônios) que chegam a **cerca de 1 metro** num adulto, como os que vão da coluna até o pé. E a gema de um ovo de avestruz, quando ainda é uma célula só, é considerada a maior célula que existe.
+
+<Brincando titulo="Tamanho das células: a fila na régua">
+
+Imagine uma régua e um milímetro marcado nela. Num milímetro cabem uns **133 glóbulos vermelhos** em fila. E cabem **500 bactérias**, uma atrás da outra. As células são tão pequenas que, se você pudesse crescer uma bactéria 10.000 vezes, ela teria só 2 centímetros.
+
+</Brincando>
+
+<EscalaDasCelulas />
+
+<ExemploResolvido titulo="Quantas hemácias (7,5 µm cada) cabem em fila em 1 mm?">
+  <Passo>1 mm = 1.000 µm.</Passo>
+  <Passo>Divida: 1.000 ÷ 7,5 = 133,3.</Passo>
+  <Passo>Cabem cerca de **133** hemácias.</Passo>
+</ExemploResolvido>
+
+<ExemploResolvido titulo="Se aumentássemos tudo 10.000 vezes, que tamanho teria uma bactéria de 2 µm?">
+  <Passo>2 µm × 10.000 = 20.000 µm.</Passo>
+  <Passo>20.000 µm ÷ 1.000 = 20 mm.</Passo>
+  <Passo>20 mm = **2 cm**, mais ou menos o tamanho de uma moeda pequena.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos nanômetros (nm) tem 1 micrômetro (µm)?" resposta="1000" dica="1 µm = 1.000 nm." resolucao="1 µm = 1.000 nm." />
+
+<Exercicio enunciado="Quantas bactérias de 2 µm cabem em fila em 1 mm?" resposta="500" dica="1.000 ÷ 2." resolucao="1.000 ÷ 2 = 500 bactérias." />
+
+<Exercicio enunciado="Quantas hemácias de 7,5 µm cabem em fila em 1 mm? Responda com o número inteiro mais próximo." resposta="133" dica="1.000 ÷ 7,5." resolucao="1.000 ÷ 7,5 = 133,3, cerca de 133." />
+
+<Exercicio enunciado="Uma célula tem 100 µm. Quantas dessas células cabem em fila em 1 cm? (1 cm = 10.000 µm)" resposta="100" dica="10.000 ÷ 100." resolucao="10.000 ÷ 100 = 100 células." />
+
+<Exercicio enunciado="Se aumentássemos tudo 10.000 vezes, quantos centímetros teria uma bactéria de 2 µm?" resposta="2" dica="2 µm × 10.000 = 20.000 µm = 20 mm." resolucao="20 mm = 2 cm." />
+
+<Exercicio enunciado="Um axônio de neurônio tem cerca de 1 metro. Quantos milímetros é isso?" resposta="1000" dica="1 m = 1.000 mm." resolucao="1 m = 1.000 mm." />
+
+<Exercicio enunciado="Quantos anos se passaram entre as observações de Hooke (1665) e a teoria de Virchow (1855)?" resposta="190" dica="1855 − 1665." resolucao="1855 − 1665 = 190 anos." />
+
+## Células especializadas: cada uma com seu jeito
+
+No corpo humano, todas as células vêm de uma só, o óvulo fecundado, e todas têm o mesmo DNA. Mas cada tipo "liga" só os genes de que precisa, e acaba com uma forma que combina com a tarefa:
+
+- **Neurônio:** tem prolongamentos longos para levar sinais elétricos de um ponto a outro do corpo.
+- **Hemácia:** tem formato de disco achatado e perde o núcleo, para carregar mais oxigênio.
+- **Célula muscular:** é comprida, com muitas mitocôndrias, e contrai para produzir movimento.
+- **Célula da pele:** forma camadas bem unidas, como um telhado, e protege o corpo.
+- **Espermatozoide:** tem uma "cauda" (flagelo) para nadar até o óvulo.
+
+<Brincando titulo="Células especializadas: o time de futebol">
+
+Num time, todos jogam as mesmas regras, mas cada um tem uma função: goleiro, zagueiro, atacante. O goleiro usa luvas, o atacante usa chuteira com travas. As células são assim: o mesmo "regulamento" (o DNA), mas cada uma usa **a parte dele** que combina com a função e ganha o "uniforme" certo.
+
+</Brincando>
+
+### De uma célula a trilhões
+
+Como uma célula só vira 30 trilhões? Por **divisões**. Cada divisão dobra o número: 1, 2, 4, 8, 16... Depois de 10 divisões seguidas, são 2¹⁰ = 1.024 células. Com **45 divisões** seguidas, 2⁴⁵ chega a cerca de 35 trilhões, quase o total do corpo. Na prática, as divisões não são todas iguais, e muitas células morrem, mas o crescimento exponencial é o motor do corpo.
+
+<ExemploResolvido titulo="Uma célula se divide em duas a cada hora. Quantas há depois de 5 horas, partindo de uma só?">
+  <Passo>Cada hora **dobra** o número de células.</Passo>
+  <Passo>Sequência: 1 → 2 → 4 → 8 → 16 → 32.</Passo>
+  <Passo>Depois de 5 horas: 2⁵ = **32 células**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma célula se divide em duas a cada hora. Quantas células há depois de 5 horas, partindo de uma só?" resposta="32" dica="2⁵." resolucao="2 × 2 × 2 × 2 × 2 = 32." />
+
+<Exercicio enunciado="Um adulto tem cerca de 30 trilhões de células. Quantos bilhões são? (1 trilhão = 1.000 bilhões)" resposta="30000" dica="30 × 1.000." resolucao="30 × 1.000 = 30.000 bilhões." />
+
+<Exercicio enunciado="Uma hemácia vive cerca de 120 dias. Quantos meses de 30 dias isso dá?" resposta="4" dica="120 ÷ 30." resolucao="120 ÷ 30 = 4 meses." />
+
+<Exercicio enunciado="Depois de 10 divisões seguidas, começando com uma célula, quantas células há?" resposta="1024" dica="2¹⁰." resolucao="2¹⁰ = 1.024 células." />
+
+<Aprofundar titulo="A mitocôndria já foi uma bactéria?">
+
+As mitocôndrias têm **DNA próprio**, parecido com o das bactérias, e se dividem sozinhas dentro da célula. A bióloga **Lynn Margulis** defendeu, em 1967, a **teoria da endossimbiose**: há mais de 1 bilhão de anos, uma célula grande "engoliu" uma bactéria que sabia usar oxigênio, mas, em vez de digeri-la, as duas passaram a viver juntas. A bactéria virou a mitocôndria. O mesmo teria acontecido com os cloroplastos. Como o DNA das mitocôndrias vem do óvulo, nós o herdamos da mãe.
+
+</Aprofundar>
+
+<Aprofundar titulo="Hemácias: células sem núcleo">
+
+As hemácias dos mamíferos perdem o núcleo ao amadurecer, para ter mais espaço para carregar oxigênio. Por isso elas vivem pouco, cerca de 120 dias, e são substituídas o tempo todo. É um exemplo de que "toda célula tem núcleo" é só a regra geral: algumas células abrem mão dele para se especializar.
+
+</Aprofundar>
+
+<Aprofundar titulo="Quando surgiram os eucariontes?">
+
+As primeiras células, parecidas com as bactérias, surgiram há mais de 3,5 bilhões de anos. As eucariontes são bem mais novas: aparecem no registro fóssil há cerca de 2 bilhões de anos. Os seres pluricelulares complexos vieram muito depois. Boa parte da história da vida na Terra foi feita só de células simples.
+
+</Aprofundar>
+
+## Onde isso aparece na vida
+
+- **Exames de sangue:** contam hemácias, leucócitos e plaquetas, que são tipos de células.
+- **Câncer:** acontece quando células passam a se multiplicar sem controle, ignorando os sinais do corpo.
+- **Antibióticos:** atacam bactérias (procariontes) sem agredir tanto as nossas células (eucariontes), porque as estruturas são diferentes.
+- **Cicatrização:** células vizinhas se dividem e preenchem a ferida.
+- **Alimentos:** o pão e a cerveja dependem de leveduras, fungos de uma célula só.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Quem deu o nome "célula" e em que ano?',
+    opcoes: ['Robert Hooke, em 1665', 'Pasteur, em 1862', 'Darwin, em 1859'],
+    correta: 0,
+    explicacao: 'Hooke olhou a cortiça no microscópio e chamou os compartimentos de "cellulae".',
+  },
+  {
+    enunciado: 'Qual NÃO é um ponto da teoria celular?',
+    opcoes: ['Todo ser vivo é feito de células', 'Toda célula vem de outra célula', 'Todas as células têm núcleo'],
+    correta: 2,
+    explicacao: 'As bactérias são células sem núcleo com membrana. Os outros dois pontos fazem parte da teoria.',
+  },
+  {
+    enunciado: 'Qual é a diferença básica entre procarionte e eucarionte?',
+    opcoes: ['O tamanho do ser vivo', 'A presença de núcleo com membrana', 'A cor da célula'],
+    correta: 1,
+    explicacao: 'Procarionte não tem núcleo com membrana; eucarionte tem.',
+  },
+  {
+    enunciado: 'Qual organela libera energia para a célula?',
+    opcoes: ['Ribossomo', 'Mitocôndria', 'Lisossomo'],
+    correta: 1,
+    explicacao: 'A mitocôndria libera a energia dos alimentos na forma de ATP.',
+  },
+  {
+    enunciado: 'Qual é a função dos ribossomos?',
+    opcoes: ['Guardar o DNA', 'Fabricar proteínas', 'Digerir restos'],
+    correta: 1,
+    explicacao: 'Os ribossomos juntam aminoácidos seguindo o RNA.',
+  },
+  {
+    enunciado: 'Quem faz o papel de "Correios" da célula?',
+    opcoes: ['Complexo de Golgi', 'Núcleo', 'Mitocôndria'],
+    correta: 0,
+    explicacao: 'O Golgi embala, etiqueta e envia as proteínas.',
+  },
+  {
+    enunciado: 'Qual organela é a "coleta de lixo" da célula?',
+    opcoes: ['Lisossomo', 'Cloroplasto', 'Vacúolo'],
+    correta: 0,
+    explicacao: 'O lisossomo tem enzimas que digerem o que a célula não quer mais.',
+  },
+  {
+    enunciado: 'O que só a célula vegetal tem?',
+    opcoes: ['Núcleo', 'Parede celular, cloroplasto e vacúolo central', 'Membrana'],
+    correta: 1,
+    explicacao: 'Núcleo e membrana existem nas duas. Parede, cloroplasto e vacúolo central são típicos da planta.',
+  },
+  {
+    enunciado: 'Qual é a ordem do caminho de uma proteína?',
+    opcoes: ['Membrana → ribossomo → núcleo', 'Núcleo (RNA) → ribossomo → retículo e Golgi → membrana', 'Golgi → núcleo → ribossomo'],
+    correta: 1,
+    explicacao: 'O gene é copiado no núcleo, o ribossomo monta a proteína, e o retículo e o Golgi a ajustam e a enviam até a membrana.',
+  },
+  {
+    enunciado: 'Quantos µm tem 1 mm?',
+    opcoes: ['10', '1.000', '1.000.000'],
+    correta: 1,
+    explicacao: '1 mm = 1.000 µm.',
+  },
+  {
+    enunciado: 'Quantas bactérias de 2 µm cabem em fila em 1 mm?',
+    opcoes: ['500', '50', '5.000'],
+    correta: 0,
+    explicacao: '1.000 ÷ 2 = 500.',
+  },
+  {
+    enunciado: 'Por que antibióticos atacam bactérias sem agredir tanto nossas células?',
+    opcoes: ['Porque bactérias são procariontes, com estruturas diferentes das nossas', 'Porque bactérias são maiores', 'Porque nossas células não têm membrana'],
+    correta: 0,
+    explicacao: 'As bactérias têm estruturas próprias (como a parede celular e ribossomos diferentes), e os antibióticos miram nelas.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Teoria celular:** todo ser vivo é feito de células; a célula é a unidade básica da vida; toda célula vem de outra célula.
+- **Procarionte:** sem núcleo com membrana (bactérias). **Eucarionte:** com núcleo e organelas (animais, plantas, fungos, protistas).
+- **Organelas:** núcleo (DNA), mitocôndria (energia), ribossomo (proteínas), retículo e Golgi (transporte e embalagem), lisossomo (digestão), membrana (controle de entrada e saída).
+- **Só na planta:** parede celular, cloroplasto (fotossíntese) e vacúolo central.
+- **Proteína:** gene no núcleo → RNA → ribossomo → retículo e Golgi → vesícula → membrana.
+- **Tamanhos:** 1 mm = 1.000 µm. Bactéria cerca de 2 µm, hemácia 7,5 µm, óvulo 120 µm. O corpo humano tem de 30 a 40 trilhões de células.
+
+**Um pouco de história.** Em 1665, Hooke viu celas na cortiça e deu o nome "célula". Leeuwenhoek descobriu os seres de uma célula só. Schleiden e Schwann (1838 e 1839) concluíram que plantas e animais são feitos de células, e Virchow (1855) completou: toda célula vem de outra.
+
+</Resumo>
+
+A célula guarda um código, o DNA. E, para vê-la, é preciso um microscópio. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

@@ -1,0 +1,415 @@
+import HomogeneaOuHeterogenea from '../../../components/simulacoes/HomogeneaOuHeterogenea'
+import EscolhaOMetodo from '../../../components/simulacoes/EscolhaOMetodo'
+import BancadaDosTresPos from '../../../components/simulacoes/BancadaDosTresPos'
+import DestilacaoSimples from '../../../components/simulacoes/DestilacaoSimples'
+import PeneiraDeTamanhos from '../../../components/simulacoes/PeneiraDeTamanhos'
+
+{/* Fatos conferidos na Wikipedia em inglês (Mixture, Separation process, Distillation, Azeotrope, Water treatment), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Quase nada que você toca no dia a dia é um material puro. O ar é uma mistura de gases. A água do mar é uma mistura de água e sais. O café é uma mistura de água e muitas substâncias que saem do pó. Até o ouro de uma joia costuma ser uma mistura de ouro com outros metais.
+
+E mesmo assim, a gente passa a vida **separando coisas**: coa o café, cata as pedrinhas do feijão, tira o sal do mar para o tempero. Como se separa uma mistura sem estragar nenhum dos componentes? A resposta está sempre em uma **diferença**: se os componentes se comportam de modos diferentes em alguma coisa, dá para usar essa diferença para separá-los.
+
+<Palpite
+  chave="inicial"
+  pergunta="Você deixa um copo de água do mar ao sol por vários dias, até a água sumir. O que sobra no fundo?"
+  opcoes={['Nada, a água do mar some toda', 'O sal que estava dissolvido nela', 'Areia']}
+/>
+
+Nesta cápsula você vai ver o que é uma substância pura e o que é uma mistura, como contar as fases de um sistema, quais são os principais métodos de separação e como escolher o certo para cada caso.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Separar misturas é uma das técnicas mais antigas da humanidade. Muito antes da palavra "química", as pessoas já filtravam, peneiravam e evaporavam.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Antiguidade', texto: 'Povos antigos obtêm sal evaporando a água do mar, peneiram grãos e filtram líquidos com tecidos.' },
+  { ano: 'Séculos 8 a 10', texto: 'Alquimistas árabes, como Jabir ibn Hayyan e al-Razi, aperfeiçoam a destilação. A palavra "alambique" vem do árabe.' },
+  { ano: '1853', texto: 'O farmacêutico Ignacy Łukasiewicz destila petróleo e produz querosene para lamparinas.' },
+  { ano: '1908', texto: 'Uma cidade dos Estados Unidos passa a tratar a água de abastecimento com cloro, e a prática se espalha pelo mundo.' },
+  { ano: 'Anos 1920', texto: 'O sueco The Svedberg cria a ultracentrífuga, que separa até moléculas gigantes e rende a ele o Nobel de Química de 1926.' },
+]} />
+
+## O sal que vinha do mar
+
+Nas regiões quentes, já na Antiguidade, povos represavam água do mar em tanques rasos. O sol evaporava a água devagar, e o sal ia ficando no fundo, em camadas brancas. Essas "salinas" existem até hoje: no Brasil, o litoral do Rio Grande do Norte produz boa parte do sal de cozinha do país. É a separação por **evaporação**, e quase não precisa de ferramenta: só de sol e paciência.
+
+## O alambique e o segredo da destilação
+
+Entre os séculos 8 e 10, alquimistas árabes como Jabir ibn Hayyan e al-Razi buscavam fazer perfumes, remédios e novos materiais. Para isso, aperfeiçoaram a **destilação**: ferver um líquido, esfriar o vapor e recolher as gotas. O aparelho se chamava, em árabe, *al-inbiq*, e deu origem ao nosso "alambique". Séculos depois, a mesma técnica passou a refinar o petróleo e a produzir aguardente, perfumes e água pura.
+
+## Da cozinha ao hospital
+
+A partir do século 19, a separação virou ciência de gente grande. O petróleo passou a ser destilado em torres gigantes. Nos anos 1920, a ultracentrífuga passou a separar até proteínas. Hoje, a água que chega à sua torneira passa por várias etapas de separação, e o sangue de um exame é separado em partes por uma centrífuga. A ideia, porém, é a mesma de sempre: **achar uma diferença e usá-la**.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Substância pura: um tipo só
+
+Uma <Termo cor="azul">substância pura</Termo> é feita de um único tipo de matéria. A água destilada, o ouro puro e o oxigênio são substâncias puras. Cada uma tem propriedades **fixas**: a água pura sempre ferve a 100 °C e funde a 0 °C (ao nível do mar), e a densidade dela é sempre a mesma.
+
+## 2. Mistura: duas ou mais juntas
+
+Uma <Termo cor="coral">mistura</Termo> reúne duas ou mais substâncias. Cada uma continua sendo ela mesma: na água salgada, a água continua água e o sal continua sal. Por isso as propriedades da mistura **variam**: a água do mar não ferve exatamente a 100 °C, e a quantidade de sal muda o resultado.
+
+<Brincando titulo="Substância e mistura: a vitamina de frutas">
+
+Uma banana é uma banana. Um morango é um morango. Cada um é "puro". Agora bata os dois no liquidificador com leite: virou uma **mistura**. Você ainda consegue sentir o gosto da banana e o do morango. Mas a vitamina não tem a fórmula de nenhum dos dois: é um "meio-termo" que depende das quantidades. Misturas são assim.
+
+</Brincando>
+
+## 3. Fases: as partes do aspecto uniforme
+
+Uma <Termo cor="verde">fase</Termo> é cada parte de **aspecto uniforme** num sistema. Se você olha e vê "uma coisa só", há uma fase. Se vê camadas ou pedaços diferentes, há duas ou mais. Água com óleo tem 2 fases. Água com açúcar bem dissolvido tem 1.
+
+- **Mistura homogênea:** 1 fase só. Também se chama **solução**. Exemplos: água com sal, ar, vinagre.
+- **Mistura heterogênea:** 2 ou mais fases. Exemplos: água com óleo, granito, areia com água.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Você tem uma mistura de limalha de ferro, areia e sal de cozinha, tudo seco e misturado. Qual desses três é o mais fácil de tirar primeiro?"
+  opcoes={['O ferro, com um ímã', 'O sal, com água', 'A areia, com uma peneira']}
+  correta={0}
+  explicacao="O ímã atrai o ferro e ignora os outros dois, e funciona com tudo seco. A peneira não ajuda: areia e sal têm grãos de tamanho parecido. A água também serve, mas dissolve o sal e atrapalha o ferro, que pode enferrujar."
+>
+
+Separe os três, escolhendo os passos na ordem que preferir:
+
+<BancadaDosTresPos />
+
+A graça é que cada componente se separa **usando uma propriedade diferente**: o ferro, por ser atraído por ímã; o sal, por se dissolver na água; a areia, por não se dissolver (e ficar retida num filtro). A ordem importa: se você filtrar antes de dissolver o sal, nada se separa.
+
+Agora o palpite do começo. O que sobra quando a água do mar evapora toda?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Nada, a água do mar some toda', 'O sal que estava dissolvido nela', 'Areia']}
+  correta={1}
+  seAcertou="Certo: o sal fica. A água vira vapor e vai embora, mas o sal não evapora nessa temperatura. É assim que se faz sal de cozinha nas salinas."
+  seErrou="O certo é: o sal que estava dissolvido. A água evapora e vai para o ar, mas o sal não. Por isso a evaporação separa o sal da água."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Substâncias puras e misturas
+
+As substâncias puras se dividem em dois tipos: **simples**, feitas de um único elemento (oxigênio, ferro, ouro), e **compostas**, feitas de elementos ligados entre si (água, sal de cozinha). As misturas podem ter quantas substâncias você quiser.
+
+Alguns exemplos conhecidos:
+
+- **Ar:** mistura homogênea de gases. Cerca de 78% de nitrogênio, 21% de oxigênio e quase 1% de argônio, mais um pouco de gás carbônico e outros.
+- **Água do mar:** mistura homogênea de água com sais. Tem cerca de 35 g de sais por litro.
+- **Ligas metálicas:** misturas homogêneas de metais. O latão é cobre com zinco, o bronze é cobre com estanho, o aço é ferro com um pouco de carbono. O **ouro 18 quilates** tem 18 partes de ouro em 24, ou 75%, e o resto é cobre ou prata.
+- **Granito:** mistura heterogênea de cristais de minerais diferentes.
+
+<Exercicio enunciado="O ar tem cerca de quantos por cento de nitrogênio? Responda com o número inteiro mais próximo." resposta="78" dica="É o gás mais abundante do ar." resolucao="Cerca de 78%. O oxigênio vem depois, com 21%." />
+
+<Exercicio enunciado="Uma joia é de ouro 18 quilates. Qual é a porcentagem de ouro nela? (O ouro puro é de 24 quilates.)" resposta="75" dica="18 ÷ 24." resolucao="18 ÷ 24 = 0,75, ou 75%." />
+
+<Exercicio enunciado="Uma aliança de ouro 18 quilates tem 20 g. Quantos gramas de ouro puro há nela?" resposta="15" dica="75% de 20 g." resolucao="0,75 × 20 = 15 g." />
+
+## Contar as fases
+
+Para classificar um sistema, **conte as fases**, e não os ingredientes. Água com sal dissolvido tem 2 componentes, mas só 1 fase. Água com gelo tem 1 substância (só H₂O), mas 2 fases. A pergunta é: "dá para ver partes diferentes?".
+
+<Brincando titulo="Fases: as camadas do bolo de aniversário">
+
+Um bolo com recheio e cobertura tem camadas bem visíveis: massa, recheio, cobertura. São "fases" diferentes. Já a massa, depois de bem batida, parece uma coisa só, embora tenha ovo, farinha, açúcar e leite. A mistura dos ingredientes na massa é **homogênea**. A fatia inteira, com suas camadas, é **heterogênea**.
+
+</Brincando>
+
+<HomogeneaOuHeterogenea />
+
+<ExemploResolvido titulo="Quantas fases e quantos componentes tem o sistema água + sal dissolvido + areia + óleo?">
+  <Passo>**Componentes** (substâncias diferentes): água, sal, areia e óleo. São **4**.</Passo>
+  <Passo>**Fases**: o sal está dissolvido na água, então água + sal é **1 fase**. A areia é outra fase, e o óleo é outra.</Passo>
+  <Passo>Total: **3 fases**. É uma mistura **heterogênea**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um frasco tem água, gelo e óleo. Quantas fases tem o sistema?" resposta="3" dica="Gelo, água líquida e óleo." resolucao="Gelo (sólido), água (líquido) e óleo (outro líquido, por cima): 3 fases." />
+
+<Exercicio enunciado="Um frasco tem água, sal dissolvido, areia e óleo. Quantas fases tem?" resposta="3" dica="Sal dissolvido não é fase à parte." resolucao="Água com sal (1), areia (2) e óleo (3). Total: 3 fases." />
+
+<Exercicio enunciado="Num copo há água, sal dissolvido e areia. Quantos COMPONENTES (substâncias diferentes) há?" resposta="3" dica="Conte as substâncias, e não as fases." resolucao="Água, sal e areia: 3 componentes (e 2 fases)." />
+
+## A regra de ouro: use uma diferença
+
+Para separar uma mistura, procure uma **propriedade diferente** entre os componentes e use-a. Tamanho, atração magnética, solubilidade, densidade e temperatura de ebulição são as mais usadas.
+
+<Brincando titulo="Separar misturas: o jogo das diferenças">
+
+Imagine separar uma turma de crianças. Para separar as altas das baixas, você usa a **altura** (como a peneira usa o tamanho). Para separar quem gosta de pizza de quem gosta de hambúrguer, você pergunta (a **preferência**). Para cada mistura há uma pergunta certa. O trabalho do químico é achar a característica que faz diferença entre os componentes.
+
+</Brincando>
+
+## Misturas de sólidos
+
+### Catação
+
+É o método mais simples: separar **à mão** o que não serve. É o que se faz com o feijão e as pedrinhas. Funciona quando os pedaços são grandes o bastante para enxergar e pegar.
+
+### Peneiração
+
+A peneira tem furos de tamanho conhecido: passam os grãos **menores** que os furos, e ficam os **maiores**. Os construtores usam peneiras para separar areia fina de cascalho, e os cozinheiros, para tirar os caroços da farinha.
+
+<PeneiraDeTamanhos />
+
+<ExemploResolvido titulo="Uma peneira com furos de 2 mm recebe grãos de 8, 3, 1, 0,3 e 0,1 mm. Quais passam?">
+  <Passo>Passam os grãos **menores que 2 mm**.</Passo>
+  <Passo>8 mm e 3 mm são maiores: **ficam**.</Passo>
+  <Passo>1 mm, 0,3 mm e 0,1 mm são menores: **passam**, são 3 tipos.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma peneira com furos de 2 mm recebe grãos de 8, 3, 1, 0,3 e 0,1 mm. Quantos tipos de grão passam?" resposta="3" dica="Passam os que têm menos de 2 mm." resolucao="1, 0,3 e 0,1 mm passam: 3 tipos." />
+
+### Separação magnética
+
+Se um componente é atraído por ímã (como o ferro, o níquel e o cobalto) e o outro não, o ímã separa os dois sozinho. É usada em usinas de reciclagem para tirar o aço do lixo, e em minas para separar minérios.
+
+### Dissolução fracionada
+
+Se um dos sólidos se **dissolve** num líquido e o outro não, use esse líquido. A mistura de sal e areia, por exemplo: a água dissolve o sal, e a areia fica. Depois, **filtra-se** para tirar a areia e **evapora-se** a água para recuperar o sal.
+
+<ExemploResolvido titulo="Como separar uma mistura de sal e areia?">
+  <Passo>Adicione **água** e mexa: o sal se dissolve, a areia não (**dissolução fracionada**).</Passo>
+  <Passo>**Filtre**: a areia fica no filtro, e a água com sal passa.</Passo>
+  <Passo>**Evapore** a água: o sal cristaliza no fundo.</Passo>
+  <Passo>Resultado: areia no filtro, sal no recipiente. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Para separar ferro, areia e sal, quantos passos usamos? (ímã, adicionar água, filtrar, evaporar)" resposta="4" dica="Conte os quatro passos da lista." resolucao="Ímã, água, filtro e evaporação: 4 passos." />
+
+## Sólido e líquido misturados
+
+### Filtração
+
+O filtro é uma barreira com furinhos muito pequenos: passa o líquido (ou o gás) e **retém o sólido**. O coador de café, o filtro de papel e o filtro de ar do carro fazem isso.
+
+<Brincando titulo="Filtração: o coador de macarrão">
+
+Depois de cozinhar o macarrão, você despeja tudo no escorredor. A água passa pelos furinhos e vai para a pia, e o macarrão fica. O filtro de café funciona do mesmo jeito, só que com furinhos bem menores: deixa passar a água com sabor e segura o pó.
+
+</Brincando>
+
+### Decantação
+
+Se a mistura fica **parada**, o componente mais denso desce, e o menos denso sobe. Aí dá para separar **virando com cuidado** o líquido de cima, ou usando um **funil de separação** para líquidos que não se misturam (água e óleo). A água suja de um rio, parada num tanque, fica clara, porque a terra assenta no fundo.
+
+<Brincando titulo="Decantação: a areia que assenta no copo">
+
+Mexa areia num copo de água e deixe parado. No começo, tudo fica barrento. Aos poucos, a areia desce e a água de cima fica clara. A **gravidade** faz o trabalho: o que é mais denso assenta. Se você inclinar o copo com cuidado, derrama só a água clara.
+
+</Brincando>
+
+### Centrifugação
+
+Quando a decantação é lenta demais, gira-se a mistura em alta velocidade numa **centrífuga**. A rotação "joga" o mais denso para o fundo do tubo, bem mais rápido que a gravidade. É o que se faz para separar o sangue de um exame: as células vão para o fundo, e o plasma, que é a parte líquida e fica em cima, representa cerca de 55% do volume. A saladeira de girar e a máquina de lavar roupas na hora de torcer também usam a ideia.
+
+### Evaporação
+
+Se você quer o **sólido dissolvido**, deixa o líquido evaporar. A água vai embora, e o sólido fica. Foi o que os povos antigos fizeram para obter sal. Em salinas, o sol faz o aquecimento.
+
+<ExemploResolvido titulo="De 2 litros de água do mar com 35 g de sal por litro, quanto sal sobra depois que a água evapora toda?">
+  <Passo>Quantidade de sal em 1 L: 35 g.</Passo>
+  <Passo>Em 2 L: 2 × 35 = **70 g**.</Passo>
+  <Passo>A água vai embora, e ficam cerca de 70 g de sais no fundo do recipiente. A maior parte é sal de cozinha.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos gramas de sais sobram se evaporarmos 10 litros de água do mar com 35 g de sais por litro?" resposta="350" dica="10 × 35." resolucao="10 × 35 = 350 g." />
+
+<Exercicio enunciado="Uma amostra de 10 mL de sangue é centrifugada. O plasma é cerca de 55% do volume. Quantos mL de plasma sobram, aproximadamente?" resposta="5,5" dica="55% de 10." resolucao="0,55 × 10 = 5,5 mL." />
+
+<Exercicio enunciado="Uma solução de 500 g tem 10% de sal em massa. Quantos gramas de sal ela tem?" resposta="50" dica="10% de 500." resolucao="0,10 × 500 = 50 g." />
+
+## Destilação
+
+A <Termo cor="azul">destilação</Termo> usa a diferença entre as **temperaturas de ebulição**. Aquece-se a mistura num balão, o líquido que ferve primeiro vira vapor, o vapor passa por um **condensador** (tubo frio), vira líquido de novo e cai num frasco.
+
+- **Destilação simples:** separa um **líquido de um sólido dissolvido** nele. Na água salgada, só a água evapora, e o sal fica no balão. A água que sai é pura.
+- **Destilação fracionada:** separa **líquidos misturados** que têm pontos de ebulição diferentes. O álcool (78 °C) sai antes da água (100 °C). É a técnica usada para separar as partes do petróleo: gás de cozinha, gasolina, querosene, diesel...
+
+<Brincando titulo="Destilação: a tampa da panela">
+
+Quando você ferve água numa panela com tampa, o vapor encosta na tampa mais fria e vira gotinhas, que pingam. Essas gotas são **água pura**, mesmo que a água da panela estivesse salgada. A destilação é isso, com um tubo no lugar da tampa para recolher as gotas.
+
+</Brincando>
+
+<DestilacaoSimples />
+
+<Exercicio enunciado="O álcool ferve a 78 °C e a água a 100 °C. Quantos graus separam os dois pontos de ebulição?" resposta="22" dica="100 − 78." resolucao="100 − 78 = 22 °C. É essa diferença que a destilação fracionada usa." />
+
+<Exercicio enunciado="Um litro de uma mistura homogênea de água e álcool tem 30% de álcool em volume. Quantos mL de álcool há nele?" resposta="300" dica="1 L = 1.000 mL; 30% de 1.000." resolucao="0,30 × 1.000 = 300 mL." />
+
+## Qual método usar?
+
+Resumindo, escolhe-se o método pela **propriedade que difere**:
+
+- Tamanho dos pedaços: catação e peneiração.
+- Atração magnética: separação magnética.
+- Solubilidade: dissolução fracionada.
+- Densidade: decantação e centrifugação.
+- Tamanho das partículas num líquido: filtração.
+- Ponto de ebulição: evaporação e destilação.
+
+Teste:
+
+<EscolhaOMetodo />
+
+<Aprofundar titulo="Coloides e o efeito Tyndall: nem homogêneo, nem heterogêneo">
+
+Algumas misturas parecem uma fase só, mas não são soluções de verdade. O leite, a gelatina, a neblina e a maionese são **coloides**: tem partículas pequenas, mas grandes demais para estarem dissolvidas, e ficam espalhadas pelo líquido. Elas não assentam sozinhas, e atravessam um filtro comum.
+
+Um jeito de reconhecer um coloide é o **efeito Tyndall**: um raio de luz que passa por ele fica visível, porque as partículas espalham a luz. Numa solução de verdade, como água com sal, o raio passa sem ser visto. Isso explica por que os faróis de um carro aparecem como feixes na neblina.
+
+</Aprofundar>
+
+<Aprofundar titulo="Álcool e água: a mistura que a destilação não separa por completo">
+
+Se você destilar uma mistura de etanol com água, o vapor sai mais rico em etanol que o líquido. Repetindo várias vezes, a concentração vai subindo, mas **para em cerca de 95,6% de etanol**. Nesse ponto a mistura passa a ferver como se fosse uma substância só, a 78,2 °C, e o vapor tem a mesma composição do líquido. Isso se chama **azeótropo**. Para chegar ao álcool 100%, é preciso usar outros truques, como substâncias que retêm a água.
+
+</Aprofundar>
+
+<Aprofundar titulo="A torre de destilação do petróleo">
+
+O petróleo é uma mistura enorme de hidrocarbonetos. Numa refinaria, ele é aquecido e entra numa torre alta, quente embaixo e mais fria em cima. Cada parte da mistura **condensa numa altura diferente**: os gases mais leves sobem até o topo (gás de cozinha), a gasolina e o querosene ficam no meio, e o óleo diesel e os resíduos pesados ficam embaixo. É a destilação fracionada em escala industrial.
+
+</Aprofundar>
+
+## Tratamento da água: separação em cadeia
+
+A água que chega à sua casa passou por vários métodos, um depois do outro, numa estação de tratamento:
+
+- **Captação e gradeamento:** a água do rio passa por grades que retêm galhos e lixo grosso.
+- **Floculação:** adiciona-se uma substância que faz as sujeirinhas se juntarem em flocos maiores.
+- **Decantação:** a água fica parada, e os flocos pesados descem.
+- **Filtração:** a água passa por camadas de areia e carvão, que retêm o que sobrou.
+- **Cloração e fluoretação:** adiciona-se cloro para matar microrganismos e flúor, que ajuda a proteger os dentes.
+
+<Brincando titulo="Tratamento de água: a peneira cada vez mais fina">
+
+Imagine uma peneira com furos grandes, outra com furos médios e outra com furos minúsculos, em fila. A primeira tira o lixo grande, a segunda os pedaços médios, a terceira o pó. O tratamento de água é assim: cada etapa tira um tamanho e um tipo de sujeira, até a água ficar limpa.
+
+</Brincando>
+
+## Onde isso aparece na vida
+
+- **Cozinha:** coar café, escorrer macarrão, peneirar farinha, tirar a gordura da sopa (que sobe, por decantação).
+- **Reciclagem:** ímãs tiram o aço do lixo, e a flutuação separa plásticos de densidades diferentes.
+- **Saúde:** a centrífuga separa o sangue para exames, e a hemodiálise filtra o sangue de quem tem problema nos rins.
+- **Indústria:** refinarias destilam o petróleo, e usinas evaporam a água do mar para obter sal.
+- **Mineração:** garimpeiros lavam o cascalho com água: o ouro, bem mais denso, fica no fundo da bateia.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Qual destes sistemas é uma mistura homogênea?',
+    opcoes: ['Água com óleo', 'Água com sal dissolvido', 'Areia com água'],
+    correta: 1,
+    explicacao: 'Água com sal dissolvido tem uma fase só. As outras duas têm 2 fases.',
+  },
+  {
+    enunciado: 'Quantas fases tem um sistema com água, gelo e óleo?',
+    opcoes: ['2', '3', '1'],
+    correta: 1,
+    explicacao: 'Gelo (sólido), água (líquido) e óleo (outro líquido): 3 fases.',
+  },
+  {
+    enunciado: 'Qual método separa limalha de ferro misturada com areia?',
+    opcoes: ['Separação magnética', 'Destilação', 'Centrifugação'],
+    correta: 0,
+    explicacao: 'O ímã atrai só o ferro.',
+  },
+  {
+    enunciado: 'Como separar água e óleo?',
+    opcoes: ['Peneiração', 'Decantação com funil de separação', 'Catação'],
+    correta: 1,
+    explicacao: 'O óleo é menos denso e fica em cima. O funil de separação deixa sair a água por baixo.',
+  },
+  {
+    enunciado: 'O que a filtração separa?',
+    opcoes: ['Dois líquidos', 'Um sólido de um líquido ou de um gás', 'Dois gases'],
+    correta: 1,
+    explicacao: 'O filtro retém o sólido e deixa o fluido passar.',
+  },
+  {
+    enunciado: 'Qual método recupera o SAL de uma água salgada?',
+    opcoes: ['Evaporação da água', 'Catação', 'Separação magnética'],
+    correta: 0,
+    explicacao: 'A água evapora, e o sal fica no fundo. É como funcionam as salinas.',
+  },
+  {
+    enunciado: 'Qual método recupera a ÁGUA pura de uma água salgada?',
+    opcoes: ['Filtração', 'Destilação', 'Decantação'],
+    correta: 1,
+    explicacao: 'Na destilação, a água evapora, passa pelo condensador e é recolhida limpa. O sal fica no balão.',
+  },
+  {
+    enunciado: 'Por que a destilação fracionada separa álcool e água?',
+    opcoes: ['Porque têm pontos de ebulição diferentes', 'Porque têm cores diferentes', 'Porque o álcool é sólido'],
+    correta: 0,
+    explicacao: 'O álcool ferve a 78 °C e a água a 100 °C. O álcool sai primeiro.',
+  },
+  {
+    enunciado: 'Uma peneira tem furos de 1 mm. Qual grão NÃO passa?',
+    opcoes: ['Grão de 0,3 mm', 'Grão de 3 mm', 'Grão de 0,1 mm'],
+    correta: 1,
+    explicacao: 'Só passa o que for menor que 1 mm. O de 3 mm fica retido.',
+  },
+  {
+    enunciado: 'O ouro 18 quilates é...',
+    opcoes: ['uma substância pura', 'uma mistura homogênea (liga) com 75% de ouro', 'uma mistura heterogênea'],
+    correta: 1,
+    explicacao: 'É uma liga: 18 partes de ouro em 24 (75%), misturada ao cobre ou à prata, com uma fase só.',
+  },
+  {
+    enunciado: 'Na estação de tratamento, qual etapa vem logo depois da floculação?',
+    opcoes: ['Decantação', 'Cloração', 'Destilação'],
+    correta: 0,
+    explicacao: 'Os flocos formados pesam e descem durante a decantação. Depois vêm a filtração e a cloração.',
+  },
+  {
+    enunciado: 'Qual a diferença entre componentes e fases de uma mistura?',
+    opcoes: ['São a mesma coisa', 'Componentes são as substâncias diferentes; fases são as partes de aspecto uniforme', 'Fases são as substâncias; componentes são as camadas'],
+    correta: 1,
+    explicacao: 'Água com sal dissolvido tem 2 componentes, mas só 1 fase.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Substância pura:** um só tipo de matéria, com propriedades fixas. **Mistura:** duas ou mais substâncias, cada uma mantendo suas propriedades.
+- **Fase** é cada parte de aspecto uniforme. **Homogênea:** 1 fase (solução). **Heterogênea:** 2 ou mais fases. Conte **fases**, e não ingredientes.
+- Para separar, **use uma diferença** entre os componentes: tamanho (catação, peneiração), atração magnética, solubilidade (dissolução fracionada), densidade (decantação, centrifugação), ponto de ebulição (evaporação, destilação).
+- **Filtração** separa sólido de fluido. **Evaporação** recupera o sólido dissolvido. **Destilação simples** recupera o líquido. **Fracionada** separa líquidos de ebulição diferente.
+- Álcool e água formam um **azeótropo** (cerca de 95,6% de etanol), por isso a destilação não separa tudo.
+- O **tratamento de água** é uma cadeia de métodos: grade, floculação, decantação, filtração e cloração.
+
+**Um pouco de história.** As salinas e a peneiração são técnicas da Antiguidade. Alquimistas árabes aperfeiçoaram a destilação, e daí vem "alambique". Em 1853, o petróleo foi destilado para fazer querosene, e nos anos 1920 a ultracentrífuga passou a separar até proteínas.
+
+</Resumo>
+
+Daqui a ideia de "solução" ganha números, com a concentração, e o átomo mostra de que as substâncias são feitas. Para onde seguir:
+
+<Conexoes />
+
+</Etapa>

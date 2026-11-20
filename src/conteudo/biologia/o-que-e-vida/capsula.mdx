@@ -1,0 +1,392 @@
+import VivoOuNao from '../../../components/simulacoes/VivoOuNao'
+import CaracteristicasDaVida from '../../../components/simulacoes/CaracteristicasDaVida'
+import ExperimentoDeRedi from '../../../components/simulacoes/ExperimentoDeRedi'
+import PasteurPescocoDeCisne from '../../../components/simulacoes/PasteurPescocoDeCisne'
+import SopaPrimitiva from '../../../components/simulacoes/SopaPrimitiva'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Life, Spontaneous generation, Redi, Pasteur, Miller–Urey, Virus), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Uma pedra, um cogumelo e um robô aspirador estão na mesma sala. O cogumelo está vivo. A pedra e o robô, não. Mas **como você sabe**? O robô se mexe, reage ao que encontra e gasta energia. O cogumelo fica parado, sem pensar em nada.
+
+E há casos bem mais difíceis. Uma semente seca, guardada por anos numa gaveta, está viva ou não? E um vírus, que não come, não cresce e só se multiplica dentro de células dos outros? A pergunta "o que é vida?" parece boba, mas até hoje os cientistas **não têm uma resposta única**. O que eles têm é uma lista de características que, juntas, apontam para a vida.
+
+<Palpite
+  chave="inicial"
+  pergunta="Um vírus (como o da gripe) está vivo?"
+  opcoes={['Sim, claramente vivo', 'Não, claramente não vivo', 'Os cientistas ainda discutem']}
+/>
+
+Nesta cápsula você vai montar a lista de características da vida, testar casos difíceis, ver como Redi e Pasteur derrubaram a ideia de que a vida nasce do nada, e como uma experiência de 1952 tentou imitar o começo da vida na Terra.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Durante milênios, as pessoas acreditaram que seres vivos podiam surgir sozinhos da matéria sem vida: moscas do lixo, vermes do lodo, ratos de pilhas de trigo. Provar que isso era falso levou séculos e rendeu algumas das melhores experiências da história da ciência.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Antiguidade', texto: 'Aristóteles e muitos outros acreditam na geração espontânea: certos animais nasceriam da lama, do suor ou da carne podre.' },
+  { ano: '1668', texto: 'O italiano Francesco Redi mostra, com frascos de carne, que as larvas vêm de ovos de moscas.' },
+  { ano: '1745 a 1765', texto: 'Needham e Spallanzani discutem: caldos fervidos e fechados voltam a ter micróbios?' },
+  { ano: '1862', texto: 'Louis Pasteur usa frascos de pescoço de cisne e prova que os micróbios vêm do ar, e não do caldo.' },
+  { ano: '1952', texto: 'Stanley Miller imita a Terra primitiva num frasco e produz aminoácidos, tijolos das proteínas.' },
+]} />
+
+## Ratos de camisa suada
+
+No século 17, o médico flamengo Jan Baptist van Helmont chegou a dar uma "receita" para fazer ratos: deixar uma camisa suja junto com grãos de trigo num canto escuro por cerca de 21 dias. Ele acreditava que os ratos apareciam. Hoje sabemos que ratos já presentes na casa iam comer o trigo. Mas na época a receita parecia coerente, porque ninguém estava vendo as coisas por esse lado.
+
+## Redi e os três frascos
+
+Em 1668, **Francesco Redi** desconfiou da história das larvas na carne. Ele colocou pedaços de carne em três frascos: um aberto, um coberto com gaze fina e um tampado. Só nasceram larvas onde as moscas puderam pôr ovos. No frasco aberto, na carne. No frasco com gaze, em cima da gaze. No tampado, em lugar nenhum. A carne podre sozinha não gerava vida.
+
+## Micróbios: a briga que continuou
+
+Mas os microscópios mostravam seres minúsculos em qualquer caldo deixado ao ar livre. Será que **esses** nasciam sozinhos? O inglês John Needham ferveu caldo, o fechou e viu micróbios aparecerem. O italiano Lazzaro Spallanzani ferveu por mais tempo e fechou o vidro de vez, e nada cresceu. Needham respondeu que, sem ar, o caldo perdia uma "força vital". A discussão ficou aberta por um século.
+
+## Pasteur e o pescoço de cisne
+
+Em 1862, **Louis Pasteur** deu o golpe final. Ele ferveu caldos em frascos de pescoço longo, fino e curvado como o de um cisne. O ar entrava e saía livremente (então a "força vital" não faltava), mas a poeira com micróbios ficava presa na curva. O caldo continuava limpo. Quando ele inclinava o frasco e o caldo tocava a curva, a turvação aparecia em poucos dias. Os micróbios vinham do ar, e não do caldo.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Uma lista, e não uma definição
+
+Os biólogos não definem a vida numa frase só. Eles usam uma **lista de características**. Quanto mais itens um ser tem, mais claramente ele está vivo. Os principais são:
+
+- **Células**: todo ser vivo é feito de uma ou mais células.
+- **Metabolismo**: conjunto de reações químicas que usam matéria e energia.
+- **Crescimento e desenvolvimento**: mudar e crescer seguindo um plano.
+- **Reprodução**: gerar descendentes.
+- **Resposta ao ambiente**: sentir e reagir (luz, calor, toque).
+- **Herança e evolução**: passar informação (genes) aos filhos, com mudanças ao longo das gerações.
+
+<Brincando titulo="Vida: a lista de conferência do aeroporto">
+
+No aeroporto, o aviso "viagem aprovada" só vem quando todos os itens da lista foram conferidos: passaporte, passagem, bagagem. Se falta um, você precisa de uma explicação. Com a vida é parecido: um ser que tem **quase todos** os itens é vivo. Quando falta um, perguntamos por quê (a mula não tem filhotes) e quando faltam vários (o vírus), a conversa fica difícil.
+
+</Brincando>
+
+## 2. Seres unicelulares e pluricelulares
+
+Um ser **unicelular** tem uma única célula, que faz tudo: se alimenta, se reproduz, reage. As bactérias são assim. Um ser **pluricelular**, como uma árvore ou um cachorro, tem milhões ou bilhões de células, e elas se dividem em tarefas.
+
+## 3. Quem fabrica o próprio alimento
+
+Os **autótrofos** fabricam o próprio alimento. As plantas e as algas fazem isso com a luz do sol (fotossíntese). Os **heterótrofos** precisam comer outros seres: animais, fungos e a maioria das bactérias. Os dois grupos fazem metabolismo, só que de formas diferentes.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Redi pôs carne em três frascos: um aberto, um coberto com gaze fina e um tampado. Onde nasceram larvas DENTRO da carne?"
+  opcoes={['Nos três, porque a carne podre gera as larvas', 'Só no frasco aberto: onde as moscas puderam chegar à carne', 'Só no tampado, porque o ar parado deixa a carne apodrecer']}
+  correta={1}
+  explicacao="No aberto, as moscas pousaram na carne e puseram ovos. Na gaze, os ovos ficaram em cima do tecido, sem alcançar a carne. No tampado, nada entrou. As larvas vêm de ovos de moscas."
+>
+
+Avance os dias e observe cada frasco:
+
+<ExperimentoDeRedi />
+
+Esse é um bom exemplo de **experimento controlado**: três frascos iguais, mudando **uma coisa só** (o acesso das moscas). Assim dá para ter certeza de qual fator importa.
+
+Agora o palpite do começo. Um vírus está vivo?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Sim, claramente vivo', 'Não, claramente não vivo', 'Os cientistas ainda discutem']}
+  correta={2}
+  seAcertou="Certo: os cientistas ainda discutem. O vírus não tem células nem metabolismo próprio, mas se reproduz (dentro de uma célula) e evolui."
+  seErrou="O certo é: os cientistas ainda discutem. O vírus evolui e se reproduz, mas só dentro de uma célula, e não tem células nem metabolismo próprio. Fica no limite da definição de vida."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## As seis características da vida
+
+Vamos olhar cada característica com mais calma.
+
+### 1. Células
+
+A <Termo cor="azul">célula</Termo> é a unidade básica da vida. Todo ser vivo conhecido é feito de células. Uma bactéria é uma célula só. O corpo humano tem trilhões delas. Vamos ver as células a fundo na próxima cápsula.
+
+### 2. Metabolismo
+
+O <Termo cor="coral">metabolismo</Termo> é o conjunto de reações químicas que acontecem dentro do ser vivo. Ele pega matéria e energia do ambiente (alimento, luz) e usa para construir o corpo, manter tudo funcionando e se mexer. Um humano adulto, por exemplo, gasta em média cerca de 2.000 kcal por dia.
+
+<Brincando titulo="Metabolismo: a cozinha que não fecha">
+
+Uma cozinha de restaurante não para: ingredientes entram, viram pratos, e sobram restos. O corpo é assim. Entra comida e ar, saem energia, calor e resíduos. Se a cozinha fechar de vez, o restaurante acabou. Se o metabolismo para de vez, o ser vivo morreu. A semente seca é um restaurante com a cozinha quase fechada: parada, mas pronta para reabrir.
+
+</Brincando>
+
+### 3. Crescimento e desenvolvimento
+
+Os seres vivos **crescem e se transformam** de acordo com um plano guardado no DNA. Uma semente vira árvore, e um ovo vira um pintinho. Um cristal de sal também "cresce", mas só ganhando camadas por fora, sem metabolismo, e sem seguir um plano guardado dentro dele.
+
+### 4. Reprodução
+
+Os seres vivos geram **descendentes**. Pode ser com um só pai (as bactérias se dividem em duas) ou com dois (os mamíferos). A reprodução é uma característica da **espécie**: uma mula é estéril, mas continua viva, pois é um animal com células e metabolismo.
+
+### 5. Resposta ao ambiente e homeostase
+
+Os seres vivos **sentem e reagem**: a planta vira para a luz, o gato foge de um barulho alto. E mais: eles mantêm o próprio interior **estável**, mesmo quando o ambiente muda. A temperatura do corpo humano fica perto de 36,5 °C no frio e no calor, e esse equilíbrio se chama **homeostase**.
+
+### 6. Herança e evolução
+
+Os filhos recebem **genes** dos pais, que carregam o "manual" do corpo. Esses genes mudam um pouco de geração em geração e, ao longo de muito tempo, as espécies se transformam. Isso é a **evolução**.
+
+<CaracteristicasDaVida />
+
+<ExemploResolvido titulo="Uma bactéria se divide a cada 20 minutos. Quantas bactérias haverá depois de 2 horas, partindo de uma só?">
+  <Passo>2 horas são 120 minutos. 120 ÷ 20 = **6 divisões**.</Passo>
+  <Passo>Cada divisão **dobra** o número: 1 → 2 → 4 → 8 → 16 → 32 → 64.</Passo>
+  <Passo>Depois de 6 divisões, são 2⁶ = **64 bactérias**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas das 6 características da vida a bactéria tem como 'Sim' na lista?" resposta="6" dica="Conte na simulação." resolucao="Todas as 6: células, metabolismo, crescimento, reprodução, resposta ao ambiente e herança/evolução." />
+
+<Exercicio enunciado="Quantas características aparecem como 'Sim' para o vírus na lista?" resposta="1" dica="Só uma é clara." resolucao="Só 'herança e evolução': o vírus tem genes e evolui." />
+
+<Exercicio enunciado="Uma bactéria se divide a cada 20 minutos. Quantas bactérias haverá depois de 2 horas, partindo de uma só?" resposta="64" dica="6 divisões; 2⁶." resolucao="120 ÷ 20 = 6 divisões. 2⁶ = 64." />
+
+<Exercicio enunciado="Uma bactéria se divide a cada 20 minutos. Quantas haverá depois de 3 horas, partindo de uma só?" resposta="512" dica="9 divisões; 2⁹." resolucao="180 ÷ 20 = 9. 2⁹ = 512." />
+
+<Exercicio enunciado="Um humano gasta cerca de 2.000 kcal por dia. Quantas kcal em 7 dias?" resposta="14000" dica="2.000 × 7." resolucao="2.000 × 7 = 14.000 kcal." />
+
+## Casos difíceis
+
+Aplicar a lista a casos reais é o que mostra como a ideia é útil e como é difícil:
+
+- **Semente seca:** tem células e um embrião vivo, mas o metabolismo é quase parado. É um ser vivo em **dormência**.
+- **Mula:** viva. Não gera filhotes, mas isso é falha de uma característica de um indivíduo, e não da espécie.
+- **Fogo:** consome combustível, cresce, reage ao vento. Mas não tem células, nem herança, nem controle interno. É uma reação química.
+- **Cristal:** cresce, mas por acréscimo de fora. Sem metabolismo, sem reprodução.
+- **Robô:** reage ao ambiente e usa energia, mas não cresce, nem se reproduz, nem tem células.
+- **Vírus:** sem células nem metabolismo próprio. Só se reproduz usando a maquinaria de uma célula. Há quem o chame "no limite da vida".
+
+<VivoOuNao />
+
+<Exercicio enunciado="Entre pedra, cristal de sal, fogo, robô aspirador, bactéria e cogumelo, quantos são seres vivos?" resposta="2" dica="Só os que têm células." resolucao="Bactéria e cogumelo. Total: 2." />
+
+## A geração espontânea e como foi derrubada
+
+A **geração espontânea** era a ideia de que a vida pode nascer sozinha da matéria sem vida. Ela caiu em duas etapas, por experiências bem planejadas.
+
+### Redi (1668): vermes e moscas
+
+Já vimos o experimento dos três frascos. Redi mostrou que as larvas da carne vêm de ovos de moscas. A ideia "ser vivo vem de ser vivo" ficou mais forte, mas ainda sobrava a pergunta sobre os micróbios.
+
+<ExemploResolvido titulo="Por que Redi usou TRÊS frascos, e não só um?">
+  <Passo>Com um frasco só (aberto), as larvas apareceriam, e ele não saberia se era a carne ou as moscas.</Passo>
+  <Passo>O **frasco com gaze** deixa passar o ar, mas não as moscas. O **tampado** não deixa passar nada.</Passo>
+  <Passo>Mudando só o acesso das moscas, ele isolou a causa: larvas só onde as moscas chegam. É a ideia do **controle** num experimento.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Redi repetiu o experimento com 12 frascos: 4 abertos, 4 com gaze e 4 tampados. Em quantos deles apareceram larvas DENTRO da carne?" resposta="4" dica="Só nos abertos." resolucao="Só nos 4 abertos." />
+
+<Brincando titulo="Experimento de Redi: a tampa na festa">
+
+Imagine uma festa em que sempre aparecem formigas no bolo. Será que o bolo "gera" formigas? Você cobre um bolo com um pano fino e outro com uma tampa bem fechada, e deixa um terceiro à mostra. Só o descoberto atrai as formigas. A conclusão é que elas **vêm de fora**, e não do bolo.
+
+</Brincando>
+
+<ExperimentoDeRedi />
+
+### Pasteur (1862): micróbios também vêm de micróbios
+
+Os micróbios eram o último reduto da geração espontânea. Pasteur ferveu caldo (para matar tudo) em frascos de pescoço de cisne. O ar entrava, mas a curva retinha a poeira. O caldo ficou limpo por muito tempo. Ao inclinar o frasco para o caldo tocar a poeira da curva, os micróbios entraram e se multiplicaram.
+
+<Brincando titulo="Pasteur: o ralo com sifão">
+
+O sifão da pia tem uma curva que segura um pouco de água e impede o mau cheiro de subir pelo cano. O pescoço de cisne faz o mesmo com a poeira: o ar passa, mas as partículas com micróbios ficam presas na curva, como num sifão. Quem chega ao caldo, então, precisa **atravessar** um caminho que não é fácil.
+
+</Brincando>
+
+<PasteurPescocoDeCisne />
+
+<Exercicio enunciado="Quantos anos se passaram entre o experimento de Redi (1668) e o de Pasteur (1862)?" resposta="194" dica="1862 − 1668." resolucao="1862 − 1668 = 194 anos." />
+
+## Como a vida pode ter começado
+
+Se a vida só vem de vida, de onde veio a **primeira**? A Terra tem cerca de 4,5 bilhões de anos, e há sinais de vida com mais de 3,5 bilhões de anos. Os primeiros seres eram unicelulares muito simples. A ciência estuda como moléculas sem vida podem ter chegado a eles. É a hipótese da **origem química da vida**.
+
+Em 1952, **Stanley Miller**, orientado por **Harold Urey**, montou um aparelho para imitar a Terra primitiva: gases (metano, amônia e hidrogênio), vapor de água e faíscas elétricas, que fazem o papel dos raios. Depois de cerca de uma semana, o líquido tinha **aminoácidos**, os tijolos das proteínas.
+
+<SopaPrimitiva />
+
+O resultado não "criou vida". Mas mostrou que moléculas importantes para a vida podem se formar por processos químicos naturais, sem nenhum ser vivo. Hoje, os cientistas discutem se a atmosfera primitiva era como a que Miller usou, e estudam outros lugares onde a vida pode ter começado, como fontes quentes no fundo do mar.
+
+<Exercicio enunciado="Quantos anos se passaram entre o trabalho de Pasteur (1862) e o experimento de Miller (publicado em 1953)?" resposta="91" dica="1953 − 1862." resolucao="1953 − 1862 = 91 anos." />
+
+<Exercicio enunciado="A Terra tem cerca de 4,5 bilhões de anos e há sinais de vida com 3,5 bilhões. A vida apareceu em até quantos bilhões de anos depois da formação da Terra?" resposta="1" dica="4,5 − 3,5." resolucao="4,5 − 3,5 = 1 bilhão de anos." />
+
+## Os níveis de organização
+
+A vida se organiza em camadas, uma dentro da outra, como bonecas russas:
+
+- **Célula** → **tecido** (células iguais, como o músculo) → **órgão** (como o coração) → **sistema** (como o circulatório) → **organismo** (você).
+- **População** (todos os da mesma espécie num lugar) → **comunidade** (todas as populações juntas) → **ecossistema** (a comunidade mais o ambiente) → **biosfera** (todos os ecossistemas da Terra).
+
+<Brincando titulo="Níveis de organização: as peças de montar">
+
+Pense numa cidade de blocos de montar. Cada bloco é uma **célula**. Blocos iguais juntos formam uma parede (**tecido**). Paredes formam um cômodo (**órgão**), cômodos formam uma casa (**sistema**, ou organismo). Casas formam bairros (**população**) e cidades (**ecossistema**). Cada nível tem coisas novas que o nível de baixo não tem.
+
+</Brincando>
+
+<ExemploResolvido titulo="Coloque em ordem do menor para o maior: ecossistema, célula, órgão e população.">
+  <Passo>O menor é a **célula**.</Passo>
+  <Passo>Depois vem o **órgão** (feito de células), que é parte de um organismo.</Passo>
+  <Passo>Depois a **população** (vários organismos da mesma espécie).</Passo>
+  <Passo>Por fim o **ecossistema** (populações e o ambiente). Ordem: célula, órgão, população, ecossistema.</Passo>
+</ExemploResolvido>
+
+<ExemploResolvido titulo="Use a lista para decidir: um cogumelo é um ser vivo?">
+  <Passo>**Células:** sim, é feito de células (é um fungo).</Passo>
+  <Passo>**Metabolismo, crescimento e reprodução:** sim, absorve alimento, cresce e solta esporos.</Passo>
+  <Passo>**Resposta ao ambiente e herança:** sim, reage à umidade e passa genes. Resultado: **tem todas as características, é um ser vivo**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas das 6 características aparecem como 'Sim' para a semente na lista da simulação?" resposta="2" dica="Células e herança/evolução." resolucao="Só 'células' e 'herança e evolução'. As outras são 'em parte'." />
+
+<Exercicio enunciado="Quantas das 6 características aparecem como 'Sim' para o robô aspirador?" resposta="1" dica="Só a resposta ao ambiente." resolucao="Só 'resposta ao ambiente'. Total: 1." />
+
+<Exercicio enunciado="Uma bactéria se divide a cada 20 minutos. Quantas haverá depois de 4 horas, partindo de uma só?" resposta="4096" dica="4 h = 240 min = 12 divisões; 2¹²." resolucao="2¹² = 4.096." />
+
+<Aprofundar titulo="Vírus gigantes e o limite da vida">
+
+Em 2003, cientistas descobriram um vírus enorme, o **mimivírus**, tão grande que foi confundido com uma bactéria. Depois vieram outros, ainda maiores e com muitos genes. Isso reacendeu a discussão: um "vírus" desses está mais perto de uma célula do que se pensava? Mesmo assim, esses vírus ainda dependem de uma célula para se reproduzir. O debate continua, e vale como lembrança de que a natureza não é obrigada a caber em caixas.
+
+</Aprofundar>
+
+<Aprofundar titulo="A definição da NASA para a vida">
+
+A agência espacial americana usa, em suas pesquisas, uma definição de trabalho: a vida é um **sistema químico que se sustenta sozinho e é capaz de evolução darwiniana**. Ela foi pensada para ajudar a reconhecer vida em outros mundos, onde ela pode não ter células como as nossas. Repare que a definição não cita células, e sim a capacidade de **se manter** e **evoluir**.
+
+</Aprofundar>
+
+<Aprofundar titulo="Os frascos de Pasteur que não estragam">
+
+Conta-se que alguns dos frascos de pescoço de cisne de Pasteur foram guardados e, mais de 150 anos depois, o caldo continua limpo. Se for verdade, é uma "experiência" que ainda está rodando. Vale lembrar que o ponto do experimento não é que o caldo dure para sempre, mas sim que **não há geração espontânea** dentro dele.
+
+</Aprofundar>
+
+## Onde isso aparece na vida
+
+- **Conservas e esterilização:** ferver e fechar o recipiente (como fez Pasteur) é a base de enlatados, de molhos e de geleias com validade longa.
+- **Alimentos:** o leite pasteurizado leva o nome de Pasteur. Ele é aquecido para matar micróbios, e não deixa de ser leite.
+- **Hospitais:** instrumentos são esterilizados antes de cirurgias, porque sabemos que micróbios vêm de outros micróbios.
+- **Busca por vida no espaço:** os cientistas procuram sinais de metabolismo, e não só células, em Marte e em luas como Europa e Encélado.
+- **Vacinas e vírus:** entender o que é um vírus ajuda a combatê-lo.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Qual destas NÃO é uma característica dos seres vivos?',
+    opcoes: ['Metabolismo', 'Ter um esqueleto', 'Reprodução'],
+    correta: 1,
+    explicacao: 'Nem todo ser vivo tem esqueleto: bactérias, plantas e águas-vivas não têm. Metabolismo e reprodução são características gerais.',
+  },
+  {
+    enunciado: 'O que é metabolismo?',
+    opcoes: ['Só a digestão do alimento', 'O conjunto de reações químicas do ser vivo que usam matéria e energia', 'O movimento dos músculos'],
+    correta: 1,
+    explicacao: 'Metabolismo inclui todas as reações químicas que sustentam a vida, e não só a digestão.',
+  },
+  {
+    enunciado: 'Uma semente seca está...',
+    opcoes: ['morta, porque não se mexe', 'viva, em dormência, com metabolismo quase parado', 'morta, porque não tem células'],
+    correta: 1,
+    explicacao: 'Dentro dela há um embrião vivo. Com água e calor, ele germina.',
+  },
+  {
+    enunciado: 'Por que o fogo não é considerado um ser vivo?',
+    opcoes: ['Porque é quente', 'Porque não tem células nem herança, apesar de consumir e crescer', 'Porque não tem cor'],
+    correta: 1,
+    explicacao: 'O fogo é uma reação química. Falta organização celular, herança e controle interno.',
+  },
+  {
+    enunciado: 'Uma mula não tem filhotes. Ela está viva?',
+    opcoes: ['Sim: a reprodução é característica da espécie, e a mula é um animal com células e metabolismo', 'Não, porque não se reproduz', 'Só se for jovem'],
+    correta: 0,
+    explicacao: 'Cada indivíduo não precisa se reproduzir para estar vivo.',
+  },
+  {
+    enunciado: 'O que o experimento de Redi mostrou?',
+    opcoes: ['Que a carne gera larvas', 'Que as larvas vêm de ovos de moscas', 'Que as moscas nascem da gaze'],
+    correta: 1,
+    explicacao: 'Só nasceram larvas onde as moscas puderam pôr ovos.',
+  },
+  {
+    enunciado: 'Por que Redi usou um frasco tampado e outro aberto?',
+    opcoes: ['Para ter um "controle" e mudar só uma coisa: o acesso das moscas', 'Para gastar mais carne', 'Para esfriar a carne'],
+    correta: 0,
+    explicacao: 'Experimentos bons mudam um fator por vez para ver o efeito dele.',
+  },
+  {
+    enunciado: 'No experimento de Pasteur, por que o caldo no frasco de pescoço de cisne ficava limpo?',
+    opcoes: ['Porque o ar não entrava', 'Porque a poeira com micróbios ficava presa na curva do pescoço', 'Porque o caldo era venenoso'],
+    correta: 1,
+    explicacao: 'O ar entrava livremente, mas as partículas com micróbios ficavam presas na curva.',
+  },
+  {
+    enunciado: 'Uma bactéria se divide a cada 20 min. Quantas serão depois de 1 hora, a partir de uma só?',
+    opcoes: ['3', '8', '60'],
+    correta: 1,
+    explicacao: '60 ÷ 20 = 3 divisões. 2³ = 8 bactérias.',
+  },
+  {
+    enunciado: 'O que o experimento de Miller e Urey (1952) mostrou?',
+    opcoes: ['Que a vida surgiu por mágica', 'Que moléculas como os aminoácidos podem se formar a partir de gases simples e energia', 'Que a vida só existe na Terra'],
+    correta: 1,
+    explicacao: 'Com gases, vapor de água e faíscas, surgiram aminoácidos em cerca de uma semana. Não criou vida, mas mostrou um caminho químico possível.',
+  },
+  {
+    enunciado: 'Qual é a ordem correta, do menor ao maior?',
+    opcoes: ['Célula, órgão, organismo, população', 'População, célula, órgão, organismo', 'Órgão, célula, população, organismo'],
+    correta: 0,
+    explicacao: 'Célula → tecido → órgão → sistema → organismo → população → comunidade → ecossistema → biosfera.',
+  },
+  {
+    enunciado: 'O que são autótrofos?',
+    opcoes: ['Seres que fabricam o próprio alimento, como as plantas', 'Seres que comem plantas', 'Seres sem células'],
+    correta: 0,
+    explicacao: 'Plantas e algas fazem fotossíntese. Já os heterótrofos (como os animais) se alimentam de outros seres.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- Não existe uma definição única de vida. Usa-se uma **lista**: **células**, **metabolismo**, **crescimento**, **reprodução**, **resposta ao ambiente** (com homeostase) e **herança com evolução**.
+- **Casos difíceis:** a semente seca está viva (dormente), a mula está viva (estéril), o vírus está no limite (sem células e sem metabolismo próprio). Fogo, cristal e robô não são vivos.
+- **Geração espontânea** (vida do nada) caiu com **Redi** (1668, larvas e moscas) e **Pasteur** (1862, frasco de pescoço de cisne). Vida vem de vida.
+- **Miller e Urey** (1952) produziram aminoácidos com gases e faíscas, mostrando que a química pode fabricar peças da vida.
+- A vida surgiu há mais de 3,5 bilhões de anos. Ela se organiza em níveis: célula, tecido, órgão, sistema, organismo, população, comunidade, ecossistema, biosfera.
+- **Autótrofos** fabricam o próprio alimento; **heterótrofos** comem outros seres.
+
+**Um pouco de história.** Durante séculos se acreditou em ratos nascendo de camisas suadas. Redi derrubou o caso das larvas em 1668 com três frascos, e Pasteur, em 1862, derrubou o dos micróbios com um frasco de pescoço de cisne. Em 1952, Stanley Miller mostrou que as peças das proteínas podem surgir de gases e faíscas.
+
+</Resumo>
+
+Para entender a vida, o próximo passo é olhar para dentro dela: a célula. E o vírus tem uma cápsula só dele. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

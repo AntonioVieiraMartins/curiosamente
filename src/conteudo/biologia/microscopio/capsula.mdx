@@ -1,0 +1,379 @@
+import AumentoDoMicroscopio from '../../../components/simulacoes/AumentoDoMicroscopio'
+import VisivelNoMicroscopio from '../../../components/simulacoes/VisivelNoMicroscopio'
+import QualInstrumento from '../../../components/simulacoes/QualInstrumento'
+import LenteConvexa from '../../../components/simulacoes/LenteConvexa'
+import MontarLamina from '../../../components/simulacoes/MontarLamina'
+
+{/* Fatos conferidos na Wikipedia em inglês (Microscope, History of microscopy, Electron microscope, Leeuwenhoek, Lens), listadas no meta.ts. A autoria do primeiro microscópio composto é disputada. */}
+
+<Etapa id="gancho">
+
+Pegue uma gota d'água de uma lagoa e coloque-a sob um microscópio. Em segundos, o que parecia água limpa fica cheio de vida: bichinhos de uma célula só nadando, algas verdes em fios, coisas piscando e girando. Um zoológico inteiro, numa gota.
+
+Esse mundo existe o tempo todo, mas ficou escondido da humanidade até que alguém inventou o jeito de olhar. O microscópio mudou a medicina, a biologia e até a ideia que fazemos do que é "pequeno". Hoje há microscópios que enxergam **átomos**. Mas todo aparelho tem um limite, e entender qual é o limite de cada um é metade da graça.
+
+<Palpite
+  chave="inicial"
+  pergunta="Um microscópio de luz comum, de escola, com aumento de 1.000×, consegue mostrar um vírus da gripe?"
+  opcoes={['Sim, com 1.000× aparece nítido', 'Não: o vírus é menor do que a luz consegue mostrar', 'Sim, se usar óleo na lente']}
+/>
+
+Nesta cápsula você vai ver como funciona o microscópio, o que são aumento e resolução, por que um microscópio de luz não mostra um vírus, como as lentes formam imagens e como se prepara uma lâmina de verdade.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Para ver o muito pequeno, foi preciso inventar as lentes. E elas começaram em coisas bem simples, como gotas de água e vidro polido.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Por volta de 1600', texto: 'Fabricantes de lentes na Holanda criam os primeiros microscópios compostos, com duas lentes. A autoria é disputada, e Zacharias Janssen é o nome mais citado.' },
+  { ano: '1665', texto: 'Robert Hooke publica a Micrographia, com desenhos de pulgas, mofo e cortiça, e dá o nome "célula".' },
+  { ano: 'Década de 1670', texto: 'Antonie van Leeuwenhoek, com lentes minúsculas, enxerga bactérias e protozoários.' },
+  { ano: '1873', texto: 'Ernst Abbe calcula por que a luz tem um limite para mostrar detalhes.' },
+  { ano: '1931', texto: 'Ernst Ruska e Max Knoll constroem o primeiro microscópio eletrônico.' },
+  { ano: '2014', texto: 'O Nobel de Química premia técnicas que ultrapassam o limite de Abbe usando fluorescência.' },
+]} />
+
+## Lentes e curiosidade
+
+Os óculos já existiam na Europa desde o fim do século 13. Quem polia lentes percebia que vidro curvo podia **aumentar** o que se via. No fim do século 16 e começo do 17, fabricantes de lentes holandeses juntaram duas lentes num tubo e criaram o primeiro microscópio composto. O nome do inventor é disputado, mas a ideia mudou o mundo.
+
+## Hooke e o livro que virou sucesso
+
+Em 1665, o inglês **Robert Hooke** publicou a *Micrographia*, um livro cheio de desenhos grandes do que ele via no microscópio: o olho de uma mosca, uma pulga com armadura, os poros da cortiça. Foi um sucesso. Pela primeira vez o público comum viu como o mundo pequeno era cheio de detalhes. Foi nessa obra que ele usou a palavra "célula".
+
+## Leeuwenhoek: lentes pequenas, descobertas gigantes
+
+O comerciante holandês **Antonie van Leeuwenhoek**, sem formação científica, aprendeu sozinho a fazer lentes minúsculas, quase uma gota de vidro, que chegavam a cerca de 270 vezes de aumento. Com elas, nos anos 1670, viu pela primeira vez bactérias, protozoários e até espermatozoides. Enviou cartas com suas descobertas à Royal Society, de Londres. Muita gente demorou a acreditar, até confirmarem.
+
+## O limite da luz e o salto dos elétrons
+
+No século 19, o alemão **Ernst Abbe** mostrou que **a própria luz limita o que dá para ver**: nenhum microscópio de luz consegue separar detalhes menores que cerca de **0,2 micrômetro**. Para ir além, era preciso trocar a luz por algo de "comprimento de onda" menor. Em 1931, **Ruska e Knoll** usaram **elétrons**, e Ruska recebeu o Nobel de Física de 1986. Os microscópios eletrônicos hoje enxergam vírus, moléculas e até átomos.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Aumentar não é o mesmo que ver melhor
+
+Todos já fizemos isto: ampliar uma foto até ficar enorme e... borrada. A imagem ficou **maior**, mas não ganhou detalhes novos. Com o microscópio é igual. Há duas ideias diferentes:
+
+- <Termo cor="azul">Aumento</Termo>: quantas vezes a imagem é maior que o objeto.
+- <Termo cor="coral">Resolução</Termo>: o quanto de **detalhe** dá para separar. É a capacidade de ver que dois pontinhos próximos são **dois**, e não um borrão só.
+
+Quem decide a resolução é o tipo de luz (ou de elétrons) e a qualidade da lente. Aumentar além do limite da resolução só deixa a imagem maior e borrada.
+
+<Brincando titulo="Aumento e resolução: a foto ampliada">
+
+Imagine uma foto de celular de tamanho pequeno. Você a amplia no computador: o rosto cresce, mas os cabelos finos não aparecem. Os detalhes que **não foram gravados** não surgem. O mesmo vale para o microscópio de luz: depois de certo aumento, não há mais o que ver. O que a gente ganha é **tamanho**, mas sem **detalhe**.
+
+</Brincando>
+
+## 2. Como o microscópio de luz funciona
+
+O microscópio de luz tem duas lentes principais. A **objetiva**, perto da amostra, forma uma primeira imagem ampliada. A **ocular**, onde você olha, amplia essa imagem de novo. Por baixo da amostra, uma **luz** atravessa a lâmina. O **aumento total** é o produto dos dois:
+
+<Formula>
+  <Linha>aumento total = aumento da ocular × aumento da objetiva</Linha>
+</Formula>
+
+<Brincando titulo="Duas lupas em fila">
+
+Uma lupa aumenta uma letra 10 vezes. Se você olhar essa imagem com **outra lupa** que aumenta 40 vezes, o aumento total é 10 × 40 = 400. O microscópio é isso: uma lupa olhando para a imagem de outra lupa. Por isso os aumentos se **multiplicam**, e não se somam.
+
+</Brincando>
+
+## 3. Pequeno demais para a luz
+
+A luz visível é uma onda com comprimento de cerca de 0,4 a 0,7 µm. Para mostrar um detalhe, o objeto precisa ser maior que cerca de **metade** desse comprimento. Por isso o limite dos microscópios de luz é cerca de **0,2 µm**. Um vírus da gripe, com 0,1 µm, **escapa**. Para vê-lo, precisamos de elétrons.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Você vê uma bactéria a 400×. Se passar para 1.000×, mostra muito mais detalhes? E um vírus de 0,1 µm aparece com 1.000× no microscópio de luz?"
+  opcoes={['Sim para os dois: quanto maior o aumento, mais se vê', 'A imagem fica maior, mas o vírus continua fora do alcance da luz', 'O vírus aparece nítido, e a bactéria some']}
+  correta={1}
+  explicacao="Com 1.000× a bactéria fica maior, mas o limite da luz (cerca de 0,2 µm) continua o mesmo. O vírus de 0,1 µm é menor que esse limite, então não dá para vê-lo no microscópio de luz, por mais que se aumente."
+>
+
+Escolha o aumento total e veja o que dá para enxergar de cada ser:
+
+<VisivelNoMicroscopio />
+
+Repare: com 1.000×, a bactéria vira uma imagem de 2 mm, bem visível. Mas o vírus, mesmo "aumentado" 1.000 vezes, entra no aviso de que é **pequeno demais para a luz**: a resolução do microscópio de luz não alcança.
+
+Agora o palpite do começo. Um microscópio de luz a 1.000× mostra um vírus da gripe?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Sim, com 1.000× aparece nítido', 'Não: o vírus é menor do que a luz consegue mostrar', 'Sim, se usar óleo na lente']}
+  correta={1}
+  seAcertou="Certo: o vírus é menor que o limite da luz (cerca de 0,2 µm). O óleo de imersão melhora um pouco a resolução, mas não o bastante. Só o microscópio eletrônico o mostra."
+  seErrou="O certo é: não. O limite do microscópio de luz é cerca de 0,2 µm, e o vírus da gripe tem 0,1 µm. O óleo de imersão ajuda um pouco, mas não resolve. É preciso o microscópio eletrônico."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## As peças do microscópio de luz
+
+Um microscópio escolar tem partes que valem conhecer:
+
+- **Base e braço:** sustentam tudo.
+- **Fonte de luz:** ilumina a amostra por baixo.
+- **Diafragma:** regula a quantidade de luz.
+- **Platina:** a mesa onde se coloca a lâmina, com presilhas.
+- **Revólver:** a peça giratória onde ficam as **objetivas** (por exemplo, 4×, 10×, 40× e 100×).
+- **Ocular:** a lente onde se olha (geralmente 10×).
+- **Parafusos de foco:** o **macrométrico** (ajuste grosso) e o **micrométrico** (ajuste fino).
+
+<Brincando titulo="Peças do microscópio: a câmera da loja">
+
+Pense numa câmera fotográfica com várias lentes. Você escolhe a lente (objetiva), liga a luz (fonte), regula a abertura (diafragma), posiciona o objeto (platina) e gira o anel até a imagem ficar nítida (focos). O microscópio é igual, só que aponta para coisas tão pequenas que a lâmina de vidro é a "paisagem".
+
+</Brincando>
+
+## Aumento total e campo de visão
+
+O aumento total é a **ocular × objetiva**. Com ocular de 10× e objetivas de 4×, 10×, 40× e 100×, os aumentos totais são 40×, 100×, 400× e 1.000×. Quanto maior o aumento, **menor** o pedaço da amostra que você vê, o chamado **campo de visão**. Numa ocular comum, ele é de uns 18 mm dividido pelo aumento da objetiva.
+
+<AumentoDoMicroscopio />
+
+<ExemploResolvido titulo="Qual é o aumento total com ocular de 10× e objetiva de 40×? Qual o tamanho da imagem de uma célula de 30 µm?">
+  <Passo>Aumento total: 10 × 40 = **400×**.</Passo>
+  <Passo>Tamanho da imagem: 30 µm × 400 = 12.000 µm.</Passo>
+  <Passo>12.000 µm = **12 mm** de tamanho aparente, bem visível.</Passo>
+</ExemploResolvido>
+
+<ExemploResolvido titulo="Qual o campo de visão (aproximado) com ocular de 10× e objetiva de 40×?">
+  <Passo>Campo ≈ 18 mm ÷ aumento da objetiva.</Passo>
+  <Passo>18 ÷ 40 = 0,45 mm.</Passo>
+  <Passo>**0,45 mm** = 450 µm. Cabem só 15 células de 30 µm em fila nesse campo.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é o aumento total com ocular de 10× e objetiva de 40×?" resposta="400" dica="Multiplique." resolucao="10 × 40 = 400×." />
+
+<Exercicio enunciado="Qual é o aumento total com ocular de 15× e objetiva de 100×?" resposta="1500" dica="15 × 100." resolucao="15 × 100 = 1.500×." />
+
+<Exercicio enunciado="Com ocular de 10×, qual objetiva dá aumento total de 400×?" resposta="40" dica="400 ÷ 10." resolucao="400 ÷ 10 = 40×." />
+
+<Exercicio enunciado="Uma bactéria de 2 µm é vista com aumento total de 1.000×. Qual é o tamanho aparente da imagem, em mm? (1 mm = 1.000 µm)" resposta="2" dica="2 µm × 1.000 = 2.000 µm." resolucao="2.000 µm = 2 mm." />
+
+<Exercicio enunciado="Com ocular de 10× e objetiva de 40×, o campo de visão é de 18 ÷ 40 mm. Quantos µm é isso? (use 1 mm = 1.000 µm)" resposta="450" dica="18 ÷ 40 = 0,45 mm." resolucao="0,45 × 1.000 = 450 µm." />
+
+<Exercicio enunciado="O aumento total é 600× e a objetiva é de 40×. Qual é o aumento da ocular?" resposta="15" dica="600 ÷ 40." resolucao="600 ÷ 40 = 15×." />
+
+## Que instrumento escolher
+
+Cada instrumento tem o seu alcance:
+
+- **Olho nu:** enxerga até cerca de 0,1 mm (100 µm).
+- **Lupa:** até cerca de 0,01 a 0,02 mm (10 a 20 µm).
+- **Microscópio de luz:** até cerca de 0,2 µm. Mostra células, bactérias e protozoários.
+- **Microscópio eletrônico:** menos de 1 nm em equipamentos modernos. Mostra vírus, organelas por dentro e moléculas.
+
+<QualInstrumento />
+
+<ExemploResolvido titulo="O limite do microscópio de luz é 0,2 µm. Quantos nm isso é? E um vírus de 100 nm cabe nesse limite?">
+  <Passo>1 µm = 1.000 nm, então 0,2 µm = 0,2 × 1.000 = **200 nm**.</Passo>
+  <Passo>O vírus tem 100 nm, que é a **metade** de 200 nm.</Passo>
+  <Passo>Ele é menor que o limite: **não aparece** no microscópio de luz.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos nanômetros tem 0,2 µm?" resposta="200" dica="0,2 × 1.000." resolucao="0,2 × 1.000 = 200 nm." />
+
+<Exercicio enunciado="O limite do microscópio de luz é 200 nm e o vírus da gripe tem 100 nm. O vírus é quantas vezes MENOR que o limite?" resposta="2" dica="200 ÷ 100." resolucao="200 ÷ 100 = 2 vezes menor." />
+
+<Exercicio enunciado="Um microscópio eletrônico enxerga detalhes de 0,2 nm. O de luz, de 200 nm. Quantas vezes o eletrônico enxerga detalhes menores?" resposta="1000" dica="200 ÷ 0,2." resolucao="200 ÷ 0,2 = 1.000 vezes." />
+
+<Exercicio enunciado="Quantos µm tem 1 cm? (1 cm = 10 mm e 1 mm = 1.000 µm)" resposta="10000" dica="10 × 1.000." resolucao="10 × 1.000 = 10.000 µm." />
+
+### Dois tipos de microscópio eletrônico
+
+- **De transmissão (MET):** os elétrons atravessam uma **fatia finíssima** da amostra e mostram o interior, como as organelas.
+- **De varredura (MEV):** os elétrons "varrem" a **superfície** e produzem imagens em relevo, parecidas com fotos em 3D, como olhos de insetos e grãos de pólen.
+
+As imagens são em preto e branco. As versões coloridas que você vê em revistas são pintadas depois no computador.
+
+## Como a lente forma a imagem
+
+Uma **lente convexa** (mais grossa no meio) faz os raios de luz **convergirem**. O ponto onde raios paralelos se encontram é o **foco**, e a distância dele até a lente é a **distância focal** (f). Com um objeto a uma distância p da lente, a imagem se forma a uma distância p', dada por:
+
+<Formula>
+  <Linha>1 ÷ f = 1 ÷ p + 1 ÷ p'</Linha>
+</Formula>
+
+O que acontece depende de onde está o objeto:
+
+- **Fora do foco** (p maior que f): imagem **real** e **invertida**, que se forma do outro lado.
+- **Dentro do foco** (p menor que f): imagem **virtual**, **direita** e **maior**. É assim que a **lupa** funciona.
+
+<Brincando titulo="Lupa: o dedo de perto">
+
+Segure uma lupa bem perto de um texto: as letras aparecem maiores e na posição normal. É a imagem virtual, atrás da lente. Afaste a lupa até uma certa distância: o texto vira de cabeça para baixo. Você passou do foco: a imagem agora é real e invertida, como a de uma câmera.
+
+</Brincando>
+
+<LenteConvexa />
+
+<ExemploResolvido titulo="Uma lente tem f = 4 cm e o objeto está a p = 6 cm. Onde se forma a imagem?">
+  <Passo>Equação: 1/4 = 1/6 + 1/p'.</Passo>
+  <Passo>1/p' = 1/4 − 1/6 = 3/12 − 2/12 = 1/12.</Passo>
+  <Passo>**p' = 12 cm**, do outro lado. O aumento é 12 ÷ 6 = **2×**, com a imagem invertida.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma lente tem f = 4 cm e o objeto está a 6 cm dela. A que distância (em cm) se forma a imagem?" resposta="12" dica="1/p' = 1/4 − 1/6 = 1/12." resolucao="p' = 12 cm." />
+
+<Exercicio enunciado="Com f = 4 cm e o objeto a 3 cm (dentro do foco), o aumento é de quantas vezes? (Use a simulação.)" resposta="4" dica="p' = −12 cm (virtual); aumento = 12 ÷ 3." resolucao="4×. A imagem é virtual, direita e maior." />
+
+## Preparando uma lâmina
+
+Para ver células de verdade, é preciso preparar uma **lâmina**. A de **cebola** é a clássica. É fácil: a película interna da escama é fina e transparente.
+
+<Brincando titulo="Lâmina: o sanduíche transparente">
+
+Uma lâmina é um sanduíche: um vidro de baixo (a **lâmina**), a amostra fina no meio e uma folhinha de vidro por cima (a **lamínula**). Entre elas, uma gota d'água ou de corante. A lamínula achata a gota e protege a lente se você chegar muito perto. Se a amostra for grossa, a luz não passa, e o sanduíche não serve.
+
+</Brincando>
+
+<MontarLamina />
+
+<ExemploResolvido titulo="Por que se começa a olhar com a objetiva de 4× ou 10× e não com a de 100×?">
+  <Passo>A objetiva de 4× tem o **maior campo de visão** (cerca de 4,5 mm). É fácil achar a amostra.</Passo>
+  <Passo>A de 100× tem campo de uns 0,18 mm, bem pequeno, e fica quase encostada na lâmina: dá para perder a amostra ou quebrar o vidro.</Passo>
+  <Passo>Por isso se acha a amostra no pequeno aumento e só depois se troca para os maiores.</Passo>
+</ExemploResolvido>
+
+<Aprofundar titulo="Óleo de imersão: por que a objetiva de 100× usa óleo">
+
+A objetiva de 100× fica quase encostada na lâmina. Entre elas há uma camada de ar, e ali a luz se desvia e parte dela se perde. Uma gotinha de **óleo especial** no lugar do ar tem um índice de refração parecido com o do vidro, e a luz passa quase sem desvio. Com isso, entra mais luz e a resolução melhora um pouco. Mas o óleo não rompe o limite da luz: é só uma forma de chegar mais perto dele.
+
+</Aprofundar>
+
+<Aprofundar titulo="Por que os elétrons enxergam menor">
+
+Quem decide o menor detalhe visível é o **comprimento de onda** da radiação usada. A luz visível tem cerca de 400 a 700 nm. Os elétrons, quando acelerados, se comportam como ondas com comprimentos milhares de vezes menores (frações de nanômetro). Por isso o microscópio eletrônico enxerga muito mais fino. Em compensação, ele funciona no vácuo e, em geral, não olha seres vivos.
+
+</Aprofundar>
+
+<Aprofundar titulo="Quebrando o limite de Abbe">
+
+Por mais de um século, o limite de Abbe parecia intransponível. Em 2014, o Nobel de Química premiou Eric Betzig, Stefan Hell e William Moerner por técnicas que usam **moléculas fluorescentes** que acendem uma de cada vez. A imagem é montada ponto a ponto, e dá para ver detalhes de dentro de células vivas, bem abaixo dos 0,2 µm. Foi um jeito inteligente de driblar a regra.
+
+</Aprofundar>
+
+## Onde isso aparece na vida
+
+- **Medicina:** o exame de sangue conta células no microscópio. A biópsia procura células com problema.
+- **Água e alimentos:** laboratórios procuram bactérias e protozoários em amostras.
+- **Tecnologia:** chips de computador são inspecionados com microscópios.
+- **Ciência forense:** fibras, cabelos e pólen ajudam a descobrir de onde algo veio.
+- **Pesquisa de vírus:** o microscópio eletrônico foi essencial para descobrir como os vírus são por fora.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Como se calcula o aumento total do microscópio?',
+    opcoes: ['Ocular + objetiva', 'Ocular × objetiva', 'Só o aumento da ocular'],
+    correta: 1,
+    explicacao: 'Os aumentos das duas lentes se multiplicam: 10× · 40× = 400×.',
+  },
+  {
+    enunciado: 'Qual é o aumento total com ocular de 10× e objetiva de 100×?',
+    opcoes: ['110×', '1.000×', '100×'],
+    correta: 1,
+    explicacao: '10 × 100 = 1.000×.',
+  },
+  {
+    enunciado: 'O que acontece com o campo de visão ao aumentar o aumento?',
+    opcoes: ['Fica maior', 'Fica menor', 'Não muda'],
+    correta: 1,
+    explicacao: 'Quanto maior o aumento, menor a parte da amostra que cabe na imagem.',
+  },
+  {
+    enunciado: 'O que é resolução?',
+    opcoes: ['Quantas vezes a imagem é maior', 'A capacidade de separar detalhes muito próximos', 'A cor da imagem'],
+    correta: 1,
+    explicacao: 'É a resolução que mostra detalhes. O aumento só aumenta o tamanho.',
+  },
+  {
+    enunciado: 'Qual é, aproximadamente, o limite do microscópio de luz?',
+    opcoes: ['0,2 µm (200 nm)', '2 mm', '1 nm'],
+    correta: 0,
+    explicacao: 'A luz visível tem comprimento de onda de cerca de 0,4 a 0,7 µm, o que limita a resolução a cerca de 0,2 µm.',
+  },
+  {
+    enunciado: 'Por que um vírus da gripe (0,1 µm) não aparece no microscópio de luz?',
+    opcoes: ['Porque é transparente', 'Porque é menor que o limite de resolução da luz', 'Porque se mexe muito'],
+    correta: 1,
+    explicacao: '0,1 µm é menor que 0,2 µm. Aumentar mais não resolve: só o microscópio eletrônico o mostra.',
+  },
+  {
+    enunciado: 'Qual é a diferença entre o MET e o MEV?',
+    opcoes: ['O MET olha fatias finas por dentro; o MEV mostra a superfície em relevo', 'O MET usa luz; o MEV usa som', 'Nenhuma'],
+    correta: 0,
+    explicacao: 'MET: transmissão, por dentro. MEV: varredura, superfície.',
+  },
+  {
+    enunciado: 'Por onde começar ao usar o microscópio?',
+    opcoes: ['Pela objetiva de menor aumento', 'Pela objetiva de 100×', 'Tanto faz'],
+    correta: 0,
+    explicacao: 'A de menor aumento tem o maior campo de visão e facilita achar a amostra.',
+  },
+  {
+    enunciado: 'Para que serve o botão micrométrico?',
+    opcoes: ['Ajuste grosso do foco', 'Ajuste fino do foco', 'Ligar a luz'],
+    correta: 1,
+    explicacao: 'O macrométrico faz o ajuste grosso, e o micrométrico, o fino.',
+  },
+  {
+    enunciado: 'A lupa forma uma imagem maior e direita quando o objeto está...',
+    opcoes: ['Entre a lente e o foco', 'Muito longe da lente', 'Exatamente no foco'],
+    correta: 0,
+    explicacao: 'Dentro da distância focal, a imagem é virtual, direita e maior.',
+  },
+  {
+    enunciado: 'Uma célula de 30 µm vista a 400× tem imagem aparente de...',
+    opcoes: ['12 mm', '1,2 mm', '120 mm'],
+    correta: 0,
+    explicacao: '30 µm × 400 = 12.000 µm = 12 mm.',
+  },
+  {
+    enunciado: 'Quem construiu o primeiro microscópio eletrônico, em 1931?',
+    opcoes: ['Hooke e Leeuwenhoek', 'Ruska e Knoll', 'Pasteur e Redi'],
+    correta: 1,
+    explicacao: 'Ernst Ruska e Max Knoll. Ruska recebeu o Nobel de Física de 1986.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Aumento total = ocular × objetiva.** Quanto maior, menor o campo de visão (cerca de 18 mm ÷ aumento da objetiva).
+- **Resolução** é a capacidade de separar detalhes. O limite do microscópio de luz é cerca de **0,2 µm**: aumentar mais só borra a imagem.
+- **Escalas:** olho nu cerca de 0,1 mm; lupa 10 a 20 µm; luz 0,2 µm; eletrônico menos de 1 nm. 1 mm = 1.000 µm; 1 µm = 1.000 nm.
+- **Vírus** (cerca de 0,1 µm) só aparecem no **microscópio eletrônico**. **MET** olha fatias por dentro; **MEV** mostra a superfície em relevo.
+- **Lente convexa:** objeto fora do foco dá imagem real e invertida; **dentro do foco**, imagem virtual, direita e maior (lupa). Equação: 1/f = 1/p + 1/p'.
+- **Lâmina:** amostra fina, gota de água ou corante, lamínula sem bolhas; começar pelo menor aumento e focar do grosso ao fino.
+
+**Um pouco de história.** Hooke publicou a Micrographia em 1665 e deu o nome "célula". Leeuwenhoek viu bactérias nos anos 1670 com lentes minúsculas. Abbe calculou o limite da luz em 1873, e Ruska e Knoll construíram o primeiro microscópio eletrônico em 1931.
+
+</Resumo>
+
+A visão do invisível mostrou que o corpo é feito de células e que a luz é uma onda. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

@@ -1,0 +1,365 @@
+import ParticulasDosEstados from '../../../components/simulacoes/ParticulasDosEstados'
+import CurvaDeAquecimento from '../../../components/simulacoes/CurvaDeAquecimento'
+import NomeDaMudanca from '../../../components/simulacoes/NomeDaMudanca'
+import QualMudancaDeEstado from '../../../components/simulacoes/QualMudancaDeEstado'
+import PanelaDePressao from '../../../components/simulacoes/PanelaDePressao'
+
+{/* Fatos conferidos na Wikipedia em inglês (State of matter, Phase transition, Latent heat, Boiling point, Plasma), listadas no meta.ts. Valores de calor e de ebulição em altitude são aproximados. */}
+
+<Etapa id="gancho">
+
+Uma panela com água ferve. Você acha que o fogo está fraco e gira o botão para o máximo. A água fica mais quente do que antes?
+
+Quase todo mundo diz que sim. Só que existe uma pegadinha escondida: enquanto a água ferve, o termômetro dentro dela **não sobe mais**. O fogo forte só faz a água ferver mais depressa. Descobrir por quê leva a uma das ideias mais bonitas da química: o que acontece **dentro** da matéria quando ela muda de estado.
+
+<Palpite
+  chave="inicial"
+  pergunta="A água está fervendo numa panela aberta, ao nível do mar. Você aumenta o fogo ao máximo. O que acontece com a temperatura da água?"
+  opcoes={['Sobe, porque o fogo está mais forte', 'Continua em 100 °C, e a água ferve mais depressa', 'Cai, porque ferve mais depressa']}
+/>
+
+Nesta cápsula você vai ver como são as partículas de um sólido, de um líquido e de um gás, como se chamam todas as mudanças de estado, por que a temperatura para durante elas, quanta energia cada uma pede e por que a panela de pressão cozinha mais rápido.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Sólido, líquido e gasoso são tão comuns que parece que sempre se soube explicá-los. Mas medir a temperatura e entender o calor levou séculos de experiências.
+
+<LinhaDoTempo marcos={[
+  { ano: '1742', texto: 'O sueco Anders Celsius propõe a escala de temperatura com 100 graus entre o congelamento e a ebulição da água.' },
+  { ano: 'Por volta de 1760', texto: 'Joseph Black percebe que o gelo derretendo absorve calor sem esquentar. É o "calor latente".' },
+  { ano: '1823', texto: 'Michael Faraday consegue liquefazer o cloro e outros gases, mostrando que gás e líquido são só estados de uma mesma substância.' },
+  { ano: '1848', texto: 'William Thomson, depois Lord Kelvin, propõe uma escala que começa no zero absoluto, cerca de −273 °C.' },
+  { ano: '1928', texto: 'O químico Irving Langmuir dá o nome "plasma" ao gás muito quente e eletrizado, o quarto estado.' },
+  { ano: '1995', texto: 'Cientistas criam em laboratório o condensado de Bose-Einstein, um estado a temperaturas próximas do zero absoluto.' },
+]} />
+
+## O termômetro que começou de cabeça para baixo
+
+Anders Celsius apresentou sua escala em 1742. Só que, no começo, ela era **invertida**: 0 grau era a água fervendo e 100 graus era o gelo derretendo. Depois que ele morreu, a escala foi virada para a forma que usamos hoje. A graça está em dividir o intervalo entre o gelo e a ebulição da água em 100 partes iguais, porque a água é a substância mais fácil de achar em qualquer lugar.
+
+## O mistério do gelo que derrete sem esquentar
+
+No século 18, o escocês Joseph Black fez uma experiência simples. Pegou um recipiente com gelo e outro com água gelada, ambos a 0 graus, e os deixou numa sala morna. A água gelada esquentou rápido. O gelo ficou a 0 graus por muito tempo, enquanto derretia. Para onde ia o calor que o gelo recebia? Black concluiu que ele era usado para **mudar o estado**, e não para elevar a temperatura. Chamou-o de "calor latente", isto é, escondido.
+
+## Mais estados do que se imaginava
+
+Michael Faraday mostrou, nos anos 1820, que muitos gases viram líquido se forem comprimidos e resfriados. Depois vieram os estados mais estranhos: o **plasma**, que existe nas estrelas, nos raios e nas lâmpadas de neon, e o **condensado de Bose-Einstein**, criado em laboratório cerca de 70 anos depois de ser previsto. Ficamos com os três estados do dia a dia, mas a natureza tem mais.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Tudo é feito de partículas em movimento
+
+Já vimos que a matéria é feita de partículas minúsculas (átomos e moléculas). O que muda de um estado para outro **não é o material**: é como essas partículas estão **arrumadas** e **quão agitadas** estão.
+
+## 2. Sólido: arrumados e quase parados
+
+No <Termo cor="azul">sólido</Termo>, as partículas ficam bem juntas, presas em posições fixas. Elas não saem do lugar: só **vibram**, como pessoas sentadas num estádio lotado, mexendo-se um pouco nas cadeiras. Por isso o sólido tem **forma e volume próprios**.
+
+## 3. Líquido: juntos, mas escorregando
+
+No <Termo cor="verde">líquido</Termo>, as partículas ainda estão juntas, mas não presas: elas **escorregam** umas sobre as outras, como pessoas numa pista de dança lotada. O líquido tem volume próprio, mas toma a **forma do recipiente**.
+
+## 4. Gás: soltos e rápidos
+
+No <Termo cor="coral">gás</Termo>, as partículas estão muito afastadas e se movem depressa em todas as direções, como crianças correndo num pátio vazio. O gás não tem forma nem volume próprios: **ocupa todo o espaço** que existir. Por isso dá para comprimir um gás, mas é quase impossível comprimir um líquido.
+
+<Brincando titulo="Os três estados: a plateia do estádio">
+
+Imagine uma plateia. No **sólido**, todo mundo sentado em cadeiras fixas, sem sair do lugar, só se mexendo. No **líquido**, a plateia está de pé na pista, bem junta, escorregando entre si. No **gás**, a plateia saiu correndo para o estacionamento: cada pessoa em um lugar, sem formar grupo. Quanto **mais calor**, mais agitada a plateia.
+
+</Brincando>
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Você aquece 1 g de gelo a −20 °C com uma fonte de calor constante. A temperatura sobe sempre no mesmo ritmo até evaporar tudo?"
+  opcoes={['Sim, sobe sempre no mesmo ritmo', 'Não: ela para em 0 °C enquanto o gelo derrete, e em 100 °C enquanto a água ferve', 'Não: ela cai um pouco antes de derreter']}
+  correta={1}
+  explicacao="Durante a fusão e a ebulição, a energia recebida é usada para separar as partículas, e não para agitá-las mais. Por isso o termômetro fica parado em 0 °C e em 100 °C enquanto dura a mudança."
+>
+
+Dê energia ao gelo e acompanhe a curva de aquecimento. Repare nos dois "degraus" planos:
+
+<CurvaDeAquecimento />
+
+Os degraus são os momentos da mudança de estado. A energia está sendo gasta para **soltar** as partículas, e não para agitá-las. Veja: derreter um grama de gelo pede só 334 J. Já ferver um grama de água pede 2.260 J, quase 7 vezes mais, porque é necessário afastar as partículas de vez.
+
+Agora o palpite do começo. Quando a água já está fervendo e você aumenta o fogo, o que acontece com a temperatura?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Sobe, porque o fogo está mais forte', 'Continua em 100 °C, e a água ferve mais depressa', 'Cai, porque ferve mais depressa']}
+  correta={1}
+  seAcertou="Certo: enquanto a água ferve, ela fica em 100 °C. O fogo maior só entrega mais energia por segundo, e a água vira vapor mais rápido."
+  seErrou="O certo é: continua em 100 °C. A energia extra vai para separar as partículas (virar vapor), e não para esquentar a água. Fogo mais forte só faz ferver mais depressa."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## O modelo de partículas ao vivo
+
+Mexa na temperatura da água e veja o que acontece com as partículas. Repare no que muda em 0 °C e em 100 °C:
+
+<ParticulasDosEstados />
+
+### O que o gás faz de especial
+
+Como as partículas do gás estão distantes, o gás pode ser **comprimido** (as partículas se aproximam) e **expande** para qualquer recipiente. Os sólidos e os líquidos são muito mais difíceis de comprimir, porque as partículas já estão coladas. Esse é o princípio de tudo, do pneu de bicicleta ao botijão de gás.
+
+<ExemploResolvido titulo="Em que estado está cada substância a 25 °C? Álcool (funde a −114 °C e ferve a 78 °C), nitrogênio (ferve a −196 °C) e ferro (funde a 1.538 °C).">
+  <Passo>Álcool: 25 °C está **acima** do ponto de fusão (−114) e **abaixo** do de ebulição (78). Fica **líquido**.</Passo>
+  <Passo>Nitrogênio: 25 °C está muito acima de −196 °C. Já passou da ebulição, então é **gás**.</Passo>
+  <Passo>Ferro: 25 °C está muito abaixo de 1.538 °C. É **sólido**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O nitrogênio ferve a −196 °C. A 25 °C, em que estado ele está? Responda 1 para sólido, 2 para líquido e 3 para gasoso." resposta="3" dica="25 °C está acima da ebulição." resolucao="Está acima do ponto de ebulição, então é gás. Resposta: 3." />
+
+<Exercicio enunciado="O álcool funde a −114 °C e ferve a 78 °C. A 25 °C, em que estado está? Responda 1 para sólido, 2 para líquido e 3 para gasoso." resposta="2" dica="25 °C fica entre os dois pontos." resolucao="Entre a fusão e a ebulição, é líquido. Resposta: 2." />
+
+## As mudanças de estado
+
+Quando a energia entra ou sai, o material **muda de estado**. As seis mudanças têm nome:
+
+- **Fusão**: sólido vira líquido (o gelo derrete).
+- **Solidificação**: líquido vira sólido (a água vira gelo).
+- **Vaporização**: líquido vira gás (a água vira vapor).
+- **Condensação** (ou liquefação): gás vira líquido (o vapor vira gotinhas no vidro).
+- **Sublimação**: sólido vira gás, sem passar por líquido (a naftalina some).
+- **Ressublimação**: gás vira sólido, sem passar por líquido (a geada).
+
+Três delas **absorvem** calor: fusão, vaporização e sublimação. As inversas **liberam** calor. É por isso que o suor esfria o corpo: ao evaporar, a água do suor tira calor da pele.
+
+<Brincando titulo="Mudança de estado: subir e descer a escada">
+
+Pense numa escada de três degraus: sólido, líquido e gás. Para **subir** um degrau, você precisa de energia: o calor é como o esforço de subir. Para **descer**, a energia é devolvida. Fusão e vaporização são subidas. Solidificação e condensação são descidas. Sublimação é subir dois degraus de uma vez.
+
+</Brincando>
+
+<NomeDaMudanca />
+
+<QualMudancaDeEstado />
+
+### Vaporização: ebulição, evaporação e calefação
+
+A vaporização pode acontecer de três jeitos:
+
+- **Evaporação**: lenta, só na superfície, em qualquer temperatura. A roupa seca no varal sem ferver.
+- **Ebulição**: rápida, com bolhas no meio do líquido, quando ele atinge a **temperatura de ebulição**.
+- **Calefação**: muito rápida, quando um líquido cai numa superfície muito mais quente que a sua temperatura de ebulição. Uma gota d'água numa chapa quente "dança" e some depressa.
+
+<Exercicio enunciado="Entre as mudanças fusão, vaporização, sublimação e condensação, quantas ABSORVEM calor?" resposta="3" dica="Só a condensação libera." resolucao="Fusão, vaporização e sublimação absorvem. A condensação libera. Total: 3." />
+
+## Pontos de fusão e de ebulição
+
+A temperatura em que uma substância **funde** e a temperatura em que **ferve** são propriedades específicas. Cada substância tem as suas. Ao nível do mar:
+
+- Água: funde a 0 °C e ferve a 100 °C.
+- Álcool etílico: funde a −114 °C e ferve a 78 °C.
+- Ferro: funde a cerca de 1.538 °C.
+- Nitrogênio: ferve a −196 °C.
+
+Por isso o éter, que ferve a cerca de 35 °C, evapora rapidinho na palma da mão, enquanto a água fica ali. Cada substância tem a sua temperatura.
+
+<Exercicio enunciado="Entre −20 °C e 120 °C, quantas mudanças de estado a água sofre ao ser aquecida? (Fusão e vaporização.)" resposta="2" dica="Gelo vira líquido e líquido vira vapor." resolucao="Fusão (0 °C) e vaporização (100 °C). Total: 2." />
+
+<Exercicio enunciado="Quantos graus abaixo de 100 °C ferve a água em La Paz, onde ela ferve perto de 88 °C?" resposta="12" dica="100 − 88." resolucao="100 − 88 = 12 °C." />
+
+## Curva de aquecimento: quanta energia cada etapa gasta
+
+Para aquecer sem mudar de estado, o calor necessário é:
+
+<Formula>
+  <Linha>Q = m × c × ΔT</Linha>
+</Formula>
+
+Aqui, m é a massa, c é o calor específico (quanto cada grama pede por grau) e ΔT é a variação de temperatura. Para a água líquida, c vale cerca de 4,18 J por grama e por °C. Para mudar de estado, o calor é Q = m × L, onde L é o **calor latente**: 334 J/g na fusão do gelo e 2.260 J/g na vaporização da água.
+
+<Brincando titulo="Calor latente: o pedágio da mudança de estado">
+
+Pense numa estrada com dois pedágios enormes: um em 0 °C e outro em 100 °C. O carro (a energia) sobe a estrada (a temperatura) normalmente, mas, ao chegar no pedágio, precisa **parar e pagar** uma taxa alta antes de seguir. Enquanto paga, a temperatura não sobe. O pedágio da água em 100 °C é bem mais caro (2.260 J/g) que o de 0 °C (334 J/g).
+
+</Brincando>
+
+<ExemploResolvido titulo="Quanta energia é necessária para esquentar 100 g de água de 20 °C a 80 °C? (c = 4,18 J/g·°C)">
+  <Passo>m = 100 g, c = 4,18 e ΔT = 80 − 20 = 60 °C.</Passo>
+  <Passo>Q = 100 × 4,18 × 60.</Passo>
+  <Passo>Q = **25.080 J**, ou cerca de 25 kJ.</Passo>
+</ExemploResolvido>
+
+<ExemploResolvido titulo="Quanta energia é necessária para fundir 10 g de gelo a 0 °C? (L = 334 J/g)">
+  <Passo>Na mudança de estado, usamos Q = m × L.</Passo>
+  <Passo>Q = 10 × 334.</Passo>
+  <Passo>Q = **3.340 J**. A temperatura continua em 0 °C até o gelo acabar.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanta energia, em J, é necessária para aquecer 100 g de água de 20 °C a 80 °C? (c = 4,18 J/g·°C)" resposta="25080" dica="Q = m × c × ΔT." resolucao="100 × 4,18 × 60 = 25.080 J." />
+
+<Exercicio enunciado="Quantos joules são necessários para fundir 10 g de gelo a 0 °C? (L = 334 J/g)" resposta="3340" dica="Q = m × L." resolucao="10 × 334 = 3.340 J." />
+
+<Exercicio enunciado="Quantos joules são necessários para vaporizar 10 g de água a 100 °C? (L = 2.260 J/g)" resposta="22600" dica="10 × 2.260." resolucao="10 × 2.260 = 22.600 J." />
+
+<Exercicio enunciado="Um aquecedor fornece 1.000 J por segundo. Quantos segundos leva para fundir 100 g de gelo a 0 °C? (L = 334 J/g)" resposta="33,4" dica="Primeiro ache a energia total: 100 × 334." resolucao="Energia: 33.400 J. Tempo: 33.400 ÷ 1.000 = 33,4 s." />
+
+<ExemploResolvido titulo="Quanto calor libera 10 g de vapor de água ao condensar a 100 °C? (L = 2.260 J/g)">
+  <Passo>A condensação é o contrário da vaporização: a água **devolve** a energia que absorveu.</Passo>
+  <Passo>Q = m × L = 10 × 2.260 = **22.600 J** liberados.</Passo>
+  <Passo>Por isso uma queimadura de vapor é pior que uma de água fervendo: o vapor ainda libera essa energia ao condensar na pele.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quanto calor, em J, libera 5 g de vapor de água ao condensar a 100 °C? (L = 2.260 J/g)" resposta="11300" dica="Q = m × L." resolucao="5 × 2.260 = 11.300 J liberados." />
+
+<Exercicio enunciado="Quantos graus a água precisa subir para ir de 25 °C até começar a ferver, ao nível do mar?" resposta="75" dica="100 − 25." resolucao="100 − 25 = 75 °C." />
+
+<Exercicio enunciado="Quanta energia, em J, é necessária para aquecer 50 g de água de 25 °C a 100 °C? (c = 4,18 J/g·°C)" resposta="15675" dica="ΔT = 75 °C." resolucao="Q = 50 × 4,18 × 75 = 15.675 J." />
+
+## Pressão e ebulição
+
+A temperatura de ebulição **depende da pressão**. A água ferve quando a pressão do vapor que ela produz se iguala à pressão do ar em cima dela. Em lugares altos, o ar é mais "ralo", a pressão é menor e a água ferve a uma temperatura mais baixa. Na **panela de pressão**, a tampa prende o vapor, a pressão sobe, e a água só ferve perto de 120 °C. Com a água mais quente, o feijão cozinha bem mais rápido.
+
+<Brincando titulo="Ebulição e pressão: a água que quer sair">
+
+Dentro do líquido, o vapor quer abrir bolhas, mas o ar de cima empurra a superfície. Quanto mais pesado é o ar em cima (maior a pressão), mais difícil é fazer a bolha. Aí a água precisa ficar **mais quente** para vencer esse peso e ferver. No alto da montanha, o peso do ar é menor, e a água ferve mais cedo (e mais "fria").
+
+</Brincando>
+
+<PanelaDePressao />
+
+<Aprofundar titulo="Plasma e condensado de Bose-Einstein: os outros estados">
+
+O **plasma** é um gás tão quente que os átomos perdem elétrons, e o gás passa a conduzir eletricidade. Ele existe nas estrelas, inclusive no Sol, nos raios, nas lâmpadas de neon e nas telas de plasma antigas. O físico Irving Langmuir o chamou assim em 1928. É o estado mais comum no universo visível.
+
+No outro extremo, perto do zero absoluto, os átomos quase param e se comportam como se fossem um só. É o **condensado de Bose-Einstein**, previsto na década de 1920 e criado em laboratório em 1995, num trabalho que rendeu o Nobel de Física de 2001.
+
+</Aprofundar>
+
+<Aprofundar titulo="Zero absoluto e a escala Kelvin">
+
+Na escala Kelvin, o zero é o **zero absoluto**, o ponto em que as partículas teriam a menor agitação possível: 0 K corresponde a cerca de −273 °C. Para converter, some 273 aos graus Celsius: 27 °C são 300 K. Cada grau Kelvin tem o mesmo tamanho que um grau Celsius. Por isso a Kelvin é muito usada em ciência: temperatura passa a ser proporcional à agitação das partículas, e não há temperaturas negativas.
+
+</Aprofundar>
+
+<Aprofundar titulo="Por que a água do suor esfria o corpo">
+
+Evaporar custa energia: as moléculas mais rápidas da água na pele escapam para o ar, e as que ficam são, em média, mais lentas, ou seja, mais frias. A energia que o suor leva embora vem do corpo. Em dias úmidos, o ar já está cheio de vapor e a evaporação é mais lenta, e por isso o suor não esfria tão bem e a sensação de calor é pior.
+
+</Aprofundar>
+
+## Onde isso aparece na vida
+
+- **Cozinha:** a panela de pressão cozinha mais rápido porque a água ferve mais quente.
+- **Geladeira e ar-condicionado:** usam a evaporação e a condensação de um fluido para tirar calor de dentro e jogá-lo para fora.
+- **Roupa no varal:** seca por evaporação, mais depressa com sol e vento.
+- **Clima:** a água evapora dos mares, condensa em nuvens e cai como chuva. É o ciclo da água.
+- **Gelo seco:** é CO₂ sólido, que sublima a −78 °C. Por isso não "derrete" em poça.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Qual estado da matéria tem forma e volume próprios?',
+    opcoes: ['Sólido', 'Líquido', 'Gasoso'],
+    correta: 0,
+    explicacao: 'No sólido, as partículas ficam presas em posições fixas. O líquido tem volume próprio, mas toma a forma do recipiente, e o gás ocupa todo o espaço.',
+  },
+  {
+    enunciado: 'Qual é o nome da mudança de líquido para gasoso?',
+    opcoes: ['Condensação', 'Vaporização', 'Fusão'],
+    correta: 1,
+    explicacao: 'Líquido para gás é vaporização. Gás para líquido é condensação, e sólido para líquido é fusão.',
+  },
+  {
+    enunciado: 'A naftalina some no armário sem virar líquido. Que mudança é essa?',
+    opcoes: ['Fusão', 'Sublimação', 'Ressublimação'],
+    correta: 1,
+    explicacao: 'Sólido direto para gás é sublimação.',
+  },
+  {
+    enunciado: 'Qual das mudanças LIBERA calor?',
+    opcoes: ['Vaporização', 'Fusão', 'Condensação'],
+    correta: 2,
+    explicacao: 'Condensação libera calor. Fusão, vaporização e sublimação absorvem.',
+  },
+  {
+    enunciado: 'A água está fervendo e você aumenta o fogo. A temperatura...',
+    opcoes: ['sobe acima de 100 °C', 'continua em 100 °C', 'cai abaixo de 100 °C'],
+    correta: 1,
+    explicacao: 'Durante a mudança de estado a temperatura fica constante. O fogo maior só acelera a vaporização.',
+  },
+  {
+    enunciado: 'Por que a temperatura não sobe durante a fusão do gelo?',
+    opcoes: ['A energia vai para separar as partículas, e não para agitá-las', 'O gelo não recebe calor', 'O termômetro quebra'],
+    correta: 0,
+    explicacao: 'A energia recebida é usada para romper a organização do sólido. Só depois que tudo derrete é que a temperatura volta a subir.',
+  },
+  {
+    enunciado: 'Em La Paz, a água ferve a cerca de 88 °C. A causa é...',
+    opcoes: ['a pressão do ar ser menor', 'a água ter menos sal', 'o sol ser mais fraco'],
+    correta: 0,
+    explicacao: 'Em lugares altos o ar é mais ralo. A pressão é menor, e a água ferve mais cedo.',
+  },
+  {
+    enunciado: 'Por que a panela de pressão cozinha mais rápido?',
+    opcoes: ['Porque o fogo é mais forte', 'Porque a pressão maior faz a água ferver perto de 120 °C', 'Porque a tampa é de metal'],
+    correta: 1,
+    explicacao: 'A válvula prende o vapor, a pressão sobe e a água só ferve a uma temperatura mais alta. A comida cozinha em água mais quente.',
+  },
+  {
+    enunciado: 'Quanta energia é necessária para aquecer 200 g de água em 10 °C? (c = 4,18 J/g·°C)',
+    opcoes: ['8.360 J', '2.090 J', '418 J'],
+    correta: 0,
+    explicacao: 'Q = m × c × ΔT = 200 × 4,18 × 10 = 8.360 J.',
+  },
+  {
+    enunciado: 'Qual das etapas pede MAIS energia por grama de água?',
+    opcoes: ['Fundir o gelo (334 J)', 'Vaporizar a água (2.260 J)', 'Aquecer a água líquida em 1 °C (4,18 J)'],
+    correta: 1,
+    explicacao: 'A vaporização pede 2.260 J por grama, quase 7 vezes mais que a fusão.',
+  },
+  {
+    enunciado: 'A geada que cobre a grama numa manhã fria vem de...',
+    opcoes: ['solidificação da água líquida', 'ressublimação do vapor do ar', 'fusão do gelo'],
+    correta: 1,
+    explicacao: 'O vapor de água do ar encontra a superfície muito fria e vira gelo direto, sem passar por líquido.',
+  },
+  {
+    enunciado: 'O que diferencia a evaporação da ebulição?',
+    opcoes: ['A evaporação é lenta, só na superfície e em qualquer temperatura; a ebulição tem bolhas e ocorre na temperatura de ebulição', 'Não há diferença', 'A evaporação só acontece com água salgada'],
+    correta: 0,
+    explicacao: 'Evaporação é gradual e superficial. Ebulição é rápida, no líquido todo, a uma temperatura específica.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Sólido:** partículas fixas, só vibram; forma e volume próprios. **Líquido:** partículas escorregam; volume próprio, forma do recipiente. **Gás:** partículas soltas e rápidas; ocupa todo o espaço.
+- **Mudanças:** fusão, solidificação, vaporização, condensação, sublimação, ressublimação. Fusão, vaporização e sublimação **absorvem** calor.
+- Na água, ao nível do mar: funde a 0 °C e ferve a 100 °C. **Durante a mudança de estado, a temperatura fica parada.**
+- **Calor:** Q = m × c × ΔT (sem mudar de estado) e Q = m × L (mudando). Água: c ≈ 4,18 J/g·°C; L de fusão 334 J/g; L de vaporização 2.260 J/g.
+- A temperatura de ebulição **depende da pressão**: menor em montanhas altas, maior na panela de pressão (cerca de 120 °C).
+- **Evaporação** é lenta e superficial; **ebulição** forma bolhas; **calefação** é a vaporização instantânea numa superfície muito quente.
+
+**Um pouco de história.** Celsius criou sua escala em 1742, e ela era invertida no começo. Joseph Black descobriu o calor latente por volta de 1760, ao ver que o gelo derrete sem esquentar. Faraday liquefez gases em 1823, e Langmuir deu nome ao plasma em 1928.
+
+</Resumo>
+
+Daqui a matéria pode se misturar de muitas formas, o calor pode ser medido com mais cuidado e os gases têm leis próprias. Para onde seguir:
+
+<Conexoes />
+
+</Etapa>

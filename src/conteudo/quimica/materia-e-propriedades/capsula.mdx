@@ -1,0 +1,395 @@
+import BalancaEProveta from '../../../components/simulacoes/BalancaEProveta'
+import BoiaOuAfunda from '../../../components/simulacoes/BoiaOuAfunda'
+import GeralOuEspecifica from '../../../components/simulacoes/GeralOuEspecifica'
+import OuroOuPirita from '../../../components/simulacoes/OuroOuPirita'
+import VolumeDoCubo from '../../../components/simulacoes/VolumeDoCubo'
+
+{/* Fatos conferidos na Wikipedia em inglês (Matter, Density, Archimedes' principle, Properties of water), listadas no meta.ts. A história da coroa de Hierão é contada como lenda. */}
+
+<Etapa id="gancho">
+
+Jogue uma pedrinha numa piscina: ela afunda. Jogue um cubo de gelo num copo d'água: ele boia. Mas o gelo **é água**. Como a mesma substância pode afundar num estado e boiar no outro?
+
+E tem mais: um navio de aço de milhares de toneladas flutua, enquanto um clipe de aço, minúsculo, afunda. Quem decide quem boia e quem afunda não é o tamanho, nem o peso. É uma propriedade que mora dentro de cada material: a <Termo cor="azul">densidade</Termo>.
+
+<Palpite
+  chave="inicial"
+  pergunta="O gelo é água congelada. Por que ele boia na água?"
+  opcoes={['Porque tem menos massa que a água', 'Porque ocupa mais espaço para a mesma massa', 'Porque está mais frio']}
+/>
+
+Nesta cápsula você vai ver o que é **matéria**, como medir massa e volume, quais propriedades servem para identificar um material, como calcular a densidade e como usar tudo isso para prever quem boia e quem afunda.
+
+</Etapa>
+
+<Etapa id="historia">
+
+A química nasceu de uma pergunta simples: do que as coisas são feitas, e como distinguir um material de outro? Muito antes dos laboratórios, as pessoas já comparavam os materiais pelo peso, pela cor e pelo brilho.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Antiguidade', texto: 'Os gregos discutem de que a matéria é feita. Demócrito imagina pedacinhos indivisíveis, os átomos.' },
+  { ano: 'Por volta de 250 a.C.', texto: 'Arquimedes de Siracusa estuda como os corpos se comportam na água. A lenda da coroa do rei Hierão nasce daí.' },
+  { ano: 'Século 18', texto: 'Os químicos passam a medir tudo na balança. Medir massa e volume com cuidado vira a base da ciência.' },
+  { ano: 'Século 19', texto: 'As densidades e os pontos de fusão e de ebulição entram em tabelas, e ajudam a reconhecer substâncias.' },
+  { ano: 'Hoje', texto: 'Laboratórios, joalherias e usinas usam a densidade e outras propriedades para checar a pureza de materiais.' },
+]} />
+
+## A pergunta dos gregos
+
+Os filósofos gregos queriam saber do que tudo é feito. Tales de Mileto apostava na água. Heráclito, no fogo. Outros falavam em quatro elementos: terra, água, ar e fogo. **Demócrito**, no século 5 a.C., foi além: se você dividisse a matéria sem parar, chegaria a pedacinhos tão pequenos que não dariam mais para dividir. Chamou-os de **átomos**, "indivisíveis" em grego. Era uma ideia, sem experiências por trás. Ainda assim, deu o nome que usamos até hoje.
+
+## Arquimedes e a coroa do rei
+
+Conta a lenda que o rei Hierão II, de Siracusa, mandou fazer uma coroa de ouro. Quando ela ficou pronta, ele desconfiou: será que o ourives misturou prata no lugar de parte do ouro e ficou com o resto? O rei pediu a **Arquimedes** que descobrisse, sem estragar a coroa.
+
+A história diz que a solução veio na hora do banho: Arquimedes viu a água subir na banheira conforme entrava e percebeu que o **volume** de água deslocada era o volume do seu corpo. Teria saído gritando "Eureka!" ("achei!"). Com o volume da coroa e a massa dela, dava para calcular quanto o material era "pesado para o tamanho". Esse "pesado para o tamanho" é a **densidade**.
+
+Essa história foi registrada pelo romano Vitrúvio, séculos depois, e **não há prova** de que tenha acontecido desse jeito. É uma lenda bonita sobre uma ideia verdadeira: dá para identificar um material pela relação entre sua massa e seu volume.
+
+## Do laboratório à joalheria
+
+A partir do século 18, balanças precisas e provetas graduadas permitiram medir massa e volume com cuidado. As densidades foram sendo listadas em tabelas. Hoje, quem compra ouro, quem controla a qualidade do leite ou quem testa o combustível usa a densidade como uma espécie de "impressão digital" do material.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Matéria: tudo o que tem massa e ocupa espaço
+
+<Termo cor="azul">Matéria</Termo> é tudo aquilo que tem **massa** e ocupa **lugar no espaço**. Uma pedra é matéria. A água é matéria. O ar também: você não o vê, mas ele pesa e ocupa o espaço do balão que você enche. Já uma ideia, um som ou a luz não são matéria.
+
+<Brincando titulo="Matéria: o ar também ocupa lugar">
+
+Vire um copo vazio de boca para baixo e afunde na pia cheia d'água. A água **não entra até o fundo**: o ar que está dentro do copo ocupa espaço e empurra a água para fora. Mesmo invisível, o ar é matéria: ocupa lugar. Por isso um balão cheio é maior que um vazio.
+
+</Brincando>
+
+## 2. Massa: a quantidade de matéria
+
+A <Termo cor="coral">massa</Termo> mede **quanta matéria** há num corpo. Medimos em gramas (g) e quilogramas (kg), com a balança. Um quilo de algodão e um quilo de ferro têm a mesma massa, mas o algodão ocupa muito mais espaço.
+
+## 3. Volume: o espaço que ela ocupa
+
+O <Termo cor="verde">volume</Termo> é o espaço ocupado. Medimos em centímetros cúbicos (cm³), metros cúbicos (m³), litros (L) e mililitros (mL). Um quilo de algodão tem volume grande, e um quilo de ferro tem volume pequeno. A relação entre massa e volume é o que vai nos levar à densidade.
+
+<Brincando titulo="Massa e volume: o travesseiro e o tijolo">
+
+Um travesseiro e um tijolo podem ter o mesmo volume, mas o tijolo tem muito mais massa. O travesseiro é cheio de ar e pouca matéria. O tijolo é "apertado". A pergunta da cápsula é: quanta massa cabe em cada centímetro cúbico de um material?
+
+</Brincando>
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Dois blocos têm o mesmo tamanho, 10 cm³: um é de ouro e o outro é de alumínio. Qual tem mais massa?"
+  opcoes={['O de ouro, cerca de 7 vezes mais', 'O de ouro, cerca de 2 vezes mais', 'Os dois têm a mesma massa, porque têm o mesmo volume']}
+  correta={0}
+  explicacao="Cada cm³ de ouro tem 19,3 g, e cada cm³ de alumínio tem 2,7 g. A razão é 19,3 ÷ 2,7, cerca de 7. Mesmo volume não quer dizer mesma massa."
+>
+
+Escolha um material, mude o volume na proveta e veja a leitura da balança. Teste o ouro e depois o alumínio com 10 cm³:
+
+<BalancaEProveta />
+
+Repare em duas coisas. Primeiro, a massa **cresce junto com o volume**: dobrou o volume, dobrou a massa. Segundo, a divisão **massa ÷ volume** dá sempre o mesmo número para o mesmo material. Esse número é a densidade.
+
+Agora o palpite do começo. Por que o gelo boia na água?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Porque tem menos massa que a água', 'Porque ocupa mais espaço para a mesma massa', 'Porque está mais frio']}
+  correta={1}
+  seAcertou="Certo: ao congelar, a água ocupa mais espaço (cerca de 9% a mais) com a mesma massa. A densidade cai, e o gelo boia."
+  seErrou="O certo é: o gelo ocupa mais espaço para a mesma massa. Ao congelar, a água se organiza de um jeito que ocupa cerca de 9% mais volume. Mesma massa em mais espaço é densidade menor, e o gelo boia."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Massa, peso e volume
+
+Muita gente usa "peso" e "massa" como se fossem a mesma coisa. Em ciências, não são:
+
+- **Massa** é a quantidade de matéria. Medimos em g e kg. Não muda de lugar para lugar.
+- **Peso** é a **força** com que a gravidade puxa o corpo. Na Lua, onde a gravidade é cerca de um sexto da da Terra, você pesa muito menos, mas sua massa é a mesma.
+
+<Brincando titulo="Massa e peso: o astronauta na Lua">
+
+Um astronauta de 80 kg na Terra continua com 80 kg de massa na Lua: é a mesma quantidade de matéria. Mas lá a gravidade é mais fraca, então ele "pesa" cerca de um sexto do que pesa aqui, e dá saltos enormes. A balança do banheiro mostra "kg", mas na verdade mede o peso e converte para a massa usando a gravidade da Terra.
+
+</Brincando>
+
+### O volume dos sólidos e dos líquidos
+
+Para um **bloco retangular**, o volume é comprimento × largura × altura. Para um **cubo**, é lado × lado × lado. Para um **líquido**, usamos recipientes graduados: copo medidor, proveta, seringa.
+
+As relações a saber: **1 L = 1.000 mL = 1.000 cm³ = 1 dm³**. Ou seja, 1 mL é o mesmo que 1 cm³. Um cubo de 10 cm de lado é um litro:
+
+<VolumeDoCubo />
+
+Para uma **pedra de forma irregular**, que não é um cubo, usa-se o **deslocamento de água**: coloque a pedra numa proveta com água, e o volume da pedra é o quanto o nível subiu.
+
+<Brincando titulo="Volume por deslocamento: a banheira que transborda">
+
+Quando você entra na banheira cheia, a água sobe e derrama. A água que derrama ocupa exatamente o espaço que o seu corpo agora ocupa. Esse é o truque da lenda de Arquimedes: o volume de um objeto irregular é medido pelo volume de água que ele desloca.
+
+</Brincando>
+
+<ExemploResolvido titulo="Uma pedra de 75 g é colocada numa proveta com 50 mL de água. O nível sobe para 80 mL. Qual é a densidade da pedra?">
+  <Passo>Volume da pedra: 80 − 50 = **30 mL**, que é o mesmo que 30 cm³.</Passo>
+  <Passo>Densidade é massa dividida por volume: d = 75 ÷ 30.</Passo>
+  <Passo>d = **2,5 g/cm³**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um cubo tem 5 cm de lado. Qual é o volume, em cm³?" resposta="125" dica="5 × 5 × 5." resolucao="5 × 5 × 5 = 125 cm³." />
+
+<Exercicio enunciado="Um recipiente tem 2.500 cm³. Quantos litros ele comporta?" resposta="2,5" dica="1 L = 1.000 cm³." resolucao="2.500 ÷ 1.000 = 2,5 L." />
+
+<Exercicio enunciado="Um bloco mede 10 cm × 5 cm × 4 cm. Qual é o volume, em cm³?" resposta="200" dica="Multiplique as três medidas." resolucao="10 × 5 × 4 = 200 cm³." />
+
+## Propriedades da matéria
+
+Propriedades são as características que nos ajudam a descrever e identificar a matéria. Há dois grandes grupos:
+
+- **Propriedades gerais**: valem para **toda** matéria. Exemplos: massa, volume, inércia (a resistência a mudar de movimento) e divisibilidade (qualquer corpo pode ser dividido).
+- **Propriedades específicas**: dependem de **cada substância** e servem para identificá-la. Exemplos: densidade, ponto de fusão, ponto de ebulição, dureza e solubilidade.
+
+Ainda se costuma separar as propriedades específicas em três tipos. As **organolépticas** são as que os sentidos percebem (cor, cheiro, sabor, brilho). As **físicas** não mudam a substância (densidade, pontos de fusão e de ebulição). As **químicas** aparecem quando ela se transforma em outra (o ferro enferruja, a madeira queima).
+
+<Brincando titulo="Propriedades: a impressão digital do material">
+
+Duas pessoas têm altura e peso parecidos (propriedades "gerais"), mas cada uma tem uma impressão digital diferente. As propriedades **gerais** são como "ter um corpo": todo mundo tem. As **específicas** são como a impressão digital: servem para dizer quem é quem. Por isso, para saber se um metal é ouro, não adianta olhar a massa: precisa medir densidade, ponto de fusão...
+
+</Brincando>
+
+<GeralOuEspecifica />
+
+<Exercicio enunciado="Das propriedades massa, densidade, volume e ponto de fusão, quantas são específicas?" resposta="2" dica="Específicas identificam a substância." resolucao="Densidade e ponto de fusão. Massa e volume são gerais. Total: 2." />
+
+## Densidade: a massa em cada pedacinho de espaço
+
+A <Termo cor="azul">densidade</Termo> diz **quanta massa cabe em cada unidade de volume**. É a massa dividida pelo volume:
+
+<Formula>
+  <Linha>d = m ÷ V</Linha>
+</Formula>
+
+Usamos g/cm³ (ou g/mL) para sólidos e líquidos. No Sistema Internacional, usa-se kg/m³. A conversão é fácil: **1 g/cm³ = 1.000 kg/m³**. A água tem 1 g/cm³, ou 1.000 kg/m³.
+
+<Brincando titulo="Densidade: a mala de pena e a mala de chumbo">
+
+Duas malas do mesmo tamanho: uma cheia de penas e outra de chumbo. A de chumbo é muito mais pesada. Cada pedacinho do espaço da mala está "mais cheio de matéria" no chumbo. Densidade é isto: quão **apertada** está a matéria. Material denso: muito apertado. Material pouco denso: folgado.
+
+</Brincando>
+
+Algumas densidades aproximadas (a cerca de 20 °C):
+
+- Ar: 0,0012 g/cm³ (1,2 kg/m³)
+- Óleo de cozinha: 0,91 g/cm³
+- Gelo: 0,92 g/cm³
+- Água: 1,0 g/cm³
+- Alumínio: 2,7 g/cm³
+- Ferro: 7,87 g/cm³
+- Ouro: 19,3 g/cm³
+
+<ExemploResolvido titulo="Uma coroa de 500 g desloca 40 cm³ de água. Pode ser de ouro puro (19,3 g/cm³)?">
+  <Passo>Densidade da coroa: d = 500 ÷ 40 = **12,5 g/cm³**.</Passo>
+  <Passo>O ouro puro tem 19,3 g/cm³, bem acima de 12,5.</Passo>
+  <Passo>Se fosse ouro puro, 500 g ocupariam só 500 ÷ 19,3, cerca de 26 cm³. Ocupa 40: tem algo mais leve misturado. **Não é ouro puro.**</Passo>
+</ExemploResolvido>
+
+<ExemploResolvido titulo="Qual é a massa de 250 cm³ de óleo de cozinha (0,91 g/cm³)?">
+  <Passo>De d = m ÷ V, tiramos m = d × V.</Passo>
+  <Passo>m = 0,91 × 250 = **227,5 g**.</Passo>
+</ExemploResolvido>
+
+<ExemploResolvido titulo="Converta 0,8 g/cm³ para kg/m³.">
+  <Passo>Sabemos que 1 g/cm³ = 1.000 kg/m³.</Passo>
+  <Passo>0,8 × 1.000 = **800 kg/m³**.</Passo>
+</ExemploResolvido>
+
+Teste a densidade como "impressão digital". Duas amostras douradas, uma é ouro e outra é a pirita, o "ouro de tolo":
+
+<OuroOuPirita />
+
+<Exercicio enunciado="Um bloco de 120 g ocupa 40 cm³. Qual é a densidade, em g/cm³?" resposta="3" dica="120 ÷ 40." resolucao="d = 120 ÷ 40 = 3 g/cm³." />
+
+<Exercicio enunciado="Qual é a massa, em g, de 50 cm³ de ferro (densidade 7,87 g/cm³)?" resposta="393,5" dica="m = d × V." resolucao="7,87 × 50 = 393,5 g." />
+
+<Exercicio enunciado="Quanto vale o volume, em cm³, de 270 g de alumínio (densidade 2,7 g/cm³)?" resposta="100" dica="V = m ÷ d." resolucao="270 ÷ 2,7 = 100 cm³." />
+
+<Exercicio enunciado="Qual é a massa, em g, de 10 cm³ de ouro (19,3 g/cm³)?" resposta="193" dica="19,3 × 10." resolucao="193 g." />
+
+<Exercicio enunciado="A densidade da água é 1 g/cm³. Quanto isso vale em kg/m³?" resposta="1000" dica="Multiplique por 1.000." resolucao="1 × 1.000 = 1.000 kg/m³." />
+
+<Exercicio enunciado="Um bloco de 10 cm × 5 cm × 4 cm tem massa 540 g. Qual é a densidade, em g/cm³? (O volume é 200 cm³.)" resposta="2,7" dica="540 ÷ 200." resolucao="d = 540 ÷ 200 = 2,7 g/cm³. É a densidade do alumínio." />
+
+### Cortar o material não muda a densidade
+
+Se você corta um bloco de ferro ao meio, a massa cai pela metade **e** o volume cai pela metade. Na divisão, o resultado continua o mesmo. Por isso a densidade é uma propriedade **específica**: depende só do material, e não do tamanho do pedaço.
+
+## Boiar ou afundar
+
+A regra é simples. Coloque um objeto num líquido:
+
+- Se a densidade do objeto é **menor** que a do líquido, ele **boia**.
+- Se é **maior**, ele **afunda**.
+
+Quando o objeto boia, a parte que fica dentro do líquido depende da razão entre as densidades. Um bloco com 0,5 g/cm³ na água (1 g/cm³) fica com metade dentro: 0,5 ÷ 1 = 50%.
+
+<Brincando titulo="Boia ou afunda: a bola de praia e a bola de boliche">
+
+A bola de praia é cheia de ar e muito leve para o seu tamanho. Ela quer ficar por cima da água. A bola de boliche é pesada para o seu tamanho. Ela não tem escolha: afunda. As duas têm formato parecido. O que decide é quão "cheia de matéria" cada uma está, ou seja, a densidade.
+
+</Brincando>
+
+Escolha o objeto e o líquido:
+
+<BoiaOuAfunda />
+
+<ExemploResolvido titulo="Um bloco de densidade 0,8 g/cm³ é colocado na água (1 g/cm³). Boia ou afunda? Quanto fica submerso?">
+  <Passo>Compare: 0,8 é menor que 1. O bloco **boia**.</Passo>
+  <Passo>Fração dentro d'água: 0,8 ÷ 1 = 0,8, ou **80%**.</Passo>
+  <Passo>Só 20% fica para fora.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um bloco boia na água com densidade 0,5 g/cm³. Qual é a porcentagem do volume dentro da água?" resposta="50" dica="0,5 ÷ 1." resolucao="0,5 ÷ 1 = 0,5, ou 50%." />
+
+<Exercicio enunciado="Um bloco com densidade 0,515 g/cm³ flutua na água do mar (1,03 g/cm³). Qual é a porcentagem do volume dentro do líquido?" resposta="50" dica="0,515 ÷ 1,03." resolucao="0,515 ÷ 1,03 = 0,5, ou 50%." />
+
+<Aprofundar titulo="Por que o gelo é menos denso que a água">
+
+A maioria das substâncias fica **mais densa** quando congela, porque as partículas se aproximam. A água faz o contrário. No gelo, as moléculas se prendem umas às outras por ligações que formam uma estrutura aberta, com muitos "buracos" em forma de hexágono. É por isso que o gelo ocupa cerca de 9% mais espaço que a água que o formou.
+
+O resultado é uma densidade de cerca de 0,92 g/cm³ para o gelo, contra 1,0 da água líquida. Isso tem uma consequência enorme: nos lagos de regiões frias, o gelo se forma por cima e **isola** a água de baixo, que continua líquida. Os peixes sobrevivem ao inverno. Se o gelo afundasse, os lagos congelariam de baixo para cima.
+
+</Aprofundar>
+
+<Aprofundar titulo="Navios de aço e submarinos">
+
+Um navio é feito de aço, que é 7,85 vezes mais denso que a água. Mas ele não é um bloco maciço: o casco é **oco** e cheio de ar. O que conta é a densidade média de todo o conjunto, incluindo o ar lá dentro, e essa média fica abaixo de 1. Por isso o navio boia, e um bloco de aço do mesmo peso afundaria.
+
+Um submarino controla isso de propósito. Ele enche os tanques com água para ficar mais denso e afundar, e expulsa a água com ar comprimido para ficar menos denso e subir.
+
+</Aprofundar>
+
+<Aprofundar titulo="A densidade muda com a temperatura">
+
+Quase toda substância se dilata quando esquenta: o mesmo número de partículas passa a ocupar mais espaço. Então a densidade **cai** com o calor. É por isso que a água quente do chuveiro sobe e a fria desce, e que existem correntes no ar e no mar. A água tem uma peculiaridade: ela é mais densa a 4 °C do que a 0 °C ou a 20 °C. Quando uma densidade vem de uma tabela, vale perguntar "a que temperatura?".
+
+</Aprofundar>
+
+## Onde isso aparece na vida
+
+- **Combustível e leite:** o aparelho que mede a densidade (densímetro) mostra se o leite foi aguado ou se o combustível foi adulterado, porque a densidade muda quando a composição muda.
+- **Joalheria e metais:** a densidade ajuda a separar ouro de imitações.
+- **Colete salva-vidas:** é feito de material pouco denso, para a densidade média do conjunto (você + colete) ficar menor que a da água.
+- **Mar Morto:** a água é tão salgada que sua densidade (cerca de 1,24 g/cm³) é bem maior que a do corpo humano. Por isso as pessoas boiam sem esforço.
+- **Camadas na garrafa:** óleo, água e mercúrio se separam em camadas por causa da densidade: o mais denso fica embaixo.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'O que é matéria?',
+    opcoes: ['Tudo o que tem massa e ocupa lugar no espaço', 'Tudo o que podemos ver', 'Tudo o que é sólido'],
+    correta: 0,
+    explicacao: 'Matéria é tudo que tem massa e volume. O ar, que não vemos, também é matéria.',
+  },
+  {
+    enunciado: 'Qual é a diferença entre massa e peso?',
+    opcoes: ['Nenhuma, são sinônimos', 'Massa é a quantidade de matéria; peso é a força da gravidade sobre ela', 'Peso é a quantidade de matéria; massa é a força'],
+    correta: 1,
+    explicacao: 'Massa não muda de lugar para lugar. O peso muda: na Lua, é cerca de um sexto do da Terra.',
+  },
+  {
+    enunciado: 'Quantos cm³ tem 1 litro?',
+    opcoes: ['100', '1.000', '10.000'],
+    correta: 1,
+    explicacao: '1 L = 1 dm³ = 1.000 cm³ = 1.000 mL.',
+  },
+  {
+    enunciado: 'Qual propriedade é GERAL?',
+    opcoes: ['Densidade', 'Ponto de ebulição', 'Volume'],
+    correta: 2,
+    explicacao: 'Todo corpo tem volume. Densidade e ponto de ebulição variam de substância para substância (são específicas).',
+  },
+  {
+    enunciado: 'Qual é a densidade de um bloco de 90 g e 30 cm³?',
+    opcoes: ['3 g/cm³', '0,33 g/cm³', '2.700 g/cm³'],
+    correta: 0,
+    explicacao: '90 ÷ 30 = 3 g/cm³.',
+  },
+  {
+    enunciado: 'Se você corta um bloco de ferro ao meio, o que acontece com a densidade?',
+    opcoes: ['Cai pela metade', 'Dobra', 'Continua a mesma'],
+    correta: 2,
+    explicacao: 'Massa e volume caem pela metade, e a divisão dá o mesmo valor. A densidade é característica do material.',
+  },
+  {
+    enunciado: 'Quanto vale 1 g/cm³ em kg/m³?',
+    opcoes: ['10', '1.000', '1.000.000'],
+    correta: 1,
+    explicacao: 'A conversão é multiplicar por 1.000: 1 g/cm³ = 1.000 kg/m³.',
+  },
+  {
+    enunciado: 'Um objeto de densidade 0,7 g/cm³ é colocado na água (1 g/cm³). O que acontece?',
+    opcoes: ['Afunda', 'Boia', 'Fica no meio, parado'],
+    correta: 1,
+    explicacao: '0,7 é menor que 1: o objeto é menos denso que a água e boia, com 70% do volume dentro dela.',
+  },
+  {
+    enunciado: 'Por que o gelo boia na água?',
+    opcoes: ['Porque é mais frio', 'Porque tem menor densidade (ocupa mais espaço para a mesma massa)', 'Porque tem menos átomos'],
+    correta: 1,
+    explicacao: 'A água ocupa cerca de 9% mais volume ao congelar. A densidade do gelo é de 0,92 g/cm³ e a da água líquida é de 1,0.',
+  },
+  {
+    enunciado: 'Uma coroa pesa 500 g e desloca 40 cm³. O ouro puro tem 19,3 g/cm³. A coroa é de ouro puro?',
+    opcoes: ['Sim, é ouro puro', 'Não: a densidade dela é 12,5 g/cm³, menor que a do ouro', 'Não dá para saber só com esses dados'],
+    correta: 1,
+    explicacao: '500 ÷ 40 = 12,5 g/cm³, abaixo de 19,3. Há um metal mais leve misturado.',
+  },
+  {
+    enunciado: 'Como medir o volume de uma pedra irregular?',
+    opcoes: ['Multiplicando lado × lado × lado', 'Pelo deslocamento da água numa proveta', 'Pesando na balança'],
+    correta: 1,
+    explicacao: 'O quanto o nível da água sobe é o volume da pedra. A balança mede a massa, e não o volume.',
+  },
+  {
+    enunciado: 'Por que um navio de aço flutua, se o aço é mais denso que a água?',
+    opcoes: ['Porque o casco é oco e a densidade média do conjunto é menor que a da água', 'Porque o aço do navio é diferente do aço de um prego', 'Porque o mar empurra o navio para cima sem motivo'],
+    correta: 0,
+    explicacao: 'O ar dentro do casco faz a densidade média ficar menor que 1 g/cm³. Um bloco maciço de aço afundaria.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Matéria** é tudo que tem **massa** (quantidade de matéria, em g e kg) e ocupa **volume** (espaço, em cm³ e L). Massa não é peso.
+- **Propriedades gerais** (massa, volume, inércia, divisibilidade) valem para toda matéria. **Específicas** (densidade, pontos de fusão e de ebulição, dureza) identificam cada substância.
+- **Densidade:** d = m ÷ V. 1 g/cm³ = 1.000 kg/m³. Água: 1,0. Gelo: 0,92. Alumínio: 2,7. Ferro: 7,87. Ouro: 19,3.
+- A densidade **não depende do tamanho do pedaço**, e por isso identifica o material.
+- Um objeto **boia** se for menos denso que o líquido, e **afunda** se for mais denso. Navios boiam porque o casco oco baixa a densidade média.
+- O gelo boia porque a água ocupa cerca de 9% mais espaço ao congelar.
+
+**Um pouco de história.** Demócrito deu o nome "átomo" à ideia de pedacinhos indivisíveis. A lenda diz que Arquimedes usou o volume e a massa para desmascarar uma coroa misturada com prata, mas ninguém tem prova do banho. O que ficou foi a ideia: a densidade serve como uma impressão digital dos materiais.
+
+</Resumo>
+
+Para ir além, a matéria pode estar em três estados (sólido, líquido e gasoso) e pode se misturar de muitas formas. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

@@ -22,7 +22,7 @@ interativas e aplicação prática. Fácil de entender, sem ser raso.
 
 ### Escopo atual
 
-Quatro áreas (cada uma é uma linha ou mais no mapa, em `src/conteudo/indice.ts`):
+Cinco áreas (cada uma é uma linha ou mais no mapa, em `src/conteudo/indice.ts`):
 
 1. **Matemática**: básica (1º ao 5º ano, pedido do dono), ensino fundamental (anos finais) e ensino médio, usando a BNCC como referência de conteúdo.
    Há também a linha **Avançada** (`trilha: 'avancada'`: cálculo, álgebra linear, estatística inferencial), pedida pelo dono a partir do mapa da Khan Academy.
@@ -33,7 +33,9 @@ Quatro áreas (cada uma é uma linha ou mais no mapa, em `src/conteudo/indice.ts
 3. **Biologia** (pedido do dono): da célula aos ecossistemas. Grupos: A célula e a vida, Energia da vida, Genética, Evolução e diversidade, Ecologia, Corpo humano, Plantas. Pastas em `src/conteudo/biologia/<id>/`, usando `bio(...)` no índice.
 4. **Química** (pedido do dono): do átomo às reações do dia a dia. Grupos: Matéria e átomos, Ligações e substâncias, Reações, Soluções e gases, Química no dia a dia. Pastas em `src/conteudo/quimica/<id>/`, usando `qui(...)` no índice.
 
-As cápsulas de Biologia e Química já estão **listadas no mapa como "em breve"** (a página mostra um rascunho). Para escrever uma, siga "Para criar uma cápsula nova" e marque `estado: 'pronta'`. Ciência de Dados continua para depois: não crie nada dela até o dono pedir.
+5. **Física** (pedido do dono): do movimento ao universo. Grupos: Movimento, Forças e energia, Calor e ondas, Eletricidade e magnetismo, Física moderna. Pastas em `src/conteudo/fisica/<id>/`, usando `fis(...)` no índice.
+
+As cápsulas de Biologia, Química e Física já estão **listadas no mapa como "em breve"** (a página mostra um rascunho). Para escrever uma, siga "Para criar uma cápsula nova" e marque `estado: 'pronta'`. Ciência de Dados continua para depois: não crie nada dela até o dono pedir.
 A estrutura permite adicionar áreas novas sem refazer nada: crie a linha em `linhas`, a área em `areas` e um helper como `bio(...)`.
 
 ### Inspirações (o que pegamos de cada uma)
@@ -173,7 +175,7 @@ Não adicione bibliotecas novas sem explicar por que e pedir aprovação.
 export default {
   id: "monty-hall",
   titulo: "O problema de Monty Hall",
-  area: "matematica",       // "matematica" | "computacao" | "biologia" | "quimica"
+  area: "matematica",       // "matematica" | "computacao" | "biologia" | "quimica" | "fisica"
   trilha: "medio",          // matemática: "basica" | "fundamental" | "medio" | "avancada"; computação: nome do módulo; biologia: "biologia"; química: "quimica"
   serie: "2º ano EM",       // opcional, só para matemática
   resumo: "Trocar de porta dobra suas chances. Por quê?",

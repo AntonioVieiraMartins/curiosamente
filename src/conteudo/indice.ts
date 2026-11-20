@@ -2,7 +2,7 @@
 // Na etapa 2 do roteiro, cada cápsula pronta ganha sua pasta com meta.ts + capsula.mdx.
 // Para adicionar uma área nova no futuro, basta criar uma linha em `linhas` e itens aqui.
 
-export type Area = 'matematica' | 'computacao' | 'biologia' | 'quimica'
+export type Area = 'matematica' | 'computacao' | 'biologia' | 'quimica' | 'fisica'
 export type Estado = 'pronta' | 'proxima' | 'em-breve'
 
 export type ResumoCapsula = {
@@ -34,6 +34,7 @@ export const areas: InfoArea[] = [
   { id: 'computacao', nome: 'Computação', descricao: 'Do computador ao sistema no ar', linhas: ['computacao'] },
   { id: 'biologia', nome: 'Biologia', descricao: 'Da célula aos ecossistemas', linhas: ['biologia'] },
   { id: 'quimica', nome: 'Química', descricao: 'Do átomo às reações do dia a dia', linhas: ['quimica'] },
+  { id: 'fisica', nome: 'Física', descricao: 'Do movimento ao universo', linhas: ['fisica'] },
 ]
 
 export const linhas: Linha[] = [
@@ -44,6 +45,7 @@ export const linhas: Linha[] = [
   { id: 'computacao', area: 'computacao', sigla: 'C', nome: 'Computação', descricao: 'Do computador ao sistema no ar', cor: 'var(--color-computacao)' },
   { id: 'biologia', area: 'biologia', sigla: 'Bi', nome: 'Biologia', descricao: 'Da célula aos ecossistemas', cor: 'var(--color-biologia)' },
   { id: 'quimica', area: 'quimica', sigla: 'Q', nome: 'Química', descricao: 'Do átomo às reações do dia a dia', cor: 'var(--color-quimica)' },
+  { id: 'fisica', area: 'fisica', sigla: 'Fi', nome: 'Física', descricao: 'Do movimento ao universo', cor: 'var(--color-fisica)' },
 ]
 
 export const modulosComputacao: Record<string, string> = {
@@ -62,6 +64,9 @@ const c = (trilha: string, id: string, titulo: string, gancho: string, extra: Pa
 // Biologia e química têm uma linha só; os assuntos se dividem em `grupo`
 const bio = (id: string, titulo: string, gancho: string, extra: Partial<ResumoCapsula> = {}): ResumoCapsula => ({
   id, titulo, gancho, trilha: 'biologia', area: 'biologia', estado: 'em-breve', ...extra,
+})
+const fis = (id: string, titulo: string, gancho: string, extra: Partial<ResumoCapsula> = {}): ResumoCapsula => ({
+  id, titulo, gancho, trilha: 'fisica', area: 'fisica', estado: 'em-breve', ...extra,
 })
 const qui = (id: string, titulo: string, gancho: string, extra: Partial<ResumoCapsula> = {}): ResumoCapsula => ({
   id, titulo, gancho, trilha: 'quimica', area: 'quimica', estado: 'em-breve', ...extra,
@@ -187,9 +192,9 @@ export const capsulas: ResumoCapsula[] = [
   c('hospedagem', 'deploy', 'Deploy', 'Do seu computador para o mundo.', { estado: 'pronta', duracaoMin: 40, conexoes: ['dns'] }),
 
   // Biologia: da célula aos ecossistemas, na ordem em que as ideias se apoiam
-  bio('o-que-e-vida', 'O que é vida?', 'Um vírus está vivo? Os cientistas ainda discutem.', { grupo: 'A célula e a vida' }),
-  bio('celula', 'A célula', 'Somos feitos de trilhões de minúsculas fábricas.', { grupo: 'A célula e a vida' }),
-  bio('microscopio', 'Microscópio e o mundo invisível', 'Numa gota de água de lagoa vive um zoológico.', { grupo: 'A célula e a vida', conexoes: ['notacao-cientifica'] }),
+  bio('o-que-e-vida', 'O que é vida?', 'Um vírus está vivo? Os cientistas ainda discutem.', { grupo: 'A célula e a vida', estado: 'pronta', duracaoMin: 40 }),
+  bio('celula', 'A célula', 'Somos feitos de trilhões de minúsculas fábricas.', { grupo: 'A célula e a vida', estado: 'pronta', duracaoMin: 40 }),
+  bio('microscopio', 'Microscópio e o mundo invisível', 'Numa gota de água de lagoa vive um zoológico.', { grupo: 'A célula e a vida', estado: 'pronta', duracaoMin: 40, conexoes: ['notacao-cientifica'] }),
   bio('membrana-e-osmose', 'Membrana e osmose', 'Por que a alface murcha quando recebe sal?', { grupo: 'A célula e a vida', conexoes: ['solucoes-e-concentracao'] }),
   bio('fotossintese', 'Fotossíntese', 'A planta fabrica a própria comida com luz, água e ar.', { grupo: 'Energia da vida', conexoes: ['reacoes-quimicas'] }),
   bio('respiracao-celular', 'Respiração celular', 'A bateria de cada célula: de onde vem a energia do corpo.', { grupo: 'Energia da vida', conexoes: ['energia-nas-reacoes'] }),
@@ -219,9 +224,9 @@ export const capsulas: ResumoCapsula[] = [
   bio('plantas-e-sementes', 'Plantas, flores e sementes', 'Como uma semente sabe para onde crescer?', { grupo: 'Plantas', conexoes: ['fotossintese'] }),
 
   // Química: do átomo às reações do dia a dia
-  qui('materia-e-propriedades', 'Matéria e suas propriedades', 'Por que o gelo boia na água? A densidade explica.', { grupo: 'Matéria e átomos', conexoes: ['razao-e-proporcao', 'medidas'] }),
-  qui('estados-da-materia', 'Estados da matéria', 'Por que a água vira gelo e vira vapor?', { grupo: 'Matéria e átomos' }),
-  qui('misturas-e-separacao', 'Misturas e separação', 'Como separar sal da água e areia do açúcar?', { grupo: 'Matéria e átomos' }),
+  qui('materia-e-propriedades', 'Matéria e suas propriedades', 'Por que o gelo boia na água? A densidade explica.', { grupo: 'Matéria e átomos', estado: 'pronta', duracaoMin: 40, conexoes: ['razao-e-proporcao', 'medidas'] }),
+  qui('estados-da-materia', 'Estados da matéria', 'Por que a água vira gelo e vira vapor?', { grupo: 'Matéria e átomos', estado: 'pronta', duracaoMin: 40 }),
+  qui('misturas-e-separacao', 'Misturas e separação', 'Como separar sal da água e areia do açúcar?', { grupo: 'Matéria e átomos', estado: 'pronta', duracaoMin: 40 }),
   qui('atomo', 'O átomo', 'Do "indivisível" dos gregos ao átomo que hoje conhecemos.', { grupo: 'Matéria e átomos', conexoes: ['notacao-cientifica'] }),
   qui('modelos-atomicos', 'Modelos atômicos', 'De Dalton a Bohr: como imaginar o que ninguém vê.', { grupo: 'Matéria e átomos' }),
   qui('tabela-periodica', 'Tabela periódica', 'Um mapa dos elementos com padrões escondidos.', { grupo: 'Matéria e átomos' }),
@@ -245,6 +250,35 @@ export const capsulas: ResumoCapsula[] = [
   qui('combustiveis', 'Combustíveis e energia', 'De onde vem a energia do carro e do fogão?', { grupo: 'Química no dia a dia' }),
   qui('quimica-ambiental', 'Química e meio ambiente', 'Chuva ácida, camada de ozônio e o que fazer.', { grupo: 'Química no dia a dia', conexoes: ['efeito-estufa'] }),
   qui('quimica-da-vida', 'Química da vida', 'Proteínas, açúcares e gorduras: de que somos feitos.', { grupo: 'Química no dia a dia', conexoes: ['celula', 'dna-e-genes'] }),
+
+  // Física: do movimento ao universo
+  fis('movimento-e-referencial', 'Movimento e referencial', 'Sentado no ônibus, você está parado? Depende de quem olha.', { grupo: 'Movimento', conexoes: ['plano-cartesiano'] }),
+  fis('velocidade-e-aceleracao', 'Velocidade e aceleração', 'Por que o corpo vai para a frente quando o carro freia?', { grupo: 'Movimento', conexoes: ['razao-e-proporcao'] }),
+  fis('movimento-uniforme', 'Movimento uniforme', 'Quando o carro chega: gráficos de posição e tempo.', { grupo: 'Movimento', conexoes: ['funcao-afim'] }),
+  fis('movimento-variado', 'Movimento uniformemente variado', 'Frear a tempo: a conta que salva vidas.', { grupo: 'Movimento', conexoes: ['funcao-quadratica'] }),
+  fis('queda-livre', 'Queda livre', 'Uma pena e um martelo caem juntos? Na Lua, sim.', { grupo: 'Movimento' }),
+  fis('lancamentos', 'Lançamentos', 'A parábola do chute de falta.', { grupo: 'Movimento', conexoes: ['funcao-quadratica', 'trigonometria'] }),
+  fis('leis-de-newton', 'As leis de Newton', 'Por que o cinto de segurança salva vidas?', { grupo: 'Forças e energia' }),
+  fis('atrito', 'Força de atrito', 'Sem atrito, você não conseguiria andar.', { grupo: 'Forças e energia' }),
+  fis('gravitacao', 'Gravitação', 'Por que a Lua não cai na Terra?', { grupo: 'Forças e energia' }),
+  fis('trabalho-e-energia', 'Trabalho e energia', 'O que gasta energia: empurrar a parede ou subir a escada?', { grupo: 'Forças e energia' }),
+  fis('conservacao-de-energia', 'Conservação de energia', 'A montanha-russa e a energia que nunca some.', { grupo: 'Forças e energia' }),
+  fis('pressao-e-empuxo', 'Pressão e empuxo', 'Como um navio de aço de milhares de toneladas flutua?', { grupo: 'Forças e energia', conexoes: ['materia-e-propriedades'] }),
+  fis('temperatura-e-calor', 'Temperatura e calor', 'Calor e temperatura são a mesma coisa? Não.', { grupo: 'Calor e ondas', conexoes: ['estados-da-materia'] }),
+  fis('termodinamica', 'Termodinâmica', 'Por que o calor só passa do quente para o frio?', { grupo: 'Calor e ondas' }),
+  fis('ondas', 'Ondas', 'Como o som e a luz viajam sem carregar matéria?', { grupo: 'Calor e ondas', conexoes: ['ciclo-trigonometrico'] }),
+  fis('som', 'Som', 'Por que a sirene muda de tom quando passa?', { grupo: 'Calor e ondas' }),
+  fis('luz-e-optica', 'Luz, espelhos e lentes', 'Como uma lente aumenta o que você vê?', { grupo: 'Calor e ondas', conexoes: ['microscopio'] }),
+  fis('cores', 'As cores', 'Por que o céu é azul e o pôr do sol é vermelho?', { grupo: 'Calor e ondas' }),
+  fis('eletricidade-estatica', 'Carga elétrica e eletricidade estática', 'Por que o cabelo arrepia no pente de plástico?', { grupo: 'Eletricidade e magnetismo', conexoes: ['atomo'] }),
+  fis('circuitos-eletricos', 'Circuitos e a lei de Ohm', 'Tensão, corrente e resistência numa lâmpada.', { grupo: 'Eletricidade e magnetismo', conexoes: ['funcao-afim', 'logica-e-proposicoes'] }),
+  fis('consumo-de-energia', 'Consumo de energia e conta de luz', 'Quanto custa deixar o chuveiro ligado?', { grupo: 'Eletricidade e magnetismo', conexoes: ['porcentagem'] }),
+  fis('magnetismo', 'Ímãs e magnetismo', 'Por que a bússola aponta para o norte?', { grupo: 'Eletricidade e magnetismo' }),
+  fis('eletromagnetismo', 'Eletromagnetismo', 'Como um motor e um gerador funcionam?', { grupo: 'Eletricidade e magnetismo' }),
+  fis('relatividade', 'Relatividade', 'O tempo passa igual para todo mundo? Quase.', { grupo: 'Física moderna' }),
+  fis('fisica-quantica', 'Introdução à física quântica', 'A luz é onda ou partícula?', { grupo: 'Física moderna' }),
+  fis('radioatividade', 'Radioatividade e meia-vida', 'Por que a radiação cai pela metade em tempos regulares?', { grupo: 'Física moderna', conexoes: ['exponencial', 'atomo'] }),
+  fis('universo', 'O universo: estrelas e galáxias', 'De onde vêm os átomos do seu corpo?', { grupo: 'Física moderna', conexoes: ['notacao-cientifica'] }),
 ]
 
 export function linhaDaCapsula(cap: { area: Area; trilha: string }) {
