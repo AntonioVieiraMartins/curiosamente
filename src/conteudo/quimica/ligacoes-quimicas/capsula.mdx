@@ -1,0 +1,405 @@
+import DoacaoDeEletrons from '../../../components/simulacoes/DoacaoDeEletrons'
+import MoleculasCovalentes from '../../../components/simulacoes/MoleculasCovalentes'
+import QualALigacao from '../../../components/simulacoes/QualALigacao'
+import ComparaSubstancias from '../../../components/simulacoes/ComparaSubstancias'
+import MarteladaNoSalENoFerro from '../../../components/simulacoes/MarteladaNoSalENoFerro'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Chemical bond, Ionic bonding, Covalent bond, Metallic bonding, Octet rule, Gilbert N. Lewis, Linus Pauling, Electronegativity), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Pegue uma pitada de **sal** e outra de **açúcar**. As duas são brancas, sólidas e se dissolvem na água. Mas leve as duas ao fogo: o açúcar derrete e vira caramelo em minutos, e o sal continua inteiro, mesmo no fogão mais forte. Dissolva as duas na água e teste com um circuito elétrico: a água com sal **conduz eletricidade**, e a com açúcar **não**.
+
+Duas coisas tão parecidas, com comportamentos tão diferentes. A diferença está no jeito como os átomos de cada uma estão **grudados**. Esse "cola" tem nome: <Termo cor="azul">ligação química</Termo>. Existem três tipos principais, e entender cada um explica por que o sal, o açúcar e o ferro se comportam do jeito que se comportam.
+
+<Palpite
+  chave="inicial"
+  pergunta="Por que a água com sal conduz eletricidade e a água com açúcar não?"
+  opcoes={['O sal tem metal e o açúcar não tem', 'O sal se separa em partículas com carga que andam, e o açúcar não', 'O sal é mais pesado que o açúcar']}
+/>
+
+Nesta cápsula você vai ver por que os átomos se ligam, os três tipos de ligação (iônica, covalente e metálica), como prever qual aparece e como cada uma explica as propriedades das substâncias.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Até o começo do século XX, ninguém sabia o que mantinha os átomos juntos. A resposta veio quando se entendeu o papel dos **elétrons**.
+
+<LinhaDoTempo marcos={[
+  { ano: '1852', texto: 'Edward Frankland propõe que cada átomo tem uma "capacidade de combinação" fixa, a valência.' },
+  { ano: '1858', texto: 'Kekulé e Couper mostram que o carbono faz sempre 4 ligações.' },
+  { ano: '1916', texto: 'Gilbert Lewis propõe que ligar é compartilhar pares de elétrons; Walther Kossel propõe a transferência de elétrons.' },
+  { ano: '1919', texto: 'Irving Langmuir populariza a regra do octeto.' },
+  { ano: '1927', texto: 'Heitler e London explicam a ligação covalente com a mecânica quântica.' },
+  { ano: '1932', texto: 'Linus Pauling propõe a eletronegatividade (Nobel de Química de 1954).' },
+]} />
+
+## Valência: o número de mãos
+
+No século XIX, químicos perceberam que cada elemento "gruda" com um número fixo de outros: o hidrogênio com 1, o oxigênio com 2, o nitrogênio com 3 e o carbono com 4. Era como se cada átomo tivesse um número de **mãos**. Em 1858, **August Kekulé** e **Archibald Couper** mostraram que o carbono tem 4 mãos e que ele pode dar a mão para outros carbonos, formando longas correntes. Essa é a base de toda a química do carbono, e da vida.
+
+## Lewis e o par de elétrons
+
+Em 1916, o americano **Gilbert N. Lewis** teve uma ideia simples e poderosa: os átomos se ligam **compartilhando pares de elétrons**, de modo que cada um fique com **8 elétrons** na última camada, como os gases nobres (o "octeto"). No mesmo ano, o alemão **Walther Kossel** propôs que, entre um metal e um ametal, o que acontece é uma **transferência**: um doa e o outro recebe. Juntos, os dois modelos explicam os dois principais tipos de ligação.
+
+## O elétron decide quem puxa
+
+Em 1932, **Linus Pauling** criou uma escala numérica de quanto cada átomo "puxa" os elétrons de uma ligação: a **eletronegatividade**. Ele a usou para mostrar que a ligação não é "ou iônica ou covalente", e sim um **espectro**: quanto maior a diferença de eletronegatividade entre os dois átomos, mais desigual é a partilha, até que um deles fica com o elétron de vez. Pauling ganhou o Nobel de Química de 1954 por esse trabalho.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Por que os átomos se ligam?
+
+Os **gases nobres** (hélio, neônio, argônio...) quase nunca reagem. O motivo é que eles já têm a última camada **cheia**: 8 elétrons (2 no caso do hélio). Essa configuração é estável, "confortável".
+
+Os outros átomos **não** têm a camada cheia. E eles tendem a se ligar para ficar com ela cheia. É a **regra do octeto**: os átomos tendem a ficar com 8 elétrons na camada de valência (a última). Para isso, há três jeitos:
+
+- **Doar** elétrons (e ficar sem aquela camada, que deixa a anterior, cheia).
+- **Receber** elétrons.
+- **Compartilhar** elétrons.
+
+<Brincando titulo="Octeto: a mesa de oito lugares">
+
+Imagine mesas com 8 lugares. Cada átomo chega com alguns amigos (seus elétrons) e quer uma mesa **cheia**. Quem chega com 7 e falta 1 (o cloro) procura quem tenha 1 sobrando (o sódio). Quem chega com 1 pode doar para quem precisa. Já dois átomos com metade dos lugares, como dois oxigênios com 6 cada, resolvem **dividir** a mesa: cada um senta no lugar do outro, e a mesa de cada um fica cheia.
+
+</Brincando>
+
+## 2. Três jeitos, três ligações
+
+- **Metal + ametal:** o metal **doa**, o ametal **recebe**. Surge uma atração entre cargas opostas: <Termo cor="azul">ligação iônica</Termo>.
+- **Ametal + ametal:** os dois **compartilham** pares de elétrons: <Termo cor="verde">ligação covalente</Termo>.
+- **Metal + metal:** os elétrons de valência ficam **livres**, num "mar" que envolve todos os átomos: <Termo cor="coral">ligação metálica</Termo>.
+
+## 3. Quem tem a camada quase cheia?
+
+Os elétrons de valência seguem o grupo da tabela periódica. O grupo 1 tem 1 elétron, o 2 tem 2, e do 13 ao 18 é o número do grupo menos 10 (13 tem 3, 16 tem 6, 17 tem 7, 18 tem 8). Então o cloro (grupo 17) tem **7** e quer **1** a mais. O oxigênio (grupo 16) tem **6** e quer mais **2**. O sódio (grupo 1) tem **1** e quer **doar** 1.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="O magnésio (grupo 2) doa 2 elétrons. O cloro (grupo 17) recebe 1. Quantos cloros se ligam a cada magnésio?"
+  opcoes={['1', '2', '3']}
+  correta={1}
+  explicacao="O magnésio doa 2 elétrons, e cada cloro só aceita 1. São precisos 2 cloros: a fórmula é MgCl₂."
+>
+
+Escolha o par e veja quem doa, quem recebe e qual a fórmula:
+
+<DoacaoDeEletrons />
+
+Repare que as cargas **sempre se anulam**: o composto final é neutro. Na fórmula do MgCl₂, 1 carga 2+ e 2 cargas 1−.
+
+Agora volte ao palpite do começo. Por que a água com sal conduz eletricidade?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['O sal tem metal e o açúcar não tem', 'O sal se separa em partículas com carga que andam, e o açúcar não', 'O sal é mais pesado que o açúcar']}
+  correta={1}
+  seAcertou="Isso: o sal (iônico) se separa em íons Na⁺ e Cl⁻ na água, e íons que se movem conduzem corrente. O açúcar se espalha em moléculas sem carga."
+  seErrou="O certo é a segunda: o sal se separa em íons (Na⁺ e Cl⁻) na água, e partículas com carga em movimento conduzem eletricidade. As moléculas de açúcar não têm carga."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Ligação iônica
+
+Quando um **metal** (que tem poucos elétrons de valência) encontra um **ametal** (que tem quase todos), o metal doa seus elétrons, e o ametal os recebe. Quem perdeu elétrons fica com carga **positiva** (um **cátion**), e quem ganhou, com carga **negativa** (um **ânion**). As cargas opostas se atraem com muita força, e a ligação é essa <Termo cor="azul">atração elétrica</Termo>.
+
+**Exemplo, o sal de cozinha (NaCl):**
+
+- O sódio (Na) tem 1 elétron na última camada e **doa** esse elétron: vira **Na⁺**.
+- O cloro (Cl) tem 7 e **recebe** 1: vira **Cl⁻**.
+- Os dois íons se atraem e formam o sal.
+
+Um composto iônico **não** é feito de moléculas soltas. É um **cristal**: bilhões de íons arrumados numa grade, cada Na⁺ cercado de Cl⁻, e vice-versa. A fórmula (NaCl) só diz a **proporção** (1 para 1).
+
+<Brincando titulo="Ligação iônica: o ímã que gruda">
+
+Pegue dois ímãs: o polo norte de um atrai o sul do outro. Os íons são assim: o positivo atrai o negativo, sem compartilhar nada. Quanto maior a carga, mais forte o "ímã". O Mg²⁺ puxa o O²⁻ com mais força que o Na⁺ puxa o Cl⁻, e por isso o óxido de magnésio derrete a quase 2.800 °C, e o sal, a 801 °C.
+
+</Brincando>
+
+### Como escrever a fórmula
+
+A regra é uma só: a **soma das cargas é zero**. Para achar a fórmula, cruze as cargas (o número da carga de um vira o índice do outro).
+
+- **Na⁺ e Cl⁻:** 1 e 1 → **NaCl**.
+- **Mg²⁺ e Cl⁻:** precisa de 2 cloros → **MgCl₂**.
+- **Ca²⁺ e O²⁻:** 2 e 2 → **CaO**.
+- **Al³⁺ e O²⁻:** 2 alumínios (6+) e 3 oxigênios (6−) → **Al₂O₃**.
+
+<ExemploResolvido titulo="Qual a fórmula do composto entre cálcio (Ca²⁺) e cloro (Cl⁻)?">
+  <Passo>O cálcio tem carga 2+. O cloro tem carga 1−.</Passo>
+  <Passo>Para somar zero, precisa de **2** Cl⁻ para cada Ca²⁺: 2+ e 2 × (1−) = 2−.</Passo>
+  <Passo>Fórmula: **CaCl₂**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos íons Cl⁻ são precisos para cada Mg²⁺, para a carga total dar zero?" resposta="2" dica="2+ precisa de 2 vezes 1−." resolucao="2 íons de Cl⁻: 2+ e 2 × 1− = 0." />
+
+<Exercicio enunciado="Na fórmula Al₂O₃, quantos átomos há no total em uma unidade da fórmula?" resposta="5" dica="2 + 3." resolucao="2 de Al e 3 de O: 5 átomos." />
+
+<Exercicio enunciado="O oxigênio tem 6 elétrons de valência. Quantos elétrons faltam para ele completar o octeto?" resposta="2" dica="8 − 6." resolucao="8 − 6 = 2 elétrons." />
+
+<Exercicio enunciado="O cloro tem 7 elétrons de valência. Quantos elétrons faltam para o octeto?" resposta="1" dica="8 − 7." resolucao="8 − 7 = 1 elétron." />
+
+### Propriedades dos compostos iônicos
+
+- **Ponto de fusão alto:** é preciso muita energia para separar íons que se atraem com tanta força. O NaCl derrete a 801 °C.
+- **Duros e quebradiços:** batendo, as camadas se deslocam e íons de mesma carga ficam lado a lado. Eles se repelem, e o cristal racha.
+- **Conduzem eletricidade só quando os íons andam:** no estado sólido, os íons estão presos e **não** conduzem. Fundidos ou **dissolvidos em água**, os íons ficam livres, e a corrente passa.
+- **Muitos se dissolvem na água.**
+
+<MarteladaNoSalENoFerro />
+
+## Ligação covalente
+
+Quando dois **ametais** se encontram, nenhum deles tem força para tirar o elétron do outro. Então fazem um acordo: **compartilham** pares de elétrons. Cada par compartilhado é **uma ligação covalente**, e conta como elétrons para os dois átomos ao mesmo tempo. Assim, os dois completam o octeto sem que ninguém perca nada.
+
+- **Ligação simples:** 1 par compartilhado (H–H).
+- **Ligação dupla:** 2 pares (O=O).
+- **Ligação tripla:** 3 pares (N≡N).
+
+Quantas ligações um átomo faz? Quantos elétrons faltam para o octeto (ou dueto, no caso do hidrogênio): **H faz 1, O faz 2, N faz 3 e C faz 4.**
+
+<MoleculasCovalentes />
+
+<Brincando titulo="Ligação covalente: dividir o cobertor">
+
+Duas pessoas em noite fria, cada uma com um cobertor curto. Se cada uma puxar só o seu, passam frio. Mas, se dividirem, cada um cobre os pés **e** o peito, e os dois ficam aquecidos. É a covalência: os átomos têm um "cobertor" (elétrons) que não basta sozinho, mas dividido cobre os dois. Quanto mais pares se dividem (dupla, tripla), mais juntos e mais firmes os átomos ficam.
+
+</Brincando>
+
+<ExemploResolvido titulo="Quantas ligações simples faz o carbono no metano (CH₄)?">
+  <Passo>O carbono tem 4 elétrons de valência e quer 8: faz **4 ligações**.</Passo>
+  <Passo>Cada H tem 1 elétron e quer 2: faz **1 ligação**.</Passo>
+  <Passo>No CH₄, o C faz 4 ligações simples, uma com cada H. Todos ficam satisfeitos.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas ligações o nitrogênio (5 elétrons de valência) precisa fazer para completar o octeto?" resposta="3" dica="8 − 5." resolucao="8 − 5 = 3 ligações (por isso, NH₃)." />
+
+<Exercicio enunciado="Quantos pares de elétrons são compartilhados numa ligação tripla, como a do N₂?" resposta="3" dica="Tripla significa 3 pares." resolucao="Uma ligação tripla tem 3 pares compartilhados." />
+
+<Exercicio enunciado="No CO₂ há duas ligações duplas (O=C=O). Quantos pares de elétrons são compartilhados no total?" resposta="4" dica="2 duplas, 2 pares cada." resolucao="2 × 2 = 4 pares." />
+
+### Propriedades dos compostos covalentes
+
+A maioria é feita de **moléculas**, grupos de átomos ligados com força, mas as moléculas entre si se atraem de forma **fraca**. Por isso:
+
+- **Pontos de fusão e ebulição baixos:** só é preciso separar as moléculas umas das outras, sem quebrar as ligações dentro delas. A água ferve a 100 °C, e o açúcar derrete a algo perto de 186 °C.
+- **Em geral não conduzem eletricidade:** as moléculas não têm carga.
+- **Podem ser gases, líquidos ou sólidos moles.**
+
+Há uma exceção importante: as **redes covalentes**, como o **diamante** (só carbono) e o **quartzo** (SiO₂). Neles, os átomos formam uma rede gigante, uma única "molécula" do tamanho do cristal. São duríssimos e quase impossíveis de derreter.
+
+<Aprofundar titulo="Diamante e grafite: mesmo carbono, propriedades opostas">
+
+Diamante e grafite (o "chumbo" do lápis) são feitos **só de átomos de carbono**, mas parecem de outro mundo. No diamante, cada carbono faz 4 ligações com 4 vizinhos, numa rede tridimensional rígida: é o material natural mais duro e não conduz eletricidade. No grafite, cada carbono faz 3 ligações, formando folhas planas que deslizam umas sobre as outras (por isso o grafite risca o papel) e conduz eletricidade. A diferença está só **no jeito de ligar**. O grafeno, uma única folha de grafite, rendeu o Nobel de Física de 2010 a Geim e Novoselov.
+
+</Aprofundar>
+
+## Ligação metálica
+
+Em um **metal**, os átomos têm poucos elétrons de valência e os soltam com facilidade. Esses elétrons não ficam presos a nenhum átomo em particular: viram um **mar de elétrons livres** que envolve todos os átomos, agora positivos. A atração entre o mar de elétrons e os átomos positivos é a <Termo cor="coral">ligação metálica</Termo>.
+
+Esse modelo explica as propriedades dos metais:
+
+- **Conduzem eletricidade** (sólidos ou líquidos): os elétrons livres andam.
+- **Conduzem calor:** os elétrons transportam energia depressa.
+- **São maleáveis e dúcteis:** as camadas de átomos deslizam sem quebrar, porque o mar de elétrons mantém tudo unido. Dá para fazer fios e lâminas.
+- **Têm brilho:** os elétrons livres refletem a luz.
+
+<Brincando titulo="Ligação metálica: bolas de gude na água">
+
+Imagine bolinhas de gude (os átomos) mergulhadas numa piscina (o mar de elétrons). Dá para empurrar e mudar as bolinhas de lugar à vontade, sem a piscina quebrar. Já num cristal de sal, as bolinhas estão coladas num sorvete duro: forçar muito racha. É por isso que o metal dobra e o sal quebra.
+
+</Brincando>
+
+<ExemploResolvido titulo="Por que o cobre é usado em fios elétricos?">
+  <Passo>O cobre é um metal, com ligação metálica e **elétrons livres**.</Passo>
+  <Passo>Eles conduzem a corrente com facilidade.</Passo>
+  <Passo>É também **dúctil**: pode ser esticado em fios finos sem quebrar. Por isso é ideal para fios.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos tipos principais de ligação química vimos (iônica, covalente e metálica)?" resposta="3" dica="Conte os nomes." resolucao="Três: iônica, covalente e metálica." />
+
+## Qual ligação aparece? A eletronegatividade
+
+A <Termo cor="amarelo">eletronegatividade</Termo> mede o quanto um átomo **puxa** os elétrons de uma ligação. Valores arredondados da escala de Pauling:
+
+- **Na:** 0,9 · **Mg:** 1,3 · **H:** 2,2 · **C:** 2,6 · **N:** 3,0 · **Cl:** 3,2 · **O:** 3,4 · **F:** 4,0.
+
+A diferença entre os dois átomos diz o tipo:
+
+- **Diferença pequena (menos de 0,4):** covalente **apolar**. Os dois puxam igual.
+- **Diferença média (de 0,4 a 1,7):** covalente **polar**. Um puxa mais que o outro.
+- **Diferença grande (1,7 ou mais):** **iônica**. Um leva o elétron de vez.
+
+Esses limites são uma **regra prática**, e não uma lei: na natureza, a mudança de um tipo a outro é gradual.
+
+<QualALigacao />
+
+<ExemploResolvido titulo="Que tipo de ligação há entre o sódio (0,9) e o cloro (3,2)?">
+  <Passo>Diferença: 3,2 − 0,9 = **2,3**.</Passo>
+  <Passo>2,3 é maior que 1,7: ligação **iônica**.</Passo>
+  <Passo>Confere com o que vimos: metal + ametal, o sal.</Passo>
+</ExemploResolvido>
+
+<ExemploResolvido titulo="E entre o hidrogênio (2,2) e o cloro (3,2) no HCl?">
+  <Passo>Diferença: 3,2 − 2,2 = **1,0**.</Passo>
+  <Passo>1,0 está entre 0,4 e 1,7: covalente **polar**.</Passo>
+  <Passo>O cloro puxa o par de elétrons para o seu lado e fica um pouco negativo.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual a diferença de eletronegatividade entre o sódio (0,9) e o cloro (3,2)?" resposta="2,3" dica="3,2 − 0,9." resolucao="3,2 − 0,9 = 2,3." />
+
+<Exercicio enunciado="Qual a diferença de eletronegatividade entre o oxigênio (3,4) e o hidrogênio (2,2)?" resposta="1,2" dica="3,4 − 2,2." resolucao="3,4 − 2,2 = 1,2: covalente polar." />
+
+<Exercicio enunciado="Qual a diferença entre o oxigênio (3,4) e o carbono (2,6)?" resposta="0,8" dica="3,4 − 2,6." resolucao="3,4 − 2,6 = 0,8: covalente polar." />
+
+## Comparando as substâncias
+
+Juntando o que vimos, podemos prever o comportamento de uma substância pelo tipo de ligação:
+
+<ComparaSubstancias />
+
+<ExemploResolvido titulo="Uma substância sólida conduz eletricidade e pode ser dobrada. Que tipo de ligação ela tem?">
+  <Passo>Conduz eletricidade **no estado sólido**: só os metais fazem isso (têm elétrons livres).</Passo>
+  <Passo>Pode ser dobrada: é maleável, outra marca dos metais.</Passo>
+  <Passo>Conclusão: ligação **metálica**.</Passo>
+</ExemploResolvido>
+
+<ExemploResolvido titulo="Uma substância sólida não conduz eletricidade, mas, dissolvida em água, conduz. Que ligação tem?">
+  <Passo>Sólida, não conduz: não há partículas livres com carga.</Passo>
+  <Passo>Dissolvida, conduz: surgem íons livres.</Passo>
+  <Passo>Conclusão: ligação **iônica**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos anos se passaram entre Kekulé mostrar que o carbono faz 4 ligações (1858) e Lewis propor o par de elétrons (1916)?" resposta="58" dica="1916 − 1858." resolucao="1916 − 1858 = 58 anos." />
+
+<Exercicio enunciado="O NaCl derrete a 801 °C e a água congela a 0 °C. Quantos graus separam esses dois pontos de mudança de estado?" resposta="801" dica="801 − 0." resolucao="801 − 0 = 801 °C." />
+
+<Aprofundar titulo="O sal NaCl dissolvido: por que os íons se soltam?">
+
+Na água, as moléculas de H₂O têm uma ponta levemente negativa (o oxigênio) e outra levemente positiva (os hidrogênios). Os oxigênios se agarram aos Na⁺, e os hidrogênios, aos Cl⁻, e "arrancam" os íons da superfície do cristal, um a um, cercando cada um por uma "capa" de moléculas de água. Isso se chama **hidratação** e é por isso que o sal se dissolve. Veremos o porquê dessas pontas na cápsula de polaridade.
+
+</Aprofundar>
+
+## Onde isso aparece na vida
+
+- **Sal na cozinha:** o NaCl é um composto iônico. Por isso derrete a mais de 800 °C e não "some" ao ser aquecido.
+- **Fios elétricos e panelas:** o cobre e o alumínio conduzem eletricidade e calor porque têm elétrons livres.
+- **Plásticos e açúcar:** substâncias covalentes moleculares, que derretem ou amolecem com pouco calor.
+- **Cal e cimento:** compostos iônicos, como o óxido de cálcio (CaO).
+- **Diamante e vidro:** o diamante é rede covalente de carbono; o vidro comum é feito principalmente de sílica (SiO₂).
+- **Eletrólitos:** bebidas isotônicas têm íons (como Na⁺ e K⁺) que o corpo perde pelo suor e que ajudam a conduzir sinais nervosos.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Por que os átomos se ligam, segundo a regra do octeto?',
+    opcoes: ['Para ficar com 8 elétrons na última camada', 'Para perder todos os elétrons', 'Para ficar mais leves'],
+    correta: 0,
+    explicacao: 'Os átomos tendem a completar a camada de valência com 8 elétrons (2 no caso do hidrogênio), como os gases nobres.',
+  },
+  {
+    enunciado: 'Qual o tipo de ligação típica entre um metal e um ametal?',
+    opcoes: ['Iônica', 'Covalente', 'Metálica'],
+    correta: 0,
+    explicacao: 'O metal doa elétrons, o ametal recebe, e a atração entre os íons forma a ligação iônica.',
+  },
+  {
+    enunciado: 'No NaCl, o que acontece com o sódio?',
+    opcoes: ['Doa 1 elétron e vira Na⁺', 'Recebe 1 elétron e vira Na⁻', 'Compartilha 1 par'],
+    correta: 0,
+    explicacao: 'O sódio tem 1 elétron de valência e o doa ao cloro.',
+  },
+  {
+    enunciado: 'Qual a fórmula do composto entre Mg²⁺ e Cl⁻?',
+    opcoes: ['MgCl', 'MgCl₂', 'Mg₂Cl'],
+    correta: 1,
+    explicacao: 'Cada Mg²⁺ precisa de 2 Cl⁻ para a carga total dar zero.',
+  },
+  {
+    enunciado: 'Qual é a ligação entre dois ametais, como no H₂O?',
+    opcoes: ['Iônica', 'Covalente', 'Metálica'],
+    correta: 1,
+    explicacao: 'Os ametais compartilham pares de elétrons.',
+  },
+  {
+    enunciado: 'Quantos pares de elétrons há numa ligação dupla?',
+    opcoes: ['1', '2', '3'],
+    correta: 1,
+    explicacao: 'Simples tem 1 par, dupla tem 2, tripla tem 3.',
+  },
+  {
+    enunciado: 'Quantas ligações faz o carbono, em geral?',
+    opcoes: ['2', '3', '4'],
+    correta: 2,
+    explicacao: 'O carbono tem 4 elétrons de valência e faz 4 ligações.',
+  },
+  {
+    enunciado: 'Por que o sal sólido não conduz eletricidade, mas dissolvido conduz?',
+    opcoes: ['No sólido os íons estão presos; dissolvidos, ficam livres', 'Dissolvido ele vira metal', 'A água cria elétrons'],
+    correta: 0,
+    explicacao: 'A condução precisa de partículas carregadas móveis. Os íons só se movem quando fundidos ou dissolvidos.',
+  },
+  {
+    enunciado: 'Por que o metal pode ser dobrado sem quebrar?',
+    opcoes: ['As camadas deslizam e o mar de elétrons mantém tudo unido', 'Porque o metal é mole', 'Porque não tem ligação'],
+    correta: 0,
+    explicacao: 'A ligação metálica não é direcional: os átomos deslizam e continuam envolvidos pelos elétrons livres.',
+  },
+  {
+    enunciado: 'A diferença de eletronegatividade entre dois átomos é 2,3. Que tipo de ligação é provável?',
+    opcoes: ['Covalente apolar', 'Covalente polar', 'Iônica'],
+    correta: 2,
+    explicacao: 'Diferença de 1,7 ou mais costuma indicar ligação iônica.',
+  },
+  {
+    enunciado: 'Qual substância tem ponto de fusão mais baixo?',
+    opcoes: ['NaCl (iônica)', 'Açúcar (molecular)', 'Ferro (metálica)'],
+    correta: 1,
+    explicacao: 'Substâncias moleculares só precisam separar moléculas, com forças fracas entre elas.',
+  },
+  {
+    enunciado: 'Diamante e grafite são ambos de carbono. O que explica a diferença entre eles?',
+    opcoes: ['O jeito como os átomos se ligam', 'A cor', 'O diamante é feito de outro elemento'],
+    correta: 0,
+    explicacao: 'No diamante, cada C faz 4 ligações numa rede rígida. No grafite, forma folhas que deslizam.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Octeto:** os átomos se ligam para ficar com 8 elétrons na última camada (2 para o H), como os gases nobres.
+- **Iônica (metal + ametal):** transferência de elétrons e atração entre íons. Cristal, ponto de fusão alto, quebradiço, conduz só fundido ou dissolvido (NaCl, CaO).
+- **Covalente (ametal + ametal):** compartilhamento de pares de elétrons (simples, dupla, tripla). H faz 1, O faz 2, N faz 3, C faz 4. Em geral, moléculas com ponto de fusão baixo. Exceção: redes covalentes (diamante).
+- **Metálica (metal + metal):** átomos num mar de elétrons. Conduz, é maleável e tem brilho.
+- **Eletronegatividade:** diferença menor que 0,4 é apolar, de 0,4 a 1,7 é polar e a partir de 1,7 é iônica (regra prática).
+- **Fórmulas iônicas:** as cargas somam zero (MgCl₂, Al₂O₃).
+
+**Um pouco de história.** Frankland (1852) falou em valência, e Kekulé e Couper (1858) mostraram que o carbono faz 4 ligações. Em 1916, Lewis (pares compartilhados) e Kossel (transferência) criaram as bases do modelo. Pauling (1932) mostrou que a ligação é um espectro, medido pela eletronegatividade.
+
+</Resumo>
+
+As ligações definem a forma e o comportamento das moléculas. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

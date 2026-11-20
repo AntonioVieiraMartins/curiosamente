@@ -1,0 +1,396 @@
+import ContandoOMol from '../../../components/simulacoes/ContandoOMol'
+import BalancaDoMol from '../../../components/simulacoes/BalancaDoMol'
+import MontaMassaMolar from '../../../components/simulacoes/MontaMassaMolar'
+import MassaParaMol from '../../../components/simulacoes/MassaParaMol'
+import VolumeDoMolDeGas from '../../../components/simulacoes/VolumeDoMolDeGas'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Mole (unit), Avogadro constant, Amedeo Avogadro, Stanislao Cannizzaro, Jean Baptiste Perrin, Molar volume), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Uma padaria vende pão por unidade. Uma loja de ovos vende por dúzia. Uma papelaria vende folhas por resma (500). Cada uma tem um jeito de **contar em grupos**, porque contar um por um dá trabalho demais.
+
+Os químicos têm o mesmo problema, só que **muito maior**. Uma gota de água tem mais moléculas do que há grãos de areia em todas as praias da Terra. Então eles inventaram uma "dúzia gigante": o <Termo cor="azul">mol</Termo>. E, de lambuja, descobriram um truque: em vez de contar as partículas, basta **pesar**.
+
+<Palpite
+  chave="inicial"
+  pergunta="Quantas moléculas de água há em um copo pequeno de 18 gramas (cerca de 18 mL)?"
+  opcoes={['Cerca de 6 milhões', 'Cerca de 6 trilhões', 'Cerca de 600 mil bilhões de bilhões']}
+/>
+
+Nesta cápsula você vai ver de onde veio o mol, o que é a constante de Avogadro, como converter entre gramas, mol e número de partículas, e como o volume de um gás entra na conta.
+
+</Etapa>
+
+<Etapa id="historia">
+
+O mol nasceu de uma ideia simples, esquecida por quase 50 anos: **volumes iguais de gases têm o mesmo número de moléculas**.
+
+<LinhaDoTempo marcos={[
+  { ano: '1808', texto: 'Gay-Lussac mostra que gases reagem em proporções simples de volume.' },
+  { ano: '1811', texto: 'Amedeo Avogadro propõe: volumes iguais de gases, na mesma temperatura e pressão, têm o mesmo número de moléculas.' },
+  { ano: '1860', texto: 'No congresso de Karlsruhe, Stanislao Cannizzaro revive a ideia de Avogadro e organiza as massas atômicas.' },
+  { ano: '1865', texto: 'Josef Loschmidt faz a primeira estimativa do tamanho das moléculas e do número delas num volume de gás.' },
+  { ano: 'Cerca de 1893', texto: 'Wilhelm Ostwald usa o nome mol para a quantidade de matéria.' },
+  { ano: '1909', texto: 'Jean Perrin dá o nome de número de Avogadro e mede o valor por vários métodos (Nobel de 1926).' },
+  { ano: '2019', texto: 'O mol é redefinido: 1 mol é exatamente 6,02214076 × 10²³ partículas.' },
+]} />
+
+## Avogadro e a hipótese esquecida
+
+Em 1811, o italiano **Amedeo Avogadro** teve uma ideia: se você pegar o mesmo volume de dois gases quaisquer, à mesma temperatura e pressão, os dois têm **o mesmo número de moléculas**. Ele ainda propôs que gases como o oxigênio e o hidrogênio não são átomos soltos, e sim **moléculas de dois átomos** (O₂ e H₂). Era uma ideia genial, mas quase ninguém prestou atenção. Os cientistas da época discordavam até sobre quanto pesava um átomo de oxigênio.
+
+## Cannizzaro e a ordem na casa
+
+Em 1860, químicos de todo o mundo se reuniram em **Karlsruhe**, na Alemanha, para decidir o que era um átomo, uma molécula e quanto cada um pesava. O italiano **Stanislao Cannizzaro** mostrou que a hipótese de Avogadro resolvia a bagunça: com ela, dava para calcular as massas atômicas de forma coerente. A partir daí, as massas atômicas viraram uma base confiável, e a tabela periódica de Mendeleiev (1869) só foi possível por causa disso.
+
+## De quem é o número?
+
+Avogadro nunca soube o valor do número que leva seu nome. Quem deu o primeiro passo foi **Loschmidt**, em 1865, estimando quantas moléculas cabem num volume de gás. Em 1909, o francês **Jean Perrin** mediu o número por vários métodos diferentes (um deles, observando o movimento browniano de gotinhas) e todos davam quase a mesma resposta. Foi ele quem batizou a constante de **número de Avogadro**, e ganhou o Nobel de Física em 1926. Em 2019, o número foi **fixado** por definição: 6,02214076 × 10²³.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O mol é uma dúzia gigante
+
+Uma **dúzia** é 12 coisas, de ovos ou de laranjas. O **mol** é um número fixo de partículas, qualquer que seja a partícula:
+
+**1 mol = 6,02 × 10²³ partículas**
+
+Esse número se chama <Termo cor="azul">constante de Avogadro</Termo>. Em palavras: 602 mil bilhões de bilhões. É enorme porque átomos são minúsculos: precisamos de um grupo gigante para chegar a algo que dê para pesar numa balança.
+
+<Brincando titulo="Mol: a dúzia dos químicos">
+
+Uma dúzia de ovos pesa uma coisa, e uma dúzia de melancias pesa outra, mas as duas têm **12 unidades**. O mol é igual: 1 mol de água e 1 mol de ferro têm o **mesmo número** de partículas (6,02 × 10²³), só que o ferro pesa bem mais, porque cada átomo de ferro é mais pesado.
+
+</Brincando>
+
+## 2. O truque: pesar em vez de contar
+
+Aqui está o golpe de mestre. Escolheram o número de Avogadro **de propósito**, de modo que:
+
+**a massa de 1 mol, em gramas, é igual à massa de uma partícula, em "u" (unidade de massa atômica).**
+
+O carbono tem massa atômica 12. Então **1 mol de carbono pesa 12 gramas**. O oxigênio tem 16, então 1 mol de oxigênio (átomos) pesa 16 g. Na prática: olhe a tabela periódica, pegue o número da massa atômica e pronto, você sabe quanto pesa 1 mol, em gramas. A isso se chama **massa molar**.
+
+## 3. Mesmo número, pesos diferentes
+
+Por isso, **um mol de qualquer coisa** tem o mesmo número de partículas, mas pesos diferentes: 1 mol de água pesa 18 g, 1 mol de sal pesa 58,5 g, 1 mol de glicose pesa 180 g. Pesando, você sabe quantos mols tem, e, de quebra, quantas partículas.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Você pesa 1 mol de ferro (56 g) e 1 mol de água (18 g). Qual tem mais átomos ou moléculas?"
+  opcoes={['O ferro, porque pesa mais', 'A água, porque as moléculas são pequenas', 'Os dois têm o mesmo número de partículas']}
+  correta={2}
+  explicacao="1 mol de qualquer substância tem sempre 6,02 × 10²³ partículas. O ferro pesa mais porque cada átomo de ferro é mais pesado que cada molécula de água."
+>
+
+Escolha a substância e a quantidade e veja a balança:
+
+<BalancaDoMol />
+
+O número de partículas só depende de **quantos mols** você tem. A massa depende também de **qual substância**.
+
+Agora volte ao palpite do começo. Quantas moléculas há em 18 g de água?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Cerca de 6 milhões', 'Cerca de 6 trilhões', 'Cerca de 600 mil bilhões de bilhões']}
+  correta={2}
+  seAcertou="Isso: 18 g de água são 1 mol, ou 6,02 × 10²³ moléculas. É um número com 24 algarismos, algo como 602 mil bilhões de bilhões."
+  seErrou="O certo é a terceira: 18 g de água são exatamente 1 mol, ou 6,02 × 10²³ moléculas, um número com 24 algarismos. Milhões e trilhões são minúsculos perto disso."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## A constante de Avogadro
+
+A constante de Avogadro é
+
+<Formula>
+  <Linha>constante de Avogadro = 6,02 × 10²³ partículas por mol</Linha>
+</Formula>
+
+Em notação científica, isso quer dizer o número **6,02 seguido de 23 casas**. A palavra "partícula" é de propósito vaga: pode ser átomo, molécula, íon, elétron. Um mol de átomos de ferro, um mol de moléculas de água e um mol de íons de sódio têm todos 6,02 × 10²³ unidades.
+
+Para dar ideia do tamanho: se você contasse **1 bilhão de partículas por segundo**, sem parar, levaria uns **19 milhões de anos** para contar 1 mol. Contando 1 por segundo, seria mais de **1 milhão de vezes a idade do universo**.
+
+<ContandoOMol />
+
+<ExemploResolvido titulo="Quantas moléculas há em 2 mol de água?">
+  <Passo>1 mol tem 6,02 × 10²³ moléculas.</Passo>
+  <Passo>Multiplique por 2: 2 × 6,02 = **12,04**.</Passo>
+  <Passo>Resposta: **12,04 × 10²³** moléculas, ou 1,204 × 10²⁴.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas moléculas, em unidades de 10²³, há em 2 mol? (Use 6,02.)" resposta="12,04" dica="2 × 6,02." resolucao="2 × 6,02 = 12,04, ou seja, 12,04 × 10²³." />
+
+<Exercicio enunciado="Quantas moléculas, em unidades de 10²³, há em 0,5 mol? (Use 6,02.)" resposta="3,01" dica="Metade de 6,02." resolucao="6,02 ÷ 2 = 3,01, ou seja, 3,01 × 10²³." />
+
+<Exercicio enunciado="Quantos anos se passaram entre a hipótese de Avogadro (1811) e o congresso de Karlsruhe (1860)?" resposta="49" dica="1860 − 1811." resolucao="1860 − 1811 = 49 anos." />
+
+<Aprofundar titulo="Por que 6,02 × 10²³ e não um número redondo?">
+
+O número nasceu de uma escolha antiga: **1 mol é o número de átomos que há em 12 g de carbono-12**. Medindo isso com cuidado, deu 6,02 × 10²³. Não é redondo porque o grama e a unidade de massa atômica foram definidos de jeitos separados. Em 2019, os cientistas fizeram o contrário: **fixaram o número** (6,02214076 × 10²³, exato) e passaram a definir o mol a partir dele. Na prática, nada mudou para quem faz contas na escola. Foi uma arrumação para que o sistema internacional de medidas deixasse de depender de objetos físicos.
+
+</Aprofundar>
+
+## Massa molar: o peso de 1 mol
+
+A <Termo cor="verde">massa molar</Termo> (símbolo M) é a massa de **1 mol** de uma substância, em **gramas por mol (g/mol)**. Para um átomo, é o número da massa atômica na tabela. Para uma molécula, é a **soma** das massas de todos os átomos da fórmula.
+
+Alguns valores de massa atômica (arredondados):
+
+- H = 1 · C = 12 · N = 14 · O = 16
+- Na = 23 · S = 32 · Cl = 35,5 · Ca = 40 · Fe = 56
+
+**Água, H₂O:** 2 × 1 + 1 × 16 = **18 g/mol**.
+**Gás carbônico, CO₂:** 1 × 12 + 2 × 16 = **44 g/mol**.
+**Sal de cozinha, NaCl:** 23 + 35,5 = **58,5 g/mol**.
+**Glicose, C₆H₁₂O₆:** 6 × 12 + 12 × 1 + 6 × 16 = 72 + 12 + 96 = **180 g/mol**.
+
+<MontaMassaMolar />
+
+<Brincando titulo="Massa molar: a receita do peso do bolo">
+
+Cada ingrediente tem seu peso: um ovo, 50 g; uma xícara de farinha, 120 g. O peso do bolo é a **soma** dos ingredientes. A massa molar é igual: a molécula de água tem dois "ingredientes" H (1 cada) e um O (16), então o "peso da receita" é 1 + 1 + 16 = 18. Basta somar os pesos de cada átomo da fórmula, lembrando de multiplicar pelo número de átomos.
+
+</Brincando>
+
+<ExemploResolvido titulo="Qual a massa molar da amônia, NH₃?">
+  <Passo>A fórmula tem 1 N e 3 H.</Passo>
+  <Passo>N: 1 × 14 = 14. H: 3 × 1 = 3.</Passo>
+  <Passo>Some: 14 + 3 = **17 g/mol**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual a massa molar do gás carbônico, CO₂? (C = 12, O = 16)" resposta="44" dica="12 + 2 × 16." resolucao="12 + 32 = 44 g/mol." />
+
+<Exercicio enunciado="Qual a massa molar do sal de cozinha, NaCl? (Na = 23, Cl = 35,5)" resposta="58,5" dica="23 + 35,5." resolucao="23 + 35,5 = 58,5 g/mol." />
+
+<Exercicio enunciado="Qual a massa molar do ácido sulfúrico, H₂SO₄? (H = 1, S = 32, O = 16)" resposta="98" dica="2 × 1 + 32 + 4 × 16." resolucao="2 + 32 + 64 = 98 g/mol." />
+
+<Exercicio enunciado="Qual a massa molar do carbonato de cálcio, CaCO₃? (Ca = 40, C = 12, O = 16)" resposta="100" dica="40 + 12 + 3 × 16." resolucao="40 + 12 + 48 = 100 g/mol." />
+
+## Gramas, mol e partículas
+
+Agora dá para montar o **caminho de conversão**. A massa molar liga gramas a mol, e a constante de Avogadro liga mol a partículas:
+
+<Formula>
+  <Linha>n = m ÷ M</Linha>
+</Formula>
+
+Em palavras: **mol = massa (g) ÷ massa molar (g/mol)**. E depois: **partículas = mol × 6,02 × 10²³**.
+
+<MassaParaMol />
+
+<Brincando titulo="Mol, massa e partículas: a balança de feira">
+
+Na feira, o vendedor não conta os grãos de feijão um a um: ele **pesa**. Se sabe que 1 kg tem cerca de 5.000 grãos, basta pesar 3 kg para saber que são uns 15.000. É a mesma lógica: a balança de laboratório pesa gramas, a massa molar diz quanto pesa 1 mol, e a constante de Avogadro diz quantas partículas há em 1 mol. Pesar é o atalho para contar.
+
+</Brincando>
+
+<ExemploResolvido titulo="Quantos mols há em 36 g de água?">
+  <Passo>A massa molar da água é 18 g/mol.</Passo>
+  <Passo>n = m ÷ M = 36 ÷ 18 = **2 mol**.</Passo>
+  <Passo>Em partículas: 2 × 6,02 × 10²³ = 12,04 × 10²³ moléculas.</Passo>
+</ExemploResolvido>
+
+<ExemploResolvido titulo="Qual a massa de 3 mol de gás carbônico?">
+  <Passo>M(CO₂) = 44 g/mol.</Passo>
+  <Passo>Do mesmo jeito: m = n × M = 3 × 44 = **132 g**.</Passo>
+  <Passo>Conferindo: 132 ÷ 44 = 3 mol. Fecha.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos mols há em 36 g de água (18 g/mol)?" resposta="2" dica="36 ÷ 18." resolucao="36 ÷ 18 = 2 mol." />
+
+<Exercicio enunciado="Qual a massa, em gramas, de 3 mol de CO₂ (44 g/mol)?" resposta="132" dica="3 × 44." resolucao="3 × 44 = 132 g." />
+
+<Exercicio enunciado="Qual a massa, em gramas, de 0,5 mol de glicose (180 g/mol)?" resposta="90" dica="0,5 × 180." resolucao="0,5 × 180 = 90 g." />
+
+<Exercicio enunciado="Quantos mols há em 117 g de sal NaCl (58,5 g/mol)?" resposta="2" dica="117 ÷ 58,5." resolucao="117 ÷ 58,5 = 2 mol." />
+
+<Exercicio enunciado="Qual a massa, em gramas, de 4 mol de gás oxigênio O₂ (32 g/mol)?" resposta="128" dica="4 × 32." resolucao="4 × 32 = 128 g." />
+
+<Exercicio enunciado="Qual a massa, em gramas, de 0,1 mol de NaCl (58,5 g/mol)?" resposta="5,85" dica="0,1 × 58,5." resolucao="0,1 × 58,5 = 5,85 g." />
+
+<Aprofundar titulo="Mol de átomos dentro do mol de molécula">
+
+Uma fórmula também diz **quantos mols de cada átomo** há em 1 mol da substância. Em 1 mol de água (H₂O), há **2 mol de átomos de H** e **1 mol de átomos de O**. Em 3 mol de H₂O, há 6 mol de H e 3 mol de O. Isso é a chave da estequiometria: ao ler uma equação química como "2 H₂ + O₂ → 2 H₂O", os coeficientes dizem as proporções **em mols**, e não em gramas.
+
+</Aprofundar>
+
+## O mol dos gases
+
+Os gases têm um atalho a mais. Pela ideia de Avogadro, **1 mol de qualquer gás** ocupa o **mesmo volume**, na mesma temperatura e pressão. Nas condições chamadas de **CNTP** (0 °C e 1 atm), esse volume é cerca de **22,4 litros**. Em temperatura ambiente (25 °C, 1 atm), sobe para uns **24,5 litros**, porque o gás se expande com o calor.
+
+<VolumeDoMolDeGas />
+
+<Brincando titulo="Volume molar: a caixa que cabe qualquer gás">
+
+Imagine uma caixa de 22,4 litros, do tamanho de uma caixa de sapatos grande. Ela comporta **1 mol de qualquer gás**: hidrogênio, que é levinho, ou gás carbônico, que é pesado. As moléculas dos gases estão tão separadas que o tamanho delas quase não importa: o que ocupa espaço é o "espaço vazio" entre elas, e esse é igual para todos.
+
+</Brincando>
+
+<ExemploResolvido titulo="Qual o volume de 2 mol de oxigênio nas CNTP?">
+  <Passo>Cada mol de gás ocupa 22,4 L.</Passo>
+  <Passo>2 × 22,4 = **44,8 L**.</Passo>
+  <Passo>A massa seria 2 × 32 = 64 g, mas o volume não depende de qual gás é.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual o volume, em litros, de 2 mol de qualquer gás nas CNTP (22,4 L por mol)?" resposta="44,8" dica="2 × 22,4." resolucao="2 × 22,4 = 44,8 L." />
+
+<Exercicio enunciado="Quantos mols de gás há em 11,2 litros, nas CNTP?" resposta="0,5" dica="11,2 ÷ 22,4." resolucao="11,2 ÷ 22,4 = 0,5 mol." />
+
+<Exercicio enunciado="Quantos litros ocupam 5 mol de gás nas CNTP?" resposta="112" dica="5 × 22,4." resolucao="5 × 22,4 = 112 L." />
+
+<Aprofundar titulo="De onde vem o 22,4?">
+
+O volume molar vem da **lei dos gases ideais**: P · V = n · R · T. Com P = 1 atm, n = 1 mol, R = 0,082 atm·L/(mol·K) e T = 273 K (0 °C), dá V = 0,082 × 273 ≈ **22,4 L**. A 25 °C (298 K), V = 0,082 × 298 ≈ 24,4 L. Os gases reais se afastam um pouco dessa conta, principalmente se estão muito comprimidos ou muito frios, mas, na maioria das situações do dia a dia, o resultado é bem próximo.
+
+</Aprofundar>
+
+## Contando átomos dentro das moléculas
+
+A fórmula revela quantos átomos há em cada molécula, e o mol aumenta a escala. Em 1 mol de **glicose (C₆H₁₂O₆)**, há 6 mol de C, 12 mol de H e 6 mol de O. No total, 24 mol de átomos.
+
+<ExemploResolvido titulo="Quantos mols de átomos de H há em 3 mol de H₂O?">
+  <Passo>Cada molécula de H₂O tem 2 átomos de H.</Passo>
+  <Passo>Logo, 1 mol de H₂O tem 2 mol de H.</Passo>
+  <Passo>3 mol de H₂O: 3 × 2 = **6 mol de H**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos mols de átomos de H há em 3 mol de H₂O?" resposta="6" dica="2 átomos de H por molécula." resolucao="3 × 2 = 6 mol de H." />
+
+<Exercicio enunciado="Quantos mols de átomos de oxigênio há em 4 mol de CO₂?" resposta="8" dica="2 átomos de O por molécula." resolucao="4 × 2 = 8 mol de O." />
+
+<Exercicio enunciado="Quantos gramas de hidrogênio há em 18 g de água? (Em 1 mol de H₂O, há 2 g de H.)" resposta="2" dica="18 g de água é 1 mol." resolucao="18 g de água é 1 mol, que tem 2 g de H." />
+
+<Exercicio enunciado="Quantos anos se passaram entre a medida de Perrin (1909) e a redefinição do mol (2019)?" resposta="110" dica="2019 − 1909." resolucao="2019 − 1909 = 110 anos." />
+
+## Mol e concentração: uma prévia
+
+O mol também serve para dizer **quão concentrada** é uma solução. A **concentração em mol por litro** (mol/L) diz quantos mols de soluto há em cada litro de solução. Se você dissolve **58,5 g de sal** (1 mol de NaCl) em água até completar **1 litro**, a concentração é de **1 mol/L**. Com 29,25 g (meio mol), seria 0,5 mol/L. Veremos isso com calma na cápsula de soluções.
+
+<ExemploResolvido titulo="Qual a concentração, em mol/L, de 117 g de NaCl dissolvidos em água até completar 2 litros?">
+  <Passo>Primeiro, os mols: 117 ÷ 58,5 = **2 mol**.</Passo>
+  <Passo>Depois, divida pelo volume: 2 mol ÷ 2 L = **1 mol/L**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual a concentração, em mol/L, de 2 mol de soluto dissolvidos em 4 litros de solução?" resposta="0,5" dica="2 ÷ 4." resolucao="2 ÷ 4 = 0,5 mol/L." />
+
+## Onde isso aparece na vida
+
+- **Remédios:** a dose de um remédio é pesada em miligramas, mas o corpo "enxerga" moléculas. Os químicos usam o mol para saber quantas moléculas ativas há na pílula.
+- **Cozinha:** uma colher de sopa rasa de sal (cerca de 18 g) é uns 0,3 mol de NaCl.
+- **Soro fisiológico:** 9 g de sal por litro, ou cerca de 0,15 mol por litro. É uma concentração em mols.
+- **Fábricas:** produzir amônia para fertilizantes exige acertar as proporções em mols de nitrogênio e hidrogênio.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Quantas partículas há em 1 mol?',
+    opcoes: ['6,02 × 10²³', '6,02 × 10³²', '602'],
+    correta: 0,
+    explicacao: 'É a constante de Avogadro: 6,02 × 10²³ partículas por mol.',
+  },
+  {
+    enunciado: 'Quem propôs que volumes iguais de gases têm o mesmo número de moléculas?',
+    opcoes: ['Avogadro, em 1811', 'Mendeleiev, em 1869', 'Dalton, em 1808'],
+    correta: 0,
+    explicacao: 'Foi Avogadro, e a ideia só ganhou força com Cannizzaro, em 1860.',
+  },
+  {
+    enunciado: 'Qual a massa molar da água (H = 1, O = 16)?',
+    opcoes: ['16 g/mol', '18 g/mol', '34 g/mol'],
+    correta: 1,
+    explicacao: '2 × 1 + 16 = 18 g/mol.',
+  },
+  {
+    enunciado: 'Quantos mols há em 88 g de CO₂ (44 g/mol)?',
+    opcoes: ['1', '2', '4'],
+    correta: 1,
+    explicacao: '88 ÷ 44 = 2 mol.',
+  },
+  {
+    enunciado: '1 mol de ferro (56 g) e 1 mol de água (18 g): qual tem mais partículas?',
+    opcoes: ['Ferro', 'Água', 'O mesmo número'],
+    correta: 2,
+    explicacao: '1 mol de qualquer coisa tem 6,02 × 10²³ partículas.',
+  },
+  {
+    enunciado: 'Qual a massa de 3 mol de CO₂ (44 g/mol)?',
+    opcoes: ['44 g', '132 g', '14,7 g'],
+    correta: 1,
+    explicacao: '3 × 44 = 132 g.',
+  },
+  {
+    enunciado: 'Qual a fórmula que liga massa e mol?',
+    opcoes: ['n = m × M', 'n = m ÷ M', 'n = M ÷ m'],
+    correta: 1,
+    explicacao: 'O número de mols é a massa dividida pela massa molar.',
+  },
+  {
+    enunciado: 'Qual o volume molar de um gás nas CNTP?',
+    opcoes: ['1 L', '22,4 L', '100 L'],
+    correta: 1,
+    explicacao: 'Nas CNTP (0 °C e 1 atm), 1 mol de gás ocupa cerca de 22,4 litros.',
+  },
+  {
+    enunciado: 'Quantos litros ocupam 3 mol de O₂ nas CNTP?',
+    opcoes: ['22,4 L', '67,2 L', '96 L'],
+    correta: 1,
+    explicacao: '3 × 22,4 = 67,2 L.',
+  },
+  {
+    enunciado: 'Quantos mols de átomos de H há em 2 mol de NH₃?',
+    opcoes: ['2', '3', '6'],
+    correta: 2,
+    explicacao: 'Cada NH₃ tem 3 átomos de H, então 2 × 3 = 6.',
+  },
+  {
+    enunciado: 'Por que escolhemos pesar em vez de contar átomos?',
+    opcoes: ['Porque os átomos são pesados', 'Porque é impossível contar tantas partículas, e a massa molar liga o peso ao número', 'Porque os átomos não têm massa'],
+    correta: 1,
+    explicacao: 'Contar um mol, a 1 bilhão por segundo, levaria milhões de anos. Pesar é o atalho.',
+  },
+  {
+    enunciado: 'Qual a massa molar da glicose, C₆H₁₂O₆ (C = 12, H = 1, O = 16)?',
+    opcoes: ['180 g/mol', '30 g/mol', '342 g/mol'],
+    correta: 0,
+    explicacao: '6 × 12 + 12 × 1 + 6 × 16 = 72 + 12 + 96 = 180.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Mol:** quantidade de matéria. 1 mol = 6,02 × 10²³ partículas (constante de Avogadro).
+- **Massa molar (M):** massa de 1 mol, em g/mol. Átomo: o número da massa atômica. Molécula: soma dos átomos da fórmula (H₂O = 18, CO₂ = 44, NaCl = 58,5).
+- **Conversões:** mol = massa ÷ massa molar. Massa = mol × massa molar. Partículas = mol × 6,02 × 10²³.
+- **Gases:** 1 mol de qualquer gás ocupa cerca de 22,4 L nas CNTP (0 °C e 1 atm) e cerca de 24,5 L a 25 °C.
+- **Fórmula e mols:** em 1 mol de H₂O há 2 mol de H e 1 mol de O.
+- **Pesar em vez de contar:** é o atalho que torna possível a química quantitativa.
+
+**Um pouco de história.** Avogadro (1811) propôs que gases em volumes iguais têm o mesmo número de moléculas. Cannizzaro (1860) fez a ideia vingar, Loschmidt (1865) estimou o tamanho das moléculas, Perrin (1909) mediu o número e o batizou, e em 2019 o valor foi fixado em 6,02214076 × 10²³.
+
+</Resumo>
+
+O mol é a ponte entre o mundo dos átomos e o das balanças. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

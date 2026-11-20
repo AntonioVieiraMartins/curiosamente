@@ -1,0 +1,407 @@
+import PolarOuApolar from '../../../components/simulacoes/PolarOuApolar'
+import SemelhanteDissolveSemelhante from '../../../components/simulacoes/SemelhanteDissolveSemelhante'
+import ForcasEEbulicao from '../../../components/simulacoes/ForcasEEbulicao'
+import SaboELimpa from '../../../components/simulacoes/SaboELimpa'
+import GeloBoia from '../../../components/simulacoes/GeloBoia'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Chemical polarity, VSEPR theory, Intermolecular force, Hydrogen bond, London dispersion force, Properties of water, Micelle, Surfactant), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Encha um copo de água e pingue uma colher de óleo. Mexa o quanto quiser: o óleo sempre volta a se juntar em gotinhas na superfície. Agora pingue um pouco de **álcool** na água: some na hora, sem deixar rastro. E, se pingar detergente no óleo, ele se desfaz na água como num passe de mágica.
+
+Qual é o segredo? Não é o peso nem a cor. É o **formato** e a **carga elétrica** das moléculas. Algumas têm um lado levemente positivo e outro levemente negativo, como minúsculos ímãs. Elas se chamam <Termo cor="azul">polares</Termo>. Outras são "parelhas" por todos os lados e não têm esses polos: são as <Termo cor="coral">apolares</Termo>. E uma regra simples dita quem se mistura com quem.
+
+<Palpite
+  chave="inicial"
+  pergunta="Por que o óleo não se mistura com a água?"
+  opcoes={['Porque o óleo é mais leve, e só por isso', 'Porque as moléculas de água se atraem tanto entre si que não deixam o óleo entrar', 'Porque o óleo é quente']}
+/>
+
+Nesta cápsula você vai ver como o formato da molécula decide se ela é polar, quais são as forças entre moléculas (incluindo a famosa ligação de hidrogênio), por que a água é tão especial, como o sabão limpa a gordura e por que o gelo boia.
+
+</Etapa>
+
+<Etapa id="historia">
+
+As ligações dentro das moléculas já eram conhecidas em 1916. Faltava entender o que acontecia **entre** as moléculas. Para isso, foi preciso explicar por que uma molécula tão pequena como a da água tem comportamentos tão incomuns.
+
+<LinhaDoTempo marcos={[
+  { ano: '1873', texto: 'Van der Waals propõe que existem forças fracas entre moléculas, que explicam por que os gases se comportam de forma diferente do ideal.' },
+  { ano: '1920', texto: 'Latimer e Rodebush descrevem a ligação de hidrogênio, para explicar propriedades da água.' },
+  { ano: '1930', texto: 'Fritz London explica, com a mecânica quântica, as forças entre moléculas apolares.' },
+  { ano: '1932', texto: 'Pauling cria a escala de eletronegatividade, base para entender polaridade.' },
+  { ano: '1936', texto: 'Peter Debye ganha o Nobel de Química, em parte por seus estudos de momentos de dipolo das moléculas.' },
+  { ano: '1957', texto: 'Gillespie e Nyholm popularizam a teoria VSEPR, que prevê a forma das moléculas.' },
+]} />
+
+## Van der Waals e os gases "de verdade"
+
+Em 1873, o holandês **Johannes van der Waals** percebeu que os gases reais não obedecem exatamente à lei dos gases ideais, principalmente quando estão muito comprimidos ou muito frios. A razão: as moléculas se **atraem** um pouco, mesmo sem estarem ligadas. Essas atrações fracas entre moléculas passaram a ser chamadas de **forças de van der Waals**. Ele ganhou o Nobel de Física de 1910 por isso.
+
+## A água e o hidrogênio
+
+Por que a água ferve a 100 °C, se moléculas de tamanho parecido, como o metano, fervem a −162 °C? Em 1920, **Latimer e Rodebush** propuseram que o hidrogênio, quando ligado a um átomo muito eletronegativo como o oxigênio, fica tão "descoberto" que atrai o oxigênio de **outra molécula**. Essa atração forte é a <Termo cor="verde">ligação de hidrogênio</Termo>, e é a responsável pelo comportamento da água.
+
+## Por que moléculas apolares também se atraem?
+
+Moléculas apolares, como o metano ou o oxigênio, não têm polos fixos. Mesmo assim, elas se atraem tão bem que viram líquido quando esfriadas. Em 1930, **Fritz London** mostrou que os elétrons estão sempre se movendo, e, num instante qualquer, a nuvem de elétrons fica um pouco mais para um lado, criando um **polo temporário**, que induz um polo na molécula vizinha. São as **forças de dispersão de London**, as mais fracas, mas universais: existem entre qualquer molécula.
+
+## A forma que dá a polaridade
+
+Em 1957, **Ronald Gillespie e Ronald Nyholm** popularizaram a teoria **VSEPR** (do inglês, "repulsão dos pares de elétrons da camada de valência"). A ideia é simples: pares de elétrons se repelem, então, em volta de um átomo central, eles se afastam o máximo possível. Isso permite **prever a forma** da molécula, e a forma é metade da história da polaridade.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Uma molécula pode ser um ímã minúsculo
+
+Na cápsula anterior vimos que, em uma ligação covalente, o átomo mais eletronegativo **puxa** o par de elétrons. Na água, o oxigênio puxa os elétrons dos dois hidrogênios, e acaba **um pouco negativo** (usamos δ−, "delta menos"), enquanto os hidrogênios ficam **um pouco positivos** (δ+). A molécula passa a ter um lado negativo e outro positivo: é um <Termo cor="azul">dipolo</Termo>.
+
+## 2. Mas depende do formato
+
+Ter ligações polares **não basta**. Os "puxões" são como forças: se dois puxões iguais vão em sentidos **opostos**, eles se anulam. É o caso do gás carbônico: cada ligação C=O é polar, mas a molécula é uma linha reta, e os dois oxigênios puxam para lados contrários. O resultado: **zero**. Já na água, a molécula é dobrada (em "V"), e os dois puxões **somam**. Então:
+
+**molécula polar = ligações polares + formato que não anula os puxões**.
+
+<Brincando titulo="Polaridade: o cabo de guerra">
+
+Dois times puxam uma corda. Se os dois têm a mesma força e puxam para lados opostos, a corda não sai do lugar (apolar). Se um time é mais forte, a corda corre para o lado dele (ligação polar). Agora, três pessoas puxando uma corda em direções diferentes, como numa estrela: se elas têm a mesma força e estão distribuídas por igual, o nó no centro também fica parado. A molécula é polar quando, no total, **alguém ganha** o cabo de guerra.
+
+</Brincando>
+
+## 3. Semelhante dissolve semelhante
+
+Uma regra prática de laboratório e de cozinha: **polar dissolve polar, apolar dissolve apolar**. Sal e açúcar se dissolvem em água (polar). Óleo e gordura se dissolvem em gasolina e em solventes apolares. Um não dissolve o outro, porque cada tipo de molécula prefere ficar perto das iguais.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="O gás carbônico (CO₂) tem duas ligações C=O, que são polares. A molécula inteira é polar ou apolar?"
+  opcoes={['Polar, porque tem ligações polares', 'Apolar, porque a forma é uma linha reta e as ligações se anulam', 'Depende da temperatura']}
+  correta={1}
+  explicacao="O CO₂ é linear: os dois oxigênios puxam em sentidos opostos e os puxões se cancelam. A molécula inteira é apolar, mesmo com ligações polares."
+>
+
+Escolha a molécula, faça seu palpite e veja o porquê:
+
+<PolarOuApolar />
+
+A regra é sempre a mesma: olhe se as ligações são polares e depois se a forma da molécula anula os puxões.
+
+Agora volte ao palpite do começo. Por que o óleo não se mistura com a água?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Porque o óleo é mais leve, e só por isso', 'Porque as moléculas de água se atraem tanto entre si que não deixam o óleo entrar', 'Porque o óleo é quente']}
+  correta={1}
+  seAcertou="Isso: a água é polar e faz ligações de hidrogênio entre as próprias moléculas. O óleo, apolar, não participa dessas atrações, e acaba empurrado para fora. A densidade só decide quem fica por cima."
+  seErrou="O certo é a segunda: as moléculas de água (polares, com ligações de hidrogênio) se atraem muito entre si, e o óleo apolar não entra nessa atração. Ser mais leve só decide quem fica por cima, não se vão se misturar."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## A forma das moléculas
+
+O formato de uma molécula depende de **quantos grupos de elétrons** (ligações e pares sozinhos) há em volta do átomo central. Como eles se repelem, ficam o mais longe possível:
+
+- **2 grupos:** linear, 180°. Exemplo: **CO₂** (O=C=O).
+- **3 grupos:** triangular plana, 120°. Exemplo: BF₃.
+- **4 grupos:** tetraédrica, cerca de **109,5°**. Exemplo: **CH₄** (metano).
+- **4 grupos com 1 par sozinho:** piramidal, cerca de **107°**. Exemplo: **NH₃** (amônia).
+- **4 grupos com 2 pares sozinhos:** angular, cerca de **104,5°**. Exemplo: **H₂O** (água).
+
+Os **pares sozinhos** ocupam espaço e empurram as ligações, por isso o ângulo da água é um pouco menor que o do metano.
+
+<Brincando titulo="Formato: balões amarrados">
+
+Amarre quatro balões de festa pelos bicos. Eles se acomodam sozinhos, cada um o mais longe possível dos outros, formando um **tetraedro**. Troque um balão por um balão-gordo (um par de elétrons sozinho, que ocupa mais espaço): ele empurra os vizinhos, e o ângulo entre eles diminui um pouco. É a explicação da pirâmide na amônia e do "V" na água.
+
+</Brincando>
+
+<ExemploResolvido titulo="Por que o CO₂ é apolar e o H₂O é polar, se os dois têm ligações polares?">
+  <Passo>CO₂ é **linear**: os dois puxões do oxigênio apontam em sentidos opostos e se **anulam**. Molécula apolar.</Passo>
+  <Passo>H₂O é **angular** (cerca de 104,5°): os dois puxões formam um "V" e **se somam**, apontando para o lado do oxigênio. Molécula polar.</Passo>
+  <Passo>Conclusão: o que decide é a **forma**, e não só as ligações.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas ligações C–Cl polares há na molécula de CCl₄?" resposta="4" dica="O carbono se liga a quatro cloros." resolucao="4 ligações C–Cl (e a molécula ainda assim é apolar, por ser simétrica)." />
+
+<Exercicio enunciado="Das moléculas H₂, CO₂, CH₄, H₂O e NH₃, quantas são apolares?" resposta="3" dica="Veja a simulação: H₂, CO₂ e CH₄ são apolares." resolucao="H₂, CO₂ e CH₄: 3 moléculas apolares." />
+
+<Exercicio enunciado="O ângulo do metano é 109,5° e o da água é 104,5°. Qual a diferença, em graus?" resposta="5" dica="109,5 − 104,5." resolucao="109,5 − 104,5 = 5°." />
+
+<Exercicio enunciado="Qual a diferença de eletronegatividade entre N (3,0) e H (2,2)?" resposta="0,8" dica="3,0 − 2,2." resolucao="3,0 − 2,2 = 0,8: ligação polar." />
+
+## Molécula polar ou apolar: como decidir
+
+Para decidir, siga três perguntas:
+
+1. **As ligações são polares?** Se todas forem apolares (átomos iguais ou muito parecidos, como H₂ ou CH₄), a molécula é apolar.
+2. **Qual é a forma?** Desenhe a molécula. Veja se tem simetria.
+3. **Os puxões se anulam?** Se sim (CO₂, CCl₄), a molécula é apolar. Se não (H₂O, NH₃, HCl), é polar.
+
+<ExemploResolvido titulo="A molécula de HCl é polar ou apolar?">
+  <Passo>A ligação H–Cl tem diferença de eletronegatividade de 3,2 − 2,2 = 1,0: **polar**.</Passo>
+  <Passo>Só há **uma** ligação, então não há outra para anular o puxão.</Passo>
+  <Passo>Conclusão: a molécula é **polar**, com o cloro mais negativo.</Passo>
+</ExemploResolvido>
+
+<Aprofundar titulo="O momento de dipolo">
+
+A polaridade pode ser **medida**. O **momento de dipolo** é o produto da carga parcial pela distância entre os polos, e é dado numa unidade chamada **debye**, em homenagem a Peter Debye. A água tem cerca de **1,85 D**, e o gás carbônico, **zero**, apesar das ligações polares. A medida mostra, na prática, o que a geometria prevê: quanto maior o valor, mais "ímã" é a molécula. Debye ganhou o Nobel de Química de 1936.
+
+</Aprofundar>
+
+## As forças entre as moléculas
+
+Dentro de uma molécula, os átomos estão ligados por ligações covalentes (fortes). **Entre** moléculas há atrações bem mais fracas, as **forças intermoleculares**. São elas que decidem se uma substância é gás, líquido ou sólido, e a que temperatura ela ferve. Há três tipos principais:
+
+- **Forças de dispersão de London:** existem entre **todas** as moléculas, mas são as únicas entre as apolares. Crescem com o **tamanho** da molécula (mais elétrons, mais fácil de distorcer a nuvem).
+- **Dipolo-dipolo:** entre moléculas polares: o lado positivo de uma atrai o negativo da vizinha.
+- **Ligação de hidrogênio:** um caso especial e forte de dipolo-dipolo, em que um **H** ligado a **F, O ou N** é atraído por um **F, O ou N** de outra molécula.
+
+Em geral, a ordem de força é: **ligação de hidrogênio > dipolo-dipolo > London**, para moléculas de tamanho parecido. Quanto mais fortes as atrações, mais **energia** é preciso para separar as moléculas, e mais alto é o **ponto de ebulição**.
+
+<ForcasEEbulicao />
+
+<Brincando titulo="Forças entre moléculas: abraço, aperto de mão e encostão">
+
+A ligação de hidrogênio é um **abraço forte**: a molécula só se solta com muita energia. O dipolo-dipolo é um **aperto de mão**: firme, mas dá para soltar. E a força de London é um **encostão leve**, quase um esbarrão, que existe entre todos. Uma substância cujas moléculas se abraçam (como a água) precisa de muito calor para virar gás. Uma cujas moléculas só se esbarram (como o metano) vira gás à toa.
+
+</Brincando>
+
+<ExemploResolvido titulo="Por que a água ferve a 100 °C, e o metano, de massa parecida, ferve a −162 °C?">
+  <Passo>Metano (CH₄, 16 g/mol) é **apolar**: só tem forças de London, bem fracas.</Passo>
+  <Passo>Água (H₂O, 18 g/mol) é polar e faz **ligações de hidrogênio**: cada molécula se "abraça" a até 4 vizinhas.</Passo>
+  <Passo>Para ferver, é preciso vencer essas atrações. A água precisa de muito mais energia, e ferve **262 °C acima** do metano.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="A água ferve a 100 °C e o metano a −162 °C. Quantos graus separam os dois pontos de ebulição?" resposta="262" dica="100 − (−162)." resolucao="100 + 162 = 262 °C." />
+
+<Exercicio enunciado="A água ferve a 100 °C e o H₂S a −60 °C. Qual a diferença, em graus?" resposta="160" dica="100 + 60." resolucao="100 − (−60) = 160 °C." />
+
+<Exercicio enunciado="Cada molécula de água pode fazer até 4 ligações de hidrogênio, e cada ligação é compartilhada entre 2 moléculas. Qual o número máximo de ligações entre 10 moléculas?" resposta="20" dica="10 × 4 ÷ 2." resolucao="10 × 4 = 40 pontas, e cada ligação usa 2 pontas: 40 ÷ 2 = 20 ligações." />
+
+<Aprofundar titulo="Lagartixas e as forças de London">
+
+A lagartixa-gecko consegue andar no teto de vidro. Sob os dedos dela há bilhões de pelinhos microscópicos. Cada pelinho encosta numa superfície quase molécula a molécula, e a soma de uma quantidade enorme de forças de London (fracas, individualmente) basta para sustentar o bicho. Em 2002, uma equipe liderada por Kellar Autumn mostrou que a aderência vem dessas forças, e não de cola, nem de sucção. É um exemplo de que "fraco" vezes "muito" pode virar "forte".
+
+</Aprofundar>
+
+## Polar dissolve polar
+
+A regra "semelhante dissolve semelhante" vem das forças entre moléculas. Para dissolver, as moléculas do solvente têm que se atrair pelas do soluto **tão bem quanto** se atraem entre si.
+
+- **Água** (polar): dissolve sal, açúcar, álcool, vinagre. Cada soluto recebe uma "capa" de moléculas de água, atraídas pelos polos. Isso se chama **hidratação**.
+- **Gasolina, óleo e solventes apolares:** dissolvem gorduras, ceras, tintas a óleo e iodo.
+- **Água e óleo** não se misturam: as moléculas de água preferem ficar abraçadas entre si, e empurram o óleo.
+
+<SemelhanteDissolveSemelhante />
+
+O **álcool** (etanol) é um caso especial: tem um pedaço polar (o grupo O–H) e outro apolar (a cadeia de carbonos). Como a parte apolar é pequena, ele se mistura com a água em qualquer proporção. Já o óleo de cozinha, com cadeias de carbono enormes, não se mistura.
+
+<Brincando titulo="Semelhante dissolve semelhante: a festa de turmas">
+
+Numa festa, os fãs de futebol se juntam num canto e os de dança, em outro. Se alguém entra na turma do futebol falando de futebol, é recebido na hora. Se aparece alguém que só fala de dança, fica sozinho. Moléculas são iguais: polares se agrupam com polares e apolares, com apolares. O óleo é o "convidado de dança" na festa da água.
+
+</Brincando>
+
+<ExemploResolvido titulo="Uma mancha de gordura numa camisa: água ou um solvente apolar?">
+  <Passo>A gordura é **apolar**.</Passo>
+  <Passo>A água é **polar** e não dissolve gordura.</Passo>
+  <Passo>Um solvente apolar (como a gasolina ou o removedor) dissolveria, mas é perigoso. O jeito prático e seguro é usar **sabão**, que veremos já.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Num álcool 70%, de cada 100 mL da mistura, 70 mL são de etanol. Quantos mL de etanol há em 200 mL?" resposta="140" dica="70% de 200." resolucao="0,70 × 200 = 140 mL." />
+
+## O sabão: uma ponte entre dois mundos
+
+Como tirar gordura da louça com água? A água não dissolve gordura, mas o **sabão** (e o detergente) consegue, porque as moléculas dele são **polares num lado e apolares no outro**:
+
+- Uma **cabeça polar** (ou iônica), que gosta de água.
+- Uma **cauda longa apolar**, que gosta de gordura.
+
+Ao entrar na água com gordura, as caudas se enfiam na gordura e as cabeças ficam para fora, na água. A gordura é cercada e se torna uma pequena bolinha chamada **micela**, que a água leva embora no enxágue. Moléculas assim, que têm as duas "personalidades", são chamadas **tensoativos** ou **surfactantes**.
+
+<SaboELimpa />
+
+<Brincando titulo="Sabão: o intérprete">
+
+Duas pessoas que falam línguas diferentes não se entendem. Então chega um **intérprete**, que fala as duas. O sabão é o intérprete entre a água e a gordura: tem uma ponta que "fala água" e outra que "fala gordura". Assim, os dois se encontram e a sujeira vai embora.
+
+</Brincando>
+
+<ExemploResolvido titulo="Por que água quente sozinha limpa pior que água com sabão?">
+  <Passo>A água quente derrete um pouco a gordura, mas **não** a dissolve.</Passo>
+  <Passo>O sabão tem caudas que se ligam à gordura e cabeças que se ligam à água.</Passo>
+  <Passo>Formam-se micelas que são arrastadas pela água. Sem sabão, a gordura só se espalha.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma molécula de sabão tem quantas partes com afinidades diferentes (cabeça polar e cauda apolar)?" resposta="2" dica="Cabeça e cauda." resolucao="Duas: a cabeça que gosta de água e a cauda que gosta de gordura." />
+
+<Exercicio enunciado="Quantos anos se passaram entre Van der Waals propor as forças fracas entre moléculas (1873) e London explicar as forças entre apolares (1930)?" resposta="57" dica="1930 − 1873." resolucao="1930 − 1873 = 57 anos." />
+
+<Aprofundar titulo="Os sabões de um jeito antigo">
+
+Há registros de **sabão** de milhares de anos, feito pela mistura de gordura animal com cinzas de madeira. As cinzas dão uma base (soda) que reage com a gordura numa reação chamada **saponificação**, e o produto é o sabão. Hoje, os detergentes comuns são feitos de outras moléculas, mas seguem o mesmo princípio: uma cabeça polar e uma cauda apolar. Eles têm uma vantagem: funcionam bem mesmo em água dura.
+
+</Aprofundar>
+
+## A água é uma molécula esquisita
+
+A polaridade da água dá a ela propriedades fora do comum, que a vida usa:
+
+- **Solvente universal:** dissolve muitas substâncias, o que permite as reações dentro das células e o transporte no sangue.
+- **Ponto de ebulição alto:** é líquida na temperatura ambiente. Sem as ligações de hidrogênio, ferveria perto de −80 °C, e não haveria oceanos.
+- **Calor específico alto:** precisa de muita energia para esquentar. Os oceanos e o nosso corpo (cerca de 60% de água) mudam de temperatura devagar.
+- **Tensão superficial:** as moléculas da superfície se puxam para dentro, formando uma "pele". Alguns insetos caminham sobre a água.
+- **O gelo boia:** é a mais curiosa.
+
+## O gelo boia
+
+Quase todas as substâncias são **mais densas no estado sólido** do que no líquido, porque as partículas ficam mais juntas. A água é uma exceção. No gelo, as ligações de hidrogênio prendem as moléculas em **anéis hexagonais abertos**, com muito espaço vazio. Na água líquida, a rede se desmancha um pouco e as moléculas se aproximam. Resultado: o gelo é cerca de **9% menos denso** (0,92 g/cm³ contra 1,00 g/cm³).
+
+<GeloBoia />
+
+Isso tem uma consequência enorme: nos lagos de lugares frios, o gelo se forma **na superfície** e fica ali, fazendo uma tampa isolante. Embaixo, a água segue líquida, e os peixes sobrevivem ao inverno. Se o gelo afundasse, os lagos congelariam de baixo para cima.
+
+<Brincando titulo="Gelo: a cadeira vazia">
+
+Numa sala, as pessoas ficam espaçadas quando cada uma segura as mãos das vizinhas, com os braços esticados (o gelo). Quando soltam as mãos e relaxam, ficam mais juntas (a água líquida). No fim, cabe mais gente na mesma sala. O gelo "ocupa mais espaço" para o mesmo número de moléculas, e é por isso que boia.
+
+</Brincando>
+
+<ExemploResolvido titulo="Um litro de água (1.000 mL) congela. Quanto de gelo se forma, sabendo que o volume aumenta cerca de 9%?">
+  <Passo>9% de 1.000 mL = **90 mL**.</Passo>
+  <Passo>Volume do gelo: 1.000 + 90 = **1.090 mL**.</Passo>
+  <Passo>É por isso que uma garrafa cheia de água estoura no congelador, e que canos podem rachar no inverno.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O volume da água aumenta cerca de 9% ao congelar. Quantos mL de gelo se formam a partir de 1.000 mL de água?" resposta="1090" dica="1.000 + 9% de 1.000." resolucao="1.000 + 90 = 1.090 mL." />
+
+<Exercicio enunciado="O gelo tem densidade de cerca de 0,92 g/cm³. Quantos gramas pesam 1.000 cm³ de gelo?" resposta="920" dica="0,92 × 1.000." resolucao="0,92 × 1.000 = 920 g." />
+
+<Aprofundar titulo="A água é mais densa a 4 °C">
+
+A água líquida **não** é mais densa quando está mais fria. Ela atinge a densidade máxima perto de **4 °C**. Abaixo disso, as moléculas começam a se organizar na estrutura aberta do gelo e a densidade cai. Por isso, num lago no inverno, a água a 4 °C afunda e fica no fundo, e a mais fria (perto de 0 °C) fica na superfície, onde congela. Os seres vivos que ficam no fundo têm uma "casa" que não passa de 4 °C.
+
+</Aprofundar>
+
+## Onde isso aparece na vida
+
+- **Lavar louça e roupa:** sabão e detergente são tensoativos.
+- **Maionese e leite:** são emulsões, em que gotinhas de óleo ficam espalhadas na água com ajuda de moléculas que têm uma parte polar e outra apolar (como a lecitina da gema do ovo).
+- **Álcool em gel:** o álcool mistura com a água e dissolve a gordura da superfície de micróbios.
+- **Cozinha:** sal e açúcar dissolvem na água do café, mas não no óleo.
+- **Corpo humano:** as membranas das células são feitas de moléculas com cabeça polar e cauda apolar, como o sabão.
+- **DNA:** as duas fitas se mantêm unidas por ligações de hidrogênio entre as bases (A–T e C–G).
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'O que faz uma molécula ser polar?',
+    opcoes: ['Ligações polares e um formato que não anula os puxões', 'Só ter muitos átomos', 'Ser líquida'],
+    correta: 0,
+    explicacao: 'É preciso ter ligações polares e uma geometria em que os puxões não se cancelem.',
+  },
+  {
+    enunciado: 'Por que o CO₂ é apolar?',
+    opcoes: ['Porque as ligações C=O são apolares', 'Porque é linear e os dois puxões se anulam', 'Porque é gás'],
+    correta: 1,
+    explicacao: 'As ligações C=O são polares, mas a forma linear faz os puxões se anularem.',
+  },
+  {
+    enunciado: 'Qual a forma da molécula de água?',
+    opcoes: ['Linear', 'Angular (cerca de 104,5°)', 'Tetraédrica'],
+    correta: 1,
+    explicacao: 'O oxigênio tem dois pares sozinhos, que empurram os hidrogênios e formam um "V".',
+  },
+  {
+    enunciado: 'Qual a regra "semelhante dissolve semelhante"?',
+    opcoes: ['Polar dissolve polar e apolar dissolve apolar', 'Polar dissolve apolar', 'Tudo dissolve em água'],
+    correta: 0,
+    explicacao: 'Moléculas parecidas se atraem e se misturam, e as diferentes se separam.',
+  },
+  {
+    enunciado: 'O que acontece com óleo na água?',
+    opcoes: ['Dissolve', 'Fica em camadas, sem se misturar', 'Reage e vira sabão'],
+    correta: 1,
+    explicacao: 'O óleo é apolar, e a água é polar. Não se misturam.',
+  },
+  {
+    enunciado: 'Qual força intermolecular é a mais forte, entre moléculas de tamanho parecido?',
+    opcoes: ['London', 'Dipolo-dipolo', 'Ligação de hidrogênio'],
+    correta: 2,
+    explicacao: 'A ligação de hidrogênio (H ligado a F, O ou N) é a mais forte das três.',
+  },
+  {
+    enunciado: 'Por que a água ferve a 100 °C e o metano a −162 °C, tendo massas parecidas?',
+    opcoes: ['A água faz ligações de hidrogênio; o metano só tem forças de London', 'A água é mais pesada', 'O metano é líquido'],
+    correta: 0,
+    explicacao: 'Quanto mais fortes as atrações entre as moléculas, mais energia é preciso para ferver.',
+  },
+  {
+    enunciado: 'Para que átomos a ligação de hidrogênio aparece (H ligado a...)?',
+    opcoes: ['C, S ou P', 'F, O ou N', 'Na, K ou Ca'],
+    correta: 1,
+    explicacao: 'O hidrogênio precisa estar ligado a um átomo pequeno e muito eletronegativo: F, O ou N.',
+  },
+  {
+    enunciado: 'Como o sabão remove gordura?',
+    opcoes: ['A cauda apolar se liga à gordura e a cabeça polar à água, formando micelas', 'Derrete a gordura', 'Reage com a água e vira gás'],
+    correta: 0,
+    explicacao: 'As micelas, bolinhas de gordura cercadas por cabeças de sabão, são carregadas pela água.',
+  },
+  {
+    enunciado: 'Por que o gelo boia na água?',
+    opcoes: ['Porque é mais frio', 'Porque tem estrutura aberta e é cerca de 9% menos denso', 'Porque tem ar dentro'],
+    correta: 1,
+    explicacao: 'Na água, as ligações de hidrogênio formam anéis hexagonais abertos no gelo, com espaço vazio.',
+  },
+  {
+    enunciado: 'Quantos mL de gelo se formam a partir de 1.000 mL de água (aumento de 9%)?',
+    opcoes: ['910 mL', '1.090 mL', '1.900 mL'],
+    correta: 1,
+    explicacao: '1.000 + 90 = 1.090 mL.',
+  },
+  {
+    enunciado: 'Qual dessas moléculas é polar?',
+    opcoes: ['CH₄', 'CO₂', 'NH₃'],
+    correta: 2,
+    explicacao: 'A amônia é piramidal, com ligações N–H polares que não se anulam. CH₄ e CO₂ são simétricas.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Polar:** ligações polares + forma que não anula os puxões (H₂O, NH₃, HCl). **Apolar:** H₂, CH₄, e também CO₂ e CCl₄, apesar das ligações polares, por serem simétricas.
+- **Forma (VSEPR):** pares de elétrons se repelem. CO₂ linear (180°), CH₄ tetraédrica (109,5°), NH₃ piramidal (107°), H₂O angular (104,5°).
+- **Forças entre moléculas:** London (todas, cresce com o tamanho) < dipolo-dipolo < ligação de hidrogênio (H ligado a F, O ou N). Mais forte, ponto de ebulição mais alto.
+- **Semelhante dissolve semelhante:** polar com polar, apolar com apolar. Óleo e água não se misturam.
+- **Sabão:** cabeça polar e cauda apolar, formando micelas em torno da gordura.
+- **Água:** ponto de ebulição alto, solvente, tensão superficial, e o gelo boia (cerca de 9% menos denso, por causa da rede de ligações de hidrogênio).
+
+**Um pouco de história.** Van der Waals (1873) propôs forças fracas entre moléculas. Latimer e Rodebush (1920) descreveram a ligação de hidrogênio, London (1930) explicou a dispersão entre apolares, Pauling (1932) deu a escala de eletronegatividade e Gillespie e Nyholm (1957) popularizaram a teoria das formas moleculares (VSEPR).
+
+</Resumo>
+
+A polaridade explica quem se mistura, quem ferve e quem limpa. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>
