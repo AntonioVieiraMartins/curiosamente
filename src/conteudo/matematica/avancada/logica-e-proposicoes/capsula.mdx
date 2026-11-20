@@ -1,0 +1,496 @@
+import ProposicaoOuNao from '../../../../components/simulacoes/ProposicaoOuNao'
+import PortasLogicasAoVivo from '../../../../components/simulacoes/PortasLogicasAoVivo'
+import TabelaDoConectivo from '../../../../components/simulacoes/TabelaDoConectivo'
+import PromessaSeEntao from '../../../../components/simulacoes/PromessaSeEntao'
+import CartasDeWason from '../../../../components/simulacoes/CartasDeWason'
+import QuatroVersoesDoSeEntao from '../../../../components/simulacoes/QuatroVersoesDoSeEntao'
+import DeMorganDoCafe from '../../../../components/simulacoes/DeMorganDoCafe'
+import ArgumentoValidoOuNao from '../../../../components/simulacoes/ArgumentoValidoOuNao'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Propositional calculus, Truth table, De Morgan's laws, Wason selection task, Boolean algebra, Claude Shannon), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Você sabe que **se chove, a rua molha**. Hoje você sai de casa e vê a rua toda molhada. Então choveu, certo?
+
+Parece óbvio. Mas pense em quem lavou a calçada com mangueira, num caminhão-pipa passando, num cano estourado. A frase dizia que a chuva **leva** à rua molhada. Não disse que a rua molhada só vem da chuva. Esse tipo de escorregão é comum e custa caro: em discussões, em propagandas e até em decisões de trabalho. A <Termo cor="azul">lógica</Termo> é o ramo da matemática que ensina a **raciocinar sem tropeçar**.
+
+<Palpite
+  chave="inicial"
+  pergunta="Sabemos que 'se chove, a rua molha'. A rua está molhada. O que dá para concluir?"
+  opcoes={['Choveu, com certeza', 'Não dá para ter certeza', 'Não choveu']}
+/>
+
+Nesta cápsula você vai aprender a separar o que é e o que não é uma proposição, a combinar frases com **e**, **ou**, **não**, **se... então**, a montar tabelas-verdade e a testar se um argumento é de verdade válido. No fim, vai ver como essa lógica vira circuito dentro do computador.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Desde que existe discussão, existe gente tentando separar o argumento bom do argumento furado. Os gregos foram os primeiros a escrever as regras.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Século 4 a.C.', texto: 'Aristóteles, na Grécia, estuda os silogismos: argumentos como "todo gato é mamífero, Mimi é gato, logo Mimi é mamífero".' },
+  { ano: 'Século 3 a.C.', texto: 'Os estoicos, como Crisipo, estudam a lógica das frases inteiras ligadas por "se", "e" e "ou".' },
+  { ano: 'Século 17', texto: 'Leibniz sonha com uma linguagem de símbolos em que discutir seja tão seguro quanto calcular.' },
+  { ano: '1847 e 1854', texto: 'George Boole escreve a lógica como uma álgebra, e Augustus De Morgan formaliza as leis que levam o nome dele.' },
+  { ano: '1879', texto: 'Gottlob Frege publica a Conceitografia (Begriffsschrift), a base da lógica moderna.' },
+  { ano: '1937', texto: 'Claude Shannon, em sua tese no MIT, mostra que a álgebra de Boole descreve circuitos de chaves.' },
+]} />
+
+## Aristóteles e os argumentos que sempre funcionam
+
+Aristóteles notou que alguns argumentos são bons **pela forma**, não pelo assunto. Se todo A é B e todo B é C, então todo A é C, quer A, B e C sejam gatos, números ou planetas. Ele listou os formatos válidos, os **silogismos**, e por mais de dois mil anos esse foi o coração da lógica ocidental.
+
+## Leibniz e o sonho do cálculo
+
+No século 17, Gottfried Leibniz imaginou que as ideias podiam ser escritas com símbolos e que as discussões se resolveriam "calculando". Não conseguiu terminar o projeto. Mas deixou a semente da ideia de que raciocinar pode ser feito com regras mecânicas.
+
+## Boole: lógica vira álgebra
+
+Em 1847 e 1854, o inglês George Boole mostrou que dá para tratar verdadeiro como 1 e falso como 0 e fazer contas com eles: "e" parece uma multiplicação e "ou" parece uma soma, com algumas regras próprias. Era uma álgebra nova. Quase um século depois, ela ia virar o motor dos computadores.
+
+## Shannon: a lógica vai para os fios
+
+Em 1937, o estudante Claude Shannon percebeu que um interruptor ligado ou desligado é um verdadeiro ou falso. Interruptores em série fazem um "e". Interruptores em paralelo fazem um "ou". A álgebra de Boole servia para **projetar circuitos**. Foi um dos passos que levaram aos computadores digitais.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Proposição: a frase que dá para julgar
+
+Uma <Termo cor="azul">proposição</Termo> é uma frase que pode ser julgada **verdadeira** (V) ou **falsa** (F), e só uma das duas. "7 é primo" é uma proposição verdadeira. "2 + 2 = 5" é uma proposição falsa. Já "Que horas são?" (pergunta) e "Feche a porta" (ordem) não são: não faz sentido perguntar se são verdadeiras.
+
+<Brincando titulo="Proposição: a frase que o juiz pode apitar">
+
+Imagine um juiz que só sabe apitar duas coisas: "certo" ou "errado". Ele consegue julgar "a bola entrou no gol". Mas não sabe o que fazer com "Que lindo jogo!" ou "Chute logo!". Só as frases que o juiz consegue apitar são proposições.
+
+</Brincando>
+
+## 2. Conectivos: a cola entre as frases
+
+Com uma proposição só não se faz muita coisa. A lógica ganha força quando **ligamos** proposições: "chove **e** faz frio", "estudo **ou** treino", "**se** chove, **então** a rua molha", "**não** chove". As palavras de ligação são os <Termo cor="coral">conectivos</Termo>. O valor da frase inteira (V ou F) depende só dos valores das partes. Por isso dá para mostrar tudo numa **tabela-verdade**.
+
+## 3. V e F são como 1 e 0
+
+Se você trocar V por 1 e F por 0, as frases viram números, e a lógica vira conta. É o que Boole fez e o que o computador faz o tempo todo.
+
+<Brincando titulo="V e F: o interruptor">
+
+Uma lâmpada tem dois estados: acesa (V, 1) ou apagada (F, 0). Uma frase lógica é como uma pequena lâmpada que está de um jeito ou de outro. Os conectivos dizem **como combinar** várias lâmpadas para acender uma nova.
+
+</Brincando>
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Regra: 'Se uma carta tem uma vogal de um lado, então tem um número par do outro.' Há quatro cartas na mesa, mostrando A, K, 4 e 7. Quais você precisa virar para ter certeza de que a regra vale?"
+  opcoes={['A e 4', 'A e 7', 'Só o A']}
+  correta={1}
+  explicacao="O A (vogal) precisa mostrar par atrás. O 7 (ímpar) não pode ter vogal atrás. O 4 não precisa: a regra não diz que só vogais têm par. Quase todo mundo escolhe o 4 por engano."
+>
+
+Escolha as cartas e confira:
+
+<CartasDeWason />
+
+Esse problema foi proposto pelo psicólogo Peter Wason em 1966, e muita gente erra. Ele mostra que nosso instinto procura **confirmar** a regra (virar o 4 para ver uma vogal), quando o certo é procurar o que poderia **quebrar** a regra (virar o 7).
+
+Agora o palpite do começo. Com "se chove, a rua molha" e a rua molhada, dá para concluir que choveu?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Choveu, com certeza', 'Não dá para ter certeza', 'Não choveu']}
+  correta={1}
+  seAcertou="Certo: não dá para ter certeza. É o mesmo erro de virar o 4. A rua molhada é compatível com chuva, mas também com caminhão-pipa ou mangueira."
+  seErrou="O certo é: não dá para ter certeza. A frase diz que chover leva a rua molhada. Não diz que só a chuva molha a rua. Concluir 'choveu' é o erro de afirmar o consequente."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Proposições e sentenças que não são
+
+Para ser proposição, a frase precisa ter **um** valor lógico, V ou F. Ficam de fora:
+
+- **Perguntas** ("Que horas são?"), **ordens** ("Feche a porta") e **exclamações** ("Que dia lindo!").
+- **Sentenças abertas**, que dependem de uma letra ainda sem valor: "x + 1 = 5" é verdadeira para x = 4 e falsa para qualquer outro valor.
+
+Frases falsas continuam sendo proposições. O que importa é **poder ser julgada**, e não ser verdadeira.
+
+<ProposicaoOuNao />
+
+<ExemploResolvido titulo="Quais destas frases são proposições? (a) 9 é par. (b) Quantos anos você tem? (c) 5 + 3 = 8. (d) y é maior que 2.">
+  <Passo>(a) "9 é par" pode ser julgada: é falsa. **É proposição.**</Passo>
+  <Passo>(b) É uma pergunta. **Não é.**</Passo>
+  <Passo>(c) Verdadeira. **É proposição.**</Passo>
+  <Passo>(d) Depende de y (sentença aberta). **Não é.**</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Entre 'Feche a janela', '5 é maior que 3', 'Qual é o seu nome?' e '9 é par', quantas são proposições?" resposta="2" dica="Elimine ordens e perguntas." resolucao="Só '5 é maior que 3' (V) e '9 é par' (F). Total: 2." />
+
+<Exercicio enunciado="Entre 'x + 2 = 7', '3 + 2 = 5', 'Quem ganhou o jogo?' e 'O Sol é uma estrela', quantas são proposições?" resposta="2" dica="Sentença aberta não conta." resolucao="'3 + 2 = 5' e 'O Sol é uma estrela'. Total: 2." />
+
+## Negação: o contrário
+
+A <Termo cor="coral">negação</Termo> de P, escrita ¬P (lê-se "não P"), tem **sempre o valor oposto**: se P é verdadeira, ¬P é falsa, e vice-versa.
+
+- Se P é **V**, então ¬P é **F**.
+- Se P é **F**, então ¬P é **V**.
+
+<Brincando titulo="Negação: o botão de inverter">
+
+Pense num botão que troca ligado por desligado. Apertar duas vezes volta ao começo: ¬(¬P) = P. Negar "está chovendo" dá "não está chovendo", e negar de novo devolve "está chovendo".
+
+</Brincando>
+
+Cuidado: negar não é pegar o **extremo oposto**. A negação de "todo aluno passou" não é "nenhum aluno passou". É só "pelo menos um aluno não passou". Voltamos a isso adiante.
+
+<Exercicio enunciado="P é falsa. ¬P é verdadeira? Responda 1 para sim e 0 para não." resposta="1" dica="A negação inverte." resolucao="Se P é F, então ¬P é V. Resposta: 1." />
+
+## E, ou e as portas lógicas
+
+Dois conectivos básicos ligam duas frases:
+
+- **P ∧ Q** ("P e Q"): só é verdadeira se **as duas** forem verdadeiras.
+- **P ∨ Q** ("P ou Q"): é verdadeira se **pelo menos uma** for verdadeira. Só é falsa se as duas forem falsas.
+
+Na vida, o "ou" às vezes quer dizer "um ou outro, mas não os dois" ("sobremesa: bolo ou sorvete"). A lógica chama isso de **ou exclusivo**. O ∨ comum é o **inclusivo**: aceita os dois.
+
+<Brincando titulo="E e ou: a fechadura e a porta aberta">
+
+Um cofre só abre se você tiver a chave **e** souber a senha: sem uma das duas, nada. Já uma casa com duas portas de entrada abre se você usar a porta da frente **ou** a dos fundos: basta uma. O "e" exige as duas condições. O "ou" se contenta com uma.
+
+</Brincando>
+
+Brinque com chaves e uma lâmpada. Cada tipo de ligação de interruptores é um conectivo:
+
+<PortasLogicasAoVivo />
+
+<ExemploResolvido titulo="Monte a tabela de ¬(P ∧ Q).">
+  <Passo>Liste as 4 combinações de P e Q: VV, VF, FV, FF.</Passo>
+  <Passo>Calcule P ∧ Q em cada uma: V, F, F, F (só VV é verdadeira).</Passo>
+  <Passo>Negue cada resultado: **F, V, V, V**.</Passo>
+  <Passo>Veja: é igual a ¬P ∨ ¬Q. É a primeira lei de De Morgan, que vamos ver já já.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas das 4 linhas da tabela de P ∧ Q são verdadeiras?" resposta="1" dica="Só quando as duas são V." resolucao="Só a linha VV. Total: 1." />
+
+<Exercicio enunciado="Quantas das 4 linhas da tabela de P ∨ Q são verdadeiras?" resposta="3" dica="Só é falsa quando as duas são F." resolucao="VV, VF e FV são verdadeiras; só FF é falsa. Total: 3." />
+
+<Exercicio enunciado="Quantas das 4 linhas da tabela do ou exclusivo (um ou outro, mas não os dois) são verdadeiras?" resposta="2" dica="As linhas em que P e Q são diferentes." resolucao="VF e FV. Total: 2." />
+
+## Tabelas-verdade e quantas linhas elas têm
+
+A **tabela-verdade** lista todas as combinações possíveis de V e F e mostra o valor da frase em cada uma. Com 1 proposição há 2 linhas, com 2 há 4, com 3 há 8: **cada proposição nova dobra as linhas**. Com n proposições, são 2ⁿ linhas.
+
+<Brincando titulo="Tabela-verdade: a árvore de escolhas">
+
+Cada proposição é uma moeda: cara (V) ou coroa (F). Com 1 moeda, 2 resultados. Com 2 moedas, 4. Com 3 moedas, 8. A tabela-verdade é só a **lista de todas as jogadas possíveis**, para você não esquecer nenhuma.
+
+</Brincando>
+
+<Exercicio enunciado="Quantas linhas tem a tabela-verdade de uma frase com 3 proposições diferentes?" resposta="8" dica="2 × 2 × 2." resolucao="2³ = 8 linhas." />
+
+<Exercicio enunciado="Quantas linhas tem a tabela-verdade com 5 proposições diferentes?" resposta="32" dica="2⁵." resolucao="2 × 2 × 2 × 2 × 2 = 32." />
+
+## O condicional: se... então
+
+O conectivo mais traiçoeiro é o <Termo cor="azul">condicional</Termo>, **P → Q** ("se P, então Q"). P é o **antecedente** (a condição) e Q é o **consequente** (o resultado).
+
+A regra: **P → Q só é falsa quando P é verdadeira e Q é falsa**. Em todo o resto é verdadeira.
+
+- P **V** e Q **V**: P → Q é **V** (prometeu e cumpriu).
+- P **V** e Q **F**: P → Q é **F** (prometeu e não cumpriu).
+- P **F** e Q **V**: P → Q é **V** (a condição não ocorreu).
+- P **F** e Q **F**: P → Q é **V** (a condição não ocorreu).
+
+Isso parece estranho: como "se a Lua é de queijo, então 2 + 2 = 5" pode ser verdadeira? O truque é pensar no condicional como uma **promessa**.
+
+<Brincando titulo="Se, então: a promessa da bicicleta">
+
+O pai diz: "Se você passar de ano, ganha uma bicicleta." Quando a promessa é **quebrada**? Só se o filho **passa** e **não ganha** a bicicleta. Se ele não passou, o pai não prometeu nada sobre esse caso: com ou sem bicicleta, ninguém mentiu. Por isso, quando a condição é falsa, a frase é considerada verdadeira: ela não foi quebrada.
+
+</Brincando>
+
+<PromessaSeEntao />
+
+Compare com a tabela, montando você mesmo a dos quatro conectivos:
+
+<TabelaDoConectivo />
+
+<ExemploResolvido titulo="Traduza 'Se chove e faz frio, uso casaco' em símbolos e teste com chove = V, frio = F, casaco = F.">
+  <Passo>Chame P = "chove", Q = "faz frio", R = "uso casaco". A frase é **(P ∧ Q) → R**.</Passo>
+  <Passo>Com P = V e Q = F, o antecedente P ∧ Q é F.</Passo>
+  <Passo>Antecedente falso: a frase é **V**. A promessa não foi testada, então não foi quebrada.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantas das 4 linhas da tabela de P → Q são verdadeiras?" resposta="3" dica="Só V seguido de F quebra." resolucao="Só a linha VF é falsa. Sobram 3 verdadeiras." />
+
+<Exercicio enunciado="P é falsa e Q é verdadeira. P → Q é verdadeira? Responda 1 para sim e 0 para não." resposta="1" dica="Antecedente falso: promessa não testada." resolucao="Quando P é falsa, P → Q é verdadeira. Resposta: 1." />
+
+<Exercicio enunciado="P é verdadeira e Q é falsa. P → Q é verdadeira? Responda 1 para sim e 0 para não." resposta="0" dica="É o único caso que quebra a promessa." resolucao="V → F é falsa. Resposta: 0." />
+
+### Suficiente e necessário
+
+Em "se chove, a rua molha", chover é condição **suficiente** para a rua molhar (basta chover para a rua molhar). Rua molhada é condição **necessária** para chuva (sem a rua molhada, não choveu). Mas a rua molhada **não é suficiente** para concluir chuva. Misturar os dois é o erro do Gancho.
+
+## O bicondicional: se, e somente se
+
+O **bicondicional P ↔ Q** ("P se, e somente se, Q") diz que P e Q andam juntas: **são as duas verdadeiras ou as duas falsas**. Equivale a dizer "P → Q e Q → P". É a lógica de uma definição: "um número é par se, e somente se, é divisível por 2".
+
+<Exercicio enunciado="Quantas das 4 linhas da tabela de P ↔ Q são verdadeiras?" resposta="2" dica="Quando P e Q são iguais." resolucao="VV e FF. Total: 2." />
+
+## As quatro versões de um se... então
+
+A partir de "se P então Q" dá para fazer outras três frases. Só **uma** delas é sempre equivalente à original:
+
+- **Direta:** se P, então Q. (Se chove, a rua molha.)
+- **Recíproca:** se Q, então P. (Se a rua molha, chove.) **Não** é equivalente.
+- **Inversa:** se não P, então não Q. (Se não chove, a rua não molha.) **Não** é equivalente.
+- **Contrapositiva:** se não Q, então não P. (Se a rua não molha, não chove.) **É equivalente** à direta.
+
+<Brincando titulo="Contrapositiva: a prova de que o ladrão não passou">
+
+Se um ladrão tivesse entrado pela porta, ela estaria arrombada. Se a porta **não** está arrombada, então o ladrão **não** entrou por ela. Repare: partindo do "efeito faltando" você conclui que a "causa faltou". Essa volta, de trás para a frente com os dois negados, é a contrapositiva. Ela sempre funciona. Já a volta "a porta está arrombada, logo o ladrão entrou" não vale: pode ter sido outra pessoa, ou o vento.
+
+</Brincando>
+
+<QuatroVersoesDoSeEntao />
+
+<ExemploResolvido titulo="Escreva a contrapositiva de 'Se um número é divisível por 4, então ele é par'.">
+  <Passo>P = "é divisível por 4" e Q = "é par".</Passo>
+  <Passo>A contrapositiva é ¬Q → ¬P: "se o número **não é par**, então **não é divisível por 4**".</Passo>
+  <Passo>Confira: um número ímpar nunca é múltiplo de 4. A frase é verdadeira, como a original. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="A frase P → Q é verdadeira. A contrapositiva ¬Q → ¬P também é? Responda 1 para sim e 0 para não." resposta="1" dica="São equivalentes." resolucao="Sempre têm o mesmo valor. Resposta: 1." />
+
+<Exercicio enunciado="A frase P → Q é verdadeira. A recíproca Q → P é sempre verdadeira? Responda 1 para sim e 0 para não." resposta="0" dica="Lembre da rua molhada e do caminhão-pipa." resolucao="Nem sempre. Resposta: 0." />
+
+## Como negar um se... então
+
+Negar "se P então Q" é dizer que a promessa foi **quebrada**: P aconteceu **e** Q não. Em símbolos: ¬(P → Q) equivale a **P ∧ ¬Q**.
+
+<ExemploResolvido titulo="Qual a negação de 'Se eu estudar, passo na prova'?">
+  <Passo>P = "estudo" e Q = "passo".</Passo>
+  <Passo>A negação é P ∧ ¬Q: "**estudo e não passo**".</Passo>
+  <Passo>Teste: a frase original só é falsa no caso em que a pessoa estudou e não passou. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="P é verdadeira e Q é falsa. A negação ¬(P → Q) é verdadeira? Responda 1 para sim e 0 para não." resposta="1" dica="Aqui P → Q é falsa." resolucao="V → F é falsa, então a negação é verdadeira. Resposta: 1." />
+
+## As leis de De Morgan
+
+Como negar um "e" ou um "ou"? As **leis de De Morgan** mostram que negar **troca o conectivo**:
+
+- ¬(P ∧ Q) = ¬P ∨ ¬Q (negar um "e" vira "ou")
+- ¬(P ∨ Q) = ¬P ∧ ¬Q (negar um "ou" vira "e")
+
+<Brincando titulo="De Morgan: o convite para a festa">
+
+Seu amigo disse: "Não é verdade que você trouxe bolo **e** refrigerante." Então você falhou em pelo menos um: não trouxe bolo **ou** não trouxe refrigerante. Agora ele disse: "Não é verdade que você trouxe bolo **ou** refrigerante." Aí você não trouxe nenhum: sem bolo **e** sem refrigerante. Negar um "e" afrouxa (basta um falhar); negar um "ou" aperta (os dois têm de falhar).
+
+</Brincando>
+
+<DeMorganDoCafe />
+
+<ExemploResolvido titulo="Qual a negação de 'Maria é médica e mora em Recife'?">
+  <Passo>É da forma P ∧ Q.</Passo>
+  <Passo>Pela lei de De Morgan, ¬(P ∧ Q) = ¬P ∨ ¬Q.</Passo>
+  <Passo>Resposta: "**Maria não é médica ou não mora em Recife**".</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Com P verdadeira e Q verdadeira, ¬(P ∧ Q) é verdadeira? Responda 1 para sim e 0 para não." resposta="0" dica="P ∧ Q é V." resolucao="P ∧ Q é V, então a negação é F. Resposta: 0." />
+
+<Exercicio enunciado="Com P falsa e Q falsa, ¬(P ∨ Q) é verdadeira? Responda 1 para sim e 0 para não." resposta="1" dica="P ∨ Q é F." resolucao="P ∨ Q é F, então a negação é V. Resposta: 1." />
+
+## Tautologias e contradições
+
+Algumas frases têm o **mesmo valor em todas as linhas** da tabela:
+
+- **Tautologia:** sempre verdadeira. Exemplo: P ∨ ¬P ("chove ou não chove").
+- **Contradição:** sempre falsa. Exemplo: P ∧ ¬P ("chove e não chove").
+
+A tautologia é verdadeira só pela forma, e não diz nada sobre o mundo. A contradição denuncia um raciocínio quebrado: se você chega nela, alguma premissa estava errada.
+
+<Exercicio enunciado="Quantas linhas falsas tem a tabela de P ∨ ¬P?" resposta="0" dica="É uma tautologia." resolucao="Em toda linha, P ou ¬P é verdadeira. Falsas: 0." />
+
+<Exercicio enunciado="Quantas linhas verdadeiras tem a tabela de P ∧ ¬P?" resposta="0" dica="É uma contradição." resolucao="P e ¬P nunca são verdadeiras juntas. Verdadeiras: 0." />
+
+## Todo e existe
+
+Frases como "todo", "nenhum" e "existe" falam de **grupos** inteiros. Negá-las pede cuidado:
+
+- Negação de "**todo** A é B": "**existe** A que **não** é B". Um único contraexemplo derruba o "todo".
+- Negação de "**existe** A que é B": "**nenhum** A é B".
+
+<Brincando titulo="Todo e existe: o corvo branco">
+
+"Todo corvo é preto" parece verdade, até aparecer **um** corvo branco. Basta ele para derrubar a frase. Por isso, para negar um "todo" não precisa mostrar que **todos** são diferentes: um contraexemplo resolve. O contrário de "todo corvo é preto" é "existe corvo que não é preto", e não "nenhum corvo é preto".
+
+</Brincando>
+
+<Exercicio enunciado="A frase 'Todos os alunos da sala passaram' é falsa. No mínimo, quantos alunos não passaram?" resposta="1" dica="Basta um contraexemplo." resolucao="Para negar um 'todo', basta existir pelo menos 1 aluno que não passou." />
+
+## Argumentos válidos e furados
+
+Um **argumento** tem **premissas** (o que se assume) e uma **conclusão**. Ele é **válido** quando, **se as premissas forem verdadeiras, a conclusão tem de ser verdadeira**. Validade é sobre a **forma**, e não sobre o assunto. Os formatos mais usados:
+
+- **Modus ponens:** Se P então Q. P. Logo, Q. (Válido.)
+- **Modus tollens:** Se P então Q. Não Q. Logo, não P. (Válido.)
+- **Afirmar o consequente:** Se P então Q. Q. Logo, P. (**Furado.**)
+- **Negar o antecedente:** Se P então Q. Não P. Logo, não Q. (**Furado.**)
+
+<Brincando titulo="Argumento válido: o dominó">
+
+Pense em uma fileira de dominós. "Se o primeiro cai, o segundo cai." O primeiro caiu: o segundo caiu (modus ponens). O segundo **não** caiu: então o primeiro não caiu (modus tollens). Mas se o segundo caiu, isso não prova que foi o primeiro que o derrubou: alguém pode tê-lo empurrado.
+
+</Brincando>
+
+<ArgumentoValidoOuNao />
+
+Um argumento furado pode ter premissas e até conclusão verdadeiras. O que ele não garante é que a conclusão **decorre** delas. Para provar que é furado, basta um **contraexemplo**: uma situação com premissas verdadeiras e conclusão falsa (a rua molhada pelo caminhão-pipa, sem chuva).
+
+<ExemploResolvido titulo="O argumento 'Se P então Q. Q. Logo, P' é válido? Teste na tabela.">
+  <Passo>Procure uma linha em que as premissas (P → Q e Q) sejam verdadeiras e a conclusão (P) seja falsa.</Passo>
+  <Passo>Tente P = F e Q = V. Então P → Q é V, Q é V e a conclusão P é F.</Passo>
+  <Passo>Achamos o contraexemplo: o argumento é **furado** (afirmar o consequente).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Das premissas 'Se P então Q' e 'Q é verdadeira', dá para concluir P com certeza? Responda 1 para sim e 0 para não." resposta="0" dica="Afirmar o consequente." resolucao="Não dá: P pode ser falsa e Q verdadeira. Resposta: 0." />
+
+<Exercicio enunciado="Das premissas 'Se P então Q' e 'P é verdadeira', dá para concluir Q com certeza? Responda 1 para sim e 0 para não." resposta="1" dica="Modus ponens." resolucao="Sim, é o modus ponens. Resposta: 1." />
+
+<Aprofundar titulo="Por que o 'se' da lógica parece estranho">
+
+Na vida, "se... então" costuma sugerir **causa**: "se chove, a rua molha" diz que a chuva faz a rua molhar. O condicional da lógica (chamado **condicional material**) é mais simples: só olha para os valores V e F, sem nenhuma ideia de causa. Por isso "se 2 + 2 = 5, então a Lua é de queijo" sai verdadeira (antecedente falso), mesmo sem relação nenhuma entre as partes. Os lógicos aceitam isso porque a regra é simples e funciona bem para a matemática. Fora dela, as pessoas discutem versões mais sofisticadas de "se".
+
+</Aprofundar>
+
+<Aprofundar titulo="Curto-circuito: a lógica nos programas">
+
+Em programação, o "e" e o "ou" aparecem em quase todo `if`. Muitas linguagens avaliam as condições da esquerda para a direita e **param assim que o resultado está decidido**. Em P e Q, se P é falso, a frase já é falsa e Q nem é olhada. Em P ou Q, se P é verdadeiro, a frase já é verdadeira. Isso é chamado de **curto-circuito**, e é útil para evitar erros, como testar "a lista tem item e o primeiro item é zero" sem quebrar numa lista vazia.
+
+</Aprofundar>
+
+<Aprofundar titulo="As mesmas contas dentro do chip">
+
+Um computador faz somas só com portas lógicas. Para somar dois bits, a **soma** (do bit da direita) sai de um **ou exclusivo** e o **vai-um** sai de um **e**. Com 1 + 1: o ou exclusivo de 1 e 1 dá 0, e o "e" de 1 e 1 dá 1. Resultado: 10 em binário, que é o 2. Em um chip moderno, bilhões dessas portas trabalham juntas, todas feitas das operações que você acabou de ver.
+
+</Aprofundar>
+
+## Onde isso aparece na vida
+
+- **Computadores:** cada chip é uma enorme rede de portas E, OU e NÃO. A tabela-verdade de cada porta é a tabela que você montou aqui.
+- **Programação:** os `if`, os filtros de pesquisa ("café **e** não açúcar") e as regras de segurança são frases lógicas.
+- **Direito e contratos:** cláusulas como "se o pagamento atrasar, então incide multa" são condicionais. Confundir a recíproca é uma fonte clássica de briga.
+- **Pensamento crítico:** reconhecer afirmar o consequente em propagandas e discussões ("quem é inteligente lê livros, eu leio livros, logo sou inteligente") evita ser enganado.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Qual destas frases é uma proposição?',
+    opcoes: ['Feche a porta.', '12 é divisível por 5.', 'Que horas são?'],
+    correta: 1,
+    explicacao: '"12 é divisível por 5" pode ser julgada (é falsa). Ordens e perguntas não são proposições.',
+  },
+  {
+    enunciado: 'P é verdadeira e Q é falsa. Qual dos conectivos abaixo dá verdadeiro?',
+    opcoes: ['P ∧ Q', 'P ∨ Q', 'P → Q'],
+    correta: 1,
+    explicacao: 'P ∨ Q é verdadeira porque P é V. P ∧ Q é F e P → Q (V → F) é F.',
+  },
+  {
+    enunciado: 'Qual é a negação de "Todos os alunos gostam de matemática"?',
+    opcoes: ['Nenhum aluno gosta de matemática', 'Existe aluno que não gosta de matemática', 'Todos os alunos detestam matemática'],
+    correta: 1,
+    explicacao: 'Basta um contraexemplo para derrubar um "todo". "Nenhum" é forte demais.',
+  },
+  {
+    enunciado: 'Quantas linhas tem a tabela-verdade de uma frase com 4 proposições?',
+    opcoes: ['8', '16', '12'],
+    correta: 1,
+    explicacao: '2⁴ = 16 linhas.',
+  },
+  {
+    enunciado: 'Quando P → Q é falsa?',
+    opcoes: ['Quando P é falsa', 'Quando P é verdadeira e Q é falsa', 'Quando P e Q são falsas'],
+    correta: 1,
+    explicacao: 'A promessa só é quebrada quando a condição acontece (P é V) e o resultado não (Q é F).',
+  },
+  {
+    enunciado: 'Qual é a contrapositiva de "Se estudo, passo"?',
+    opcoes: ['Se passo, estudo', 'Se não estudo, não passo', 'Se não passo, não estudo'],
+    correta: 2,
+    explicacao: 'A contrapositiva de P → Q é ¬Q → ¬P: "se não passo, não estudo". As outras duas são a recíproca e a inversa.',
+  },
+  {
+    enunciado: 'Qual é a negação de "Se eu estudar, passo"?',
+    opcoes: ['Estudo e não passo', 'Não estudo e passo', 'Se não estudo, não passo'],
+    correta: 0,
+    explicacao: 'Negar P → Q é P ∧ ¬Q: a promessa foi quebrada. "Estudo e não passo".',
+  },
+  {
+    enunciado: 'Qual é a negação de "Está frio ou está chovendo"?',
+    opcoes: ['Não está frio ou não está chovendo', 'Não está frio e não está chovendo', 'Está quente ou está seco'],
+    correta: 1,
+    explicacao: 'De Morgan: ¬(P ∨ Q) = ¬P ∧ ¬Q. Negar um "ou" vira "e".',
+  },
+  {
+    enunciado: 'P ∨ ¬P ("chove ou não chove") é...',
+    opcoes: ['uma contradição', 'uma tautologia', 'às vezes falsa'],
+    correta: 1,
+    explicacao: 'Em toda linha da tabela, P ou ¬P é verdadeira. É uma tautologia.',
+  },
+  {
+    enunciado: '"Se chove, a rua molha. A rua não molhou. Logo, não choveu." Esse argumento é...',
+    opcoes: ['válido (modus tollens)', 'furado (afirmar o consequente)', 'furado (negar o antecedente)'],
+    correta: 0,
+    explicacao: 'Se tivesse chovido, a rua teria molhado. Como não molhou, não choveu. É o modus tollens.',
+  },
+  {
+    enunciado: '"Se um animal é um gato, é mamífero. Rex é mamífero. Logo, Rex é gato." Esse argumento é...',
+    opcoes: ['válido', 'furado, porque Rex pode ser outro mamífero', 'furado, porque gatos não são mamíferos'],
+    correta: 1,
+    explicacao: 'Afirmar o consequente. Rex pode ser um cachorro, outro mamífero que não é gato.',
+  },
+  {
+    enunciado: 'Uma porta lógica E (and) tem duas chaves ligadas. A lâmpada...',
+    opcoes: ['acende', 'não acende', 'depende da cor da lâmpada'],
+    correta: 0,
+    explicacao: 'O "e" acende quando as duas chaves estão ligadas (V e V dá V).',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Proposição** é uma frase que é V ou F. Perguntas, ordens e sentenças abertas (x + 1 = 5) não são.
+- **Negação** ¬P inverte o valor. **E** (P ∧ Q) só é V se as duas forem V. **Ou** (P ∨ Q) só é F se as duas forem F.
+- **Se, então** (P → Q) só é F quando P é V e Q é F. Pense numa promessa quebrada. **Se, e somente se** (P ↔ Q) é V quando P e Q têm o mesmo valor.
+- **Tabela-verdade** com n proposições tem 2ⁿ linhas. **Contrapositiva** (¬Q → ¬P) equivale à original; **recíproca** e **inversa** não.
+- **Negar:** ¬(P → Q) = P ∧ ¬Q. **De Morgan:** ¬(P ∧ Q) = ¬P ∨ ¬Q e ¬(P ∨ Q) = ¬P ∧ ¬Q. A negação de "todo" é "existe que não".
+- **Argumento válido:** premissas verdadeiras forçam conclusão verdadeira. **Modus ponens** e **tollens** valem; **afirmar o consequente** e **negar o antecedente** são furados.
+
+**Um pouco de história.** Aristóteles escreveu as primeiras regras de argumentos, e os estoicos olharam para as frases ligadas por "se", "e" e "ou". Boole transformou a lógica em álgebra em 1847 e 1854, e De Morgan deu nome às leis que vimos. Em 1937, Claude Shannon mostrou que essa álgebra descreve circuitos de interruptores: a lógica saiu dos livros e foi para dentro dos computadores.
+
+</Resumo>
+
+A lógica é a linguagem dos computadores e a base de toda demonstração. Daqui dá para ir ao binário e até aos paradoxos que testam os limites da própria lógica:
+
+<Conexoes />
+
+</Etapa>

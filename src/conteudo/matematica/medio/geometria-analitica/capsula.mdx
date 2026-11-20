@@ -1,0 +1,507 @@
+import DistanciaPeloTriangulo from '../../../../components/simulacoes/DistanciaPeloTriangulo'
+import PontoMedioDoSegmento from '../../../../components/simulacoes/PontoMedioDoSegmento'
+import SubidaEDescidaDaReta from '../../../../components/simulacoes/SubidaEDescidaDaReta'
+import EquacaoDaRetaAoVivo from '../../../../components/simulacoes/EquacaoDaRetaAoVivo'
+import ParalelasEPerpendiculares from '../../../../components/simulacoes/ParalelasEPerpendiculares'
+import CruzamentoDeDuasRetas from '../../../../components/simulacoes/CruzamentoDeDuasRetas'
+import CirculoNoPlano from '../../../../components/simulacoes/CirculoNoPlano'
+import DistanciaNoMapa from '../../../../components/simulacoes/DistanciaNoMapa'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Analytic geometry, Cartesian coordinate system, La Géométrie), listadas no meta.ts. */}
+
+<Etapa id="gancho">
+
+Seu celular sabe onde você está e onde fica a padaria. Para dizer "são 1,2 km", ele não precisa **andar** pelo caminho. Basta uma conta com os números que descrevem cada lugar.
+
+Essa ideia mudou a matemática: em vez de desenhar uma figura e medir com a régua, a gente dá a cada ponto um **endereço** (dois números) e transforma a figura numa **equação**. Aí o desenho vira conta, e a conta vira desenho. É a <Termo cor="azul">geometria analítica</Termo>.
+
+<Palpite
+  chave="inicial"
+  pergunta="Num mapa em quadradinhos de 1 km, sua casa está em (0, 0) e a padaria em (3, 4). Quanto mede a linha reta entre elas?"
+  opcoes={['7 km', '5 km', '12 km']}
+/>
+
+Nesta cápsula você vai medir distâncias, achar o ponto do meio, calcular a inclinação de retas, escrever a equação de uma reta, decidir quando duas retas são paralelas ou perpendiculares, achar onde elas se cruzam e escrever a equação de um círculo.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Os gregos já estudavam curvas como a elipse e a parábola. **Apolônio de Perga**, por volta de 200 a.C., descreveu as cônicas por meio de relações entre distâncias, quase como se usasse coordenadas. Mas faltava uma linguagem de **contas** para tudo isso.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Por volta de 200 a.C.', texto: 'Apolônio de Perga escreve sobre as cônicas, descrevendo-as por relações entre distâncias.' },
+  { ano: 'Década de 1630', texto: 'O francês Pierre de Fermat usa equações para descrever curvas e lugares geométricos.' },
+  { ano: '1637', texto: 'René Descartes publica La Géométrie, junto com o Discurso do Método, e liga álgebra e geometria.' },
+  { ano: '1649', texto: 'A tradução em latim, com comentários, espalha as ideias de Descartes pela Europa.' },
+  { ano: 'Fim do século 17', texto: 'Newton e Leibniz usam o plano de coordenadas para criar o cálculo.' },
+]} />
+
+## Dois franceses e uma ideia
+
+Na primeira metade do século 17, dois franceses chegaram quase juntos à mesma ideia. **Fermat** a usava em cartas e rascunhos que circularam entre amigos. **Descartes** a publicou num livro, em 1637, e ficou mais famoso por ela. Por isso o plano com eixos se chama **cartesiano**: o nome vem de *Cartesius*, a forma latina do nome de Descartes.
+
+## A grande troca
+
+A ideia era uma troca: cada **ponto** vira um par de números, e cada **figura** vira uma equação que só os pontos dela satisfazem. Um problema de desenho passa a ser um problema de conta. Isso deu aos matemáticos uma máquina: sabendo equacionar, o resto é calcular. Foi o passo que abriu caminho para o cálculo de Newton e Leibniz.
+
+## Hoje
+
+Quando um jogo move um personagem pela tela, ele troca as coordenadas (x, y) dele. Quando um aplicativo traça a rota, usa coordenadas de mapa. Quando um robô de fábrica solda uma peça, ele recebe uma lista de pontos.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Todo ponto tem endereço
+
+No plano cartesiano, cada ponto é um **par ordenado** (x, y). O primeiro número diz quanto andar para o lado (o <Termo cor="azul">x</Termo>, a abscissa) e o segundo, quanto andar para cima ou para baixo (o <Termo cor="coral">y</Termo>, a ordenada). A origem é o ponto (0, 0), onde os eixos se encontram.
+
+<Brincando titulo="Pares ordenados: a batalha naval">
+
+Na batalha naval você diz "B7" e o outro sabe exatamente qual quadradinho. O par (x, y) é o mesmo truque, só que com números.
+
+Também importa a **ordem**: (3, 5) e (5, 3) são lugares diferentes, assim como B7 e 7B não são a mesma casa.
+
+</Brincando>
+
+## 2. Toda figura vira uma regra
+
+Uma reta é o conjunto dos pontos que obedecem a uma regra, por exemplo "o y é sempre o dobro do x". Essa regra escrita em símbolos é a **equação** da reta: y = 2x. Se o ponto obedece, está na reta. Se não obedece, está fora.
+
+## 3. O que a gente ganha
+
+Duas coisas ficam possíveis. Primeiro, **medir sem régua**: com as coordenadas, a distância, o meio e a inclinação saem de contas. Segundo, **resolver encontros**: onde duas retas se cruzam vira um sistema de equações.
+
+<Brincando titulo="Equação: a senha do clube">
+
+Imagine um clube que só deixa entrar quem responde certo uma "senha": o y tem de ser o dobro do x. O ponto (3, 6) passa; o ponto (3, 7) é barrado. A **equação** é a regra da porta. A reta desenhada é a fila de todos que passam.
+
+</Brincando>
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Casa em (0, 0) e padaria em (3, 4), com quadradinhos de 1 km. Quanto mede a linha reta?"
+  opcoes={['7 km', '5 km', '12 km']}
+  correta={1}
+  explicacao="Ir 3 para o lado e 4 para cima forma um triângulo retângulo com catetos 3 e 4. Pelo Teorema de Pitágoras, a reta mede √(9 + 16) = √25 = 5 km. Os 7 km são o caminho pelas ruas."
+>
+
+Mexa nos pontos A e B e observe o triângulo amarelo:
+
+<DistanciaPeloTriangulo />
+
+Sempre que você escolhe dois pontos, forma-se um triângulo retângulo escondido. Os catetos são a diferença dos x e a diferença dos y, e a distância é a hipotenusa. Tente A(0, 0) e B(3, 4): dá 5.
+
+Agora o palpite do começo. Quanto mede a linha reta de (0, 0) a (3, 4)?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['7 km', '5 km', '12 km']}
+  correta={1}
+  seAcertou="Certo: 5 km. É o trio 3, 4 e 5 de Pitágoras. A linha reta é sempre mais curta que o caminho pelas ruas."
+  seErrou="O certo é 5 km. Ir 3 para o lado e 4 para cima forma um triângulo retângulo, e a hipotenusa é √(3² + 4²) = 5. Os 7 km seriam o caminho pelas ruas (3 + 4)."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Distância entre dois pontos
+
+Dados A(x₁, y₁) e B(x₂, y₂), o triângulo escondido tem catetos dx = x₂ − x₁ e dy = y₂ − y₁. Pelo Teorema de Pitágoras:
+
+<Formula>
+  <Linha>d = √((x₂ − x₁)² + (y₂ − y₁)²)</Linha>
+</Formula>
+
+Não importa a ordem dos pontos nem o sinal da diferença, porque ela fica **ao quadrado**.
+
+<Brincando titulo="Distância: o pombo e o pedestre">
+
+Um pombo voa em linha reta da sua casa até a padaria. Um pedestre tem de andar pelas ruas, só para frente e para os lados. O pedestre percorre dx + dy. O pombo percorre a hipotenusa, que é **menor**.
+
+A fórmula de distância calcula o voo do pombo. Para ir de (0, 0) a (6, 8), o pedestre anda 14 e o pombo voa 10.
+
+</Brincando>
+
+<ExemploResolvido titulo="Qual a distância entre A(1, 2) e B(7, 10)?">
+  <Passo>Diferenças: dx = 7 − 1 = 6 e dy = 10 − 2 = 8.</Passo>
+  <Passo>Ao quadrado: 6² = 36 e 8² = 64. Soma: 36 + 64 = 100.</Passo>
+  <Passo>Raiz: d = √100 = **10**.</Passo>
+  <Passo>Confira: 6, 8 e 10 é o trio 3, 4, 5 dobrado. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é a distância entre (0, 0) e (5, 12)?" resposta="13" dica="Catetos 5 e 12." resolucao="√(25 + 144) = √169 = 13." />
+
+<Exercicio enunciado="Qual é a distância entre (-2, 1) e (2, 4)?" resposta="5" dica="dx = 4 e dy = 3." resolucao="√(16 + 9) = √25 = 5." />
+
+<Exercicio enunciado="Qual é a distância entre (-3, -2) e (5, 13)?" resposta="17" dica="dx = 8 e dy = 15." resolucao="√(64 + 225) = √289 = 17." />
+
+Teste a fórmula num mapa de cidade. Compare a linha reta com o caminho pelas ruas:
+
+<DistanciaNoMapa />
+
+## O ponto médio
+
+O **ponto médio** M de um segmento AB fica exatamente no meio. Cada coordenada de M é a **média** das coordenadas dos extremos:
+
+<Formula>
+  <Linha>M = ( (x₁ + x₂) ÷ 2 ; (y₁ + y₂) ÷ 2 )</Linha>
+</Formula>
+
+<Brincando titulo="Ponto médio: o encontro dos amigos">
+
+Dois amigos moram em pontos diferentes e querem se encontrar no meio do caminho. Quem mora em x = 2 e quem mora em x = 8 se encontram em x = 5, a média dos dois. O mesmo vale para o y. A média é o "meio" de qualquer par de números.
+
+</Brincando>
+
+<PontoMedioDoSegmento />
+
+<ExemploResolvido titulo="Qual o ponto médio de A(2, 3) e B(8, 11)?">
+  <Passo>Para o x: (2 + 8) ÷ 2 = 10 ÷ 2 = **5**.</Passo>
+  <Passo>Para o y: (3 + 11) ÷ 2 = 14 ÷ 2 = **7**.</Passo>
+  <Passo>O ponto médio é M(5; 7).</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="O ponto médio de (-4, 2) e (6, 8) tem qual abscissa (valor de x)?" resposta="1" dica="Média de -4 e 6." resolucao="(-4 + 6) ÷ 2 = 1." />
+
+<Exercicio enunciado="O ponto médio de A(1, 2) e B é M(3, 4). Qual é a abscissa de B?" resposta="5" dica="3 é a média de 1 e x. Então 1 + x = 6." resolucao="1 + x = 2 × 3 = 6, logo x = 5. (E y: 2 + y = 8, y = 6, então B(5, 6).)" />
+
+## A inclinação de uma reta
+
+Andar numa reta tem **subida** e **passo lateral**. A <Termo cor="coral">inclinação</Termo> (ou coeficiente angular) é a razão entre os dois:
+
+<Formula>
+  <Linha>m = (y₂ − y₁) ÷ (x₂ − x₁)</Linha>
+</Formula>
+
+Se m é positivo, a reta **sobe** da esquerda para a direita. Se é negativo, **desce**. Se é zero, é horizontal. Se a reta é vertical, o passo lateral é 0 e não dá para dividir: ela **não tem** inclinação.
+
+<Brincando titulo="Inclinação: a rampa e a escada">
+
+Numa rampa, para cada metro que você anda para frente, ela sobe um tanto. Se sobe 2 m a cada 1 m de caminhada, m = 2: uma rampa muito íngreme. Se sobe 1 m a cada 4 m, m = 0,25: uma rampa suave. O número m diz **quão íngreme** é a subida. É a mesma ideia da inclinação de um telhado.
+
+</Brincando>
+
+<SubidaEDescidaDaReta />
+
+<ExemploResolvido titulo="Qual a inclinação da reta que passa por A(1, 2) e B(5, 10)?">
+  <Passo>Quanto sobe: y₂ − y₁ = 10 − 2 = 8.</Passo>
+  <Passo>Quanto anda: x₂ − x₁ = 5 − 1 = 4.</Passo>
+  <Passo>m = 8 ÷ 4 = **2**. A reta sobe 2 para cada 1 de passo.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual a inclinação da reta por (0, 0) e (4, 8)?" resposta="2" dica="8 ÷ 4." resolucao="m = (8 − 0) ÷ (4 − 0) = 2." />
+
+<Exercicio enunciado="Qual a inclinação da reta por (1, 5) e (3, 1)?" resposta="-2" dica="Subida: 1 − 5 = -4." resolucao="m = (1 − 5) ÷ (3 − 1) = -4 ÷ 2 = -2. A reta desce." />
+
+<Exercicio enunciado="Qual a inclinação da reta por (-1, -4) e (3, 2)?" resposta="1,5" dica="Subida 6, passo 4." resolucao="m = (2 − (-4)) ÷ (3 − (-1)) = 6 ÷ 4 = 1,5." />
+
+## A equação da reta
+
+Se você conhece a inclinação m e **um** ponto (x₀, y₀), qualquer outro ponto (x, y) da reta tem de ter a mesma inclinação em relação a ele:
+
+<Formula>
+  <Linha>y − y₀ = m · (x − x₀)</Linha>
+</Formula>
+
+Arrumando, chega-se à forma mais usada, a **reduzida**:
+
+<Formula>
+  <Linha>y = m · x + n</Linha>
+</Formula>
+
+Aqui, m é a inclinação e n é o ponto onde a reta **corta o eixo y** (quando x = 0, y = n). É a função afim que você já viu, agora vista como figura.
+
+<Brincando titulo="Equação da reta: a bandeirada do táxi">
+
+Uma corrida de táxi custa uma **bandeirada** fixa mais um valor por quilômetro. Se a bandeirada é R$ 5 e cada km custa R$ 2, o preço é y = 2x + 5. O 5 é o n: o valor quando você acabou de entrar (x = 0). O 2 é o m: quanto o preço sobe a cada km.
+
+</Brincando>
+
+<EquacaoDaRetaAoVivo />
+
+<ExemploResolvido titulo="Qual a equação da reta que passa por (1, 2) e (3, 8)?">
+  <Passo>Inclinação: m = (8 − 2) ÷ (3 − 1) = 6 ÷ 2 = **3**.</Passo>
+  <Passo>Use o ponto (1, 2): y − 2 = 3 · (x − 1).</Passo>
+  <Passo>Distribua: y − 2 = 3x − 3. Some 2: **y = 3x − 1**.</Passo>
+  <Passo>Confira com o outro ponto: x = 3 dá y = 9 − 1 = 8. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Na reta y = 2x + 5, quanto vale y quando x = 3?" resposta="11" dica="Troque x por 3." resolucao="y = 2 × 3 + 5 = 11." />
+
+<Exercicio enunciado="A reta y = 2x − 6 corta o eixo x em qual valor de x? (Lá o y vale 0.)" resposta="3" dica="Resolva 0 = 2x − 6." resolucao="2x = 6, então x = 3." />
+
+<Exercicio enunciado="Uma reta passa por (1, 2) e (3, 8). Qual é o valor de n na forma y = mx + n?" resposta="-1" dica="Veja o exemplo resolvido: a reta é y = 3x − 1." resolucao="n = -1." />
+
+### A forma geral
+
+A mesma reta também aparece como **ax + by + c = 0**. Por exemplo, y = 2x + 1 vira 2x − y + 1 = 0. Nessa forma, a inclinação é m = −a ÷ b (quando b não é zero). Ela é útil quando a reta é vertical, como x = 4, que não cabe na forma reduzida.
+
+## Retas paralelas e perpendiculares
+
+Com a inclinação, dá para decidir como duas retas se relacionam, sem desenhar:
+
+- **Paralelas:** mesma inclinação (m₁ = m₂) e cortes diferentes. Nunca se encontram.
+- **Perpendiculares:** formam um ângulo reto. Acontece quando **m₁ × m₂ = −1**, isto é, m₂ = −1 ÷ m₁.
+
+<Brincando titulo="Perpendicular: a escada e o rodapé">
+
+Uma escada encostada na parede forma um ângulo reto com o chão. Se a escada sobe 3 a cada 1 que anda, a reta "de lado" que fica a 90° dela faz o contrário: anda 3 e **desce** 1. A subida e o passo trocam de lugar, e um deles muda de sinal. Por isso as inclinações viram **inversas e de sinal trocado**: 3 e −1/3.
+
+</Brincando>
+
+<ParalelasEPerpendiculares />
+
+<ExemploResolvido titulo="Ache a reta paralela a y = 3x + 1 que passa por (2, 5), e a inclinação de uma perpendicular a ela.">
+  <Passo>Paralela: a mesma inclinação, m = 3.</Passo>
+  <Passo>Use (2, 5): y − 5 = 3 · (x − 2), logo y = 3x − 6 + 5 = **3x − 1**.</Passo>
+  <Passo>Perpendicular: m₂ = −1 ÷ 3 = **−1/3**. Conferindo: 3 × (−1/3) = −1. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual a inclinação de uma reta paralela a y = 4x − 7?" resposta="4" dica="Paralelas têm o mesmo m." resolucao="m = 4." />
+
+<Exercicio enunciado="Qual a inclinação de uma reta perpendicular a y = 2x + 1?" resposta="-0,5" dica="m₂ = −1 ÷ 2." resolucao="m₂ = -1 ÷ 2 = -0,5." />
+
+<Exercicio enunciado="Uma reta paralela a y = 2x + 3 passa por (1, 9). Qual é o n dela?" resposta="7" dica="m = 2. Então 9 = 2 × 1 + n." resolucao="9 = 2 + n, logo n = 7." />
+
+## Onde duas retas se cruzam
+
+O ponto onde duas retas se encontram tem de obedecer às **duas** equações ao mesmo tempo. Basta igualar os y e resolver para o x, depois voltar e achar o y.
+
+<Brincando titulo="Cruzamento: dois carros na mesma rua">
+
+Um carro sai da cidade A e outro da cidade B, indo um ao encontro do outro. Cada um tem a sua "equação de posição". O ponto em que as posições são **iguais** é o cruzamento: o lugar e a hora do encontro.
+
+Duas retas paralelas são como dois carros na mesma velocidade e em posições diferentes: nunca se encontram.
+
+</Brincando>
+
+<CruzamentoDeDuasRetas />
+
+<ExemploResolvido titulo="Onde y = 2x + 1 cruza y = −x + 7?">
+  <Passo>Iguale: 2x + 1 = −x + 7.</Passo>
+  <Passo>Junte os x: 3x = 6, então **x = 2**.</Passo>
+  <Passo>Volte numa das equações: y = 2 × 2 + 1 = **5**.</Passo>
+  <Passo>Cruzam em (2; 5). Confira na outra: −2 + 7 = 5. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Onde y = x + 2 cruza y = −x + 8? Qual é o x do cruzamento?" resposta="3" dica="x + 2 = -x + 8." resolucao="2x = 6, então x = 3 (e y = 5)." />
+
+<Exercicio enunciado="Onde y = 3x − 1 cruza y = x + 5? Qual é o y do cruzamento?" resposta="8" dica="3x − 1 = x + 5." resolucao="2x = 6, x = 3. Então y = 3 + 5 = 8." />
+
+## Distância de um ponto a uma reta
+
+A menor distância de um ponto a uma reta é medida pelo segmento **perpendicular** à reta. Para a reta ax + by + c = 0 e o ponto P(x₀, y₀):
+
+<Formula>
+  <Linha>d = |a · x₀ + b · y₀ + c| ÷ √(a² + b²)</Linha>
+</Formula>
+
+As barras | | são o valor absoluto: a distância nunca é negativa.
+
+<Brincando titulo="Ponto e reta: o menor caminho até a avenida">
+
+Você está num terreno e quer chegar à avenida pelo caminho mais curto. A resposta é sempre andar em **ângulo reto** com a avenida, sem torcer para os lados. Esse "caminho certinho" é a distância do ponto até a reta. Qualquer outro caminho é mais comprido.
+
+</Brincando>
+
+<ExemploResolvido titulo="Qual a distância do ponto (0, 0) à reta 3x + 4y − 10 = 0?">
+  <Passo>Aqui a = 3, b = 4, c = −10, e o ponto é (0, 0).</Passo>
+  <Passo>Numerador: |3 × 0 + 4 × 0 − 10| = |−10| = 10.</Passo>
+  <Passo>Denominador: √(9 + 16) = √25 = 5.</Passo>
+  <Passo>d = 10 ÷ 5 = **2**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual a distância do ponto (1, 1) à reta 5x + 12y − 30 = 0?" resposta="1" dica="|5 + 12 − 30| = 13 e √(25 + 144) = 13." resolucao="13 ÷ 13 = 1." />
+
+<Exercicio enunciado="Qual a distância do ponto (2, 3) à reta 3x + 4y + 1 = 0?" resposta="3,8" dica="|6 + 12 + 1| = 19; √25 = 5." resolucao="19 ÷ 5 = 3,8." />
+
+## A circunferência
+
+Uma circunferência é o conjunto dos pontos que estão a uma mesma distância r (o raio) de um ponto fixo, o centro C(a, b). Usando a fórmula da distância e elevando os dois lados ao quadrado:
+
+<Formula>
+  <Linha>(x − a)² + (y − b)² = r²</Linha>
+</Formula>
+
+Se o centro é a origem, fica x² + y² = r². Um ponto está **dentro** se a distância dele ao centro é menor que r, **sobre** a circunferência se é igual, e **fora** se é maior.
+
+<Brincando titulo="Circunferência: o alcance do sinal de Wi-Fi">
+
+O roteador está num ponto, o centro. O sinal chega a, digamos, 5 metros em todas as direções. Todos os pontos a **exatamente** 5 m estão na borda do alcance: é a circunferência. Quem está a menos de 5 m tem sinal. Quem está a mais, não.
+
+</Brincando>
+
+<CirculoNoPlano />
+
+<ExemploResolvido titulo="Escreva a equação do círculo de centro (2, −1) e raio 3.">
+  <Passo>Substitua a = 2, b = −1 e r = 3 na fórmula.</Passo>
+  <Passo>(x − 2)² + (y − (−1))² = 3². O duplo sinal vira mais: (y + 1)².</Passo>
+  <Passo>Resposta: **(x − 2)² + (y + 1)² = 9**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual é o raio do círculo (x − 1)² + (y − 2)² = 25?" resposta="5" dica="O lado direito é r²." resolucao="r² = 25, então r = 5." />
+
+<Exercicio enunciado="Um círculo tem como diâmetro o segmento de A(-1, 2) a B(5, 10). Qual é o raio?" resposta="5" dica="O diâmetro é a distância AB; o raio é a metade." resolucao="AB = √(36 + 64) = 10. O raio é 5. (O centro é o ponto médio, (2; 6).)" />
+
+<Exercicio enunciado="Na circunferência x² + y² = 100, um ponto tem x = 6 e y positivo. Quanto vale y?" resposta="8" dica="36 + y² = 100." resolucao="y² = 64, então y = 8." />
+
+## Área de um triângulo pelas coordenadas
+
+Para um triângulo com vértices (x₁, y₁), (x₂, y₂) e (x₃, y₃), a área sai direto dos números:
+
+<Formula>
+  <Linha>A = |x₁(y₂ − y₃) + x₂(y₃ − y₁) + x₃(y₁ − y₂)| ÷ 2</Linha>
+</Formula>
+
+<Brincando titulo="Área do triângulo: a caixa em volta">
+
+Uma outra forma de pensar: ponha o triângulo dentro de um retângulo que encosta nele. A área do triângulo é a do retângulo menos os "cantinhos" que sobram. A fórmula de cima faz essa conta por você, de uma vez só.
+
+</Brincando>
+
+<ExemploResolvido titulo="Qual a área do triângulo (0, 0), (4, 0), (0, 3)?">
+  <Passo>Substitua na fórmula: 0 · (0 − 3) + 4 · (3 − 0) + 0 · (0 − 0) = 12.</Passo>
+  <Passo>Valor absoluto: 12. Divida por 2: **6**.</Passo>
+  <Passo>Confira: base 4 e altura 3, 4 × 3 ÷ 2 = 6. ✓</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual a área do triângulo (0, 0), (6, 0), (0, 5)?" resposta="15" dica="Base 6, altura 5." resolucao="6 × 5 ÷ 2 = 15 (ou pela fórmula: |0 + 6 · 5 + 0| ÷ 2 = 15)." />
+
+<Exercicio enunciado="Qual a área do triângulo (1, 1), (5, 1), (1, 4)?" resposta="6" dica="Base 4 (de x = 1 a 5), altura 3." resolucao="4 × 3 ÷ 2 = 6." />
+
+<Aprofundar titulo="Por que a fórmula do ponto à reta funciona">
+
+Pegue a reta ax + by + c = 0. O vetor (a, b) é perpendicular a ela (por isso ele "aponta" na direção do menor caminho). Se você anda a partir de P na direção desse vetor, a quantidade que falta para chegar na reta é o valor de ax₀ + by₀ + c dividido pelo tamanho do vetor, que é √(a² + b²).
+
+Em outras palavras: o numerador diz "quanto a equação erra" no ponto P, e o denominador converte esse erro em unidades de comprimento. O valor absoluto garante que a distância seja positiva dos dois lados da reta.
+
+</Aprofundar>
+
+<Aprofundar titulo="A lenda da mosca de Descartes">
+
+Conta-se que Descartes teve a ideia das coordenadas deitado na cama, olhando uma mosca andar pelo teto. Ele teria percebido que a posição dela podia ser dita por dois números: a distância até duas paredes. É uma boa história, mas **não há prova** de que tenha acontecido. Vale como ilustração da ideia, e não como fato histórico.
+
+</Aprofundar>
+
+<Aprofundar titulo="Outras curvas também viram equação">
+
+A circunferência é só o começo. A **parábola** é y = ax² + bx + c, a que você viu na função quadrática. A **elipse** (um círculo achatado) e a **hipérbole** também têm equações com x² e y². Juntas, com o círculo, formam as **cônicas**, nomeadas por saírem de cortes de um cone. Os satélites e os planetas seguem elipses, e as antenas parabólicas têm esse nome porque o formato delas é uma parábola girada.
+
+</Aprofundar>
+
+## Onde isso aparece na vida
+
+- **Mapas e GPS:** cada lugar é uma coordenada. A distância em linha reta e a rota são contas sobre pontos. Para trechos pequenos o mapa pode ser tratado como um plano; para distâncias grandes é preciso levar em conta a curvatura da Terra.
+- **Jogos e telas:** cada pixel é um par (x, y). Nas telas, o ponto (0, 0) fica no canto superior esquerdo e o y cresce para baixo. Ver se dois objetos colidem é medir distância entre pontos.
+- **Robôs e impressoras 3D:** recebem uma lista de coordenadas e andam de ponto em ponto, em retas.
+- **Engenharia e arquitetura:** plantas e projetos usam retas e círculos com equações exatas.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Qual é a distância entre (0, 0) e (6, 8)?',
+    opcoes: ['14', '10', '48'],
+    correta: 1,
+    explicacao: 'dx = 6 e dy = 8, então d = √(36 + 64) = √100 = 10. (14 seria o caminho pelas ruas.)',
+  },
+  {
+    enunciado: 'Qual é o ponto médio de A(2, 4) e B(10, 8)?',
+    opcoes: ['(6; 6)', '(8; 4)', '(12; 12)'],
+    correta: 0,
+    explicacao: 'x: (2 + 10) ÷ 2 = 6. y: (4 + 8) ÷ 2 = 6.',
+  },
+  {
+    enunciado: 'Qual é a inclinação da reta por (1, 1) e (3, 7)?',
+    opcoes: ['2', '3', '6'],
+    correta: 1,
+    explicacao: 'm = (7 − 1) ÷ (3 − 1) = 6 ÷ 2 = 3.',
+  },
+  {
+    enunciado: 'Uma reta com inclinação negativa...',
+    opcoes: ['sobe da esquerda para a direita', 'desce da esquerda para a direita', 'é sempre vertical'],
+    correta: 1,
+    explicacao: 'Quando m é negativo, y diminui à medida que x aumenta: a reta desce. A vertical nem tem inclinação.',
+  },
+  {
+    enunciado: 'Na equação y = 3x − 4, onde a reta corta o eixo y?',
+    opcoes: ['Em y = 3', 'Em y = −4', 'Em y = 4'],
+    correta: 1,
+    explicacao: 'Quando x = 0, y = n = −4.',
+  },
+  {
+    enunciado: 'Qual a equação da reta de inclinação 2 que passa por (0, 5)?',
+    opcoes: ['y = 5x + 2', 'y = 2x + 5', 'y = 2x − 5'],
+    correta: 1,
+    explicacao: 'Em (0, 5) o corte n vale 5, e m = 2: y = 2x + 5.',
+  },
+  {
+    enunciado: 'Duas retas têm inclinações 4 e 4, e cortes diferentes. Elas são...',
+    opcoes: ['perpendiculares', 'paralelas', 'coincidentes'],
+    correta: 1,
+    explicacao: 'Mesma inclinação e cortes diferentes: paralelas, nunca se encontram.',
+  },
+  {
+    enunciado: 'Uma reta tem m = 5. Qual a inclinação de uma perpendicular a ela?',
+    opcoes: ['−5', '1/5', '−1/5'],
+    correta: 2,
+    explicacao: 'm₂ = −1 ÷ 5 = −1/5. Conferindo: 5 × (−1/5) = −1.',
+  },
+  {
+    enunciado: 'Onde y = x + 1 cruza y = −x + 5?',
+    opcoes: ['(2; 3)', '(3; 4)', '(1; 2)'],
+    correta: 0,
+    explicacao: 'x + 1 = −x + 5 → 2x = 4 → x = 2, y = 3.',
+  },
+  {
+    enunciado: 'Qual a distância do ponto (0, 0) à reta 3x + 4y − 10 = 0?',
+    opcoes: ['2', '10', '5'],
+    correta: 0,
+    explicacao: '|−10| ÷ √(9 + 16) = 10 ÷ 5 = 2.',
+  },
+  {
+    enunciado: 'Qual é o centro e o raio da circunferência (x − 3)² + (y + 2)² = 16?',
+    opcoes: ['Centro (3; −2), raio 4', 'Centro (−3; 2), raio 16', 'Centro (3; −2), raio 16'],
+    correta: 0,
+    explicacao: 'O centro é (a, b) = (3, −2), e r² = 16 dá r = 4. Cuidado com o sinal: (y + 2) é (y − (−2)).',
+  },
+  {
+    enunciado: 'O ponto (5, 5) em relação ao círculo x² + y² = 36 está...',
+    opcoes: ['dentro', 'sobre', 'fora'],
+    correta: 2,
+    explicacao: 'A distância até o centro é √(25 + 25) ≈ 7,07, que é maior que o raio 6. Então o ponto está fora.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Ponto** é um par (x, y); **figura** é uma equação que só os pontos dela obedecem.
+- **Distância:** d = √((x₂ − x₁)² + (y₂ − y₁)²), o Pitágoras escondido entre dois pontos. **Ponto médio:** a média das coordenadas.
+- **Inclinação:** m = dy ÷ dx. **Reta:** y = mx + n (m inclina, n corta o eixo y) ou y − y₀ = m(x − x₀).
+- **Paralelas:** m₁ = m₂. **Perpendiculares:** m₁ × m₂ = −1. **Cruzamento:** igualar as equações.
+- **Ponto e reta:** d = |ax₀ + by₀ + c| ÷ √(a² + b²). **Circunferência:** (x − a)² + (y − b)² = r².
+- **Área do triângulo** pelas coordenadas: |x₁(y₂ − y₃) + x₂(y₃ − y₁) + x₃(y₁ − y₂)| ÷ 2.
+
+**Um pouco de história.** Apolônio já falava das cônicas por volta de 200 a.C., mas a grande troca de figuras por equações veio nos anos 1630 com Fermat e Descartes. O livro La Géométrie, de 1637, deu à álgebra uma ponte para a geometria, e o plano "cartesiano" leva o nome latino de Descartes. Pouco depois, Newton e Leibniz usariam esse plano para criar o cálculo.
+
+</Resumo>
+
+Com retas e círculos em equação, o caminho natural é falar de setas que carregam direção e tamanho, os vetores, e de outras curvas, as cônicas. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

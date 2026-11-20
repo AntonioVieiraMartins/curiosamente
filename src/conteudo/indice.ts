@@ -113,7 +113,7 @@ export const capsulas: ResumoCapsula[] = [
   m('medio', 'trigonometria', 'Trigonometria', 'A altura de um prédio medida pela sombra.', { grupo: 'Trigonometria' }),
   m('medio', 'ciclo-trigonometrico', 'Ciclo trigonométrico e ondas', 'O que a roda-gigante tem a ver com o som?', { grupo: 'Trigonometria' }),
   m('medio', 'geometria-espacial', 'Geometria espacial', 'Por que as latas são cilindros?', { grupo: 'Geometria' }),
-  m('medio', 'geometria-analitica', 'Geometria analítica', 'Como o GPS calcula a distância?', { grupo: 'Geometria' }),
+  m('medio', 'geometria-analitica', 'Geometria analítica', 'Como o GPS calcula a distância?', { grupo: 'Geometria', estado: 'pronta', duracaoMin: 40, conexoes: ['vetores', 'secoes-conicas'] }),
   m('medio', 'secoes-conicas', 'Seções cônicas', 'Elipse, parábola e hipérbole saem de um cone cortado.', { grupo: 'Geometria' }),
   m('medio', 'fractais-e-pavimentacoes', 'Fractais e pavimentações', 'Uma figura que se repete em todas as escalas.', { grupo: 'Geometria' }),
   m('medio', 'combinatoria', 'Análise combinatória', 'Quantas senhas de 4 dígitos existem?', { grupo: 'Contagem e chance' }),
@@ -131,7 +131,7 @@ export const capsulas: ResumoCapsula[] = [
   m('medio', 'pensamento-computacional', 'Pensamento computacional', 'Ensinar um robô a achar o caminho: algoritmos e fluxogramas.', { grupo: 'Álgebra', conexoes: ['binario'] }),
 
   // Avançada: depois do Médio (cálculo, álgebra linear, estatística inferencial)
-  m('avancada', 'logica-e-proposicoes', 'Lógica e proposições', 'Se chove, a rua molha. A rua molhou: choveu?', { grupo: 'Lógica e fundamentos', conexoes: ['binario'] }),
+  m('avancada', 'logica-e-proposicoes', 'Lógica e proposições', 'Se chove, a rua molha. A rua molhou: choveu?', { grupo: 'Lógica e fundamentos', estado: 'pronta', duracaoMin: 40, conexoes: ['binario', 'paradoxos-e-limites-da-logica'] }),
   m('avancada', 'conjuntos', 'Conjuntos', 'O que "todos" e "alguns" querem dizer de verdade.', { grupo: 'Lógica e fundamentos' }),
   m('avancada', 'demonstracao', 'Demonstração', 'Como ter certeza de que algo vale para infinitos números.', { grupo: 'Lógica e fundamentos' }),
   m('avancada', 'inducao-matematica', 'Indução matemática', 'Derrubar infinitos dominós provando só dois fatos.', { grupo: 'Lógica e fundamentos', conexoes: ['progressoes'] }),
