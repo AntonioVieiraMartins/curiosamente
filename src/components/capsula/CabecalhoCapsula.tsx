@@ -1,26 +1,31 @@
 import { Link } from 'react-router-dom'
-import Rotulo from '../ui/Rotulo'
-import { numeroDaCapsula, type Linha } from '../../conteudo/indice'
+import SiglaLinha from '../ui/SiglaLinha'
+import { buscarCapsula, numeroDaCapsula, type Linha } from '../../conteudo/indice'
 
 type Props = { id: string; titulo: string; linha: Linha; detalhes: string }
 
-// Trilha de navegação + número + título da cápsula
+// Botão de voltar ao mapa + linha, grupo e número + título da cápsula
 export default function CabecalhoCapsula({ id, titulo, linha, detalhes }: Props) {
+  const grupo = buscarCapsula(id)?.grupo
   return (
-    <>
-      <nav aria-label="Você está em" className="flex flex-wrap items-center gap-2 text-sm text-suave">
-        <Link to="/mapa" className="py-2 hover:text-texto">Mapa</Link>
-        <span aria-hidden="true">›</span>
-        <span className="inline-flex items-center gap-1.5">
-          <span aria-hidden="true" className="size-2 rounded-full" style={{ background: linha.cor }} />
-          {linha.nome}
+    <header className="flex items-center gap-4 sm:gap-[18px]">
+      <Link
+        to={`/mapa?linha=${linha.id}`}
+        aria-label="Voltar para o mapa"
+        className="grid size-11 shrink-0 place-items-center rounded-full border border-borda bg-superficie text-texto hover:border-texto/30"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M19 12H5M11 6l-6 6 6 6" />
+        </svg>
+      </Link>
+      <div className="min-w-0 flex-1">
+        <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.08em] text-suave">
+          <SiglaLinha linha={linha} tamanho="p" />
+          {linha.nome.replace('Matemática · ', '')}{grupo ? ` · ${grupo}` : ''} · nº {numeroDaCapsula(id)}
         </span>
-      </nav>
-      <header className="mt-4 max-w-3xl">
-        <Rotulo>Cápsula nº {numeroDaCapsula(id)}</Rotulo>
-        <h1 className="mt-3 font-serif text-[2.2rem] font-medium leading-[1.08] tracking-tight sm:text-5xl">{titulo}</h1>
-        <p className="mt-3 text-[15px] text-suave">{detalhes}</p>
-      </header>
-    </>
+        <h1 className="mt-1 font-serif text-[1.65rem] font-medium leading-tight sm:text-[34px]">{titulo}</h1>
+        <p className="mt-1 text-sm text-suave">{detalhes}</p>
+      </div>
+    </header>
   )
 }

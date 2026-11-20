@@ -1,13 +1,16 @@
 import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom'
 import AvisoConquista from '../components/ui/AvisoConquista'
 import { useCartoesDeHoje } from '../hooks/useCartoes'
+import { buscarConteudo } from '../conteudo/registro'
 import MenuLateral from './MenuLateral'
 import { CabecalhoCelular, MenuDeBaixo } from './NavegacaoCelular'
 
 export default function Layout() {
   const pendentes = useCartoesDeHoje().length
   // Dentro de uma cápsula o menu lateral vira só ícones (modo foco)
-  const foco = useLocation().pathname.startsWith('/capsula/')
+  // (só nas cápsulas com conteúdo escrito; a página "em breve" mantém o menu normal)
+  const caminho = useLocation().pathname
+  const foco = caminho.startsWith('/capsula/') && buscarConteudo(caminho.split('/')[2]) !== undefined
 
   return (
     <div className="flex min-h-dvh flex-col sm:flex-row">
@@ -19,7 +22,7 @@ export default function Layout() {
       </a>
 
       <MenuLateral pendentes={pendentes} foco={foco} />
-      <CabecalhoCelular />
+      {!foco && <CabecalhoCelular />}
 
       <div className="flex min-w-0 flex-1 flex-col">
         <main id="conteudo" className="flex-1 pb-28 sm:pb-20">
@@ -34,7 +37,7 @@ export default function Layout() {
         </footer>
       </div>
 
-      <MenuDeBaixo pendentes={pendentes} />
+      {!foco && <MenuDeBaixo pendentes={pendentes} />}
       <AvisoConquista />
       <ScrollRestoration />
     </div>

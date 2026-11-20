@@ -1,7 +1,9 @@
 import { Suspense, useRef } from 'react'
 import CabecalhoCapsula from './CabecalhoCapsula'
 import SumarioEtapas from './SumarioEtapas'
-import CadernoDaCapsula from './CadernoDaCapsula'
+import ApoioDaCapsula from './ApoioDaCapsula'
+import TopoCelular from './TopoCelular'
+import RodapeCelular from './RodapeCelular'
 import NavegacaoEtapas from './NavegacaoEtapas'
 import BarraNarracao from './BarraNarracao'
 import { ContextoCapsula } from './ContextoCapsula'
@@ -41,18 +43,23 @@ export default function CapsulaInterativa({ conteudo }: { conteudo: ConteudoCaps
     topo.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
-  return (
-    <div className="mx-auto max-w-5xl px-4 pt-6 sm:pt-12">
-      <CabecalhoCapsula
-        id={meta.id}
-        titulo={meta.titulo}
-        linha={linha}
-        detalhes={`${meta.duracaoMin} min · ${meta.xp} XP · progresso salvo neste navegador`}
-      />
-      <CadernoDaCapsula capsulaId={meta.id} />
+  const concluirComRolagem = () => mudarPara(concluirEstaEtapa)
+  const voltarComRolagem = () => mudarPara(() => irPara(atual - 1))
 
-      <div ref={topo} className="mt-8 grid scroll-mt-24 gap-6 lg:mt-10 lg:grid-cols-[200px_1fr] lg:gap-12">
-        <aside className="lg:sticky lg:top-28 lg:self-start">
+  return (
+    <div className="mx-auto max-w-[1360px] px-4 pb-40 pt-2 sm:pt-6 lg:px-9 lg:pb-12 lg:pt-7">
+      <TopoCelular atual={atual} concluidas={progresso.concluidas} cor={linha.cor} linhaId={linha.id} />
+      <div className="hidden lg:block">
+        <CabecalhoCapsula
+          id={meta.id}
+          titulo={meta.titulo}
+          linha={linha}
+          detalhes={`${meta.duracaoMin} min · ${meta.xp} XP · progresso salvo neste navegador`}
+        />
+      </div>
+
+      <div ref={topo} className="mt-4 grid scroll-mt-24 gap-6 lg:mt-6 lg:grid-cols-[220px_minmax(0,1fr)] xl:grid-cols-[220px_minmax(0,1fr)_300px]">
+        <aside className="hidden lg:sticky lg:top-6 lg:block lg:self-start">
           <SumarioEtapas
             atual={atual}
             concluidas={progresso.concluidas}
@@ -62,42 +69,47 @@ export default function CapsulaInterativa({ conteudo }: { conteudo: ConteudoCaps
           />
         </aside>
 
-        <article className={`${cartao} min-w-0 px-5 py-7 sm:px-12 sm:py-12`}>
-          <Rotulo>Etapa {atual + 1} · {etapas[atual].nome}</Rotulo>
-          {/* A "key" recria a barra a cada etapa, o que para a voz da etapa anterior */}
-          <BarraNarracao key={atual} alvo={conteudoRef} />
-          <div ref={conteudoRef} className="mt-5">
-            <ContextoCapsula.Provider
-              value={{
-                meta,
-                etapaAtual: etapas[atual].id,
-                cor: linha.cor,
-                registrarPontuacao,
-                palpites: progresso.palpites ?? {},
-                registrarPalpite,
-                registrarAprofundar,
-              }}
-            >
-              <Suspense fallback={<p className="text-suave">Carregando a cápsula…</p>}>
-                <Texto components={componentesMdx} />
-              </Suspense>
-            </ContextoCapsula.Provider>
-          </div>
+        <div className="min-w-0">
+          <article className={`${cartao} min-w-0 px-5 py-7 sm:px-10 sm:py-10`}>
+            <h1 className="font-serif text-[1.65rem] font-medium leading-tight lg:hidden">{meta.titulo}</h1>
+            <Rotulo className="mt-2 lg:mt-0">Etapa {atual + 1} · {etapas[atual].nome}</Rotulo>
+            {/* A "key" recria a barra a cada etapa, o que para a voz da etapa anterior */}
+            <BarraNarracao key={atual} alvo={conteudoRef} />
+            <div ref={conteudoRef} className="mt-5">
+              <ContextoCapsula.Provider
+                value={{
+                  meta,
+                  etapaAtual: etapas[atual].id,
+                  cor: linha.cor,
+                  registrarPontuacao,
+                  palpites: progresso.palpites ?? {},
+                  registrarPalpite,
+                  registrarAprofundar,
+                }}
+              >
+                <Suspense fallback={<p className="text-suave">Carregando a cápsula…</p>}>
+                  <Texto components={componentesMdx} />
+                </Suspense>
+              </ContextoCapsula.Provider>
+            </div>
 
-          {progresso.concluida && atual === etapas.length - 1 && (
-            <p className="mt-8 rounded-2xl bg-verde/10 p-5 font-semibold text-verde">
-              Cápsula concluída! Repetir agora rende só XP de revisão.
-            </p>
-          )}
+            {progresso.concluida && atual === etapas.length - 1 && (
+              <p className="mt-8 rounded-2xl bg-verde/10 p-5 font-semibold text-verde">
+                Cápsula concluída! Repetir agora rende só XP de revisão.
+              </p>
+            )}
 
-          <NavegacaoEtapas
-            atual={atual}
-            concluida={progresso.concluida}
-            aoVoltar={() => mudarPara(() => irPara(atual - 1))}
-            aoConcluir={() => mudarPara(concluirEstaEtapa)}
-          />
-        </article>
+            <NavegacaoEtapas atual={atual} concluida={progresso.concluida} aoVoltar={voltarComRolagem} aoConcluir={concluirComRolagem} />
+          </article>
+          {/* Aqui entra o player da narração: fica colado no pé da tela enquanto o texto rola */}
+          <div id="player-narracao" className="sticky bottom-[5.5rem] z-30 mt-4 lg:bottom-4" />
+          <div className="mt-6 hidden lg:block xl:hidden"><ApoioDaCapsula capsulaId={meta.id} progresso={progresso} /></div>
+        </div>
+
+        <div className="hidden xl:block xl:sticky xl:top-6 xl:self-start"><ApoioDaCapsula capsulaId={meta.id} progresso={progresso} /></div>
       </div>
+
+      <RodapeCelular capsulaId={meta.id} atual={atual} concluida={progresso.concluida} aoVoltar={voltarComRolagem} aoConcluir={concluirComRolagem} />
     </div>
   )
 }

@@ -38,7 +38,7 @@ export function useNarracao() {
   const [nomeVoz, setNomeVoz] = useState<string | null>(() => ler(CHAVE_VOZ))
   const [estado, setEstado] = useState<EstadoNarracao>('parado')
   const [velocidade, setVelocidade] = useState(velocidadeSalva)
-  const [posicao, setPosicao] = useState({ atual: 0, total: 0 })
+  const [posicao, setPosicao] = useState({ atual: 0, total: 0, texto: '' })
   const frases = useRef<Frase[]>([])
   const indice = useRef(0)
   const sessao = useRef(0) // muda a cada parada, para ignorar avisos de falas antigas
@@ -90,7 +90,7 @@ export function useNarracao() {
         return
       }
       indice.current = i
-      setPosicao({ atual: i + 1, total: frases.current.length })
+      setPosicao({ atual: i + 1, total: frases.current.length, texto: frases.current[i].texto })
       destacar(frases.current[i])
       const fala = novaFala(frases.current[i].texto, v, vel)
       fala.onend = () => falar(i + 1)
@@ -129,7 +129,7 @@ export function useNarracao() {
     limparDestaque()
     indice.current = 0
     setEstado('parado')
-    setPosicao({ atual: 0, total: 0 })
+    setPosicao({ atual: 0, total: 0, texto: '' })
   }
 
   // Pula para a frase anterior (-1) ou seguinte (+1), tocando ou pausado
@@ -138,7 +138,7 @@ export function useNarracao() {
     if (total === 0) return
     const novo = Math.min(total - 1, Math.max(0, indice.current + passo))
     indice.current = novo
-    setPosicao({ atual: novo + 1, total })
+    setPosicao({ atual: novo + 1, total, texto: frases.current[novo].texto })
     if (estado === 'tocando') falarAPartir(novo, velocidade)
     else destacar(frases.current[novo])
   }

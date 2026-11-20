@@ -8,25 +8,10 @@ type Props = {
   aoEscolher: (indice: number) => void
 }
 
-// Mostra em que etapa a pessoa está. No celular vira uma barra de pedaços, um por etapa.
+// Lista das 7 etapas (computador). No celular quem mostra o andamento é o TopoCelular.
 export default function SumarioEtapas({ atual, concluidas, liberadasAte, cor, aoEscolher }: Props) {
   return (
     <nav aria-label="Etapas da cápsula">
-      <div className="lg:hidden">
-        <p className="text-sm text-suave">
-          Etapa {atual + 1} de {etapas.length} · <span className="font-semibold text-texto">{etapas[atual].nome}</span>
-        </p>
-        <div className="mt-2 grid gap-1.5" style={{ gridTemplateColumns: `repeat(${etapas.length}, 1fr)` }}>
-          {etapas.map((e, i) => (
-            <span
-              key={e.id}
-              className="h-1.5 rounded-full"
-              style={{ background: concluidas.includes(e.id) || i === atual ? cor : 'var(--color-borda)' }}
-            />
-          ))}
-        </div>
-      </div>
-
       <ol className="relative hidden lg:block">
         <span aria-hidden="true" className="absolute bottom-5 left-[13px] top-5 w-0.5 rounded-full bg-borda" />
         {etapas.map((e, i) => {
@@ -50,8 +35,10 @@ export default function SumarioEtapas({ atual, concluidas, liberadasAte, cor, ao
                 >
                   {feita && !ativa ? '✓' : i + 1}
                 </span>
-                <span className={ativa ? 'font-semibold' : liberada ? 'text-texto hover:underline' : 'text-suave'}>
-                  {e.nome}                </span>
+                <span className="flex flex-col leading-tight">
+                  <span className={ativa ? 'font-semibold' : liberada ? 'text-texto hover:underline' : 'text-suave'}>{e.nome}</span>
+                  <span className="text-xs text-suave">{e.dica}</span>
+                </span>
               </button>
             </li>
           )

@@ -9,29 +9,19 @@ type Props = {
   aoConcluir: () => void
 }
 
-// Botões do pé da etapa. No celular ficam um embaixo do outro, com o principal por cima.
+// Botões do pé da etapa (computador). No celular quem faz esse papel é o RodapeCelular.
 export default function NavegacaoEtapas({ atual, concluida, aoVoltar, aoConcluir }: Props) {
   const ultima = atual === etapas.length - 1
-  const proxima = etapas[atual + 1]
-  const xp = XP.etapa
-
-  const textoPrincipal = ultima
-    ? concluida ? 'Cápsula concluída ✓' : 'Concluir a cápsula'
-    : `Próxima: ${proxima.nome} →`
+  const fim = ultima && concluida
 
   return (
-    <div className="mt-10 border-t border-borda pt-6">
-      <div className="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <button type="button" onClick={aoVoltar} disabled={atual === 0} className={`${botaoSecundario} disabled:invisible`}>
-          ← Voltar
-        </button>
-        <button type="button" onClick={aoConcluir} disabled={ultima && concluida} className={botaoPrimario}>
-          {textoPrincipal}
-        </button>
-      </div>
-      {!(ultima && concluida) && (
-        <p className="mt-4 text-center text-sm text-suave sm:text-right">+{xp} XP ao concluir esta etapa</p>
-      )}
+    <div className="mt-10 hidden items-center justify-between gap-3 border-t border-borda pt-6 lg:flex">
+      <button type="button" onClick={aoVoltar} disabled={atual === 0} className={`${botaoSecundario} disabled:invisible`}>
+        ← Etapa anterior
+      </button>
+      <button type="button" onClick={aoConcluir} disabled={fim} className={botaoPrimario}>
+        {fim ? 'Cápsula concluída ✓' : ultima ? 'Concluir a cápsula' : `Concluir etapa · +${XP.etapa} XP`}
+      </button>
     </div>
   )
 }
