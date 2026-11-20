@@ -132,6 +132,17 @@ export function useNarracao() {
     setPosicao({ atual: 0, total: 0 })
   }
 
+  // Pula para a frase anterior (-1) ou seguinte (+1), tocando ou pausado
+  function pular(passo: number) {
+    const total = frases.current.length
+    if (total === 0) return
+    const novo = Math.min(total - 1, Math.max(0, indice.current + passo))
+    indice.current = novo
+    setPosicao({ atual: novo + 1, total })
+    if (estado === 'tocando') falarAPartir(novo, velocidade)
+    else destacar(frases.current[novo])
+  }
+
   function mudarVelocidade(nova: number) {
     setVelocidade(nova)
     salvar(CHAVE_VELOCIDADE, String(nova))
@@ -155,6 +166,6 @@ export function useNarracao() {
 
   return {
     disponivel: voz !== null, vozes, voz, estado, velocidade, posicao,
-    tocar, pausar, continuar, parar, mudarVelocidade, mudarVoz, testarVoz,
+    tocar, pausar, continuar, parar, pular, mudarVelocidade, mudarVoz, testarVoz,
   }
 }

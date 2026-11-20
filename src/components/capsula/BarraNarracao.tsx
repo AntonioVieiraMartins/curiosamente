@@ -1,6 +1,7 @@
 import { useState, type ReactNode, type RefObject } from 'react'
 import { useNarracao } from '../../hooks/useNarracao'
 import PainelVoz from './PainelVoz'
+import PlayerFlutuante from './PlayerFlutuante'
 
 // Ícones desenhados à mão (sem biblioteca), herdam a cor do botão
 const Icone = {
@@ -35,26 +36,10 @@ export default function BarraNarracao({ alvo }: { alvo: RefObject<HTMLElement | 
             <Svg>{Icone.tocar}</Svg> Ouvir
           </button>
         )}
-        {n.estado === 'tocando' && (
-          <button type="button" onClick={n.pausar} className={`${botao} bg-azul-texto px-5 text-white`}>
-            <Svg>{Icone.pausar}</Svg> Pausar
-          </button>
-        )}
-        {n.estado === 'pausado' && (
-          <button type="button" onClick={n.continuar} className={`${botao} bg-azul-texto px-5 text-white`}>
-            <Svg>{Icone.tocar}</Svg> Continuar
-          </button>
-        )}
-
         {n.estado !== 'parado' && (
-          <>
-            <button type="button" onClick={n.parar} aria-label="Parar a narração" className={`${botao} w-11 border border-borda hover:border-texto/40`}>
-              <Svg>{Icone.parar}</Svg>
-            </button>
-            <span className="text-sm text-suave" aria-live="polite">
-              frase {n.posicao.atual} de {n.posicao.total}
-            </span>
-          </>
+          <span className="text-sm text-suave" aria-live="polite">
+            {n.estado === 'pausado' ? 'Pausado' : 'Ouvindo'} · frase {n.posicao.atual} de {n.posicao.total}
+          </span>
         )}
 
         <button
@@ -68,6 +53,7 @@ export default function BarraNarracao({ alvo }: { alvo: RefObject<HTMLElement | 
       </div>
 
       {ajustesAbertos && <PainelVoz narracao={n} />}
+      {n.estado !== 'parado' && <PlayerFlutuante narracao={n} />}
     </div>
   )
 }
