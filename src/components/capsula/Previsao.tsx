@@ -1,4 +1,5 @@
 import { useState, type ReactNode } from 'react'
+import { tocar } from '../../lib/sons'
 import { botaoSecundario } from '../ui/estilos'
 import { useCapsula } from './ContextoCapsula'
 import { ganharXp } from '../../lib/sincronizacao'
@@ -23,6 +24,7 @@ export default function Previsao({ pergunta, opcoes, correta, explicacao, childr
   // Acertar rende mais, mas errar e ir até o fim também rende (errar é parte do jogo)
   function conferir() {
     setConferido(true)
+    tocar(acertou ? 'acerto' : 'erro')
     void ganharXp(acertou ? 'previsao_certa' : 'previsao_errada', `${meta.id}:previsao`, meta.id)
   }
 
@@ -37,7 +39,7 @@ export default function Previsao({ pergunta, opcoes, correta, explicacao, childr
               key={opcao}
               type="button"
               disabled={palpite !== null}
-              onClick={() => setPalpite(i)}
+              onClick={() => { setPalpite(i); tocar('clique') }}
               aria-pressed={palpite === i}
               className={`${estiloOpcao} ${
                 palpite === i ? 'border-azul bg-superficie text-azul-texto' : 'border-transparent bg-superficie enabled:hover:border-azul'

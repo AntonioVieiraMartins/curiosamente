@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { tocar } from '../../lib/sons'
 import { useCapsula } from './ContextoCapsula'
 import BotaoGuardarCartao from './BotaoGuardarCartao'
 import { codigoDe, guardarCartao } from '../../lib/cartoes'
@@ -21,6 +22,7 @@ export default function Quiz({ perguntas }: { perguntas: Pergunta[] }) {
   function responder(indicePergunta: number, opcao: number) {
     // Errou? A pergunta vira cartão de revisão sozinha
     if (opcao !== perguntas[indicePergunta].correta) guardarCartao(cartaoDe(perguntas[indicePergunta]))
+    tocar(opcao === perguntas[indicePergunta].correta ? 'acerto' : 'erro')
     const novas = respostas.map((r, i) => (i === indicePergunta ? opcao : r))
     setRespostas(novas)
     if (novas.every((r) => r !== null)) {

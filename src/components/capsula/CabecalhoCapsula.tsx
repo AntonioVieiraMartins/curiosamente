@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import BotaoSons from './BotaoSons'
 import SiglaLinha from '../ui/SiglaLinha'
 import { buscarCapsula, numeroDaCapsula, type Linha } from '../../conteudo/indice'
 
@@ -26,6 +27,7 @@ export default function CabecalhoCapsula({ id, titulo, linha, detalhes }: Props)
         <h1 className="mt-1 font-serif text-[1.65rem] font-medium leading-tight sm:text-[34px]">{titulo}</h1>
         <p className="mt-1 text-sm text-suave">{detalhes}</p>
       </div>
+      <BotaoSons />
     </header>
   )
 }

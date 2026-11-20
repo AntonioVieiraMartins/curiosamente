@@ -1,4 +1,5 @@
 import { useId, useState, type FormEvent } from 'react'
+import { tocar } from '../../lib/sons'
 import { lerNumero, mesmoNumero } from '../../lib/numeros'
 import { codigoDe } from '../../lib/cartoes'
 import { useCapsula } from './ContextoCapsula'
@@ -32,7 +33,9 @@ export default function Exercicio({ enunciado, resposta, dica, resolucao, unidad
       return
     }
     setNaoEntendi(false)
-    setEstado(mesmoNumero(valor, certa) ? 'acertou' : 'errou')
+    const ok = mesmoNumero(valor, certa)
+    tocar(ok ? 'acerto' : 'erro')
+    setEstado(ok ? 'acertou' : 'errou')
   }
 
   const mostrarResolucao = estado === 'acertou' || verResolucao
