@@ -17,6 +17,8 @@
   --color-amarelo: #f3c64d;
   --color-amarelo-escuro: #94700f; /* textos e linhas de gráfico (o amarelo claro some no fundo branco) */
   --color-coral: #d4513a;
+  --color-ativo: #f0efe9;         /* fundo do item de menu ativo */
+  --color-verde-claro: #e6f4ec;   /* fundo do item ativo no menu do celular */
 
   /* Uma cor por linha do mapa */
   --color-basica: #7a52c7;
