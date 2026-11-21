@@ -35,7 +35,7 @@ Cinco áreas (cada uma é uma linha ou mais no mapa, em `src/conteudo/indice.ts`
 
 5. **Física** (pedido do dono): do movimento ao universo. Grupos: Movimento, Forças e energia, Calor e ondas, Eletricidade e magnetismo, Física moderna. Pastas em `src/conteudo/fisica/<id>/`, usando `fis(...)` no índice.
 
-As cápsulas de Biologia, Química e Física já estão **listadas no mapa como "em breve"** (a página mostra um rascunho). Para escrever uma, siga "Para criar uma cápsula nova" e marque `estado: 'pronta'`. Ciência de Dados continua para depois: não crie nada dela até o dono pedir.
+As cápsulas de Biologia, Química e Física já estão **listadas no mapa como "em breve"** (a página mostra um rascunho). Para escrever uma, siga "Para criar uma cápsula nova" e marque `estado: 'pronta'`. Ciência de Dados virou o **Módulo 5 da Computação** (pedido do dono): 8 cápsulas "em breve" com `trilha: 'ciencia-de-dados'` no índice, a escrever aos poucos.
 A estrutura permite adicionar áreas novas sem refazer nada: crie a linha em `linhas`, a área em `areas` e um helper como `bio(...)`.
 
 ### Inspirações (o que pegamos de cada uma)
@@ -344,7 +344,7 @@ VITE_SUPABASE_ANON_KEY=...
 - [x] 10. Caderno pessoal e revisão espaçada (rodar as migrações 20261118000000 e 20261118010000 no Supabase para sincronizar com a conta)
 - [ ] 11. Restante da computação, conexões entre as duas áreas, modo escuro, publicação
 - [x] Biologia e Química: áreas criadas e cápsulas listadas no mapa (escrever o conteúdo aos poucos)
-- [ ] Futuro (só quando o dono pedir): Ciência de Dados
+- [x] Ciência de Dados: Módulo 5 da Computação listado no mapa (escrever as cápsulas aos poucos)
 
 Faça **uma etapa por vez** e mostre o resultado antes de seguir.
 

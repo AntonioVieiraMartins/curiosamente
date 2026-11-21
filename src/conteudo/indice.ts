@@ -53,6 +53,7 @@ export const modulosComputacao: Record<string, string> = {
   'redes-e-internet': 'Módulo 2 · Redes e internet',
   'sistema-web': 'Módulo 3 · Como um sistema web é feito',
   hospedagem: 'Módulo 4 · Colocando no ar',
+  'ciencia-de-dados': 'Módulo 5 · Ciência de dados',
 }
 
 const m = (trilha: string, id: string, titulo: string, gancho: string, extra: Partial<ResumoCapsula> = {}): ResumoCapsula => ({
@@ -190,6 +191,14 @@ export const capsulas: ResumoCapsula[] = [
   c('sistema-web', 'senhas-e-hash', 'Usuários e login', 'Por que ninguém deveria guardar sua senha.', { estado: 'pronta', duracaoMin: 40, conexoes: ['banco-de-dados', 'numeros-primos'] }),
   c('hospedagem', 'git-e-github', 'Git e GitHub', 'Salvar o jogo do código e voltar no tempo.', { estado: 'pronta', duracaoMin: 40, conexoes: ['terminal'] }),
   c('hospedagem', 'deploy', 'Deploy', 'Do seu computador para o mundo.', { estado: 'pronta', duracaoMin: 40, conexoes: ['dns'] }),
+  c('ciencia-de-dados', 'o-que-sao-dados', 'O que são dados', 'Uma linha de planilha vira uma pessoa, uma compra, um clique.', { conexoes: ['banco-de-dados', 'estatistica-basica'] }),
+  c('ciencia-de-dados', 'tabelas-e-limpeza', 'Tabelas e limpeza de dados', 'Por que 80% do trabalho é arrumar a bagunça antes de analisar.', { conexoes: ['o-que-sao-dados'] }),
+  c('ciencia-de-dados', 'resumindo-dados', 'Resumindo dados', 'Média, mediana e desvio: três jeitos de contar a mesma história.', { conexoes: ['estatistica-basica', 'tabelas-e-limpeza'] }),
+  c('ciencia-de-dados', 'graficos-que-contam-historias', 'Gráficos que contam histórias', 'O mesmo número, dois gráficos, duas conclusões opostas.', { conexoes: ['resumindo-dados', 'estatistica'] }),
+  c('ciencia-de-dados', 'correlacao-e-causa', 'Correlação não é causa', 'Sorvete e afogamentos sobem juntos. Quem culpar?', { conexoes: ['graficos-que-contam-historias', 'regressao'] }),
+  c('ciencia-de-dados', 'amostras-e-vieses', 'Amostras e vieses', 'Como uma pesquisa com 2 milhões de pessoas errou feio.', { conexoes: ['correlacao-e-causa', 'inferencia-estatistica'] }),
+  c('ciencia-de-dados', 'previsao-com-dados', 'Prever o futuro com dados', 'Uma reta que adivinha o preço de uma casa.', { conexoes: ['amostras-e-vieses', 'funcao-afim', 'regressao'] }),
+  c('ciencia-de-dados', 'aprendizado-de-maquina', 'Aprendizado de máquina', 'Como o computador aprende a separar gatos de cachorros sem receber regras.', { conexoes: ['previsao-com-dados', 'matrizes'] }),
 
   // Biologia: da célula aos ecossistemas, na ordem em que as ideias se apoiam
   bio('o-que-e-vida', 'O que é vida?', 'Um vírus está vivo? Os cientistas ainda discutem.', { grupo: 'A célula e a vida', estado: 'pronta', duracaoMin: 40 }),
