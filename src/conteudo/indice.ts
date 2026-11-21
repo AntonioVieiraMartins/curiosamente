@@ -197,8 +197,8 @@ export const capsulas: ResumoCapsula[] = [
   c('ciencia-de-dados', 'graficos-que-contam-historias', 'Gráficos que contam histórias', 'O mesmo número, dois gráficos, duas conclusões opostas.', { conexoes: ['resumindo-dados', 'estatistica'] }),
   c('ciencia-de-dados', 'correlacao-e-causa', 'Correlação não é causa', 'Sorvete e afogamentos sobem juntos. Quem culpar?', { conexoes: ['graficos-que-contam-historias', 'regressao'] }),
   c('ciencia-de-dados', 'amostras-e-vieses', 'Amostras e vieses', 'Como uma pesquisa com 2 milhões de pessoas errou feio.', { conexoes: ['correlacao-e-causa', 'inferencia-estatistica'] }),
-  c('ciencia-de-dados', 'previsao-com-dados', 'Prever o futuro com dados', 'Uma reta que adivinha o preço de uma casa.', { conexoes: ['amostras-e-vieses', 'funcao-afim', 'regressao'] }),
-  c('ciencia-de-dados', 'aprendizado-de-maquina', 'Aprendizado de máquina', 'Como o computador aprende a separar gatos de cachorros sem receber regras.', { conexoes: ['previsao-com-dados', 'matrizes'] }),
+  c('ciencia-de-dados', 'previsao-com-dados', 'Prever o futuro com dados', 'Uma reta que adivinha o preço de uma casa.', { estado: 'pronta', duracaoMin: 50, conexoes: ['amostras-e-vieses', 'funcao-afim', 'regressao'] }),
+  c('ciencia-de-dados', 'aprendizado-de-maquina', 'Aprendizado de máquina', 'Como o computador aprende a separar gatos de cachorros sem receber regras.', { estado: 'pronta', duracaoMin: 55, conexoes: ['previsao-com-dados', 'matrizes'] }),
 
   // Biologia: da célula aos ecossistemas, na ordem em que as ideias se apoiam
   bio('o-que-e-vida', 'O que é vida?', 'Um vírus está vivo? Os cientistas ainda discutem.', { grupo: 'A célula e a vida', estado: 'pronta', duracaoMin: 40 }),

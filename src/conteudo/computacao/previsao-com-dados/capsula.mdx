@@ -1,0 +1,426 @@
+import RetaDeTendencia from '../../../components/simulacoes/RetaDeTendencia'
+import QuadradosDosErros from '../../../components/simulacoes/QuadradosDosErros'
+import PrevendoUmPreco from '../../../components/simulacoes/PrevendoUmPreco'
+import ExtrapolacaoPerigosa from '../../../components/simulacoes/ExtrapolacaoPerigosa'
+import TreinoETeste from '../../../components/simulacoes/TreinoETeste'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Least squares, Ceres, Regression toward the mean, Google Flu Trends, Overfitting), listadas no meta.ts. Os dados de preços e de altura das simulações são inventados ou aproximados, e o texto avisa. */}
+
+<Etapa id="gancho">
+
+Você quer vender seu apartamento e precisa de um preço. Alto demais, ninguém aparece. Baixo demais, você perde dinheiro. O que fazer? Uma imobiliária olha **muitos apartamentos já vendidos** e percebe um padrão: quanto maior a área, maior o preço. Com esse padrão, ela **prevê** quanto o seu deve valer.
+
+Fazer isso com dados é uma das ideias mais úteis da ciência de dados. Serve para estimar o preço de uma casa, as vendas do mês que vem, a chuva de amanhã e o tempo de uma entrega. A previsão nunca é mágica: ela é um **palpite educado**, que usa o passado para olhar um pouco para a frente.
+
+<Palpite
+  chave="inicial"
+  pergunta="Para estimar o preço de um apartamento que ainda não foi vendido, o que ajuda mais?"
+  opcoes={['Escolher um número com sorte', 'Olhar muitos apartamentos já vendidos e achar o padrão entre tamanho e preço', 'Copiar o preço do vizinho']}
+/>
+
+Nesta cápsula você vai aprender a **desenhar uma reta de tendência**, a medir o **erro** de uma previsão, a escolher a **melhor reta** e, principalmente, a saber **quando não confiar** nela.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Prever sempre foi um sonho humano: saber o clima, a colheita, o caminho dos astros. A matemática de prever com dados nasceu da astronomia.
+
+<LinhaDoTempo marcos={[
+  { ano: '1801', texto: 'O astrônomo Giuseppe Piazzi descobre Ceres e o perde de vista atrás do Sol. Carl Friedrich Gauss calcula onde ele vai reaparecer.' },
+  { ano: '1805', texto: 'Adrien-Marie Legendre publica o método dos mínimos quadrados.' },
+  { ano: '1809', texto: 'Gauss publica o seu trabalho sobre o mesmo método e diz que já o usava desde 1795.' },
+  { ano: '1886', texto: 'Francis Galton estuda a altura de pais e filhos e dá o nome de regressão a esse tipo de análise.' },
+  { ano: '2008', texto: 'O Google lança o Google Flu Trends, que tenta prever a gripe pelas buscas das pessoas.' },
+  { ano: '2013', texto: 'Um estudo mostra que o Flu Trends vinha exagerando nos números. O serviço foi encerrado em 2015.' },
+]} />
+
+## O planeta que sumiu
+
+Na noite de 1º de janeiro de 1801, o astrônomo italiano **Giuseppe Piazzi** viu uma luzinha que se movia entre as estrelas: era **Ceres**, hoje chamado de planeta anão. Ele a observou por pouco mais de um mês. Aí Ceres chegou perto do Sol e **sumiu no brilho**. Ninguém sabia onde procurar quando ela saísse do outro lado.
+
+O jovem matemático **Carl Friedrich Gauss** pegou as poucas posições anotadas, que traziam pequenos erros de medida, e calculou **onde Ceres reapareceria**. No fim de 1801, outros astrônomos apontaram os telescópios para o lugar previsto e a encontraram. O truque de Gauss foi tratar os dados com um método que **espalha o erro com justiça**: o dos mínimos quadrados.
+
+## Quem inventou o método?
+
+O francês **Legendre** publicou o método em 1805. Gauss o publicou em 1809, mas disse que o usava desde 1795, e os dois brigaram pela honra. Hoje se reconhece que Legendre foi o primeiro a publicar. Seja como for, o método é a base de quase toda previsão com dados.
+
+## Filhos de pais altos
+
+Em 1886, **Francis Galton** mediu a altura de pais e filhos. Percebeu que pais muito altos tinham filhos altos, mas **um pouco menos altos** do que eles, e que pais muito baixos tinham filhos baixos, mas um pouco mais altos. Os extremos "voltavam" para a média. Ele chamou isso de **regressão** (voltar), e é por isso que ainda hoje as retas de previsão são chamadas de regressão.
+
+## Quando a previsão enganou
+
+Em 2008, o Google lançou o **Flu Trends**, que estimava a gripe pelo que as pessoas buscavam. No começo parecia genial. Em 2013, um estudo mostrou que o serviço tinha superestimado a gripe em cerca do dobro numa temporada. Ele foi encerrado em 2015. A lição: **um padrão do passado pode parar de valer**.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Prever é achar o padrão e continuá-lo
+
+Imagine que você marcou num papel quadriculado, para cada apartamento vendido, um ponto: a **área** na horizontal e o **preço** na vertical. Os pontos não ficam todos sobre uma linha, mas formam uma **nuvem inclinada**: apartamentos maiores têm preços maiores.
+
+Se você passar uma régua pela nuvem, de modo que ela fique **o mais perto possível de todos os pontos**, ganha uma **reta de tendência**. Para prever o preço de um apartamento novo, basta olhar a reta na área dele.
+
+## 2. A reta tem duas informações
+
+Uma reta é escrita como **y = a·x + b**. Aqui, **x** é a área, **y** é o preço, e:
+
+- **a** é a **inclinação**: quanto o preço sobe quando a área aumenta 1 m².
+- **b** é o **ponto de partida**: o valor de y quando x é zero.
+
+<Brincando titulo="Reta de tendência: o táxi">
+
+Pense numa corrida de táxi. A **bandeirada** é o valor que você paga só por entrar, antes de andar um metro: esse é o **b**. Depois, cada quilômetro custa um valor fixo: esse é o **a**. O preço da corrida é a bandeirada mais o preço do quilômetro vezes a distância. Com os dados de várias corridas, dá para descobrir a bandeirada e o preço do quilômetro, e então **prever** quanto custará uma corrida que ninguém fez ainda.
+
+</Brincando>
+
+## 3. Nenhuma reta acerta tudo
+
+Os pontos não ficam exatamente em cima da reta, porque o preço depende de muito mais do que a área: bairro, andar, estado do prédio, sorte na negociação. A distância entre o ponto real e a reta é o **erro** da previsão. Não existe previsão sem erro. O que importa é que ele seja **pequeno** e que a gente **saiba o tamanho dele**.
+
+## 4. A melhor reta é a que erra menos
+
+Há infinitas retas possíveis. Para escolher a melhor, precisamos de um jeito de **medir o erro total**. A ideia: somar o erro de cada ponto. Mas há um problema, que você verá em seguida, e a solução é **elevar cada erro ao quadrado**.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Na simulação você vai mexer numa reta que passa por pontos de preços de apartamentos. Se você afastar a reta da nuvem de pontos, o erro médio quadrático vai:"
+  opcoes={['Subir', 'Descer', 'Ficar igual']}
+  correta={0}
+  explicacao="Quanto mais longe a reta está dos pontos, maiores são os erros, e o erro médio quadrático sobe."
+>
+
+Mexa na inclinação e na altura da reta. Os traços vermelhos são os erros. O objetivo é **baixar o número**:
+
+<RetaDeTendencia />
+
+Agora, uma forma de enxergar a "soma dos quadrados". Cada erro vira um **quadrado**, e o que se quer é que a **área total** seja a menor possível:
+
+<QuadradosDosErros />
+
+Volte ao palpite do começo: para estimar o preço de um apartamento ainda não vendido, o que ajuda mais?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Escolher um número com sorte', 'Olhar muitos apartamentos já vendidos e achar o padrão entre tamanho e preço', 'Copiar o preço do vizinho']}
+  correta={1}
+  seAcertou="Certo: prever com dados é achar o padrão nos casos já conhecidos e usá-lo para o novo."
+  seErrou="O certo é olhar muitos casos já conhecidos e achar o padrão. Sorte não é previsão, e um único vizinho é pouca informação."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Dados: pares de medidas
+
+Para prever, precisamos de **pares de medidas**: para cada caso, um valor que conhecemos (o **x**, também chamado de variável explicativa ou entrada) e um valor que queremos prever (o **y**, a resposta ou saída). Exemplos: área e preço, horas de estudo e nota, temperatura e consumo de sorvete.
+
+Cada par vira um ponto num gráfico. Essa nuvem de pontos se chama **diagrama de dispersão**. Antes de fazer qualquer conta, olhe para ela: os pontos sobem, descem ou formam uma bagunça? Se formarem uma bagunça, uma reta de tendência não ajuda.
+
+## A reta y = a·x + b
+
+Com a reta, a previsão é uma conta simples: troque x pelo valor novo.
+
+<ExemploResolvido titulo="Prever com uma reta pronta">
+  <Passo>Uma imobiliária ajustou a reta **y = 3·x + 20**, onde x é a área em m² e y é o preço em mil reais.</Passo>
+  <Passo>Quer-se o preço de um apartamento de **60 m²**: troque x por 60.</Passo>
+  <Passo>y = 3 · 60 + 20 = 180 + 20 = **200**.</Passo>
+  <Passo>A previsão é de **200 mil reais**. O número 3 diz que cada m² a mais acrescenta, em média, 3 mil reais.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Com a reta y = 3·x + 20 (x em m², y em mil reais), qual o preço previsto, em mil reais, de um apartamento de 50 m²?" resposta="170" dica="Troque x por 50: 3 vezes 50 mais 20." resolucao="3 · 50 + 20 = 150 + 20 = 170 mil reais." />
+
+<Exercicio enunciado="Na mesma reta y = 3·x + 20, quanto o preço previsto aumenta, em mil reais, se a área sobe 10 m²?" resposta="30" dica="O aumento é a inclinação vezes a mudança em x." resolucao="3 · 10 = 30 mil reais. A inclinação a = 3 diz quanto y muda quando x sobe 1." />
+
+<Exercicio enunciado="Na reta y = 3·x + 20, qual o valor de y quando x é zero?" resposta="20" dica="Troque x por 0." resolucao="3 · 0 + 20 = 20. Esse é o b, o ponto de partida. Aqui ele não precisa fazer sentido real (não existe apartamento de 0 m²): é só onde a reta cruza o eixo." />
+
+## Achando a reta a partir de dois pontos
+
+Às vezes você conhece dois pontos e quer a reta que passa por eles. Primeiro calcule a **inclinação**: quanto y muda dividido por quanto x muda. Depois, ache o **b** usando um dos pontos.
+
+<ExemploResolvido titulo="Reta por dois pontos">
+  <Passo>Os pontos são (10, 50) e (30, 90): com 10 de x, y vale 50, e com 30 de x, y vale 90.</Passo>
+  <Passo>Inclinação: a = (90 − 50) ÷ (30 − 10) = 40 ÷ 20 = **2**.</Passo>
+  <Passo>Use o primeiro ponto em y = 2·x + b: 50 = 2 · 10 + b, então b = 50 − 20 = **30**.</Passo>
+  <Passo>A reta é **y = 2·x + 30**. Confira com o segundo ponto: 2 · 30 + 30 = 90. Certo.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma reta passa pelos pontos (10, 50) e (30, 90). Qual a sua inclinação a?" resposta="2" dica="Divida a mudança em y pela mudança em x." resolucao="(90 − 50) ÷ (30 − 10) = 40 ÷ 20 = 2." />
+
+<Exercicio enunciado="Um táxi cobra bandeirada de 6 reais e 3 reais por quilômetro. Se a corrida é y = 3·x + 6, quanto custa uma corrida de 8 km?" resposta="30" dica="3 vezes 8 mais 6." resolucao="3 · 8 + 6 = 24 + 6 = 30 reais." />
+
+## O erro de cada ponto
+
+Para saber se uma reta é boa, comparamos o que ela **previu** com o que **realmente aconteceu**. A diferença é o **erro**, também chamado de **resíduo**:
+
+<Formula>
+  <Linha>erro = valor real − valor previsto</Linha>
+</Formula>
+
+Se o erro é positivo, a reta previu menos do que aconteceu. Se é negativo, previu mais.
+
+<Exercicio enunciado="O preço real de um apartamento foi 185 mil, e a reta previu 170 mil. Qual o erro (real menos previsto), em mil reais?" resposta="15" dica="185 menos 170." resolucao="185 − 170 = 15 mil. A reta previu menos do que o real." />
+
+## Por que elevar ao quadrado?
+
+Imagine dois pontos: a reta errou +5 num e −5 no outro. Se você somar os erros, dá **zero**, e parece que a reta é perfeita, o que é falso! Os erros de sinais opostos **se cancelam**. A solução é elevar cada erro ao **quadrado**: (+5)² = 25 e (−5)² = 25, e a soma passa a ser 50. Além disso, o quadrado **castiga mais os erros grandes**: um erro de 10 vale 100, enquanto dois erros de 5 valem 50 juntos.
+
+Somando os quadrados dos erros de todos os pontos, temos a **soma dos quadrados dos erros**. Se dividirmos pelo número de pontos, temos o **erro médio quadrático**, o número que a simulação mostrou.
+
+<Brincando titulo="Soma dos quadrados: a multa que cresce">
+
+Pense numa escola em que o atraso é multado, e a multa **cresce mais depressa do que o atraso**: 1 minuto de atraso paga 1, 2 minutos pagam 4, 3 minutos pagam 9, 10 minutos pagam 100. Quem chega 10 minutos atrasado paga muito mais do que dois alunos que chegam 5 minutos atrasados (que pagam 25 cada, 50 no total). Elevar o erro ao quadrado é essa mesma regra: **um erro grande dói muito mais do que vários pequenos**. Por isso, a reta que minimiza essa multa evita os grandes tropeços.
+
+</Brincando>
+
+<ExemploResolvido titulo="Soma dos quadrados dos erros">
+  <Passo>Uma reta teve erros de **+2, −3 e +1** em três pontos.</Passo>
+  <Passo>Somar sem elevar: 2 − 3 + 1 = 0. Parece perfeita, mas não é.</Passo>
+  <Passo>Elevando ao quadrado: 2² = 4, (−3)² = 9, 1² = 1.</Passo>
+  <Passo>Soma: 4 + 9 + 1 = **14**. Dividindo por 3 pontos, o erro médio quadrático é 14 ÷ 3, cerca de 4,67.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma reta teve erros de +2, −3 e +1 em três pontos. Qual a soma dos quadrados dos erros?" resposta="14" dica="4 + 9 + 1." resolucao="2² + (−3)² + 1² = 4 + 9 + 1 = 14." />
+
+<Exercicio enunciado="Quatro pontos tiveram erros de 1, −3, 2 e −2. Qual o erro médio quadrático (soma dos quadrados dividida por 4)?" resposta="4,5" dica="1 + 9 + 4 + 4 = 18, dividido por 4." resolucao="Soma dos quadrados: 1 + 9 + 4 + 4 = 18. Dividindo por 4: 4,5." />
+
+## A melhor reta: mínimos quadrados
+
+A **melhor reta** é a que deixa a **soma dos quadrados dos erros a menor possível**. É o método dos mínimos quadrados, de Legendre e Gauss. Ele garante uma única reta vencedora, e computadores a acham em um instante. Duas propriedades úteis:
+
+- A melhor reta **sempre passa pelo ponto das médias**: a média dos x e a média dos y.
+- Os erros da melhor reta **somam zero**: os acima e abaixo se equilibram.
+
+<ExemploResolvido titulo="Comparar duas retas pelo erro">
+  <Passo>Os pontos são (0, 1), (1, 3) e (2, 2). A reta A é **y = 0,5·x + 1,5** e a reta B é **y = x**.</Passo>
+  <Passo>Reta A prevê 1,5; 2; 2,5. Erros: 1 − 1,5 = −0,5; 3 − 2 = 1; 2 − 2,5 = −0,5. Quadrados: 0,25; 1; 0,25. Soma: **1,5**.</Passo>
+  <Passo>Reta B prevê 0; 1; 2. Erros: 1; 2; 0. Quadrados: 1; 4; 0. Soma: **5**.</Passo>
+  <Passo>A reta A erra bem menos (1,5 contra 5). Aliás, a reta A é a melhor reta desses pontos: ela passa pela média (1, 2) e seus erros somam zero.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Os pontos (1, 3), (2, 5) e (6, 10) têm média de x igual a 3. Qual a média de y? A melhor reta passa pelo ponto (3, ?)." resposta="6" dica="Some 3, 5 e 10 e divida por 3." resolucao="(3 + 5 + 10) ÷ 3 = 18 ÷ 3 = 6. A melhor reta passa pelo ponto (3, 6)." />
+
+<Exercicio enunciado="A melhor reta de certos pontos é y = 0,5·x + 1,5. Qual o valor previsto para x = 4?" resposta="3,5" dica="0,5 vezes 4 mais 1,5." resolucao="0,5 · 4 + 1,5 = 2 + 1,5 = 3,5." />
+
+<Exercicio enunciado="Uma reta A tem soma dos quadrados dos erros igual a 1,5 e uma reta B tem 5. Qual das duas é melhor? Responda 1 para A ou 2 para B." resposta="1" dica="Quanto menor a soma, melhor." resolucao="A reta A (1,5) erra menos do que a B (5). Resposta: 1." />
+
+## Prever um valor novo, com uma faixa
+
+Com a melhor reta, a previsão é só calcular. Mas dar um **número único** passa a falsa ideia de certeza. Melhor é dar uma **faixa**: a previsão mais ou menos algo. Uma regra comum é usar **duas vezes o tamanho típico do erro**, que cobre a maior parte dos casos. Na simulação, a faixa azul clara mostra isso.
+
+<PrevendoUmPreco />
+
+Em português claro: "este apartamento deve valer cerca de 200 mil, e é bem provável que fique entre 170 e 230 mil".
+
+<ExemploResolvido titulo="Previsão com faixa">
+  <Passo>A reta prevê **200 mil** para um apartamento. O erro típico das previsões passadas foi de **15 mil**.</Passo>
+  <Passo>Faixa de duas vezes o erro típico: 2 · 15 = **30 mil**.</Passo>
+  <Passo>Limite de baixo: 200 − 30 = **170 mil**. Limite de cima: 200 + 30 = **230 mil**.</Passo>
+  <Passo>Resposta honesta: "deve valer cerca de 200 mil, entre 170 e 230 mil".</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma previsão é de 200 mil e o erro típico é de 15 mil. Qual o limite de cima da faixa de duas vezes o erro típico, em mil reais?" resposta="230" dica="200 mais 2 vezes 15." resolucao="200 + 30 = 230 mil." />
+
+## Interpolar e extrapolar
+
+A reta só aprendeu com os dados que viu. Prever **dentro** da região dos dados (por exemplo, apartamentos de 30 a 120 m², se foram esses que a reta viu) se chama **interpolar** e costuma ser seguro. Prever **fora** dessa região se chama **extrapolar** e é **arriscado**, porque o mundo pode mudar de forma onde você nunca olhou.
+
+<Brincando titulo="Extrapolar: a trilha que some no escuro">
+
+Você está numa trilha de montanha com uma lanterna que ilumina 10 metros. Dentro do que a lanterna mostra, você sabe onde pisar. Se alguém pedir "e daqui a 500 metros?", só dá para **supor que a trilha continua igual**. Mas ela pode virar à esquerda, ter um buraco ou terminar num penhasco. A previsão dentro da luz é segura. Fora da luz, é só um chute que **parece** confiável porque a reta continua bonita no papel.
+
+</Brincando>
+
+Um exemplo clássico é a altura de uma criança. De 2 a 12 anos, ela cresce quase em linha reta, uns 6 cm por ano. Se você ajustar uma reta a esses dados e perguntar a altura aos 30 anos, ela dirá **mais de 2,5 metros**. O erro está em esquecer que o crescimento **para** na adolescência.
+
+<ExtrapolacaoPerigosa />
+
+<ExemploResolvido titulo="O erro de extrapolar">
+  <Passo>Aos 12 anos, uma criança mede 150 cm e cresce, em média, 6 cm por ano nessa fase.</Passo>
+  <Passo>A reta prevê para os 30 anos: 150 + 6 · 18 anos que faltam = 150 + 108 = **258 cm**.</Passo>
+  <Passo>Isso é mais do que qualquer ser humano já mediu. O erro vem de aplicar a reta fora da região onde ela foi ajustada.</Passo>
+  <Passo>Regra: antes de confiar numa previsão, pergunte se o valor novo está **dentro** do que os dados cobrem.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Aos 12 anos uma criança mede 150 cm e cresce 6 cm por ano. Se a reta continuasse valendo, quantos cm ela mediria aos 20 anos?" resposta="198" dica="Faltam 8 anos: 150 mais 6 vezes 8." resolucao="150 + 6 · 8 = 150 + 48 = 198 cm. É um absurdo, porque o crescimento para por volta dos 18 anos. Isso mostra o perigo de extrapolar." />
+
+## Treino e teste
+
+Como saber se um modelo é bom de verdade? Se você o testar com os **mesmos dados** que usou para montá-lo, ele pode parecer ótimo só porque **decorou** as respostas. É como estudar para uma prova só com a prova do ano passado e ser testado nela.
+
+A solução é **dividir os dados em duas partes**: o **treino** (em geral 70% a 80%), usado para achar a reta, e o **teste** (o resto), **guardado** e usado só no fim para ver como o modelo se sai com dados novos.
+
+<Exercicio enunciado="Você tem 100 exemplos e usa 80% para treino. Quantos exemplos ficam para o teste?" resposta="20" dica="100 menos 80." resolucao="80% de 100 é 80 para treino, sobram 20 para teste." />
+
+## Sobreajuste e subajuste
+
+Se a curva puder ser **muito flexível**, ela passa em cima de todos os pontos de treino, inclusive nos pequenos erros ao acaso, o chamado **ruído**. Isso é o **sobreajuste** (em inglês, overfitting): o modelo vai muito bem no treino e **mal no teste**. No outro extremo, uma curva **simples demais** (uma reta onde o padrão é curvo) vai mal nos dois: é o **subajuste**.
+
+<Brincando titulo="Sobreajuste: o aluno que decorou o gabarito">
+
+Dois alunos estudam para uma prova. A primeira entende a matéria. O segundo **decora o gabarito do simulado**, incluindo as letras das respostas certas. No simulado, ele tira 10. Na prova de verdade, com perguntas novas, tira 3, porque aprendeu **o gabarito, não a matéria**. O sobreajuste é isso: o modelo decora os dados de treino, ruído incluso, e falha com dados novos. A prova de verdade é o conjunto de **teste**.
+
+</Brincando>
+
+Brinque com a simulação: aumente a complexidade da curva e compare o erro de treino com o de teste. O erro de treino sempre cai. O de teste cai e depois **sobe**.
+
+<TreinoETeste />
+
+<ExemploResolvido titulo="Reconhecer o sobreajuste">
+  <Passo>Um modelo acertou **95 de 100** exemplos de treino e **70 de 100** exemplos de teste.</Passo>
+  <Passo>A diferença entre os dois é 95 − 70 = **25 pontos percentuais**.</Passo>
+  <Passo>Uma diferença grande entre treino e teste é o sinal clássico de sobreajuste: o modelo decorou o treino.</Passo>
+  <Passo>O que fazer: usar um modelo mais simples, ter mais dados ou parar de ajustar antes de decorar.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um modelo acerta 95% no treino e 70% no teste. Qual a diferença, em pontos percentuais?" resposta="25" dica="95 menos 70." resolucao="95 − 70 = 25 pontos percentuais. Diferença grande é sinal de sobreajuste." />
+
+## Correlação: o quanto x ajuda a prever y
+
+A **correlação** é um número entre −1 e 1 que diz o quanto os pontos andam em linha. Perto de **1**, os pontos sobem juntos e quase em linha reta. Perto de **−1**, um sobe e o outro desce. Perto de **0**, não há relação em linha. Quanto mais longe de zero, melhor a reta prevê.
+
+Mas cuidado: **correlação não é causa**. Sorvete e afogamentos sobem juntos no verão, mas o sorvete não afoga ninguém: o terceiro fator é o calor. Uma boa previsão não prova que x **causa** y. Esse assunto tem uma cápsula só dele, **Correlação não é causa**.
+
+## Quando a previsão falha
+
+As previsões falham por motivos que você já conhece:
+
+- **Extrapolação:** o valor novo está fora do que os dados cobriam.
+- **Sobreajuste:** o modelo decorou o ruído.
+- **Dados ruins:** poucos exemplos, medidas erradas ou uma amostra que não representa o todo (a cápsula **Amostras e vieses** mostra isso).
+- **O mundo mudou:** como no Flu Trends. O padrão que valia no passado deixou de valer. Os modelos precisam ser **reavaliados** com dados novos.
+
+<Aprofundar titulo="Como o computador acha a melhor reta">
+
+Para a reta y = a·x + b, o método dos mínimos quadrados dá fórmulas fechadas. Se x̄ e ȳ são as médias dos x e dos y, então **a = soma de (x − x̄)(y − ȳ) dividida pela soma de (x − x̄)²** e **b = ȳ − a · x̄**. Isso explica por que a melhor reta passa pelo ponto das médias: com esse b, quando x vale x̄, y vale exatamente ȳ.
+
+Para curvas mais flexíveis, como as da simulação de treino e teste, o computador resolve um sistema de equações, as chamadas equações normais. Modelos grandes, como as redes neurais, usam outro caminho: dão pequenos passos para baixar o erro, ideia que você verá na cápsula **Aprendizado de máquina**.
+
+</Aprofundar>
+
+<Aprofundar titulo="O erro típico e a faixa de duas vezes">
+
+O "erro típico" é o desvio padrão dos erros da reta, calculado com a soma dos quadrados dos erros dividida por (n − 2) e com raiz quadrada. A faixa de **dois desvios** cobre cerca de 95% dos casos quando os erros se distribuem como uma curva em sino. Quando os erros não seguem esse formato, ou a reta é extrapolada, a faixa real é maior que a calculada, e é por isso que o texto da simulação avisa.
+
+</Aprofundar>
+
+## Juntando tudo: o roteiro de uma previsão
+
+1. **Reúna dados** relevantes e olhe o diagrama de dispersão.
+2. **Separe** treino e teste.
+3. **Ajuste** o modelo (aqui, uma reta) nos dados de treino.
+4. **Meça o erro** no treino e, principalmente, no **teste**.
+5. **Preveja**, com uma faixa de erro, **dentro** da região dos dados.
+6. **Desconfie** de extrapolações e **reavalie** o modelo quando o mundo mudar.
+
+Esse roteiro é exatamente o que se faz, em escala maior, em previsões de tempo, de vendas, de demanda de energia e de tempo de entrega.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'O que é prever com dados?',
+    opcoes: ['Achar um padrão no passado e usá-lo para estimar algo ainda desconhecido', 'Ter certeza do futuro', 'Escolher um número ao acaso'],
+    correta: 0,
+    explicacao: 'É um palpite educado: usa o padrão dos casos conhecidos, e sempre há um erro.',
+  },
+  {
+    enunciado: 'Na reta y = a·x + b, o que é o a?',
+    opcoes: ['A inclinação: quanto y muda quando x sobe 1', 'O valor de y quando x é zero', 'O número de pontos'],
+    correta: 0,
+    explicacao: 'O b é o ponto de partida (y quando x é zero). O a é a inclinação.',
+  },
+  {
+    enunciado: 'Com a reta y = 2·x + 30, qual a previsão para x = 20?',
+    opcoes: ['40', '70', '60'],
+    correta: 1,
+    explicacao: '2 · 20 + 30 = 40 + 30 = 70.',
+  },
+  {
+    enunciado: 'Como se calcula o erro de uma previsão?',
+    opcoes: ['Valor real menos valor previsto', 'Valor previsto mais valor real', 'Só o valor previsto'],
+    correta: 0,
+    explicacao: 'O erro (resíduo) é a diferença entre o que aconteceu e o que a reta previu.',
+  },
+  {
+    enunciado: 'Por que os erros são elevados ao quadrado antes de somar?',
+    opcoes: ['Para os erros positivos e negativos não se cancelarem e para punir mais os erros grandes', 'Para o resultado ficar menor', 'Por tradição, sem motivo'],
+    correta: 0,
+    explicacao: 'Sem o quadrado, +5 e −5 somariam zero e a reta pareceria perfeita.',
+  },
+  {
+    enunciado: 'Erros de +2, −3 e +1: qual a soma dos quadrados?',
+    opcoes: ['0', '14', '6'],
+    correta: 1,
+    explicacao: '4 + 9 + 1 = 14. Sem o quadrado a soma seria zero, o que enganaria.',
+  },
+  {
+    enunciado: 'Qual é a melhor reta no método dos mínimos quadrados?',
+    opcoes: ['A que deixa a soma dos quadrados dos erros a menor possível', 'A que passa por exatamente um ponto', 'A mais inclinada'],
+    correta: 0,
+    explicacao: 'O método é de Legendre e Gauss, e é a base de quase toda regressão.',
+  },
+  {
+    enunciado: 'A melhor reta sempre passa por qual ponto?',
+    opcoes: ['(0, 0)', 'O ponto das médias de x e de y', 'O ponto mais alto'],
+    correta: 1,
+    explicacao: 'Com o b certo, quando x é a média dos x, a reta dá exatamente a média dos y.',
+  },
+  {
+    enunciado: 'Qual das previsões é mais arriscada?',
+    opcoes: ['Interpolar, dentro da região dos dados', 'Extrapolar, fora da região dos dados', 'As duas são igualmente seguras'],
+    correta: 1,
+    explicacao: 'Fora da região coberta, o mundo pode mudar de forma, como a altura que para de crescer.',
+  },
+  {
+    enunciado: 'Para que separar dados de treino e de teste?',
+    opcoes: ['Para saber se o modelo funciona com dados novos', 'Para deixar o modelo mais lento', 'Para ter menos dados'],
+    correta: 0,
+    explicacao: 'O teste faz o papel da prova de verdade, com perguntas que o modelo nunca viu.',
+  },
+  {
+    enunciado: 'Um modelo acerta 99% no treino e 60% no teste. O que isso sugere?',
+    opcoes: ['Sobreajuste: ele decorou o treino', 'Que é um modelo perfeito', 'Que o teste está errado, sem dúvida'],
+    correta: 0,
+    explicacao: 'Uma grande diferença entre treino e teste é o sinal clássico de sobreajuste.',
+  },
+  {
+    enunciado: 'Uma previsão de 200 mil, com erro típico de 15 mil, tem faixa de duas vezes o erro típico. Qual é a faixa?',
+    opcoes: ['De 185 a 215 mil', 'De 170 a 230 mil', 'De 200 a 230 mil'],
+    correta: 1,
+    explicacao: '2 · 15 = 30, então a faixa vai de 200 − 30 = 170 até 200 + 30 = 230.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Prever com dados:** achar o padrão nos casos conhecidos e usá-lo para estimar o novo. Sempre há erro.
+- **Reta de tendência:** y = a·x + b. O a é a inclinação, e o b, o ponto de partida.
+- **Erro:** valor real menos valor previsto. Eleva-se ao quadrado para não se cancelar e para castigar os erros grandes.
+- **Mínimos quadrados:** a melhor reta deixa a soma dos quadrados dos erros a menor possível, e passa pelo ponto das médias.
+- **Faixa de erro:** dar a previsão com um intervalo, não só um número.
+- **Cuidados:** extrapolar é arriscado. Separar treino e teste revela o sobreajuste. Previsão não prova causa.
+
+**Um pouco de história.** Em 1801, Gauss calculou onde o asteroide Ceres reapareceria, usando poucas observações com erros. Legendre publicou o método dos mínimos quadrados em 1805, e Gauss, em 1809. Em 1886, Galton chamou de regressão a volta dos extremos para a média. O Google Flu Trends, lançado em 2008 e encerrado em 2015, mostrou que um padrão do passado pode deixar de valer.
+
+</Resumo>
+
+Prever é só o começo: o computador também pode **aprender** o padrão sozinho, a partir de exemplos. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>

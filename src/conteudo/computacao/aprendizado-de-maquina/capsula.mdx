@@ -1,0 +1,470 @@
+import VizinhosMaisProximos from '../../../components/simulacoes/VizinhosMaisProximos'
+import AgrupandoPontos from '../../../components/simulacoes/AgrupandoPontos'
+import NeuronioQueAprende from '../../../components/simulacoes/NeuronioQueAprende'
+import DescidaDoGradiente from '../../../components/simulacoes/DescidaDoGradiente'
+import MatrizDeConfusao from '../../../components/simulacoes/MatrizDeConfusao'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Machine learning, Arthur Samuel, Perceptron, Backpropagation, AlexNet, Algorithmic bias), listadas no meta.ts. Os dados das simulações são inventados, e o texto avisa. */}
+
+<Etapa id="gancho">
+
+Seu celular reconhece o seu rosto, o e-mail separa o spam sozinho e o aplicativo de música sugere uma canção que você acaba amando. Ninguém sentou para escrever uma regra do tipo "se o nariz tiver tal formato, então é o dono do celular". Então como o aparelho sabe?
+
+A resposta é o **aprendizado de máquina** (em inglês, *machine learning*). Em vez de o programador escrever **as regras**, ele entrega ao computador **muitos exemplos** e deixa o computador **descobrir as regras sozinho**. Foi essa mudança de ideia que trouxe o reconhecimento de voz, os tradutores automáticos e os assistentes de texto.
+
+<Palpite
+  chave="inicial"
+  pergunta="Como um computador pode aprender a separar fotos de gatos e de cachorros?"
+  opcoes={['Um programador escreve todas as regras sobre orelhas, focinhos e bigodes', 'Ele vê muitos exemplos com a resposta certa e ajusta seus números até errar pouco', 'Ele pergunta a um veterinário a cada foto']}
+/>
+
+Nesta cápsula você vai ver os principais jeitos de uma máquina aprender (vizinhos, grupos, neurônios e redes), como **aprender é descer uma ladeira de erros**, como medir se um modelo é bom e por que ele pode ser **injusto**.
+
+</Etapa>
+
+<Etapa id="historia">
+
+A ideia de máquinas que aprendem é mais velha do que os computadores pessoais. Ela passou por grandes entusiasmos e por grandes decepções.
+
+<LinhaDoTempo marcos={[
+  { ano: '1943', texto: 'Warren McCulloch e Walter Pitts propõem um modelo matemático simples de neurônio.' },
+  { ano: '1950', texto: 'Alan Turing publica o artigo "Computing Machinery and Intelligence" e pergunta se máquinas podem pensar.' },
+  { ano: '1958', texto: 'Frank Rosenblatt apresenta o perceptron, um neurônio artificial que aprende com exemplos.' },
+  { ano: '1959', texto: 'Arthur Samuel usa a expressão machine learning, com um programa que aprendeu a jogar damas.' },
+  { ano: '1969', texto: 'Marvin Minsky e Seymour Papert mostram os limites de um neurônio só, e o entusiasmo esfria por anos.' },
+  { ano: '1986', texto: 'David Rumelhart, Geoffrey Hinton e Ronald Williams popularizam a retropropagação, que ensina redes com várias camadas.' },
+  { ano: '2012', texto: 'A rede AlexNet vence uma grande competição de reconhecimento de imagens e inicia a era do aprendizado profundo.' },
+  { ano: '2024', texto: 'John Hopfield e Geoffrey Hinton ganham o Nobel de Física por trabalhos que levaram às redes neurais artificiais.' },
+]} />
+
+## A máquina que joga damas
+
+Nos anos 1950, **Arthur Samuel**, engenheiro da IBM, escreveu um programa de damas com uma ideia estranha: em vez de lhe ensinar boas jogadas, o programa **jogava contra si mesmo** milhares de vezes e ajustava números que avaliavam as posições. Em pouco tempo, jogava melhor do que o próprio Samuel. Em 1959, ele chamou isso de *machine learning*: dar ao computador a capacidade de **aprender sem ser programado explicitamente** para cada situação.
+
+## O neurônio de Rosenblatt
+
+Em 1958, o psicólogo **Frank Rosenblatt** construiu o **perceptron**, um neurônio artificial que **corrigia os próprios erros** e aprendia a separar dois tipos de figura. A imprensa chegou a prever máquinas que andariam, falariam e teriam consciência. Era exagero.
+
+## O inverno e a primavera
+
+Em 1969, Minsky e Papert provaram que **um neurônio sozinho** não consegue aprender certas coisas simples. O dinheiro para pesquisas secou, e esse período é chamado de "inverno" da inteligência artificial. A solução já existia: **ligar muitos neurônios em camadas**. Em 1986, Rumelhart, Hinton e Williams mostraram como treinar essas redes de forma prática, com a **retropropagação**.
+
+## 2012: a virada
+
+Redes grandes precisam de **muitos dados** e de **computadores potentes**. Isso só ficou disponível nos anos 2000, com a internet e as placas gráficas. Em 2012, uma rede chamada **AlexNet** venceu a competição ImageNet de reconhecer objetos em fotos com bem menos erros do que as concorrentes. Dali em diante, as redes grandes passaram a dominar imagem, voz e texto.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Regras escritas à mão ou regras aprendidas?
+
+Tente escrever as regras para reconhecer um gato numa foto. Orelhas pontudas? Alguns gatos as têm caídas. Bigodes? Cães também têm. Cor? Há gatos de todas as cores. A cada regra surgem dez exceções, e o programa nunca fica bom.
+
+O aprendizado de máquina faz o contrário: mostramos **milhares de fotos já identificadas** ("gato", "cachorro") e o computador **acha sozinho** o que costuma diferenciar uma da outra. Ninguém precisa saber explicar a regra.
+
+## 2. Atributos e rótulo
+
+Para o computador, um exemplo é uma lista de **números**:
+
+- Os **atributos** (ou "características") são as medidas do exemplo: o peso do animal, o tamanho do focinho, a cor de cada pixel da foto.
+- O **rótulo** é a **resposta certa** daquele exemplo: gato ou cachorro, spam ou não spam, 200 mil reais.
+
+O treino consiste em ver muitos pares (atributos, rótulo) e ajustar o modelo para que seus palpites **batam com os rótulos**.
+
+<Brincando titulo="Aprender com exemplos: a criança e os cachorros">
+
+Uma criança pequena não aprende "cachorro" lendo uma definição. Ela vê **vários cachorros**, de tamanhos e cores diferentes, e alguém diz "olha o au-au". Ela também vê um gato e ouve "miau". Com o tempo, o cérebro dela acha o que há em comum e, quando aparece um cachorro de uma raça que ela nunca viu, ela o reconhece. O aprendizado de máquina funciona assim: **muitos exemplos com a resposta, e depois um caso novo**. A diferença é que o computador precisa de milhares de exemplos, e a criança, de poucos.
+
+</Brincando>
+
+## 3. Treinar e testar
+
+Como vimos em **Prever o futuro com dados**, o modelo é treinado com uma parte dos exemplos, e depois testado com outra parte **que ele nunca viu**. Só o teste diz se o modelo aprendeu de verdade ou se apenas decorou.
+
+## 4. A ideia central: ajustar números para errar menos
+
+Todo modelo tem **números ajustáveis** (chamados de **pesos** ou **parâmetros**). No começo eles são chutes. O computador faz um palpite, compara com o rótulo, mede o **erro** e **mexe os pesos um pouquinho** na direção que diminui o erro. Repete isso milhões de vezes. **Aprender é isso**.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Na simulação, um animal novo aparece entre vários gatos e cachorros já conhecidos. Se ele ficar bem no meio de um grupo de gatos, o modelo dos vizinhos mais próximos dirá:"
+  opcoes={['Gato, porque os vizinhos mais perto são gatos', 'Cachorro, porque há mais cachorros no total', 'Não consegue decidir']}
+  correta={0}
+  explicacao="O modelo olha só os k exemplos mais próximos do animal novo. Se eles são gatos, o palpite é gato."
+>
+
+Mova o animal novo e mude o número de vizinhos (k). Veja quem vota:
+
+<VizinhosMaisProximos />
+
+Agora, um caso **sem rótulos**: ninguém diz quais são os grupos. O computador precisa descobri-los sozinho.
+
+<AgrupandoPontos />
+
+Volte ao palpite do começo: como um computador pode aprender a separar fotos de gatos e de cachorros?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Um programador escreve todas as regras sobre orelhas, focinhos e bigodes', 'Ele vê muitos exemplos com a resposta certa e ajusta seus números até errar pouco', 'Ele pergunta a um veterinário a cada foto']}
+  correta={1}
+  seAcertou="Certo: o computador vê muitos exemplos com a resposta e ajusta os números do modelo para errar menos."
+  seErrou="O certo é: o computador vê muitos exemplos já respondidos e ajusta seus números até errar pouco. Escrever todas as regras é impraticável, e ninguém pergunta a um veterinário a cada foto."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Os tipos de aprendizado
+
+- **Supervisionado:** os exemplos vêm **com rótulo**. É o tipo mais comum. Tem duas versões: a **classificação**, que prevê uma **categoria** (spam ou não, gato ou cachorro), e a **regressão**, que prevê um **número** (o preço de um apartamento, que você viu na cápsula anterior).
+- **Não supervisionado:** os exemplos vêm **sem rótulo**, e o computador procura **estrutura** sozinho, como grupos de clientes parecidos.
+- **Por reforço:** o programa age, recebe **prêmios ou castigos** e aprende o que fazer, como o programa de damas de Samuel.
+
+<Exercicio enunciado="Prever se um e-mail é spam ou não é classificação (1) ou regressão (2)? Responda com o número." resposta="1" dica="A resposta é uma categoria ou um número?" resolucao="O resultado é uma categoria (spam ou não spam), então é classificação: 1." />
+
+<Exercicio enunciado="Prever o preço de um apartamento é classificação (1) ou regressão (2)? Responda com o número." resposta="2" dica="O resultado é um número." resolucao="O resultado é um número (o preço), então é regressão: 2." />
+
+## K vizinhos mais próximos
+
+É o jeito mais fácil de entender. Para classificar um exemplo novo, procure os **k exemplos conhecidos mais parecidos** e deixe-os **votarem**. A classe com mais votos vence. "Mais parecido" quer dizer **mais perto**, medindo a distância entre os atributos.
+
+A distância entre dois pontos (x1, y1) e (x2, y2) vem do teorema de Pitágoras: a raiz quadrada de (x2 − x1)² + (y2 − y1)².
+
+<Brincando titulo="Vizinhos: perguntar à vizinhança">
+
+Você se mudou para um bairro e quer saber se a padaria da esquina é boa. Pergunta ao vizinho do lado, e ele diz que é ótima. Mas uma pessoa só pode ter gosto estranho. Então você pergunta às **cinco casas mais próximas**: quatro dizem que é boa. Você confia na maioria. É isso que o k vizinhos faz: o **k** é quantas casas você consulta. Perguntar a uma só (k = 1) é arriscado, porque uma opinião estranha decide tudo. Perguntar a muitas, até o bairro vizinho (k grande), pode misturar gostos de lugares diferentes.
+
+</Brincando>
+
+<ExemploResolvido titulo="Classificar com os vizinhos mais próximos">
+  <Passo>Um animal novo está no ponto (4, 5). Os três exemplos mais próximos são: um **gato** a distância 1, um **cachorro** a distância 1,5 e um **cachorro** a distância 2.</Passo>
+  <Passo>Com k = 1, só vale o mais perto: o gato. Palpite: **gato**.</Passo>
+  <Passo>Com k = 3, votam os três: 1 gato e 2 cachorros. Palpite: **cachorro**.</Passo>
+  <Passo>O resultado mudou só porque o k mudou. Por isso o k é escolhido testando valores com os dados de teste.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Qual a distância entre os pontos (1, 1) e (4, 5)?" resposta="5" dica="Pitágoras: a mudança em x é 3 e a mudança em y é 4." resolucao="Raiz de (3² + 4²) = raiz de 25 = 5." />
+
+<Exercicio enunciado="Com k = 5, os vizinhos votaram 3 cachorros e 2 gatos. Quantos votos tem a classe vencedora?" resposta="3" dica="É a maior das duas contagens." resolucao="Os cachorros vencem com 3 votos contra 2." />
+
+## Agrupando sem rótulos: k-médias
+
+Imagine as lojas de uma cidade espalhadas num mapa, e você quer **separar em 3 regiões**, para abrir 3 depósitos. Ninguém diz quais lojas pertencem a qual região. O método **k-médias** resolve assim:
+
+1. Coloque k centros em lugares quaisquer.
+2. Cada ponto vai para o grupo do **centro mais perto**.
+3. Cada centro **se muda para a média** (o meio) do seu grupo.
+4. Repita 2 e 3 até os centros pararem de mudar.
+
+Você viu isso na simulação: a cada rodada, a soma das distâncias cai, até os grupos se firmarem.
+
+<ExemploResolvido titulo="Mover um centro para a média">
+  <Passo>Um grupo tem três pontos em fila: nas posições **2**, **4** e **9**.</Passo>
+  <Passo>O novo centro é a média: (2 + 4 + 9) ÷ 3 = 15 ÷ 3 = **5**.</Passo>
+  <Passo>Depois do movimento, alguns pontos podem estar mais perto de outro centro e trocar de grupo. Aí o processo continua.</Passo>
+  <Passo>Quando ninguém troca mais de grupo, o k-médias terminou.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um grupo tem pontos nas posições 2, 4 e 9. Qual a nova posição do centro, depois de se mudar para a média?" resposta="5" dica="Some e divida por 3." resolucao="(2 + 4 + 9) ÷ 3 = 5." />
+
+Uma aplicação comum: lojas que **agrupam clientes** com hábitos parecidos para oferecer produtos diferentes a cada grupo. Ninguém rotulou os clientes antes: os grupos nascem dos dados.
+
+## O neurônio artificial
+
+A ideia vem do cérebro, mas simplificada. Um **neurônio artificial** faz uma conta:
+
+1. Multiplica cada **entrada** por um **peso** (um número que diz o quanto aquela entrada importa).
+2. **Soma** tudo, mais um número extra chamado **viés**.
+3. Decide pela soma: se for positiva, responde "sim"; se for negativa, "não".
+
+<Formula>
+  <Linha>soma = peso1 · entrada1 + peso2 · entrada2 + viés</Linha>
+</Formula>
+
+<Brincando titulo="Neurônio: o júri com votos de pesos diferentes">
+
+Pense num pequeno júri que decide se você vai à praia. Há três jurados: a **previsão do tempo**, a **sua preguiça** e o **preço da passagem**. Cada um dá uma nota, mas **nem todos pesam igual**: para você, o tempo importa muito (peso 3), a preguiça um pouco (peso 1) e o preço também (peso 2). O neurônio soma as notas multiplicadas pelos pesos, soma um empurrãozinho fixo (o viés, a sua vontade de ir à praia de qualquer jeito) e **decide pelo resultado**. Aprender é ajustar os pesos até as decisões do júri baterem com as suas escolhas do passado.
+
+</Brincando>
+
+<ExemploResolvido titulo="Uma conta de neurônio">
+  <Passo>As entradas são **2** e **3**. Os pesos são **0,5** e **1**. O viés é **−1**.</Passo>
+  <Passo>Primeira parcela: 0,5 · 2 = **1**. Segunda: 1 · 3 = **3**.</Passo>
+  <Passo>Soma: 1 + 3 + (−1) = **3**.</Passo>
+  <Passo>Como 3 é positivo, o neurônio responde "sim" (por exemplo, "é spam").</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Entradas 2 e 3, pesos 0,5 e 1, viés −1. Qual o valor da soma?" resposta="3" dica="0,5 vezes 2, mais 1 vezes 3, menos 1." resolucao="1 + 3 − 1 = 3." />
+
+<Exercicio enunciado="Entradas 1 e 4, pesos 2 e −1, viés 1. Qual o valor da soma?" resposta="-1" dica="2 vezes 1, menos 1 vezes 4, mais 1." resolucao="2 − 4 + 1 = −1. Como é negativo, o neurônio responde não." />
+
+<Exercicio enunciado="Um neurônio recebe 3 entradas. Quantos números ajustáveis ele tem (pesos e viés)?" resposta="4" dica="Um peso por entrada, e mais o viés." resolucao="3 pesos + 1 viés = 4." />
+
+## Como o neurônio aprende
+
+O perceptron de Rosenblatt aprende com uma regra simples. Para cada exemplo:
+
+- Se **acertou**, não mexe em nada.
+- Se **errou**, empurra os pesos um pouquinho **na direção que corrigiria** o erro: aumenta os pesos das entradas que deveriam ter contado mais, diminui os outros.
+
+Na simulação, cada clique estuda um exemplo. Repare como a linha de decisão **gira e anda** até separar os dois grupos.
+
+<NeuronioQueAprende />
+
+<ExemploResolvido titulo="Um passo de aprendizagem">
+  <Passo>Um peso vale **0,2**. A entrada daquele peso é **0,5**. A resposta certa era **+1** e o neurônio errou.</Passo>
+  <Passo>A taxa de aprendizado é **0,4** (o tamanho do empurrão).</Passo>
+  <Passo>Novo peso = peso + taxa · resposta certa · entrada = 0,2 + 0,4 · 1 · 0,5.</Passo>
+  <Passo>Conta: 0,4 · 0,5 = 0,2, então o novo peso é **0,4**. A entrada passa a contar mais, para ajudar a acertar da próxima vez.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Peso atual 0,2; entrada 0,5; resposta certa +1; taxa de aprendizado 0,4. Qual o novo peso depois do erro (peso + taxa · resposta · entrada)?" resposta="0,4" dica="0,4 vezes 1 vezes 0,5 dá 0,2, e some ao peso." resolucao="0,2 + 0,4 · 1 · 0,5 = 0,2 + 0,2 = 0,4." />
+
+## Redes neurais
+
+Um neurônio sozinho só traça **uma linha** para separar os grupos. Mas o mundo é mais complicado. A solução é **ligar muitos neurônios em camadas**: a saída de uma camada vira a entrada da próxima. É uma **rede neural**.
+
+Cada camada aprende a enxergar algo mais abstrato. Numa rede que reconhece rostos, a primeira camada pode perceber **bordas**, a seguinte, **cantos e curvas**, a próxima, **olhos e narizes**, e a última, **o rosto inteiro**. Redes com muitas camadas formam o **aprendizado profundo** (*deep learning*), por trás de reconhecimento de voz, tradução e geradores de imagem e texto.
+
+<Exercicio enunciado="Uma camada tem 4 entradas e 3 neurônios, e cada neurônio liga a todas as 4 entradas. Quantas conexões (pesos) há na camada?" resposta="12" dica="Multiplique 4 por 3." resolucao="4 · 3 = 12 conexões, cada uma com um peso ajustável. Isso mostra por que redes grandes têm milhões de números para ajustar." />
+
+## Aprender é descer uma ladeira
+
+Para ajustar os pesos, o computador precisa saber **para que lado mexer**. A ideia é a **descida do gradiente**:
+
+1. Imagine o **erro** como uma paisagem: altura alta é erro grande, e o fundo do vale é o melhor modelo.
+2. O computador descobre **para que lado fica a ladeira** (o gradiente) no ponto onde está.
+3. Dá um passo **para baixo**. O tamanho do passo é a **taxa de aprendizado**.
+4. Repete até chegar ao fundo.
+
+<Brincando titulo="Descida do gradiente: descer o morro no nevoeiro">
+
+Você está no alto de um morro, com neblina forte, e quer chegar ao vale, mas só enxerga o chão onde pisa. Como fazer? Sente com o pé para que lado o terreno **inclina mais para baixo** e dê um passo naquela direção. Repita. Passos pequenos demais fazem você demorar uma eternidade. Passos grandes demais podem fazer você **pular o vale e subir o outro lado**. A taxa de aprendizado é o tamanho do seu passo. Os computadores treinam redes assim, em milhões de passos.
+
+</Brincando>
+
+<DescidaDoGradiente />
+
+Na simulação, o erro é (w − 3)², e o melhor valor é w = 3. A "ladeira" (a derivada) é 2 · (w − 3). Cada passo faz:
+
+<Formula>
+  <Linha>novo w = w − taxa · ladeira</Linha>
+</Formula>
+
+<ExemploResolvido titulo="Um passo da descida do gradiente">
+  <Passo>O valor atual é **w = −4**, e a taxa é **0,2**. A ladeira é 2 · (w − 3) = 2 · (−7) = **−14**.</Passo>
+  <Passo>Novo w = −4 − 0,2 · (−14) = −4 + 2,8 = **−1,2**.</Passo>
+  <Passo>O w andou na direção do 3, que é o melhor valor. O erro caiu de 49 para (−1,2 − 3)² = 17,64.</Passo>
+  <Passo>Com os passos seguintes, o w chega cada vez mais perto de 3, e a ladeira fica cada vez mais suave, então os passos também encurtam.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Com w = −4, taxa 0,2 e ladeira −14, qual o novo w (w − taxa · ladeira)?" resposta="-1,2" dica="−4 menos 0,2 vezes (−14)." resolucao="−4 − (0,2 · (−14)) = −4 + 2,8 = −1,2." />
+
+<Exercicio enunciado="No erro (w − 3)², a ladeira é 2 · (w − 3). Qual a ladeira quando w = 3, o melhor valor?" resposta="0" dica="Troque w por 3." resolucao="2 · (3 − 3) = 0. No fundo do vale a ladeira é zero, e o modelo para de se mexer." />
+
+<Aprofundar titulo="Retropropagação: como a rede grande sabe quem culpar">
+
+Numa rede com milhões de pesos, como saber o quanto cada peso contribuiu para o erro final? A **retropropagação** (*backpropagation*) usa a regra da cadeia do cálculo: parte do erro na **última camada** e vai **voltando** camada por camada, calculando a ladeira de cada peso. É um jeito eficiente de obter todas as ladeiras de uma vez. Foi popularizada em 1986 e é a base do treino de quase todas as redes atuais.
+
+</Aprofundar>
+
+## Medir se o modelo é bom
+
+A medida mais simples é a **acurácia**: a porcentagem de acertos.
+
+<Formula>
+  <Linha>acurácia = acertos ÷ total</Linha>
+</Formula>
+
+<Exercicio enunciado="Um modelo acertou 90 de 100 exemplos de teste. Qual a acurácia, em porcentagem?" resposta="90" dica="90 em 100." resolucao="90 ÷ 100 = 90%." />
+
+Mas a acurácia **engana** quando uma das classes é rara. Imagine que 1% das pessoas tem uma doença. Um "modelo" que diz sempre "sadio" acerta **99%** das vezes e **nunca** acha um doente: é inútil.
+
+<Exercicio enunciado="Só 1% das pessoas tem uma doença. Um modelo preguiçoso diz sempre sadio. Qual a acurácia dele, em porcentagem?" resposta="99" dica="Ele acerta todos os sadios." resolucao="Acerta os 99% sadios e erra os 1% doentes: acurácia de 99%." />
+
+## A matriz de confusão
+
+Para ver o que acontece de verdade, contamos os acertos e os erros **por tipo** numa tabelinha de quatro casas:
+
+- **Verdadeiro positivo:** estava doente e o teste achou.
+- **Falso negativo:** estava doente e o teste **deixou passar**.
+- **Falso positivo:** estava sadio e o teste **deu alarme falso**.
+- **Verdadeiro negativo:** estava sadio e o teste liberou.
+
+Dois números úteis saem daí. A **precisão** diz: entre os que o modelo marcou como positivos, quantos eram mesmo? O **recall** (ou sensibilidade) diz: entre os positivos de verdade, quantos o modelo achou?
+
+<MatrizDeConfusao />
+
+<ExemploResolvido titulo="Teste de doença rara">
+  <Passo>A população tem **1.000 pessoas**, e **2%** estão doentes: **20 doentes** e **980 sadios**.</Passo>
+  <Passo>O teste acerta **90% dos doentes**: 0,9 · 20 = **18** verdadeiros positivos, e 2 falsos negativos.</Passo>
+  <Passo>O teste acerta **90% dos sadios**: 0,9 · 980 = 882 verdadeiros negativos, e **98** falsos positivos.</Passo>
+  <Passo>A acurácia é (18 + 882) ÷ 1000 = **90%**. Mas o teste deu 18 + 98 = 116 alarmes, e só 18 são de doentes: a **precisão é de apenas cerca de 15%**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Em 1.000 pessoas, 2% estão doentes. Um teste acerta 90% dos doentes. Quantos doentes o teste acha?" resposta="18" dica="2% de 1000 é 20; depois 90% de 20." resolucao="20 doentes, e 90% de 20 = 18." />
+
+<Exercicio enunciado="Em 1.000 pessoas, 20 estão doentes e 980, sadias. O teste acerta 90% dos sadios. Quantos alarmes falsos (sadios marcados como doentes) ele dá?" resposta="98" dica="10% dos 980 sadios são erros." resolucao="10% de 980 = 98 alarmes falsos." />
+
+<Exercicio enunciado="Um teste deu 40 alarmes, e 20 eram de doentes de verdade. Qual a precisão, em porcentagem?" resposta="50" dica="20 em 40." resolucao="20 ÷ 40 = 50%." />
+
+## Treino, teste e sobreajuste, de novo
+
+Tudo o que você aprendeu em **Prever o futuro com dados** vale aqui. Um modelo grande (uma rede com milhões de pesos) **decora** com facilidade, e é por isso que sempre se separa um conjunto de **teste**.
+
+<Exercicio enunciado="Há 1.000 exemplos e 70% vão para o treino. Quantos exemplos ficam no treino?" resposta="700" dica="70% de 1000." resolucao="0,7 · 1000 = 700 exemplos. Os outros 300 ficam para teste." />
+
+## Dados, vieses e justiça
+
+O modelo **aprende com os dados**, e os dados vêm de pessoas. Se os exemplos do passado trazem **preconceitos**, o modelo os **copia e os repete em escala**.
+
+Um caso muito citado: em 2018, a agência Reuters noticiou que a Amazon tinha desistido de uma ferramenta de seleção de currículos. Ela aprendia com os currículos de contratados dos anos anteriores, em maioria homens, e passou a **dar notas menores a currículos com sinais de que a candidata era mulher**. O modelo não "queria" discriminar: apenas aprendeu o padrão do passado.
+
+Outros riscos:
+
+- **Amostra enviesada:** se um sistema de reconhecimento de rostos viu poucos rostos de certos grupos, ele erra mais com eles.
+- **Uso indevido:** prever quem vai cometer um crime, por exemplo, pode punir pessoas por algo que elas ainda nem fizeram.
+- **Falta de explicação:** redes grandes são "caixas-pretas": nem sempre dá para dizer por que decidiram algo, o que é grave em saúde ou justiça.
+- **Privacidade:** treinar com dados pessoais exige cuidado e consentimento.
+
+Por isso, quem usa aprendizado de máquina precisa **testar o modelo em grupos diferentes**, ter humanos revisando decisões importantes e se perguntar: "estes dados representam o mundo que eu quero?". A cápsula **Amostras e vieses** vai fundo nisso.
+
+## IA, aprendizado de máquina e aprendizado profundo
+
+Os termos se confundem, mas são como bonecas russas:
+
+- **Inteligência artificial (IA):** o campo todo de fazer máquinas realizarem tarefas que parecem exigir inteligência.
+- **Aprendizado de máquina:** dentro da IA, o jeito de fazer isso **aprendendo com dados**.
+- **Aprendizado profundo:** dentro do aprendizado de máquina, o uso de **redes neurais com muitas camadas**.
+
+<Aprofundar titulo="Como as imagens viram números">
+
+Uma foto em preto e branco de 28 por 28 pixels tem 784 pixels, e cada um é um número de 0 (preto) a 255 (branco). Para o computador, ela é uma **lista de 784 números**, ou uma matriz de 28 linhas e 28 colunas (daí a ligação com a cápsula de **Matrizes**). Esses 784 números são os **atributos** que entram na rede. A saída pode ter 10 neurônios, um para cada algarismo de 0 a 9, e o que tiver a maior nota é o palpite. Um problema clássico de reconhecer algarismos escritos à mão funciona exatamente assim.
+
+</Aprofundar>
+
+<Aprofundar titulo="Por que os modelos de texto parecem tão inteligentes">
+
+Os assistentes de texto atuais são redes neurais enormes treinadas em muita escrita. A tarefa de treino é simples: **prever a próxima palavra** de um texto. Para acertar bem isso em milhões de situações, a rede acaba aprendendo gramática, fatos e até certas formas de raciocinar. Mas continua sendo um modelo que aprende padrões nos dados: pode errar com muita confiança, repetir vieses e inventar coisas. Por isso, o que ele diz precisa ser **conferido**, assim como qualquer previsão.
+
+</Aprofundar>
+
+## O roteiro de um projeto
+
+1. **Pergunta clara:** o que quero prever, e para quê?
+2. **Dados:** coletar, limpar e conferir se representam o mundo real.
+3. **Separar** treino e teste.
+4. **Escolher** um modelo simples primeiro (vizinhos, reta) e só depois um complexo.
+5. **Treinar**: ajustar os pesos para errar menos.
+6. **Avaliar no teste** com várias medidas, não só a acurácia.
+7. **Checar justiça**: o modelo erra mais com algum grupo?
+8. **Acompanhar no uso**: o mundo muda, e o modelo precisa ser revisto.
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'O que caracteriza o aprendizado de máquina?',
+    opcoes: ['O computador acha as regras sozinho a partir de exemplos', 'Um programador escreve todas as regras', 'O computador copia a internet sem mudar nada'],
+    correta: 0,
+    explicacao: 'Em vez de regras escritas à mão, o modelo as descobre nos dados.',
+  },
+  {
+    enunciado: 'O que é o rótulo de um exemplo?',
+    opcoes: ['A resposta certa daquele exemplo', 'O tamanho da foto', 'O nome do programador'],
+    correta: 0,
+    explicacao: 'Por exemplo, "gato" ou "cachorro", "spam" ou "não spam".',
+  },
+  {
+    enunciado: 'Prever o preço de um imóvel é um problema de:',
+    opcoes: ['Regressão, porque o resultado é um número', 'Classificação, porque o resultado é uma categoria', 'Agrupamento sem rótulos'],
+    correta: 0,
+    explicacao: 'Classificação prevê categorias. Regressão prevê números.',
+  },
+  {
+    enunciado: 'Como funciona o k vizinhos mais próximos?',
+    opcoes: ['O exemplo novo recebe a classe mais comum entre os k exemplos mais perto dele', 'O exemplo novo recebe sempre a primeira classe da lista', 'Todos os exemplos votam, não importa a distância'],
+    correta: 0,
+    explicacao: 'A proximidade é o que decide quem entra na votação.',
+  },
+  {
+    enunciado: 'Qual a distância entre (0, 0) e (6, 8)?',
+    opcoes: ['10', '14', '48'],
+    correta: 0,
+    explicacao: 'Pitágoras: raiz de (36 + 64) = raiz de 100 = 10.',
+  },
+  {
+    enunciado: 'O que o k-médias faz?',
+    opcoes: ['Acha grupos nos dados, sem rótulos', 'Prevê um número com uma reta', 'Conta os votos do k vizinhos'],
+    correta: 0,
+    explicacao: 'Ele repete: cada ponto vai ao centro mais perto, e cada centro vai à média do seu grupo.',
+  },
+  {
+    enunciado: 'Entradas 2 e 3, pesos 1 e 2, viés 0. Qual a soma do neurônio?',
+    opcoes: ['6', '8', '5'],
+    correta: 1,
+    explicacao: '1 · 2 + 2 · 3 + 0 = 2 + 6 = 8.',
+  },
+  {
+    enunciado: 'O que são os "pesos" de um modelo?',
+    opcoes: ['Os números ajustáveis que o treino procura', 'O peso do computador', 'Os dados de teste'],
+    correta: 0,
+    explicacao: 'Aprender é achar bons valores para os pesos.',
+  },
+  {
+    enunciado: 'O que a descida do gradiente faz?',
+    opcoes: ['Dá pequenos passos no sentido que diminui o erro', 'Escolhe os dados de teste', 'Apaga os pesos'],
+    correta: 0,
+    explicacao: 'É como descer uma ladeira: a cada passo, o erro cai um pouco.',
+  },
+  {
+    enunciado: 'O que acontece se a taxa de aprendizado (o passo) for grande demais?',
+    opcoes: ['O modelo pode pular o vale e se afastar do melhor valor', 'O modelo aprende mais depressa e sempre acerta', 'Nada muda'],
+    correta: 0,
+    explicacao: 'Na simulação, com passo maior que 1 o valor fica cada vez mais longe.',
+  },
+  {
+    enunciado: 'Só 1% das pessoas tem uma doença. Um modelo que diz sempre "sadio" tem acurácia de:',
+    opcoes: ['1%', '50%', '99%'],
+    correta: 2,
+    explicacao: 'Ele acerta todos os sadios (99%), mas nunca acha um doente: a acurácia engana em casos raros.',
+  },
+  {
+    enunciado: 'Um modelo aprende com currículos antigos de uma empresa que contratou, na maioria, homens. O que pode acontecer?',
+    opcoes: ['Ele pode copiar esse viés e prejudicar candidatas mulheres', 'Ele fica automaticamente justo', 'Ele passa a ignorar os dados'],
+    correta: 0,
+    explicacao: 'O modelo aprende o padrão dos dados, bom ou ruim. Dados enviesados geram um modelo enviesado.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Aprendizado de máquina:** dar exemplos para o computador achar as regras sozinho. Cada exemplo tem atributos (medidas) e, às vezes, rótulo (resposta).
+- **Tipos:** supervisionado (classificação e regressão), não supervisionado (grupos) e por reforço (prêmios e castigos).
+- **Ferramentas:** k vizinhos (votação dos mais próximos), k-médias (grupos), neurônio artificial (soma ponderada) e redes neurais (neurônios em camadas).
+- **Como aprende:** ajusta os pesos em pequenos passos para baixar o erro (descida do gradiente). Passo demais faz o modelo errar o vale.
+- **Como medir:** treino e teste separados, acurácia, matriz de confusão, precisão e recall. A acurácia engana quando a classe é rara.
+- **Cuidado:** o modelo copia os vícios dos dados. É preciso checar justiça, privacidade e explicações.
+
+**Um pouco de história.** Em 1943, McCulloch e Pitts propuseram um neurônio matemático. Rosenblatt criou o perceptron em 1958, e Samuel usou a expressão machine learning em 1959. Depois do "inverno" que se seguiu ao livro de Minsky e Papert, em 1969, a retropropagação (1986) reacendeu as redes. Em 2012, a AlexNet iniciou a era do aprendizado profundo, e em 2024 Hopfield e Hinton ganharam o Nobel de Física.
+
+</Resumo>
+
+Aprendizado de máquina junta tudo o que você viu na ciência de dados: dados, estatística, gráficos, previsão e cuidado com os vieses. Daqui dá para seguir por estas estações:
+
+<Conexoes />
+
+</Etapa>
