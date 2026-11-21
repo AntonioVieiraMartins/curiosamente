@@ -1,0 +1,408 @@
+import ChaveDeClassificacao from '../../../components/simulacoes/ChaveDeClassificacao'
+import NiveisDeClassificacao from '../../../components/simulacoes/NiveisDeClassificacao'
+import ArvoreDeParentesco from '../../../components/simulacoes/ArvoreDeParentesco'
+import DominiosEReinos from '../../../components/simulacoes/DominiosEReinos'
+import NomesQueEnganam from '../../../components/simulacoes/NomesQueEnganam'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Taxonomy, Taxonomic rank, Carl Linnaeus, Binomial nomenclature, Cladistics, Three-domain system, Carl Woese, Evolution of cetaceans, Species), listadas no meta.ts. Número de espécies são estimativas. */}
+
+<Etapa id="gancho">
+
+Durante muito tempo, as pessoas acharam que a **baleia era um peixe**: vive no mar, tem nadadeiras e corpo alongado. A própria Bíblia, nas traduções antigas, fala do "grande peixe" que engoliu Jonas. Hoje, qualquer criança aprende que a baleia é um **mamífero**, parente do boi e do hipopótamo, mais do que de qualquer peixe.
+
+Como os cientistas decidem isso? Se o jeito de viver não basta, o que vale? O mundo tem **milhões de espécies**: bichos, plantas, fungos, bactérias. Para estudar todas elas, precisamos de um **sistema para organizar** e um **nome único** para cada uma, que valha no Brasil, na Suécia ou no Japão. É a **classificação** dos seres vivos, ou **taxonomia**.
+
+<Palpite
+  chave="inicial"
+  pergunta="O que mais deve pesar para dizer que dois seres vivos são parentes próximos?"
+  opcoes={['Viverem no mesmo lugar e terem o mesmo formato', 'Terem um ancestral comum recente, mostrado por muitas características e pelo DNA', 'Terem o mesmo nome popular']}
+/>
+
+Nesta cápsula você vai usar uma **chave de classificação**, aprender os **níveis** (de reino a espécie), ler uma **árvore de parentesco**, conhecer os **três domínios da vida** e desconfiar de nomes populares.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Organizar a natureza é uma ideia muito antiga, e ela mudou de critério ao longo do tempo: do que **parece** ao que **vem de quem**.
+
+<LinhaDoTempo marcos={[
+  { ano: 'Século IV a.C.', texto: 'Aristóteles separa os animais em grupos, como os com sangue e os sem sangue.' },
+  { ano: '1686', texto: 'John Ray define a espécie como um grupo que se reproduz entre si.' },
+  { ano: '1735', texto: 'Lineu publica a primeira edição de Systema Naturae.' },
+  { ano: '1758', texto: 'Na 10ª edição de Systema Naturae, Lineu aplica de forma consistente o nome de dois termos (gênero e espécie) aos animais.' },
+  { ano: '1859', texto: 'Darwin propõe que a classificação deve refletir a árvore da vida, o parentesco por descendência.' },
+  { ano: '1950', texto: 'Willi Hennig descreve a cladística, método que agrupa os seres por ancestrais comuns.' },
+  { ano: '1977', texto: 'Carl Woese e George Fox descobrem as arqueias, um grupo à parte das bactérias.' },
+  { ano: '1990', texto: 'Woese e colegas propõem os três domínios da vida.' },
+]} />
+
+## O primeiro organizador
+
+O filósofo grego **Aristóteles** estudou animais na ilha de Lesbos e os dividiu em grupos, por como respiram, se movem e se reproduzem. Foi o primeiro a notar, por exemplo, que o golfinho tem **mais parentesco com os mamíferos** do que com os peixes, só que essa observação ficou esquecida por muito tempo.
+
+## A bagunça dos nomes
+
+Até o século XVII, cada naturalista dava nomes longos e diferentes. Uma planta podia ser descrita por uma frase de dez palavras em latim, e outro autor usava outra frase. Duas pessoas falavam da mesma planta sem saber. Era preciso um **sistema único**.
+
+## O sistema de Lineu
+
+O sueco **Carl Linnaeus** (Lineu em português, 1707 a 1778) era médico e botânico e adorava listas e ordem. Em 1735, publicou o ***Systema Naturae***. Ele organizou os seres em **grupos dentro de grupos**, e, nas edições seguintes, deu a cada espécie **só dois nomes** em latim: o do **gênero** e o da **espécie**. Uma planta, ao invés de uma frase, passou a ter um nome curto, como ***Rosa canina***. A 10ª edição, de 1758, é o ponto de partida do nome dos animais; para as plantas, o ponto de partida é *Species Plantarum*, de 1753.
+
+## Darwin muda o critério
+
+Lineu classificava pelo **jeito** como os seres se parecem, e achava que as espécies eram fixas. Em 1859, **Darwin** mostrou que as espécies vêm umas das outras. Então a melhor classificação passa a ser a que **reflete o parentesco**: os grupos devem ser "famílias" de verdade, com ancestrais comuns.
+
+## Cladística e DNA
+
+O alemão **Willi Hennig** criou, em 1950, um método para agrupar seres só por **novidades herdadas de um ancestral comum**. Hoje, com a leitura do **DNA**, é possível montar essas árvores com grande precisão. Muitas ideias antigas caíram: as baleias, por exemplo, estão **dentro do grupo dos mamíferos de casco**, e os parentes vivos mais próximos delas são os **hipopótamos**.
+
+## Os três domínios
+
+Em 1977, **Carl Woese** comparou o RNA de seres microscópicos e percebeu que um grupo de "bactérias" era tão diferente das outras que merecia um grupo próprio: as **arqueias**. Em 1990, ele propôs organizar toda a vida em **três domínios**: Bacteria, Archaea e Eukarya. Foi a maior revisão da árvore da vida desde Darwin.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Por que classificar?
+
+Imagine uma biblioteca em que os livros estão jogados em montes. Achar um livro específico seria impossível. Se eles forem organizados por **assunto**, depois por **autor**, depois por **título**, em segundos você acha. A classificação faz o mesmo com os seres vivos: **grupos dentro de grupos**, do mais amplo ao mais específico.
+
+Ela ajuda a:
+
+- **dar um nome único** a cada espécie, válido no mundo todo;
+- **prever características**: se algo é mamífero, tem pelos e amamenta;
+- **mostrar parentescos** e a história da vida.
+
+## 2. Semelhança engana
+
+Nem tudo que se parece é parente. Compare:
+
+- A **asa** de um morcego, de um pássaro e de um inseto servem para voar. Mas só a do morcego e a do pássaro têm **ossos do mesmo plano** que o nosso braço, herdados de um ancestral. A do inseto é uma estrutura **diferente**, que apareceu de modo independente.
+- O **golfinho** (mamífero) e o **tubarão** (peixe) têm formato parecido, porque o mesmo ambiente favorece o mesmo formato.
+
+Quando a semelhança vem do **ancestral comum**, ela se chama **homologia** (o braço humano, a asa do morcego e a nadadeira da baleia têm os mesmos ossos). Quando vem de uma **função parecida**, sem ancestral comum, é **analogia** (a asa do inseto e a da ave). Para saber parentesco, importa a **homologia**.
+
+<Brincando titulo="Parentesco: a árvore da família">
+
+Numa festa de família, você vê duas pessoas altas, de cabelo ruivo. Elas são parentes? Talvez, talvez não: cabelo ruivo pode aparecer em famílias que nunca se cruzaram. Para saber, é melhor olhar a **árvore genealógica**: quem tem os mesmos avós. Na biologia é igual. O formato do corpo ou o lugar onde vive podem enganar. A **árvore genealógica da vida** (e hoje o DNA) mostra quem vem de quem. Por isso a baleia, que se parece com um peixe, fica na família dos mamíferos.
+
+</Brincando>
+
+## 3. Grupos dentro de grupos
+
+Os grupos se encaixam como **caixas dentro de caixas**: os mamíferos estão dentro dos vertebrados, que estão dentro dos animais. Cada caixa tem um nome e um nível. Quanto **menor** a caixa, mais parecidos e parentes são os seres dentro dela.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Em uma chave de classificação, as perguntas de sim ou não começam por 'Tem coluna vertebral?'. Para a baleia, que vive no mar e amamenta o filhote, qual será o grupo final?"
+  opcoes={['Peixe', 'Mamífero', 'Réptil']}
+  correta={1}
+  explicacao="A baleia tem coluna vertebral, pelos (poucos) e amamenta. A chave chega ao grupo dos mamíferos, mesmo ela vivendo na água."
+>
+
+Escolha um animal e responda às perguntas da chave, uma por uma, observando as características dele:
+
+<ChaveDeClassificacao />
+
+Agora, o sistema de **níveis**. Escolha dois seres vivos e veja até onde eles dividem o mesmo grupo:
+
+<NiveisDeClassificacao />
+
+Volte ao palpite do começo: o que mais deve pesar para dizer que dois seres vivos são parentes próximos?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Viverem no mesmo lugar e terem o mesmo formato', 'Terem um ancestral comum recente, mostrado por muitas características e pelo DNA', 'Terem o mesmo nome popular']}
+  correta={1}
+  seAcertou="Certo: a classificação moderna segue o parentesco, isto é, o ancestral comum."
+  seErrou="O certo é o ancestral comum recente. Viver no mesmo lugar ou ter o mesmo formato pode enganar, e o nome popular nem sempre indica o grupo certo."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Os níveis de classificação
+
+Os grupos de Lineu formam uma **hierarquia**, do mais amplo ao mais específico. Os níveis principais são:
+
+1. **Domínio** (acrescentado depois, por Woese)
+2. **Reino**
+3. **Filo**
+4. **Classe**
+5. **Ordem**
+6. **Família**
+7. **Gênero**
+8. **Espécie**
+
+Cada nível contém os seguintes. Por exemplo, o **ser humano**: Domínio Eukarya, Reino Animalia, Filo Chordata, Classe Mammalia, Ordem Primates, Família Hominidae, Gênero *Homo*, Espécie *Homo sapiens*.
+
+<ExemploResolvido titulo="Dois seres, quantos níveis em comum">
+  <Passo>Compare o **leão** (*Panthera leo*) com o **gato doméstico** (*Felis catus*). Ambos são Animalia, Chordata, Mammalia.</Passo>
+  <Passo>Ambos são da ordem **Carnivora** e da família **Felidae**.</Passo>
+  <Passo>O gênero muda: *Panthera* e *Felis*.</Passo>
+  <Passo>Dividem **5 níveis**: reino, filo, classe, ordem e família. Por isso são parentes próximos, mas não são do mesmo gênero.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Quantos níveis de classificação principais existem, contando do domínio à espécie?" resposta="8" dica="Domínio, reino, filo, classe, ordem, família, gênero, espécie." resolucao="São 8 níveis." />
+
+<Exercicio enunciado="O leão e o gato doméstico dividem reino, filo, classe, ordem e família. Quantos níveis (de reino a espécie) eles têm em comum?" resposta="5" dica="Conte os níveis que dividem." resolucao="5 níveis: reino, filo, classe, ordem e família." />
+
+<Exercicio enunciado="O ser humano e o gato doméstico dividem reino, filo e classe, mas não a ordem. Quantos níveis (de reino a espécie) eles têm em comum?" resposta="3" dica="Reino, filo, classe." resolucao="3 níveis em comum." />
+
+<Exercicio enunciado="O ser humano e o carvalho são de reinos diferentes (animal e planta). Quantos níveis, de reino a espécie, eles têm em comum?" resposta="0" dica="Nem o reino é o mesmo." resolucao="0 níveis, de reino a espécie. Só dividem o domínio Eukarya." />
+
+## O nome científico
+
+Cada espécie tem **um nome científico** de dois termos, em **latim**:
+
+- O primeiro é o **gênero**, escrito com inicial **maiúscula**.
+- O segundo é o termo da **espécie**, em **minúscula**.
+- O nome inteiro vai em **itálico** (ou sublinhado, à mão).
+
+Exemplos: ser humano, *Homo sapiens*; onça-pintada, *Panthera onca*; lobo-guará, *Chrysocyon brachyurus*; mico-leão-dourado, *Leontopithecus rosalia*; arara-canindé, *Ara ararauna*.
+
+Por que latim? Porque era a língua dos estudiosos na época de Lineu, e **ninguém é dono dela**. E por que um nome científico, se já temos nome popular? Porque o popular **muda de lugar para lugar**: o mesmo bicho tem vários nomes no Brasil (a "mandioca", o "aipim" e a "macaxeira" são a mesma planta, *Manihot esculenta*), e o mesmo nome serve a bichos diferentes.
+
+<Exercicio enunciado="No nome Panthera leo, o primeiro termo é o gênero (1) ou a espécie (2)? Responda com o número." resposta="1" dica="O primeiro termo é o que começa com letra maiúscula." resolucao="Panthera é o gênero: 1." />
+
+<Brincando titulo="Nome científico: nome e sobrenome">
+
+Pense na sua identidade: você tem **nome** e **sobrenome**. Dois Joões diferentes podem ter o mesmo nome, mas, com o sobrenome, fica mais fácil distinguir. O nome científico faz isso: o **gênero** é como o sobrenome da família (compartilhado pelos parentes próximos: *Panthera leo*, *Panthera onca* e *Panthera tigris* são todos "da família Panthera") e o segundo termo é o **primeiro nome** que distingue a espécie. Mas há uma diferença: o apelido (nome popular) muda de casa em casa, e o nome científico é o documento oficial.
+
+</Brincando>
+
+<ExemploResolvido titulo="Escrever um nome científico">
+  <Passo>Queremos o nome da **onça-pintada**: gênero *Panthera*, espécie *onca*.</Passo>
+  <Passo>O gênero começa com **maiúscula**: Panthera. A espécie, com **minúscula**: onca.</Passo>
+  <Passo>O nome todo vai em **itálico**: *Panthera onca*. À mão, sublinha-se cada palavra.</Passo>
+  <Passo>O leão é *Panthera leo*: mesmo gênero, espécie diferente. Isso mostra que onça e leão são parentes próximos.</Passo>
+</ExemploResolvido>
+
+## O que é uma espécie?
+
+Em geral, uma **espécie** é um grupo de indivíduos que **se cruzam na natureza e deixam descendentes férteis**. É o **conceito biológico de espécie**. Um cavalo e uma jumenta podem ter um filhote, a **mula**, mas a mula é **estéril**, então cavalo e jumento são espécies diferentes.
+
+O conceito tem limites: bactérias não se cruzam, fósseis não dá para testar e algumas espécies próximas se cruzam de vez em quando. Por isso há outros critérios, que olham para o DNA e a história evolutiva. Definir uma espécie é uma ferramenta, e a natureza não é tão certinha quanto as caixas.
+
+<Exercicio enunciado="Cavalo e jumento são a mesma espécie (1) ou espécies diferentes (2)? Responda com o número." resposta="2" dica="O filho deles, a mula, é fértil?" resolucao="Espécies diferentes: 2. A mula é estéril." />
+
+## Chaves de classificação
+
+Uma **chave dicotômica** é uma série de **perguntas de sim ou não** que vai afunilando até um grupo. Cada pergunta divide o conjunto em **duas** partes. A chave que você usou na simulação começava por "tem coluna vertebral?" e levava aos **vertebrados** e aos **invertebrados**.
+
+<ExemploResolvido titulo="Usar uma chave com um animal">
+  <Passo>Animal: um **sapo**. Pergunta 1: tem coluna vertebral? **Sim**.</Passo>
+  <Passo>Pergunta 2: tem pelos ou amamenta? **Não**. Pergunta 3: tem penas? **Não**.</Passo>
+  <Passo>Pergunta 4: tem escamas secas e põe ovos com casca? **Não**. Pergunta 5: tem brânquias e nadadeiras a vida toda? **Não** (o girino tem brânquias, mas o adulto respira também pela pele e por pulmões).</Passo>
+  <Passo>Resultado: **anfíbio**. Cada pergunta eliminou uma parte das possibilidades.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma chave tem 3 perguntas de sim ou não em sequência. Quantos resultados finais diferentes ela pode ter, no máximo (2 elevado a 3)?" resposta="8" dica="Cada pergunta dobra as possibilidades." resolucao="2 · 2 · 2 = 8 resultados no máximo." />
+
+## Os grandes grupos de animais
+
+Os animais se dividem em **vertebrados** (com coluna vertebral) e **invertebrados** (sem). Os invertebrados são **mais de 95%** das espécies de animais, e entre eles estão:
+
+- **Insetos, aranhas e crustáceos** (artrópodes: corpo com patas articuladas e casca de quitina).
+- **Moluscos** (lesma, caracol, lula, polvo).
+- **Anelídeos** (minhocas, sanguessugas).
+- **Cnidários** (águas-vivas, corais).
+- **Equinodermos** (estrela-do-mar, ouriço-do-mar).
+- **Poríferos** (esponjas).
+
+Entre os **vertebrados**:
+
+- **Peixes:** brânquias, nadadeiras e escamas. Ósseos (atum) e cartilaginosos (tubarão).
+- **Anfíbios:** pele úmida, vida em duas fases (larva na água e adulto fora).
+- **Répteis:** escamas secas, ovos com casca. Incluem lagartos, cobras, jacarés e tartarugas.
+- **Aves:** penas, bico, ovos com casca. Descendem de dinossauros.
+- **Mamíferos:** pelos e glândulas que produzem leite.
+
+## Árvores de parentesco
+
+Hoje se desenham os parentescos em **árvores**. Cada ponto de ramificação é um **ancestral comum**. Quem sai do mesmo ponto compartilha o ancestral, e quem se separou mais cedo é mais distante. Um ancestral e **todos** os seus descendentes formam um **clado**.
+
+<ArvoreDeParentesco />
+
+Repare numa surpresa da árvore: o **peixe** não é um grupo único. O atum e o tubarão estão em ramos diferentes, e **os animais com pernas descendem de peixes**. Por isso, em termos de parentesco, **somos peixes muito modificados**, assim como a baleia.
+
+<ExemploResolvido titulo="Ler um cladograma">
+  <Passo>Na árvore da simulação, o ramo dos **amniotas** (que inclui a baleia, o lagarto e o pássaro) sai de um ancestral comum.</Passo>
+  <Passo>Esse ramo tem **3 animais**: baleia, lagarto e pássaro.</Passo>
+  <Passo>O atum separou-se **antes**, num ramo mais antigo, então é **mais distante** da baleia do que o lagarto.</Passo>
+  <Passo>Conclusão: a baleia é mais parente do lagarto e do pássaro do que do atum, embora viva como peixe.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="No esquema, o grupo dos amniotas inclui baleia, lagarto e pássaro. Quantos animais tem esse grupo?" resposta="3" dica="Conte os nomes." resolucao="3 animais." />
+
+<Brincando titulo="Cladograma: a árvore das cartas de família">
+
+Pense numa família grande: os avós têm dois filhos. Cada filho tem seus filhos, e os filhos têm primos. Os primos de segundo grau compartilham os bisavós. Quanto mais para trás você vai, **mais gente se junta** num mesmo ancestral. O cladograma é essa árvore de família para as espécies: cada nó é um "avô" comum, e as pontas são as espécies de hoje. Dois ramos que saem de um nó recente são **"primos próximos"**, e dois que só se encontram lá no começo são **"primos distantes"**.
+
+</Brincando>
+
+<Aprofundar titulo="A baleia e o hipopótamo">
+
+Até os anos 1990, achava-se que as baleias descendiam de mamíferos carnívoros extintos. Os estudos de DNA mudaram o quadro: os parentes vivos mais próximos das baleias são os **hipopótamos**, e os dois grupos fazem parte dos mamíferos de casco com número par de dedos (os artiodáctilos), junto com porcos, vacas e camelos. Fósseis como o *Pakicetus*, de cerca de 50 milhões de anos, um bicho com patas e hábitos de beira d'água, ajudaram a preencher a história: as patas foram virando nadadeiras e as narinas foram subindo para o topo da cabeça. É um exemplo de como o DNA e os fósseis se **conferem** um ao outro.
+
+</Aprofundar>
+
+## Os três domínios e os grupos principais
+
+Em vez de reinos tradicionais (cinco, de Whittaker, em 1969), a classificação moderna começa por **três domínios**:
+
+- **Bacteria:** bactérias.
+- **Archaea:** arqueias, parecidas com bactérias ao microscópio, mas com genes e química diferentes. Muitas vivem em lugares extremos (fontes quentes, lagos salgados).
+- **Eukarya:** todos os seres de **células com núcleo**: protistas, fungos, plantas e animais.
+
+<DominiosEReinos />
+
+Os dois primeiros são **procariontes** (células sem núcleo). Os **eucariontes** têm núcleo e organelas, como visto na cápsula **A célula**.
+
+<Exercicio enunciado="Quantos domínios existem na classificação moderna?" resposta="3" dica="Bacteria, Archaea e Eukarya." resolucao="3 domínios." />
+
+<Exercicio enunciado="No ensino básico, os eucariontes são divididos em protistas, fungos, plantas e animais. Quantos grupos são?" resposta="4" dica="Conte os nomes." resolucao="4 grupos." />
+
+## Nomes que enganam
+
+O nome popular só diz o que as pessoas **achavam** do bicho. Muitas vezes engana:
+
+- A **baleia** e o **golfinho** são mamíferos, não peixes.
+- O **cavalo-marinho** parece outra coisa, mas é um **peixe**.
+- O **morcego** voa, mas é **mamífero**: tem pelos e amamenta.
+- A **estrela-do-mar** não é peixe, nem estrela: é invertebrada.
+- A **salamandra** parece lagarto, mas é **anfíbio**.
+- O **pinguim** não voa, mas é **ave**.
+
+<NomesQueEnganam />
+
+## Quantas espécies existem?
+
+Desde Lineu, cerca de **2 milhões** de espécies já receberam nome, e os **insetos** são o maior grupo. Mas os cientistas acreditam que existem muito mais: as estimativas variam bastante, algo em torno de **8 a 9 milhões**, e a maior parte é de bichos pequenos, fungos e micróbios. Muitas espécies, sobretudo em florestas tropicais como a **Amazônia** e a **Mata Atlântica**, **desaparecem antes de serem descobertas**.
+
+<Exercicio enunciado="Estima-se que existam cerca de 8,7 milhões de espécies e que 2 milhões tenham sido descritas. Quantos milhões faltam descrever?" resposta="6,7" dica="Subtraia 2 de 8,7." resolucao="8,7 − 2 = 6,7 milhões de espécies ainda sem nome." />
+
+<Exercicio enunciado="Quantos anos se passaram entre o Systema Naturae de Lineu (1735) e a proposta dos três domínios (1990)?" resposta="255" dica="Subtraia os anos." resolucao="1990 − 1735 = 255 anos." />
+
+<Exercicio enunciado="Lineu nasceu em 1707 e morreu em 1778. Quantos anos viveu?" resposta="71" dica="Subtraia os anos." resolucao="1778 − 1707 = 71 anos." />
+
+## A classificação muda
+
+A classificação **não é fixa**. Quando novas pesquisas de DNA mostram que um grupo não era uma "família" de verdade, ele é redesenhado. Foi o que aconteceu com o antigo grupo dos "répteis" (as aves estão **dentro** dele, e não ao lado), com os "protistas" (que se dividiram em muitos ramos) e com o fim dos "peixes" como um grupo só. Isso **não é defeito**: é a ciência corrigindo mapas conforme ganha dados.
+
+<Aprofundar titulo="Como os cientistas montam uma árvore com DNA">
+
+Pegam-se as sequências de DNA (ou de proteínas) de várias espécies e se **alinham**, letra por letra. Contam-se as **diferenças**: quanto mais diferenças, mais tempo desde o ancestral comum, já que mutações se acumulam com os anos. Programas testam milhares de árvores possíveis e escolhem as que **melhor explicam** os dados. O resultado vem com um grau de confiança. Hoje, o gene de uma proteína do ribossomo (o RNA ribossômico) é um dos mais usados, porque todos os seres vivos o têm. Foi com ele que Woese achou as arqueias.
+
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Para que serve classificar os seres vivos?',
+    opcoes: ['Organizar a diversidade, dar nomes únicos e mostrar parentescos', 'Só para decorar nomes difíceis', 'Para criar novas espécies'],
+    correta: 0,
+    explicacao: 'A classificação é uma "biblioteca" da vida, em grupos dentro de grupos.',
+  },
+  {
+    enunciado: 'Qual a ordem dos níveis, do maior para o menor?',
+    opcoes: ['Domínio, reino, filo, classe, ordem, família, gênero, espécie', 'Espécie, gênero, família, ordem, classe, filo, reino, domínio', 'Reino, espécie, filo, ordem, classe, gênero'],
+    correta: 0,
+    explicacao: 'Cada nível contém os seguintes, como caixas dentro de caixas.',
+  },
+  {
+    enunciado: 'Como se escreve corretamente um nome científico?',
+    opcoes: ['Homo sapiens, em itálico, com gênero maiúsculo e espécie minúscula', 'homo SAPIENS', 'Homo Sapiens, sem itálico'],
+    correta: 0,
+    explicacao: 'Gênero com inicial maiúscula, espécie minúscula, em itálico.',
+  },
+  {
+    enunciado: 'Quem consolidou o sistema de dois nomes?',
+    opcoes: ['Lineu', 'Darwin', 'Mendel'],
+    correta: 0,
+    explicacao: 'Carl Linnaeus, no século XVIII.',
+  },
+  {
+    enunciado: 'O conceito biológico de espécie fala de:',
+    opcoes: ['Grupos que se cruzam e deixam descendentes férteis', 'Seres que moram no mesmo lugar', 'Seres com o mesmo tamanho'],
+    correta: 0,
+    explicacao: 'A mula, filha de cavalo e jumenta, é estéril, e por isso cavalo e jumento são espécies diferentes.',
+  },
+  {
+    enunciado: 'Por que a baleia é um mamífero e não um peixe?',
+    opcoes: ['Respira ar por pulmões, tem pelos e amamenta o filhote', 'Porque vive em lugares frios', 'Porque é muito grande'],
+    correta: 0,
+    explicacao: 'O parentesco e as características importam mais do que o lugar onde o animal vive.',
+  },
+  {
+    enunciado: 'A asa de um inseto e a de uma ave são exemplo de:',
+    opcoes: ['Analogia: mesma função, sem ancestral comum que a tenha', 'Homologia: mesmo ancestral', 'Mutação'],
+    correta: 0,
+    explicacao: 'Semelhança por função não prova parentesco.',
+  },
+  {
+    enunciado: 'O que é um clado?',
+    opcoes: ['Um ancestral e todos os seus descendentes', 'Qualquer grupo de animais parecidos', 'Um tipo de fóssil'],
+    correta: 0,
+    explicacao: 'É um ramo completo da árvore da vida.',
+  },
+  {
+    enunciado: 'Quais são os três domínios?',
+    opcoes: ['Bacteria, Archaea e Eukarya', 'Animais, plantas e fungos', 'Vírus, bactérias e protistas'],
+    correta: 0,
+    explicacao: 'Foram propostos por Carl Woese e colegas em 1990.',
+  },
+  {
+    enunciado: 'O que há de comum entre bactérias e arqueias?',
+    opcoes: ['Ambas são procariontes, sem núcleo', 'Ambas têm núcleo', 'Ambas são plantas'],
+    correta: 0,
+    explicacao: 'Mas têm genes e química diferentes, por isso formam domínios separados.',
+  },
+  {
+    enunciado: 'Qual dos animais é um peixe, apesar do nome e do formato?',
+    opcoes: ['Cavalo-marinho', 'Estrela-do-mar', 'Água-viva'],
+    correta: 0,
+    explicacao: 'O cavalo-marinho tem brânquias, nadadeiras e coluna vertebral. A estrela-do-mar e a água-viva são invertebrados.',
+  },
+  {
+    enunciado: 'Por que a classificação dos seres vivos muda com o tempo?',
+    opcoes: ['Porque novas pesquisas, como as de DNA, mostram parentescos antes desconhecidos', 'Porque os cientistas mudam de opinião sem motivo', 'Porque as espécies trocam de nome sozinhas'],
+    correta: 0,
+    explicacao: 'É a ciência corrigindo mapas ao receber dados novos.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Classificar:** organizar os seres em grupos dentro de grupos, com um nome único para cada espécie.
+- **Níveis:** domínio, reino, filo, classe, ordem, família, gênero e espécie. Quanto mais níveis em comum, mais próximo o parentesco.
+- **Nome científico:** dois nomes em latim, em itálico: gênero (maiúscula) e espécie (minúscula).
+- **Espécie:** grupo que se cruza e tem descendentes férteis. Tem limites, como todo conceito.
+- **Parentesco:** a classificação moderna segue o ancestral comum, mostrado em árvores (cladogramas). Semelhança por função (analogia) pode enganar.
+- **Domínios:** Bacteria, Archaea e Eukarya. Os eucariontes incluem protistas, fungos, plantas e animais.
+- **Nomes populares enganam:** baleia é mamífero, cavalo-marinho é peixe, morcego é mamífero.
+
+**Um pouco de história.** Aristóteles agrupou animais no século IV a.C., e Lineu publicou o Systema Naturae em 1735 e consolidou o nome de dois termos em 1758. Darwin, em 1859, mostrou que o critério deveria ser o parentesco. Hennig criou a cladística em 1950, e Woese descobriu as arqueias em 1977 e propôs os três domínios em 1990.
+
+</Resumo>
+
+Classificar é só o começo. Dois grupos que merecem um olhar de perto são os **vírus** e as **bactérias**. Siga por estas estações:
+
+<Conexoes />
+
+</Etapa>

@@ -1,0 +1,405 @@
+import EscalaDosMicrobios from '../../../components/simulacoes/EscalaDosMicrobios'
+import CrescimentoDeBacterias from '../../../components/simulacoes/CrescimentoDeBacterias'
+import CicloDoVirus from '../../../components/simulacoes/CicloDoVirus'
+import AntibioticoOuNao from '../../../components/simulacoes/AntibioticoOuNao'
+import SurtoEVacinacao from '../../../components/simulacoes/SurtoEVacinacao'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Bacteria, Virus, Bacteriophage, Germ theory of disease, Ignaz Semmelweis, Tobacco mosaic virus, Smallpox, Herd immunity, Basic reproduction number, Human microbiome), listadas no meta.ts. Tamanhos e R0 são aproximados. */}
+
+<Etapa id="gancho">
+
+Você tem mais **células de bactérias no corpo** do que muita gente imagina: as estimativas apontam para algo da **mesma ordem de grandeza das suas próprias células**, quase todas vivendo no intestino e na pele. A maior parte é inofensiva, e muitas **ajudam**: digerem fibras, fabricam vitaminas e protegem contra bactérias ruins.
+
+Ao mesmo tempo, **bactérias e vírus** causaram algumas das piores doenças da história: peste, cólera, tuberculose, varíola, sarampo, gripe, Covid-19. Eles são tão pequenos que ninguém sabia que existiam até 350 anos atrás. E são tão diferentes entre si que o remédio para um **não adianta nada** para o outro.
+
+<Palpite
+  chave="inicial"
+  pergunta="Uma pessoa está com gripe e pede um antibiótico ao médico. O que você acha?"
+  opcoes={['Vai ajudar a curar mais rápido', 'Não vai ajudar, porque gripe é causada por vírus e antibióticos só atuam em bactérias', 'Ajuda, mas só se for em dose dobrada']}
+/>
+
+Nesta cápsula você vai conhecer **os dois tipos de microscópicos**, ver quanto eles são pequenos, entender como bactérias se multiplicam e como vírus **sequestram** células, e aprender por que **vacinas e higiene** funcionam.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Durante milênios, doenças foram atribuídas a castigos, maus ares ou desequilíbrios do corpo. A descoberta dos micróbios mudou isso.
+
+<LinhaDoTempo marcos={[
+  { ano: '1676', texto: 'Antonie van Leeuwenhoek descreve, com lentes feitas por ele, seres minúsculos na água e nos dentes: as primeiras bactérias vistas.' },
+  { ano: '1796', texto: 'Edward Jenner usa a varíola das vacas para proteger contra a varíola humana: nasce a vacina.' },
+  { ano: '1847', texto: 'Ignaz Semmelweis mostra que lavar as mãos antes dos partos reduz as mortes.' },
+  { ano: '1860', texto: 'Louis Pasteur e, depois, Robert Koch consolidam a teoria de que micróbios causam doenças.' },
+  { ano: '1892', texto: 'Dmitri Ivanovski mostra que a doença do mosaico do tabaco passa por filtros que seguram bactérias.' },
+  { ano: '1928', texto: 'Alexander Fleming descobre a penicilina.' },
+  { ano: '1935', texto: 'Wendell Stanley cristaliza o vírus do mosaico do tabaco, mostrando que um vírus é uma partícula química.' },
+  { ano: '1980', texto: 'A Organização Mundial da Saúde declara a varíola erradicada.' },
+]} />
+
+## Os "animalúnculos" de Leeuwenhoek
+
+O comerciante holandês **Antonie van Leeuwenhoek** fabricava lentes de aumento tão boas que enxergava até cerca de 200 vezes mais do que os microscópios da época. Em 1676, ele olhou água de chuva e a raspagem dos próprios dentes e viu criaturas minúsculas se mexendo. Chamou-as de "animalúnculos". Eram **bactérias** e protozoários. Ele descreveu tudo em cartas à Royal Society, em Londres, e ninguém imaginava ainda que elas pudessem causar doenças.
+
+## As mãos que salvam vidas
+
+Em 1847, o médico húngaro **Ignaz Semmelweis** trabalhava num hospital de Viena, onde as mulheres morriam de **febre puerperal** depois do parto, muito mais numa ala atendida por médicos do que numa ala atendida por parteiras. Ele percebeu que os médicos vinham de dissecar cadáveres, **sem lavar as mãos**. Mandou lavar as mãos com uma solução de cal clorada e as mortes caíram muito. Os colegas, ofendidos, o ignoraram, e ele morreu esquecido. Só depois de Pasteur e Koch se aceitou que ele tinha razão.
+
+## Pasteur e Koch
+
+O francês **Louis Pasteur** mostrou, nos anos 1860, que a fermentação e o apodrecimento são feitos por micróbios, e que eles **não nascem do nada**. O alemão **Robert Koch**, nos anos 1870 e 1880, ligou **uma bactéria específica a uma doença específica**, como o antraz e a tuberculose, com regras precisas para provar a ligação. Nascia a **teoria dos germes**.
+
+## O mistério dos vírus
+
+No fim do século XIX, estudando uma doença de plantas de tabaco, Ivanovski e depois **Martinus Beijerinck** perceberam que o agente passava por filtros tão finos que seguravam bactérias, e **continuava infectando**. Beijerinck o chamou de **vírus** (a palavra latina para "veneno"). Em 1935, **Wendell Stanley** cristalizou o vírus do tabaco, como se fosse um sal, e mostrou que ele era uma **partícula química** que ainda assim se multiplicava. Na década de 1930, o **microscópio eletrônico** finalmente deixou ver um vírus.
+
+## A grande vitória
+
+Em 1796, o médico inglês **Edward Jenner** notou que as ordenhadoras que pegavam a varíola das vacas não adoeciam da varíola humana, e testou a ideia: **inoculou** um menino com material da varíola bovina. Funcionou, e nasceu a **vacina** (do latim *vacca*, vaca). Quase 200 anos depois, com campanhas de vacinação no mundo todo, a OMS declarou, em **1980**, a **varíola erradicada**. É a única doença humana eliminada.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Dois seres bem diferentes
+
+**Bactérias** e **vírus** costumam ser chamados juntos de "micróbios", mas são **muito diferentes**:
+
+- **Bactéria:** um ser vivo **completo**, de **uma célula** só, sem núcleo (procarionte). Tem parede celular, DNA solto no citoplasma e ribossomos. **Alimenta-se, cresce e se divide sozinha**.
+- **Vírus:** **não é uma célula**. É uma partícula com **material genético (DNA ou RNA)** dentro de uma **capa de proteína** (o **capsídeo**). Alguns têm ainda um envelope de gordura. **Não faz nada sozinho**: só se multiplica **dentro de uma célula hospedeira**, que usa como fábrica.
+
+## 2. Bem diferentes no tamanho
+
+As bactérias medem alguns **micrômetros** (milésimos de milímetro). Os vírus são **10 a 100 vezes menores**, e medem **dezenas ou centenas de nanômetros** (milionésimos de milímetro). Uma bactéria pode **hospedar** vírus, e alguns vírus são tão pequenos que, ao lado de uma bactéria, são como uma bola de gude ao lado de um prédio.
+
+<Brincando titulo="Bactéria e vírus: a loja e o panfleto">
+
+Pense numa **bactéria** como uma **loja pequena**: tem balcão, estoque, caixa e funcionários, e faz o seu próprio trabalho. Pode abrir filiais (se dividir). Um **vírus** é como um **panfleto com ordens de fabricação**: sozinho não faz nada. Mas, se entrar numa loja (a célula) e for lido, os funcionários largam o que faziam e passam a **imprimir mil cópias do panfleto**. Aí as cópias saem pelo mundo à procura de outras lojas. A loja é um ser vivo completo. O panfleto só funciona **dentro** dela.
+
+</Brincando>
+
+## 3. Vírus é vivo?
+
+Os cientistas ainda discutem. O vírus tem **genes** e **evolui** por seleção natural, mas **não tem metabolismo próprio** e não se reproduz fora de uma célula. Por isso muitos o veem como algo **entre o vivo e o não vivo**. Na cápsula **O que é vida?**, essa pergunta tem lugar de honra.
+
+## 4. Vilões? Nem sempre
+
+A maior parte das bactérias **não causa doença**. Muitas são **amigas** ou **neutras**. E a maioria dos vírus infecta **bactérias** (os bacteriófagos) ou outros seres, e não pessoas. Os micróbios **causadores de doenças** são uma minoria, mas, como são muito visíveis nos sintomas, ficam com a fama.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Se um coronavírus mede cerca de 100 nanômetros e a espessura de um fio de cabelo é de cerca de 70 micrômetros, quantos vírus cabem lado a lado na espessura de um fio de cabelo? (1 micrômetro = 1.000 nanômetros)"
+  opcoes={['Cerca de 70', 'Cerca de 700', 'Cerca de 70 mil']}
+  correta={1}
+  explicacao="70 micrômetros são 70.000 nanômetros. Dividindo por 100 nm de cada vírus, cabem cerca de 700."
+>
+
+Compare os tamanhos. Clique em cada item e veja quantos cabem na espessura de um fio de cabelo:
+
+<EscalaDosMicrobios />
+
+Agora, a multiplicação. Veja o que acontece quando uma bactéria se divide ao longo das horas:
+
+<CrescimentoDeBacterias />
+
+Volte ao palpite do começo: antibiótico para gripe?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Vai ajudar a curar mais rápido', 'Não vai ajudar, porque gripe é causada por vírus e antibióticos só atuam em bactérias', 'Ajuda, mas só se for em dose dobrada']}
+  correta={1}
+  seAcertou="Certo: gripe é causada por um vírus, e antibióticos só atuam em bactérias. Tomar sem necessidade só estimula a resistência."
+  seErrou="O certo é: não vai ajudar. Gripe é causada por vírus, e antibióticos só atuam em bactérias. Tomar sem necessidade ainda ajuda as bactérias resistentes a se multiplicarem."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Quão pequeno é pequeno?
+
+Para falar de micróbios, usamos duas unidades: o **micrômetro** (µm), que é **um milésimo de milímetro**, e o **nanômetro** (nm), que é **um milésimo de micrômetro**. Ou seja: 1 µm = 1.000 nm.
+
+<ExemploResolvido titulo="Quantos vírus cabem num fio de cabelo">
+  <Passo>Um fio de cabelo tem cerca de **70 µm** de espessura.</Passo>
+  <Passo>Em nanômetros: 70 · 1.000 = **70.000 nm**.</Passo>
+  <Passo>Um coronavírus mede cerca de **100 nm**.</Passo>
+  <Passo>70.000 ÷ 100 = **700** vírus lado a lado. E, para as bactérias de 2 µm, 70 ÷ 2 = 35 apenas: o vírus é bem menor.</Passo>
+</ExemploResolvido>
+
+## Bactérias: por dentro
+
+Uma bactéria tem uma **estrutura simples**, mas muito eficiente:
+
+- **Parede celular:** uma camada rígida, feita de uma substância chamada peptideoglicano, que dá forma e protege.
+- **Membrana:** controla o que entra e sai, como em qualquer célula.
+- **DNA:** uma molécula **circular**, solta numa região chamada **nucleoide** (sem membrana).
+- **Plasmídeos:** pequenos anéis extras de DNA, que podem trazer genes de resistência a antibióticos e que as bactérias **trocam entre si**.
+- **Ribossomos:** fabricam proteínas.
+- **Flagelos e pelos:** servem para nadar e se prender.
+
+Pelo formato, as bactérias são classificadas em **cocos** (redondas), **bacilos** (bastões) e **espirilos** (em espiral).
+
+## A multiplicação das bactérias
+
+A bactéria se reproduz por **divisão binária**: copia o DNA e se divide em duas. Em condições ideais, algumas se dividem a cada **20 minutos**. O número dobra a cada geração:
+
+<Formula>
+  <Linha>bactérias = 2 elevado a (número de gerações)</Linha>
+</Formula>
+
+<ExemploResolvido titulo="Quantas bactérias em algumas horas">
+  <Passo>Uma bactéria se divide a cada **20 minutos**. Em **3 horas**, passam **9 gerações** (3 horas = 180 minutos; 180 ÷ 20 = 9).</Passo>
+  <Passo>O número é 2 elevado a 9: 2 · 2 · 2 · 2 · 2 · 2 · 2 · 2 · 2 = **512**.</Passo>
+  <Passo>Em 6 horas (18 gerações) seriam mais de **260 mil**. Em um dia (72 gerações), um número gigantesco.</Passo>
+  <Passo>Na vida real, o crescimento **para** antes disso: acabam o alimento e o espaço, e a população estabiliza.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma bactéria se divide a cada 20 minutos. Quantas bactérias existem depois de 3 horas, saindo de uma?" resposta="512" dica="9 gerações: 2 elevado a 9." resolucao="3 horas = 9 gerações, e 2 elevado a 9 = 512." />
+
+<Exercicio enunciado="Uma bactéria se divide a cada 30 minutos. Quantas bactérias existem depois de 5 horas, saindo de uma?" resposta="1024" dica="5 horas têm 10 gerações." resolucao="10 gerações: 2 elevado a 10 = 1024." />
+
+<Brincando titulo="Multiplicação: o jogo do papel dobrado">
+
+Pegue um papel e dobre ao meio, de novo, de novo. Cada dobra **dobra a espessura**. Depois de 7 dobras, o papel tem 128 camadas. Se fosse possível dobrar 42 vezes, ele chegaria à Lua! As bactérias fazem isso, mas em vez de papel, **dobram a população** a cada 20 minutos. Por isso uma infecção pode sair de poucas bactérias para bilhões em um dia, e por isso começar o tratamento cedo é tão importante. Você viu essa conta, a **exponencial**, na cápsula de mesmo nome.
+
+</Brincando>
+
+## Bactérias que ajudam
+
+As bactérias são **essenciais** para a vida:
+
+- **Decompositoras:** reciclam folhas, animais mortos e lixo orgânico.
+- **Fixadoras de nitrogênio:** vivem nas raízes de plantas como o feijão e a soja e transformam o nitrogênio do ar numa forma que as plantas usam. É por isso que a soja precisa de bem pouco adubo de nitrogênio.
+- **Do intestino (microbiota):** ajudam a digerir, fabricam vitaminas como a K e protegem contra bactérias perigosas. Estimativas dizem que o corpo humano tem cerca de **39 trilhões** de bactérias e cerca de **30 trilhões** de células humanas.
+- **Na cozinha:** iogurte, queijo, coalhada, picles, chucrute e pão de fermentação natural.
+- **Na indústria:** bactérias fabricam insulina e outros remédios (veja **Biotecnologia**), e certas bactérias do solo produzem antibióticos.
+
+<Exercicio enunciado="O corpo tem cerca de 39 trilhões de bactérias e 30 trilhões de células humanas (estimativas). Quantos trilhões de bactérias a mais?" resposta="9" dica="39 menos 30." resolucao="39 − 30 = 9 trilhões. Os números são do mesmo tamanho, e o valor exato varia de pessoa para pessoa." />
+
+## Bactérias que adoecem
+
+Algumas bactérias produzem **toxinas** ou destroem tecidos. Exemplos: **tuberculose**, **tétano**, **cólera**, **leptospirose**, **faringite por estreptococos**, **infecção urinária** e **coqueluche**. O tratamento costuma ser feito com **antibióticos**, que:
+
+- impedem a bactéria de fazer a **parede celular**, ou
+- bloqueiam seus **ribossomos**, ou
+- atrapalham a cópia do seu DNA.
+
+Como o corpo humano **não tem parede celular** e tem ribossomos um pouco diferentes, o antibiótico acerta a bactéria **sem machucar** as nossas células. E, como o **vírus não tem nada disso** (usa as máquinas da célula hospedeira), o antibiótico **não faz nada contra ele**.
+
+<AntibioticoOuNao />
+
+<Exercicio enunciado="O antibiótico serve para tratar gripe? Responda 1 para sim ou 2 para não." resposta="2" dica="Gripe é causada por vírus." resolucao="Não serve: 2. Antibióticos só agem em bactérias." />
+
+## Vírus: por dentro
+
+Um vírus é muito simples:
+
+- **Material genético:** DNA ou RNA, que contém as instruções para fazer mais vírus.
+- **Capsídeo:** a capa de proteína que protege o material genético.
+- **Envelope** (em alguns, como o coronavírus, o da gripe e o HIV): uma capa de gordura roubada da célula anterior, com proteínas espetadas, que servem de "chaves" para entrar.
+
+Cada vírus só reconhece **certos tipos de célula**, onde suas proteínas se encaixam, como uma chave numa fechadura. Por isso o vírus da gripe infecta o nariz e a garganta, e o da hepatite B, o fígado.
+
+## O ciclo de um vírus
+
+Veja, passo a passo, como um vírus que ataca bactérias (um bacteriófago) se multiplica. Há dois caminhos: o **ciclo lítico**, em que a célula estoura, e o **ciclo lisogênico**, em que o vírus se esconde:
+
+<CicloDoVirus />
+
+<ExemploResolvido titulo="Quantos vírus em poucos ciclos">
+  <Passo>Um vírus infecta uma bactéria e produz **100** vírus novos antes de estourá-la.</Passo>
+  <Passo>No 2º ciclo, os 100 vírus infectam 100 bactérias, e cada uma produz 100: 100 · 100 = **10.000** vírus.</Passo>
+  <Passo>No 3º ciclo: 10.000 · 100 = **1.000.000** de vírus.</Passo>
+  <Passo>A multiplicação é exponencial: 100 elevado ao número de ciclos. Por isso uma infecção viral pode crescer tão depressa.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Cada vírus produz 100 novos. Começando com 1 vírus, quantos existem depois de 2 ciclos?" resposta="10000" dica="100 vezes 100." resolucao="100 · 100 = 10.000 vírus." />
+
+<Exercicio enunciado="Cada vírus produz 100 novos. Começando com 1, quantos existem depois de 3 ciclos?" resposta="1000000" dica="100 elevado a 3." resolucao="100 · 100 · 100 = 1.000.000 de vírus." />
+
+Os vírus que atacam **pessoas** seguem uma ideia parecida: entram na célula, usam as máquinas dela para copiar o material genético e as proteínas, montam novos vírus e saem, às vezes **estourando** a célula, às vezes saindo aos poucos. Alguns, como o **HIV**, são **retrovírus**: têm RNA e, dentro da célula, o convertem em DNA, que se mistura ao DNA da pessoa. Foi essa descoberta, em 1970, que rendeu o Nobel de 1975 a Howard Temin e David Baltimore.
+
+## Os vírus mudam
+
+Os vírus de **RNA** (como os da gripe e o coronavírus) **mutam muito**, porque a cópia do RNA tem mais erros. Isso explica por que:
+
+- a vacina da **gripe** é refeita todo ano, pois o vírus muda;
+- surgem **variantes** do coronavírus;
+- o vírus pode se espalhar de **animais para pessoas**, o que chamamos de **salto de espécie**.
+
+## Como se defender
+
+A defesa tem três frentes:
+
+- **Higiene:** lavar as mãos, tratar a água e o esgoto, cozinhar os alimentos. O trabalho de Semmelweis estava certo.
+- **Vacinas:** treinam o corpo, sem causar a doença, para reconhecer o micróbio e reagir com rapidez (assunto da cápsula **Imunidade e vacinas**).
+- **Remédios:** **antibióticos** para bactérias, **antivirais** para alguns vírus (como o do HIV e o da gripe, em certos casos) e o repouso para o resto, já que o corpo se defende sozinho em muitas viroses.
+
+## O que é imunidade coletiva
+
+Uma doença que passa de pessoa a pessoa tem um **número básico de reprodução**, o **R0**: quantas pessoas, em média, **um doente contagia** numa população sem proteção. Para o sarampo, o R0 é muito alto, cerca de **12 a 18**. Para a gripe sazonal, é baixo, cerca de 1,3.
+
+Se **uma parte da população está imune** (por vacina ou por já ter tido a doença), o vírus encontra menos gente para infectar. Quando a fração de imunes passa de um **limite**, cada doente passa para **menos de uma pessoa**, e o surto se apaga. É a **imunidade coletiva** (ou "de rebanho"), que protege também quem não pode se vacinar, como bebês e quem tem doenças que baixam a defesa.
+
+<Formula>
+  <Linha>fração de imunes necessária = 1 − 1 ÷ R0</Linha>
+</Formula>
+
+<SurtoEVacinacao />
+
+<ExemploResolvido titulo="Quanto de vacinação é preciso">
+  <Passo>Uma doença tem **R0 = 4**: cada doente contagia 4 pessoas, em média, se ninguém for imune.</Passo>
+  <Passo>A fração necessária é 1 − 1 ÷ 4 = 1 − 0,25 = **0,75**, ou **75%**.</Passo>
+  <Passo>Para o **sarampo**, com R0 perto de 15, seriam 1 − 1/15, cerca de **93%**. Por isso as coberturas de vacinação precisam ser altíssimas, e quedas pequenas já trazem o sarampo de volta.</Passo>
+  <Passo>Com 80% de imunes e R0 = 5, cada doente passa a doença para 5 · (1 − 0,8) = **1** pessoa. Fica no limite: o surto nem cresce nem some.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Se R0 = 4, qual a porcentagem de imunes necessária para a imunidade coletiva?" resposta="75" dica="1 menos 1/4." resolucao="1 − 0,25 = 0,75, ou 75%." />
+
+<Exercicio enunciado="Se R0 = 2, qual a porcentagem de imunes necessária?" resposta="50" dica="1 menos 1/2." resolucao="1 − 0,5 = 0,5, ou 50%." />
+
+<Exercicio enunciado="Se R0 = 10, qual a porcentagem de imunes necessária?" resposta="90" dica="1 menos 1/10." resolucao="1 − 0,1 = 0,9, ou 90%." />
+
+<Exercicio enunciado="Com R0 = 5 e 80% da população imune, em média, quantas pessoas cada doente contagia (5 vezes a parte não imune)?" resposta="1" dica="A parte não imune é 20%, ou 0,2." resolucao="5 · 0,2 = 1 pessoa por doente: no limite." />
+
+<Brincando titulo="Imunidade coletiva: o fogo na floresta">
+
+Pense num incêndio numa floresta. Se as árvores estão coladas umas nas outras, o fogo pula de uma para a outra e queima tudo. Mas se **muitas árvores forem molhadas** (imunes), o fogo encontra poucas árvores secas, e cada chama tem **dificuldade de encontrar a próxima**. Passando um certo ponto, o incêndio morre sozinho. As pessoas vacinadas são as árvores molhadas: protegem até quem está ao redor, inclusive as que ficaram secas por não poderem tomar vacina.
+
+</Brincando>
+
+<Aprofundar titulo="O modelo SIR: como o surto é calculado">
+
+A simulação usa o modelo **SIR**, em que a população é dividida em **S** (suscetíveis), **I** (infectados) e **R** (recuperados ou imunes). A cada instante: os infectados contagiam suscetíveis a uma taxa proporcional a **S · I** (quanto mais encontros entre os dois, mais casos novos), e passam para R depois de alguns dias. A **forma de sino** da curva dos infectados aparece porque, no começo, há muitos suscetíveis e o surto cresce **exponencialmente**; depois, os imunes se acumulam e o surto desacelera. O **limite de 1 − 1/R0** é a fração de imunes que faz o surto nem começar. A realidade é mais complicada (idades, lugares, mudanças de comportamento), mas o modelo mostra bem o essencial.
+
+</Aprofundar>
+
+<Aprofundar titulo="Vírus gigantes e as ideias sobre o que é vida">
+
+Em 2003, pesquisadores descreveram o **mimivírus**, um vírus tão grande (cerca de 0,5 micrômetro) que foi confundido com uma bactéria por mais de 10 anos. Ele tem um genoma bem maior que o de vírus comuns, com genes até para certas peças da fabricação de proteínas. Outros vírus gigantes foram achados depois, inclusive no Brasil, em lagoas do Pantanal e no fundo do Atlântico, como o *Tupanvírus*. Esses achados bagunçam a linha entre vírus e células, e reacendem a pergunta: **o que é estar vivo?**
+
+</Aprofundar>
+
+## Os outros micróbios
+
+Nem toda doença infecciosa vem de bactérias ou vírus:
+
+- **Protozoários:** a **malária** (*Plasmodium*, transmitido por mosquito), a doença de Chagas e a leishmaniose.
+- **Fungos:** micoses, como pé de atleta e candidíase.
+- **Vermes parasitas:** como a lombriga e a esquistossomose.
+
+Cada grupo pede um remédio diferente, e o diagnóstico correto é essencial.
+
+<Exercicio enunciado="Quantos anos se passaram entre a vacina de Jenner (1796) e a declaração de que a varíola foi erradicada (1980)?" resposta="184" dica="Subtraia os anos." resolucao="1980 − 1796 = 184 anos." />
+
+<Exercicio enunciado="Um vírus mede 0,1 micrômetro. Quantos nanômetros ele mede (1 micrômetro = 1.000 nanômetros)?" resposta="100" dica="0,1 vezes 1.000." resolucao="0,1 · 1.000 = 100 nanômetros." />
+
+<Exercicio enunciado="Um fio de cabelo tem 70 micrômetros de espessura e uma bactéria mede 2 micrômetros. Quantas bactérias cabem lado a lado na espessura do fio?" resposta="35" dica="Divida 70 por 2." resolucao="70 ÷ 2 = 35 bactérias." />
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Qual a principal diferença entre bactéria e vírus?',
+    opcoes: ['A bactéria é uma célula viva completa, e o vírus só se multiplica dentro de uma célula', 'Os dois são plantas', 'O vírus é sempre maior que a bactéria'],
+    correta: 0,
+    explicacao: 'A bactéria faz tudo sozinha. O vírus precisa das máquinas de uma célula hospedeira.',
+  },
+  {
+    enunciado: 'Qual dos dois é, em geral, menor?',
+    opcoes: ['O vírus, 10 a 100 vezes menor', 'A bactéria', 'São do mesmo tamanho'],
+    correta: 0,
+    explicacao: 'Bactérias medem micrômetros, e vírus, dezenas a centenas de nanômetros.',
+  },
+  {
+    enunciado: 'Quantos vírus de 100 nm cabem na espessura de um cabelo de 70 micrômetros?',
+    opcoes: ['Cerca de 70', 'Cerca de 700', 'Cerca de 7.000'],
+    correta: 1,
+    explicacao: '70 micrômetros são 70.000 nm, e 70.000 ÷ 100 = 700.',
+  },
+  {
+    enunciado: 'Uma bactéria se divide a cada 20 minutos. Quantas existem depois de 2 horas (saindo de uma)?',
+    opcoes: ['6', '36', '64'],
+    correta: 2,
+    explicacao: '2 horas são 6 gerações, e 2 elevado a 6 = 64.',
+  },
+  {
+    enunciado: 'Qual doença é causada por vírus?',
+    opcoes: ['Gripe', 'Tuberculose', 'Tétano'],
+    correta: 0,
+    explicacao: 'Tuberculose e tétano são causados por bactérias.',
+  },
+  {
+    enunciado: 'Por que antibióticos não funcionam contra vírus?',
+    opcoes: ['Eles atacam estruturas da bactéria que o vírus não tem', 'Porque o vírus é grande demais', 'Porque o vírus está fora do corpo'],
+    correta: 0,
+    explicacao: 'O antibiótico atrapalha a parede, os ribossomos ou o DNA da bactéria. O vírus não tem essas peças.',
+  },
+  {
+    enunciado: 'No ciclo lítico de um vírus de bactéria, o que acontece no fim?',
+    opcoes: ['A célula estoura e libera os vírus novos', 'O vírus se esconde para sempre', 'A célula se divide em duas'],
+    correta: 0,
+    explicacao: 'Lise é o estouro da célula. No ciclo lisogênico, o vírus fica escondido no DNA da bactéria.',
+  },
+  {
+    enunciado: 'Por que muitos vírus mudam tanto, como o da gripe?',
+    opcoes: ['Porque são de RNA, que tem mais erros de cópia', 'Porque precisam de roupa nova', 'Porque o clima muda'],
+    correta: 0,
+    explicacao: 'As mutações dão origem a variantes. Por isso a vacina da gripe é atualizada todo ano.',
+  },
+  {
+    enunciado: 'Qual bactéria ajuda os seres humanos?',
+    opcoes: ['As da microbiota do intestino, que ajudam a digerir', 'As do tétano', 'As da cólera'],
+    correta: 0,
+    explicacao: 'A maioria das bactérias é inofensiva ou útil. As causadoras de doença são minoria.',
+  },
+  {
+    enunciado: 'O que a lavagem de mãos de Semmelweis mostrou?',
+    opcoes: ['Que higiene reduz mortes por infecção', 'Que a água não limpa', 'Que médicos não pegam doenças'],
+    correta: 0,
+    explicacao: 'Ele reduziu muito as mortes por febre puerperal, em 1847, antes de a teoria dos germes ser aceita.',
+  },
+  {
+    enunciado: 'Se R0 = 4, qual a fração de imunes necessária para a imunidade coletiva?',
+    opcoes: ['25%', '75%', '100%'],
+    correta: 1,
+    explicacao: '1 − 1/4 = 0,75, ou 75%.',
+  },
+  {
+    enunciado: 'Por que o sarampo exige coberturas de vacinação tão altas?',
+    opcoes: ['Porque é muito contagioso (R0 alto), o limite chega a cerca de 93%', 'Porque a vacina é fraca', 'Porque o sarampo não é perigoso'],
+    correta: 0,
+    explicacao: 'Com R0 em torno de 15, 1 − 1/15 é cerca de 93%.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Bactéria:** ser de uma célula sem núcleo, que se divide sozinha (dobra a cada geração). A maioria é inofensiva ou útil, como as da microbiota, as decompositoras e as que fixam nitrogênio.
+- **Vírus:** DNA ou RNA numa capa de proteína, muito menor que a bactéria. Só se multiplica dentro de uma célula, e se discute se é vivo.
+- **Ciclos do vírus:** lítico (a célula estoura) e lisogênico (o vírus se esconde no DNA).
+- **Antibióticos:** só agem contra bactérias, nunca contra vírus. Uso errado gera resistência.
+- **Prevenção:** higiene, vacinas e saneamento. Vírus de RNA mutam muito.
+- **Imunidade coletiva:** fração de imunes necessária = 1 − 1/R0. Doenças muito contagiosas, como o sarampo, pedem coberturas altíssimas.
+
+**Um pouco de história.** Leeuwenhoek viu bactérias em 1676, Jenner criou a vacina em 1796 e Semmelweis mostrou o valor de lavar as mãos em 1847. Pasteur e Koch consolidaram a teoria dos germes. Ivanovski e Beijerinck descobriram os vírus por volta de 1892 a 1898, Fleming achou a penicilina em 1928 e Stanley cristalizou um vírus em 1935. A varíola foi erradicada em 1980.
+
+</Resumo>
+
+Com bactérias e vírus, você fecha o bloco de **Evolução e diversidade**. Para entender como o corpo se defende, siga por estas estações:
+
+<Conexoes />
+
+</Etapa>

@@ -1,0 +1,398 @@
+import CamadasDeRocha from '../../../components/simulacoes/CamadasDeRocha'
+import DecaimentoRadioativo from '../../../components/simulacoes/DecaimentoRadioativo'
+import DatandoUmFossil from '../../../components/simulacoes/DatandoUmFossil'
+import RelogioDaTerra from '../../../components/simulacoes/RelogioDaTerra'
+import CincoExtincoes from '../../../components/simulacoes/CincoExtincoes'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Fossil, Radiometric dating, Radiocarbon dating, Age of Earth, Geologic time scale, Stratigraphy, Extinction event, Chicxulub crater, Mary Anning), listadas no meta.ts. Porcentagens de extinção são estimativas aproximadas. */}
+
+<Etapa id="gancho">
+
+Numa pedreira do Ceará, na Chapada do Araripe, os trabalhadores partem blocos de calcário e, de vez em quando, aparece lá dentro um **peixe perfeito**, com escamas e espinhas, como se tivesse morrido ontem. Só que ele nadou por ali **há mais de 100 milhões de anos**, quando o Atlântico Sul ainda estava se abrindo e os dinossauros caminhavam pelo continente.
+
+Como alguém sabe disso? Ninguém estava lá para anotar a data. Mesmo assim, os cientistas dizem a idade da rocha com margem de erro pequena, e a idade da própria Terra: cerca de **4,54 bilhões de anos**. Esse tamanho de tempo é difícil de imaginar, e é por isso que ele ganhou um nome: **tempo profundo**.
+
+<Palpite
+  chave="inicial"
+  pergunta="Como os cientistas descobrem que uma rocha tem milhões de anos?"
+  opcoes={['Contam os anéis de crescimento da rocha, como numa árvore', 'Medem quanto de certos átomos radioativos já se transformou, porque isso acontece num ritmo conhecido', 'Perguntam à idade que os fósseis parecem ter']}
+/>
+
+Nesta cápsula você vai ver como um fóssil se forma, como ler as camadas de rocha como páginas de um livro, como funcionam os **relógios de átomos** e como encaixar toda a história da vida num **calendário de 24 horas**.
+
+</Etapa>
+
+<Etapa id="historia">
+
+Entender que o planeta é **muito mais velho** do que as histórias humanas foi uma das maiores viradas da ciência, e levou séculos.
+
+<LinhaDoTempo marcos={[
+  { ano: '1669', texto: 'Nicolas Steno propõe que, em camadas de rocha, as de baixo se formaram primeiro.' },
+  { ano: '1788', texto: 'James Hutton mostra, na costa da Escócia, que as rochas passam por ciclos lentos de formação e erosão, e fala de um tempo quase sem fim.' },
+  { ano: '1811', texto: 'Mary Anning, ainda jovem, acha na Inglaterra o primeiro esqueleto completo de ictiossauro estudado pela ciência.' },
+  { ano: '1815', texto: 'William Smith publica o primeiro mapa geológico da Inglaterra e mostra que cada camada tem seus fósseis.' },
+  { ano: '1830', texto: 'Charles Lyell lança Princípios de Geologia: o presente explica o passado.' },
+  { ano: '1896', texto: 'Henri Becquerel descobre a radioatividade.' },
+  { ano: '1949', texto: 'Willard Libby anuncia a datação por carbono-14 (Nobel de Química em 1960).' },
+  { ano: '1953', texto: 'Clair Patterson calcula a idade da Terra em cerca de 4,5 bilhões de anos.' },
+  { ano: '1980', texto: 'Luis e Walter Alvarez propõem que um asteroide causou a extinção dos dinossauros.' },
+]} />
+
+## O livro das camadas
+
+Em 1669, o dinamarquês **Nicolas Steno** estudou rochas na Itália e percebeu algo óbvio, mas importante: as camadas de sedimento se depositam **uma sobre a outra**, como pilhas de roupa. Se ninguém mexeu, a de baixo é **mais velha**. Hoje isso se chama **lei da superposição**.
+
+## Uma discussão sobre a idade da Terra
+
+No século XVII, muitos estudiosos calculavam a idade da Terra pela Bíblia, em alguns milhares de anos. Em 1788, **James Hutton** levou amigos a uma encosta na Escócia, em Siccar Point, onde camadas antigas, **inclinadas**, estavam cobertas por camadas mais novas, **horizontais**. Para ele, aquilo exigia milhões de anos: depositar, dobrar e erguer as camadas antigas, erodi-las e depois depositar as novas. "Não encontro vestígio de um começo, nem perspectiva de um fim", escreveu.
+
+## A caçadora de fósseis
+
+A inglesa **Mary Anning** cresceu numa família pobre, em Lyme Regis, e coletava fósseis nas falésias para vender. Em 1811 e 1812, ela e o irmão desenterraram o esqueleto de um **ictiossauro**, um réptil marinho. Depois, achou o primeiro plesiossauro. Por ser mulher e de origem humilde, demorou a receber crédito, mas hoje é reconhecida como uma das grandes paleontólogas.
+
+## William Smith e os fósseis-guia
+
+O engenheiro **William Smith** percorreu a Inglaterra abrindo canais e notou que as camadas apareciam **sempre na mesma ordem**, cada uma com **fósseis próprios**. Em 1815, publicou um mapa geológico enorme. Descobriu o princípio dos **fósseis-guia**: reconhecer uma camada pelos fósseis, mesmo longe de onde foi vista antes.
+
+## Os relógios de átomos
+
+Em 1896, **Becquerel** descobriu que certos átomos se transformam sozinhos, num ritmo constante. Em 1905, Ernest Rutherford sugeriu usar isso como relógio. Em 1949, **Willard Libby** criou a datação por carbono-14. E, em 1953, **Clair Patterson** mediu o chumbo em meteoritos e calculou que o Sistema Solar tem cerca de **4,55 bilhões de anos**, número que se mantém até hoje.
+
+## O asteroide
+
+Em 1980, o físico **Luis Alvarez** e o filho geólogo **Walter** encontraram, numa camada de rocha de 66 milhões de anos, uma quantidade de **irídio** (um metal raro na crosta, mas comum em asteroides) muito acima do normal. Propuseram que um asteroide enorme tinha caído e causado a extinção dos dinossauros. A cratera foi identificada na região de **Chicxulub**, no México, no começo dos anos 1990.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. O que é um fóssil?
+
+Um **fóssil** é um **resto ou marca de um ser vivo do passado**, preservado na rocha, no gelo ou no âmbar. Pode ser um osso, uma concha, uma folha, uma pegada, uma marca de toca ou um coprólito (cocô fossilizado!). Também é fóssil um inseto preso numa gota de resina.
+
+## 2. Como um ser vira fóssil
+
+É um processo **raro**. Em geral:
+
+1. O ser morre num lugar onde é **coberto rápido** por lama, areia ou cinza, longe de predadores e do ar.
+2. As partes moles se decompõem, e as **partes duras** (ossos, conchas) ficam.
+3. A água cheia de minerais entra nos poros e, aos poucos, **substitui o material** por pedra, mantendo o formato.
+4. Séculos depois, movimentos da crosta e a erosão **trazem a rocha de volta à superfície**.
+5. Alguém **a encontra**, antes que se destrua.
+
+Quase todos os seres que já viveram **não deixaram nada**. Os fósseis são uma amostra pequena e torta da vida do passado.
+
+<Brincando titulo="Fóssil: a foto que quase nunca é tirada">
+
+Pense nas fotos da sua família. Quantas pessoas viveram no seu bairro, ao longo de 100 anos, e nunca foram fotografadas? Quase todas. Só tem foto de quem estava num lugar certo, na hora certa, com uma câmera por perto. E muitas fotos antigas se estragaram, e outras se perderam. O registro fóssil funciona assim: **só entra uma pequena parte dos seres**, e depois ainda é preciso que a foto **sobreviva** milhões de anos e alguém a encontre.
+
+</Brincando>
+
+## 3. Duas maneiras de saber a idade
+
+- **Datação relativa:** diz **quem veio antes**, sem dar o número de anos, olhando a ordem das camadas e dos fósseis.
+- **Datação absoluta:** diz a idade **em anos**, medindo átomos radioativos.
+
+Os dois métodos se completam, e os cientistas só confiam num resultado quando métodos diferentes **concordam**.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Num barranco, há camadas de rocha empilhadas, sem nenhuma bagunça por terremoto. Qual camada é mais antiga?"
+  opcoes={['A de baixo', 'A de cima', 'Todas têm a mesma idade']}
+  correta={0}
+  explicacao="Os sedimentos se depositam um sobre o outro, então a camada de baixo foi formada primeiro. É a lei da superposição, de Steno."
+>
+
+Escolha um fóssil e procure a camada dele nos dois lugares. Dá para ver que **camadas distantes** podem ter a mesma idade:
+
+<CamadasDeRocha />
+
+Agora, os relógios que dão a idade em anos. Escolha o átomo e passe as meias-vidas:
+
+<DecaimentoRadioativo />
+
+Volte ao palpite do começo: como se descobre que uma rocha tem milhões de anos?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Contam os anéis de crescimento da rocha, como numa árvore', 'Medem quanto de certos átomos radioativos já se transformou, porque isso acontece num ritmo conhecido', 'Perguntam à idade que os fósseis parecem ter']}
+  correta={1}
+  seAcertou="Certo: o decaimento radioativo é um relógio de ritmo constante. Medindo quanto já se transformou, calcula-se a idade."
+  seErrou="O certo é medir quanto de certos átomos radioativos já se transformou. Rochas não têm anéis, e a aparência dos fósseis não dá a idade em anos."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Camadas e fósseis-guia
+
+Nas rochas formadas por sedimentos, a regra básica é simples: **de baixo para cima, do mais velho para o mais novo**. Isso vale desde que as camadas não tenham sido viradas por dobras ou falhas, o que os geólogos verificam.
+
+Um **fóssil-guia** é um fóssil de um ser que:
+
+- viveu por **pouco tempo** (geologicamente falando),
+- viveu em **muitos lugares**, e
+- deixou **muitos fósseis**.
+
+Se duas rochas distantes têm o mesmo fóssil-guia, **têm a mesma idade**, mesmo que sejam diferentes. Foi o que William Smith usou nos mapas. Hoje, a indústria do petróleo ainda usa microfósseis para saber em que profundidade está uma camada.
+
+<Exercicio enunciado="Em camadas sem perturbação, a camada de cima é mais nova (1) ou mais velha (2) do que a de baixo? Responda com o número." resposta="1" dica="Os sedimentos se depositam um sobre o outro." resolucao="A de cima foi depositada depois, então é mais nova: 1." />
+
+A erosão e o movimento da crosta podem **apagar páginas**: por isso as camadas de um lugar quase nunca formam uma história completa. Juntando vários lugares, os geólogos montaram a **escala do tempo geológico**, dividida em éons, eras e períodos. As eras mais conhecidas:
+
+- **Paleozoica** (de 541 a 252 milhões de anos atrás): explosão de animais marinhos, peixes, plantas e animais chegando à terra.
+- **Mesozoica** (de 252 a 66 milhões de anos atrás): a "era dos dinossauros", dos primeiros mamíferos e das primeiras flores.
+- **Cenozoica** (de 66 milhões de anos atrás até hoje): a era dos mamíferos e das aves, e dos humanos.
+
+Antes da Paleozoica, o **Pré-Cambriano** cobre cerca de 88% da história da Terra, com vida quase só microscópica.
+
+## Átomos radioativos: relógios que nunca atrasam
+
+Alguns átomos são **instáveis**: a qualquer momento se transformam em outro tipo de átomo. Não dá para prever **qual** átomo vai mudar agora, mas, num grupo grande, o que acontece é muito regular: o tempo que leva para **metade deles** se transformar é sempre o mesmo. Esse tempo se chama **meia-vida**.
+
+<Formula>
+  <Linha>fração que resta = 1 ÷ 2 elevado a n</Linha>
+</Formula>
+
+Aqui, **n** é o número de meias-vidas que passaram: depois de 1, resta 1/2 (50%); depois de 2, 1/4 (25%); depois de 3, 1/8 (12,5%); e assim por diante. Calor, frio, pressão e reações químicas **não mudam** esse ritmo.
+
+<Brincando titulo="Meia-vida: o pavio que encurta pela metade">
+
+Imagine uma vela que, a cada hora, **perde metade do que ainda resta dela**. Começa com 40 cm. Depois de 1 hora: 20 cm. Depois de 2: 10 cm. Depois de 3: 5 cm. Ela nunca chega a zero de verdade (sempre sobra metade), mas, depois de muitas horas, resta quase nada. Se você chegar numa sala e vir 5 cm de vela, e souber que ela começou com 40 e perde metade a cada hora, **conta de trás para frente**: são 3 horas. Os átomos radioativos são essa vela, e a meia-vida é a "hora" deles.
+
+</Brincando>
+
+<ExemploResolvido titulo="Quanto resta depois de algumas meias-vidas">
+  <Passo>O carbono-14 tem meia-vida de **5.730 anos**. Uma amostra começa com 800 átomos.</Passo>
+  <Passo>Depois de 1 meia-vida (5.730 anos): 400 átomos.</Passo>
+  <Passo>Depois de 2 (11.460 anos): 200. Depois de 3 (17.190 anos): 100.</Passo>
+  <Passo>Depois de 4 meias-vidas, **50 átomos**: 1 dividido por 16 do original, ou 6,25%. Passaram 4 · 5.730 = 22.920 anos.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Depois de 2 meias-vidas, quantos por cento dos átomos radioativos originais restam?" resposta="25" dica="Metade da metade." resolucao="50% depois de 1, 25% depois de 2." />
+
+<Exercicio enunciado="Depois de 3 meias-vidas, quantos por cento restam? (Dica: metade de 25.)" resposta="12,5" dica="Metade de 25%." resolucao="25 ÷ 2 = 12,5%." />
+
+<Exercicio enunciado="Uma amostra tem 800 átomos radioativos. Depois de 4 meias-vidas, quantos restam?" resposta="50" dica="800, 400, 200, 100, 50." resolucao="800 ÷ 16 = 50 átomos." />
+
+<Exercicio enunciado="O carbono-14 tem meia-vida de 5.730 anos. Quantos anos passam em 3 meias-vidas?" resposta="17190" dica="3 vezes 5.730." resolucao="3 · 5.730 = 17.190 anos." />
+
+## Datação por carbono-14
+
+O **carbono-14** é uma versão radioativa do carbono, formada na atmosfera pelos raios cósmicos. Em cada trilhão de átomos de carbono, só cerca de um é carbono-14. Os seres vivos **respiram, bebem e comem** carbono o tempo todo, e por isso mantêm a **mesma proporção** que a atmosfera.
+
+Quando o ser morre, **para de repor** carbono. O carbono-14 que ficou nele **vai se transformando** (meia-vida de **5.730 anos**), e a proporção cai. Medindo o que sobrou, calcula-se há quanto tempo o ser morreu.
+
+<DatandoUmFossil />
+
+<ExemploResolvido titulo="Datar um osso">
+  <Passo>Um osso tem **25%** do carbono-14 que teria quando vivo.</Passo>
+  <Passo>25% é metade da metade: passaram **2 meias-vidas**.</Passo>
+  <Passo>Idade: 2 · 5.730 = **11.460 anos**.</Passo>
+  <Passo>Esse é o tipo de resultado encontrado em Luzia, de Lagoa Santa (Minas Gerais), um dos esqueletos humanos mais antigos das Américas, de cerca de 11 mil anos.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Um osso tem 25% do carbono-14 original. Qual a idade dele, em anos (meia-vida de 5.730)?" resposta="11460" dica="25% são 2 meias-vidas." resolucao="2 · 5.730 = 11.460 anos." />
+
+<Exercicio enunciado="Um pedaço de madeira tem 50% do carbono-14 original. Qual a idade dele, em anos?" resposta="5730" dica="50% é 1 meia-vida." resolucao="1 meia-vida = 5.730 anos." />
+
+<Exercicio enunciado="Uma amostra tem 12,5% do carbono-14 original. Quantas meias-vidas passaram?" resposta="3" dica="50, 25, 12,5." resolucao="12,5% = 1/8, ou seja, 3 meias-vidas." />
+
+O método tem **limites**: só serve para o que **já foi vivo** (osso, madeira, tecido, carvão) e até cerca de **50 mil anos**. Depois disso, sobra tão pouco carbono-14 que a medida não é confiável. Para rochas, usam-se outros átomos.
+
+## Datando rochas muito antigas
+
+Fósseis de milhões de anos têm outra técnica. Rochas vulcânicas contêm átomos radioativos de **meia-vida enorme**:
+
+- **Potássio-40:** meia-vida de cerca de 1,25 bilhão de anos. Vira argônio.
+- **Urânio-238:** meia-vida de cerca de 4,47 bilhões de anos. Vira chumbo.
+
+Quando a lava esfria e vira rocha, o relógio **começa a contar**. Medindo a proporção entre o átomo "pai" e o "filho" (por exemplo, urânio e chumbo), calcula-se a idade. Como os fósseis estão em rochas sedimentares, que não podem ser datadas assim, os cientistas datam as **camadas de cinza vulcânica acima e abaixo**: o fóssil está entre as duas idades.
+
+<Exercicio enunciado="O potássio-40 tem meia-vida de 1,25 bilhão de anos. Quantos bilhões de anos passam em 2 meias-vidas?" resposta="2,5" dica="2 vezes 1,25." resolucao="2 · 1,25 = 2,5 bilhões de anos." />
+
+<Exercicio enunciado="Uma rocha tem metade do urânio-238 que tinha ao se formar. Quantos bilhões de anos ela tem (meia-vida de 4,47)?" resposta="4,47" dica="Metade é 1 meia-vida." resolucao="1 meia-vida = 4,47 bilhões de anos." />
+
+<Aprofundar titulo="A conta geral: idade = meia-vida · log2(N0 / N)">
+
+Quando a fração que resta não é uma potência certinha de 1/2 (como 79% ou 40%), usa-se o logaritmo. Se **N0** é a quantidade inicial e **N** a atual, a idade é:
+
+**t = meia-vida · log₂(N0 ÷ N)**.
+
+Para 25% (N0 ÷ N = 4): log₂(4) = 2, e t = 2 meias-vidas. Para 79% (N0 ÷ N ≈ 1,27): log₂(1,27) ≈ 0,34, e t ≈ 0,34 · 5.730 ≈ 1.950 anos. É a conta usada na simulação. Esse é o mesmo logaritmo que aparece na cápsula de **Exponencial**: o decaimento é uma exponencial "ao contrário".
+
+</Aprofundar>
+
+## A idade da Terra
+
+Como a Terra é velha demais para um relógio de carbono, Patterson usou **meteoritos**, que se formaram junto com o Sistema Solar. Medindo o chumbo neles, calculou **4,55 bilhões de anos**. As rochas terrestres mais antigas têm cerca de 4 bilhões de anos, e há grãozinhos de um mineral (zircão) de cerca de 4,4 bilhões. A Terra tem **cerca de 4,54 bilhões de anos**, e esse número vem de várias medidas independentes que concordam.
+
+## Um dia para toda a história
+
+Quatro bilhões e meio de anos é grande demais para sentir. A forma mais simples de dar escala é **comprimir tudo em 24 horas**. Se a Terra se formou à meia-noite, e hoje é a próxima meia-noite:
+
+<RelogioDaTerra />
+
+<ExemploResolvido titulo="Mudar de escala">
+  <Passo>Num relógio simplificado, **24 horas** valem **4.800 milhões de anos** (arredondando a idade da Terra).</Passo>
+  <Passo>Então **1 hora** vale 4.800 ÷ 24 = **200 milhões de anos**.</Passo>
+  <Passo>Os dinossauros não voadores sumiram há 66 milhões de anos. Em horas: 66 ÷ 200 = **0,33 hora**, cerca de **20 minutos antes da meia-noite**.</Passo>
+  <Passo>Os humanos, com 300 mil anos, aparecem há 0,3 ÷ 200 = 0,0015 hora, ou **5 segundos** antes da meia-noite.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Num relógio em que 24 horas valem 4.800 milhões de anos, quantos milhões de anos vale 1 hora?" resposta="200" dica="Divida 4.800 por 24." resolucao="4.800 ÷ 24 = 200 milhões de anos." />
+
+<Exercicio enunciado="Na mesma escala (1 hora = 200 milhões de anos), quantos minutos antes da meia-noite os dinossauros sumiram, há 66 milhões de anos?" resposta="19,8" dica="66 ÷ 200 em horas, vezes 60 para minutos." resolucao="66 ÷ 200 = 0,33 hora; 0,33 · 60 = 19,8 minutos." />
+
+<Brincando titulo="O relógio da Terra: a fila do ônibus">
+
+Imagine uma fila para um ônibus com 24 pessoas, uma para cada hora do dia. A **vida microscópica** está lá desde a 5ª ou 6ª pessoa. Os **animais** só chegam quando a fila já está na 21ª. Os **dinossauros** ficam entre a 23ª e a 24ª. E nós, **humanos**, somos um fio de cabelo da última pessoa, chegando no último segundo. A Terra "esperou" quase todo o tempo sem nós. Isso ajuda a imaginar o tamanho do tempo profundo.
+
+</Brincando>
+
+## Extinções em massa
+
+O registro fóssil mostra que a vida teve **cinco grandes quedas**, as extinções em massa, em que uma parte enorme das espécies sumiu num intervalo curto, em termos geológicos.
+
+<CincoExtincoes />
+
+A pior foi a do final do **Permiano**, há 252 milhões de anos, com a perda de cerca de 96% das espécies marinhas. A mais famosa é a do final do **Cretáceo**, há 66 milhões de anos, que eliminou os dinossauros não voadores. Os dinossauros **voadores** sobreviveram: são as aves de hoje.
+
+O padrão que se repete: depois de cada extinção, **os sobreviventes se diversificaram** e ocuparam os espaços vagos. Depois dos dinossauros, os mamíferos, que eram pequenos, se espalharam e deram origem a baleias, morcegos e primatas. A extinção pode ser dolorosa, mas **abre espaço** para novidades.
+
+<ExemploResolvido titulo="Quem sobrou depois de uma extinção">
+  <Passo>Uma região tinha **1.000 espécies**. Uma extinção em massa eliminou **96%** delas.</Passo>
+  <Passo>Espécies perdidas: 0,96 · 1.000 = **960**.</Passo>
+  <Passo>Sobreviventes: 1.000 − 960 = **40**.</Passo>
+  <Passo>Esses 40 sobreviventes, ao longo de milhões de anos, deram origem a novas espécies que ocuparam os lugares vazios.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Uma extinção elimina 96% das espécies de uma região com 1.000 espécies. Quantas sobram?" resposta="40" dica="4% de 1.000." resolucao="100% − 96% = 4%, e 4% de 1.000 = 40 espécies." />
+
+<Exercicio enunciado="Quantos anos se passaram entre a lei da superposição de Steno (1669) e a idade da Terra de Patterson (1953)?" resposta="284" dica="Subtraia os anos." resolucao="1953 − 1669 = 284 anos." />
+
+## O que os fósseis contam sobre a evolução
+
+Os fósseis mostram, camada após camada, uma **ordem**: os mais antigos são mais simples, e surgem organismos diferentes ao longo do tempo. E trazem **formas de transição**, como o *Tiktaalik*, um peixe de 375 milhões de anos com **pescoço e ossos que lembram membros**, entre os peixes e os primeiros animais com patas. Também ajudam a ligar os dados do DNA à história: as árvores de parentesco montadas com genes batem, em geral, com a ordem dos fósseis.
+
+Mas o registro é **incompleto**: faltam páginas. E isso não é defeito da ciência, é consequência do que um fóssil é: um acidente raro. Cada fóssil novo preenche um pedacinho.
+
+## Fósseis no Brasil
+
+- **Chapada do Araripe (Ceará, Pernambuco e Piauí):** calcários com fósseis de cerca de 110 milhões de anos, incluindo peixes, pterossauros e plantas, tão bem preservados que se veem detalhes.
+- **Lagoa Santa (Minas Gerais):** cavernas com ossos de humanos antigos (Luzia) e de animais gigantes da Era do Gelo, como preguiças-gigantes.
+- **Pegadas de dinossauros na Paraíba** (Vale dos Dinossauros, em Sousa), do período Cretáceo.
+
+<Aprofundar titulo="Por que a datação por carbono precisa de calibração">
+
+A quantidade de carbono-14 na atmosfera **não foi sempre a mesma**: depende dos raios cósmicos, da atividade do Sol e do campo magnético da Terra. Por isso, os laboratórios **calibram** o resultado com amostras de idade conhecida, como **anéis de árvores** (que dão ano a ano até cerca de 14 mil anos atrás, contando-os de árvores vivas e de madeira antiga). Sem a calibração, as datas de carbono saem erradas em até alguns séculos. A idade que você vê escrita num museu já passou por isso.
+
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'O que é um fóssil?',
+    opcoes: ['Resto ou marca de um ser vivo do passado, preservado', 'Qualquer pedra bonita', 'Um animal que ainda vive'],
+    correta: 0,
+    explicacao: 'Pode ser osso, concha, folha, pegada, toca ou inseto no âmbar.',
+  },
+  {
+    enunciado: 'Por que é raro um ser virar fóssil?',
+    opcoes: ['Precisa ser soterrado rápido e ter partes duras, longe de predadores', 'Porque só plantas fossilizam', 'Porque fósseis só se formam no gelo'],
+    correta: 0,
+    explicacao: 'Quase todos os seres desaparecem sem deixar nada.',
+  },
+  {
+    enunciado: 'Em camadas de rocha sem perturbação, a mais antiga é:',
+    opcoes: ['A de baixo', 'A de cima', 'A do meio'],
+    correta: 0,
+    explicacao: 'É a lei da superposição, de Steno.',
+  },
+  {
+    enunciado: 'Para que serve um fóssil-guia?',
+    opcoes: ['Mostrar que camadas de lugares distantes têm a mesma idade', 'Guiar turistas', 'Medir a temperatura'],
+    correta: 0,
+    explicacao: 'Ele viveu pouco tempo e em muitos lugares, então marca uma época.',
+  },
+  {
+    enunciado: 'O que é meia-vida?',
+    opcoes: ['O tempo para metade dos átomos radioativos se transformar', 'A metade da vida de um animal', 'O tempo de um dia na Terra'],
+    correta: 0,
+    explicacao: 'É constante para cada tipo de átomo, e não muda com calor, frio ou pressão.',
+  },
+  {
+    enunciado: 'Depois de 3 meias-vidas, quanto resta dos átomos originais?',
+    opcoes: ['12,5%', '25%', '3%'],
+    correta: 0,
+    explicacao: '50%, depois 25%, depois 12,5%.',
+  },
+  {
+    enunciado: 'Uma amostra tem 25% do carbono-14 original (meia-vida 5.730 anos). Qual a idade?',
+    opcoes: ['5.730 anos', '11.460 anos', '22.920 anos'],
+    correta: 1,
+    explicacao: '25% são 2 meias-vidas: 2 · 5.730 = 11.460.',
+  },
+  {
+    enunciado: 'A datação por carbono-14 serve para:',
+    opcoes: ['Materiais que já foram vivos, até cerca de 50 mil anos', 'Qualquer rocha, de qualquer idade', 'Só para metais'],
+    correta: 0,
+    explicacao: 'Para rochas muito antigas usam-se urânio, potássio e outros átomos de meia-vida longa.',
+  },
+  {
+    enunciado: 'Qual a idade aproximada da Terra?',
+    opcoes: ['4,54 bilhões de anos', '6 mil anos', '100 milhões de anos'],
+    correta: 0,
+    explicacao: 'O valor vem de várias medidas independentes, a partir de Patterson, em 1953.',
+  },
+  {
+    enunciado: 'Num relógio de 24 horas, quando aparecem os humanos?',
+    opcoes: ['Poucos segundos antes da meia-noite', 'Ao meio-dia', 'Às 6 da manhã'],
+    correta: 0,
+    explicacao: 'A espécie humana é muito recente perto do tempo profundo.',
+  },
+  {
+    enunciado: 'Qual foi a maior extinção em massa conhecida?',
+    opcoes: ['A do Permiano, há 252 milhões de anos', 'A do Cretáceo, que levou os dinossauros', 'A de hoje'],
+    correta: 0,
+    explicacao: 'Cerca de 96% das espécies marinhas sumiram. A do Cretáceo é a mais famosa, mas foi menor.',
+  },
+  {
+    enunciado: 'O que os fósseis incompletos revelam sobre o registro fóssil?',
+    opcoes: ['Que ele é incompleto, porque virar fóssil é raro, e a erosão apaga camadas', 'Que a evolução nunca aconteceu', 'Que os cientistas inventam os dados'],
+    correta: 0,
+    explicacao: 'A falta de páginas não invalida o livro. Novos fósseis preenchem lacunas, e métodos independentes concordam.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Fóssil:** resto ou marca de um ser do passado. Virar fóssil é raro: exige soterramento rápido e partes duras.
+- **Datação relativa:** de baixo para cima, do mais velho ao mais novo. Fósseis-guia ligam camadas distantes.
+- **Datação absoluta:** átomos radioativos caem à metade a cada meia-vida. Carbono-14: 5.730 anos, até 50 mil anos, só para o que já foi vivo. Rochas antigas usam urânio e potássio.
+- **Fração que resta:** 1 dividido por 2 elevado a n. Depois de 1, 2, 3 meias-vidas: 50%, 25%, 12,5%.
+- **Tempo profundo:** a Terra tem cerca de 4,54 bilhões de anos. Em 24 horas, os humanos chegam segundos antes da meia-noite.
+- **Extinções em massa:** cinco grandes. A do Permiano foi a pior, e a do Cretáceo acabou com os dinossauros não voadores.
+
+**Um pouco de história.** Steno enunciou a superposição em 1669, e Hutton, em 1788, falou de um tempo sem começo aparente. Mary Anning achou o ictiossauro em 1811, e Smith desenhou o mapa geológico em 1815. Libby criou o carbono-14 em 1949, e Patterson calculou a idade da Terra em 1953. Em 1980, os Alvarez ligaram o fim dos dinossauros a um asteroide.
+
+</Resumo>
+
+Os fósseis mostram **o que viveu**. Para organizar a enorme diversidade de seres vivos, a ciência usa a **classificação**. Siga por estas estações:
+
+<Conexoes />
+
+</Etapa>

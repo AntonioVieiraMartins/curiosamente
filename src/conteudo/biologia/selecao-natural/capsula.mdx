@@ -1,0 +1,389 @@
+import MariposasDaSelecao from '../../../components/simulacoes/MariposasDaSelecao'
+import ResistenciaAoAntibiotico from '../../../components/simulacoes/ResistenciaAoAntibiotico'
+import SelecaoNoBico from '../../../components/simulacoes/SelecaoNoBico'
+import CurvaDaSelecao from '../../../components/simulacoes/CurvaDaSelecao'
+import DerivaGenetica from '../../../components/simulacoes/DerivaGenetica'
+
+{/* Fatos históricos conferidos na Wikipedia em inglês (Natural selection, On the Origin of Species, Alfred Russel Wallace, Peppered moth evolution, Peter and Rosemary Grant, Antimicrobial resistance, Genetic drift, E. coli long-term evolution experiment), listadas no meta.ts. Os números das simulações são inventados e o texto avisa. */}
+
+<Etapa id="gancho">
+
+Em 1928, o médico escocês Alexander Fleming notou que um mofo matava as bactérias ao redor dele. Era a **penicilina**, o primeiro antibiótico. Nos anos 1940, ela salvou milhões de vidas. Mas Fleming já avisava, no discurso do Nobel de 1945, que o uso errado poderia **ensinar as bactérias a resistir**. Hoje, doenças que antes tinham cura, como certas infecções hospitalares, ficam difíceis de tratar porque as bactérias **resistem a quase tudo**.
+
+Como isso aconteceu? As bactérias "aprenderam"? Elas "decidiram" resistir? Nada disso. A resposta é uma das ideias mais poderosas da biologia: a **seleção natural**.
+
+<Palpite
+  chave="inicial"
+  pergunta="Por que, depois de anos de antibióticos, tantas bactérias passaram a resistir a eles?"
+  opcoes={['Cada bactéria foi se acostumando com o remédio e passou o costume aos filhos', 'Algumas bactérias já eram resistentes por acaso; o remédio matou as outras e as resistentes se multiplicaram', 'O remédio foi ficando mais fraco com o tempo']}
+/>
+
+Nesta cápsula você vai ver como a seleção natural funciona, com mariposas, aves e bactérias. Vai aprender a diferença entre **seleção**, **acaso** e **escolha humana**, e a desfazer ideias erradas, como a de que ela escolhe "o mais forte".
+
+</Etapa>
+
+<Etapa id="historia">
+
+A ideia de que as espécies mudam com o tempo já circulava no século XIX. O que faltava era uma explicação convincente do **como**.
+
+<LinhaDoTempo marcos={[
+  { ano: '1809', texto: 'Jean-Baptiste Lamarck propõe que os seres mudam e passam aos filhos o que adquiriram na vida. A segunda parte estava errada.' },
+  { ano: '1831', texto: 'Charles Darwin embarca no navio Beagle para uma viagem de quase cinco anos ao redor do mundo.' },
+  { ano: '1838', texto: 'Darwin lê Malthus, que dizia que as populações crescem mais depressa que o alimento, e percebe o mecanismo.' },
+  { ano: '1858', texto: 'Alfred Russel Wallace envia a Darwin um texto com a mesma ideia. Os dois a apresentam juntos numa sociedade científica de Londres.' },
+  { ano: '1859', texto: 'Darwin publica A origem das espécies.' },
+  { ano: '1928', texto: 'Fleming descobre a penicilina.' },
+  { ano: '1973', texto: 'Peter e Rosemary Grant começam a estudar os tentilhões da ilha Daphne Major, em Galápagos.' },
+  { ano: '1988', texto: 'Richard Lenski começa uma experiência com bactérias E. coli que dura mais de 30 anos e mais de 70 mil gerações.' },
+]} />
+
+## A viagem do Beagle
+
+Em dezembro de 1831, o jovem naturalista **Charles Darwin**, de 22 anos, embarcou no **HMS Beagle**. Em quase cinco anos, passou pelo Brasil, pela América do Sul e pelas ilhas Galápagos. Coletou fósseis, plantas e bichos, e foi se intrigando: por que as espécies das ilhas são parecidas com as do continente mais próximo, mas diferentes entre si?
+
+## A ideia que nasceu de um livro de economia
+
+Em 1838, Darwin leu o *Ensaio sobre o princípio da população*, de Thomas Malthus. O livro dizia que os seres vivos produzem **mais filhotes do que o alimento sustenta**. Darwin viu aí a peça que faltava: se nascem mais do que sobrevivem, **quem sobrevive não é por sorte pura**. Os que têm características que ajudam a viver no lugar onde estão deixam mais filhos, e esses filhos herdam as características. Ele chamou isso de **seleção natural**.
+
+## A carta de Wallace
+
+Darwin demorou mais de 20 anos para publicar, porque queria juntar provas. Em 1858, ele recebeu uma carta do naturalista **Alfred Russel Wallace**, que estava no sudeste da Ásia, com **a mesma ideia**, pensada por conta própria. Os dois decidiram apresentar os textos juntos, em julho de 1858. No ano seguinte, Darwin publicou ***A origem das espécies***. O livro vendeu tudo no primeiro dia.
+
+## O que ficou faltando
+
+Nem Darwin nem Wallace sabiam como a **hereditariedade** funcionava. Mendel já tinha publicado seus resultados em 1866, mas o trabalho foi esquecido. Só nas décadas de 1920 e 1930 a genética de Mendel foi unida à seleção natural, na chamada **síntese moderna**. Hoje sabemos o resto: a variação vem das **mutações** (cápsula anterior) e do embaralhamento de genes, e a herança é o **DNA**.
+
+## Mariposas, tentilhões e bactérias
+
+A teoria foi testada muitas vezes. Na Inglaterra industrial, as mariposas claras viraram escuras onde as fábricas sujaram os troncos. Nas Galápagos, os Grant mediram, ano após ano, bicos de tentilhões mudando com as secas e as chuvas. E, no laboratório, Lenski acompanha **mais de 70 mil gerações** de bactérias, vendo a evolução acontecer ao vivo.
+
+</Etapa>
+
+<Etapa id="intuicao">
+
+## 1. Três condições, e só
+
+A seleção natural acontece sempre que **três coisas** estão presentes ao mesmo tempo:
+
+1. **Variação:** os indivíduos de uma população **não são iguais**. Uns são mais claros, outros mais escuros, uns têm bico maior, outros menor.
+2. **Hereditariedade:** parte dessa diferença **passa dos pais para os filhos**, pelo DNA.
+3. **Reprodução diferente:** **uns deixam mais descendentes do que outros**, porque a característica deles ajuda a sobreviver ou a se reproduzir naquele ambiente.
+
+Se uma das três falta, nada acontece. Sem variação, não há o que escolher. Sem herança, os filhos não herdam a vantagem. Sem reprodução diferente, ninguém ganha nada.
+
+## 2. O resultado: a população muda
+
+Repita isso por várias gerações e a **população** muda: as características vantajosas ficam **cada vez mais comuns**. Repare que quem muda é a **população**, e não cada indivíduo. Uma bactéria não "fica resistente": ela **já nasceu** resistente ou sensível. O que muda é **quantas** de cada tipo existem.
+
+<Brincando titulo="Seleção natural: a peneira">
+
+Imagine uma peneira de buracos de 5 mm, e um balde de pedrinhas de tamanhos variados. Você joga o balde, e **só as pedrinhas pequenas passam**. As que ficam em cima são descartadas. Você pega as que passaram e joga de novo, e de novo. A cada rodada, as pedrinhas do balde ficam menores. Ninguém "ensinou" as pedrinhas a encolher. A **peneira** só deixou passar algumas. O ambiente é a peneira: ele deixa passar (deixa reproduzir) quem tem certas características. Só que, na natureza, a peneira não foi feita por ninguém e muda com o lugar e com o tempo.
+
+</Brincando>
+
+## 3. Adaptação
+
+Uma **adaptação** é uma característica que ajuda um ser a **sobreviver e se reproduzir** no ambiente onde vive: a cor de uma mariposa, o bico de uma ave, a casca grossa de uma árvore do Cerrado. Elas parecem "projetadas", mas são o resultado de **muitas gerações de peneira**, com a ajuda do acaso.
+
+## 4. O que a seleção natural não é
+
+- **Não é "sobrevivência do mais forte".** É sobrevivência e reprodução de quem se **ajusta melhor** àquele ambiente. Pode ser o menor, o mais discreto, o mais veloz, o mais cooperativo.
+- **Não tem objetivo.** Ninguém planeja o resultado. Ela só filtra o que existe.
+- **Não é perfeita.** Funciona com o que há disponível e para o ambiente de **agora**.
+- **Não age sobre um indivíduo durante a vida.** Esticar o pescoço não deixa o pescoço dos filhos maior, como pensava Lamarck.
+
+</Etapa>
+
+<Etapa id="simulacao">
+
+<Previsao
+  pergunta="Mariposas claras e escuras vivem numa floresta. As aves comem mais as que se destacam no tronco. Se os troncos ficam escuros de poluição, depois de muitas gerações, o que acontece com as mariposas escuras?"
+  opcoes={['Ficam mais comuns', 'Ficam menos comuns', 'Continuam iguais']}
+  correta={0}
+  explicacao="As escuras são menos vistas no tronco escuro, sobrevivem mais e deixam mais filhotes escuros. A porcentagem delas sobe geração após geração."
+>
+
+Comece com 10% de mariposas escuras e deixe as gerações passarem. Troque a cor do tronco e veja o que muda:
+
+<MariposasDaSelecao />
+
+Agora o caso das bactérias. Cada aplicação do antibiótico mata quase todas as sensíveis. Comece com só **10 resistentes em 1 milhão**:
+
+<ResistenciaAoAntibiotico />
+
+Volte ao palpite do começo: por que tantas bactérias passaram a resistir aos antibióticos?
+
+<LembrarPalpite
+  chave="inicial"
+  opcoes={['Cada bactéria foi se acostumando com o remédio e passou o costume aos filhos', 'Algumas bactérias já eram resistentes por acaso; o remédio matou as outras e as resistentes se multiplicaram', 'O remédio foi ficando mais fraco com o tempo']}
+  correta={1}
+  seAcertou="Certo: a resistência já existia, por acaso, em poucas bactérias. O remédio eliminou a concorrência e as resistentes se multiplicaram."
+  seErrou="O certo é: algumas bactérias já eram resistentes por acaso (mutação). O remédio matou as sensíveis e as resistentes se multiplicaram. Ninguém se acostumou: foi uma seleção."
+/>
+
+</Previsao>
+
+</Etapa>
+
+<Etapa id="pratica">
+
+## Variação: a matéria-prima
+
+Sem diferenças entre os indivíduos, não há seleção. De onde vem a variação? Principalmente de três fontes, que você já conhece:
+
+- **Mutações:** erros de cópia do DNA, que criam versões novas dos genes.
+- **Embaralhamento na meiose:** o crossing-over e a separação ao acaso dos cromossomos misturam os genes dos pais.
+- **Combinação dos pais:** cada filho recebe uma mistura única dos genes de dois indivíduos.
+
+As mutações são **ao acaso**, no sentido de que não "ocorrem porque seriam úteis". Mas a seleção **não é ao acaso**: ela favorece as que ajudam no ambiente de agora.
+
+## O exemplo das mariposas
+
+A mariposa *Biston betularia* vive na Inglaterra. Nos anos 1800, quase todas eram **claras**, camufladas nos troncos cobertos de líquens. Em 1848, foi registrada a primeira **escura**, perto de Manchester. Com a Revolução Industrial, a fuligem das fábricas escureceu os troncos, e as escuras foram ficando **mais comuns**, até serem a maioria nas regiões poluídas. Quando as leis de ar limpo reduziram a poluição, a história **inverteu**: as claras voltaram a dominar.
+
+Nos anos 1950, o biólogo Bernard Kettlewell fez experiências para mostrar que as **aves comiam mais** as mariposas que destoavam. Houve críticas ao método, e, nos anos 2000, outro pesquisador, Michael Majerus, repetiu os testes com mais cuidado. O resultado confirmou a ideia principal: a **predação por aves** explica a mudança.
+
+<ExemploResolvido titulo="Uma geração de seleção nas mariposas">
+  <Passo>A população tem **50 mariposas escuras** e **50 claras**. O tronco ficou escuro.</Passo>
+  <Passo>Sobrevivem **90%** das escuras (que combinam com o tronco) e **60%** das claras (que destoam).</Passo>
+  <Passo>Escuras que sobrevivem: 0,9 · 50 = **45**. Claras que sobrevivem: 0,6 · 50 = **30**.</Passo>
+  <Passo>Total de sobreviventes: 45 + 30 = **75**. A fração de escuras é 45 ÷ 75 = **60%**. Subiu de 50% para 60% em uma geração.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Há 50 mariposas escuras e 50 claras. Sobrevivem 90% das escuras e 60% das claras. Quantas escuras sobrevivem?" resposta="45" dica="90% de 50." resolucao="0,9 · 50 = 45 escuras." />
+
+<Exercicio enunciado="Na mesma situação, quantas mariposas sobrevivem ao todo (escuras e claras)?" resposta="75" dica="45 escuras mais 30 claras." resolucao="45 + 30 = 75 sobreviventes." />
+
+<Exercicio enunciado="Na mesma situação, qual a porcentagem de escuras entre as sobreviventes?" resposta="60" dica="45 em 75." resolucao="45 ÷ 75 = 0,6, ou seja, 60%." />
+
+<Exercicio enunciado="Uma variante tem 80% de chance de sobreviver e outra, 40%. Quanto vale a sobrevivência da segunda em relação à primeira (40 dividido por 80)?" resposta="0,5" dica="Divida 40 por 80." resolucao="40 ÷ 80 = 0,5. A segunda tem metade da chance da primeira." />
+
+## A seleção age sobre o que se herda
+
+Para a mudança passar à geração seguinte, o que foi selecionado tem de ser **herdável**. Um exemplo clássico: os **tentilhões de Galápagos**. Desde 1973, **Peter e Rosemary Grant** pesam e medem as aves da pequena ilha **Daphne Major**. Em 1977, uma seca grave matou muitas plantas. Sobraram **sementes grandes e duras**. As aves de **bico maior** conseguiam quebrá-las e sobreviveram mais. Os filhotes nascidos depois tinham, em média, **bicos maiores** (cerca de meio milímetro, no estudo). A seleção funcionou **porque o tamanho do bico é herdado**.
+
+Os cientistas medem isso com a **equação do criador**:
+
+<Formula>
+  <Linha>R = h² · S</Linha>
+</Formula>
+
+- **S** é a **diferença selecionada**: quanto a média de quem se reproduziu é maior que a média da população.
+- **h²** (herdabilidade) vai de 0 a 1 e diz **quanto da diferença passa** aos filhos.
+- **R** é a **resposta**: a mudança da média na geração seguinte.
+
+<SelecaoNoBico />
+
+<Brincando titulo="Herdabilidade: a cópia do desenho">
+
+Pense em desenhos copiados. Se o copiador for perfeito (h² = 1), o desenho filho é igual ao pai. Se for ruim e fizer rabiscos ao acaso (h² = 0), a cópia não tem relação nenhuma com o original. A seleção só consegue "mudar o desenho" da população se a cópia for fiel. Se a altura de uma pessoa depende só da alimentação, escolher só os mais altos para reproduzir não deixa os filhos mais altos. Se depende de genes, deixa.
+
+</Brincando>
+
+<ExemploResolvido titulo="Prever a mudança do bico">
+  <Passo>A média dos bicos é **10 mm**. As aves que sobreviveram e se reproduziram têm média de **11,2 mm**.</Passo>
+  <Passo>A diferença selecionada é **S = 11,2 − 10 = 1,2 mm**.</Passo>
+  <Passo>A herdabilidade é **h² = 0,5**.</Passo>
+  <Passo>**R = 0,5 · 1,2 = 0,6 mm**. A média dos filhotes será de 10,6 mm.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="A média dos bicos é 10 mm e a dos pais que se reproduziram é 11,2 mm. Qual o S, em mm?" resposta="1,2" dica="Subtraia as médias." resolucao="S = 11,2 − 10 = 1,2 mm." />
+
+<Exercicio enunciado="Com S = 1,2 mm e herdabilidade 0,5, qual a resposta R, em mm (R = h² · S)?" resposta="0,6" dica="0,5 vezes 1,2." resolucao="R = 0,5 · 1,2 = 0,6 mm." />
+
+<Exercicio enunciado="Com S = 2 mm e herdabilidade 0,25, qual a resposta R, em mm?" resposta="0,5" dica="0,25 vezes 2." resolucao="R = 0,25 · 2 = 0,5 mm." />
+
+<Exercicio enunciado="Se a herdabilidade é zero, qual a resposta R, não importa o valor de S?" resposta="0" dica="Qualquer número vezes zero." resolucao="R = 0 · S = 0. Sem herança, a seleção não muda a população." />
+
+## Bactérias e antibióticos
+
+Bactérias se multiplicam muito depressa (uma divisão a cada 20 minutos, em boas condições). Numa infecção, bilhões de bactérias se dividem, e **por mutação** algumas ficam resistentes ao remédio, por exemplo por terem uma proteína diferente no lugar que o antibiótico ataca. Isso acontece **ao acaso**, antes de qualquer remédio.
+
+Quando o antibiótico chega, mata as **sensíveis**. As raras **resistentes** sobram, sem concorrência por comida, e se multiplicam. A infecção volta, agora resistente. É o que a simulação mostrou: de 10 resistentes em 1 milhão, em poucos tratamentos elas viram quase todas.
+
+<ExemploResolvido titulo="Quem sobra depois do antibiótico">
+  <Passo>No começo, há **1.000.000** de bactérias, com **10 resistentes**.</Passo>
+  <Passo>O antibiótico mata 99,99% das sensíveis. Sobram cerca de **100 sensíveis**. Digamos que 10 resistentes sobrevivem.</Passo>
+  <Passo>Resistentes entre as sobreviventes: 10 em 110, cerca de **9%**. Antes eram 0,001%.</Passo>
+  <Passo>Em poucas horas, essas bactérias se dividem de novo, e a população volta a milhões, agora **quase toda resistente**.</Passo>
+</ExemploResolvido>
+
+<Exercicio enunciado="Depois do antibiótico sobraram 90 bactérias sensíveis e 10 resistentes. Qual a porcentagem de resistentes?" resposta="10" dica="10 em 100." resolucao="10 ÷ (90 + 10) = 10%." />
+
+<Exercicio enunciado="Uma bactéria se divide a cada 20 minutos. Saindo de uma, quantas bactérias existem depois de 2 horas?" resposta="64" dica="2 horas têm 6 divisões." resolucao="6 divisões: 2 elevado a 6 = 64 bactérias." />
+
+<Exercicio enunciado="Uma bactéria se divide a cada 20 minutos. Quantas gerações passam em um dia (24 horas)?" resposta="72" dica="Cada hora tem 3 gerações." resolucao="24 · 3 = 72 gerações em um dia. Por isso a evolução das bactérias se vê em laboratório." />
+
+Como evitar o problema? Os cuidados valem para todo mundo:
+
+- Tomar antibiótico **só com receita**, e **até o fim** da receita.
+- **Nunca** usar antibiótico para gripe e resfriado: são causados por vírus, e o remédio só mata bactérias.
+- Não guardar sobras nem usar a receita de outra pessoa.
+- Na pecuária, evitar o uso de antibióticos sem necessidade.
+
+<Aprofundar titulo="A conta da seleção: p' = p·wa / (p·wa + q·wb)">
+
+Chame de **p** a fração da população com a variante A e de **q = 1 − p** a fração com a variante B. Se A sobrevive com chance **wa** e B com **wb**, depois da seleção a fração de A é:
+
+**p' = p · wa ÷ (p · wa + q · wb)**.
+
+No exemplo das mariposas: p = 0,5, wa = 0,9 e wb = 0,6 dão p' = 0,45 ÷ (0,45 + 0,30) = 0,6. A cada geração repete-se a conta com o novo p. Por isso uma pequena vantagem, repetida muitas vezes, muda tudo, como mostra a curva da próxima simulação. O gráfico tem formato de **S**: começa devagar, acelera no meio e desacelera quando a variante domina.
+
+</Aprofundar>
+
+## Pequenas vantagens, muitas gerações
+
+Uma vantagem pequena parece insignificante, mas **se acumula**. Veja como a frequência de uma variante cresce quando ela tem poucos por cento de vantagem:
+
+<CurvaDaSelecao />
+
+<Exercicio enunciado="Uma variante está em 1% de uma população de 10.000 indivíduos. Quantos indivíduos a têm?" resposta="100" dica="1% de 10000." resolucao="0,01 · 10000 = 100 indivíduos." />
+
+<Exercicio enunciado="Uma ave vive 1 geração por ano. Quantos anos levam 200 gerações?" resposta="200" dica="Um ano por geração." resolucao="200 gerações · 1 ano = 200 anos. Em bactérias, 200 gerações levam cerca de 3 dias." />
+
+<ExemploResolvido titulo="A segunda geração das mariposas">
+  <Passo>Depois da primeira geração, a população ficou com **60% de escuras**. Considere 100 mariposas: **60 escuras** e **40 claras**.</Passo>
+  <Passo>Sobrevivem 90% das escuras: 0,9 · 60 = **54**. Sobrevivem 60% das claras: 0,6 · 40 = **24**.</Passo>
+  <Passo>Total: 54 + 24 = **78**. Fração de escuras: 54 ÷ 78, cerca de **69%**.</Passo>
+  <Passo>Subiu de 50% para 60% e agora para 69%. Cada geração soma mais, até as claras ficarem raras. É assim que uma vantagem se acumula.</Passo>
+</ExemploResolvido>
+
+## Seleção não é a única força: deriva genética
+
+Nem toda mudança nas populações é seleção. A **deriva genética** é a mudança de frequência causada **só pelo acaso**: quem, por sorte, deixou mais filhos. Em populações **pequenas** ela é forte, e uma variante pode sumir ou dominar **sem ter vantagem nenhuma**. Em populações **grandes** o acaso se compensa e quase não pesa.
+
+<DerivaGenetica />
+
+<Brincando titulo="Deriva: o saco de bolinhas">
+
+Um saco tem 10 bolinhas, 5 vermelhas e 5 azuis. Você tira 10 bolinhas, **com reposição**, e forma o próximo saco. Por acaso, podem vir 7 vermelhas. Repita: 8 vermelhas, 10 vermelhas... e as azuis desaparecem **sem nenhuma razão**, só por sorte. Com um saco de mil bolinhas, o sorteio raramente se afasta muito de 50%. A deriva genética é isso: **o acaso mexendo nas proporções**, forte quando o saco é pequeno.
+
+</Brincando>
+
+<Exercicio enunciado="Numa população de 10 indivíduos, metade tem uma variante. Quantos indivíduos têm a variante?" resposta="5" dica="Metade de 10." resolucao="10 ÷ 2 = 5. Em população tão pequena, um sorteio azarado pode eliminar a variante em poucas gerações." />
+
+## Seleção artificial
+
+Antes de Darwin, as pessoas já usavam o mesmo princípio. Criadores de pombos, cães e vacas **escolhiam quem se reproduzia**, e as raças mudavam. O milho foi transformado, ao longo de milhares de anos, a partir de uma gramínea selvagem chamada **teosinto**, cujas espigas são minúsculas. Essa é a **seleção artificial**: a mesma variação e herança, mas com **gente escolhendo** em vez do ambiente. Darwin a usou como argumento: se em poucos séculos as pessoas fazem raças tão diferentes, a natureza, com milhões de anos, faz muito mais.
+
+## Outras formas de seleção
+
+- **Seleção sexual:** vantagem em **conseguir parceiros**. A cauda enorme do pavão não ajuda a fugir de predadores, mas ajuda a ser escolhido.
+- **Seleção direcional:** favorece um extremo (bicos maiores, na seca).
+- **Seleção estabilizadora:** favorece o meio-termo (bebês de peso médio sobrevivem mais).
+- **Seleção disruptiva:** favorece os dois extremos e desfavorece o meio.
+
+## Mitos comuns
+
+- **"Evolução é só uma teoria."** Em ciência, *teoria* é uma explicação ampla e muito bem testada, como a teoria da gravidade. A evolução é um fato observado (veja as bactérias), e a seleção natural é a teoria que explica boa parte dele.
+- **"Os seres evoluem porque precisam."** Não: a variação surge ao acaso, e a seleção filtra. A necessidade não faz o gene surgir.
+- **"Evolução vai do pior para o melhor."** Não existe escada. Existem populações ajustadas ao ambiente em que vivem, e ambientes mudam.
+- **"Descendemos dos macacos."** Não descendemos dos macacos de hoje. Temos **ancestrais comuns** com os chimpanzés, de milhões de anos atrás. Isso será visto na cápsula de Classificação.
+
+<Aprofundar titulo="O experimento de Lenski: o filme da evolução">
+
+Em 1988, o biólogo **Richard Lenski** separou 12 populações de bactérias *E. coli*, todas iguais, e as manteve em frascos, transferindo uma amostra a cada dia para um frasco novo, sem parar. Mais de 70 mil gerações depois, as populações evoluíram de formas parecidas em alguns pontos (crescem mais depressa) e diferentes em outros. Em uma delas, ao redor da geração 31.500, surgiu uma bactéria capaz de **comer citrato**, o que a *E. coli* normalmente não faz. Como Lenski guardava amostras congeladas de todas as épocas, foi possível "voltar o filme" e testar o papel do acaso e da história. Foi uma das demonstrações mais claras de evolução em tempo real.
+
+</Aprofundar>
+
+</Etapa>
+
+<Etapa id="desafio">
+
+<Quiz perguntas={[
+  {
+    enunciado: 'Quais as três condições para a seleção natural?',
+    opcoes: ['Variação, hereditariedade e reprodução diferente', 'Força, velocidade e tamanho', 'Mutação, clima e comida'],
+    correta: 0,
+    explicacao: 'Sem uma delas, a população não muda por seleção.',
+  },
+  {
+    enunciado: 'Quem evolui?',
+    opcoes: ['A população, ao longo de gerações', 'Cada indivíduo durante a vida', 'Só os animais grandes'],
+    correta: 0,
+    explicacao: 'Um indivíduo não muda de característica herdável durante a vida. O que muda é a proporção de cada tipo na população.',
+  },
+  {
+    enunciado: 'A seleção natural favorece:',
+    opcoes: ['Quem deixa mais descendentes no ambiente de agora', 'Sempre o mais forte', 'Sempre o maior'],
+    correta: 0,
+    explicacao: 'Pode ser o menor, o mais discreto ou o mais cooperativo: depende do ambiente.',
+  },
+  {
+    enunciado: 'Por que, em troncos escuros, as mariposas escuras ficaram mais comuns?',
+    opcoes: ['As aves as viam menos, e elas sobreviviam e se reproduziam mais', 'Elas ficaram escuras porque queriam', 'As claras foram embora do país'],
+    correta: 0,
+    explicacao: 'A camuflagem foi a vantagem. A cor é herdada, e a população mudou.',
+  },
+  {
+    enunciado: 'Uma população tem 50 escuras e 50 claras. Sobrevivem 90% das escuras e 60% das claras. Qual a porcentagem de escuras entre as sobreviventes?',
+    opcoes: ['50%', '60%', '90%'],
+    correta: 1,
+    explicacao: '45 escuras e 30 claras: 45 ÷ 75 = 60%.',
+  },
+  {
+    enunciado: 'Por que o antibiótico leva a bactérias resistentes?',
+    opcoes: ['Ele mata as sensíveis e deixa as raras resistentes se multiplicarem', 'Ele ensina as bactérias a resistir', 'Ele fica mais fraco com o tempo'],
+    correta: 0,
+    explicacao: 'A resistência já existia por mutação ao acaso. O antibiótico só tirou a concorrência.',
+  },
+  {
+    enunciado: 'Qual dos cuidados ajuda a reduzir a resistência a antibióticos?',
+    opcoes: ['Tomar só com receita e até o fim', 'Usar para curar gripe', 'Parar assim que a febre passar'],
+    correta: 0,
+    explicacao: 'Gripe é causada por vírus. Parar antes do fim deixa as bactérias mais resistentes vivas.',
+  },
+  {
+    enunciado: 'Na equação R = h² · S, o que acontece se h² vale zero?',
+    opcoes: ['R vale zero: a seleção não muda a média dos filhos', 'R fica muito grande', 'S passa a valer zero'],
+    correta: 0,
+    explicacao: 'Sem herança, o que foi selecionado não passa aos filhos.',
+  },
+  {
+    enunciado: 'Com S = 1,2 mm e h² = 0,5, qual o valor de R?',
+    opcoes: ['0,6 mm', '1,2 mm', '2,4 mm'],
+    correta: 0,
+    explicacao: 'R = 0,5 · 1,2 = 0,6 mm.',
+  },
+  {
+    enunciado: 'O que é deriva genética?',
+    opcoes: ['Mudança de frequência causada só pelo acaso, forte em populações pequenas', 'Uma mutação específica', 'A migração de aves'],
+    correta: 0,
+    explicacao: 'Sem vantagem nenhuma, uma variante pode sumir ou dominar por sorte em populações pequenas.',
+  },
+  {
+    enunciado: 'O que é seleção artificial?',
+    opcoes: ['Pessoas escolhendo quais indivíduos se reproduzem', 'Seleção feita em laboratório com robôs', 'Seleção sem variação'],
+    correta: 0,
+    explicacao: 'Foi assim com cães, milho e vacas. Usa a mesma variação e herança, mas a escolha é humana.',
+  },
+  {
+    enunciado: 'Por que a frase "evolução é só uma teoria" engana?',
+    opcoes: ['Em ciência, teoria é uma explicação muito bem testada, não um palpite', 'Porque ninguém nunca viu evolução', 'Porque a evolução já foi provada falsa'],
+    correta: 0,
+    explicacao: 'Já se viu evolução em bactérias, tentilhões e mariposas. Teoria é explicação sólida, como a da gravidade.',
+  },
+]} />
+
+</Etapa>
+
+<Etapa id="conexoes">
+
+<Resumo>
+
+- **Seleção natural:** quando indivíduos com características herdáveis sobrevivem e se reproduzem mais, essas características se tornam mais comuns na população.
+- **Três condições:** variação, hereditariedade e reprodução diferente. Quem muda é a população, não o indivíduo.
+- **Adaptação:** característica que ajuda a sobreviver e a se reproduzir naquele ambiente. Não há objetivo nem "mais forte" garantido.
+- **Equação do criador:** R = h² · S. Sem herança (h² = 0), a seleção não muda os filhos.
+- **Resistência a antibióticos:** o remédio elimina as sensíveis e deixa as resistentes se multiplicarem. Use só com receita e até o fim, e nunca para vírus.
+- **Outras forças:** deriva genética (acaso, forte em populações pequenas) e seleção artificial (escolha humana).
+
+**Um pouco de história.** Em 1831, Darwin embarcou no Beagle. Em 1858, ele e Wallace apresentaram juntos a seleção natural, e, em 1859, saiu A origem das espécies. Fleming descobriu a penicilina em 1928 e já alertava para a resistência. Desde 1973, os Grant medem os bicos dos tentilhões de Galápagos, e, desde 1988, Lenski acompanha a evolução de bactérias em laboratório.
+
+</Resumo>
+
+A seleção natural dá o motor da evolução. Para ver o resultado ao longo de milhões de anos, e como se classifica a diversidade, siga por estas estações:
+
+<Conexoes />
+
+</Etapa>
